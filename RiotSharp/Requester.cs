@@ -44,17 +44,21 @@ namespace RiotSharp
         {
             lock (_lock)
             {
-                if (LimitEnabled && numberOfRequestsInLastTenS >= REQUEST_PER_10S)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 10) ;
-                    numberOfRequestsInLastTenS = 0;
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-                else if(LimitEnabled && numberOfRequestInLastTenM >= REQUEST_PER_10M)
+                if (LimitEnabled && numberOfRequestInLastTenM >= REQUEST_PER_10M)
                 {
                     while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 2) ;
                     numberOfRequestInLastTenM = 0;
                     firstRequestInLastTenM = DateTime.Now;
+
+                    Console.WriteLine("reset M " + relativeUrl);
+                }
+                else if (LimitEnabled && numberOfRequestsInLastTenS >= REQUEST_PER_10S)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 10) ;
+                    numberOfRequestsInLastTenS = 0;
+                    firstRequestInLastTenS = DateTime.Now;
+
+                    Console.WriteLine("reset S " + relativeUrl);
                 }
 
                 if (firstRequestInLastTenM == DateTime.MinValue)
@@ -68,6 +72,8 @@ namespace RiotSharp
                     firstRequestInLastTenS = DateTime.Now;
                 }
                 numberOfRequestsInLastTenS++;
+
+                Console.WriteLine("increment " + relativeUrl + " S" + numberOfRequestsInLastTenS + " M" + numberOfRequestInLastTenM);
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("http://{0}{1}?api_key={2}", RootDomain, relativeUrl, ApiKey));
                 request.Method = "GET";
