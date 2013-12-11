@@ -31,24 +31,38 @@ namespace RiotSharp
         //if you have a dev key, this property should be true
         public static bool LimitEnabled { get; set; }
 
-        private static DateTime lastRequest = DateTime.MinValue;
         private static DateTime firstRequestInLastTenS = DateTime.MinValue;
         private static DateTime firstRequestInLastTenM = DateTime.MinValue;
         private static int numberOfRequestsInLastTenS = 0;
+        private static int numberOfRequestInLastTenM = 0;
         private static object _lock = new object();
+
+        private const int REQUEST_PER_10S = 5;
+        private const int REQUEST_PER_10M = 50;
 
         public HttpWebRequest CreateRequest(string relativeUrl)
         {
-            //5 requests per 10 secs
-            //50 requests per 10 mins
             lock (_lock)
             {
-                if (numberOfRequestsInLastTenS >= 5)
+                if (LimitEnabled && numberOfRequestsInLastTenS >= REQUEST_PER_10S)
                 {
                     while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 10) ;
                     numberOfRequestsInLastTenS = 0;
                     firstRequestInLastTenS = DateTime.Now;
                 }
+                else if(LimitEnabled && numberOfRequestInLastTenM >= REQUEST_PER_10M)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 2) ;
+                    numberOfRequestInLastTenM = 0;
+                    firstRequestInLastTenM = DateTime.Now;
+                }
+
+                if (firstRequestInLastTenM == DateTime.MinValue)
+                {
+                    firstRequestInLastTenM = DateTime.Now;
+                }
+                numberOfRequestInLastTenM++;
+
                 if (firstRequestInLastTenS == DateTime.MinValue)
                 {
                     firstRequestInLastTenS = DateTime.Now;

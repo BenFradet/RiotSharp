@@ -13,21 +13,22 @@ namespace RiotSharpTest
     {
         static void Main(string[] args)
         {
+            Requester.LimitEnabled = true;
             Task.Run(() =>
             {
                 HttpWebRequest req2;
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 30; i++)
                 {
+                    Thread.Sleep(2000);
                     req2 = Requester.Instance.CreateRequest("req2");
-                    Thread.Sleep(1000);
                 }
             });
 
             HttpWebRequest req;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 30; i++)
             {
+                Thread.Sleep(2000);
                 req = Requester.Instance.CreateRequest("req1");
-                Thread.Sleep(900);
             }
 
             Console.ReadLine();
