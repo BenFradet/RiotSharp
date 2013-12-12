@@ -69,8 +69,6 @@ namespace RiotSharp
                 }
                 numberOfRequestsInLastTenS++;
 
-                Console.WriteLine(String.Format("https://{0}{1}?api_key={2}", RootDomain, relativeUrl, ApiKey));
-
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("https://{0}{1}?api_key={2}", RootDomain, relativeUrl, ApiKey));
                 request.Method = "GET";
                 return request;
