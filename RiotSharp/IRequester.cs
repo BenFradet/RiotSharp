@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    interface IRequester
+    public interface IRequester
     {
         HttpWebRequest CreateRequest(string relativeUrl);
         string GetResponseString(Stream stream);

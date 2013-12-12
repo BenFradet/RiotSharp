@@ -13,23 +13,16 @@ namespace RiotSharpTest
     {
         static void Main(string[] args)
         {
-            Requester.LimitEnabled = true;
-            Task.Run(() =>
-            {
-                HttpWebRequest req2;
-                for (int i = 0; i < 30; i++)
-                {
-                    Thread.Sleep(2000);
-                    req2 = Requester.Instance.CreateRequest("req2");
-                }
-            });
+            //toreplace
+            var api = new RiotApi("to replace");
+            var summoner = api.GetSummoner(Region.euw, 123456789);
 
-            HttpWebRequest req;
-            for (int i = 0; i < 30; i++)
-            {
-                Thread.Sleep(2000);
-                req = Requester.Instance.CreateRequest("req1");
-            }
+            Console.WriteLine(summoner.Name );
+            Console.WriteLine(summoner.Level);
+            Console.WriteLine(summoner.Id);
+            Console.WriteLine(summoner.ProfileIconId);
+            Console.WriteLine(summoner.RevisionDate);
+            Console.WriteLine(summoner.RevisionDateString);
 
             Console.ReadLine();
         }
