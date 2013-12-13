@@ -14,15 +14,22 @@ namespace RiotSharpTest
         static void Main(string[] args)
         {
             //toreplace
-            var api = new RiotApi("to replace");
-            var summoner = api.GetSummoner(Region.euw, 123456789);
+            var api = new RiotApi("toreplace");
+            var summoner = api.GetSummoners(Region.euw, new List<int> { 123456, 654321 });
 
-            Console.WriteLine(summoner.Name );
-            Console.WriteLine(summoner.Level);
-            Console.WriteLine(summoner.Id);
-            Console.WriteLine(summoner.ProfileIconId);
-            Console.WriteLine(summoner.RevisionDate);
-            Console.WriteLine(summoner.RevisionDateString);
+            foreach (CommonParent parent in summoner)
+            {
+                Console.WriteLine(parent.Id);
+                Console.WriteLine(parent.Name);
+                Console.WriteLine();
+            }
+
+            //Console.WriteLine(summoner.Name);
+            //Console.WriteLine(summoner.Level);
+            //Console.WriteLine(summoner.Id);
+            //Console.WriteLine(summoner.ProfileIconId);
+            //Console.WriteLine(summoner.RevisionDate);
+            //Console.WriteLine(summoner.RevisionDateString);
 
             Console.ReadLine();
         }

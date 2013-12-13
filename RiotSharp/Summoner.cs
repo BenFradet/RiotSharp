@@ -8,26 +8,15 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class Summoner
+    public class Summoner : CommonParent
     {
         private const String RootUrl = "/api/lol/{0}/v1.1/summoner";
         private const String MasteriesUrl = "/{0}/masteries";
         private const String RunesUrl = "/{0}/runes";
 
-        private RiotApi riotApi;
-        private IRequester requester;
-
         public Summoner(RiotApi api, JToken summoner, IRequester requester)
-        {
-            riotApi = api;
-            this.requester = requester;
-            JsonConvert.PopulateObject(summoner.ToString(), this, riotApi.JsonSerializerSettings);
-        }
-
-        [JsonProperty("id")]
-        public long Id { get; set; }
-        [JsonProperty("name")]
-        public String Name { get; set; }
+            : base(api, summoner, requester) { }
+        
         [JsonProperty("profileIconId")]
         public int ProfileIconId { get; set; }
         [JsonProperty("revisionDate")]

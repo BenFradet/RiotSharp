@@ -38,17 +38,52 @@ namespace RiotSharp
 
         public Summoner GetSummoner(Region region, int summonerId)
         {
-            var request = requester
-                .CreateRequest(String.Format(RootUrl, region.ToString()) + String.Format(IdUrl, summonerId));
+            var request = requester.CreateRequest(String.Format(RootUrl, region.ToString()) 
+                + String.Format(IdUrl, summonerId));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
+
             return new Summoner(this, json, requester);
         }
 
-        //public Summoner GetSummoner(Region region, String summonerName)
-        //{
+        public Summoner GetSummoner(Region region, String summonerName)
+        {
+            var request = requester.CreateRequest(String.Format(RootUrl, region.ToString()) 
+                + String.Format(NameUrl, Uri.EscapeDataString(summonerName)));
+            var response = (HttpWebResponse)request.GetResponse();
+            var result = requester.GetResponseString(response.GetResponseStream());
+            var json = JObject.Parse(result);
 
-        //}
+            return new Summoner(this, json, requester);
+        }
+
+        public Collection<CommonParent> GetSummoners(Region region, List<int> summonerIds)
+        {
+            var request = requester.CreateRequest(String.Format(RootUrl, region.ToString())
+                + String.Format(NamesUrl, BuildIdsString(summonerIds)));
+            var response = (HttpWebResponse)request.GetResponse();
+            var result = requester.GetResponseString(response.GetResponseStream());
+            var json = JObject.Parse(result);
+
+            return new Collection<CommonParent>(this, json, requester, "summoners");
+        }
+
+        private String BuildIdsString(List<int> ids)
+        {
+            String concatenatedIds = String.Empty;
+            for (int i = 0; i < ids.Count; i++)
+            {
+                if (i < ids.Count - 1)
+                {
+                    concatenatedIds += ids[i].ToString() + ",";
+                }
+                else
+                {
+                    concatenatedIds += ids[i];
+                }
+            }
+            return concatenatedIds;
+        }
     }
 }
