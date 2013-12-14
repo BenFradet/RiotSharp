@@ -8,19 +8,20 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class RuneSlot : Thing
+    public class Talent : Thing
     {
-        public RuneSlot() { }
+        public Talent() { }
 
-        public RuneSlot(JToken json)
+        public Talent(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
         [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonProperty("rune")]
-        [JsonConverter(typeof(RuneConverter))]
-        public Rune Rune { get; set; }
+        [JsonProperty("name")]
+        public String Name { get; set; }
+        [JsonProperty("rank")]
+        public int Rank { get; set; }
     }
 }

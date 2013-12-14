@@ -82,7 +82,7 @@ namespace RiotSharp
                 for (int i = 0; i < array.Length; i++)
                 {
                     array[i] = Thing.Parse(collection.api, children[i], collection.requester
-                        , collection.region, collection.collectionName);
+                        , collection.region, typeof(T));
                 }
             }
         }

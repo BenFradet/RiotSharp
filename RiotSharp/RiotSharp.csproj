@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasteryPage.cs" />
     <Compile Include="Rune.cs" />
     <Compile Include="RuneConverter.cs" />
     <Compile Include="RunePage.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Requester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner.cs" />
+    <Compile Include="Talent.cs" />
     <Compile Include="Thing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

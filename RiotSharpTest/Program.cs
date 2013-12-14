@@ -14,8 +14,8 @@ namespace RiotSharpTest
         static void Main(string[] args)
         {
             //toreplace
-            var api = new RiotApi("toreplace", false);
-            var summoner = api.GetSummoners(Region.euw, new List<int> { 123465 });
+            var api = new RiotApi("", false);
+            var summoner = api.GetSummoners(Region.euw, new List<int> { 1 });
 
             foreach (SummonerBase parent in summoner)
             {
@@ -24,16 +24,25 @@ namespace RiotSharpTest
                 Console.WriteLine();
             }
 
-            var summ = api.GetSummoner(Region.euw, 123465);            
-            var pages = summ.GetRunePages();
-
-            foreach (RunePage page in pages.Take(1))
+            var summ = api.GetSummoner(Region.euw, 1);
+            var masteries = summ.GetMasteryPages().First();
+            
+            foreach (Talent talent in masteries.Talents)
             {
-                foreach (RuneSlot slot in page.Slots)
-                {
-                    Console.WriteLine(slot.Rune.Name);
-                }
+                Console.WriteLine(talent.Name + " " + talent.Rank);
             }
+
+            //var pages = summ.GetRunePages();
+
+            //foreach (RunePage page in pages.Take(100))
+            //{
+            //    foreach (RuneSlot slot in page.Slots)
+            //    {
+            //        Console.WriteLine(slot.Rune.Name);
+            //    }
+            //    Console.WriteLine(page.Name);
+            //    Console.WriteLine();
+            //}
 
             //Console.WriteLine(summoner.Name);
             //Console.WriteLine(summoner.Level);

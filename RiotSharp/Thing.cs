@@ -11,16 +11,23 @@ namespace RiotSharp
     public class Thing
     {
         public static Thing Parse(RiotApi api, JToken json, IRequester requester
-            , Region region, String collectionName)
+            , Region region, Type typeToParse)
         {
-            switch (collectionName)
+            if(typeToParse.Equals(typeof(SummonerBase)))
             {
-                case "summoners":
-                    return new SummonerBase(api, json, requester, region);
-                case "pages":
-                    return new RunePage(json);
-                default:
-                    return null;
+                return new SummonerBase(api, json, requester, region);
+            }
+            else if(typeToParse.Equals(typeof(RunePage)))
+            {
+                return new RunePage(json);
+            }
+            else if (typeToParse.Equals(typeof(MasteryPage)))
+            {
+                return new MasteryPage(json);
+            }
+            else
+            {
+                return null;
             }
         }
     }
