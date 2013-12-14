@@ -18,7 +18,7 @@ namespace RiotSharp
                 case "summoners":
                     return new SummonerBase(api, json, requester, region);
                 case "pages":
-                    return new RunePage(api, json);
+                    return new RunePage(json);
                 default:
                     return null;
             }

@@ -14,7 +14,7 @@ namespace RiotSharpTest
         static void Main(string[] args)
         {
             //toreplace
-            var api = new RiotApi("toreplace");
+            var api = new RiotApi("toreplace", false);
             var summoner = api.GetSummoners(Region.euw, new List<int> { 123465 });
 
             foreach (SummonerBase parent in summoner)

@@ -11,12 +11,9 @@ namespace RiotSharp
 {
     public class RunePage : Thing
     {
-        private RiotApi api;
-
-        public RunePage(RiotApi api, JToken json)
+        public RunePage(JToken json)
         {
-            this.api = api;
-            JsonConvert.PopulateObject(json.ToString(), this, api.JsonSerializerSettings);
+            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
         [JsonProperty("current")]

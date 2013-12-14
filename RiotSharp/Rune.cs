@@ -10,12 +10,9 @@ namespace RiotSharp
 {
     public class Rune : Thing
     {
-        private RiotApi api;
-
-        public Rune(RiotApi api, JToken json)
+        public Rune(JToken json)
         {
-            this.api = api;
-            JsonConvert.PopulateObject(json.ToString(), this, api.JsonSerializerSettings);
+            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
         [JsonProperty("id")]

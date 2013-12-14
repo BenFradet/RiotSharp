@@ -18,22 +18,22 @@ namespace RiotSharp
 
         private readonly Requester requester;
 
-        internal JsonSerializerSettings JsonSerializerSettings { get; set; }
+        internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
         
         static RiotApi()
         {
             Requester.RootDomain = "prod.api.pvp.net";
-            Requester.IsProdApi = false;
-        }
 
-        public RiotApi(String apiKey)
-        {
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.CheckAdditionalContent = false;
             JsonSerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
+        }
 
+        public RiotApi(String apiKey, bool isProdApi)
+        {
             requester = Requester.Instance;
             Requester.ApiKey = apiKey;
+            Requester.IsProdApi = isProdApi;
         }
 
         public Summoner GetSummoner(Region region, int summonerId)
