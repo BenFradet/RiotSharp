@@ -15,7 +15,8 @@ namespace RiotSharp
             return true;
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType
+            , object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
             return new Rune(token);
