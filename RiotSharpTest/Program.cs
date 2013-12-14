@@ -15,22 +15,55 @@ namespace RiotSharpTest
         {            
             //toreplace
             var api = new RiotApi("", false);
-            var champs = api.GetChampions(Region.euw);
-            foreach (Champion champ in champs)
+
+            var summ = api.GetSummoner(Region.euw, 123456);
+            var games = summ.GetRecentGames();
+            foreach (Game game in games)
             {
-                Console.WriteLine(champ.Active);
-                Console.WriteLine(champ.AttackRank);
-                Console.WriteLine(champ.BotEnabled);
-                Console.WriteLine(champ.BotMmEnabled);
-                Console.WriteLine(champ.DefenseRank);
-                Console.WriteLine(champ.DifficultyRank);
-                Console.WriteLine(champ.FreeToPlay);
-                Console.WriteLine(champ.Id);
-                Console.WriteLine(champ.MagicRank);
-                Console.WriteLine(champ.Name);
-                Console.WriteLine(champ.RankedPlayEnabled);
+                Console.WriteLine(game.ChampionId);
+                Console.WriteLine(game.CreateDate);
+                Console.WriteLine(game.CreateDateString);
+                foreach (var player in game.FellowPlayers)
+                {
+                    Console.WriteLine("    " + player.ChampionId);
+                    Console.WriteLine("    " + player.SummonerId);
+                    Console.WriteLine("    " + player.TeamId);
+                }
+                Console.WriteLine(game.GameId);
+                Console.WriteLine(game.GameMode);
+                Console.WriteLine(game.GameType);
+                Console.WriteLine(game.Invalid);
+                Console.WriteLine(game.Level);
+                Console.WriteLine(game.MapId);
+                Console.WriteLine(game.Spell1);
+                Console.WriteLine(game.Spell2);
+                foreach (var stat in game.Statistics)
+                {
+                    Console.WriteLine("    " + stat.Id);
+                    Console.WriteLine("    " + stat.Name);
+                    Console.WriteLine("    " + stat.Value);
+                }
+                Console.WriteLine(game.SubType);
+                Console.WriteLine(game.TeamId);
                 Console.WriteLine();
             }
+
+            //var champs = api.GetChampions(Region.euw);
+            //foreach (Champion champ in champs)
+            //{
+            //    Console.WriteLine(champ.Active);
+            //    Console.WriteLine(champ.AttackRank);
+            //    Console.WriteLine(champ.BotEnabled);
+            //    Console.WriteLine(champ.BotMmEnabled);
+            //    Console.WriteLine(champ.DefenseRank);
+            //    Console.WriteLine(champ.DifficultyRank);
+            //    Console.WriteLine(champ.FreeToPlay);
+            //    Console.WriteLine(champ.Id);
+            //    Console.WriteLine(champ.MagicRank);
+            //    Console.WriteLine(champ.Name);
+            //    Console.WriteLine(champ.RankedPlayEnabled);
+            //    Console.WriteLine();
+            //}
 
             //var summoner = api.GetSummoners(Region.euw, new List<int> { 42091042 });
 

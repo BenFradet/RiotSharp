@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champion.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="MasteryPage.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="RawStat.cs" />
     <Compile Include="Rune.cs" />
     <Compile Include="RuneConverter.cs" />
     <Compile Include="RunePage.cs" />

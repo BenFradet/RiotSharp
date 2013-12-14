@@ -29,6 +29,10 @@ namespace RiotSharp
             {
                 return new Champion(json);
             }
+            else if (typeToParse.Equals(typeof(Game)))
+            {
+                return new Game(json);
+            }
             else
             {
                 return null;

@@ -15,6 +15,9 @@ namespace RiotSharp
         private const String MasteriesUrl = "/{0}/masteries";
         private const String RunesUrl = "/{0}/runes";
 
+        private const String GameRootUrl = "/api/lol/{0}/v1.1/game";
+        private const String RecentGamesUrl = "/by-summoner/{0}/recent";
+
         protected RiotApi api;
         protected IRequester requester;
         protected Region region;
@@ -52,6 +55,17 @@ namespace RiotSharp
             var json = JObject.Parse(result);
 
             return new Collection<MasteryPage>(api, json, requester, "pages", region);
+        }
+
+        public Collection<Game> GetRecentGames()
+        {
+            var request = requester.CreateRequest(String.Format(GameRootUrl, region)
+                + String.Format(RecentGamesUrl, Id));
+            var response = (HttpWebResponse)request.GetResponse();
+            var result = requester.GetResponseString(response.GetResponseStream());
+            var json = JObject.Parse(result);
+
+            return new Collection<Game>(api, json, requester, "games", region);
         }
     }
 }
