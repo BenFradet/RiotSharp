@@ -15,13 +15,24 @@ namespace RiotSharpTest
         {
             //toreplace
             var api = new RiotApi("toreplace");
-            var summoner = api.GetSummoners(Region.euw, new List<int> { 123456, 654321 });
+            var summoner = api.GetSummoners(Region.euw, new List<int> { 123465 });
 
-            foreach (CommonParent parent in summoner)
+            foreach (SummonerBase parent in summoner)
             {
                 Console.WriteLine(parent.Id);
                 Console.WriteLine(parent.Name);
                 Console.WriteLine();
+            }
+
+            var summ = api.GetSummoner(Region.euw, 123465);            
+            var pages = summ.GetRunePages();
+
+            foreach (RunePage page in pages.Take(1))
+            {
+                foreach (RuneSlot slot in page.Slots)
+                {
+                    Console.WriteLine(slot.Rune.Name);
+                }
             }
 
             //Console.WriteLine(summoner.Name);

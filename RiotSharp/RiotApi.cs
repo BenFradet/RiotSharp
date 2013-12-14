@@ -44,7 +44,7 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Summoner(this, json, requester);
+            return new Summoner(this, json, requester, region);
         }
 
         public Summoner GetSummoner(Region region, String summonerName)
@@ -55,10 +55,10 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Summoner(this, json, requester);
+            return new Summoner(this, json, requester, region);
         }
 
-        public Collection<CommonParent> GetSummoners(Region region, List<int> summonerIds)
+        public Collection<SummonerBase> GetSummoners(Region region, List<int> summonerIds)
         {
             var request = requester.CreateRequest(String.Format(RootUrl, region.ToString())
                 + String.Format(NamesUrl, BuildIdsString(summonerIds)));
@@ -66,7 +66,7 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Collection<CommonParent>(this, json, requester, "summoners");
+            return new Collection<SummonerBase>(this, json, requester, "summoners", region);
         }
 
         private String BuildIdsString(List<int> ids)

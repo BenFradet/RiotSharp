@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonParent.cs" />
+    <Compile Include="Rune.cs" />
+    <Compile Include="RuneConverter.cs" />
+    <Compile Include="RunePage.cs" />
+    <Compile Include="RuneSlot.cs" />
+    <Compile Include="SummonerBase.cs" />
     <Compile Include="IRequester.cs" />
     <Compile Include="Collection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +55,7 @@
     <Compile Include="Requester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner.cs" />
+    <Compile Include="Thing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

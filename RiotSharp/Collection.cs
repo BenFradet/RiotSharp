@@ -9,19 +9,21 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class Collection<T> : IEnumerable<T> where T : CommonParent
+    public class Collection<T> : IEnumerable<T> where T : Thing
     {
         private IRequester requester;
         private RiotApi api;
         private JToken json;
         private String collectionName;
+        private Region region;
 
-        internal Collection(RiotApi api, JToken json, IRequester requester, String collectionName)
+        internal Collection(RiotApi api, JToken json, IRequester requester, String collectionName, Region region)
         {
             this.requester = requester;
             this.json = json;
             this.api = api;
             this.collectionName = collectionName;
+            this.region = region;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -34,15 +36,15 @@ namespace RiotSharp
             return GetEnumerator();
         }
 
-        private class CollectionEnumerator<T> : IEnumerator<T> where T : CommonParent
+        private class CollectionEnumerator<T> : IEnumerator<T> where T : Thing
         {
-            private Collection<T> listing;
+            private Collection<T> collection;
             private int index;
-            private CommonParent[] collection;
+            private Thing[] array;
 
             public T Current
             {
-                get { return (T)collection[index]; }
+                get { return (T)array[index]; }
             }
 
             object IEnumerator.Current
@@ -50,9 +52,9 @@ namespace RiotSharp
                 get { return Current; }
             }
 
-            public CollectionEnumerator(Collection<T> listing)
+            public CollectionEnumerator(Collection<T> collection)
             {
-                this.listing = listing;
+                this.collection = collection;
                 index = -1;
                 Parse();
             }
@@ -61,7 +63,7 @@ namespace RiotSharp
 
             public bool MoveNext()
             {
-                if (++index >= collection.Count())
+                if (++index >= array.Count())
                 {
                     return false;
                 }
@@ -75,11 +77,12 @@ namespace RiotSharp
 
             private void Parse()
             {
-                var children = listing.json[listing.collectionName] as JArray;
-                collection = new CommonParent[children.Count];
-                for (int i = 0; i < collection.Length; i++)
+                var children = collection.json[collection.collectionName] as JArray;
+                array = new Thing[children.Count];
+                for (int i = 0; i < array.Length; i++)
                 {
-                    collection[i] = CommonParent.Parse(listing.api, children[i], listing.requester); 
+                    array[i] = Thing.Parse(collection.api, children[i], collection.requester
+                        , collection.region, collection.collectionName);
                 }
             }
         }

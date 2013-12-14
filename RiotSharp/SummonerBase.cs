@@ -8,21 +8,18 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class CommonParent
+    public class SummonerBase : Thing
     {
-        protected RiotApi riotApi;
+        protected RiotApi api;
         protected IRequester requester;
+        protected Region region;
 
-        public CommonParent(RiotApi api, JToken summoner, IRequester requester)
+        public SummonerBase(RiotApi api, JToken json, IRequester requester, Region region)
         {
-            riotApi = api;
+            this.api = api;
             this.requester = requester;
-            JsonConvert.PopulateObject(summoner.ToString(), this, riotApi.JsonSerializerSettings);
-        }
-
-        public static CommonParent Parse(RiotApi api, JToken json, IRequester requester)
-        {
-            return new CommonParent(api, json, requester);
+            this.region = region;
+            JsonConvert.PopulateObject(json.ToString(), this, api.JsonSerializerSettings);
         }
 
         [JsonProperty("id")]
