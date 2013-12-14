@@ -12,25 +12,42 @@ namespace RiotSharpTest
     class Program
     {
         static void Main(string[] args)
-        {
+        {            
             //toreplace
             var api = new RiotApi("", false);
-            var summoner = api.GetSummoners(Region.euw, new List<int> { 1 });
-
-            foreach (SummonerBase parent in summoner)
+            var champs = api.GetChampions(Region.euw);
+            foreach (Champion champ in champs)
             {
-                Console.WriteLine(parent.Id);
-                Console.WriteLine(parent.Name);
+                Console.WriteLine(champ.Active);
+                Console.WriteLine(champ.AttackRank);
+                Console.WriteLine(champ.BotEnabled);
+                Console.WriteLine(champ.BotMmEnabled);
+                Console.WriteLine(champ.DefenseRank);
+                Console.WriteLine(champ.DifficultyRank);
+                Console.WriteLine(champ.FreeToPlay);
+                Console.WriteLine(champ.Id);
+                Console.WriteLine(champ.MagicRank);
+                Console.WriteLine(champ.Name);
+                Console.WriteLine(champ.RankedPlayEnabled);
                 Console.WriteLine();
             }
 
-            var summ = api.GetSummoner(Region.euw, 1);
-            var masteries = summ.GetMasteryPages().First();
+            //var summoner = api.GetSummoners(Region.euw, new List<int> { 42091042 });
+
+            //foreach (SummonerBase parent in summoner)
+            //{
+            //    Console.WriteLine(parent.Id);
+            //    Console.WriteLine(parent.Name);
+            //    Console.WriteLine();
+            //}
+
+            //var summ = api.GetSummoner(Region.euw, 42091042);
+            //var masteries = summ.GetMasteryPages().First();
             
-            foreach (Talent talent in masteries.Talents)
-            {
-                Console.WriteLine(talent.Name + " " + talent.Rank);
-            }
+            //foreach (Talent talent in masteries.Talents)
+            //{
+            //    Console.WriteLine(talent.Name + " " + talent.Rank);
+            //}
 
             //var pages = summ.GetRunePages();
 

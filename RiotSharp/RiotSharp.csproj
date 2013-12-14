@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Champion.cs" />
     <Compile Include="MasteryPage.cs" />
     <Compile Include="Rune.cs" />
     <Compile Include="RuneConverter.cs" />

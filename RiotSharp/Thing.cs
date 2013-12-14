@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class Thing
+    public abstract class Thing
     {
         public static Thing Parse(RiotApi api, JToken json, IRequester requester
             , Region region, Type typeToParse)
@@ -24,6 +24,10 @@ namespace RiotSharp
             else if (typeToParse.Equals(typeof(MasteryPage)))
             {
                 return new MasteryPage(json);
+            }
+            else if (typeToParse.Equals(typeof(Champion)))
+            {
+                return new Champion(json);
             }
             else
             {
