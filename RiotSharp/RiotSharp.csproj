@@ -44,8 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champion.cs" />
+    <Compile Include="CharArrayConverter.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="League.cs" />
+    <Compile Include="LeagueItem.cs" />
     <Compile Include="MasteryPage.cs" />
+    <Compile Include="MiniSeries.cs" />
+    <Compile Include="MiniSeriesConverter.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="RawStat.cs" />
     <Compile Include="Rune.cs" />

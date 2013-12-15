@@ -14,15 +14,15 @@ namespace RiotSharp
         private IRequester requester;
         private RiotApi api;
         private JToken json;
-        private String collectionName;
+        private String name;
         private Region region;
 
-        internal Collection(RiotApi api, JToken json, IRequester requester, String collectionName, Region region)
+        internal Collection(RiotApi api, JToken json, IRequester requester, Region region, String collectionName = null)
         {
             this.requester = requester;
             this.json = json;
             this.api = api;
-            this.collectionName = collectionName;
+            this.name = collectionName;
             this.region = region;
         }
 
@@ -77,12 +77,31 @@ namespace RiotSharp
 
             private void Parse()
             {
-                var children = collection.json[collection.collectionName] as JArray;
-                array = new Thing[children.Count];
-                for (int i = 0; i < array.Length; i++)
+                if (collection.name != null)
                 {
-                    array[i] = Thing.Parse(collection.api, children[i], collection.requester
-                        , collection.region, typeof(T));
+                    var children = collection.json[collection.name] as JArray;
+                    array = new Thing[children.Count];
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        array[i] = Thing.Parse(collection.api, children[i], collection.requester
+                            , collection.region, typeof(T));
+                    }
+                }
+                else
+                {
+                    //var mapEntries = collection.json.Children().ToArray();
+                    //JToken[] children = new JToken[mapEntries.Count()];
+                    //for(int i = 0; i < mapEntries.Length; i++)
+                    //{
+                    //    children[i] = mapEntries[i].Children().ToArray()[0];
+                    //}
+                    var children = collection.json.Children().Children().ToArray();
+                    array = new Thing[children.Count()];
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        array[i] = Thing.Parse(collection.api, children[i], collection.requester
+                            , collection.region, typeof(T));
+                    }
                 }
             }
         }

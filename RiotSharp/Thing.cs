@@ -33,6 +33,10 @@ namespace RiotSharp
             {
                 return new Game(json);
             }
+            else if (typeToParse.Equals(typeof(League)))
+            {
+                return new League(json);
+            }
             else
             {
                 return null;

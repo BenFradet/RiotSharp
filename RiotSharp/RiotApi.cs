@@ -68,7 +68,7 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Collection<SummonerBase>(this, json, requester, "summoners", region);
+            return new Collection<SummonerBase>(this, json, requester, region, "summoners");
         }
 
         public Collection<Champion> GetChampions(Region region)
@@ -78,7 +78,7 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Collection<Champion>(this, json, requester, "champions", region);
+            return new Collection<Champion>(this, json, requester, region, "champions");
         }
 
         private String BuildIdsString(List<int> ids)

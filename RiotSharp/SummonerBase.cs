@@ -18,6 +18,9 @@ namespace RiotSharp
         private const String GameRootUrl = "/api/lol/{0}/v1.1/game";
         private const String RecentGamesUrl = "/by-summoner/{0}/recent";
 
+        private const String LeagueRootUrl = "/api/{0}/v2.1/league";
+        private const String LeagueBySummonerUrl = "/by-summoner/{0}";
+
         protected RiotApi api;
         protected IRequester requester;
         protected Region region;
@@ -43,7 +46,7 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Collection<RunePage>(api, json, requester, "pages", region);
+            return new Collection<RunePage>(api, json, requester, region, "pages");
         }
 
         public Collection<MasteryPage> GetMasteryPages()
@@ -54,7 +57,7 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Collection<MasteryPage>(api, json, requester, "pages", region);
+            return new Collection<MasteryPage>(api, json, requester, region, "pages");
         }
 
         public Collection<Game> GetRecentGames()
@@ -65,7 +68,18 @@ namespace RiotSharp
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
 
-            return new Collection<Game>(api, json, requester, "games", region);
+            return new Collection<Game>(api, json, requester, region, "games");
+        }
+
+        public Collection<League> GetLeagues()
+        {
+            var request = requester.CreateRequest(String.Format(LeagueRootUrl, region)
+                + String.Format(LeagueBySummonerUrl, Id));
+            var response = (HttpWebResponse)request.GetResponse();
+            var result = requester.GetResponseString(response.GetResponseStream());
+            var json = JObject.Parse(result);
+
+            return new Collection<League>(api, json, requester, region);
         }
     }
 }
