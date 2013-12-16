@@ -37,8 +37,8 @@ namespace RiotSharp
         private static int numberOfRequestInLastTenM = 0;
         private static Object _lock = new Object();
 
-        private const int MAX_REQUEST_PER_10S = 5;
-        private const int MAX_REQUEST_PER_10M = 50;
+        private const int MAX_REQUEST_PER_10S = 10;
+        private const int MAX_REQUEST_PER_10M = 500;
 
         public HttpWebRequest CreateRequest(string relativeUrl)
         {
@@ -46,7 +46,7 @@ namespace RiotSharp
             {
                 if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 2) ;
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 10) ;
                     numberOfRequestInLastTenM = 0;
                     firstRequestInLastTenM = DateTime.Now;
                 }
