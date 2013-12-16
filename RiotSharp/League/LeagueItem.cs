@@ -26,7 +26,8 @@ namespace RiotSharp
         [JsonProperty("isVeteran")]
         public bool IsVeteran { get; set; }
         [JsonProperty("lastPlayed")]
-        public long LastPlayed { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime LastPlayed { get; set; }
         [JsonProperty("leagueName")]
         public String LeagueName { get; set; }
         [JsonProperty("leaguePoints")]
@@ -47,7 +48,8 @@ namespace RiotSharp
         [JsonProperty("tier")]
         public String Tier { get; set; }
         [JsonProperty("timeUntilDecay")]
-        public long TimeUntilDecay { get; set; }
+        [JsonConverter(typeof(TimeSpanConverter))]
+        public TimeSpan TimeUntilDecay { get; set; }
         [JsonProperty("wins")]
         public int Wins { get; set; }
     }

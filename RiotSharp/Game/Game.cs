@@ -18,7 +18,8 @@ namespace RiotSharp
         [JsonProperty("championId")]
         public int ChampionId { get; set; }
         [JsonProperty("createDate")]
-        public long CreateDate { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime CreateDate { get; set; }
         [JsonProperty("createDateStr")]
         public String CreateDateString { get; set; }
         [JsonProperty("fellowPlayers")]

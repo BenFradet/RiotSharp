@@ -17,8 +17,8 @@ namespace RiotSharp
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
-        [JsonProperty("id")]
-        public int Id { get; set; }
+        [JsonProperty("runeSlotId")]
+        public int RuneSlotId { get; set; }
         [JsonProperty("rune")]
         [JsonConverter(typeof(RuneConverter))]
         public Rune Rune { get; set; }

@@ -8,17 +8,17 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class CharArrayConverter : JsonConverter
+    public class TimeSpanConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return true;
+            return objectType == typeof(long);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            return token.ToString().ToCharArray();
+            return token.Value<long>().ToTimeSpanFromMillis();
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

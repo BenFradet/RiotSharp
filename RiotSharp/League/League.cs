@@ -24,6 +24,7 @@ namespace RiotSharp
         [JsonProperty("tier")]
         public String Tier { get; set; }
         [JsonProperty("timestamp")]
-        public long Timestamp { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime Timestamp { get; set; }
     }
 }

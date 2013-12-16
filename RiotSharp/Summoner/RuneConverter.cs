@@ -12,7 +12,7 @@ namespace RiotSharp
     {
         public override bool CanConvert(Type objectType)
         {
-            return true;
+            return typeof(Rune).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType

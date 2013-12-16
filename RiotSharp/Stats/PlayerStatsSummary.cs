@@ -22,7 +22,8 @@ namespace RiotSharp
         [JsonProperty("losses")]
         public int Losses { get; set; }
         [JsonProperty("modifyDate")]
-        public long ModifyDate { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime ModifyDate { get; set; }
         [JsonProperty("modifyDateStr")]
         public String ModifyDateString { get; set; }
         [JsonProperty("playerStatSummaryType")]

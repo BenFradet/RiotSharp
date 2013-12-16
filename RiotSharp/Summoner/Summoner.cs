@@ -17,7 +17,8 @@ namespace RiotSharp
         [JsonProperty("profileIconId")]
         public int ProfileIconId { get; set; }
         [JsonProperty("revisionDate")]
-        public long RevisionDate { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime RevisionDate { get; set; }
         [JsonProperty("revisionDateStr")]
         public String RevisionDateString { get; set; }
         [JsonProperty("summonerLevel")]

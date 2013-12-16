@@ -14,30 +14,29 @@ namespace RiotSharpTest
         static void Main(string[] args)
         {            
             //toreplace
-            var api = new RiotApi("", false);
+            var api = new RiotApi("188d3c83-580b-40ed-96f6-62c6433f7bd3", false);
 
-            var summ = api.GetSummoner(Region.euw, 123456);
-            var stats = summ.GetPlayerStatsRanked("SEASON3");
-            foreach (var stat in stats)
-            {
-                Console.WriteLine(stat.Id);
-                Console.WriteLine(stat.Name);
-                if (stat.Stats != null && stat.Stats.Count > 0)
-                {
-                    foreach (var s in stat.Stats)
-                    {
-                        Console.WriteLine("    " + s.Count);
-                        Console.WriteLine("    " + s.Name);
-                        Console.WriteLine("    " + s.Id);
-                        Console.WriteLine("    " + s.Value);
-                        Console.WriteLine();
-                    }
-                }
-                Console.WriteLine();
-            }
+            var summ = api.GetSummoner(Region.euw, 42091042);
+            //var stats = summ.GetPlayerStatsRanked(Season.SEASON3);
+            //foreach (var stat in stats)
+            //{
+            //    Console.WriteLine(stat.Id);
+            //    Console.WriteLine(stat.Name);
+            //    if (stat.Stats != null && stat.Stats.Count > 0)
+            //    {
+            //        foreach (var s in stat.Stats)
+            //        {
+            //            Console.WriteLine("    " + s.Count);
+            //            Console.WriteLine("    " + s.Name);
+            //            Console.WriteLine("    " + s.Id);
+            //            Console.WriteLine("    " + s.Value);
+            //            Console.WriteLine();
+            //        }
+            //    }
+            //    Console.WriteLine();
+            //}
 
             //var stats = summ.GetPlayerStatsSummaries("SEASON3");
-
             //foreach (var stat in stats)
             //{
             //    if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
@@ -58,45 +57,47 @@ namespace RiotSharpTest
             //    }
             //}
 
-            //var leagues = summ.GetLeagues();
-            //foreach (League league in leagues)
-            //{
-            //    Console.WriteLine(league.Name);
-            //    Console.WriteLine(league.Queue);
-            //    Console.WriteLine(league.Tier);
-            //    Console.WriteLine(league.Timestamp);
-            //    foreach(LeagueItem entry in league.Entries)
-            //    {
-            //        Console.WriteLine("    " + entry.IsFreshBlood);
-            //        Console.WriteLine("    " + entry.IsHotStreak);
-            //        Console.WriteLine("    " + entry.IsInactive);
-            //        Console.WriteLine("    " + entry.IsVeteran);
-            //        Console.WriteLine("    " + entry.LastPlayed);
-            //        Console.WriteLine("    " + entry.LeagueName);
-            //        Console.WriteLine("    " + entry.LeaguePoints);
-            //        Console.WriteLine("    " + entry.Losses);
-            //        if (entry.MiniSeries != null)
-            //        {
-            //            Console.WriteLine("        " + entry.MiniSeries.Losses);
-            //            Console.Write("        ");
-            //            foreach(var c in entry.MiniSeries.Progress)
-            //            {
-            //                Console.Write(c);
-            //            }
-            //            Console.WriteLine();
-            //            Console.WriteLine("        " + entry.MiniSeries.Target);
-            //            Console.WriteLine("        " + entry.MiniSeries.TimeLeftToPlayMillis);
-            //            Console.WriteLine("        " + entry.MiniSeries.Wins);
-            //        }
-            //        Console.WriteLine("    " + entry.PlayerOrTeamId);
-            //        Console.WriteLine("    " + entry.PlayerOrTeamName);
-            //        Console.WriteLine("    " + entry.QueueType);
-            //        Console.WriteLine("    " + entry.Rank);
-            //        Console.WriteLine("    " + entry.Tier);
-            //        Console.WriteLine("    " + entry.TimeUntilDecay);
-            //        Console.WriteLine("    " + entry.Wins);
-            //    }
-            //}
+            var leagues = summ.GetLeagues();
+            foreach (League league in leagues)
+            {
+                Console.WriteLine(league.Name);
+                Console.WriteLine(league.Queue);
+                Console.WriteLine(league.Tier);
+                Console.WriteLine(league.Timestamp);
+                foreach (LeagueItem entry in league.Entries)
+                {
+                    Console.WriteLine("    " + entry.IsFreshBlood);
+                    Console.WriteLine("    " + entry.IsHotStreak);
+                    Console.WriteLine("    " + entry.IsInactive);
+                    Console.WriteLine("    " + entry.IsVeteran);
+                    Console.WriteLine("    " + entry.LastPlayed);
+                    Console.WriteLine("    " + entry.LeagueName);
+                    Console.WriteLine("    " + entry.LeaguePoints);
+                    Console.WriteLine("    " + entry.Losses);
+                    if (entry.MiniSeries != null)
+                    {
+                        Console.WriteLine("        " + entry.MiniSeries.Losses);
+                        Console.Write("        ");
+                        foreach (var c in entry.MiniSeries.Progress)
+                        {
+                            Console.Write(c);
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("        " + entry.MiniSeries.Target);
+                        Console.WriteLine("        " + entry.MiniSeries.TimeLeftToPlayMillis);
+                        Console.WriteLine("        " + entry.MiniSeries.Wins);
+                    }
+                    Console.WriteLine("    " + entry.PlayerOrTeamId);
+                    Console.WriteLine("    " + entry.PlayerOrTeamName);
+                    Console.WriteLine("    " + entry.QueueType);
+                    Console.WriteLine("    " + entry.Rank);
+                    Console.WriteLine("    " + entry.Tier);
+                    Console.WriteLine("    " + entry.TimeUntilDecay);
+                    Console.WriteLine("    " + entry.Wins);
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
 
             //var games = summ.GetRecentGames();
             //foreach (Game game in games)
@@ -167,9 +168,16 @@ namespace RiotSharpTest
 
             //foreach (RunePage page in pages.Take(100))
             //{
-            //    foreach (RuneSlot slot in page.Slots)
+            //    if (page.Slots != null && page.Slots.Count > 0)
             //    {
-            //        Console.WriteLine(slot.Rune.Name);
+            //        foreach (RuneSlot slot in page.Slots)
+            //        {
+            //            Console.WriteLine(slot.RuneSlotId);
+            //            Console.WriteLine(slot.Rune.Description);
+            //            Console.WriteLine(slot.Rune.Tier);
+            //            Console.WriteLine(slot.Rune.Name);
+            //            Console.WriteLine();
+            //        }
             //    }
             //    Console.WriteLine(page.Name);
             //    Console.WriteLine();

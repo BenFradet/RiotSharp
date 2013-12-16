@@ -97,10 +97,10 @@ namespace RiotSharp
             return new Collection<PlayerStatsSummary>(api, json, requester, region, "playerStatSummaries");
         }
 
-        public Collection<ChampionStats> GetPlayerStatsRanked(String season)
+        public Collection<ChampionStats> GetPlayerStatsRanked(Season season)
         {
             var request = requester.CreateRequest(String.Format(StatsRootUrl, region)
-                + String.Format(StatsRankedUrl, Id), String.Format("season={0}", season));
+                + String.Format(StatsRankedUrl, Id), String.Format("season={0}", season.ToString()));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);

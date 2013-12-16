@@ -43,35 +43,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregatedStat.cs" />
-    <Compile Include="Champion.cs" />
-    <Compile Include="ChampionStat.cs" />
-    <Compile Include="ChampionStats.cs" />
-    <Compile Include="CharArrayConverter.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="League.cs" />
-    <Compile Include="LeagueItem.cs" />
-    <Compile Include="MasteryPage.cs" />
-    <Compile Include="MiniSeries.cs" />
-    <Compile Include="MiniSeriesConverter.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerStatsSummary.cs" />
-    <Compile Include="RawStat.cs" />
-    <Compile Include="Rune.cs" />
-    <Compile Include="RuneConverter.cs" />
-    <Compile Include="RunePage.cs" />
-    <Compile Include="RuneSlot.cs" />
-    <Compile Include="SummonerBase.cs" />
+    <Compile Include="Misc\DateTimeConverter.cs" />
+    <Compile Include="Misc\LongExtension.cs" />
+    <Compile Include="Misc\TimeSpanConverter.cs" />
+    <Compile Include="Stats\AggregatedStat.cs" />
+    <Compile Include="Champion\Champion.cs" />
+    <Compile Include="Stats\ChampionStat.cs" />
+    <Compile Include="Stats\ChampionStats.cs" />
+    <Compile Include="League\CharArrayConverter.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="League\League.cs" />
+    <Compile Include="League\LeagueItem.cs" />
+    <Compile Include="Summoner\MasteryPage.cs" />
+    <Compile Include="League\MiniSeries.cs" />
+    <Compile Include="League\MiniSeriesConverter.cs" />
+    <Compile Include="Game\Player.cs" />
+    <Compile Include="Stats\PlayerStatsSummary.cs" />
+    <Compile Include="Game\RawStat.cs" />
+    <Compile Include="Summoner\Rune.cs" />
+    <Compile Include="Summoner\RuneConverter.cs" />
+    <Compile Include="Summoner\RunePage.cs" />
+    <Compile Include="Summoner\RuneSlot.cs" />
+    <Compile Include="Stats\Season.cs" />
+    <Compile Include="Summoner\SummonerBase.cs" />
     <Compile Include="IRequester.cs" />
     <Compile Include="Collection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="Requester.cs" />
     <Compile Include="RiotApi.cs" />
-    <Compile Include="Summoner.cs" />
-    <Compile Include="Talent.cs" />
+    <Compile Include="Summoner\Summoner.cs" />
+    <Compile Include="Summoner\Talent.cs" />
     <Compile Include="Thing.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

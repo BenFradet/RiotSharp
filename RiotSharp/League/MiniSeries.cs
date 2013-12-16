@@ -23,7 +23,8 @@ namespace RiotSharp
         [JsonProperty("target")]
         public int Target { get; set; }
         [JsonProperty("timeLeftToPlayMillis")]
-        public long TimeLeftToPlayMillis { get; set; }
+        [JsonConverter(typeof(TimeSpanConverter))]
+        public TimeSpan TimeLeftToPlayMillis { get; set; }
         [JsonProperty("wins")]
         public int Wins { get; set; }
     }
