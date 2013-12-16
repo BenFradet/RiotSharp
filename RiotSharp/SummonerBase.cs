@@ -21,6 +21,10 @@ namespace RiotSharp
         private const String LeagueRootUrl = "/api/{0}/v2.1/league";
         private const String LeagueBySummonerUrl = "/by-summoner/{0}";
 
+        private const String StatsRootUrl = "/api/lol/{0}/v1.1/stats";
+        private const String StatsSummaryUrl = "/by-summoner/{0}/summary";
+        private const String StatsRankedUrl = "/by-summoner/{0}/ranked";
+
         protected RiotApi api;
         protected IRequester requester;
         protected Region region;
@@ -80,6 +84,28 @@ namespace RiotSharp
             var json = JObject.Parse(result);
 
             return new Collection<League>(api, json, requester, region);
+        }
+
+        public Collection<PlayerStatsSummary> GetPlayerStatsSummaries(String season)
+        {
+            var request = requester.CreateRequest(String.Format(StatsRootUrl, region)
+                + String.Format(StatsSummaryUrl, Id), String.Format("season={0}", season));
+            var response = (HttpWebResponse)request.GetResponse();
+            var result = requester.GetResponseString(response.GetResponseStream());
+            var json = JObject.Parse(result);
+
+            return new Collection<PlayerStatsSummary>(api, json, requester, region, "playerStatSummaries");
+        }
+
+        public Collection<ChampionStats> GetPlayerStatsRanked(String season)
+        {
+            var request = requester.CreateRequest(String.Format(StatsRootUrl, region)
+                + String.Format(StatsRankedUrl, Id), String.Format("season={0}", season));
+            var response = (HttpWebResponse)request.GetResponse();
+            var result = requester.GetResponseString(response.GetResponseStream());
+            var json = JObject.Parse(result);
+
+            return new Collection<ChampionStats>(api, json, requester, region, "champions");
         }
     }
 }

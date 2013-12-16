@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatedStat.cs" />
     <Compile Include="Champion.cs" />
+    <Compile Include="ChampionStat.cs" />
+    <Compile Include="ChampionStats.cs" />
     <Compile Include="CharArrayConverter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="League.cs" />
@@ -52,6 +55,7 @@
     <Compile Include="MiniSeries.cs" />
     <Compile Include="MiniSeriesConverter.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerStatsSummary.cs" />
     <Compile Include="RawStat.cs" />
     <Compile Include="Rune.cs" />
     <Compile Include="RuneConverter.cs" />

@@ -37,6 +37,14 @@ namespace RiotSharp
             {
                 return new League(json);
             }
+            else if (typeToParse.Equals(typeof(PlayerStatsSummary)))
+            {
+                return new PlayerStatsSummary(json);
+            }
+            else if (typeToParse.Equals(typeof(ChampionStats)))
+            {
+                return new ChampionStats(json);
+            }
             else
             {
                 return null;

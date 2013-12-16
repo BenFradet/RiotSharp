@@ -17,45 +17,86 @@ namespace RiotSharpTest
             var api = new RiotApi("", false);
 
             var summ = api.GetSummoner(Region.euw, 123456);
-            var leagues = summ.GetLeagues();
-            foreach (League league in leagues)
+            var stats = summ.GetPlayerStatsRanked("SEASON3");
+            foreach (var stat in stats)
             {
-                Console.WriteLine(league.Name);
-                Console.WriteLine(league.Queue);
-                Console.WriteLine(league.Tier);
-                Console.WriteLine(league.Timestamp);
-                foreach(LeagueItem entry in league.Entries)
+                Console.WriteLine(stat.Id);
+                Console.WriteLine(stat.Name);
+                if (stat.Stats != null && stat.Stats.Count > 0)
                 {
-                    Console.WriteLine("    " + entry.IsFreshBlood);
-                    Console.WriteLine("    " + entry.IsHotStreak);
-                    Console.WriteLine("    " + entry.IsInactive);
-                    Console.WriteLine("    " + entry.IsVeteran);
-                    Console.WriteLine("    " + entry.LastPlayed);
-                    Console.WriteLine("    " + entry.LeagueName);
-                    Console.WriteLine("    " + entry.LeaguePoints);
-                    Console.WriteLine("    " + entry.Losses);
-                    if (entry.MiniSeries != null)
+                    foreach (var s in stat.Stats)
                     {
-                        Console.WriteLine("        " + entry.MiniSeries.Losses);
-                        Console.Write("        ");
-                        foreach(var c in entry.MiniSeries.Progress)
-                        {
-                            Console.Write(c);
-                        }
+                        Console.WriteLine("    " + s.Count);
+                        Console.WriteLine("    " + s.Name);
+                        Console.WriteLine("    " + s.Id);
+                        Console.WriteLine("    " + s.Value);
                         Console.WriteLine();
-                        Console.WriteLine("        " + entry.MiniSeries.Target);
-                        Console.WriteLine("        " + entry.MiniSeries.TimeLeftToPlayMillis);
-                        Console.WriteLine("        " + entry.MiniSeries.Wins);
                     }
-                    Console.WriteLine("    " + entry.PlayerOrTeamId);
-                    Console.WriteLine("    " + entry.PlayerOrTeamName);
-                    Console.WriteLine("    " + entry.QueueType);
-                    Console.WriteLine("    " + entry.Rank);
-                    Console.WriteLine("    " + entry.Tier);
-                    Console.WriteLine("    " + entry.TimeUntilDecay);
-                    Console.WriteLine("    " + entry.Wins);
                 }
+                Console.WriteLine();
             }
+
+            //var stats = summ.GetPlayerStatsSummaries("SEASON3");
+
+            //foreach (var stat in stats)
+            //{
+            //    if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
+            //    {
+            //        foreach (var aStat in stat.AggregatedStats)
+            //        {
+            //            Console.WriteLine("    " + aStat.Count);
+            //            Console.WriteLine("    " + aStat.Id);
+            //            Console.WriteLine("    " + aStat.Name);
+            //            Console.WriteLine();
+            //        }
+            //        Console.WriteLine(stat.Losses);
+            //        Console.WriteLine(stat.ModifyDate);
+            //        Console.WriteLine(stat.ModifyDateString);
+            //        Console.WriteLine(stat.PlayerStatSummaryType);
+            //        Console.WriteLine(stat.Wins);
+            //        Console.WriteLine();
+            //    }
+            //}
+
+            //var leagues = summ.GetLeagues();
+            //foreach (League league in leagues)
+            //{
+            //    Console.WriteLine(league.Name);
+            //    Console.WriteLine(league.Queue);
+            //    Console.WriteLine(league.Tier);
+            //    Console.WriteLine(league.Timestamp);
+            //    foreach(LeagueItem entry in league.Entries)
+            //    {
+            //        Console.WriteLine("    " + entry.IsFreshBlood);
+            //        Console.WriteLine("    " + entry.IsHotStreak);
+            //        Console.WriteLine("    " + entry.IsInactive);
+            //        Console.WriteLine("    " + entry.IsVeteran);
+            //        Console.WriteLine("    " + entry.LastPlayed);
+            //        Console.WriteLine("    " + entry.LeagueName);
+            //        Console.WriteLine("    " + entry.LeaguePoints);
+            //        Console.WriteLine("    " + entry.Losses);
+            //        if (entry.MiniSeries != null)
+            //        {
+            //            Console.WriteLine("        " + entry.MiniSeries.Losses);
+            //            Console.Write("        ");
+            //            foreach(var c in entry.MiniSeries.Progress)
+            //            {
+            //                Console.Write(c);
+            //            }
+            //            Console.WriteLine();
+            //            Console.WriteLine("        " + entry.MiniSeries.Target);
+            //            Console.WriteLine("        " + entry.MiniSeries.TimeLeftToPlayMillis);
+            //            Console.WriteLine("        " + entry.MiniSeries.Wins);
+            //        }
+            //        Console.WriteLine("    " + entry.PlayerOrTeamId);
+            //        Console.WriteLine("    " + entry.PlayerOrTeamName);
+            //        Console.WriteLine("    " + entry.QueueType);
+            //        Console.WriteLine("    " + entry.Rank);
+            //        Console.WriteLine("    " + entry.Tier);
+            //        Console.WriteLine("    " + entry.TimeUntilDecay);
+            //        Console.WriteLine("    " + entry.Wins);
+            //    }
+            //}
 
             //var games = summ.GetRecentGames();
             //foreach (Game game in games)
