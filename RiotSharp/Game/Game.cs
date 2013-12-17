@@ -27,9 +27,11 @@ namespace RiotSharp
         [JsonProperty("gameId")]
         public long GameId { get; set; }
         [JsonProperty("gameMode")]
-        public String GameMode { get; set; }
+        [JsonConverter(typeof(GameModeConverter))]
+        public GameMode GameMode { get; set; }
         [JsonProperty("gameType")]
-        public String GameType { get; set; }
+        [JsonConverter(typeof(GameTypeConverter))]
+        public GameType GameType { get; set; }
         [JsonProperty("invalid")]
         public bool Invalid { get; set; }
         [JsonProperty("level")]

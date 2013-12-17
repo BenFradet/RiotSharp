@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\GameMode.cs" />
+    <Compile Include="Game\GameModeConverter.cs" />
+    <Compile Include="Game\GameType.cs" />
+    <Compile Include="Game\GameTypeConverter.cs" />
     <Compile Include="Misc\DateTimeConverter.cs" />
     <Compile Include="Misc\LongExtension.cs" />
     <Compile Include="Misc\TimeSpanConverter.cs" />
