@@ -20,9 +20,11 @@ namespace RiotSharp
         [JsonProperty("name")]
         public String Name { get; set; }
         [JsonProperty("queue")]
-        public String Queue { get; set; }
+        [JsonConverter(typeof(QueueConverter))]
+        public Queue Queue { get; set; }
         [JsonProperty("tier")]
-        public String Tier { get; set; }
+        [JsonConverter(typeof(TierConverter))]
+        public Tier Tier { get; set; }
         [JsonProperty("timestamp")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime Timestamp { get; set; }

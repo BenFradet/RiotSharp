@@ -42,11 +42,13 @@ namespace RiotSharp
         [JsonProperty("playerOrTeamName")]
         public String PlayerOrTeamName { get; set; }
         [JsonProperty("queueType")]
-        public String QueueType { get; set; }
+        [JsonConverter(typeof(QueueConverter))]
+        public Queue QueueType { get; set; }
         [JsonProperty("rank")]
         public String Rank { get; set; }
         [JsonProperty("tier")]
-        public String Tier { get; set; }
+        [JsonConverter(typeof(TierConverter))]
+        public Tier Tier { get; set; }
         [JsonProperty("timeUntilDecay")]
         [JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan TimeUntilDecay { get; set; }
