@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Class representing an AggregatedStat in the API.
+    /// </summary>
     public class AggregatedStat : Thing
     {
         public AggregatedStat() { }
@@ -17,10 +20,19 @@ namespace RiotSharp
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
+        /// <summary>
+        /// Aggregated stat value.
+        /// </summary>
         [JsonProperty("count")]
         public int Count { get; set; }
+        /// <summary>
+        /// Aggregated stat type ID.
+        /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+        /// <summary>
+        /// Aggregated stat type name.
+        /// </summary>
         [JsonProperty("name")]
         public String Name { get; set; }
     }

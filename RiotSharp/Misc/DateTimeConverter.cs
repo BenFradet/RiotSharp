@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class DateTimeConverter : JsonConverter
+    internal class DateTimeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

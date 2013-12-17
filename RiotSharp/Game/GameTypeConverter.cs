@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class GameTypeConverter : JsonConverter
+    internal class GameTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -22,13 +22,13 @@ namespace RiotSharp
             switch (str)
             {
                 case "CUSTOM_GAME":
-                    return GameType.CUSTOM_GAME;
+                    return GameType.CustomGame;
                 case "MATCHED_GAME":
-                    return GameType.MATCHED_GAME;
+                    return GameType.MatchedGame;
                 case "CO_OP_VS_AI_GAME":
-                    return GameType.CO_OP_VS_AI_GAME;
+                    return GameType.CoopVsAIGame;
                 case "TUTORIAL_GAME":
-                    return GameType.TUTORIAL_GAME;
+                    return GameType.TutorialGame;
                 default:
                     return null;
             }

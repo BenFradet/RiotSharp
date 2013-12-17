@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public abstract class Thing
+    internal abstract class Thing
     {
         public static Thing Parse(RiotApi api, JToken json, IRequester requester
             , Region region, Type typeToParse)

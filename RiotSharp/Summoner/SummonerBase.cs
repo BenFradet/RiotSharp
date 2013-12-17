@@ -9,6 +9,9 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Class representing the name and id of a Summoner in the API.
+    /// </summary>
     public class SummonerBase : Thing
     {
         private const String RootUrl = "/api/lol/{0}/v1.1/summoner";
@@ -37,8 +40,14 @@ namespace RiotSharp
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
+        /// <summary>
+        /// Summoner ID.
+        /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; }
+        /// <summary>
+        /// Summoner name.
+        /// </summary>
         [JsonProperty("name")]
         public String Name { get; set; }
 
@@ -86,10 +95,10 @@ namespace RiotSharp
             return new Collection<League>(api, json, requester, region);
         }
 
-        public Collection<PlayerStatsSummary> GetPlayerStatsSummaries(String season)
+        public Collection<PlayerStatsSummary> GetPlayerStatsSummaries(Season season)
         {
             var request = requester.CreateRequest(String.Format(StatsRootUrl, region)
-                + String.Format(StatsSummaryUrl, Id), String.Format("season={0}", season));
+                + String.Format(StatsSummaryUrl, Id), String.Format("season={0}", season.ToString()));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);

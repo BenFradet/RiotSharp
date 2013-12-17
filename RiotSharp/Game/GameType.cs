@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enumeration representing the Game Type.
+    /// </summary>
     public enum GameType
     {
-        CUSTOM_GAME,
-        MATCHED_GAME,
-        CO_OP_VS_AI_GAME,
-        TUTORIAL_GAME
+        CustomGame,
+        MatchedGame,
+        CoopVsAIGame,
+        TutorialGame
     }
 }

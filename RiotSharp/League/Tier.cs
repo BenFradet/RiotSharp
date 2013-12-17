@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enumeration representing the Tier.
+    /// </summary>
     public enum Tier
     {
         Challenger,

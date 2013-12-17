@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Class representing a LeagueItem in the API.
+    /// </summary>
     public class LeagueItem : Thing
     {
         public LeagueItem() { }
@@ -17,41 +20,89 @@ namespace RiotSharp
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
+        /// <summary>
+        /// Has this summoner just entered the league?
+        /// </summary>
         [JsonProperty("isFreshBlood")]
         public bool IsFreshBlood { get; set; }
+        /// <summary>
+        /// Is this summoner on a hot streak?
+        /// </summary>
         [JsonProperty("isHotStreak")]
         public bool IsHotStreak { get; set; }
+        /// <summary>
+        /// Is this summoner inactive?
+        /// </summary>
         [JsonProperty("isInactive")]
         public bool IsInactive { get; set; }
+        /// <summary>
+        /// Has this summoner spent a long time in this league?
+        /// </summary>
         [JsonProperty("isVeteran")]
         public bool IsVeteran { get; set; }
+        /// <summary>
+        /// Date this summoner last played.
+        /// </summary>
         [JsonProperty("lastPlayed")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime LastPlayed { get; set; }
+        /// <summary>
+        /// League name.
+        /// </summary>
         [JsonProperty("leagueName")]
         public String LeagueName { get; set; }
+        /// <summary>
+        /// League points.
+        /// </summary>
         [JsonProperty("leaguePoints")]
         public int LeaguePoints { get; set; }
+        /// <summary>
+        /// Number of losses.
+        /// </summary>
         [JsonProperty("losses")]
         public int Losses { get; set; }
+        /// <summary>
+        /// Mini series.
+        /// </summary>
         [JsonProperty("miniSeries")]
         [JsonConverter(typeof(MiniSeriesConverter))]
         public MiniSeries MiniSeries { get; set; }
+        /// <summary>
+        /// Player or team id.
+        /// </summary>
         [JsonProperty("playerOrTeamId")]
         public String PlayerOrTeamId { get; set; }
+        /// <summary>
+        /// Player or team name.
+        /// </summary>
         [JsonProperty("playerOrTeamName")]
         public String PlayerOrTeamName { get; set; }
+        /// <summary>
+        /// Queue type.
+        /// </summary>
         [JsonProperty("queueType")]
         [JsonConverter(typeof(QueueConverter))]
         public Queue QueueType { get; set; }
+        /// <summary>
+        /// Rank of the league.
+        /// </summary>
         [JsonProperty("rank")]
         public String Rank { get; set; }
+        /// <summary>
+        /// Tier of the league.
+        /// </summary>
         [JsonProperty("tier")]
         [JsonConverter(typeof(TierConverter))]
         public Tier Tier { get; set; }
+        /// <summary>
+        /// Time until decay.
+        /// </summary>
         [JsonProperty("timeUntilDecay")]
         [JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan TimeUntilDecay { get; set; }
+        /// <summary>
+        /// Number of wins.
+        /// </summary>
         [JsonProperty("wins")]
         public int Wins { get; set; }
     }

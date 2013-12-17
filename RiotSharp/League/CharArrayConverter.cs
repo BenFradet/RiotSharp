@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class CharArrayConverter : JsonConverter
+    internal class CharArrayConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

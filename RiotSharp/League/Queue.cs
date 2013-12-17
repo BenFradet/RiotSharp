@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enumeration representing the Queue.
+    /// </summary>
     public enum Queue
     {
         RankedSolo5x5,

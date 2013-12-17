@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Class representing a Talent in the API.
+    /// </summary>
     public class Talent : Thing
     {
         public Talent() { }
@@ -17,10 +20,19 @@ namespace RiotSharp
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
+        /// <summary>
+        /// Talent id.
+        /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+        /// <summary>
+        /// Talent name.
+        /// </summary>
         [JsonProperty("name")]
         public String Name { get; set; }
+        /// <summary>
+        /// Talent rank.
+        /// </summary>
         [JsonProperty("rank")]
         public int Rank { get; set; }
     }

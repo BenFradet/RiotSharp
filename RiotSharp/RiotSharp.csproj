@@ -62,6 +62,8 @@
     <Compile Include="Game\Game.cs" />
     <Compile Include="League\League.cs" />
     <Compile Include="League\LeagueItem.cs" />
+    <Compile Include="Stats\PlayerStatsSummaryType.cs" />
+    <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="League\MiniSeriesConverter.cs" />

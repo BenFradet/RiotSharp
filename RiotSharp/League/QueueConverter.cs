@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class QueueConverter : JsonConverter
+    internal class QueueConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

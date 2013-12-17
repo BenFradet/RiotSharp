@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enumeration representing the season.
+    /// </summary>
     public enum Season
     {
-        SEASON3,
-        SEASON4
+        Season3,
+        Season4
     }
 }

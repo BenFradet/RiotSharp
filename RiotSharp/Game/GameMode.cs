@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enumeration representing the Game Mode.
+    /// </summary>
     public enum GameMode
     {
-        CLASSIC,
-        ODIN,
-        ARAM,
-        TUTORIAL
+        Classic,
+        Odin,
+        Aram,
+        Tutorial
     }
 }
