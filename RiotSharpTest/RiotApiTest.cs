@@ -26,6 +26,21 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
+        [TestCategory("Async")]
+        public void GetSummonerAsync_ById_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            string name = ConfigurationManager.AppSettings["Summoner1Name"];
+            RiotApi api = new RiotApi(apiKey, false);
+
+            var summoner = api.GetSummonerAsync(Region.euw, id);
+
+            Assert.AreEqual(summoner.Result.Name, name);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
         public void GetSummoner_ByName_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
@@ -36,6 +51,21 @@ namespace RiotSharpTest
             Summoner summoner = api.GetSummoner(Region.euw, name);
 
             Assert.AreEqual(summoner.Id, id);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        [TestCategory("Async")]
+        public void GetSummonerAsync_ByName_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            string name = ConfigurationManager.AppSettings["Summoner1Name"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            RiotApi api = new RiotApi(apiKey, false);
+
+            var summoner = api.GetSummonerAsync(Region.euw, name);
+
+            Assert.AreEqual(summoner.Result.Id, id);
         }
 
         [TestMethod]

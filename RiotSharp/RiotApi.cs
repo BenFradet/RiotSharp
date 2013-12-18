@@ -38,19 +38,17 @@ namespace RiotSharp
             Requester.IsProdApi = isProdApi;
         }
 
-        public async Task<Summoner> Test(Region region, int summonerId)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
-                + string.Format(IdUrl, summonerId));
-
-            return new Summoner(json, requester, region);
-        }
-
         public Summoner GetSummoner(Region region, int summonerId)
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, summonerId));
+            return new Summoner(json, requester, region);
+        }
 
+        public async Task<Summoner> GetSummonerAsync(Region region, int summonerId)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(IdUrl, summonerId));
             return new Summoner(json, requester, region);
         }
 
@@ -58,7 +56,13 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
                 + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
+            return new Summoner(json, requester, region);
+        }
 
+        public async Task<Summoner> GetSummonerAsync(Region region, string summonerName)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
             return new Summoner(json, requester, region);
         }
 
