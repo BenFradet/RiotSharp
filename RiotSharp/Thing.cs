@@ -10,12 +10,11 @@ namespace RiotSharp
 {
     public abstract class Thing
     {
-        public static Thing Parse(RiotApi api, JToken json, IRequester requester
-            , Region region, Type typeToParse)
+        public static Thing Parse(JToken json, IRequester requester, Region region, Type typeToParse)
         {
             if(typeToParse.Equals(typeof(SummonerBase)))
             {
-                return new SummonerBase(api, json, requester, region);
+                return new SummonerBase(json, requester, region);
             }
             else if(typeToParse.Equals(typeof(RunePage)))
             {

@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
     public interface IRequester
     {
-        HttpWebRequest CreateRequest(string relativeUrl, string addedArgument = null);
-        string GetResponseString(Stream stream);
+        JObject CreateRequest(string relativeUrl, string addedArgument = null);
+        Task<JObject> CreateRequestAsync(string relativeUrl, string addedArgument = null);
     }
 }

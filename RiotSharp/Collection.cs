@@ -12,16 +12,14 @@ namespace RiotSharp
     public class Collection<T> : IEnumerable<T> where T : Thing
     {
         private IRequester requester;
-        private RiotApi api;
         private JToken json;
         private string name;
         private Region region;
 
-        internal Collection(RiotApi api, JToken json, IRequester requester, Region region, string collectionName = null)
+        internal Collection(JToken json, IRequester requester, Region region, string collectionName = null)
         {
             this.requester = requester;
             this.json = json;
-            this.api = api;
             this.name = collectionName;
             this.region = region;
         }
@@ -83,23 +81,16 @@ namespace RiotSharp
                     array = new Thing[children.Count];
                     for (int i = 0; i < array.Length; i++)
                     {
-                        array[i] = Thing.Parse(collection.api, children[i], collection.requester
-                            , collection.region, typeof(T));
+                        array[i] = Thing.Parse(children[i], collection.requester, collection.region, typeof(T));
                     }
                 }
                 else
                 {
-                    //var mapEntries = collection.json.Children().ToArray();
-                    //JToken[] children = new JToken[mapEntries.Count()];
-                    //for(int i = 0; i < mapEntries.Length; i++)
-                    //{
-                    //    children[i] = mapEntries[i].Children().ToArray()[0];
-                    //}
                     var children = collection.json.Children().Children().ToArray();
                     array = new Thing[children.Count()];
                     for (int i = 0; i < array.Length; i++)
                     {
-                        array[i] = Thing.Parse(collection.api, children[i], collection.requester
+                        array[i] = Thing.Parse(children[i], collection.requester
                             , collection.region, typeof(T));
                     }
                 }

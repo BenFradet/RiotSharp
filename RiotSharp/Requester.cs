@@ -6,6 +6,8 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
@@ -40,8 +42,21 @@ namespace RiotSharp
         private const int MAX_REQUEST_PER_10S = 10;
         private const int MAX_REQUEST_PER_10M = 500;
 
-        public HttpWebRequest CreateRequest(string relativeUrl, string addedArgument = null)
+        public JObject CreateRequest(string relativeUrl, string addedArgument = null)
         {
+            HttpWebRequest request = null;
+            if (addedArgument == null)
+            {
+                request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?api_key={2}"
+                    , RootDomain, relativeUrl, ApiKey));
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?{2}&api_key={3}"
+                    , RootDomain, relativeUrl, addedArgument, ApiKey));
+            }
+            request.Method = "GET";
+
             lock (_lock)
             {
                 if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
@@ -68,28 +83,69 @@ namespace RiotSharp
                     firstRequestInLastTenS = DateTime.Now;
                 }
                 numberOfRequestsInLastTenS++;
-
-                HttpWebRequest request = null;
-                if (addedArgument == null)
-                {
-                    request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?api_key={2}"
-                        , RootDomain, relativeUrl, ApiKey));
-                }
-                else
-                {
-                    request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?{2}&api_key={3}"
-                        , RootDomain, relativeUrl, addedArgument, ApiKey));
-                }
-                request.Method = "GET";
-                return request;
             }
+
+            var response = (HttpWebResponse)request.GetResponse();
+            string result = string.Empty;
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            return JObject.Parse(result);
         }
 
-        public string GetResponseString(Stream stream)
+        public async Task<JObject> CreateRequestAsync(string relativeUrl, string addedArgument = null)
         {
-            var data = new StreamReader(stream).ReadToEnd();
-            stream.Close();
-            return data;
+            HttpWebRequest request = null;
+            if (addedArgument == null)
+            {
+                request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?api_key={2}"
+                    , RootDomain, relativeUrl, ApiKey));
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?{2}&api_key={3}"
+                    , RootDomain, relativeUrl, addedArgument, ApiKey));
+            }
+            request.Method = "GET";
+
+            lock (_lock)
+            {
+                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 11) ;
+                    numberOfRequestInLastTenM = 0;
+                    firstRequestInLastTenM = DateTime.Now;
+                }
+                else if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 11) ;
+                    numberOfRequestsInLastTenS = 0;
+                    firstRequestInLastTenS = DateTime.Now;
+                }
+
+                if (firstRequestInLastTenM == DateTime.MinValue)
+                {
+                    firstRequestInLastTenM = DateTime.Now;
+                }
+                numberOfRequestInLastTenM++;
+
+                if (firstRequestInLastTenS == DateTime.MinValue)
+                {
+                    firstRequestInLastTenS = DateTime.Now;
+                }
+                numberOfRequestsInLastTenS++;
+            }
+
+            var response = (HttpWebResponse)(await request.GetResponseAsync());
+            string result = string.Empty;
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                result = await reader.ReadToEndAsync();
+            }
+
+            return JObject.Parse(result);
         }
     }
 }

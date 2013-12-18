@@ -18,7 +18,7 @@ namespace RiotSharp
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
 
-        private readonly Requester requester;
+        private Requester requester;
 
         internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
         
@@ -38,47 +38,43 @@ namespace RiotSharp
             Requester.IsProdApi = isProdApi;
         }
 
+        public async Task<Summoner> Test(Region region, int summonerId)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(IdUrl, summonerId));
+
+            return new Summoner(json, requester, region);
+        }
+
         public Summoner GetSummoner(Region region, int summonerId)
         {
-            var request = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Summoner(this, json, requester, region);
+            return new Summoner(json, requester, region);
         }
 
         public Summoner GetSummoner(Region region, string summonerName)
         {
-            var request = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
                 + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Summoner(this, json, requester, region);
+            return new Summoner(json, requester, region);
         }
 
         public Collection<SummonerBase> GetSummoners(Region region, List<int> summonerIds)
         {
-            var request = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<SummonerBase>(this, json, requester, region, "summoners");
+            return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
 
         public Collection<Champion> GetChampions(Region region)
         {
-            var request = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
+            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()));
 
-            return new Collection<Champion>(this, json, requester, region, "champions");
+            return new Collection<Champion>(json, requester, region, "champions");
         }
 
         private string BuildIdsString(List<int> ids)

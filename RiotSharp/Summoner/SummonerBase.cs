@@ -28,13 +28,11 @@ namespace RiotSharp
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
-        protected RiotApi api;
         protected IRequester requester;
         protected Region region;
 
-        public SummonerBase(RiotApi api, JToken json, IRequester requester, Region region)
+        public SummonerBase(JToken json, IRequester requester, Region region)
         {
-            this.api = api;
             this.requester = requester;
             this.region = region;
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
@@ -53,68 +51,50 @@ namespace RiotSharp
 
         public Collection<RunePage> GetRunePages()
         {
-            var request = requester.CreateRequest(string.Format(RootUrl, region)
+            var json = requester.CreateRequest(string.Format(RootUrl, region)
                 + string.Format(RunesUrl, Id));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<RunePage>(api, json, requester, region, "pages");
+            return new Collection<RunePage>(json, requester, region, "pages");
         }
 
         public Collection<MasteryPage> GetMasteryPages()
         {
-            var request = requester.CreateRequest(string.Format(RootUrl, region)
+            var json = requester.CreateRequest(string.Format(RootUrl, region)
                 + string.Format(MasteriesUrl, Id));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<MasteryPage>(api, json, requester, region, "pages");
+            return new Collection<MasteryPage>(json, requester, region, "pages");
         }
 
         public Collection<Game> GetRecentGames()
         {
-            var request = requester.CreateRequest(string.Format(GameRootUrl, region)
+            var json = requester.CreateRequest(string.Format(GameRootUrl, region)
                 + string.Format(RecentGamesUrl, Id));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<Game>(api, json, requester, region, "games");
+            return new Collection<Game>(json, requester, region, "games");
         }
 
         public Collection<League> GetLeagues()
         {
-            var request = requester.CreateRequest(string.Format(LeagueRootUrl, region)
+            var json = requester.CreateRequest(string.Format(LeagueRootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<League>(api, json, requester, region);
+            return new Collection<League>(json, requester, region);
         }
 
         public Collection<PlayerStatsSummary> GetStatsSummaries(Season season)
         {
-            var request = requester.CreateRequest(string.Format(StatsRootUrl, region)
+            var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
                 + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<PlayerStatsSummary>(api, json, requester, region, "playerStatSummaries");
+            return new Collection<PlayerStatsSummary>(json, requester, region, "playerStatSummaries");
         }
 
         public Collection<ChampionStats> GetStatsRanked(Season season)
         {
-            var request = requester.CreateRequest(string.Format(StatsRootUrl, region)
+            var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
                 + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
-            var response = (HttpWebResponse)request.GetResponse();
-            var result = requester.GetResponseString(response.GetResponseStream());
-            var json = JObject.Parse(result);
 
-            return new Collection<ChampionStats>(api, json, requester, region, "champions");
+            return new Collection<ChampionStats>(json, requester, region, "champions");
         }
     }
 }
