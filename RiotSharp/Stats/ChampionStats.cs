@@ -27,7 +27,7 @@ namespace RiotSharp
         /// Champion name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// List of stats associated with the champion.
         /// </summary>

@@ -32,7 +32,7 @@ namespace RiotSharp
         /// Human readable string representing date summoner was last modified.
         /// </summary>
         [JsonProperty("revisionDateStr")]
-        public String RevisionDateString { get; set; }
+        public string RevisionDateString { get; set; }
         /// <summary>
         /// Summoner level associated with the summoner.
         /// </summary>

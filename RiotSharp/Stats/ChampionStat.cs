@@ -34,7 +34,7 @@ namespace RiotSharp
         /// Aggregated stat type name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Aggregated stat value.
         /// </summary>

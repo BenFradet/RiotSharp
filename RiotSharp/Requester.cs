@@ -19,14 +19,14 @@ namespace RiotSharp
             {
                 if (instance == null)
                 {
-                    instance = new Requester(); 
+                    instance = new Requester();
                 }
                 return instance;
             }
         }
 
-        public static String RootDomain { get; set; }
-        public static String ApiKey { get; set; }
+        public static string RootDomain { get; set; }
+        public static string ApiKey { get; set; }
         //temporary fix because I dont know the limits for a production api key
         //if you have a dev key, this property should be true
         public static bool IsProdApi { get; set; }
@@ -40,19 +40,19 @@ namespace RiotSharp
         private const int MAX_REQUEST_PER_10S = 10;
         private const int MAX_REQUEST_PER_10M = 500;
 
-        public HttpWebRequest CreateRequest(String relativeUrl, String addedArgument = null)
+        public HttpWebRequest CreateRequest(string relativeUrl, string addedArgument = null)
         {
             lock (_lock)
             {
                 if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 10) ;
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 11) ;
                     numberOfRequestInLastTenM = 0;
                     firstRequestInLastTenM = DateTime.Now;
                 }
                 else if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 10) ;
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 11) ;
                     numberOfRequestsInLastTenS = 0;
                     firstRequestInLastTenS = DateTime.Now;
                 }
@@ -72,12 +72,12 @@ namespace RiotSharp
                 HttpWebRequest request = null;
                 if (addedArgument == null)
                 {
-                    request = (HttpWebRequest)WebRequest.Create(String.Format("https://{0}{1}?api_key={2}"
+                    request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?api_key={2}"
                         , RootDomain, relativeUrl, ApiKey));
                 }
                 else
                 {
-                    request = (HttpWebRequest)WebRequest.Create(String.Format("https://{0}{1}?{2}&api_key={3}"
+                    request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?{2}&api_key={3}"
                         , RootDomain, relativeUrl, addedArgument, ApiKey));
                 }
                 request.Method = "GET";

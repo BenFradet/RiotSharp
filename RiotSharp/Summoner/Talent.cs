@@ -29,7 +29,7 @@ namespace RiotSharp
         /// Talent name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Talent rank.
         /// </summary>

@@ -10,7 +10,7 @@ namespace RiotSharp
 {
     public interface IRequester
     {
-        HttpWebRequest CreateRequest(String relativeUrl, String addedArgument = null);
+        HttpWebRequest CreateRequest(string relativeUrl, string addedArgument = null);
         string GetResponseString(Stream stream);
     }
 }

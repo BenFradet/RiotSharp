@@ -27,7 +27,7 @@ namespace RiotSharp
         /// Mastery page name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// List of mastery page talents associated with the mastery page.
         /// </summary>

@@ -14,10 +14,10 @@ namespace RiotSharp
         private IRequester requester;
         private RiotApi api;
         private JToken json;
-        private String name;
+        private string name;
         private Region region;
 
-        internal Collection(RiotApi api, JToken json, IRequester requester, Region region, String collectionName = null)
+        internal Collection(RiotApi api, JToken json, IRequester requester, Region region, string collectionName = null)
         {
             this.requester = requester;
             this.json = json;

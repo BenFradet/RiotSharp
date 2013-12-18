@@ -50,7 +50,7 @@ namespace RiotSharp
         /// League name.
         /// </summary>
         [JsonProperty("leagueName")]
-        public String LeagueName { get; set; }
+        public string LeagueName { get; set; }
         /// <summary>
         /// League points.
         /// </summary>
@@ -71,12 +71,12 @@ namespace RiotSharp
         /// Player or team id.
         /// </summary>
         [JsonProperty("playerOrTeamId")]
-        public String PlayerOrTeamId { get; set; }
+        public string PlayerOrTeamId { get; set; }
         /// <summary>
         /// Player or team name.
         /// </summary>
         [JsonProperty("playerOrTeamName")]
-        public String PlayerOrTeamName { get; set; }
+        public string PlayerOrTeamName { get; set; }
         /// <summary>
         /// Queue type.
         /// </summary>
@@ -87,7 +87,7 @@ namespace RiotSharp
         /// Rank of the league.
         /// </summary>
         [JsonProperty("rank")]
-        public String Rank { get; set; }
+        public string Rank { get; set; }
         /// <summary>
         /// Tier of the league.
         /// </summary>

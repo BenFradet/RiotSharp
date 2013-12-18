@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
 using RiotSharp;
 
-namespace RiotSharpTest
+namespace RiotSharpExample
 {
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
             //toreplace
-            var api = new RiotApi("", false);
+            var api = new RiotApi(ConfigurationManager.AppSettings["ApiKey"], false);
 
-            var summ = api.GetSummoner(Region.euw, 123456);
+            var summ = api.GetSummoner(Region.euw, 42091042);
             //var stats = summ.GetPlayerStatsRanked(Season.SEASON3);
             //foreach (var stat in stats)
             //{
@@ -36,26 +35,26 @@ namespace RiotSharpTest
             //    Console.WriteLine();
             //}
 
-            //var stats = summ.GetPlayerStatsSummaries("SEASON3");
-            //foreach (var stat in stats)
-            //{
-            //    if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
-            //    {
-            //        foreach (var aStat in stat.AggregatedStats)
-            //        {
-            //            Console.WriteLine("    " + aStat.Count);
-            //            Console.WriteLine("    " + aStat.Id);
-            //            Console.WriteLine("    " + aStat.Name);
-            //            Console.WriteLine();
-            //        }
-            //        Console.WriteLine(stat.Losses);
-            //        Console.WriteLine(stat.ModifyDate);
-            //        Console.WriteLine(stat.ModifyDateString);
-            //        Console.WriteLine(stat.PlayerStatSummaryType);
-            //        Console.WriteLine(stat.Wins);
-            //        Console.WriteLine();
-            //    }
-            //}
+            var stats = summ.GetStatsSummaries(Season.Season3);
+            foreach (var stat in stats)
+            {
+                if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
+                {
+                    foreach (var aStat in stat.AggregatedStats)
+                    {
+                        Console.WriteLine("    " + aStat.Count);
+                        Console.WriteLine("    " + aStat.Id);
+                        Console.WriteLine("    " + aStat.Name);
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine(stat.Losses);
+                    Console.WriteLine(stat.ModifyDate);
+                    Console.WriteLine(stat.ModifyDateString);
+                    Console.WriteLine(stat.PlayerStatSummaryType);
+                    Console.WriteLine(stat.Wins);
+                    Console.WriteLine();
+                }
+            }
 
             //var leagues = summ.GetLeagues();
             //foreach (League league in leagues)
@@ -99,36 +98,36 @@ namespace RiotSharpTest
             //    Console.WriteLine();
             //}
 
-            var games = summ.GetRecentGames();
-            foreach (Game game in games)
-            {
-                Console.WriteLine(game.ChampionId);
-                Console.WriteLine(game.CreateDate);
-                Console.WriteLine(game.CreateDateString);
-                foreach (var player in game.FellowPlayers)
-                {
-                    Console.WriteLine("    " + player.ChampionId);
-                    Console.WriteLine("    " + player.SummonerId);
-                    Console.WriteLine("    " + player.TeamId);
-                }
-                Console.WriteLine(game.GameId);
-                Console.WriteLine(game.GameMode);
-                Console.WriteLine(game.GameType);
-                Console.WriteLine(game.Invalid);
-                Console.WriteLine(game.Level);
-                Console.WriteLine(game.MapId);
-                Console.WriteLine(game.Spell1);
-                Console.WriteLine(game.Spell2);
-                foreach (var stat in game.Statistics)
-                {
-                    Console.WriteLine("    " + stat.Id);
-                    Console.WriteLine("    " + stat.Name);
-                    Console.WriteLine("    " + stat.Value);
-                }
-                Console.WriteLine(game.SubType);
-                Console.WriteLine(game.TeamId);
-                Console.WriteLine();
-            }
+            //var games = summ.GetRecentGames();
+            //foreach (Game game in games)
+            //{
+            //    Console.WriteLine(game.ChampionId);
+            //    Console.WriteLine(game.CreateDate);
+            //    Console.WriteLine(game.CreateDateString);
+            //    foreach (var player in game.FellowPlayers)
+            //    {
+            //        Console.WriteLine("    " + player.ChampionId);
+            //        Console.WriteLine("    " + player.SummonerId);
+            //        Console.WriteLine("    " + player.TeamId);
+            //    }
+            //    Console.WriteLine(game.GameId);
+            //    Console.WriteLine(game.GameMode);
+            //    Console.WriteLine(game.GameType);
+            //    Console.WriteLine(game.Invalid);
+            //    Console.WriteLine(game.Level);
+            //    Console.WriteLine(game.MapId);
+            //    Console.WriteLine(game.Spell1);
+            //    Console.WriteLine(game.Spell2);
+            //    foreach (var stat in game.Statistics)
+            //    {
+            //        Console.WriteLine("    " + stat.Id);
+            //        Console.WriteLine("    " + stat.Name);
+            //        Console.WriteLine("    " + stat.Value);
+            //    }
+            //    Console.WriteLine(game.SubType);
+            //    Console.WriteLine(game.TeamId);
+            //    Console.WriteLine();
+            //}
 
             //var champs = api.GetChampions(Region.euw);
             //foreach (Champion champ in champs)
@@ -158,7 +157,7 @@ namespace RiotSharpTest
 
             //var summ = api.GetSummoner(Region.euw, 42091042);
             //var masteries = summ.GetMasteryPages().First();
-            
+
             //foreach (Talent talent in masteries.Talents)
             //{
             //    Console.WriteLine(talent.Name + " " + talent.Rank);

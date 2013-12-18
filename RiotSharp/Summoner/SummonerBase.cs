@@ -14,19 +14,19 @@ namespace RiotSharp
     /// </summary>
     public class SummonerBase : Thing
     {
-        private const String RootUrl = "/api/lol/{0}/v1.1/summoner";
-        private const String MasteriesUrl = "/{0}/masteries";
-        private const String RunesUrl = "/{0}/runes";
+        private const string RootUrl = "/api/lol/{0}/v1.1/summoner";
+        private const string MasteriesUrl = "/{0}/masteries";
+        private const string RunesUrl = "/{0}/runes";
 
-        private const String GameRootUrl = "/api/lol/{0}/v1.1/game";
-        private const String RecentGamesUrl = "/by-summoner/{0}/recent";
+        private const string GameRootUrl = "/api/lol/{0}/v1.1/game";
+        private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
-        private const String LeagueRootUrl = "/api/{0}/v2.1/league";
-        private const String LeagueBySummonerUrl = "/by-summoner/{0}";
+        private const string LeagueRootUrl = "/api/{0}/v2.1/league";
+        private const string LeagueBySummonerUrl = "/by-summoner/{0}";
 
-        private const String StatsRootUrl = "/api/lol/{0}/v1.1/stats";
-        private const String StatsSummaryUrl = "/by-summoner/{0}/summary";
-        private const String StatsRankedUrl = "/by-summoner/{0}/ranked";
+        private const string StatsRootUrl = "/api/lol/{0}/v1.1/stats";
+        private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
+        private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
         protected RiotApi api;
         protected IRequester requester;
@@ -49,12 +49,12 @@ namespace RiotSharp
         /// Summoner name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         public Collection<RunePage> GetRunePages()
         {
-            var request = requester.CreateRequest(String.Format(RootUrl, region)
-                + String.Format(RunesUrl, Id));
+            var request = requester.CreateRequest(string.Format(RootUrl, region)
+                + string.Format(RunesUrl, Id));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -64,8 +64,8 @@ namespace RiotSharp
 
         public Collection<MasteryPage> GetMasteryPages()
         {
-            var request = requester.CreateRequest(String.Format(RootUrl, region)
-                + String.Format(MasteriesUrl, Id));
+            var request = requester.CreateRequest(string.Format(RootUrl, region)
+                + string.Format(MasteriesUrl, Id));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -75,8 +75,8 @@ namespace RiotSharp
 
         public Collection<Game> GetRecentGames()
         {
-            var request = requester.CreateRequest(String.Format(GameRootUrl, region)
-                + String.Format(RecentGamesUrl, Id));
+            var request = requester.CreateRequest(string.Format(GameRootUrl, region)
+                + string.Format(RecentGamesUrl, Id));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -86,8 +86,8 @@ namespace RiotSharp
 
         public Collection<League> GetLeagues()
         {
-            var request = requester.CreateRequest(String.Format(LeagueRootUrl, region)
-                + String.Format(LeagueBySummonerUrl, Id));
+            var request = requester.CreateRequest(string.Format(LeagueRootUrl, region)
+                + string.Format(LeagueBySummonerUrl, Id));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -95,10 +95,10 @@ namespace RiotSharp
             return new Collection<League>(api, json, requester, region);
         }
 
-        public Collection<PlayerStatsSummary> GetPlayerStatsSummaries(Season season)
+        public Collection<PlayerStatsSummary> GetStatsSummaries(Season season)
         {
-            var request = requester.CreateRequest(String.Format(StatsRootUrl, region)
-                + String.Format(StatsSummaryUrl, Id), String.Format("season={0}", season.ToString()));
+            var request = requester.CreateRequest(string.Format(StatsRootUrl, region)
+                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -106,10 +106,10 @@ namespace RiotSharp
             return new Collection<PlayerStatsSummary>(api, json, requester, region, "playerStatSummaries");
         }
 
-        public Collection<ChampionStats> GetPlayerStatsRanked(Season season)
+        public Collection<ChampionStats> GetStatsRanked(Season season)
         {
-            var request = requester.CreateRequest(String.Format(StatsRootUrl, region)
-                + String.Format(StatsRankedUrl, Id), String.Format("season={0}", season.ToString()));
+            var request = requester.CreateRequest(string.Format(StatsRootUrl, region)
+                + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);

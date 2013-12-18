@@ -11,12 +11,12 @@ namespace RiotSharp
 {
     public class RiotApi
     {
-        private const String SummonerRootUrl = "/api/lol/{0}/v1.1/summoner";
-        private const String NameUrl = "/by-name/{0}";
-        private const String IdUrl = "/{0}";
-        private const String NamesUrl = "/{0}/name";
+        private const string SummonerRootUrl = "/api/lol/{0}/v1.1/summoner";
+        private const string NameUrl = "/by-name/{0}";
+        private const string IdUrl = "/{0}";
+        private const string NamesUrl = "/{0}/name";
 
-        private const String ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
+        private const string ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
 
         private readonly Requester requester;
 
@@ -31,7 +31,7 @@ namespace RiotSharp
             JsonSerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
         }
 
-        public RiotApi(String apiKey, bool isProdApi)
+        public RiotApi(string apiKey, bool isProdApi)
         {
             requester = Requester.Instance;
             Requester.ApiKey = apiKey;
@@ -40,8 +40,8 @@ namespace RiotSharp
 
         public Summoner GetSummoner(Region region, int summonerId)
         {
-            var request = requester.CreateRequest(String.Format(SummonerRootUrl, region.ToString()) 
-                + String.Format(IdUrl, summonerId));
+            var request = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
+                + string.Format(IdUrl, summonerId));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -49,10 +49,10 @@ namespace RiotSharp
             return new Summoner(this, json, requester, region);
         }
 
-        public Summoner GetSummoner(Region region, String summonerName)
+        public Summoner GetSummoner(Region region, string summonerName)
         {
-            var request = requester.CreateRequest(String.Format(SummonerRootUrl, region.ToString()) 
-                + String.Format(NameUrl, Uri.EscapeDataString(summonerName)));
+            var request = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
+                + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -62,8 +62,8 @@ namespace RiotSharp
 
         public Collection<SummonerBase> GetSummoners(Region region, List<int> summonerIds)
         {
-            var request = requester.CreateRequest(String.Format(SummonerRootUrl, region.ToString())
-                + String.Format(NamesUrl, BuildIdsString(summonerIds)));
+            var request = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -73,7 +73,7 @@ namespace RiotSharp
 
         public Collection<Champion> GetChampions(Region region)
         {
-            var request = requester.CreateRequest(String.Format(ChampionRootUrl, region.ToString()));
+            var request = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()));
             var response = (HttpWebResponse)request.GetResponse();
             var result = requester.GetResponseString(response.GetResponseStream());
             var json = JObject.Parse(result);
@@ -81,9 +81,9 @@ namespace RiotSharp
             return new Collection<Champion>(this, json, requester, region, "champions");
         }
 
-        private String BuildIdsString(List<int> ids)
+        private string BuildIdsString(List<int> ids)
         {
-            String concatenatedIds = String.Empty;
+            string concatenatedIds = string.Empty;
             for (int i = 0; i < ids.Count; i++)
             {
                 if (i < ids.Count - 1)

@@ -33,7 +33,7 @@ namespace RiotSharp
         /// Human readable string representing date game was played.
         /// </summary>
         [JsonProperty("createDateStr")]
-        public String CreateDateString { get; set; }
+        public string CreateDateString { get; set; }
         /// <summary>
         /// Other players associated with the game.
         /// </summary>
@@ -90,7 +90,7 @@ namespace RiotSharp
         /// Game sub-type.
         /// </summary>
         [JsonProperty("subType")]
-        public String SubType { get; set; }
+        public string SubType { get; set; }
         /// <summary>
         /// Team ID associated with game.
         /// </summary>

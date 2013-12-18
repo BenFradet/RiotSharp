@@ -27,7 +27,7 @@ namespace RiotSharp
         /// League name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// League queue.
         /// </summary>

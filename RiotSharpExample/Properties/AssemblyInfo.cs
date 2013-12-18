@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RiotSharpTest")]
+[assembly: AssemblyTitle("RiotSharpExample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("RiotSharpTest")]
+[assembly: AssemblyProduct("RiotSharpExample")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fa70c981-59b5-4414-9bda-0d25667894a0")]
+[assembly: Guid("5e9ec6ed-b631-4861-8916-0e1720444d06")]
 
 // Version information for an assembly consists of the following four values:
 //

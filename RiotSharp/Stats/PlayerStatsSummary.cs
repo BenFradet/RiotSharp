@@ -40,7 +40,7 @@ namespace RiotSharp
         /// Human readable string representing date stats were last modified.
         /// </summary>
         [JsonProperty("modifyDateStr")]
-        public String ModifyDateString { get; set; }
+        public string ModifyDateString { get; set; }
         /// <summary>
         /// Player stats summary type.
         /// </summary>

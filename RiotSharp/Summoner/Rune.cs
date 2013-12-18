@@ -22,7 +22,7 @@ namespace RiotSharp
         /// Rune description.
         /// </summary>
         [JsonProperty("description")]
-        public String Description { get; set; }
+        public string Description { get; set; }
         /// <summary>
         /// Rune ID.
         /// </summary>
@@ -32,7 +32,7 @@ namespace RiotSharp
         /// Rune name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Rune tier.
         /// </summary>

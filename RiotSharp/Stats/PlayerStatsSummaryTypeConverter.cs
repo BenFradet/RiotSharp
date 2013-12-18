@@ -12,13 +12,13 @@ namespace RiotSharp
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(String).IsAssignableFrom(objectType);
+            return typeof(string).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            var str = token.Value<String>();
+            var str = token.Value<string>();
             switch (str)
             {
                 case "AramUnranked5x5":

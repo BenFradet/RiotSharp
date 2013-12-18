@@ -67,7 +67,7 @@ namespace RiotSharp
         /// Champion name.
         /// </summary>
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Ranked play enabled flag.
         /// </summary>
