@@ -70,14 +70,25 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
+            return new Collection<SummonerBase>(json, requester, region, "summoners");
+        }
 
+        public async Task<Collection<SummonerBase>> GetSummonersAsync(Region region, List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
 
         public Collection<Champion> GetChampions(Region region)
         {
             var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()));
+            return new Collection<Champion>(json, requester, region, "champions");
+        }
 
+        public async Task<Collection<Champion>> GetChampionsAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()));
             return new Collection<Champion>(json, requester, region, "champions");
         }
 

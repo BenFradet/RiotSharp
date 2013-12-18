@@ -25,8 +25,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
-        [TestCategory("Async")]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonerAsync_ById_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
@@ -54,8 +53,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
-        [TestCategory("Async")]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonerAsync_ByName_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
@@ -70,7 +68,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetSummoners_ByIds_Test()
+        public void GetSummoners_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
             int id1 = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
@@ -84,6 +82,21 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetSummonersAsync_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id1 = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
+            RiotApi api = new RiotApi(apiKey, false);
+
+            var summoners = api.GetSummonersAsync(Region.euw, new List<int>() { id1, id2 });
+
+            Assert.IsNotNull(summoners.Result);
+            Assert.IsTrue(summoners.Result.Count() == 2);
+        }
+
+        [TestMethod]
         [TestCategory("RiotApi")]
         public void GetChampions_Test()
         {
@@ -94,6 +107,19 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(champions);
             Assert.IsTrue(champions.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChampionsAsync_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            RiotApi api = new RiotApi(apiKey, false);
+
+            var champions = api.GetChampionsAsync(Region.euw);
+
+            Assert.IsNotNull(champions.Result);
+            Assert.IsTrue(champions.Result.Count() > 0);
         }
     }
 }
