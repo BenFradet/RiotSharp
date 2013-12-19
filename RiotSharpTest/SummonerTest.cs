@@ -15,8 +15,9 @@ namespace RiotSharpTest
         public void GetRunePages_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
             RiotApi api = new RiotApi(apiKey, false);
-            Summoner summoner = api.GetSummoner(Region.euw, 20937547);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var runePages = summoner.GetRunePages();
 
@@ -25,17 +26,48 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetRunePagesAsync_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            RiotApi api = new RiotApi(apiKey, false);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var runePages = summoner.GetRunePagesAsync();
+
+            Assert.IsNotNull(runePages.Result);
+            Assert.IsTrue(runePages.Result.Count() > 0);
+        }
+
+        [TestMethod]
         [TestCategory("Summoner")]
         public void GetMasteryPages_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
             RiotApi api = new RiotApi(apiKey, false);
-            Summoner summoner = api.GetSummoner(Region.euw, 20937547);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
 
-            var runePages = summoner.GetMasteryPages();
+            var masteryPages = summoner.GetMasteryPages();
 
-            Assert.IsNotNull(runePages);
-            Assert.IsTrue(runePages.Count() > 0);
+            Assert.IsNotNull(masteryPages);
+            Assert.IsTrue(masteryPages.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMasteryPagesAsync_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            RiotApi api = new RiotApi(apiKey, false);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var masteryPages = summoner.GetMasteryPagesAsync();
+
+            Assert.IsNotNull(masteryPages.Result);
+            Assert.IsTrue(masteryPages.Result.Count() > 0);
         }
 
         [TestMethod]
@@ -43,13 +75,29 @@ namespace RiotSharpTest
         public void GetRecentGames_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
             RiotApi api = new RiotApi(apiKey, false);
-            Summoner summoner = api.GetSummoner(Region.euw, 20937547);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
 
-            var runePages = summoner.GetRecentGames();
+            var recentGames = summoner.GetRecentGames();
 
-            Assert.IsNotNull(runePages);
-            Assert.IsTrue(runePages.Count() > 0);
+            Assert.IsNotNull(recentGames);
+            Assert.IsTrue(recentGames.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetRecentGamesAsync_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            RiotApi api = new RiotApi(apiKey, false);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var recentGames = summoner.GetRecentGamesAsync();
+
+            Assert.IsNotNull(recentGames.Result);
+            Assert.IsTrue(recentGames.Result.Count() > 0);
         }
 
         [TestMethod]
@@ -57,13 +105,29 @@ namespace RiotSharpTest
         public void GetLeagues_Test()
         {
             string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
             RiotApi api = new RiotApi(apiKey, false);
-            Summoner summoner = api.GetSummoner(Region.euw, 20937547);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
 
-            var runePages = summoner.GetRecentGames();
+            var leagues = summoner.GetLeagues();
 
-            Assert.IsNotNull(runePages);
-            Assert.IsTrue(runePages.Count() > 0);
+            Assert.IsNotNull(leagues);
+            Assert.IsTrue(leagues.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetLeaguesAsync_Test()
+        {
+            string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            RiotApi api = new RiotApi(apiKey, false);
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var leagues = summoner.GetLeaguesAsync();
+
+            Assert.IsNotNull(leagues.Result);
+            Assert.IsTrue(leagues.Result.Count() > 0);
         }
     }
 }

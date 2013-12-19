@@ -53,7 +53,13 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(RootUrl, region)
                 + string.Format(RunesUrl, Id));
+            return new Collection<RunePage>(json, requester, region, "pages");
+        }
 
+        public async Task<Collection<RunePage>> GetRunePagesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
+                + string.Format(RunesUrl, Id));
             return new Collection<RunePage>(json, requester, region, "pages");
         }
 
@@ -61,7 +67,13 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(RootUrl, region)
                 + string.Format(MasteriesUrl, Id));
+            return new Collection<MasteryPage>(json, requester, region, "pages");
+        }
 
+        public async Task<Collection<MasteryPage>> GetMasteryPagesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
+                + string.Format(MasteriesUrl, Id));
             return new Collection<MasteryPage>(json, requester, region, "pages");
         }
 
@@ -69,7 +81,13 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(GameRootUrl, region)
                 + string.Format(RecentGamesUrl, Id));
+            return new Collection<Game>(json, requester, region, "games");
+        }
 
+        public async Task<Collection<Game>> GetRecentGamesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(GameRootUrl, region)
+                + string.Format(RecentGamesUrl, Id));
             return new Collection<Game>(json, requester, region, "games");
         }
 
@@ -77,15 +95,27 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(LeagueRootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
-
             return new Collection<League>(json, requester, region);
         }
 
-        public Collection<PlayerStatsSummary> GetStatsSummaries(Season season)
+        public async Task<Collection<League>> GetLeaguesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(LeagueRootUrl, region)
+                + string.Format(LeagueBySummonerUrl, Id));
+            return new Collection<League>(json, requester, region);
+        }
+
+        public Collection<PlayerStatsSummary> GetStatSummaries(Season season)
         {
             var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
                 + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+            return new Collection<PlayerStatsSummary>(json, requester, region, "playerStatSummaries");
+        }
 
+        public async Task<Collection<PlayerStatsSummary>> GetStatSummariesAsync(Season season)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(StatsRootUrl, region)
+                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
             return new Collection<PlayerStatsSummary>(json, requester, region, "playerStatSummaries");
         }
 
@@ -93,7 +123,13 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
                 + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+            return new Collection<ChampionStats>(json, requester, region, "champions");
+        }
 
+        public async Task<Collection<ChampionStats>> GetStatsRankedAsync(Season season)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(StatsRootUrl, region)
+                + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
             return new Collection<ChampionStats>(json, requester, region, "champions");
         }
     }
