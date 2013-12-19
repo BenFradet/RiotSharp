@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class Requester : IRequester
+    internal class Requester : IRequester
     {
         private static Requester instance;
         private Requester() { }

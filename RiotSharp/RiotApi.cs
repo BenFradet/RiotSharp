@@ -48,6 +48,12 @@ namespace RiotSharp
             Requester.IsProdApi = isProdApi;
         }
 
+        /// <summary>
+        /// Get a summoner by id synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a summoner.</param>
+        /// <param name="summonerId">Id of the summoner you're looking for.</param>
+        /// <returns>A summoner.</returns>
         public Summoner GetSummoner(Region region, int summonerId)
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
@@ -55,6 +61,12 @@ namespace RiotSharp
             return new Summoner(json, requester, region);
         }
 
+        /// <summary>
+        /// Get a summoner by id asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a summoner.</param>
+        /// <param name="summonerId">Id of the summoner you're looking for.</param>
+        /// <returns>A summoner.</returns>
         public async Task<Summoner> GetSummonerAsync(Region region, int summonerId)
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
@@ -62,6 +74,12 @@ namespace RiotSharp
             return new Summoner(json, requester, region);
         }
 
+        /// <summary>
+        /// Get a summoner by name synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a summoner.</param>
+        /// <param name="summonerName">Name of the summoner you're looking for.</param>
+        /// <returns>A summoner.</returns>
         public Summoner GetSummoner(Region region, string summonerName)
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString()) 
@@ -69,6 +87,12 @@ namespace RiotSharp
             return new Summoner(json, requester, region);
         }
 
+        /// <summary>
+        /// Get a summoner by name asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a summoner.</param>
+        /// <param name="summonerName">Name of the summoner you're looking for.</param>
+        /// <returns>A summoner.</returns>
         public async Task<Summoner> GetSummonerAsync(Region region, string summonerName)
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
@@ -76,6 +100,12 @@ namespace RiotSharp
             return new Summoner(json, requester, region);
         }
 
+        /// <summary>
+        /// Get a list of summoner's name and id by their id synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for summoners.</param>
+        /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
+        /// <returns>A collection of ids and names of summoners.</returns>
         public Collection<SummonerBase> GetSummoners(Region region, List<int> summonerIds)
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
@@ -83,6 +113,12 @@ namespace RiotSharp
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
 
+        /// <summary>
+        /// Get a list of summoner's name and id by their id asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for summoners.</param>
+        /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
+        /// <returns>A collection of ids and names of summoners.</returns>
         public async Task<Collection<SummonerBase>> GetSummonersAsync(Region region, List<int> summonerIds)
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
@@ -90,12 +126,22 @@ namespace RiotSharp
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
 
+        /// <summary>
+        /// Get the list of champions by region synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for champions.</param>
+        /// <returns>A collection of champions.</returns>
         public Collection<Champion> GetChampions(Region region)
         {
             var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()));
             return new Collection<Champion>(json, requester, region, "champions");
         }
 
+        /// <summary>
+        /// Get the list of champions by region asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for champions.</param>
+        /// <returns>A collection of champions.</returns>
         public async Task<Collection<Champion>> GetChampionsAsync(Region region)
         {
             var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()));

@@ -35,7 +35,7 @@ namespace RiotSharpExample
             //    Console.WriteLine();
             //}
 
-            var stats = summ.GetStatSummaries(Season.Season3);
+            var stats = summ.GetStatsSummaries(Season.Season3);
             foreach (var stat in stats)
             {
                 if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
