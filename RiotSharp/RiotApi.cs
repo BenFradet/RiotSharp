@@ -23,6 +23,12 @@ namespace RiotSharp
         internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
 
         private static RiotApi instance;
+        /// <summary>
+        /// Get an instance of RiotApi.
+        /// </summary>
+        /// <param name="apiKey">The api key.</param>
+        /// <param name="isProdApi">Indicates if this is a production api or not.</param>
+        /// <returns>An instance of RiotApi.</returns>
         public static RiotApi GetInstance(string apiKey, bool isProdApi)
         {
             if (instance == null || apiKey != Requester.ApiKey || isProdApi != Requester.IsProdApi)
