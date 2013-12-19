@@ -15,46 +15,46 @@ namespace RiotSharpExample
             //toreplace
             var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"], false);
 
-            var summ = api.GetSummoner(Region.euw, 42091042);
-            //var stats = summ.GetPlayerStatsRanked(Season.SEASON3);
-            //foreach (var stat in stats)
-            //{
-            //    Console.WriteLine(stat.Id);
-            //    Console.WriteLine(stat.Name);
-            //    if (stat.Stats != null && stat.Stats.Count > 0)
-            //    {
-            //        foreach (var s in stat.Stats)
-            //        {
-            //            Console.WriteLine("    " + s.Count);
-            //            Console.WriteLine("    " + s.Name);
-            //            Console.WriteLine("    " + s.Id);
-            //            Console.WriteLine("    " + s.Value);
-            //            Console.WriteLine();
-            //        }
-            //    }
-            //    Console.WriteLine();
-            //}
+            var summ = api.GetSummoner(Region.euw, 20937547);
 
-            var stats = summ.GetStatsSummaries(Season.Season3);
-            foreach (var stat in stats)
+            var rankedVarus = summ.GetStatsRanked(Season.Season3)
+                .Where((s) => s.Name != null && s.Name.Equals("Varus"))
+                .FirstOrDefault();
+            Console.WriteLine(rankedVarus.Id);
+            Console.WriteLine(rankedVarus.Name);
+            if (rankedVarus.Stats != null && rankedVarus.Stats.Count > 0)
             {
-                if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
+                foreach (var s in rankedVarus.Stats)
                 {
-                    foreach (var aStat in stat.AggregatedStats)
-                    {
-                        Console.WriteLine("    " + aStat.Count);
-                        Console.WriteLine("    " + aStat.Id);
-                        Console.WriteLine("    " + aStat.Name);
-                        Console.WriteLine();
-                    }
-                    Console.WriteLine(stat.Losses);
-                    Console.WriteLine(stat.ModifyDate);
-                    Console.WriteLine(stat.ModifyDateString);
-                    Console.WriteLine(stat.PlayerStatSummaryType);
-                    Console.WriteLine(stat.Wins);
+                    Console.WriteLine("    " + s.Count);
+                    Console.WriteLine("    " + s.Name);
+                    Console.WriteLine("    " + s.Id);
+                    Console.WriteLine("    " + s.Value);
                     Console.WriteLine();
                 }
             }
+            Console.WriteLine();
+
+            //var stats = summ.GetStatsSummaries(Season.Season3);
+            //foreach (var stat in stats)
+            //{
+            //    if (stat.AggregatedStats != null && stat.AggregatedStats.Count > 0)
+            //    {
+            //        foreach (var aStat in stat.AggregatedStats)
+            //        {
+            //            Console.WriteLine("    " + aStat.Count);
+            //            Console.WriteLine("    " + aStat.Id);
+            //            Console.WriteLine("    " + aStat.Name);
+            //            Console.WriteLine();
+            //        }
+            //        Console.WriteLine(stat.Losses);
+            //        Console.WriteLine(stat.ModifyDate);
+            //        Console.WriteLine(stat.ModifyDateString);
+            //        Console.WriteLine(stat.PlayerStatSummaryType);
+            //        Console.WriteLine(stat.Wins);
+            //        Console.WriteLine();
+            //    }
+            //}
 
             //var leagues = summ.GetLeagues();
             //foreach (League league in leagues)
