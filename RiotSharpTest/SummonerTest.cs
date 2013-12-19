@@ -12,12 +12,12 @@ namespace RiotSharpTest
     {
         static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
         static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+        static RiotApi api = RiotApi.GetInstance(apiKey, false);
 
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetRunePages_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var runePages = summoner.GetRunePages();
@@ -30,7 +30,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRunePagesAsync_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var runePages = summoner.GetRunePagesAsync();
@@ -43,7 +42,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMasteryPages_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var masteryPages = summoner.GetMasteryPages();
@@ -56,7 +54,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMasteryPagesAsync_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var masteryPages = summoner.GetMasteryPagesAsync();
@@ -69,7 +66,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetRecentGames_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var recentGames = summoner.GetRecentGames();
@@ -82,7 +78,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRecentGamesAsync_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var recentGames = summoner.GetRecentGamesAsync();
@@ -95,7 +90,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetLeagues_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var leagues = summoner.GetLeagues();
@@ -108,7 +102,6 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetLeaguesAsync_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var leagues = summoner.GetLeaguesAsync();

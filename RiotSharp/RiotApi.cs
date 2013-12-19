@@ -21,6 +21,16 @@ namespace RiotSharp
         private Requester requester;
 
         internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
+
+        private static RiotApi instance;
+        public static RiotApi GetInstance(string apiKey, bool isProdApi)
+        {
+            if (instance == null || apiKey != Requester.ApiKey || isProdApi != Requester.IsProdApi)
+            {
+                instance = new RiotApi(apiKey, isProdApi);
+            }
+            return instance;
+        }
         
         static RiotApi()
         {
@@ -31,7 +41,7 @@ namespace RiotSharp
             JsonSerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
         }
 
-        public RiotApi(string apiKey, bool isProdApi)
+        private RiotApi(string apiKey, bool isProdApi)
         {
             requester = Requester.Instance;
             Requester.ApiKey = apiKey;

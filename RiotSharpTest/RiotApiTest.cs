@@ -14,13 +14,12 @@ namespace RiotSharpTest
         static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
         static string name = ConfigurationManager.AppSettings["Summoner1Name"];
         static int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
+        static RiotApi api = RiotApi.GetInstance(apiKey, false);
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetSummoner_ById_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             Assert.AreEqual(summoner.Name, name);
@@ -30,8 +29,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonerAsync_ById_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             var summoner = api.GetSummonerAsync(Region.euw, id);
 
             Assert.AreEqual(summoner.Result.Name, name);
@@ -41,8 +38,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummoner_ByName_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             Summoner summoner = api.GetSummoner(Region.euw, name);
 
             Assert.AreEqual(summoner.Id, id);
@@ -52,8 +47,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonerAsync_ByName_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             var summoner = api.GetSummonerAsync(Region.euw, name);
 
             Assert.AreEqual(summoner.Result.Id, id);
@@ -63,8 +56,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummoners_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             var summoners = api.GetSummoners(Region.euw, new List<int>() { id, id2 });
 
             Assert.IsNotNull(summoners);
@@ -75,8 +66,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersAsync_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             var summoners = api.GetSummonersAsync(Region.euw, new List<int>() { id, id2 });
 
             Assert.IsNotNull(summoners.Result);
@@ -87,8 +76,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetChampions_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             var champions = api.GetChampions(Region.euw);
 
             Assert.IsNotNull(champions);
@@ -99,8 +86,6 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetChampionsAsync_Test()
         {
-            RiotApi api = new RiotApi(apiKey, false);
-
             var champions = api.GetChampionsAsync(Region.euw);
 
             Assert.IsNotNull(champions.Result);

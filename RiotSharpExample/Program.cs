@@ -13,7 +13,7 @@ namespace RiotSharpExample
         static void Main(string[] args)
         {
             //toreplace
-            var api = new RiotApi(ConfigurationManager.AppSettings["ApiKey"], false);
+            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"], false);
 
             var summ = api.GetSummoner(Region.euw, 42091042);
             //var stats = summ.GetPlayerStatsRanked(Season.SEASON3);
