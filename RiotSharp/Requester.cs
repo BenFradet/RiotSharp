@@ -37,7 +37,9 @@ namespace RiotSharp
         private static DateTime firstRequestInLastTenM = DateTime.MinValue;
         private static int numberOfRequestsInLastTenS = 0;
         private static int numberOfRequestInLastTenM = 0;
+
         private static Object _lock = new Object();
+        private static SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
         private const int MAX_REQUEST_PER_10S = 10;
         private const int MAX_REQUEST_PER_10M = 500;
@@ -110,7 +112,7 @@ namespace RiotSharp
             }
             request.Method = "GET";
 
-            lock (_lock)
+            await semaphore.WaitAsync();
             {
                 if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
                 {
@@ -137,6 +139,7 @@ namespace RiotSharp
                 }
                 numberOfRequestsInLastTenS++;
             }
+            semaphore.Release();
 
             var response = (HttpWebResponse)(await request.GetResponseAsync());
             string result = string.Empty;
