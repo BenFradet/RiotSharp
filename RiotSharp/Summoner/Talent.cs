@@ -25,11 +25,13 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+
         /// <summary>
         /// Talent name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
         /// <summary>
         /// Talent rank.
         /// </summary>

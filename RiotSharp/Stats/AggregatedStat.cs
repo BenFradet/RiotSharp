@@ -25,11 +25,13 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("count")]
         public int Count { get; set; }
+
         /// <summary>
         /// Aggregated stat type ID.
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+
         /// <summary>
         /// Aggregated stat type name.
         /// </summary>

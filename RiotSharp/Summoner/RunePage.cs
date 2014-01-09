@@ -24,16 +24,19 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("current")]
         public bool Current { get; set; }
+
         /// <summary>
         /// Rune page ID.
         /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; }
+
         /// <summary>
         /// Rune page name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
         /// <summary>
         /// List of rune slots associated with the rune page.
         /// </summary>

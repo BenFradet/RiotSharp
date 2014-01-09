@@ -87,6 +87,30 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetRecentGamesV11_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var recentGames = summoner.GetRecentGamesV11();
+
+            Assert.IsNotNull(recentGames);
+            Assert.IsTrue(recentGames.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetRecentGamesV11Async_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var recentGames = summoner.GetRecentGamesV11Async();
+
+            Assert.IsNotNull(recentGames.Result);
+            Assert.IsTrue(recentGames.Result.Count() > 0);
+        }
+
+        [TestMethod]
         [TestCategory("Summoner")]
         public void GetLeagues_Test()
         {
@@ -105,6 +129,30 @@ namespace RiotSharpTest
             Summoner summoner = api.GetSummoner(Region.euw, id);
 
             var leagues = summoner.GetLeaguesAsync();
+
+            Assert.IsNotNull(leagues.Result);
+            Assert.IsTrue(leagues.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetLeaguesV21_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var leagues = summoner.GetLeaguesV21();
+
+            Assert.IsNotNull(leagues);
+            Assert.IsTrue(leagues.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetLeaguesV21Async_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var leagues = summoner.GetLeaguesV21Async();
 
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);

@@ -11,12 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a League in the API.
     /// </summary>
-    public class League : Thing
+    [Obsolete("The league api v2.1 is deprecated, please use League instead.")]
+    public class LeagueV21 : Thing
     {
-        /// <summary>
-        /// Class representing a League in the API.
-        /// </summary>
-        public League(JToken json)
+        public LeagueV21(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
@@ -25,26 +23,29 @@ namespace RiotSharp
         /// LeagueItems associated with this League.
         /// </summary>
         [JsonProperty("entries")]
-        public List<LeagueItem> Entries { get; set; }
-
+        public List<LeagueItemV21> Entries { get; set; }
         /// <summary>
         /// League name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
         /// <summary>
         /// League queue.
         /// </summary>
         [JsonProperty("queue")]
         [JsonConverter(typeof(QueueConverter))]
         public Queue Queue { get; set; }
-
         /// <summary>
         /// League tier.
         /// </summary>
         [JsonProperty("tier")]
         [JsonConverter(typeof(TierConverter))]
         public Tier Tier { get; set; }
+        /// <summary>
+        /// Timestamp.
+        /// </summary>
+        [JsonProperty("timestamp")]
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime Timestamp { get; set; }
     }
 }

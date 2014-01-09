@@ -10,10 +10,11 @@ namespace RiotSharp
 {
     /// <summary>
     /// Class representing a Game in the API.
-    /// </summary>    
-    public class Game : Thing
+    /// </summary>
+    [Obsolete("The game api v1.1 is deprecated, please use Game instead.")]
+    public class GameV11 : Thing
     {
-        public Game(JToken json)
+        public GameV11(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
@@ -30,6 +31,12 @@ namespace RiotSharp
         [JsonProperty("createDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime CreateDate { get; set; }
+
+        /// <summary>
+        /// Human readable string representing date game was played.
+        /// </summary>
+        [JsonProperty("createDateStr")]
+        public string CreateDateString { get; set; }
 
         /// <summary>
         /// Other players associated with the game.

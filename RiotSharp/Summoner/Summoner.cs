@@ -22,17 +22,20 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("profileIconId")]
         public int ProfileIconId { get; set; }
+
         /// <summary>
         /// Date summoner was last modified.
         /// </summary>
         [JsonProperty("revisionDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime RevisionDate { get; set; }
+
         /// <summary>
         /// Human readable string representing date summoner was last modified.
         /// </summary>
         [JsonProperty("revisionDateStr")]
         public string RevisionDateString { get; set; }
+
         /// <summary>
         /// Summoner level associated with the summoner.
         /// </summary>

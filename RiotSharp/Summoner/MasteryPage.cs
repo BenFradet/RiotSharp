@@ -23,11 +23,13 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("current")]
         public bool Current { get; set; }
+
         /// <summary>
         /// Mastery page name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
         /// <summary>
         /// List of mastery page talents associated with the mastery page.
         /// </summary>

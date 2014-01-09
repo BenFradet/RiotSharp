@@ -32,9 +32,17 @@ namespace RiotSharp
             {
                 return new Game(json);
             }
+            else if (typeToParse.Equals(typeof(GameV11)))
+            {
+                return new GameV11(json);
+            }
             else if (typeToParse.Equals(typeof(League)))
             {
                 return new League(json);
+            }
+            else if (typeToParse.Equals(typeof(LeagueV21)))
+            {
+                return new LeagueV21(json);
             }
             else if (typeToParse.Equals(typeof(PlayerStatsSummary)))
             {

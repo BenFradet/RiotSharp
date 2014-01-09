@@ -11,11 +11,12 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a LeagueItem in the API.
     /// </summary>
-    public class LeagueItem
+    [Obsolete("The league api v2.1 is deprecated, please use LeagueItem instead.")]
+    public class LeagueItemV21 : Thing
     {
-        public LeagueItem() { }
+        public LeagueItemV21() { }
 
-        public LeagueItem(JToken json)
+        public LeagueItemV21(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
@@ -64,6 +65,12 @@ namespace RiotSharp
         public int LeaguePoints { get; set; }
 
         /// <summary>
+        /// Number of losses.
+        /// </summary>
+        [JsonProperty("losses")]
+        public int Losses { get; set; }
+
+        /// <summary>
         /// Mini series.
         /// </summary>
         [JsonProperty("miniSeries")]
@@ -101,6 +108,13 @@ namespace RiotSharp
         [JsonProperty("tier")]
         [JsonConverter(typeof(TierConverter))]
         public Tier Tier { get; set; }
+
+        /// <summary>
+        /// Time until decay.
+        /// </summary>
+        [JsonProperty("timeUntilDecay")]
+        [JsonConverter(typeof(TimeSpanConverter))]
+        public TimeSpan TimeUntilDecay { get; set; }
 
         /// <summary>
         /// Number of wins.

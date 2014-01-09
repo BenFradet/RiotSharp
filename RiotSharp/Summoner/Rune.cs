@@ -23,16 +23,19 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
+
         /// <summary>
         /// Rune ID.
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+
         /// <summary>
         /// Rune name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
         /// <summary>
         /// Rune tier.
         /// </summary>

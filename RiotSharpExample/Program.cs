@@ -62,7 +62,6 @@ namespace RiotSharpExample
             //    Console.WriteLine(league.Name);
             //    Console.WriteLine(league.Queue);
             //    Console.WriteLine(league.Tier);
-            //    Console.WriteLine(league.Timestamp);
             //    foreach (LeagueItem entry in league.Entries)
             //    {
             //        Console.WriteLine("    " + entry.IsFreshBlood);
@@ -72,7 +71,6 @@ namespace RiotSharpExample
             //        Console.WriteLine("    " + entry.LastPlayed);
             //        Console.WriteLine("    " + entry.LeagueName);
             //        Console.WriteLine("    " + entry.LeaguePoints);
-            //        Console.WriteLine("    " + entry.Losses);
             //        if (entry.MiniSeries != null)
             //        {
             //            Console.WriteLine("        " + entry.MiniSeries.Losses);
@@ -91,7 +89,6 @@ namespace RiotSharpExample
             //        Console.WriteLine("    " + entry.QueueType);
             //        Console.WriteLine("    " + entry.Rank);
             //        Console.WriteLine("    " + entry.Tier);
-            //        Console.WriteLine("    " + entry.TimeUntilDecay);
             //        Console.WriteLine("    " + entry.Wins);
             //        Console.WriteLine();
             //    }
@@ -103,7 +100,6 @@ namespace RiotSharpExample
             //{
             //    Console.WriteLine(game.ChampionId);
             //    Console.WriteLine(game.CreateDate);
-            //    Console.WriteLine(game.CreateDateString);
             //    foreach (var player in game.FellowPlayers)
             //    {
             //        Console.WriteLine("    " + player.ChampionId);

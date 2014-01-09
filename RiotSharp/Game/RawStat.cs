@@ -25,11 +25,13 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+
         /// <summary>
         /// Raw stat name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
         /// <summary>
         /// Raw stat value.
         /// </summary>

@@ -43,10 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameMode.cs" />
     <Compile Include="Game\GameModeConverter.cs" />
     <Compile Include="Game\GameType.cs" />
     <Compile Include="Game\GameTypeConverter.cs" />
+    <Compile Include="League\League.cs" />
+    <Compile Include="League\LeagueItem.cs" />
     <Compile Include="League\Queue.cs" />
     <Compile Include="League\QueueConverter.cs" />
     <Compile Include="League\Tier.cs" />
@@ -59,9 +62,9 @@
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
     <Compile Include="League\CharArrayConverter.cs" />
-    <Compile Include="Game\Game.cs" />
-    <Compile Include="League\League.cs" />
-    <Compile Include="League\LeagueItem.cs" />
+    <Compile Include="Game\GameV11.cs" />
+    <Compile Include="League\LeagueV21.cs" />
+    <Compile Include="League\LeagueItemV21.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
     <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
