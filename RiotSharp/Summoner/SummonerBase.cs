@@ -26,7 +26,8 @@ namespace RiotSharp
         private const string LeagueRootUrl = "/api/lol/{0}/v2.2/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
 
-        private const string StatsRootUrl = "/api/lol/{0}/v1.1/stats";
+        private const string StatsV11RootUrl = "/api/lol/{0}/v1.1/stats";
+        private const string StatsRootUrl = "/api/lol/{0}/v1.2/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
@@ -212,13 +213,39 @@ namespace RiotSharp
         }
 
         /// <summary>
+        /// Get player stats summaries for this summoner synchronously. One summary is returned per queue type.
+        /// </summary>
+        /// <param name="season">Season for which you want the stats.</param>
+        /// <returns>Collection of player stats summaries.</returns>
+        [Obsolete("The stats api v1.1 is deprecated, please use GetStatsSummaries() instead.")]
+        public Collection<PlayerStatsSummaryV11> GetStatsSummariesV11(Season season)
+        {
+            var json = requester.CreateRequest(string.Format(StatsV11RootUrl, region)
+                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+            return new Collection<PlayerStatsSummaryV11>(json, requester, region, "playerStatSummaries");
+        }
+
+        /// <summary>
+        /// Get player stats summaries for this summoner asynchronously. One summary is returned per queue type.
+        /// </summary>
+        /// <param name="season">Season for which you want the stats.</param>
+        /// <returns>Collection of player stats summaries.</returns>
+        [Obsolete("The stats api v1.1 is deprecated, please use GetStatsSummariesAssync() instead.")]
+        public async Task<Collection<PlayerStatsSummaryV11>> GetStatsSummariesV11Async(Season season)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(StatsV11RootUrl, region)
+                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+            return new Collection<PlayerStatsSummaryV11>(json, requester, region, "playerStatSummaries");
+        }
+
+        /// <summary>
         /// Get ranked stats for this summoner synchronously. Includes statistics for Twisted Treeline and Summoner's Rift.
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>Collection of champions stats.</returns>
         public Collection<ChampionStats> GetStatsRanked(Season season)
         {
-            var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
+            var json = requester.CreateRequest(string.Format(StatsV11RootUrl, region)
                 + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
             return new Collection<ChampionStats>(json, requester, region, "champions");
         }
@@ -230,7 +257,7 @@ namespace RiotSharp
         /// <returns>Collection of champions stats.</returns>
         public async Task<Collection<ChampionStats>> GetStatsRankedAsync(Season season)
         {
-            var json = await requester.CreateRequestAsync(string.Format(StatsRootUrl, region)
+            var json = await requester.CreateRequestAsync(string.Format(StatsV11RootUrl, region)
                 + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
             return new Collection<ChampionStats>(json, requester, region, "champions");
         }

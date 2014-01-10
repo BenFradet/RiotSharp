@@ -41,6 +41,12 @@ namespace RiotSharp
                     return PlayerStatsSummaryType.Unranked;
                 case "Unranked3x3":
                     return PlayerStatsSummaryType.Unranked3x3;
+                case "OneForAll5x5":
+                    return PlayerStatsSummaryType.OneForAll5x5;
+                case "FirstBlood1x1":
+                    return PlayerStatsSummaryType.FirstBlood1x1;
+                case "FirstBlood2x2":
+                    return PlayerStatsSummaryType.FirstBlood2x2;
                 default:
                     return null;
             }

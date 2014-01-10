@@ -17,6 +17,8 @@ namespace RiotSharpExample
 
             var summ = api.GetSummoner(Region.euw, 20937547);
 
+            var stats = summ.GetStatsSummaries(Season.Season3);
+
             var rankedVarus = summ.GetStatsRanked(Season.Season3)
                 .Where((s) => s.Name != null && s.Name.Equals("Varus"))
                 .FirstOrDefault();

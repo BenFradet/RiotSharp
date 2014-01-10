@@ -20,6 +20,9 @@ namespace RiotSharp
         RankedTeam3x3,
         RankedTeam5x5,
         Unranked,
-        Unranked3x3
+        Unranked3x3,
+        OneForAll5x5,
+        FirstBlood1x1,
+        FirstBlood2x2
     }
 }

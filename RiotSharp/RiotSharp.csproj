@@ -58,6 +58,7 @@
     <Compile Include="Misc\LongExtension.cs" />
     <Compile Include="Misc\TimeSpanConverter.cs" />
     <Compile Include="Stats\AggregatedStat.cs" />
+    <Compile Include="Stats\AggregatedStatV11.cs" />
     <Compile Include="Champion\Champion.cs" />
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
@@ -65,13 +66,14 @@
     <Compile Include="Game\GameV11.cs" />
     <Compile Include="League\LeagueV21.cs" />
     <Compile Include="League\LeagueItemV21.cs" />
+    <Compile Include="Stats\PlayerStatsSummary.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
     <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="League\MiniSeriesConverter.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Stats\PlayerStatsSummary.cs" />
+    <Compile Include="Stats\PlayerStatsSummaryV11.cs" />
     <Compile Include="Game\RawStat.cs" />
     <Compile Include="Summoner\Rune.cs" />
     <Compile Include="Summoner\RuneConverter.cs" />

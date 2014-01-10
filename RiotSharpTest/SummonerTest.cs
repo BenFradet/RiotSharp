@@ -157,5 +157,53 @@ namespace RiotSharpTest
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);
         }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetStatsSummaries_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var stats = summoner.GetStatsSummaries(Season.Season3);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetStatsSummariesAsync_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var stats = summoner.GetStatsSummariesAsync(Season.Season3);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetStatsSummariesV11_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var stats = summoner.GetStatsSummariesV11(Season.Season3);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetStatsSummariesV11Async_Test()
+        {
+            Summoner summoner = api.GetSummoner(Region.euw, id);
+
+            var stats = summoner.GetStatsSummariesV11Async(Season.Season3);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
     }
 }

@@ -11,11 +11,12 @@ namespace RiotSharp
     /// <summary>
     /// Class representing PlayerStatsSummary in the API.
     /// </summary>
-    public class PlayerStatsSummary : Thing
+    [Obsolete("The stats api v1.1 is deprecated, please use PlayerStatsSummary instead.")]
+    public class PlayerStatsSummaryV11 : Thing
     {
-        public PlayerStatsSummary() { }
+        public PlayerStatsSummaryV11() { }
 
-        public PlayerStatsSummary(JToken json)
+        public PlayerStatsSummaryV11(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
@@ -24,7 +25,7 @@ namespace RiotSharp
         /// List of aggregated stats.
         /// </summary>
         [JsonProperty("aggregatedStats")]
-        public AggregatedStat AggregatedStat { get; set; }
+        public List<AggregatedStatV11> AggregatedStats { get; set; }
 
         /// <summary>
         /// Number of losses for this queue type. Returned for ranked queue types only.
@@ -38,6 +39,12 @@ namespace RiotSharp
         [JsonProperty("modifyDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime ModifyDate { get; set; }
+
+        /// <summary>
+        /// Human readable string representing date stats were last modified.
+        /// </summary>
+        [JsonProperty("modifyDateStr")]
+        public string ModifyDateString { get; set; }
 
         /// <summary>
         /// Player stats summary type.

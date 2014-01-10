@@ -48,6 +48,10 @@ namespace RiotSharp
             {
                 return new PlayerStatsSummary(json);
             }
+            else if (typeToParse.Equals(typeof(PlayerStatsSummaryV11)))
+            {
+                return new PlayerStatsSummaryV11(json);
+            }
             else if (typeToParse.Equals(typeof(ChampionStats)))
             {
                 return new ChampionStats(json);
