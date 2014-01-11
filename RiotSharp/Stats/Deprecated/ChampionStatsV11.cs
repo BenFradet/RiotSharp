@@ -11,9 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Class representing the ChampionStats in the API.
     /// </summary>
-    public class ChampionStats : Thing
+    [Obsolete("The stats api v1.1 is deprecated, please use ChampionStats instead.")]
+    public class ChampionStatsV11 : Thing
     {
-        public ChampionStats(JToken json)
+        public ChampionStatsV11(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
@@ -31,9 +32,9 @@ namespace RiotSharp
         public string Name { get; set; }
 
         /// <summary>
-        /// Champion stats associated with the champion.
+        /// List of stats associated with the champion.
         /// </summary>
         [JsonProperty("stats")]
-        public ChampionStat Stats { get; set; }
+        public List<ChampionStatV11> Stats { get; set; }
     }
 }

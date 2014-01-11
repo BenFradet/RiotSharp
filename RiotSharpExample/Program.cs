@@ -19,7 +19,16 @@ namespace RiotSharpExample
 
             var stats = summ.GetStatsSummaries(Season.Season3);
 
-            var rankedVarus = summ.GetStatsRanked(Season.Season3)
+            foreach (var stat in stats)
+            {
+                var aggStat = stat.AggregatedStats;
+                Console.WriteLine(stat.Losses);
+                Console.WriteLine(stat.Wins);
+                Console.WriteLine(stat.ModifyDate);
+                Console.WriteLine(stat.PlayerStatSummaryType);
+            }
+
+            var rankedVarus = summ.GetStatsRankedV11(Season.Season3)
                 .Where((s) => s.Name != null && s.Name.Equals("Varus"))
                 .FirstOrDefault();
             Console.WriteLine(rankedVarus.Id);

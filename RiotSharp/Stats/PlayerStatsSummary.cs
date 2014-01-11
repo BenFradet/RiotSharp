@@ -21,10 +21,10 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// List of aggregated stats.
+        /// Aggregated stats.
         /// </summary>
         [JsonProperty("aggregatedStats")]
-        public AggregatedStat AggregatedStat { get; set; }
+        public AggregatedStat AggregatedStats { get; set; }
 
         /// <summary>
         /// Number of losses for this queue type. Returned for ranked queue types only.

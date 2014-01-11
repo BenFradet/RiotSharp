@@ -8,40 +8,25 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    /// <summary>
-    /// Class representing a ChampionStat in the API.
-    /// </summary>
-    public class ChampionStat : Thing
+    public class ChampionStat : AggregatedStat
     {
-        public ChampionStat() { }
+        public ChampionStat()
+            : base() { }
 
         public ChampionStat(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+            : base(json) { }
 
         /// <summary>
-        /// Count of samples (games) that make up the aggregated value, where relevant.
+        /// Maximum number of deaths, only returned for ranked stats.
         /// </summary>
-        [JsonProperty("count")]
-        public int Count { get; set; }
+        [JsonProperty("maxNumDeaths")]
+        public int MaxNumDeaths { get; set; }
 
         /// <summary>
-        /// Aggregated stat type ID.
+        /// Total number of deaths per session, only returned for ranked stats.
         /// </summary>
-        [JsonProperty("id")]
-        public int Id { get; set; }
+        [JsonProperty("totalDeathsPerSession")]
+        public int TotalDeathsPerSession { get; set; }
 
-        /// <summary>
-        /// Aggregated stat type name.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Aggregated stat value.
-        /// </summary>
-        [JsonProperty("value")]
-        public int Value { get; set; }
     }
 }
