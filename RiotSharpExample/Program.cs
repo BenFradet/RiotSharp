@@ -19,6 +19,24 @@ namespace RiotSharpExample
 
             var stats = summ.GetStatsSummaries(Season.Season3);
 
+            for (int i = 0; i < 100; i++)
+            {
+                var test = api.GetSummoner(Region.euw, 20937547);
+            }
+
+            for (int i = 0; i < 100; i++)
+            {
+                try
+                {
+                    var test = api.GetSummonerAsync(Region.euw, 20937547);
+                    var test2 = test.Result;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Async " + ex.Message);
+                }
+            }
+
             foreach (var stat in stats)
             {
                 var aggStat = stat.AggregatedStats;

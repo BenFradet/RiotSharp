@@ -14,7 +14,8 @@ namespace RiotSharp
     /// </summary>
     public class SummonerBase : Thing
     {
-        private const string RootUrl = "/api/lol/{0}/v1.1/summoner";
+        private const string RootV11Url = "/api/lol/{0}/v1.1/summoner";
+        private const string RootUrl = "/api/lol/{0}/v1.2/summoner";
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
 
@@ -75,6 +76,30 @@ namespace RiotSharp
         }
 
         /// <summary>
+        /// Get rune pages for this summoner synchronously.
+        /// </summary>
+        /// <returns>Collection of rune pages.</returns>
+        [Obsolete("The summoner api v1.1 is deprecated, please use GetRunePages() instead.")]
+        public Collection<RunePage> GetRunePagesV11()
+        {
+            var json = requester.CreateRequest(string.Format(RootV11Url, region)
+                + string.Format(RunesUrl, Id));
+            return new Collection<RunePage>(json, requester, region, "pages");
+        }
+
+        /// <summary>
+        /// Get rune pages for this summoner asynchronously.
+        /// </summary>
+        /// <returns>Collection of rune pages.</returns>
+        [Obsolete("The summoner api v1.1 is deprecated, please use GetRunePages() instead.")]
+        public async Task<Collection<RunePage>> GetRunePagesV11Async()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RootV11Url, region)
+                + string.Format(RunesUrl, Id));
+            return new Collection<RunePage>(json, requester, region, "pages");
+        }
+
+        /// <summary>
         /// Get mastery pages for this summoner synchronously.
         /// </summary>
         /// <returns>Collection of mastery pages.</returns>
@@ -94,6 +119,30 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
                 + string.Format(MasteriesUrl, Id));
             return new Collection<MasteryPage>(json, requester, region, "pages");
+        }
+
+        /// <summary>
+        /// Get mastery pages for this summoner synchronously.
+        /// </summary>
+        /// <returns>Collection of mastery pages.</returns>
+        [Obsolete("The summoner api v1.1 is deprecated, please use GetMasteryPages() instead.")]
+        public Collection<MasteryPageV11> GetMasteryPagesV11()
+        {
+            var json = requester.CreateRequest(string.Format(RootV11Url, region)
+                + string.Format(MasteriesUrl, Id));
+            return new Collection<MasteryPageV11>(json, requester, region, "pages");
+        }
+
+        /// <summary>
+        /// Get mastery pages for this summoner asynchronously.
+        /// </summary>
+        /// <returns>Collection of mastery pages.</returns>
+        [Obsolete("The summoner api v1.1 is deprecated, please use GetMasteryPagesAsync() instead.")]
+        public async Task<Collection<MasteryPageV11>> GetMasteryPagesV11Async()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RootV11Url, region)
+                + string.Format(MasteriesUrl, Id));
+            return new Collection<MasteryPageV11>(json, requester, region, "pages");
         }
 
         /// <summary>

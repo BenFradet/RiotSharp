@@ -59,21 +59,8 @@ namespace RiotSharp
             }
             request.Method = "GET";
 
-            lock (_lock)
+            semaphore.Wait();
             {
-                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 11) ;
-                    numberOfRequestInLastTenM = 0;
-                    firstRequestInLastTenM = DateTime.Now;
-                }
-                else if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 11) ;
-                    numberOfRequestsInLastTenS = 0;
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-
                 if (firstRequestInLastTenM == DateTime.MinValue)
                 {
                     firstRequestInLastTenM = DateTime.Now;
@@ -83,9 +70,25 @@ namespace RiotSharp
                 if (firstRequestInLastTenS == DateTime.MinValue)
                 {
                     firstRequestInLastTenS = DateTime.Now;
+                    Console.WriteLine(firstRequestInLastTenS);
                 }
                 numberOfRequestsInLastTenS++;
+
+                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes <= 10) ;
+                    numberOfRequestInLastTenM = 0;
+                    firstRequestInLastTenM = DateTime.Now;
+                }
+                if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 10) ;
+                    numberOfRequestsInLastTenS = 0;
+                    firstRequestInLastTenS = DateTime.Now;
+                    Console.WriteLine(firstRequestInLastTenS);
+                }
             }
+            semaphore.Release();
 
             var response = (HttpWebResponse)request.GetResponse();
             string result = string.Empty;
@@ -93,7 +96,6 @@ namespace RiotSharp
             {
                 result = reader.ReadToEnd();
             }
-
             return JObject.Parse(result);
         }
 
@@ -114,19 +116,6 @@ namespace RiotSharp
 
             await semaphore.WaitAsync();
             {
-                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes < 11) ;
-                    numberOfRequestInLastTenM = 0;
-                    firstRequestInLastTenM = DateTime.Now;
-                }
-                else if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds < 11) ;
-                    numberOfRequestsInLastTenS = 0;
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-
                 if (firstRequestInLastTenM == DateTime.MinValue)
                 {
                     firstRequestInLastTenM = DateTime.Now;
@@ -138,6 +127,19 @@ namespace RiotSharp
                     firstRequestInLastTenS = DateTime.Now;
                 }
                 numberOfRequestsInLastTenS++;
+
+                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes <= 10) ;
+                    numberOfRequestInLastTenM = 0;
+                    firstRequestInLastTenM = DateTime.Now;
+                }
+                if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
+                {
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 10) ;
+                    numberOfRequestsInLastTenS = 0;
+                    firstRequestInLastTenS = DateTime.Now;
+                }
             }
             semaphore.Release();
 

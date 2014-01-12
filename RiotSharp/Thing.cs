@@ -24,6 +24,10 @@ namespace RiotSharp
             {
                 return new MasteryPage(json);
             }
+            else if (typeToParse.Equals(typeof(MasteryPageV11)))
+            {
+                return new MasteryPageV11(json);
+            }
             else if (typeToParse.Equals(typeof(Champion)))
             {
                 return new Champion(json);
