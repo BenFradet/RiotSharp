@@ -18,7 +18,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetRunePages_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var runePages = summoner.GetRunePages();
 
@@ -30,7 +30,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRunePagesAsync_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var runePages = summoner.GetRunePagesAsync();
 
@@ -42,7 +42,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetRunePagesV11_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var runePages = summoner.GetRunePagesV11();
 
@@ -54,7 +54,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetRunePagesV11Async_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var runePages = summoner.GetRunePagesV11Async();
 
@@ -66,7 +66,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMasteryPages_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var masteryPages = summoner.GetMasteryPages();
 
@@ -78,7 +78,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMasteryPagesAsync_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var masteryPages = summoner.GetMasteryPagesAsync();
 
@@ -90,7 +90,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetMasteryPagesV11_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var masteryPages = summoner.GetMasteryPagesV11();
 
@@ -102,7 +102,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetMasteryPagesV11Async_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var masteryPages = summoner.GetMasteryPagesV11Async();
 
@@ -114,7 +114,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetRecentGames_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var recentGames = summoner.GetRecentGames();
 
@@ -126,7 +126,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRecentGamesAsync_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var recentGames = summoner.GetRecentGamesAsync();
 
@@ -138,7 +138,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetRecentGamesV11_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var recentGames = summoner.GetRecentGamesV11();
 
@@ -150,7 +150,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetRecentGamesV11Async_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var recentGames = summoner.GetRecentGamesV11Async();
 
@@ -162,7 +162,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetLeagues_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var leagues = summoner.GetLeagues();
 
@@ -174,7 +174,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetLeaguesAsync_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var leagues = summoner.GetLeaguesAsync();
 
@@ -186,7 +186,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetLeaguesV21_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var leagues = summoner.GetLeaguesV21();
 
@@ -198,7 +198,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetLeaguesV21Async_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var leagues = summoner.GetLeaguesV21Async();
 
@@ -210,7 +210,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsSummaries(Season.Season3);
 
@@ -222,7 +222,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsSummariesAsync_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsSummariesAsync(Season.Season3);
 
@@ -234,7 +234,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetStatsSummariesV11_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsSummariesV11(Season.Season3);
 
@@ -246,7 +246,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetStatsSummariesV11Async_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsSummariesV11Async(Season.Season3);
 
@@ -258,7 +258,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetStatsRanked_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsRanked(Season.Season3);
 
@@ -270,7 +270,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsRankedAsync_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsRankedAsync(Season.Season3);
 
@@ -282,7 +282,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetStatsRankedV11_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsRankedV11(Season.Season3);
 
@@ -294,7 +294,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetStatsRankedV11Async_Test()
         {
-            Summoner summoner = api.GetSummoner(Region.euw, id);
+            Summoner summoner = api.GetSummonerV11(Region.euw, id);
 
             var stats = summoner.GetStatsRankedV11Async(Season.Season3);
 
