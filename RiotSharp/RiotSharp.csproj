@@ -92,6 +92,12 @@
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\Summoner.cs" />
     <Compile Include="Summoner\Talent.cs" />
+    <Compile Include="Team\MatchHistorySummary.cs" />
+    <Compile Include="Team\MessageOfDay.cs" />
+    <Compile Include="Team\Roster.cs" />
+    <Compile Include="Team\TeamId.cs" />
+    <Compile Include="Team\TeamStatSummary.cs" />
+    <Compile Include="Team\TeamV21.cs" />
     <Compile Include="Thing.cs" />
   </ItemGroup>
   <ItemGroup />
