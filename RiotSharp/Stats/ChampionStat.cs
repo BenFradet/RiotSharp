@@ -27,6 +27,5 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("totalDeathsPerSession")]
         public int TotalDeathsPerSession { get; set; }
-
     }
 }

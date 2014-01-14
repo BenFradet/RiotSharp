@@ -12,7 +12,9 @@ namespace RiotSharp
 {
     public interface IRequester
     {
-        JObject CreateRequest(string relativeUrl, string addedArgument = null);
-        Task<JObject> CreateRequestAsync(string relativeUrl, string addedArgument = null);
+        JObject CreateRequestJObject(string relativeUrl, string addedArgument = null);
+        Task<JObject> CreateRequestJObjectAsync(string relativeUrl, string addedArgument = null);
+        string CreateRequest(string relativeUrl, string addedArgument = null);
+        Task<string> CreateRequestAsync(string relativeUrl, string addedArgument = null);
     }
 }

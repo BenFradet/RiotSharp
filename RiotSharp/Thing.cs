@@ -64,6 +64,10 @@ namespace RiotSharp
             {
                 return new ChampionStatsV11(json);
             }
+            else if (typeToParse.Equals(typeof(TeamV21)))
+            {
+                return new TeamV21(json);
+            }
             else
             {
                 return null;

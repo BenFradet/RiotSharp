@@ -36,7 +36,7 @@ namespace RiotSharp
         public DateTime LastJoinedRankedTeamQueueDate { get; set; }
 
         [JsonProperty("matchHistory")]
-        public List<MatchHistorySummary> MatchHistory { get; set; }
+        public List<MatchHistorySummaryV21> MatchHistory { get; set; }
 
         [JsonProperty("messageOfDay")]
         public MessageOfDay MessageOfDay { get; set; }
@@ -65,7 +65,7 @@ namespace RiotSharp
         public TeamId TeamId { get; set; }
 
         [JsonProperty("teamStatSummary")]
-        public TeamStatSummary TeamStatSummary { get; set; }
+        public TeamStatSummaryV21 TeamStatSummary { get; set; }
 
         [JsonProperty("thirdLastJoinDate")]
         [JsonConverter(typeof(DateTimeConverter))]

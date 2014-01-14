@@ -17,6 +17,8 @@ namespace RiotSharpExample
 
             var summ = api.GetSummonerV11(Region.euw, 20937547);
 
+            var team = summ.GetTeamV21();
+
             var stats = summ.GetStatsSummaries(Season.Season3);
 
             for (int i = 0; i < 100; i++)

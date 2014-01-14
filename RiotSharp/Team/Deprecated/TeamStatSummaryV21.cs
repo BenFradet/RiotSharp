@@ -8,16 +8,19 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class TeamId : Thing
+    public class TeamStatSummaryV21 : Thing
     {
-        public TeamId() { }
+        public TeamStatSummaryV21() { }
 
-        public TeamId(JToken json)
+        public TeamStatSummaryV21(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }
 
-        [JsonProperty("fullId")]
-        public string FullId { get; set; }
+        [JsonProperty("teamId")]
+        public TeamId TeamId { get; set; }
+
+        [JsonProperty("teamStatDetails")]
+        public List<TeamStatDetailV21> TeamStatDetails { get; set; }
     }
 }
