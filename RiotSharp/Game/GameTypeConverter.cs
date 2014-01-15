@@ -25,8 +25,6 @@ namespace RiotSharp
                     return GameType.CustomGame;
                 case "MATCHED_GAME":
                     return GameType.MatchedGame;
-                case "CO_OP_VS_AI_GAME":
-                    return GameType.CoopVsAIGame;
                 case "TUTORIAL_GAME":
                     return GameType.TutorialGame;
                 default:

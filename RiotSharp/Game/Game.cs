@@ -8,9 +8,6 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    /// <summary>
-    /// Class representing a Game in the API.
-    /// </summary>    
     public class Game : Thing
     {
         public Game(JToken json)
@@ -90,8 +87,8 @@ namespace RiotSharp
         /// <summary>
         /// Statistics associated with the game for this summoner.
         /// </summary>
-        [JsonProperty("statistics")]
-        public List<RawStat> Statistics { get; set; }
+        [JsonProperty("stats")]
+        public RawStat Statistics { get; set; }
 
         /// <summary>
         /// Game sub-type.

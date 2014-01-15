@@ -14,6 +14,8 @@ namespace RiotSharp
         Classic,
         Odin,
         Aram,
-        Tutorial
+        Tutorial,
+        OneForAll,
+        FirstBlood
     }
 }

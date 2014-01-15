@@ -20,7 +20,8 @@ namespace RiotSharp
         private const string RunesUrl = "/{0}/runes";
 
         private const string GameV11RootUrl = "/api/lol/{0}/v1.1/game";
-        private const string GameRootUrl = "/api/lol/{0}/v1.2/game";
+        private const string GameV12RootUrl = "/api/lol/{0}/v1.2/game";
+        private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
         private const string LeagueV21RootUrl = "/api/{0}/v2.1/league";
@@ -169,6 +170,30 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(GameRootUrl, region)
                 + string.Format(RecentGamesUrl, Id));
             return new Collection<Game>(json, requester, region, "games");
+        }
+
+        /// <summary>
+        /// Get the 10 most recent games for this summoner synchronously.
+        /// </summary>
+        /// <returns>Collection of 10 games.</returns>
+        [Obsolete("The game api v1.2 is deprecated, please use GetRecentGames() instead.")]
+        public Collection<GameV12> GetRecentGamesV12()
+        {
+            var json = requester.CreateRequest(string.Format(GameV12RootUrl, region)
+                + string.Format(RecentGamesUrl, Id));
+            return new Collection<GameV12>(json, requester, region, "games");
+        }
+
+        /// <summary>
+        /// Get the 10 most recent games for this summoner asynchronously.
+        /// </summary>
+        /// <returns>Collection of 10 games.</returns>
+        [Obsolete("The game api v1.1 is deprecated, please use GetRecentGamesAsync() instead.")]
+        public async Task<Collection<GameV12>> GetRecentGamesV12Async()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(GameV12RootUrl, region)
+                + string.Format(RecentGamesUrl, Id));
+            return new Collection<GameV12>(json, requester, region, "games");
         }
 
         /// <summary>

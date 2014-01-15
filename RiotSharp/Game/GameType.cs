@@ -13,7 +13,6 @@ namespace RiotSharp
     {
         CustomGame,
         MatchedGame,
-        CoopVsAIGame,
         TutorialGame
     }
 }

@@ -29,6 +29,10 @@ namespace RiotSharp
                     return GameMode.Aram;
                 case "TUTORIAL":
                     return GameMode.Tutorial;
+                case "ONEFORALL":
+                    return GameMode.OneForAll;
+                case "FIRSTBLOOD":
+                    return GameMode.FirstBlood;
                 default:
                     return null;
             }

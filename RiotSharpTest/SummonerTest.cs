@@ -99,17 +99,37 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetRecentGames_Test()
         {
-            var recentGames = summoner.GetRecentGames();
+            var games = summoner.GetRecentGames();
 
-            Assert.IsNotNull(recentGames);
-            Assert.IsTrue(recentGames.Count() > 0);
+            Assert.IsNotNull(games);
+            Assert.IsTrue(games.Count() > 0);
         }
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRecentGamesAsync_Test()
         {
-            var recentGames = summoner.GetRecentGamesAsync();
+            var games = summoner.GetRecentGamesAsync();
+
+            Assert.IsNotNull(games.Result);
+            Assert.IsTrue(games.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetRecentGamesV12_Test()
+        {
+            var recentGames = summoner.GetRecentGamesV12();
+
+            Assert.IsNotNull(recentGames);
+            Assert.IsTrue(recentGames.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetRecentGamesV12Async_Test()
+        {
+            var recentGames = summoner.GetRecentGamesV12Async();
 
             Assert.IsNotNull(recentGames.Result);
             Assert.IsTrue(recentGames.Result.Count() > 0);

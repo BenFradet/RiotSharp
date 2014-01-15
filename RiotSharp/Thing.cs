@@ -36,6 +36,10 @@ namespace RiotSharp
             {
                 return new Game(json);
             }
+            else if (typeToParse.Equals(typeof(GameV12)))
+            {
+                return new GameV12(json);
+            }
             else if (typeToParse.Equals(typeof(GameV11)))
             {
                 return new GameV11(json);
