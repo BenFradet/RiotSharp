@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing an AggregatedStat in the API.
+    /// AggregatedStat (Stats API).
     /// </summary>
     public class AggregatedStat : Thing
     {

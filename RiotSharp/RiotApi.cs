@@ -63,7 +63,7 @@ namespace RiotSharp
         /// <returns>A summoner.</returns>
         public Summoner GetSummoner(Region region, int summonerId)
         {
-            var json = requester.CreateRequestJObject(string.Format(SummonerRootUrl, region.ToString())
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, summonerId));
             return new Summoner(json, requester, region);
         }
@@ -76,7 +76,7 @@ namespace RiotSharp
         /// <returns>A summoner.</returns>
         public async Task<Summoner> GetSummonerAsync(Region region, int summonerId)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(SummonerRootUrl, region.ToString())
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, summonerId));
             return new Summoner(json, requester, region);
         }
@@ -90,7 +90,7 @@ namespace RiotSharp
         [Obsolete("The summoner api v1.1 is deprecated, please use GetSummoner() instead.")]
         public Summoner GetSummonerV11(Region region, int summonerId)
         {
-            var json = requester.CreateRequestJObject(string.Format(SummonerRootV11Url, region.ToString())
+            var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(IdUrl, summonerId));
             return new Summoner(json, requester, region);
         }
@@ -104,7 +104,7 @@ namespace RiotSharp
         [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonerAsync() instead.")]
         public async Task<Summoner> GetSummonerV11Async(Region region, int summonerId)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(SummonerRootV11Url, region.ToString())
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(IdUrl, summonerId));
             return new Summoner(json, requester, region);
         }
@@ -117,7 +117,7 @@ namespace RiotSharp
         /// <returns>A summoner.</returns>
         public Summoner GetSummoner(Region region, string summonerName)
         {
-            var json = requester.CreateRequestJObject(string.Format(SummonerRootUrl, region.ToString())
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
             return new Summoner(json, requester, region);
         }
@@ -130,7 +130,7 @@ namespace RiotSharp
         /// <returns>A summoner.</returns>
         public async Task<Summoner> GetSummonerAsync(Region region, string summonerName)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(SummonerRootUrl, region.ToString())
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
             return new Summoner(json, requester, region);
         }
@@ -144,7 +144,7 @@ namespace RiotSharp
         [Obsolete("The summoner api v1.1 is deprecated, please use GetSummoner() instead.")]
         public Summoner GetSummonerV11(Region region, string summonerName)
         {
-            var json = requester.CreateRequestJObject(string.Format(SummonerRootV11Url, region.ToString()) 
+            var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString()) 
                 + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
             return new Summoner(json, requester, region);
         }
@@ -158,7 +158,7 @@ namespace RiotSharp
         [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonerAsync() instead.")]
         public async Task<Summoner> GetSummonerV11Async(Region region, string summonerName)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(SummonerRootV11Url, region.ToString())
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(NameUrl, Uri.EscapeDataString(summonerName)));
             return new Summoner(json, requester, region);
         }
@@ -171,7 +171,7 @@ namespace RiotSharp
         /// <returns>A collection of ids and names of summoners.</returns>
         public Collection<SummonerBase> GetSummoners(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequestJObject(string.Format(SummonerRootUrl, region.ToString())
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
@@ -184,7 +184,7 @@ namespace RiotSharp
         /// <returns>A collection of ids and names of summoners.</returns>
         public async Task<Collection<SummonerBase>> GetSummonersAsync(Region region, List<int> summonerIds)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(SummonerRootUrl, region.ToString())
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
@@ -198,7 +198,7 @@ namespace RiotSharp
         [Obsolete("The summoner api v1.1 is deprecated, please use GetSummoners() instead.")]
         public Collection<SummonerBase> GetSummonersV11(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequestJObject(string.Format(SummonerRootV11Url, region.ToString())
+            var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
@@ -212,7 +212,7 @@ namespace RiotSharp
         [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonersAsync() instead.")]
         public async Task<Collection<SummonerBase>> GetSummonersV11Async(Region region, List<int> summonerIds)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(SummonerRootV11Url, region.ToString())
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             return new Collection<SummonerBase>(json, requester, region, "summoners");
         }
@@ -224,7 +224,7 @@ namespace RiotSharp
         /// <returns>A collection of champions.</returns>
         public Collection<Champion> GetChampions(Region region)
         {
-            var json = requester.CreateRequestJObject(string.Format(ChampionRootUrl, region.ToString()));
+            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()));
             return new Collection<Champion>(json, requester, region, "champions");
         }
 
@@ -235,7 +235,7 @@ namespace RiotSharp
         /// <returns>A collection of champions.</returns>
         public async Task<Collection<Champion>> GetChampionsAsync(Region region)
         {
-            var json = await requester.CreateRequestJObjectAsync(string.Format(ChampionRootUrl, region.ToString()));
+            var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()));
             return new Collection<Champion>(json, requester, region, "champions");
         }
 

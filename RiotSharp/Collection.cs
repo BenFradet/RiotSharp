@@ -16,10 +16,10 @@ namespace RiotSharp
         private string name;
         private Region region;
 
-        internal Collection(JToken json, IRequester requester, Region region, string collectionName = null)
+        internal Collection(string json, IRequester requester, Region region, string collectionName = null)
         {
             this.requester = requester;
-            this.json = json;
+            this.json = JObject.Parse(json);
             this.name = collectionName;
             this.region = region;
         }

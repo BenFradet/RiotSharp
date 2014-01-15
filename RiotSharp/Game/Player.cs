@@ -9,17 +9,10 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a Player in the API.
+    /// Player in the game (Game API).
     /// </summary>
     public class Player : Thing
     {
-        public Player() { }
-
-        public Player(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Champion id associated with player.
         /// </summary>

@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a MasteryPage in the API.
+    /// Page of masteries (Summoner API).
     /// </summary>
     [Obsolete("The summoner api v1.1 is deprecated, please use MasteryPage instead.")]
     public class MasteryPageV11 : Thing

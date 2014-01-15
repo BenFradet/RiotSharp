@@ -14,7 +14,7 @@ namespace RiotSharp
         {
             if(typeToParse.Equals(typeof(SummonerBase)))
             {
-                return new SummonerBase(json, requester, region);
+                return new SummonerBase(json.ToString(), requester, region);
             }
             else if(typeToParse.Equals(typeof(RunePage)))
             {
@@ -63,10 +63,6 @@ namespace RiotSharp
             else if (typeToParse.Equals(typeof(ChampionStatsV11)))
             {
                 return new ChampionStatsV11(json);
-            }
-            else if (typeToParse.Equals(typeof(TeamV21)))
-            {
-                return new TeamV21(json);
             }
             else
             {

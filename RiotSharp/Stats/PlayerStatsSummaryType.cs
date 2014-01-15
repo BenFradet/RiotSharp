@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RiotSharp
 {
     /// <summary>
-    /// Enumeration representing the type of player stats summary.
+    /// Type of player stats (Stats API).
     /// </summary>
     public enum PlayerStatsSummaryType
     {

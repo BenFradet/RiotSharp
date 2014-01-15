@@ -9,17 +9,10 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a LeagueItem in the API.
+    /// Team or summoner in a league (League API).
     /// </summary>
     public class LeagueItem
     {
-        public LeagueItem() { }
-
-        public LeagueItem(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Has this summoner just entered the league?
         /// </summary>

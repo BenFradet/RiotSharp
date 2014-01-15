@@ -44,29 +44,7 @@ namespace RiotSharp
         private const int MAX_REQUEST_PER_10S = 10;
         private const int MAX_REQUEST_PER_10M = 500;
 
-        public JObject CreateRequestJObject(string relativeUrl, string addedArgument = null)
-        {
-            string result = MakeRequest(relativeUrl, addedArgument);
-            return JObject.Parse(result);
-        }
-
-        public async Task<JObject> CreateRequestJObjectAsync(string relativeUrl, string addedArgument = null)
-        {
-            string result = await MakeRequestAsync(relativeUrl, addedArgument);
-            return JObject.Parse(result);
-        }
-
         public string CreateRequest(string relativeUrl, string addedArgument = null)
-        {
-            return MakeRequest(relativeUrl, null);
-        }
-
-        public async Task<string> CreateRequestAsync(string relativeUrl, string addedArgument = null)
-        {
-            return await MakeRequestAsync(relativeUrl, null);
-        }
-
-        private string MakeRequest(string relativeUrl, string addedArgument = null)
         {
             HttpWebRequest request = null;
             if (addedArgument == null)
@@ -119,7 +97,7 @@ namespace RiotSharp
             return result;
         }
 
-        private async Task<string> MakeRequestAsync(string relativeUrl, string addedArgument = null)
+        public async Task<string> CreateRequestAsync(string relativeUrl, string addedArgument = null)
         {
             HttpWebRequest request = null;
             if (addedArgument == null)

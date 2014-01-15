@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a MasteryPage in the API.
+    /// Page of masteries (Summoner API).
     /// </summary>
     public class MasteryPage : Thing
     {

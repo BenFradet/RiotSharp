@@ -11,8 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a Team in the API.
     /// </summary>
-    [Obsolete("The team api v2.1 is deprecated, please use Team instead.")]
-    public class TeamV21 : Thing
+    public class Team : Thing
     {
         /// <summary>
         /// Date of the team creation.
@@ -20,6 +19,12 @@ namespace RiotSharp
         [JsonProperty("createDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime CreateDate { get; set; }
+
+        /// <summary>
+        /// Team id.
+        /// </summary>
+        [JsonProperty("fullId")]
+        public string FullId { get; set; }
 
         /// <summary>
         /// Date of the last game.
@@ -46,7 +51,7 @@ namespace RiotSharp
         /// Match history.
         /// </summary>
         [JsonProperty("matchHistory")]
-        public List<MatchHistorySummaryV21> MatchHistory { get; set; }
+        public List<MatchHistorySummary> MatchHistory { get; set; }
 
         /// <summary>
         /// Message of the day.
@@ -93,16 +98,10 @@ namespace RiotSharp
         public string Tag { get; set; }
 
         /// <summary>
-        /// Team id.
-        /// </summary>
-        [JsonProperty("teamId")]
-        public TeamIdV21 TeamId { get; set; }
-
-        /// <summary>
         /// Stat summary of the team.
         /// </summary>
-        [JsonProperty("teamStatSummary")]
-        public TeamStatSummaryV21 TeamStatSummary { get; set; }
+        [JsonProperty("teamStatSumamry")]
+        public TeamStatSummary TeamStatSummary { get; set; }
 
         /// <summary>
         /// Date when the third last member joined the team.
@@ -110,12 +109,5 @@ namespace RiotSharp
         [JsonProperty("thirdLastJoinDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime ThirdLastJoinDate { get; set; }
-
-        /// <summary>
-        /// Timestamp.
-        /// </summary>
-        [JsonProperty("timestamp")]
-        [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime Timestamp { get; set; }
     }
 }

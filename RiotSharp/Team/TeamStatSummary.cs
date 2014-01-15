@@ -11,19 +11,18 @@ namespace RiotSharp
     /// <summary>
     /// Stat summary of the team (Team API).
     /// </summary>
-    [Obsolete("The team api v2.1 is deprecated, please use TeamStatSummary instead.")]
-    public class TeamStatSummaryV21 : Thing
+    public class TeamStatSummary : Thing
     {
         /// <summary>
         /// Team id.
         /// </summary>
-        [JsonProperty("teamId")]
-        public TeamIdV21 TeamId { get; set; }
+        [JsonProperty("fullId")]
+        public string FullId { get; set; }
 
         /// <summary>
         /// List of team stats.
         /// </summary>
         [JsonProperty("teamStatDetails")]
-        public List<TeamStatDetailV21> TeamStatDetails { get; set; }
+        public List<TeamStatDetail> TeamStatDetails { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RiotSharp
 {
     /// <summary>
-    /// Enumeration representing the Game Mode.
+    /// Mode of the game (Game API).
     /// </summary>
     public enum GameMode
     {

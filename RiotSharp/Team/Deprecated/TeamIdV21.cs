@@ -8,15 +8,15 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class TeamId : Thing
+    /// <summary>
+    /// Team id (Team API).
+    /// </summary>
+    [Obsolete("The team api v2.1 is deprecated.")]
+    public class TeamIdV21 : Thing
     {
-        public TeamId() { }
-
-        public TeamId(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
+        /// <summary>
+        /// Full id.
+        /// </summary>
         [JsonProperty("fullId")]
         public string FullId { get; set; }
     }

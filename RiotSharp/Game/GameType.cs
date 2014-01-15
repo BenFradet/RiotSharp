@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RiotSharp
 {
     /// <summary>
-    /// Enumeration representing the Game Type.
+    /// Type of the game (Game API).
     /// </summary>
     public enum GameType
     {

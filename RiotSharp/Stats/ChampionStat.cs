@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Stat of a particular champion (League API).
+    /// </summary>
     public class ChampionStat : AggregatedStat
     {
         public ChampionStat()

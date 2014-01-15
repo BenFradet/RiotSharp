@@ -9,17 +9,10 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a RawStat in the API.
+    /// Raw stat of a game (Game API).
     /// </summary>
     public class RawStat : Thing
     {
-        public RawStat() { }
-
-        public RawStat(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Raw stat ID.
         /// </summary>

@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing PlayerStatsSummary in the API.
+    /// Stats summary of a player (Stats API).
     /// </summary>
     public class PlayerStatsSummary : Thing
     {

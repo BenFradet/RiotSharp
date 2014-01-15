@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RiotSharp
 {
     /// <summary>
-    /// Enumeration representing the season.
+    /// Season (Stats API).
     /// </summary>
     public enum Season
     {

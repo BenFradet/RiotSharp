@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a Rune in the API.
+    /// Rune (Summoner API).
     /// </summary>
     public class Rune : Thing
     {

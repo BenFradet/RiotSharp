@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a RunePage in the API.
+    /// Page of runes (Summoner API).
     /// </summary>
     public class RunePage : Thing
     {

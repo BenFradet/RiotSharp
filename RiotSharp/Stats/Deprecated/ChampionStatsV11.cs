@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing the ChampionStats in the API.
+    /// Stats for all champions (Stats API).
     /// </summary>
     [Obsolete("The stats api v1.1 is deprecated, please use ChampionStats instead.")]
     public class ChampionStatsV11 : Thing

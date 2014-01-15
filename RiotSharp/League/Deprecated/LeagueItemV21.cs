@@ -9,18 +9,11 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a LeagueItem in the API.
+    /// Team or summoner in a league (League API).
     /// </summary>
     [Obsolete("The league api v2.1 is deprecated, please use LeagueItem instead.")]
     public class LeagueItemV21 : Thing
     {
-        public LeagueItemV21() { }
-
-        public LeagueItemV21(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Has this summoner just entered the league?
         /// </summary>

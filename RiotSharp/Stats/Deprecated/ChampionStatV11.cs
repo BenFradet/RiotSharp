@@ -9,18 +9,11 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a ChampionStat in the API.
+    /// Stat of a particular champion (League API).
     /// </summary>
     [Obsolete("The stats api v1.1 is deprecated, please use AggregatedStat instead.")]
     public class ChampionStatV11 : Thing
     {
-        public ChampionStatV11() { }
-
-        public ChampionStatV11(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Count of samples (games) that make up the aggregated value, where relevant.
         /// </summary>

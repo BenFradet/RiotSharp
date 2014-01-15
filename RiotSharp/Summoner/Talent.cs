@@ -9,17 +9,10 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a Talent in the API.
+    /// Talent (Summoner API).
     /// </summary>
     public class Talent : Thing
     {
-        public Talent() { }
-
-        public Talent(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Talent id.
         /// </summary>

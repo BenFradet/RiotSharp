@@ -11,21 +11,13 @@ namespace RiotSharp
     /// <summary>
     /// Summary of the match history of the team (Team API).
     /// </summary>
-    [Obsolete("The team api v2.1 is deprecated, please use MatchHistorySummary instead.")]
-    public class MatchHistorySummaryV21 : Thing
+    public class MatchHistorySummary : Thing
     {
         /// <summary>
         /// Number of assists.
         /// </summary>
         [JsonProperty("assists")]
         public int Assists { get; set; }
-
-        /// <summary>
-        /// Date of the match.
-        /// </summary>
-        [JsonProperty("date")]
-        [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime Date { get; set; }
 
         /// <summary>
         /// Number of deaths overall.
@@ -67,14 +59,14 @@ namespace RiotSharp
         /// <summary>
         /// Number of kills for the opposing team.
         /// </summary>
-        [JsonProperty("oppositeTeamKills")]
-        public int OppositeTeamKills { get; set; }
+        [JsonProperty("opposingTeamKills")]
+        public int OpposingTeamKills { get; set; }
 
         /// <summary>
         /// Name of the opposite team.
         /// </summary>
-        [JsonProperty("oppositeTeamName")]
-        public string OppositeTeamName { get; set; }
+        [JsonProperty("opposingTeamName")]
+        public string OpposingTeamName { get; set; }
 
         /// <summary>
         /// Match won if true, lost if false.

@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a MiniSeries in the API.
+    /// LeagueItem has entered a MiniSeries (League API).
     /// </summary>
     public class MiniSeries : Thing
     {

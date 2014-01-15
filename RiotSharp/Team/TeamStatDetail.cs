@@ -11,26 +11,26 @@ namespace RiotSharp
     /// <summary>
     /// Team stats (Team API).
     /// </summary>
-    [Obsolete("The team api v2.1 is deprecated, please use TeamStatDetail instead.")]
-    public class TeamStatDetailV21 : Thing
+    public class TeamStatDetail : Thing
     {
+
         /// <summary>
         /// Number of games played on average.
         /// </summary>
         [JsonProperty("averageGamesPlayed")]
-        public int AverageGamesplayed { get; set; }
+        public int AverageGamesPlayed { get; set; }
+
+        /// <summary>
+        /// Full id of the team.
+        /// </summary>
+        [JsonProperty("fullId")]
+        public string FullId { get; set; }
 
         /// <summary>
         /// Number of losses.
         /// </summary>
         [JsonProperty("losses")]
         public int Losses { get; set; }
-
-        /// <summary>
-        /// Team id.
-        /// </summary>
-        [JsonProperty("teamId")]
-        public TeamIdV21 TeamId { get; set; }
 
         /// <summary>
         /// Type of team stat.

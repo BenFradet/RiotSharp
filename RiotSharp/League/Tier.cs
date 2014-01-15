@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RiotSharp
 {
     /// <summary>
-    /// Enumeration representing the Tier.
+    /// Tier of the league (League API).
     /// </summary>
     public enum Tier
     {

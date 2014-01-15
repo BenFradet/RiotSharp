@@ -9,17 +9,10 @@ using Newtonsoft.Json.Linq;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a RuneSlot in the API.
+    /// Slot for a rune (Summoner API).
     /// </summary>
     public class RuneSlot : Thing
     {
-        public RuneSlot() { }
-
-        public RuneSlot(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Rune associated with the rune slot.
         /// </summary>

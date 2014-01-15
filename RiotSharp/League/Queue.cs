@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RiotSharp
 {
     /// <summary>
-    /// Enumeration representing the Queue.
+    /// Queue of the league (League API).
     /// </summary>
     public enum Queue
     {

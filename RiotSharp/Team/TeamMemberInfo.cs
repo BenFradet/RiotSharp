@@ -8,26 +8,34 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Information about team members (Team API).
+    /// </summary>
     public class TeamMemberInfo : Thing
     {
-        public TeamMemberInfo() { }
-
-        public TeamMemberInfo(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
+        /// <summary>
+        /// Date this team member was invited.
+        /// </summary>
         [JsonProperty("inviteDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime InviteDate { get; set; }
 
+        /// <summary>
+        /// Date this team member joined the team.
+        /// </summary>
         [JsonProperty("joinDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime JoinDate { get; set; }
 
+        /// <summary>
+        /// Id of the team member.
+        /// </summary>
         [JsonProperty("playerId")]
         public long PlayerId { get; set; }
 
+        /// <summary>
+        /// Status of the team member (owner, member, etc).
+        /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; }
     }
