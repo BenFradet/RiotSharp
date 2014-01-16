@@ -41,7 +41,7 @@ namespace RiotSharp
         /// Time left to play the MiniSeries.
         /// </summary>
         [JsonProperty("timeLeftToPlayMillis")]
-        [JsonConverter(typeof(TimeSpanConverter))]
+        [JsonConverter(typeof(TimeSpanConverterFromMS))]
         public TimeSpan TimeLeftToPlayMillis { get; set; }
 
         /// <summary>

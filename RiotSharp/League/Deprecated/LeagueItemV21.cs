@@ -106,7 +106,7 @@ namespace RiotSharp
         /// Time until decay.
         /// </summary>
         [JsonProperty("timeUntilDecay")]
-        [JsonConverter(typeof(TimeSpanConverter))]
+        [JsonConverter(typeof(TimeSpanConverterFromMS))]
         public TimeSpan TimeUntilDecay { get; set; }
 
         /// <summary>

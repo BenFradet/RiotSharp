@@ -8,16 +8,11 @@ namespace RiotSharp
 {
     internal static class LongExtension
     {
-        public static DateTime ToDateTimeFromMillis(this long millis)
+        public static DateTime ToDateTimeFromMilliSeconds(this long millis)
         {
             var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dateTime = dateTime.AddMilliseconds(millis);
             return dateTime;
-        }
-
-        public static TimeSpan ToTimeSpanFromMillis(this long millis)
-        {
-            return TimeSpan.FromMilliseconds(millis);
         }
     }
 }

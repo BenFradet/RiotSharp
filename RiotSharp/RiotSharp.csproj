@@ -61,6 +61,7 @@
     <Compile Include="Misc\DateTimeConverter.cs" />
     <Compile Include="Misc\LongExtension.cs" />
     <Compile Include="Misc\TimeSpanConverter.cs" />
+    <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
