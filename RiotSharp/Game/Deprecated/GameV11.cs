@@ -104,7 +104,8 @@ namespace RiotSharp
         /// Game sub-type.
         /// </summary>
         [JsonProperty("subType")]
-        public string SubType { get; set; }
+        [JsonConverter(typeof(GameSubTypeConverter))]
+        public GameSubType SubType { get; set; }
 
         /// <summary>
         /// Team ID associated with game.
