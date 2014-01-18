@@ -13,23 +13,43 @@ namespace RiotSharpTest
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey, false);
-        private static Summoner summoner = api.GetSummonerV11(Region.euw, id);
+        private static Summoner summoner = api.GetSummoner(Region.euw, id);
+
+        //[TestMethod]
+        //[TestCategory("Summoner")]
+        //public void GetRunePages_Test()
+        //{
+        //    var runePages = summoner.GetRunePages();
+
+        //    Assert.IsNotNull(runePages);
+        //    Assert.IsTrue(runePages.Count() > 0);
+        //}
+
+        //[TestMethod]
+        //[TestCategory("Summoner"), TestCategory("Async")]
+        //public void GetRunePagesAsync_Test()
+        //{
+        //    var runePages = summoner.GetRunePagesAsync();
+
+        //    Assert.IsNotNull(runePages.Result);
+        //    Assert.IsTrue(runePages.Result.Count() > 0);
+        //}
 
         [TestMethod]
-        [TestCategory("Summoner")]
-        public void GetRunePages_Test()
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetRunePagesV12_Test()
         {
-            var runePages = summoner.GetRunePages();
+            var runePages = summoner.GetRunePagesV12();
 
             Assert.IsNotNull(runePages);
             Assert.IsTrue(runePages.Count() > 0);
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async")]
-        public void GetRunePagesAsync_Test()
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetRunePagesV12Async_Test()
         {
-            var runePages = summoner.GetRunePagesAsync();
+            var runePages = summoner.GetRunePagesV12Async();
 
             Assert.IsNotNull(runePages.Result);
             Assert.IsTrue(runePages.Result.Count() > 0);
@@ -55,21 +75,41 @@ namespace RiotSharpTest
             Assert.IsTrue(runePages.Result.Count() > 0);
         }
 
+        //[TestMethod]
+        //[TestCategory("Summoner")]
+        //public void GetMasteryPages_Test()
+        //{
+        //    var masteryPages = summoner.GetMasteryPages();
+
+        //    Assert.IsNotNull(masteryPages);
+        //    Assert.IsTrue(masteryPages.Count() > 0);
+        //}
+
+        //[TestMethod]
+        //[TestCategory("Summoner"), TestCategory("Async")]
+        //public void GetMasteryPagesAsync_Test()
+        //{
+        //    var masteryPages = summoner.GetMasteryPagesAsync();
+
+        //    Assert.IsNotNull(masteryPages.Result);
+        //    Assert.IsTrue(masteryPages.Result.Count() > 0);
+        //}
+
         [TestMethod]
-        [TestCategory("Summoner")]
-        public void GetMasteryPages_Test()
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetMasteryPagesV12_Test()
         {
-            var masteryPages = summoner.GetMasteryPages();
+            var masteryPages = summoner.GetMasteryPagesV12();
 
             Assert.IsNotNull(masteryPages);
             Assert.IsTrue(masteryPages.Count() > 0);
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async")]
-        public void GetMasteryPagesAsync_Test()
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetMasteryPagesV12Async_Test()
         {
-            var masteryPages = summoner.GetMasteryPagesAsync();
+            var masteryPages = summoner.GetMasteryPagesV12Async();
 
             Assert.IsNotNull(masteryPages.Result);
             Assert.IsTrue(masteryPages.Result.Count() > 0);

@@ -88,6 +88,7 @@
     <Compile Include="Summoner\RunePage.cs" />
     <Compile Include="Summoner\RuneSlot.cs" />
     <Compile Include="Stats\Season.cs" />
+    <Compile Include="Summoner\Summoner.cs" />
     <Compile Include="Summoner\SummonerBase.cs" />
     <Compile Include="IRequester.cs" />
     <Compile Include="Collection.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Region.cs" />
     <Compile Include="Requester.cs" />
     <Compile Include="RiotApi.cs" />
-    <Compile Include="Summoner\Summoner.cs" />
+    <Compile Include="Summoner\Deprecated\SummonerV11.cs" />
     <Compile Include="Summoner\Talent.cs" />
     <Compile Include="Team\Deprecated\MatchHistorySummaryV21.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />

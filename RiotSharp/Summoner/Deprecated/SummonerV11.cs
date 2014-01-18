@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,11 +12,11 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a Summoner in the API.
     /// </summary>
-    public class Summoner : SummonerBase
+    public class SummonerV11 : SummonerBase
     {
-        public Summoner(string summoner, IRequester requester, Region region)
+        public SummonerV11(string summoner, IRequester requester, Region region)
             : base(summoner, requester, region) { }
-
+        
         /// <summary>
         /// ID of the summoner icon associated with the summoner.
         /// </summary>
@@ -28,6 +29,12 @@ namespace RiotSharp
         [JsonProperty("revisionDate")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime RevisionDate { get; set; }
+
+        /// <summary>
+        /// Human readable string representing date summoner was last modified.
+        /// </summary>
+        [JsonProperty("revisionDateStr")]
+        public string RevisionDateString { get; set; }
 
         /// <summary>
         /// Summoner level associated with the summoner.

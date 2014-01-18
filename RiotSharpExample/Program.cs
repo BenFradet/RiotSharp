@@ -14,8 +14,22 @@ namespace RiotSharpExample
         {
             //toreplace
             var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"], false);
+            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+            string name = ConfigurationManager.AppSettings["Summoner1Name"];
+            int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
+            string name2 = ConfigurationManager.AppSettings["Summoner2Name"];            
 
-            var summ = api.GetSummoner(Region.euw, 20937547);
+            var summNameById = api.GetSummonerName(Region.euw, id);
+
+            var summNamesById = api.GetSummonersNames(Region.euw, new List<int>() { id, id2 });
+
+            var summNames = api.GetSummoners(Region.euw, new List<string> { name, name2 });
+
+            var summName = api.GetSummoner(Region.euw, name);
+
+            var summs = api.GetSummoners(Region.euw, new List<int> { id, id2 });
+
+            var summ = api.GetSummoner(Region.euw, id);
 
             var games = summ.GetRecentGames();
 
