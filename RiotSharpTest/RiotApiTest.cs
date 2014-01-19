@@ -262,5 +262,45 @@ namespace RiotSharpTest
             Assert.IsNotNull(champions.Result);
             Assert.IsTrue(champions.Result.Count() > 0);
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMasteryPages_Test()
+        {
+            var masteries = api.GetMasteryPages(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(masteries);
+            Assert.IsTrue(masteries.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMasteryPagesAsync_Test()
+        {
+            var masteries = api.GetMasteryPagesAsync(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(masteries.Result);
+            Assert.IsTrue(masteries.Result.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetRunePages_Test()
+        {
+            var runes = api.GetRunePages(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(runes);
+            Assert.IsTrue(runes.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetRunePagesAsync_Test()
+        {
+            var runes = api.GetRunePagesAsync(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(runes);
+            Assert.IsTrue(runes.Result.Count == 2);
+        }
     }
 }

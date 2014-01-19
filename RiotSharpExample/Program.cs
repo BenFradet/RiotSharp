@@ -19,6 +19,8 @@ namespace RiotSharpExample
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
 
+            var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
+
             var summName = api.GetSummoner(Region.euw, name);
 
             var runePages = summName.GetRunePages();

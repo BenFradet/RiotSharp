@@ -17,6 +17,8 @@ namespace RiotSharp
         private const string NameUrl = "/by-name/{0}";
         private const string IdUrl = "/{0}";
         private const string NamesUrl = "/{0}/name";
+        private const string MasteriesUrl = "/{0}/masteries";
+        private const string RunesUrl = "/{0}/runes";
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
 
@@ -448,6 +450,95 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()));
             return new Collection<Champion>(json, requester, region, "champions");
+        }
+
+        /// <summary>
+        /// Get mastery pages for a list summoners' ids synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are a collection of mastery pages.
+        /// </returns>
+        public Dictionary<long, Collection<MasteryPage>> GetMasteryPages(Region region, List<int> summonerIds)
+        {
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(MasteriesUrl, BuildIdsString(summonerIds)));
+
+            Dictionary<long, Collection<MasteryPage>> dict = new Dictionary<long, Collection<MasteryPage>>();
+            foreach (var child in JObject.Parse(json).Children())
+            {
+                var neededJson = child.Children().FirstOrDefault();
+                dict.Add(long.Parse(neededJson["summonerId"].ToString())
+                    , new Collection<MasteryPage>(neededJson.ToString(), requester, region, "pages"));
+            }
+            return dict;
+        }
+
+        /// <summary>
+        /// Get mastery pages for a list summoners' ids asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are a collection of mastery pages.
+        /// </returns>
+        public async Task<Dictionary<long, Collection<MasteryPage>>> GetMasteryPagesAsync(Region region
+            , List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(MasteriesUrl, BuildIdsString(summonerIds)));
+
+            Dictionary<long, Collection<MasteryPage>> dict = new Dictionary<long, Collection<MasteryPage>>();
+            foreach (var child in JObject.Parse(json).Children())
+            {
+                var neededJson = child.Children().FirstOrDefault();
+                dict.Add(long.Parse(neededJson["summonerId"].ToString())
+                    , new Collection<MasteryPage>(neededJson.ToString(), requester, region, "pages"));
+            }
+            return dict;
+        }
+
+        /// <summary>
+        /// Get rune pages for a list summoners' ids synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are a collection of rune pages.
+        /// </returns>
+        public Dictionary<long, Collection<RunePage>> GetRunePages(Region region, List<int> summonerIds)
+        {
+            var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(RunesUrl, BuildIdsString(summonerIds)));
+
+            Dictionary<long, Collection<RunePage>> dict = new Dictionary<long, Collection<RunePage>>();
+            foreach (var child in JObject.Parse(json).Children())
+            {
+                var neededJson = child.Children().FirstOrDefault();
+                dict.Add(long.Parse(neededJson["summonerId"].ToString())
+                    , new Collection<RunePage>(neededJson.ToString(), requester, region, "pages"));
+            }
+            return dict;
+        }
+
+        /// <summary>
+        /// Get rune pages for a list summoners' ids asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are a collection of rune pages.
+        /// </returns>
+        public async Task<Dictionary<long, Collection<RunePage>>> GetRunePagesAsync(Region region, List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
+                + string.Format(RunesUrl, BuildIdsString(summonerIds)));
+
+            Dictionary<long, Collection<RunePage>> dict = new Dictionary<long, Collection<RunePage>>();
+            foreach (var child in JObject.Parse(json).Children())
+            {
+                var neededJson = child.Children().FirstOrDefault();
+                dict.Add(long.Parse(neededJson["summonerId"].ToString())
+                    , new Collection<RunePage>(neededJson.ToString(), requester, region, "pages"));
+            }
+            return dict;
         }
 
         private string BuildIdsString(List<int> ids)
