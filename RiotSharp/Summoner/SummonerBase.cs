@@ -67,27 +67,29 @@ namespace RiotSharp
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        ///// <summary>
-        ///// Get rune pages for this summoner synchronously.
-        ///// </summary>
-        ///// <returns>Collection of rune pages.</returns>
-        //public Collection<RunePage> GetRunePages()
-        //{
-        //    var json = requester.CreateRequest(string.Format(RootUrl, region)
-        //        + string.Format(RunesUrl, Id));
-        //    return new Collection<RunePage>(json, requester, region, "pages");
-        //}
+        /// <summary>
+        /// Get rune pages for this summoner synchronously.
+        /// </summary>
+        /// <returns>Collection of rune pages.</returns>
+        public Collection<RunePage> GetRunePages()
+        {
+            var json = requester.CreateRequest(string.Format(RootUrl, region)
+                + string.Format(RunesUrl, Id));
+            var parsed = JObject.Parse(json).Children().FirstOrDefault().Children().FirstOrDefault().ToString();
+            return new Collection<RunePage>(parsed, requester, region, "pages");
+        }
 
-        ///// <summary>
-        ///// Get rune pages for this summoner asynchronously.
-        ///// </summary>
-        ///// <returns>Collection of rune pages.</returns>
-        //public async Task<Collection<RunePage>> GetRunePagesAsync()
-        //{
-        //    var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
-        //        + string.Format(RunesUrl, Id));
-        //    return new Collection<RunePage>(json, requester, region, "pages");
-        //}
+        /// <summary>
+        /// Get rune pages for this summoner asynchronously.
+        /// </summary>
+        /// <returns>Collection of rune pages.</returns>
+        public async Task<Collection<RunePage>> GetRunePagesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
+                + string.Format(RunesUrl, Id));
+            var parsed = JObject.Parse(json).Children().FirstOrDefault().Children().FirstOrDefault().ToString();
+            return new Collection<RunePage>(parsed, requester, region, "pages");
+        }
 
         /// <summary>
         /// Get rune pages for this summoner synchronously.
@@ -137,27 +139,29 @@ namespace RiotSharp
             return new Collection<RunePage>(json, requester, region, "pages");
         }
 
-        ///// <summary>
-        ///// Get mastery pages for this summoner synchronously.
-        ///// </summary>
-        ///// <returns>Collection of mastery pages.</returns>
-        //public Collection<MasteryPage> GetMasteryPages()
-        //{
-        //    var json = requester.CreateRequest(string.Format(RootUrl, region)
-        //        + string.Format(MasteriesUrl, Id));
-        //    return new Collection<MasteryPage>(json, requester, region, "pages");
-        //}
+        /// <summary>
+        /// Get mastery pages for this summoner synchronously.
+        /// </summary>
+        /// <returns>Collection of mastery pages.</returns>
+        public Collection<MasteryPage> GetMasteryPages()
+        {
+            var json = requester.CreateRequest(string.Format(RootUrl, region)
+                + string.Format(MasteriesUrl, Id));
+            var parsed = JObject.Parse(json).Children().FirstOrDefault().Children().FirstOrDefault().ToString();
+            return new Collection<MasteryPage>(parsed, requester, region, "pages");
+        }
 
-        ///// <summary>
-        ///// Get mastery pages for this summoner asynchronously.
-        ///// </summary>
-        ///// <returns>Collection of mastery pages.</returns>
-        //public async Task<Collection<MasteryPage>> GetMasteryPagesAsync()
-        //{
-        //    var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
-        //        + string.Format(MasteriesUrl, Id));
-        //    return new Collection<MasteryPage>(json, requester, region, "pages");
-        //}
+        /// <summary>
+        /// Get mastery pages for this summoner asynchronously.
+        /// </summary>
+        /// <returns>Collection of mastery pages.</returns>
+        public async Task<Collection<MasteryPage>> GetMasteryPagesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RootUrl, region)
+                + string.Format(MasteriesUrl, Id));
+            var parsed = JObject.Parse(json).Children().FirstOrDefault().Children().FirstOrDefault().ToString();
+            return new Collection<MasteryPage>(parsed, requester, region, "pages");
+        }
 
         /// <summary>
         /// Get mastery pages for this summoner synchronously.

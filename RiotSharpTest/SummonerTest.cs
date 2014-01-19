@@ -15,25 +15,25 @@ namespace RiotSharpTest
         private static RiotApi api = RiotApi.GetInstance(apiKey, false);
         private static Summoner summoner = api.GetSummoner(Region.euw, id);
 
-        //[TestMethod]
-        //[TestCategory("Summoner")]
-        //public void GetRunePages_Test()
-        //{
-        //    var runePages = summoner.GetRunePages();
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetRunePages_Test()
+        {
+            var runePages = summoner.GetRunePages();
 
-        //    Assert.IsNotNull(runePages);
-        //    Assert.IsTrue(runePages.Count() > 0);
-        //}
+            Assert.IsNotNull(runePages);
+            Assert.IsTrue(runePages.Count() > 0);
+        }
 
-        //[TestMethod]
-        //[TestCategory("Summoner"), TestCategory("Async")]
-        //public void GetRunePagesAsync_Test()
-        //{
-        //    var runePages = summoner.GetRunePagesAsync();
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetRunePagesAsync_Test()
+        {
+            var runePages = summoner.GetRunePagesAsync();
 
-        //    Assert.IsNotNull(runePages.Result);
-        //    Assert.IsTrue(runePages.Result.Count() > 0);
-        //}
+            Assert.IsNotNull(runePages.Result);
+            Assert.IsTrue(runePages.Result.Count() > 0);
+        }
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
