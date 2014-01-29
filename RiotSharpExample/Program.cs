@@ -21,7 +21,9 @@ namespace RiotSharpExample
 
             var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
 
-            var summName = api.GetSummoner(Region.euw, name);
+            var summName = api.GetSummoner(Region.euw, name2);
+
+            var leagues = summName.GetLeagues();
 
             var runePages = summName.GetRunePages();
 

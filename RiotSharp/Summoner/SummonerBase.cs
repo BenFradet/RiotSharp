@@ -26,7 +26,8 @@ namespace RiotSharp
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
         private const string LeagueV21RootUrl = "/api/{0}/v2.1/league";
-        private const string LeagueRootUrl = "/api/lol/{0}/v2.2/league";
+        private const string LeagueV22RootUrl = "/api/lol/{0}/v2.2/league";
+        private const string LeagueRootUrl = "/api/lol/{0}/v2.3/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
 
         private const string StatsV11RootUrl = "/api/lol/{0}/v1.1/stats";
@@ -285,22 +286,46 @@ namespace RiotSharp
         /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
         /// </summary>
         /// <returns>Collection of leagues.</returns>
-        public Collection<League> GetLeagues()
+        public List<League> GetLeagues()
         {
             var json = requester.CreateRequest(string.Format(LeagueRootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
-            return new Collection<League>(json, requester, region);
+            return JsonConvert.DeserializeObject<List<League>>(json);
         }
 
         /// <summary>
         /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams asynchronously.
         /// </summary>
         /// <returns>Collection of leagues.</returns>
-        public async Task<Collection<League>> GetLeaguesAsync()
+        public async Task<List<League>> GetLeaguesAsync()
         {
             var json = await requester.CreateRequestAsync(string.Format(LeagueRootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
-            return new Collection<League>(json, requester, region);
+            return await JsonConvert.DeserializeObjectAsync<List<League>>(json);
+        }
+
+        /// <summary>
+        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
+        /// </summary>
+        /// <returns>Collection of leagues.</returns>
+        [Obsolete("The league api v2.2 is deprecated, please use GetLeagues() instead.")]
+        public Collection<LeagueV22> GetLeaguesV22()
+        {
+            var json = requester.CreateRequest(string.Format(LeagueV22RootUrl, region)
+                + string.Format(LeagueBySummonerUrl, Id));
+            return new Collection<LeagueV22>(json, requester, region);
+        }        
+
+        /// <summary>
+        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams asynchronously.
+        /// </summary>
+        /// <returns>Collection of leagues.</returns>
+        [Obsolete("The league api v2.1 is deprecated, please use GetLeaguesAsync() instead.")]
+        public async Task<Collection<LeagueV22>> GetLeaguesV22Async()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(LeagueV22RootUrl, region)
+                + string.Format(LeagueBySummonerUrl, Id));
+            return new Collection<LeagueV22>(json, requester, region);
         }
         
         /// <summary>
@@ -446,7 +471,7 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(TeamRootUrl, region)
                 + string.Format(TeamBySummonerUrl, Id));
-            return JsonConvert.DeserializeObject<List<Team>>(json);
+            return await JsonConvert.DeserializeObjectAsync<List<Team>>(json);
         }
 
         /// <summary>
@@ -470,7 +495,7 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(TeamV21RootUrl, region)
                 + string.Format(TeamBySummonerUrl, Id));
-            return JsonConvert.DeserializeObject<List<TeamV21>>(json);
+            return await JsonConvert.DeserializeObjectAsync<List<TeamV21>>(json);
         }
     }
 }

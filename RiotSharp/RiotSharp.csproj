@@ -52,6 +52,7 @@
     <Compile Include="Game\RawStat.cs" />
     <Compile Include="Game\GameSubType.cs" />
     <Compile Include="Game\GameSubTypeConverter.cs" />
+    <Compile Include="League\Deprecated\LeagueV22.cs" />
     <Compile Include="League\League.cs" />
     <Compile Include="League\LeagueItem.cs" />
     <Compile Include="League\Queue.cs" />

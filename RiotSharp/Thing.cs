@@ -44,9 +44,9 @@ namespace RiotSharp
             {
                 return new GameV11(json);
             }
-            else if (typeToParse.Equals(typeof(League)))
+            else if (typeToParse.Equals(typeof(LeagueV22)))
             {
-                return new League(json);
+                return new LeagueV22(json);
             }
             else if (typeToParse.Equals(typeof(LeagueV21)))
             {

@@ -11,8 +11,17 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a League in the API.
     /// </summary>
-    public class League : Thing
+    [Obsolete("The league api v2.2 is deprecated, please use League instead.")]
+    public class LeagueV22 : Thing
     {
+        /// <summary>
+        /// Class representing a League in the API.
+        /// </summary>
+        public LeagueV22(JToken json)
+        {
+            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
+        }
+
         /// <summary>
         /// LeagueItems associated with this League.
         /// </summary>
@@ -24,12 +33,6 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Id of the participant.
-        /// </summary>
-        [JsonProperty("participantId")]
-        public string ParticipantId { get; set; }
 
         /// <summary>
         /// League queue.

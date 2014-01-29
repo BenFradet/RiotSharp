@@ -75,25 +75,25 @@ namespace RiotSharpTest
             Assert.IsTrue(runePages.Result.Count() > 0);
         }
 
-        //[TestMethod]
-        //[TestCategory("Summoner")]
-        //public void GetMasteryPages_Test()
-        //{
-        //    var masteryPages = summoner.GetMasteryPages();
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMasteryPages_Test()
+        {
+            var masteryPages = summoner.GetMasteryPages();
 
-        //    Assert.IsNotNull(masteryPages);
-        //    Assert.IsTrue(masteryPages.Count() > 0);
-        //}
+            Assert.IsNotNull(masteryPages);
+            Assert.IsTrue(masteryPages.Count() > 0);
+        }
 
-        //[TestMethod]
-        //[TestCategory("Summoner"), TestCategory("Async")]
-        //public void GetMasteryPagesAsync_Test()
-        //{
-        //    var masteryPages = summoner.GetMasteryPagesAsync();
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMasteryPagesAsync_Test()
+        {
+            var masteryPages = summoner.GetMasteryPagesAsync();
 
-        //    Assert.IsNotNull(masteryPages.Result);
-        //    Assert.IsTrue(masteryPages.Result.Count() > 0);
-        //}
+            Assert.IsNotNull(masteryPages.Result);
+            Assert.IsTrue(masteryPages.Result.Count() > 0);
+        }
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
@@ -210,6 +210,26 @@ namespace RiotSharpTest
         public void GetLeaguesAsync_Test()
         {
             var leagues = summoner.GetLeaguesAsync();
+
+            Assert.IsNotNull(leagues.Result);
+            Assert.IsTrue(leagues.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetLeaguesV22_Test()
+        {
+            var leagues = summoner.GetLeaguesV22();
+
+            Assert.IsNotNull(leagues);
+            Assert.IsTrue(leagues.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetLeaguesV22Async_Test()
+        {
+            var leagues = summoner.GetLeaguesV22Async();
 
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);
