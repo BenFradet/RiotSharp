@@ -75,6 +75,8 @@
     <Compile Include="StaticData\Champion\SkinStatic.cs" />
     <Compile Include="StaticData\Champion\SpellStatic.cs" />
     <Compile Include="StaticData\Champion\StatsStatic.cs" />
+    <Compile Include="Requester.cs" />
+    <Compile Include="StaticRiotApi.cs" />
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
@@ -103,11 +105,10 @@
     <Compile Include="Stats\Season.cs" />
     <Compile Include="Summoner\Summoner.cs" />
     <Compile Include="Summoner\SummonerBase.cs" />
-    <Compile Include="IRequester.cs" />
     <Compile Include="Collection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
-    <Compile Include="Requester.cs" />
+    <Compile Include="RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\Deprecated\SummonerV11.cs" />
     <Compile Include="Summoner\Talent.cs" />

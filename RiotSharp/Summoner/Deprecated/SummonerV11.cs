@@ -14,7 +14,7 @@ namespace RiotSharp
     /// </summary>
     public class SummonerV11 : SummonerBase
     {
-        public SummonerV11(string summoner, IRequester requester, Region region)
+        internal SummonerV11(string summoner, RateLimitedRequester requester, Region region)
             : base(summoner, requester, region) { }
         
         /// <summary>

@@ -39,10 +39,10 @@ namespace RiotSharp
         private const string TeamRootUrl = "/api/lol/{0}/v2.2/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
-        protected IRequester requester;
-        protected Region region;
+        private RateLimitedRequester requester;
+        private Region region;
 
-        public SummonerBase(string id, string name, IRequester requester, Region region)
+        internal SummonerBase(string id, string name, RateLimitedRequester requester, Region region)
         {
             this.requester = requester;
             this.region = region;
@@ -50,7 +50,7 @@ namespace RiotSharp
             this.Id = long.Parse(id);
         }
 
-        public SummonerBase(string json, IRequester requester, Region region)
+        internal SummonerBase(string json, RateLimitedRequester requester, Region region)
         {
             this.requester = requester;
             this.region = region;

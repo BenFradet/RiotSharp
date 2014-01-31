@@ -10,7 +10,7 @@ namespace RiotSharp
 {
     public abstract class Thing
     {
-        public static Thing Parse(JToken json, IRequester requester, Region region, Type typeToParse)
+        internal static Thing Parse(JToken json, RateLimitedRequester requester, Region region, Type typeToParse)
         {
             if(typeToParse.Equals(typeof(SummonerBase)))
             {

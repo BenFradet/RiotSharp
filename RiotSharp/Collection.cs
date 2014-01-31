@@ -11,12 +11,12 @@ namespace RiotSharp
 {
     public class Collection<T> : IEnumerable<T> where T : Thing
     {
-        private IRequester requester;
+        private RateLimitedRequester requester;
         private JToken json;
         private string name;
         private Region region;
 
-        internal Collection(string json, IRequester requester, Region region, string collectionName = null)
+        internal Collection(string json, RateLimitedRequester requester, Region region, string collectionName = null)
         {
             this.requester = requester;
             this.json = JObject.Parse(json);

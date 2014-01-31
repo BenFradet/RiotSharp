@@ -22,7 +22,7 @@ namespace RiotSharp
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
 
-        private Requester requester;
+        private RateLimitedRequester requester;
 
         internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
 
@@ -35,7 +35,7 @@ namespace RiotSharp
         /// <returns>An instance of RiotApi.</returns>
         public static RiotApi GetInstance(string apiKey, bool isProdApi)
         {
-            if (instance == null || apiKey != Requester.ApiKey || isProdApi != Requester.IsProdApi)
+            if (instance == null || apiKey != RateLimitedRequester.ApiKey || isProdApi != RateLimitedRequester.IsProdApi)
             {
                 instance = new RiotApi(apiKey, isProdApi);
             }
@@ -44,8 +44,6 @@ namespace RiotSharp
         
         static RiotApi()
         {
-            Requester.RootDomain = "prod.api.pvp.net";
-
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.CheckAdditionalContent = false;
             JsonSerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
@@ -53,9 +51,10 @@ namespace RiotSharp
 
         private RiotApi(string apiKey, bool isProdApi)
         {
-            requester = Requester.Instance;
-            Requester.ApiKey = apiKey;
-            Requester.IsProdApi = isProdApi;
+            requester = RateLimitedRequester.Instance;
+            RateLimitedRequester.RootDomain = "prod.api.pvp.net";
+            RateLimitedRequester.ApiKey = apiKey;
+            RateLimitedRequester.IsProdApi = isProdApi;
         }
 
         /// <summary>
