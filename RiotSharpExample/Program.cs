@@ -14,10 +14,13 @@ namespace RiotSharpExample
         {
             //toreplace
             var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"], false);
+            var staticApi = StaticRiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);
             int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
             string name = ConfigurationManager.AppSettings["Summoner1Name"];
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
+
+            var champs = staticApi.GetChampions(Region.euw);
 
             var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
 

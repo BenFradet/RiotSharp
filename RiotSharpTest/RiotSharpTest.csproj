@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="RiotApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticRiotApiTest.cs" />
     <Compile Include="SummonerTest.cs" />
   </ItemGroup>
   <ItemGroup>

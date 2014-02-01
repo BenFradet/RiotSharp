@@ -43,7 +43,7 @@ namespace RiotSharp
         public PassiveStatic Passive { get; set; }
 
         [JsonProperty("recommended")]
-        public List<RecommendedStatic> Recommended { get; set; }
+        public List<RecommendedStatic> RecommendedItems { get; set; }
 
         [JsonProperty("skins")]
         public List<SkinStatic> Skins { get; set; }

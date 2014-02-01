@@ -52,6 +52,7 @@
     <Compile Include="Game\RawStat.cs" />
     <Compile Include="Game\GameSubType.cs" />
     <Compile Include="Game\GameSubTypeConverter.cs" />
+    <Compile Include="Misc\Language.cs" />
     <Compile Include="League\Deprecated\LeagueV22.cs" />
     <Compile Include="League\League.cs" />
     <Compile Include="League\LeagueItem.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="StaticData\Champion\BlockStatic.cs" />
     <Compile Include="StaticData\Champion\ChampionStatic.cs" />
     <Compile Include="StaticData\Champion\ChampionListStatic.cs" />
+    <Compile Include="StaticData\Champion\DataRequested.cs" />
     <Compile Include="StaticData\Champion\ImageStatic.cs" />
     <Compile Include="StaticData\Champion\InfoStatic.cs" />
     <Compile Include="StaticData\Champion\LevelTipStatic.cs" />
@@ -107,7 +109,7 @@
     <Compile Include="Summoner\SummonerBase.cs" />
     <Compile Include="Collection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs" />
+    <Compile Include="Misc\Region.cs" />
     <Compile Include="RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\Deprecated\SummonerV11.cs" />

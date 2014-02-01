@@ -10,12 +10,12 @@ namespace RiotSharpTest
     [TestClass]
     public class RiotApiTest
     {
-        static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
-        static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        static string name = ConfigurationManager.AppSettings["Summoner1Name"];
-        static int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
-        static string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
-        static RiotApi api = RiotApi.GetInstance(apiKey, false);
+        private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+        private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+        private static string name = ConfigurationManager.AppSettings["Summoner1Name"];
+        private static int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
+        private static string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
+        private static RiotApi api = RiotApi.GetInstance(apiKey, false);
 
         [TestMethod]
         [TestCategory("RiotApi")]

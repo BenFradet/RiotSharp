@@ -360,7 +360,8 @@ namespace RiotSharp
         public Collection<PlayerStatsSummary> GetStatsSummaries(Season season)
         {
             var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
-                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsSummaryUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<PlayerStatsSummary>(json, requester, region, "playerStatSummaries");
         }
 
@@ -372,7 +373,8 @@ namespace RiotSharp
         public async Task<Collection<PlayerStatsSummary>> GetStatsSummariesAsync(Season season)
         {
             var json = await requester.CreateRequestAsync(string.Format(StatsRootUrl, region)
-                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsSummaryUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<PlayerStatsSummary>(json, requester, region, "playerStatSummaries");
         }
 
@@ -385,7 +387,8 @@ namespace RiotSharp
         public Collection<PlayerStatsSummaryV11> GetStatsSummariesV11(Season season)
         {
             var json = requester.CreateRequest(string.Format(StatsV11RootUrl, region)
-                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsSummaryUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<PlayerStatsSummaryV11>(json, requester, region, "playerStatSummaries");
         }
 
@@ -398,7 +401,8 @@ namespace RiotSharp
         public async Task<Collection<PlayerStatsSummaryV11>> GetStatsSummariesV11Async(Season season)
         {
             var json = await requester.CreateRequestAsync(string.Format(StatsV11RootUrl, region)
-                + string.Format(StatsSummaryUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsSummaryUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<PlayerStatsSummaryV11>(json, requester, region, "playerStatSummaries");
         }
 
@@ -410,7 +414,8 @@ namespace RiotSharp
         public Collection<ChampionStats> GetStatsRanked(Season season)
         {
             var json = requester.CreateRequest(string.Format(StatsRootUrl, region)
-                + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsRankedUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<ChampionStats>(json, requester, region, "champions");
         }
 
@@ -422,7 +427,8 @@ namespace RiotSharp
         public async Task<Collection<ChampionStats>> GetStatsRankedAsync(Season season)
         {
             var json = await requester.CreateRequestAsync(string.Format(StatsRootUrl, region)
-                + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsRankedUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<ChampionStats>(json, requester, region, "champions");
         }
 
@@ -435,7 +441,8 @@ namespace RiotSharp
         public Collection<ChampionStatsV11> GetStatsRankedV11(Season season)
         {
             var json = requester.CreateRequest(string.Format(StatsV11RootUrl, region)
-                + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsRankedUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<ChampionStatsV11>(json, requester, region, "champions");
         }
 
@@ -448,7 +455,8 @@ namespace RiotSharp
         public async Task<Collection<ChampionStatsV11>> GetStatsRankedV11Async(Season season)
         {
             var json = await requester.CreateRequestAsync(string.Format(StatsV11RootUrl, region)
-                + string.Format(StatsRankedUrl, Id), string.Format("season={0}", season.ToString().ToUpper()));
+                + string.Format(StatsRankedUrl, Id)
+                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return new Collection<ChampionStatsV11>(json, requester, region, "champions");
         }
 

@@ -40,9 +40,9 @@ namespace RiotSharp
         private const int MAX_REQUEST_PER_10S = 10;
         private const int MAX_REQUEST_PER_10M = 500;
 
-        public override string CreateRequest(string relativeUrl, string addedArgument = null)
+        public override string CreateRequest(string relativeUrl, List<string> addedArguments = null)
         {
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArgument);
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             semaphore.Wait();
             {
@@ -76,9 +76,9 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
-        public override async Task<string> CreateRequestAsync(string relativeUrl, string addedArgument = null)
+        public override async Task<string> CreateRequestAsync(string relativeUrl, List<string> addedArguments = null)
         {
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArgument);
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             await semaphore.WaitAsync();
             {

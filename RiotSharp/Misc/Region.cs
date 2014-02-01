@@ -8,8 +8,10 @@ namespace RiotSharp
 {
     public enum Region
     {
-        na,
+        br,
+        eune,
         euw,
-        eune
+        na,
+        tr
     }
 }
