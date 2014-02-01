@@ -8,6 +8,7 @@ namespace RiotSharp
 {
     public enum DataRequested
     {
+        none,
         all,
         image,
         skins,

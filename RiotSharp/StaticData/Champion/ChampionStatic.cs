@@ -28,7 +28,7 @@ namespace RiotSharp
         public InfoStatic Info { get; set; }
 
         [JsonProperty("key")]
-        public string Key { get; set; }
+        public int Key { get; set; }
 
         [JsonProperty("lore")]
         public string Lore { get; set; }

@@ -9,7 +9,6 @@ namespace RiotSharp
     public enum Language
     {
         en_US,
-        en_UK,
         de_DE,
         es_ES,
         fr_FR,

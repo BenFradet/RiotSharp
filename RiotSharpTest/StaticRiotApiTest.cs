@@ -17,6 +17,24 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("StaticRiotApi")]
+        public void GetChampion_Test()
+        {
+            var champ = api.GetChampion(Region.euw, 1);
+
+            Assert.AreEqual(champ.Name, "Annie");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetChampionAsync_Test()
+        {
+            var champ = api.GetChampionAsync(Region.euw, 1);
+
+            Assert.AreEqual(champ.Result.Name, "Annie");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
         public void GetChampions_Test()
         {
             var champs = api.GetChampions(Region.euw);

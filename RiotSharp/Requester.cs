@@ -84,7 +84,10 @@ namespace RiotSharp
             string result = string.Empty;
             foreach (string arg in arguments)
             {
-                result += arg + "&";
+                if (arg != string.Empty)
+                {
+                    result += arg + "&";
+                }
             }
             return result;
         }

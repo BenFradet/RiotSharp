@@ -20,11 +20,15 @@ namespace RiotSharpExample
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
 
+            var champ1 = staticApi.GetChampion(Region.euw, 1, DataRequested.none);
+
             var champs = staticApi.GetChampions(Region.euw);
+
+            var champ = staticApi.GetChampion(Region.euw, 1);
 
             champs = staticApi.GetChampions(Region.euw);
 
-            champs = staticApi.GetChampions(Region.euw, Language.ko_KR, DataRequested.blurb);
+            champs = staticApi.GetChampions(Region.euw, DataRequested.blurb, Language.ko_KR);
 
             var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
 
