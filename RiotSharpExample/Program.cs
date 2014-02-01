@@ -22,6 +22,10 @@ namespace RiotSharpExample
 
             var champs = staticApi.GetChampions(Region.euw);
 
+            champs = staticApi.GetChampions(Region.euw);
+
+            champs = staticApi.GetChampions(Region.euw, Language.ko_KR, DataRequested.blurb);
+
             var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
 
             var summName = api.GetSummoner(Region.euw, name2);

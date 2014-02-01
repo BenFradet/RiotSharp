@@ -10,6 +10,7 @@ namespace RiotSharp
     public class StaticRiotApi
     {
         private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1/champion";
+        private const string ChampionCacheKey = "champions";
 
         private Requester requester;
 
@@ -33,19 +34,35 @@ namespace RiotSharp
         public ChampionListStatic GetChampions(Region region, Language language = Language.en_US
             , DataRequested dataRequested = DataRequested.all)
         {
-            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString())
-                , new List<string>() { string.Format("locale={0}", language.ToString())
+            var wrapper = Cache.Get<ChampionListStaticWrapper>(ChampionCacheKey);
+            if (wrapper == null || language != wrapper.Language || dataRequested != wrapper.DataRequested)
+            {
+                var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString())
+                    , new List<string>() { string.Format("locale={0}", language.ToString())
                     , string.Format("champData={0}", dataRequested.ToString()) });
-            return JsonConvert.DeserializeObject<ChampionListStatic>(json);
+                var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
+
+                wrapper = new ChampionListStaticWrapper(champs, language, dataRequested);
+                Cache.Add<ChampionListStaticWrapper>(ChampionCacheKey, wrapper);
+            }
+            return wrapper.ChampionListStatic;
         }
 
         public async Task<ChampionListStatic> GetChampionsAsync(Region region, Language language = Language.en_US
             , DataRequested dataRequested = DataRequested.all)
         {
-            var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString())
-                , new List<string>() { string.Format("locale={0}", language.ToString())
+            var wrapper = Cache.Get<ChampionListStaticWrapper>(ChampionCacheKey);
+            if (wrapper == null || language != wrapper.Language || dataRequested != wrapper.DataRequested)
+            {
+                var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString())
+                    , new List<string>() { string.Format("locale={0}", language.ToString())
                     , string.Format("champData={0}", dataRequested.ToString()) });
-            return await JsonConvert.DeserializeObjectAsync<ChampionListStatic>(json);
+                var champs = await JsonConvert.DeserializeObjectAsync<ChampionListStatic>(json);
+
+                wrapper = new ChampionListStaticWrapper(champs, language, dataRequested);
+                Cache.Add<ChampionListStaticWrapper>(ChampionCacheKey, wrapper);
+            }
+            return wrapper.ChampionListStatic;
         }
     }
 }
