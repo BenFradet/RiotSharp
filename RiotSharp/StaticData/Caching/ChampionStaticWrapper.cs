@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    class ChampionListStaticWrapper
+    class ChampionStaticWrapper
     {
-        public ChampionListStatic ChampionListStatic { get; set; }
+        public ChampionStatic ChampionStatic { get; set; }
         public Language Language { get; set; }
         public ChampionData ChampionData { get; set; }
 
-        public ChampionListStaticWrapper(ChampionListStatic champions, Language language, ChampionData championData)
+        public ChampionStaticWrapper(ChampionStatic champion, Language language, ChampionData championData)
         {
-            ChampionListStatic = champions;
+            ChampionStatic = champion;
             Language = language;
             ChampionData = championData;
         }

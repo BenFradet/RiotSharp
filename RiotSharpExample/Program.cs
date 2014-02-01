@@ -20,66 +20,68 @@ namespace RiotSharpExample
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
 
-            var champ1 = staticApi.GetChampion(Region.euw, 1, DataRequested.none);
+            //var champ1 = staticApi.GetChampion(Region.euw, 1, ChampionData.none);
 
             var champs = staticApi.GetChampions(Region.euw);
+
+            var champSame = staticApi.GetChampion(Region.euw, 1);
 
             var champ = staticApi.GetChampion(Region.euw, 1);
 
             champs = staticApi.GetChampions(Region.euw);
 
-            champs = staticApi.GetChampions(Region.euw, DataRequested.blurb, Language.ko_KR);
+            champs = staticApi.GetChampions(Region.euw, ChampionData.blurb, Language.ko_KR);
 
-            var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
+            //var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
 
-            var summName = api.GetSummoner(Region.euw, name2);
+            //var summName = api.GetSummoner(Region.euw, name2);
 
-            var leagues = summName.GetLeagues();
+            //var leagues = summName.GetLeagues();
 
-            var runePages = summName.GetRunePages();
+            //var runePages = summName.GetRunePages();
 
-            var summNameById = api.GetSummonerName(Region.euw, id);
+            //var summNameById = api.GetSummonerName(Region.euw, id);
 
-            var summNamesById = api.GetSummonersNames(Region.euw, new List<int>() { id, id2 });
+            //var summNamesById = api.GetSummonersNames(Region.euw, new List<int>() { id, id2 });
 
-            var summNames = api.GetSummoners(Region.euw, new List<string> { name, name2 });
+            //var summNames = api.GetSummoners(Region.euw, new List<string> { name, name2 });
 
-            var summs = api.GetSummoners(Region.euw, new List<int> { id, id2 });
+            //var summs = api.GetSummoners(Region.euw, new List<int> { id, id2 });
 
-            var summ = api.GetSummoner(Region.euw, id);
+            //var summ = api.GetSummoner(Region.euw, id);
 
-            var games = summ.GetRecentGames();
+            //var games = summ.GetRecentGames();
 
-            var team = summ.GetTeamsV21();
+            //var team = summ.GetTeamsV21();
 
-            var stats = summ.GetStatsSummaries(Season.Season3);
+            //var stats = summ.GetStatsSummaries(Season.Season3);
 
-            foreach (var stat in stats)
-            {
-                var aggStat = stat.AggregatedStats;
-                Console.WriteLine(stat.Losses);
-                Console.WriteLine(stat.Wins);
-                Console.WriteLine(stat.ModifyDate);
-                Console.WriteLine(stat.PlayerStatSummaryType);
-            }
+            //foreach (var stat in stats)
+            //{
+            //    var aggStat = stat.AggregatedStats;
+            //    Console.WriteLine(stat.Losses);
+            //    Console.WriteLine(stat.Wins);
+            //    Console.WriteLine(stat.ModifyDate);
+            //    Console.WriteLine(stat.PlayerStatSummaryType);
+            //}
 
-            var rankedVarus = summ.GetStatsRankedV11(Season.Season3)
-                .Where((s) => s.Name != null && s.Name.Equals("Varus"))
-                .FirstOrDefault();
-            Console.WriteLine(rankedVarus.Id);
-            Console.WriteLine(rankedVarus.Name);
-            if (rankedVarus.Stats != null && rankedVarus.Stats.Count > 0)
-            {
-                foreach (var s in rankedVarus.Stats)
-                {
-                    Console.WriteLine("    " + s.Count);
-                    Console.WriteLine("    " + s.Name);
-                    Console.WriteLine("    " + s.Id);
-                    Console.WriteLine("    " + s.Value);
-                    Console.WriteLine();
-                }
-            }
-            Console.WriteLine();
+            //var rankedVarus = summ.GetStatsRankedV11(Season.Season3)
+            //    .Where((s) => s.Name != null && s.Name.Equals("Varus"))
+            //    .FirstOrDefault();
+            //Console.WriteLine(rankedVarus.Id);
+            //Console.WriteLine(rankedVarus.Name);
+            //if (rankedVarus.Stats != null && rankedVarus.Stats.Count > 0)
+            //{
+            //    foreach (var s in rankedVarus.Stats)
+            //    {
+            //        Console.WriteLine("    " + s.Count);
+            //        Console.WriteLine("    " + s.Name);
+            //        Console.WriteLine("    " + s.Id);
+            //        Console.WriteLine("    " + s.Value);
+            //        Console.WriteLine();
+            //    }
+            //}
+            //Console.WriteLine();
 
             //var stats = summ.GetStatsSummaries(Season.Season3);
             //foreach (var stat in stats)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    public enum DataRequested
+    public enum ChampionData
     {
         none,
         all,
@@ -23,5 +23,18 @@ namespace RiotSharp
         spells,
         passive,
         recommended
+    }
+
+    public enum ItemData
+    {
+        none,
+        all,
+        description,
+        colloq,
+        into,
+        image,
+        gold,
+        tags,
+        stats
     }
 }

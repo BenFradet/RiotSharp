@@ -66,13 +66,14 @@
     <Compile Include="Misc\TimeSpanConverter.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="StaticData\Caching\Cache.cs" />
+    <Compile Include="StaticData\Caching\ChampionStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\BlockItemStatic.cs" />
     <Compile Include="StaticData\Champion\BlockStatic.cs" />
     <Compile Include="StaticData\Caching\ChampionListStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\ChampionStatic.cs" />
     <Compile Include="StaticData\Champion\ChampionListStatic.cs" />
     <Compile Include="Misc\DataRequested.cs" />
-    <Compile Include="StaticData\Champion\ImageStatic.cs" />
+    <Compile Include="StaticData\ImageStatic.cs" />
     <Compile Include="StaticData\Champion\InfoStatic.cs" />
     <Compile Include="StaticData\Champion\LevelTipStatic.cs" />
     <Compile Include="StaticData\Champion\PassiveStatic.cs" />
