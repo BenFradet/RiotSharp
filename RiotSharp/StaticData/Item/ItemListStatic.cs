@@ -13,7 +13,7 @@ namespace RiotSharp
         public BasicDataStatic BasicData { get; set; }
 
         [JsonProperty("data")]
-        public Dictionary<string, ItemStatic> Items { get; set; }
+        public Dictionary<int, ItemStatic> Items { get; set; }
 
         [JsonProperty("groups")]
         public List<GroupStatic> Groups { get; set; }

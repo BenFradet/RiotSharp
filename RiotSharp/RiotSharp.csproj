@@ -67,6 +67,8 @@
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="StaticData\Caching\Cache.cs" />
     <Compile Include="StaticData\Caching\ChampionStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\ItemListStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\ItemStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\BlockItemStatic.cs" />
     <Compile Include="StaticData\Champion\BlockStatic.cs" />
     <Compile Include="StaticData\Caching\ChampionListStaticWrapper.cs" />

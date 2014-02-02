@@ -8,9 +8,9 @@ namespace RiotSharp
 {
     class ChampionStaticWrapper
     {
-        public ChampionStatic ChampionStatic { get; set; }
-        public Language Language { get; set; }
-        public ChampionData ChampionData { get; set; }
+        public ChampionStatic ChampionStatic { get; private set; }
+        public Language Language { get; private set; }
+        public ChampionData ChampionData { get; private set; }
 
         public ChampionStaticWrapper(ChampionStatic champion, Language language, ChampionData championData)
         {
