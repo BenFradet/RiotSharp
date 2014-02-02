@@ -4,20 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    public class ChampionListStatic
+    public class ItemListStatic
     {
+        [JsonProperty("basic")]
+        public BasicDataStatic BasicData { get; set; }
+
         [JsonProperty("data")]
-        public Dictionary<string, ChampionStatic> Champions { get; set; }
+        public Dictionary<string, ItemStatic> Items { get; set; }
 
-        [JsonProperty("format")]
-        public string Format { get; set; }
+        [JsonProperty("groups")]
+        public List<GroupStatic> Groups { get; set; }
 
-        [JsonProperty("keys")]
-        public Dictionary<string, string> Keys { get; set; }
+        [JsonProperty("tree")]
+        public List<ItemTreeStatic> Trees { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }

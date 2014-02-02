@@ -82,6 +82,14 @@
     <Compile Include="StaticData\Champion\SpellStatic.cs" />
     <Compile Include="StaticData\Champion\StatsStatic.cs" />
     <Compile Include="Requester.cs" />
+    <Compile Include="StaticData\Item\BasicDataStatic.cs" />
+    <Compile Include="StaticData\Item\GoldStatic.cs" />
+    <Compile Include="StaticData\Item\GroupStatic.cs" />
+    <Compile Include="StaticData\Item\ItemListStatic.cs" />
+    <Compile Include="StaticData\Item\ItemRuneStatic.cs" />
+    <Compile Include="StaticData\Item\ItemStatic.cs" />
+    <Compile Include="StaticData\Item\ItemStatsStatic.cs" />
+    <Compile Include="StaticData\Item\ItemTreeStatic.cs" />
     <Compile Include="StaticRiotApi.cs" />
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />

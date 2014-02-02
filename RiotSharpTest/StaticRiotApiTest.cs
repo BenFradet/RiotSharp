@@ -39,8 +39,8 @@ namespace RiotSharpTest
         {
             var champs = api.GetChampions(Region.euw);
 
-            Assert.IsNotNull(champs.Data);
-            Assert.IsTrue(champs.Data.Count > 0);
+            Assert.IsNotNull(champs.Champions);
+            Assert.IsTrue(champs.Champions.Count > 0);
         }
 
         [TestMethod]
@@ -49,8 +49,8 @@ namespace RiotSharpTest
         {
             var champs = api.GetChampionsAsync(Region.euw);
 
-            Assert.IsNotNull(champs.Result.Data);
-            Assert.IsTrue(champs.Result.Data.Count > 0);
+            Assert.IsNotNull(champs.Result.Champions);
+            Assert.IsTrue(champs.Result.Champions.Count > 0);
         }
     }
 }

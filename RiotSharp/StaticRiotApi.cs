@@ -82,7 +82,7 @@ namespace RiotSharp
             {
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.ChampionData == championData)
                 {
-                    var champ = listWrapper.ChampionListStatic.Data.Values
+                    var champ = listWrapper.ChampionListStatic.Champions.Values
                         .Where((c) => c.Key == championId).FirstOrDefault();
                     if (champ != null)
                     {
@@ -124,7 +124,7 @@ namespace RiotSharp
             {
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.ChampionData == championData)
                 {
-                    var champ = listWrapper.ChampionListStatic.Data.Values
+                    var champ = listWrapper.ChampionListStatic.Champions.Values
                         .Where((c) => c.Key == championId).FirstOrDefault();
                     if (champ != null)
                     {
