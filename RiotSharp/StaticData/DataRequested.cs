@@ -37,4 +37,13 @@ namespace RiotSharp
         tags,
         stats
     }
+
+    public enum MasteryData
+    {
+        none,
+        all,
+        ranks,
+        prereq,
+        image
+    }
 }

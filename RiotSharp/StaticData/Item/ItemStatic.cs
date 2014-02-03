@@ -25,7 +25,7 @@ namespace RiotSharp
         public ImageStatic Image { get; set; }
 
         [JsonProperty("into")]
-        public List<string> Into { get; set; }
+        public List<int> Into { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -34,7 +34,7 @@ namespace RiotSharp
         public string PlainText { get; set; }
 
         [JsonProperty("stats")]
-        public Dictionary<string, ItemStatsStatic> Stats { get; set; }
+        public Dictionary<string, object> Stats { get; set; }
 
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }

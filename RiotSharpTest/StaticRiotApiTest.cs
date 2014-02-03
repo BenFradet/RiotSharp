@@ -90,5 +90,43 @@ namespace RiotSharpTest
             Assert.IsNotNull(items.Result.Items);
             Assert.IsTrue(items.Result.Items.Count > 0);
         }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetMasteries_Test()
+        {
+            var masteries = api.GetMasteries(Region.euw, MasteryData.none);
+
+            Assert.IsNotNull(masteries.Data);
+            Assert.IsTrue(masteries.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetMasteriesAsync_Test()
+        {
+            var masteries = api.GetMasteriesAsync(Region.euw, MasteryData.none);
+
+            Assert.IsNotNull(masteries.Result.Data);
+            Assert.IsTrue(masteries.Result.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetMastery_Test()
+        {
+            var mastery = api.GetMastery(Region.euw, 4111);
+
+            Assert.AreEqual(mastery.Name, "Double-Edged Sword");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetMasteryAsync_Test()
+        {
+            var mastery = api.GetMasteryAsync(Region.euw, 4111);
+
+            Assert.AreEqual(mastery.Result.Name, "Double-Edged Sword");
+        }
     }
 }

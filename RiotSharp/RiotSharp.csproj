@@ -69,12 +69,14 @@
     <Compile Include="StaticData\Caching\ChampionStaticWrapper.cs" />
     <Compile Include="StaticData\Caching\ItemListStaticWrapper.cs" />
     <Compile Include="StaticData\Caching\ItemStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\MasteryListStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\MasteryStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\BlockItemStatic.cs" />
     <Compile Include="StaticData\Champion\BlockStatic.cs" />
     <Compile Include="StaticData\Caching\ChampionListStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\ChampionStatic.cs" />
     <Compile Include="StaticData\Champion\ChampionListStatic.cs" />
-    <Compile Include="Misc\DataRequested.cs" />
+    <Compile Include="StaticData\DataRequested.cs" />
     <Compile Include="StaticData\ImageStatic.cs" />
     <Compile Include="StaticData\Champion\InfoStatic.cs" />
     <Compile Include="StaticData\Champion\LevelTipStatic.cs" />
@@ -92,6 +94,9 @@
     <Compile Include="StaticData\Item\ItemStatic.cs" />
     <Compile Include="StaticData\Item\ItemStatsStatic.cs" />
     <Compile Include="StaticData\Item\ItemTreeStatic.cs" />
+    <Compile Include="StaticData\Mastery\MasteryListStatic.cs" />
+    <Compile Include="StaticData\Mastery\MasteryStatic.cs" />
+    <Compile Include="StaticData\Mastery\MasteryTreeStatic.cs" />
     <Compile Include="StaticRiotApi.cs" />
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />

@@ -25,7 +25,7 @@ namespace RiotSharp
         public string Description { get; set; }
 
         [JsonProperty("from")]
-        public List<string> From { get; set; }
+        public List<int> From { get; set; }
 
         [JsonProperty("gold")]
         public GoldStatic Gold { get; set; }
@@ -40,7 +40,7 @@ namespace RiotSharp
         public bool InStore { get; set; }
 
         [JsonProperty("into")]
-        public List<string> Into { get; set; }
+        public List<int> Into { get; set; }
 
         [JsonProperty("maps")]
         public Dictionary<string, bool> Maps { get; set; }
