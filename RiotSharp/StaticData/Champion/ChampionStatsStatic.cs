@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace RiotSharp
 {
-    public class StatsStatic
+    public class ChampionStatsStatic
     {
         [JsonProperty("armor")]
         public double Armor { get; set; }

@@ -21,6 +21,10 @@ namespace RiotSharp
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryCacheKey = "mastery";
 
+        private const string RuneRootUrl = "/api/lol/static-data/{0}/v1/rune";
+        private const string RunesCacheKey = "runes";
+        private const string RuneCacheKey = "rune";
+
         private const string IdUrl = "/{0}";
 
         private Requester requester;
@@ -347,6 +351,111 @@ namespace RiotSharp
                     Cache.Add<MasteryStaticWrapper>(MasteryCacheKey + masteryId
                         , new MasteryStaticWrapper(mastery, language, masteryData));
                     return mastery;
+                }
+            }
+        }
+
+        public RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.all, Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
+            if (wrapper == null || language != wrapper.Language || runeData != wrapper.RuneData)
+            {
+                var json = requester.CreateRequest(string.Format(RuneRootUrl, region.ToString())
+                    , new List<string>() { string.Format("locale={0}", language.ToString())
+                        , runeData == RuneData.none ? string.Empty
+                            : string.Format("runeListData={0}", runeData.ToString()) });
+                var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
+                wrapper = new RuneListStaticWrapper(runes, language, runeData);
+                Cache.Add<RuneListStaticWrapper>(RunesCacheKey, wrapper);
+            }
+            return wrapper.RuneListStatic;
+        }
+
+        public async Task<RuneListStatic> GetRunesAsync(Region region, RuneData runeData = RuneData.all
+            , Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
+            if (wrapper == null || language != wrapper.Language | runeData != wrapper.RuneData)
+            {
+                var json = await requester.CreateRequestAsync(string.Format(RuneRootUrl, region.ToString())
+                    , new List<string>() { string.Format("local={0}", language.ToString())
+                        , runeData == RuneData.none ? string.Empty
+                            : string.Format("runeListData={0}", runeData.ToString()) });
+                var runes = await JsonConvert.DeserializeObjectAsync<RuneListStatic>(json);
+                wrapper = new RuneListStaticWrapper(runes, language, runeData);
+                Cache.Add<RuneListStaticWrapper>(RunesCacheKey, wrapper);
+            }
+            return wrapper.RuneListStatic;
+        }
+
+        public RuneStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.all
+            , Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
+            if(wrapper != null && wrapper.Language == language && wrapper.RuneData == RuneData.all)
+            {
+                return wrapper.RuneStatic;
+            }
+            else
+            {
+                var listWrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
+                if(listWrapper != null && listWrapper.Language == language && listWrapper.RuneData == runeData)
+                {
+                    if(listWrapper.RuneListStatic.Data.ContainsKey(runeId))
+                    {
+                        return listWrapper.RuneListStatic.Data[runeId];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var json = requester.CreateRequest(string.Format(RuneRootUrl, region.ToString())
+                        + string.Format(IdUrl, runeId)
+                        , new List<string>() { string.Format("locale={0}", language.ToString())
+                            , runeData == RuneData.none ? string.Empty
+                                : string.Format("runeData={0}", runeData.ToString()) });
+                    var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
+                    Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
+                    return rune;
+                }
+            }
+        }
+
+        public async Task<RuneStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.all
+            , Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
+            if (wrapper != null && wrapper.Language == language && wrapper.RuneData == RuneData.all)
+            {
+                return wrapper.RuneStatic;
+            }
+            else
+            {
+                var listWrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
+                if (listWrapper != null && listWrapper.Language == language && listWrapper.RuneData == runeData)
+                {
+                    if (listWrapper.RuneListStatic.Data.ContainsKey(runeId))
+                    {
+                        return listWrapper.RuneListStatic.Data[runeId];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var json = await requester.CreateRequestAsync(string.Format(RuneRootUrl, region.ToString())
+                        + string.Format(IdUrl, runeId)
+                        , new List<string>() { string.Format("locale={0}", language.ToString())
+                            , runeData == RuneData.none ? string.Empty
+                                : string.Format("runeData={0}", runeData.ToString()) });
+                    var rune = await JsonConvert.DeserializeObjectAsync<RuneStatic>(json);
+                    Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
+                    return rune;
                 }
             }
         }

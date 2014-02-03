@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    public class MasteryListStaticWrapper
+    class MasteryListStaticWrapper
     {
         public MasteryListStatic MasteryListStatic { get; private set; }
         public Language Language { get; private set; }

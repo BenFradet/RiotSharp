@@ -46,4 +46,15 @@ namespace RiotSharp
         prereq,
         image
     }
+
+    public enum RuneData
+    {
+        none,
+        all,
+        image,
+        stats,
+        tags,
+        colloq,
+        plaintext
+    }
 }

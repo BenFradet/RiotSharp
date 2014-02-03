@@ -128,5 +128,43 @@ namespace RiotSharpTest
 
             Assert.AreEqual(mastery.Result.Name, "Double-Edged Sword");
         }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetRunes_Test()
+        {
+            var runes = api.GetRunes(Region.euw);
+
+            Assert.IsNotNull(runes);
+            Assert.IsTrue(runes.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetRunesAsync_Test()
+        {
+            var runes = api.GetRunesAsync(Region.euw);
+
+            Assert.IsNotNull(runes.Result);
+            Assert.IsTrue(runes.Result.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetRune_Test()
+        {
+            var rune = api.GetRune(Region.euw, 5001);
+
+            Assert.AreEqual(rune.Name, "Lesser Mark of Attack Damage");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetRuneAsync_Test()
+        {
+            var rune = api.GetRuneAsync(Region.euw, 5001);
+
+            Assert.AreEqual(rune.Result.Name, "Lesser Mark of Attack Damage");
+        }
     }
 }

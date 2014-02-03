@@ -64,7 +64,7 @@ namespace RiotSharp
         public int Stacks { get; set; }
 
         [JsonProperty("stats")]
-        public ItemStatsStatic Stats { get; set; }
+        public StatsStatic Stats { get; set; }
 
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }

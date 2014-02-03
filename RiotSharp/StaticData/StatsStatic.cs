@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace RiotSharp
 {
-    public class ItemStatsStatic
+    public class StatsStatic
     {
         public double FlatArmorMod { get; set; }
 

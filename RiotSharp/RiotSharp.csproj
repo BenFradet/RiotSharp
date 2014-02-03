@@ -71,6 +71,8 @@
     <Compile Include="StaticData\Caching\ItemStaticWrapper.cs" />
     <Compile Include="StaticData\Caching\MasteryListStaticWrapper.cs" />
     <Compile Include="StaticData\Caching\MasteryStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\RuneListStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\RuneStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\BlockItemStatic.cs" />
     <Compile Include="StaticData\Champion\BlockStatic.cs" />
     <Compile Include="StaticData\Caching\ChampionListStaticWrapper.cs" />
@@ -84,7 +86,7 @@
     <Compile Include="StaticData\Champion\RecommendedStatic.cs" />
     <Compile Include="StaticData\Champion\SkinStatic.cs" />
     <Compile Include="StaticData\Champion\SpellStatic.cs" />
-    <Compile Include="StaticData\Champion\StatsStatic.cs" />
+    <Compile Include="StaticData\Champion\ChampionStatsStatic.cs" />
     <Compile Include="Requester.cs" />
     <Compile Include="StaticData\Item\BasicDataStatic.cs" />
     <Compile Include="StaticData\Item\GoldStatic.cs" />
@@ -92,7 +94,10 @@
     <Compile Include="StaticData\Item\ItemListStatic.cs" />
     <Compile Include="StaticData\Item\ItemRuneStatic.cs" />
     <Compile Include="StaticData\Item\ItemStatic.cs" />
-    <Compile Include="StaticData\Item\ItemStatsStatic.cs" />
+    <Compile Include="StaticData\Rune\RuneListStatic.cs" />
+    <Compile Include="StaticData\Rune\RuneStatic.cs" />
+    <Compile Include="StaticData\Rune\RuneTypeStatic.cs" />
+    <Compile Include="StaticData\StatsStatic.cs" />
     <Compile Include="StaticData\Item\ItemTreeStatic.cs" />
     <Compile Include="StaticData\Mastery\MasteryListStatic.cs" />
     <Compile Include="StaticData\Mastery\MasteryStatic.cs" />

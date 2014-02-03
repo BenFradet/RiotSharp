@@ -52,7 +52,7 @@ namespace RiotSharp
         public List<SpellStatic> Spells { get; set; }
 
         [JsonProperty("stats")]
-        public StatsStatic Stats { get; set; }
+        public ChampionStatsStatic Stats { get; set; }
 
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }
