@@ -57,4 +57,26 @@ namespace RiotSharp
         colloq,
         plaintext
     }
+
+    public enum SummonerSpellData
+    {
+        none,
+        all,
+        key,
+        image,
+        tooltip,
+        resource,
+        maxrank,
+        modes,
+        costType,
+        cost,
+        costBurn,
+        range,
+        rangeBurn,
+        effect,
+        effectBurn,
+        cooldown,
+        cooldownBurn,
+        vars
+    }
 }

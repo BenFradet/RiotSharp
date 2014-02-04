@@ -73,6 +73,8 @@
     <Compile Include="StaticData\Caching\MasteryStaticWrapper.cs" />
     <Compile Include="StaticData\Caching\RuneListStaticWrapper.cs" />
     <Compile Include="StaticData\Caching\RuneStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\SummonerSpellListStaticWrapper.cs" />
+    <Compile Include="StaticData\Caching\SummonerSpellStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\BlockItemStatic.cs" />
     <Compile Include="StaticData\Champion\BlockStatic.cs" />
     <Compile Include="StaticData\Caching\ChampionListStaticWrapper.cs" />
@@ -102,6 +104,10 @@
     <Compile Include="StaticData\Mastery\MasteryListStatic.cs" />
     <Compile Include="StaticData\Mastery\MasteryStatic.cs" />
     <Compile Include="StaticData\Mastery\MasteryTreeStatic.cs" />
+    <Compile Include="StaticData\SummonerSpell\SummonerSpell.cs" />
+    <Compile Include="StaticData\SummonerSpell\SummonerSpellListStatic.cs" />
+    <Compile Include="StaticData\SummonerSpell\SummonerSpellStatic.cs" />
+    <Compile Include="StaticData\SummonerSpell\SummonerSpellVarStatic.cs" />
     <Compile Include="StaticRiotApi.cs" />
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />

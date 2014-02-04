@@ -55,24 +55,6 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("StaticRiotApi")]
-        public void GetItem_Test()
-        {
-            var item = api.GetItem(Region.euw, 1001, ItemData.none);
-
-            Assert.AreEqual(item.Name, "Boots of Speed");
-        }
-
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetItemAsync_Test()
-        {
-            var item = api.GetItemAsync(Region.euw, 1001, ItemData.none);
-
-            Assert.AreEqual(item.Result.Name, "Boots of Speed");
-        }
-
-        [TestMethod]
-        [TestCategory("StaticRiotApi")]
         public void GetItems_Test()
         {
             var items = api.GetItems(Region.euw, ItemData.none);
@@ -89,6 +71,24 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(items.Result.Items);
             Assert.IsTrue(items.Result.Items.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetItem_Test()
+        {
+            var item = api.GetItem(Region.euw, 1001, ItemData.none);
+
+            Assert.AreEqual(item.Name, "Boots of Speed");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetItemAsync_Test()
+        {
+            var item = api.GetItemAsync(Region.euw, 1001, ItemData.none);
+
+            Assert.AreEqual(item.Result.Name, "Boots of Speed");
         }
 
         [TestMethod]
@@ -115,7 +115,7 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetMastery_Test()
         {
-            var mastery = api.GetMastery(Region.euw, 4111);
+            var mastery = api.GetMastery(Region.euw, 4111, MasteryData.none);
 
             Assert.AreEqual(mastery.Name, "Double-Edged Sword");
         }
@@ -124,7 +124,7 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetMasteryAsync_Test()
         {
-            var mastery = api.GetMasteryAsync(Region.euw, 4111);
+            var mastery = api.GetMasteryAsync(Region.euw, 4111, MasteryData.none);
 
             Assert.AreEqual(mastery.Result.Name, "Double-Edged Sword");
         }
@@ -133,7 +133,7 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetRunes_Test()
         {
-            var runes = api.GetRunes(Region.euw);
+            var runes = api.GetRunes(Region.euw, RuneData.none);
 
             Assert.IsNotNull(runes);
             Assert.IsTrue(runes.Data.Count > 0);
@@ -143,7 +143,7 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetRunesAsync_Test()
         {
-            var runes = api.GetRunesAsync(Region.euw);
+            var runes = api.GetRunesAsync(Region.euw, RuneData.none);
 
             Assert.IsNotNull(runes.Result);
             Assert.IsTrue(runes.Result.Data.Count > 0);
@@ -153,7 +153,7 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetRune_Test()
         {
-            var rune = api.GetRune(Region.euw, 5001);
+            var rune = api.GetRune(Region.euw, 5001, RuneData.none);
 
             Assert.AreEqual(rune.Name, "Lesser Mark of Attack Damage");
         }
@@ -162,9 +162,47 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetRuneAsync_Test()
         {
-            var rune = api.GetRuneAsync(Region.euw, 5001);
+            var rune = api.GetRuneAsync(Region.euw, 5001, RuneData.none);
 
             Assert.AreEqual(rune.Result.Name, "Lesser Mark of Attack Damage");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetSummonerSpells_Test()
+        {
+            var spells = api.GetSummonerSpells(Region.euw, SummonerSpellData.none);
+
+            Assert.IsNotNull(spells.Data);
+            Assert.IsTrue(spells.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetSummonerSpellsAsync_Test()
+        {
+            var spells = api.GetSummonerSpellsAsync(Region.euw, SummonerSpellData.none);
+
+            Assert.IsNotNull(spells.Result.Data);
+            Assert.IsTrue(spells.Result.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetSummonerSpell_Test()
+        {
+            var spell = api.GetSummonerSpell(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
+
+            Assert.AreEqual(spell.Name, "Barrier");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetSummonerSpellAsync_Test()
+        {
+            var spell = api.GetSummonerSpellAsync(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
+
+            Assert.AreEqual(spell.Result.Name, "Barrier");
         }
     }
 }

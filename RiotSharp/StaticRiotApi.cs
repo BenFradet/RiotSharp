@@ -25,6 +25,10 @@ namespace RiotSharp
         private const string RunesCacheKey = "runes";
         private const string RuneCacheKey = "rune";
 
+        private const string SummonerSpellRootUrl = "/api/lol/static-data/{0}/v1/summoner-spell";
+        private const string SummonerSpellsCacheKey = "spells";
+        private const string SummonerSpellCacheKey = "spell";
+
         private const string IdUrl = "/{0}";
 
         private Requester requester;
@@ -456,6 +460,116 @@ namespace RiotSharp
                     var rune = await JsonConvert.DeserializeObjectAsync<RuneStatic>(json);
                     Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
                     return rune;
+                }
+            }
+        }
+
+        public SummonerSpellListStatic GetSummonerSpells(Region region
+            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
+            if (wrapper == null || wrapper.Language != language || wrapper.SummonerSpellData != summonerSpellData)
+            {
+                var json = requester.CreateRequest(string.Format(SummonerSpellRootUrl, region.ToString())
+                    , new List<string>() { string.Format("locale={0}", language.ToString())
+                        , summonerSpellData == SummonerSpellData.none ? string.Empty
+                            : string.Format("spellData={0}", summonerSpellData.ToString()) });
+                var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
+                wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
+                Cache.Add<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey, wrapper);
+            }
+            return wrapper.SummonerSpellListStatic;
+        }
+
+        public async Task<SummonerSpellListStatic> GetSummonerSpellsAsync(Region region
+            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
+            if (wrapper == null || wrapper.Language != language || wrapper.SummonerSpellData != summonerSpellData)
+            {
+                var json = await requester.CreateRequestAsync(string.Format(SummonerSpellRootUrl, region.ToString())
+                    , new List<string>() { string.Format("locale={0}", language.ToString())
+                        , summonerSpellData == SummonerSpellData.none ? string.Empty
+                            : string.Format("spellData={0}", summonerSpellData.ToString()) });
+                var spells = await JsonConvert.DeserializeObjectAsync<SummonerSpellListStatic>(json);
+                wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
+                Cache.Add<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey, wrapper);
+            }
+            return wrapper.SummonerSpellListStatic;
+        }
+
+        public SummonerSpellStatic GetSummonerSpell(Region region, SummonerSpell summonerSpell
+            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString());
+            if (wrapper != null && wrapper.SummonerSpellData == summonerSpellData && wrapper.Language == language)
+            {
+                return wrapper.SummonerSpellStatic;
+            }
+            else
+            {
+                var listWrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
+                if (listWrapper != null && listWrapper.SummonerSpellData == summonerSpellData
+                    && listWrapper.Language == language)
+                {
+                    if (listWrapper.SummonerSpellListStatic.Data.ContainsKey(summonerSpell.ToCustomString()))
+                    {
+                        return listWrapper.SummonerSpellListStatic.Data[summonerSpell.ToCustomString()];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var json = requester.CreateRequest(string.Format(SummonerSpellRootUrl, region.ToString())
+                        + string.Format(IdUrl, summonerSpell.ToCustomString())
+                        , new List<string>() { string.Format("locale={0}", language.ToString())
+                            , summonerSpellData == SummonerSpellData.none ? string.Empty
+                                : string.Format("spellData={0}", summonerSpellData.ToString()) });
+                    var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json);
+                    Cache.Add<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString()
+                        , new SummonerSpellStaticWrapper(spell, language, summonerSpellData));
+                    return spell;
+                }
+            }
+        }
+
+        public async Task<SummonerSpellStatic> GetSummonerSpellAsync(Region region, SummonerSpell summonerSpell
+            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+        {
+            var wrapper = Cache.Get<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString());
+            if (wrapper != null && wrapper.SummonerSpellData == summonerSpellData && wrapper.Language == language)
+            {
+                return wrapper.SummonerSpellStatic;
+            }
+            else
+            {
+                var listWrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
+                if (listWrapper != null && listWrapper.SummonerSpellData == summonerSpellData
+                    && listWrapper.Language == language)
+                {
+                    if (listWrapper.SummonerSpellListStatic.Data.ContainsKey(summonerSpell.ToCustomString()))
+                    {
+                        return listWrapper.SummonerSpellListStatic.Data[summonerSpell.ToCustomString()];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var json = await requester.CreateRequestAsync(string.Format(SummonerSpellRootUrl, region.ToString())
+                        + string.Format(IdUrl, summonerSpell.ToCustomString())
+                        , new List<string>() { string.Format("locale={0}", language.ToString())
+                            , summonerSpellData == SummonerSpellData.none ? string.Empty
+                                : string.Format("spellData={0}", summonerSpellData.ToString()) });
+                    var spell = await JsonConvert.DeserializeObjectAsync<SummonerSpellStatic>(json);
+                    Cache.Add<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString()
+                        , new SummonerSpellStaticWrapper(spell, language, summonerSpellData));
+                    return spell;
                 }
             }
         }
