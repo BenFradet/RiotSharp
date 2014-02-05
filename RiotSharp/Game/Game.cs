@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Class representing a Game in the API.
+    /// </summary>
     public class Game : Thing
     {
         public Game(JToken json)
