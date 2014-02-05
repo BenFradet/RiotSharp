@@ -7,6 +7,7 @@ C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 - No need to worry about the 10 requests per 10s or the 500 requests per 10m rate limits, they are already implemented in the wrapper
 - LINQ support
 - Synchronous and asynchronous API
+- Caching for the Static API
 
 ##Installation
 
