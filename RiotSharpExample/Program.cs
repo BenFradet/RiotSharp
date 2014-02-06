@@ -20,11 +20,11 @@ namespace RiotSharpExample
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
 
-            var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
+            //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
 
-            spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
+            //spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
 
-            var spells = staticApi.GetSummonerSpells(Region.euw);
+            //var spells = staticApi.GetSummonerSpells(Region.euw);
 
             var item = staticApi.GetItems(Region.euw);
 

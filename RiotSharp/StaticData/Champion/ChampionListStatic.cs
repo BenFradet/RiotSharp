@@ -32,13 +32,13 @@ namespace RiotSharp
         public Dictionary<int, string> Keys { get; set; }
 
         /// <summary>
-        /// Type of the data retrieved, here "champion".
+        /// TAPI type (item).
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
         /// <summary>
-        /// Version of the api.
+        /// Version of the API.
         /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; }
