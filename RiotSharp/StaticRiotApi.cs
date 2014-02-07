@@ -298,9 +298,9 @@ namespace RiotSharp
                 var listWrapper = Cache.Get<MasteryListStaticWrapper>(MasteriesCacheKey);
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.MasteryData == masteryData)
                 {
-                    if (listWrapper.MasteryListStatic.Data.ContainsKey(masteryId))
+                    if (listWrapper.MasteryListStatic.Masteries.ContainsKey(masteryId))
                     {
-                        return listWrapper.MasteryListStatic.Data[masteryId];
+                        return listWrapper.MasteryListStatic.Masteries[masteryId];
                     }
                     else
                     {
@@ -335,9 +335,9 @@ namespace RiotSharp
                 var listWrapper = Cache.Get<MasteryListStaticWrapper>(MasteriesCacheKey);
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.MasteryData == masteryData)
                 {
-                    if (listWrapper.MasteryListStatic.Data.ContainsKey(masteryId))
+                    if (listWrapper.MasteryListStatic.Masteries.ContainsKey(masteryId))
                     {
-                        return listWrapper.MasteryListStatic.Data[masteryId];
+                        return listWrapper.MasteryListStatic.Masteries[masteryId];
                     }
                     else
                     {

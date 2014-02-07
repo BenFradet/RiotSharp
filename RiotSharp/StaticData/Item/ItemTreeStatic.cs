@@ -19,7 +19,7 @@ namespace RiotSharp
         public string Header { get; set; }
 
         /// <summary>
-        /// Tags available in this tree.
+        /// Tags available in this tree.    
         /// </summary>
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }

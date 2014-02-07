@@ -97,8 +97,8 @@ namespace RiotSharpTest
         {
             var masteries = api.GetMasteries(Region.euw, MasteryData.none);
 
-            Assert.IsNotNull(masteries.Data);
-            Assert.IsTrue(masteries.Data.Count > 0);
+            Assert.IsNotNull(masteries.Masteries);
+            Assert.IsTrue(masteries.Masteries.Count > 0);
         }
 
         [TestMethod]
@@ -107,8 +107,8 @@ namespace RiotSharpTest
         {
             var masteries = api.GetMasteriesAsync(Region.euw, MasteryData.none);
 
-            Assert.IsNotNull(masteries.Result.Data);
-            Assert.IsTrue(masteries.Result.Data.Count > 0);
+            Assert.IsNotNull(masteries.Result.Masteries);
+            Assert.IsTrue(masteries.Result.Masteries.Count > 0);
         }
 
         [TestMethod]
