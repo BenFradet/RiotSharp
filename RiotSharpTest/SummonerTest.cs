@@ -216,20 +216,20 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetLeaguesV22_Test()
+        [TestCategory("Summoner")]
+        public void GetEntireLeagues_Test()
         {
-            var leagues = summoner.GetLeaguesV22();
+            var leagues = summoner.GetEntireLeagues();
 
             Assert.IsNotNull(leagues);
             Assert.IsTrue(leagues.Count() > 0);
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesV22Async_Test()
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetEntireLeaguesAsync_Test()
         {
-            var leagues = summoner.GetLeaguesV22Async();
+            var leagues = summoner.GetEntireLeaguesAsync();
 
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);
@@ -237,9 +237,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetLeaguesV21_Test()
+        public void GetEntireLeaguesV22_Test()
         {
-            var leagues = summoner.GetLeaguesV21();
+            var leagues = summoner.GetEntireLeaguesV22();
 
             Assert.IsNotNull(leagues);
             Assert.IsTrue(leagues.Count() > 0);
@@ -247,9 +247,29 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesV21Async_Test()
+        public void GetEntireLeaguesV22Async_Test()
         {
-            var leagues = summoner.GetLeaguesV21Async();
+            var leagues = summoner.GetEntireLeaguesV22Async();
+
+            Assert.IsNotNull(leagues.Result);
+            Assert.IsTrue(leagues.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetEntireLeaguesV21_Test()
+        {
+            var leagues = summoner.GetEntireLeaguesV21();
+
+            Assert.IsNotNull(leagues);
+            Assert.IsTrue(leagues.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetEntireLeaguesV21Async_Test()
+        {
+            var leagues = summoner.GetEntireLeaguesV21Async();
 
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);

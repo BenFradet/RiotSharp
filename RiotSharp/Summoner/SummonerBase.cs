@@ -29,6 +29,7 @@ namespace RiotSharp
         private const string LeagueV22RootUrl = "/api/lol/{0}/v2.2/league";
         private const string LeagueRootUrl = "/api/lol/{0}/v2.3/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
+        private const string LeagueBySummonerEntryUrl = "/entry";
 
         private const string StatsV11RootUrl = "/api/lol/{0}/v1.1/stats";
         private const string StatsRootUrl = "/api/lol/{0}/v1.2/stats";
@@ -281,11 +282,25 @@ namespace RiotSharp
             return new Collection<GameV11>(json, requester, region, "games");
         }
 
+        public List<LeagueItem> GetLeagues()
+        {
+            var json = requester.CreateRequest(string.Format(LeagueRootUrl, region)
+                + string.Format(LeagueBySummonerUrl, Id) + LeagueBySummonerEntryUrl);
+            return JsonConvert.DeserializeObject<List<LeagueItem>>(json);
+        }
+
+        public async Task<List<LeagueItem>> GetLeaguesAsync()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(LeagueRootUrl, region)
+                + string.Format(LeagueBySummonerUrl, Id) + LeagueBySummonerEntryUrl);
+            return await JsonConvert.DeserializeObjectAsync<List<LeagueItem>>(json);
+        }
+
         /// <summary>
         /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
         /// </summary>
         /// <returns>Collection of leagues.</returns>
-        public List<League> GetLeagues()
+        public List<League> GetEntireLeagues()
         {
             var json = requester.CreateRequest(string.Format(LeagueRootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
@@ -296,7 +311,7 @@ namespace RiotSharp
         /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams asynchronously.
         /// </summary>
         /// <returns>Collection of leagues.</returns>
-        public async Task<List<League>> GetLeaguesAsync()
+        public async Task<List<League>> GetEntireLeaguesAsync()
         {
             var json = await requester.CreateRequestAsync(string.Format(LeagueRootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
@@ -308,7 +323,7 @@ namespace RiotSharp
         /// </summary>
         /// <returns>Collection of leagues.</returns>
         [Obsolete("The league api v2.2 is deprecated, please use GetLeagues() instead.")]
-        public Collection<LeagueV22> GetLeaguesV22()
+        public Collection<LeagueV22> GetEntireLeaguesV22()
         {
             var json = requester.CreateRequest(string.Format(LeagueV22RootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
@@ -320,7 +335,7 @@ namespace RiotSharp
         /// </summary>
         /// <returns>Collection of leagues.</returns>
         [Obsolete("The league api v2.1 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<Collection<LeagueV22>> GetLeaguesV22Async()
+        public async Task<Collection<LeagueV22>> GetEntireLeaguesV22Async()
         {
             var json = await requester.CreateRequestAsync(string.Format(LeagueV22RootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
@@ -332,7 +347,7 @@ namespace RiotSharp
         /// </summary>
         /// <returns>Collection of leagues.</returns>
         [Obsolete("The league api v2.1 is deprecated, please use GetLeagues() instead.")]
-        public Collection<LeagueV21> GetLeaguesV21()
+        public Collection<LeagueV21> GetEntireLeaguesV21()
         {
             var json = requester.CreateRequest(string.Format(LeagueV21RootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
@@ -344,7 +359,7 @@ namespace RiotSharp
         /// </summary>
         /// <returns>Collection of leagues.</returns>
         [Obsolete("The league api v2.1 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<Collection<LeagueV21>> GetLeaguesV21Async()
+        public async Task<Collection<LeagueV21>> GetEntireLeaguesV21Async()
         {
             var json = await requester.CreateRequestAsync(string.Format(LeagueV21RootUrl, region)
                 + string.Format(LeagueBySummonerUrl, Id));
