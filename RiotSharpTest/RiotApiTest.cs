@@ -302,5 +302,25 @@ namespace RiotSharpTest
             Assert.IsNotNull(runes);
             Assert.IsTrue(runes.Result.Count == 2);
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetChallengerLeague_Test()
+        {
+            var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
+
+            Assert.IsNotNull(league.Entries);
+            Assert.IsTrue(league.Entries.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChallengerLeagueAsync_Test()
+        {
+            var league = api.GetChallengerLeagueAsync(Region.euw, Queue.RankedSolo5x5);
+
+            Assert.IsNotNull(league.Result.Entries);
+            Assert.IsTrue(league.Result.Entries.Count > 0);
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace RiotSharp
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
 
+        private const string ChallengerLeagueRootUrl = "/api/lol/{0}/v2.3/league/challenger";
+
         private RateLimitedRequester requester;
 
         internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
@@ -538,6 +540,20 @@ namespace RiotSharp
                     , new Collection<RunePage>(neededJson.ToString(), requester, region, "pages"));
             }
             return dict;
+        }
+
+        public League GetChallengerLeague(Region region, Queue queue)
+        {
+            var json = requester.CreateRequest(string.Format(ChallengerLeagueRootUrl, region.ToString())
+                , new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
+            return JsonConvert.DeserializeObject<League>(json);
+        }
+
+        public async Task<League> GetChallengerLeagueAsync(Region region, Queue queue)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(ChallengerLeagueRootUrl, region.ToString())
+                , new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
+            return await JsonConvert.DeserializeObjectAsync<League>(json);
         }
 
         private string BuildIdsString(List<int> ids)

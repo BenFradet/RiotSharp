@@ -15,4 +15,22 @@ namespace RiotSharp
         RankedTeam3x3,
         RankedTeam5x5
     }
+
+    static class QueueExtension
+    {
+        public static string ToCustomString(this Queue queue)
+        {
+            switch (queue)
+            {
+                case Queue.RankedSolo5x5:
+                    return "RANKED_SOLO_5x5";
+                case Queue.RankedTeam3x3:
+                    return "RANKED_TEAM_3x3";
+                case Queue.RankedTeam5x5:
+                    return "RANKED_TEAM_5x5";
+                default:
+                    return string.Empty;
+            }
+        }
+    }
 }

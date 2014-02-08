@@ -20,29 +20,31 @@ namespace RiotSharpExample
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
 
+            var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
+
             //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
 
             //spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
 
             //var spells = staticApi.GetSummonerSpells(Region.euw);
 
-            var item = staticApi.GetItems(Region.euw);
+            //var item = staticApi.GetItems(Region.euw);
 
-            var items = staticApi.GetItemsAsync(Region.euw);
+            //var items = staticApi.GetItemsAsync(Region.euw);
 
-            items = staticApi.GetItemsAsync(Region.euw);
+            //items = staticApi.GetItemsAsync(Region.euw);
 
-            //var champ1 = staticApi.GetChampion(Region.euw, 1, ChampionData.none);
+            ////var champ1 = staticApi.GetChampion(Region.euw, 1, ChampionData.none);
 
-            var champs = staticApi.GetChampions(Region.euw);
+            //var champs = staticApi.GetChampions(Region.euw);
 
-            var champSame = staticApi.GetChampion(Region.euw, 1);
+            //var champSame = staticApi.GetChampion(Region.euw, 1);
 
-            var champ = staticApi.GetChampion(Region.euw, 1);
+            //var champ = staticApi.GetChampion(Region.euw, 1);
 
-            champs = staticApi.GetChampions(Region.euw);
+            //champs = staticApi.GetChampions(Region.euw);
 
-            champs = staticApi.GetChampions(Region.euw, ChampionData.blurb, Language.ko_KR);
+            //champs = staticApi.GetChampions(Region.euw, ChampionData.blurb, Language.ko_KR);
 
             //var masteries = api.GetMasteryPages(Region.euw, new List<int> { id, id2 });
 
