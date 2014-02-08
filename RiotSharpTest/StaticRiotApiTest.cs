@@ -136,7 +136,7 @@ namespace RiotSharpTest
             var runes = api.GetRunes(Region.euw, RuneData.none);
 
             Assert.IsNotNull(runes);
-            Assert.IsTrue(runes.Data.Count > 0);
+            Assert.IsTrue(runes.Runes.Count > 0);
         }
 
         [TestMethod]
@@ -146,7 +146,7 @@ namespace RiotSharpTest
             var runes = api.GetRunesAsync(Region.euw, RuneData.none);
 
             Assert.IsNotNull(runes.Result);
-            Assert.IsTrue(runes.Result.Data.Count > 0);
+            Assert.IsTrue(runes.Result.Runes.Count > 0);
         }
 
         [TestMethod]
@@ -173,8 +173,8 @@ namespace RiotSharpTest
         {
             var spells = api.GetSummonerSpells(Region.euw, SummonerSpellData.none);
 
-            Assert.IsNotNull(spells.Data);
-            Assert.IsTrue(spells.Data.Count > 0);
+            Assert.IsNotNull(spells.SummonerSpells);
+            Assert.IsTrue(spells.SummonerSpells.Count > 0);
         }
 
         [TestMethod]
@@ -183,8 +183,8 @@ namespace RiotSharpTest
         {
             var spells = api.GetSummonerSpellsAsync(Region.euw, SummonerSpellData.none);
 
-            Assert.IsNotNull(spells.Result.Data);
-            Assert.IsTrue(spells.Result.Data.Count > 0);
+            Assert.IsNotNull(spells.Result.SummonerSpells);
+            Assert.IsTrue(spells.Result.SummonerSpells.Count > 0);
         }
 
         [TestMethod]

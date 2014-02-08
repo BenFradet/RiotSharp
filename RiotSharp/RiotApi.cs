@@ -542,6 +542,12 @@ namespace RiotSharp
             return dict;
         }
 
+        /// <summary>
+        /// Get the challenger league for a particular queue.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a challenger league.</param>
+        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
+        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
         public League GetChallengerLeague(Region region, Queue queue)
         {
             var json = requester.CreateRequest(string.Format(ChallengerLeagueRootUrl, region.ToString())
@@ -549,6 +555,12 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<League>(json);
         }
 
+        /// <summary>
+        /// Get the challenger league for a particular queue asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a challenger league.</param>
+        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
+        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
         public async Task<League> GetChallengerLeagueAsync(Region region, Queue queue)
         {
             var json = await requester.CreateRequestAsync(string.Format(ChallengerLeagueRootUrl, region.ToString())

@@ -282,6 +282,10 @@ namespace RiotSharp
             return new Collection<GameV11>(json, requester, region, "games");
         }
 
+        /// <summary>
+        /// Retrieve the league items for this specific summoner and not the entire league.
+        /// </summary>
+        /// <returns>A list of league items for each league the summoner is in.</returns>
         public List<LeagueItem> GetLeagues()
         {
             var json = requester.CreateRequest(string.Format(LeagueRootUrl, region)
@@ -289,6 +293,10 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<List<LeagueItem>>(json);
         }
 
+        /// <summary>
+        /// Retrieve the league items for this specific summoner and not the entire league asynchronously.
+        /// </summary>
+        /// <returns>A list of league items for each league the summoner is in.</returns>
         public async Task<List<LeagueItem>> GetLeaguesAsync()
         {
             var json = await requester.CreateRequestAsync(string.Format(LeagueRootUrl, region)

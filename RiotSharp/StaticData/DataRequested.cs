@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enum when requesting data for the Champion Static API.
+    /// </summary>
     public enum ChampionData
     {
         none,
@@ -25,6 +28,9 @@ namespace RiotSharp
         recommended
     }
 
+    /// <summary>
+    /// Enum when requesting data for the Item Static API.
+    /// </summary>
     public enum ItemData
     {
         none,
@@ -38,6 +44,9 @@ namespace RiotSharp
         stats
     }
 
+    /// <summary>
+    /// Enum when requesting data for the Mastery Static API.
+    /// </summary>
     public enum MasteryData
     {
         none,
@@ -47,6 +56,9 @@ namespace RiotSharp
         image
     }
 
+    /// <summary>
+    /// Enum when requesting data for the Rune Static API.
+    /// </summary>
     public enum RuneData
     {
         none,
@@ -58,6 +70,9 @@ namespace RiotSharp
         plaintext
     }
 
+    /// <summary>
+    /// Enum when requesting data for the SummonerSpell Static API.
+    /// </summary>
     public enum SummonerSpellData
     {
         none,

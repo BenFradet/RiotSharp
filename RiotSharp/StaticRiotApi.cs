@@ -405,9 +405,9 @@ namespace RiotSharp
                 var listWrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
                 if(listWrapper != null && listWrapper.Language == language && listWrapper.RuneData == runeData)
                 {
-                    if(listWrapper.RuneListStatic.Data.ContainsKey(runeId))
+                    if(listWrapper.RuneListStatic.Runes.ContainsKey(runeId))
                     {
-                        return listWrapper.RuneListStatic.Data[runeId];
+                        return listWrapper.RuneListStatic.Runes[runeId];
                     }
                     else
                     {
@@ -441,9 +441,9 @@ namespace RiotSharp
                 var listWrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.RuneData == runeData)
                 {
-                    if (listWrapper.RuneListStatic.Data.ContainsKey(runeId))
+                    if (listWrapper.RuneListStatic.Runes.ContainsKey(runeId))
                     {
-                        return listWrapper.RuneListStatic.Data[runeId];
+                        return listWrapper.RuneListStatic.Runes[runeId];
                     }
                     else
                     {
@@ -512,9 +512,9 @@ namespace RiotSharp
                 if (listWrapper != null && listWrapper.SummonerSpellData == summonerSpellData
                     && listWrapper.Language == language)
                 {
-                    if (listWrapper.SummonerSpellListStatic.Data.ContainsKey(summonerSpell.ToCustomString()))
+                    if (listWrapper.SummonerSpellListStatic.SummonerSpells.ContainsKey(summonerSpell.ToCustomString()))
                     {
-                        return listWrapper.SummonerSpellListStatic.Data[summonerSpell.ToCustomString()];
+                        return listWrapper.SummonerSpellListStatic.SummonerSpells[summonerSpell.ToCustomString()];
                     }
                     else
                     {
@@ -550,9 +550,9 @@ namespace RiotSharp
                 if (listWrapper != null && listWrapper.SummonerSpellData == summonerSpellData
                     && listWrapper.Language == language)
                 {
-                    if (listWrapper.SummonerSpellListStatic.Data.ContainsKey(summonerSpell.ToCustomString()))
+                    if (listWrapper.SummonerSpellListStatic.SummonerSpells.ContainsKey(summonerSpell.ToCustomString()))
                     {
-                        return listWrapper.SummonerSpellListStatic.Data[summonerSpell.ToCustomString()];
+                        return listWrapper.SummonerSpellListStatic.SummonerSpells[summonerSpell.ToCustomString()];
                     }
                     else
                     {

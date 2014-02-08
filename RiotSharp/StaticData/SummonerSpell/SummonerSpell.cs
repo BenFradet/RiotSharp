@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Enum representing the different summon spells.
+    /// </summary>
     public enum SummonerSpell
     {
         Barrier,
