@@ -11,12 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// Class representing Champion in the API.
     /// </summary>
-    public class Champion : Thing
+    public class Champion
     {
-        public Champion(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal Champion() { }
 
         /// <summary>
         /// Indicates if the champion is active.

@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Information about team members (Team API).
     /// </summary>
-    public class TeamMemberInfo : Thing
+    public class TeamMemberInfo
     {
+        internal TeamMemberInfo() { }
+
         /// <summary>
         /// Date this team member was invited.
         /// </summary>

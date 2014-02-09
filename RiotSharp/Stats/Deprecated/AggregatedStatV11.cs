@@ -12,8 +12,10 @@ namespace RiotSharp
     /// AggregatedStat (Stats API).
     /// </summary>
     [Obsolete("The stats api v1.1 is deprecated, please use AggregatedStat instead.")]
-    public class AggregatedStatV11 : Thing
+    public class AggregatedStatV11
     {
+        internal AggregatedStatV11() { }
+
         /// <summary>
         /// Aggregated stat value.
         /// </summary>

@@ -11,12 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// Page of masteries (Summoner API).
     /// </summary>
-    public class MasteryPage : Thing
+    public class MasteryPage
     {
-        public MasteryPage(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal MasteryPage() { }
 
         /// <summary>
         /// Indicates if the mastery page is the current mastery page.

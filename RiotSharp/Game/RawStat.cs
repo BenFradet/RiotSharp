@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Raw stat of a game (Game API).
     /// </summary>
-    public class RawStat : Thing
+    public class RawStat
     {
+        internal RawStat() { }
+
         /// <summary>
         /// Number of assists during the game.
         /// </summary>

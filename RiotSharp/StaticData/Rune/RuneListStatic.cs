@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class RuneListStatic
     {
+        internal RuneListStatic() { }
+
         /// <summary>
         /// Basic data (empty object so far).
         /// </summary>

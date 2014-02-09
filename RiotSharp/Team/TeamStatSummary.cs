@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Stat summary of the team (Team API).
     /// </summary>
-    public class TeamStatSummary : Thing
+    public class TeamStatSummary
     {
+        internal TeamStatSummary() { }
+
         /// <summary>
         /// Team id.
         /// </summary>

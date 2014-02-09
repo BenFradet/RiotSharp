@@ -11,8 +11,17 @@ namespace RiotSharp
     /// </summary>
     public enum Queue
     {
+        /// <summary>
+        /// Solo queue 5 vs 5.
+        /// </summary>
         RankedSolo5x5,
+        /// <summary>
+        /// Team 3 vs 3.
+        /// </summary>
         RankedTeam3x3,
+        /// <summary>
+        /// Team 5 vs 5.
+        /// </summary>
         RankedTeam5x5
     }
 

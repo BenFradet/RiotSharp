@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ChampionStatic
     {
+        internal ChampionStatic() { }
+
         /// <summary>
         /// List of tips to use while playing this champion.
         /// </summary>

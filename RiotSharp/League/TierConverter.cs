@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    internal class TierConverter : JsonConverter
+    class TierConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

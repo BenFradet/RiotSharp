@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class GoldStatic
     {
+        internal GoldStatic() { }
+
         /// <summary>
         /// Base price of an item.
         /// </summary>

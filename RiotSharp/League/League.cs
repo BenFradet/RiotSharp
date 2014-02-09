@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a League in the API.
     /// </summary>
-    public class League : Thing
+    public class League
     {
+        internal League() { }
+
         /// <summary>
         /// LeagueItems associated with this League.
         /// </summary>

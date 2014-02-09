@@ -12,14 +12,9 @@ namespace RiotSharp
     /// Stats summary of a player (Stats API).
     /// </summary>
     [Obsolete("The stats api v1.1 is deprecated, please use PlayerStatsSummary instead.")]
-    public class PlayerStatsSummaryV11 : Thing
+    public class PlayerStatsSummaryV11
     {
-        public PlayerStatsSummaryV11() { }
-
-        public PlayerStatsSummaryV11(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal PlayerStatsSummaryV11() { }
 
         /// <summary>
         /// List of aggregated stats.

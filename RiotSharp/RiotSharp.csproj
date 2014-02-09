@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Champion\ChampionList.cs" />
     <Compile Include="Game\Deprecated\GameV12.cs" />
+    <Compile Include="Game\Deprecated\RecentGamesV11.cs" />
+    <Compile Include="Game\Deprecated\RecentGamesV12.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameMode.cs" />
     <Compile Include="Game\GameModeConverter.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Game\RawStat.cs" />
     <Compile Include="Game\GameSubType.cs" />
     <Compile Include="Game\GameSubTypeConverter.cs" />
+    <Compile Include="Game\RecentGames.cs" />
     <Compile Include="Misc\Language.cs" />
     <Compile Include="League\Deprecated\LeagueV22.cs" />
     <Compile Include="League\League.cs" />
@@ -120,9 +124,14 @@
     <Compile Include="Game\Deprecated\GameV11.cs" />
     <Compile Include="League\Deprecated\LeagueV21.cs" />
     <Compile Include="League\Deprecated\LeagueItemV21.cs" />
+    <Compile Include="Stats\Deprecated\PlayerStatsSummaryListV11.cs" />
+    <Compile Include="Stats\Deprecated\RankedStatsV11.cs" />
     <Compile Include="Stats\PlayerStatsSummary.cs" />
+    <Compile Include="Stats\PlayerStatsSummaryList.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
     <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
+    <Compile Include="Stats\RankedStats.cs" />
+    <Compile Include="Summoner\Deprecated\MasteryPagesV11.cs" />
     <Compile Include="Summoner\Deprecated\MasteryPageV11.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="League\MiniSeriesConverter.cs" />
@@ -130,19 +139,21 @@
     <Compile Include="Stats\Deprecated\PlayerStatsSummaryV11.cs" />
     <Compile Include="Game\Deprecated\RawStatV12.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
+    <Compile Include="Summoner\MasteryPages.cs" />
     <Compile Include="Summoner\Rune.cs" />
     <Compile Include="Summoner\RuneConverter.cs" />
     <Compile Include="Summoner\RunePage.cs" />
+    <Compile Include="Summoner\RunePages.cs" />
     <Compile Include="Summoner\RuneSlot.cs" />
     <Compile Include="Stats\Season.cs" />
     <Compile Include="Summoner\Summoner.cs" />
     <Compile Include="Summoner\SummonerBase.cs" />
-    <Compile Include="Collection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Misc\Region.cs" />
     <Compile Include="RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\Deprecated\SummonerV11.cs" />
+    <Compile Include="Summoner\SummonerBaseList.cs" />
     <Compile Include="Summoner\Talent.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />
     <Compile Include="Team\MessageOfDay.cs" />
@@ -151,7 +162,6 @@
     <Compile Include="Team\TeamMemberInfo.cs" />
     <Compile Include="Team\TeamStatDetail.cs" />
     <Compile Include="Team\TeamStatSummary.cs" />
-    <Compile Include="Thing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Team\Deprecated\" />

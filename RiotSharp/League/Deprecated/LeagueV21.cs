@@ -12,12 +12,9 @@ namespace RiotSharp
     /// Class representing a League in the API.
     /// </summary>
     [Obsolete("The league api v2.1 is deprecated, please use League instead.")]
-    public class LeagueV21 : Thing
+    public class LeagueV21
     {
-        public LeagueV21(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal LeagueV21() { }
 
         /// <summary>
         /// LeagueItems associated with this League.

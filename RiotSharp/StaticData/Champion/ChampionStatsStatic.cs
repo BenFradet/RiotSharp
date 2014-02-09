@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ChampionStatsStatic
     {
+        internal ChampionStatsStatic() { }
+
         /// <summary>
         /// Base armor.
         /// </summary>

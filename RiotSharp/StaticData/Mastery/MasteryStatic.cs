@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class MasteryStatic
     {
+        internal MasteryStatic() { }
+
         /// <summary>
         /// List of string descripting the mastery.
         /// </summary>

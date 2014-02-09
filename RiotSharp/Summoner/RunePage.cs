@@ -12,12 +12,9 @@ namespace RiotSharp
     /// <summary>
     /// Page of runes (Summoner API).
     /// </summary>
-    public class RunePage : Thing
+    public class RunePage
     {
-        public RunePage(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal RunePage() { }
 
         /// <summary>
         /// Indicates if the page is the current page.

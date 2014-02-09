@@ -11,12 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a Game in the API.
     /// </summary>
-    public class Game : Thing
+    public class Game
     {
-        public Game(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal Game() { }
 
         /// <summary>
         /// Champion ID associated with game.

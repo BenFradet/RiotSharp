@@ -12,12 +12,9 @@ namespace RiotSharp
     /// Stats for all champions (Stats API).
     /// </summary>
     [Obsolete("The stats api v1.1 is deprecated, please use ChampionStats instead.")]
-    public class ChampionStatsV11 : Thing
+    public class ChampionStatsV11
     {
-        public ChampionStatsV11(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal ChampionStatsV11() { }
 
         /// <summary>
         /// Champion id.

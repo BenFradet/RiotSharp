@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ItemListStatic
     {
+        internal ItemListStatic() { }
+
         /// <summary>
         /// Basic data about the items retrieved.
         /// </summary>

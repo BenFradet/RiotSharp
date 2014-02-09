@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Player in the game (Game API).
     /// </summary>
-    public class Player : Thing
+    public class Player
     {
+        internal Player() { }
+
         /// <summary>
         /// Champion id associated with player.
         /// </summary>

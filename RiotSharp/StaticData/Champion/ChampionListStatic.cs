@@ -13,6 +13,8 @@ namespace RiotSharp
     /// </summary>
     public class ChampionListStatic
     {
+        internal ChampionListStatic() { }
+
         /// <summary>
         /// Map of champions indexed by their name.
         /// </summary>

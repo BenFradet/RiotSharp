@@ -12,12 +12,9 @@ namespace RiotSharp
     /// Page of masteries (Summoner API).
     /// </summary>
     [Obsolete("The summoner api v1.1 is deprecated, please use MasteryPage instead.")]
-    public class MasteryPageV11 : Thing
+    public class MasteryPageV11
     {
-        public MasteryPageV11(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal MasteryPageV11() { }
 
         /// <summary>
         /// Indicates if the mastery page is the current mastery page.

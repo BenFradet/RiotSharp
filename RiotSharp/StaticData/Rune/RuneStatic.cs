@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class RuneStatic
     {
+        internal RuneStatic() { }
+
         /// <summary>
         /// String descripting the rune.
         /// </summary>

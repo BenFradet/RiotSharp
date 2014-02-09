@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ItemRuneStatic
     {
+        internal ItemRuneStatic() { }
+
         /// <summary>
         /// Whether this item is a rune or not.
         /// </summary>

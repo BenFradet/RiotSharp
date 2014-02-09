@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class SkinStatic
     {
+        internal SkinStatic() { }
+
         /// <summary>
         /// Id of the skin.
         /// </summary>

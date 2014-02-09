@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    internal class TimeSpanConverterFromS : JsonConverter
+    class TimeSpanConverterFromS : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

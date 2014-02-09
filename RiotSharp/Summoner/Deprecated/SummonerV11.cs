@@ -14,9 +14,8 @@ namespace RiotSharp
     /// </summary>
     public class SummonerV11 : SummonerBase
     {
-        internal SummonerV11(string summoner, RateLimitedRequester requester, Region region)
-            : base(summoner, requester, region) { }
-        
+        internal SummonerV11() : base() { }
+
         /// <summary>
         /// ID of the summoner icon associated with the summoner.
         /// </summary>

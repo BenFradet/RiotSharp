@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ItemTreeStatic
     {
+        internal ItemTreeStatic() { }
+
         /// <summary>
         /// Tree's header (Tools, Defense, Attack, Magic, Movement).
         /// </summary>

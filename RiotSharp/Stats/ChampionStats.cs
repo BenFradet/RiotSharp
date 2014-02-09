@@ -11,12 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// Stats for all champions (Stats API).
     /// </summary>
-    public class ChampionStats : Thing
+    public class ChampionStats
     {
-        public ChampionStats(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal ChampionStats() { }
 
         /// <summary>
         /// Champion id.

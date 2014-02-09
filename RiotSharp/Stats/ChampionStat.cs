@@ -13,11 +13,7 @@ namespace RiotSharp
     /// </summary>
     public class ChampionStat : AggregatedStat
     {
-        public ChampionStat()
-            : base() { }
-
-        public ChampionStat(JToken json)
-            : base(json) { }
+        internal ChampionStat() : base() { }
 
         /// <summary>
         /// Maximum number of deaths, only returned for ranked stats.

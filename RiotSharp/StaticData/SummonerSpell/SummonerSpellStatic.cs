@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class SummonerSpellStatic
     {
+        internal SummonerSpellStatic() { }
+
         /// <summary>
         /// List of cooldowns for this spell.
         /// </summary>

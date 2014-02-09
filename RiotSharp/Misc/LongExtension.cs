@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    internal static class LongExtension
+    static class LongExtension
     {
         public static DateTime ToDateTimeFromMilliSeconds(this long millis)
         {

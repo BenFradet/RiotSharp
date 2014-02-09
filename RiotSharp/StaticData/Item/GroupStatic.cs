@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class GroupStatic
     {
+        internal GroupStatic() { }
+
         /// <summary>
         /// Max group ownable.
         /// </summary>

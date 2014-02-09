@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class SummonerSpellVarStatic
     {
+        internal SummonerSpellVarStatic() { }
+
         /// <summary>
         /// Coeff for this summoner spell for the summoner's level.
         /// </summary>

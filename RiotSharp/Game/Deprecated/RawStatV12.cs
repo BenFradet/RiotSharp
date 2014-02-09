@@ -12,8 +12,10 @@ namespace RiotSharp
     /// Raw stat of a game (Game API).
     /// </summary>
     [Obsolete("The game api v1.2 is deprecated, please use RawStat instead.")]
-    public class RawStatV12 : Thing
+    public class RawStatV12
     {
+        internal RawStatV12() { }
+
         /// <summary>
         /// Raw stat ID.
         /// </summary>

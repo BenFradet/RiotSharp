@@ -11,9 +11,11 @@ namespace RiotSharp
     /// <summary>
     /// Rune (Summoner API).
     /// </summary>
-    public class Rune : Thing
+    public class Rune
     {
-        public Rune(JToken json)
+        internal Rune() { }
+
+        internal Rune(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }

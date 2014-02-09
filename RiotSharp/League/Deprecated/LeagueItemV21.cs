@@ -12,8 +12,10 @@ namespace RiotSharp
     /// Team or summoner in a league (League API).
     /// </summary>
     [Obsolete("The league api v2.1 is deprecated, please use LeagueItem instead.")]
-    public class LeagueItemV21 : Thing
+    public class LeagueItemV21
     {
+        internal LeagueItemV21() { }
+
         /// <summary>
         /// Has this summoner just entered the league?
         /// </summary>

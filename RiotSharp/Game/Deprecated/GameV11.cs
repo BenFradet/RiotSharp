@@ -12,12 +12,9 @@ namespace RiotSharp
     /// Class representing a Game in the API.
     /// </summary>
     [Obsolete("The game api v1.1 is deprecated, please use Game instead.")]
-    public class GameV11 : Thing
+    public class GameV11
     {
-        public GameV11(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal GameV11() { }
 
         /// <summary>
         /// Champion ID associated with game.

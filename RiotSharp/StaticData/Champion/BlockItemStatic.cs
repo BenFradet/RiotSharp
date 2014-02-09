@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class BlockItemStatic
     {
+        internal BlockItemStatic() { }
+
         /// <summary>
         /// Recommended count.
         /// </summary>

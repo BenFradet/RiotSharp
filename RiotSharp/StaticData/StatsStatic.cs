@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class StatsStatic
     {
+        internal StatsStatic() { }
+
         public double FlatArmorMod { get; set; }
 
         public double FlatAttackSpeedMod { get; set; }

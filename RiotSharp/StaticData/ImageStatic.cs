@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ImageStatic
     {
+        internal ImageStatic() { }
+
         /// <summary>
         /// Full name for this image.
         /// </summary>

@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class RuneTypeStatic
     {
+        internal RuneTypeStatic() { }
+
         /// <summary>
         /// Boolean indicating whether this is a rune.
         /// </summary>

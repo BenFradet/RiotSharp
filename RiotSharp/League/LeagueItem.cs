@@ -13,6 +13,8 @@ namespace RiotSharp
     /// </summary>
     public class LeagueItem
     {
+        internal LeagueItem() { }
+
         /// <summary>
         /// Has this summoner just entered the league?
         /// </summary>

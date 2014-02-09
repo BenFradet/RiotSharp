@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Summary of the match history of the team (Team API).
     /// </summary>
-    public class MatchHistorySummary : Thing
+    public class MatchHistorySummary
     {
+        internal MatchHistorySummary() { }
+
         /// <summary>
         /// Number of assists.
         /// </summary>

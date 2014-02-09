@@ -11,14 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// Stats summary of a player (Stats API).
     /// </summary>
-    public class PlayerStatsSummary : Thing
+    public class PlayerStatsSummary
     {
-        public PlayerStatsSummary() { }
-
-        public PlayerStatsSummary(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal PlayerStatsSummary() { }
 
         /// <summary>
         /// Aggregated stats.

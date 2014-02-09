@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class SpellStatic
     {
+        internal SpellStatic() { }
+
         /// <summary>
         /// List of the cooldowns for each level of the spell.
         /// </summary>

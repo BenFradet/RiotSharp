@@ -11,22 +11,73 @@ namespace RiotSharp
     /// </summary>
     public enum SummonerSpell
     {
+        /// <summary>
+        /// Barrier.
+        /// </summary>
         Barrier,
+        /// <summary>
+        /// Surge.
+        /// </summary>
         Surge,
+        /// <summary>
+        /// Cleanse.
+        /// </summary>
         Cleanse,
+        /// <summary>
+        /// Clairvoyance.
+        /// </summary>
         Clairvoyance,
+        /// <summary>
+        /// Ignite.
+        /// </summary>
         Ignite,
+        /// <summary>
+        /// Exhaust.
+        /// </summary>
         Exhaust,
+        /// <summary>
+        /// Flash.
+        /// </summary>
         Flash,
+        /// <summary>
+        /// Fortify.
+        /// </summary>
         Fortify,
+        /// <summary>
+        /// Ghost.
+        /// </summary>
         Ghost,
+        /// <summary>
+        /// Heal.
+        /// </summary>
         Heal,
+        /// <summary>
+        /// Clarity.
+        /// </summary>
         Clarity,
+        /// <summary>
+        /// Garrison.
+        /// </summary>
         Garrison,
+        /// <summary>
+        /// Promote
+        /// </summary>
         Promote,
+        /// <summary>
+        /// Rally.
+        /// </summary>
         Rally,
+        /// <summary>
+        /// Revive.
+        /// </summary>
         Revive,
+        /// <summary>
+        /// Smite.
+        /// </summary>
         Smite,
+        /// <summary>
+        /// Teleport.
+        /// </summary>
         Teleport
     }
 

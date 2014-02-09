@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class PassiveStatic
     {
+        internal PassiveStatic() { }
+
         /// <summary>
         /// String descripting the passive.
         /// </summary>

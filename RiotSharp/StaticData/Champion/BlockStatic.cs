@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class BlockStatic
     {
+        internal BlockStatic() { }
+
         /// <summary>
         /// List of recommended items.
         /// </summary>

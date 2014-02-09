@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class ItemStatic
     {
+        internal ItemStatic() { }
+
         /// <summary>
         /// Equals ";".
         /// </summary>

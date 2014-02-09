@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    internal class RuneConverter : JsonConverter
+    class RuneConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

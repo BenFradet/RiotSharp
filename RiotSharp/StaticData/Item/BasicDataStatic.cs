@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class BasicDataStatic
     {
+        internal BasicDataStatic() { }
+
         /// <summary>
         /// Equals ";"
         /// </summary>

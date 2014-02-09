@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class SummonerSpellListStatic
     {
+        internal SummonerSpellListStatic() { }
+
         /// <summary>
         /// Map of summoner spells indexed by their name.
         /// </summary>

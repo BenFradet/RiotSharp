@@ -11,9 +11,11 @@ namespace RiotSharp
     /// <summary>
     /// LeagueItem has entered a MiniSeries (League API).
     /// </summary>
-    public class MiniSeries : Thing
+    public class MiniSeries
     {
-        public MiniSeries(JToken json)
+        internal MiniSeries() { }
+
+        internal MiniSeries(JToken json)
         {
             JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
         }

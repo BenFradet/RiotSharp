@@ -12,8 +12,10 @@ namespace RiotSharp
     /// Stat of a particular champion (League API).
     /// </summary>
     [Obsolete("The stats api v1.1 is deprecated, please use AggregatedStat instead.")]
-    public class ChampionStatV11 : Thing
+    public class ChampionStatV11
     {
+        internal ChampionStatV11() { }
+
         /// <summary>
         /// Count of samples (games) that make up the aggregated value, where relevant.
         /// </summary>

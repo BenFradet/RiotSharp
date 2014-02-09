@@ -11,8 +11,10 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a Team in the API.
     /// </summary>
-    public class Team : Thing
+    public class Team
     {
+        internal Team() { }
+
         /// <summary>
         /// Date of the team creation.
         /// </summary>

@@ -12,6 +12,8 @@ namespace RiotSharp
     /// </summary>
     public class MasteryListStatic
     {
+        internal MasteryListStatic() { }
+
         /// <summary>
         /// Map of masteries indexed by their id.
         /// </summary>

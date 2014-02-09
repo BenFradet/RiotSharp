@@ -11,8 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// Team stats (Team API).
     /// </summary>
-    public class TeamStatDetail : Thing
+    public class TeamStatDetail
     {
+        internal TeamStatDetail() { }
 
         /// <summary>
         /// Number of games played on average.

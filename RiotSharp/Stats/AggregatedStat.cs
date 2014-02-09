@@ -11,14 +11,9 @@ namespace RiotSharp
     /// <summary>
     /// AggregatedStat (Stats API).
     /// </summary>
-    public class AggregatedStat : Thing
+    public class AggregatedStat
     {
-        public AggregatedStat() { }
-
-        public AggregatedStat(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
+        internal AggregatedStat() { }
 
         /// <summary>
         /// Number of assists per game on average, dominion only.
