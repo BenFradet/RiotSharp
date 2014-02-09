@@ -24,7 +24,6 @@ namespace RiotSharpExample
 
             var tmp2 = tmp.GetTeams();
 
-
             var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
 
             //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);

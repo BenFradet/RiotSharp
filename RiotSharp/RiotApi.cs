@@ -70,7 +70,9 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            return JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.FirstOrDefault();
+            var obj = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.FirstOrDefault();
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -83,7 +85,9 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            return (await JsonConvert.DeserializeObjectAsync<Dictionary<long, Summoner>>(json)).Values.FirstOrDefault();
+            var obj = (await JsonConvert.DeserializeObjectAsync<Dictionary<long, Summoner>>(json)).Values.FirstOrDefault();
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -97,7 +101,9 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            return JsonConvert.DeserializeObject<Summoner>(json);
+            var obj = JsonConvert.DeserializeObject<Summoner>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -111,7 +117,9 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            return await JsonConvert.DeserializeObjectAsync<Summoner>(json);
+            var obj = await JsonConvert.DeserializeObjectAsync<Summoner>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -125,7 +133,9 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            return JsonConvert.DeserializeObject<SummonerV11>(json);
+            var obj =  JsonConvert.DeserializeObject<SummonerV11>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -139,7 +149,9 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(IdUrl, summonerId));
-            return await JsonConvert.DeserializeObjectAsync<SummonerV11>(json);
+            var obj = await JsonConvert.DeserializeObjectAsync<SummonerV11>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -152,7 +164,12 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, BuildIdsString(summonerIds)));
-            return JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
+            var list = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -165,7 +182,12 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(IdUrl, BuildIdsString(summonerIds)));
-            return (await JsonConvert.DeserializeObjectAsync<Dictionary<long, Summoner>>(json)).Values.ToList();
+            var list = (await JsonConvert.DeserializeObjectAsync<Dictionary<long, Summoner>>(json)).Values.ToList();
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -178,7 +200,9 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            return JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.FirstOrDefault();
+            var obj = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.FirstOrDefault();
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -191,7 +215,10 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            return (await JsonConvert.DeserializeObjectAsync<Dictionary<string, Summoner>>(json)).Values.FirstOrDefault();
+            var obj = 
+                (await JsonConvert.DeserializeObjectAsync<Dictionary<string, Summoner>>(json)).Values.FirstOrDefault();
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -205,7 +232,9 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            return JsonConvert.DeserializeObject<Summoner>(json);
+            var obj = JsonConvert.DeserializeObject<Summoner>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -219,7 +248,9 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            return await JsonConvert.DeserializeObjectAsync<Summoner>(json);
+            var obj = await JsonConvert.DeserializeObjectAsync<Summoner>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -233,7 +264,9 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString()) 
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            return JsonConvert.DeserializeObject<SummonerV11>(json);
+            var obj = JsonConvert.DeserializeObject<SummonerV11>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -247,7 +280,9 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            return await JsonConvert.DeserializeObjectAsync<SummonerV11>(json);
+            var obj = await JsonConvert.DeserializeObjectAsync<SummonerV11>(json);
+            obj.Region = region;
+            return obj;
         }
 
         /// <summary>
@@ -260,7 +295,12 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(ByNameUrl, BuildNamesString(summonerNames)));
-            return JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.ToList();
+            var list = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.ToList();
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -273,7 +313,12 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(ByNameUrl, BuildNamesString(summonerNames)));
-            return (await JsonConvert.DeserializeObjectAsync<Dictionary<string, Summoner>>(json)).Values.ToList();
+            var list = (await JsonConvert.DeserializeObjectAsync<Dictionary<string, Summoner>>(json)).Values.ToList();
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -353,7 +398,12 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            return JsonConvert.DeserializeObject<SummonerBaseList>(json).Summoners;
+            var list = JsonConvert.DeserializeObject<SummonerBaseList>(json).Summoners;
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -367,7 +417,12 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            return (await JsonConvert.DeserializeObjectAsync<SummonerBaseList>(json)).Summoners;
+            var list = (await JsonConvert.DeserializeObjectAsync<SummonerBaseList>(json)).Summoners;
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -381,7 +436,12 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            return JsonConvert.DeserializeObject<SummonerBaseList>(json).Summoners;
+            var list = JsonConvert.DeserializeObject<SummonerBaseList>(json).Summoners;
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
@@ -395,7 +455,12 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            return (await JsonConvert.DeserializeObjectAsync<SummonerBaseList>(json)).Summoners;
+            var list = (await JsonConvert.DeserializeObjectAsync<SummonerBaseList>(json)).Summoners;
+            foreach (var summ in list)
+            {
+                summ.Region = region;
+            }
+            return list;
         }
 
         /// <summary>
