@@ -22,7 +22,7 @@ namespace RiotSharpExample
 
             var tmp = api.GetSummoner(Region.euw, id2);
 
-            var tmp2 = tmp.GetTeams();
+            var tmp2 = tmp.GetEntireLeagues();
 
             var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
 

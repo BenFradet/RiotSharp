@@ -19,7 +19,6 @@ namespace RiotSharp
         /// Rune associated with the rune slot.
         /// </summary>
         [JsonProperty("rune")]
-        [JsonConverter(typeof(RuneConverter))]
         public Rune Rune { get; set; }
 
         /// <summary>

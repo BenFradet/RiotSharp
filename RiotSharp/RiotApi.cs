@@ -26,8 +26,6 @@ namespace RiotSharp
 
         private RateLimitedRequester requester;
 
-        internal static JsonSerializerSettings JsonSerializerSettings { get; set; }
-
         private static RiotApi instance;
         /// <summary>
         /// Get the instance of RiotApi.
@@ -44,13 +42,6 @@ namespace RiotSharp
             return instance;
         }
         
-        static RiotApi()
-        {
-            JsonSerializerSettings = new JsonSerializerSettings();
-            JsonSerializerSettings.CheckAdditionalContent = false;
-            JsonSerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
-        }
-
         private RiotApi(string apiKey, bool isProdApi)
         {
             requester = RateLimitedRequester.Instance;

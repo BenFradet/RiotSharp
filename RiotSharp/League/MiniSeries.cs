@@ -15,11 +15,6 @@ namespace RiotSharp
     {
         internal MiniSeries() { }
 
-        internal MiniSeries(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Number of losses.
         /// </summary>

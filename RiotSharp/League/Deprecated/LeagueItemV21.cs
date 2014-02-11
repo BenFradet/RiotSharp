@@ -69,7 +69,6 @@ namespace RiotSharp
         /// Mini series.
         /// </summary>
         [JsonProperty("miniSeries")]
-        [JsonConverter(typeof(MiniSeriesConverter))]
         public MiniSeries MiniSeries { get; set; }
 
         /// <summary>

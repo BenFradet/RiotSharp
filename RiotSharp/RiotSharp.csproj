@@ -134,14 +134,12 @@
     <Compile Include="Summoner\Deprecated\MasteryPagesV11.cs" />
     <Compile Include="Summoner\Deprecated\MasteryPageV11.cs" />
     <Compile Include="League\MiniSeries.cs" />
-    <Compile Include="League\MiniSeriesConverter.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Stats\Deprecated\PlayerStatsSummaryV11.cs" />
     <Compile Include="Game\Deprecated\RawStatV12.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="Summoner\MasteryPages.cs" />
     <Compile Include="Summoner\Rune.cs" />
-    <Compile Include="Summoner\RuneConverter.cs" />
     <Compile Include="Summoner\RunePage.cs" />
     <Compile Include="Summoner\RunePages.cs" />
     <Compile Include="Summoner\RuneSlot.cs" />

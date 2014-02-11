@@ -15,11 +15,6 @@ namespace RiotSharp
     {
         internal Rune() { }
 
-        internal Rune(JToken json)
-        {
-            JsonConvert.PopulateObject(json.ToString(), this, RiotApi.JsonSerializerSettings);
-        }
-
         /// <summary>
         /// Rune description.
         /// </summary>
