@@ -72,7 +72,8 @@ namespace RiotSharp
         /// Type of the champion (Mana, None, Energy, Shield, Rage, Ferocity, Heat, Dragonfury, Battlefury, Wind).
         /// </summary>
         [JsonProperty("partype")]
-        public string Partype { get; set; }
+        [JsonConverter(typeof(ParTypeStaticConverter))]
+        public ParTypeStatic Partype { get; set; }
 
         /// <summary>
         /// Information about this champion's passive.
@@ -108,7 +109,8 @@ namespace RiotSharp
         /// List of tags for this champion (Mage, Assassin, Tank, Support, etc).
         /// </summary>
         [JsonProperty("tags")]
-        public List<string> Tags { get; set; }
+        [JsonConverter(typeof(TagStaticConverter))]
+        public List<TagStatic> Tags { get; set; }
 
         /// <summary>
         /// Title of this champion.

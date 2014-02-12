@@ -20,11 +20,13 @@ namespace RiotSharpExample
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
 
+            var tmp2 = staticApi.GetChampions(Region.euw, ChampionData.tags);
+
             var tmp = api.GetSummoner(Region.euw, id2);
 
-            var tmp2 = tmp.GetEntireLeagues();
+            //var tmp2 = tmp.GetEntireLeagues();
 
-            var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
+            //var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
 
             //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier);
 

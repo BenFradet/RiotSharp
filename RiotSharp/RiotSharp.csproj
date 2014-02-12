@@ -84,6 +84,10 @@
     <Compile Include="StaticData\Caching\ChampionListStaticWrapper.cs" />
     <Compile Include="StaticData\Champion\ChampionStatic.cs" />
     <Compile Include="StaticData\Champion\ChampionListStatic.cs" />
+    <Compile Include="StaticData\Champion\ParTypeStatic.cs" />
+    <Compile Include="StaticData\Champion\ParTypeStaticConverter.cs" />
+    <Compile Include="StaticData\Champion\TagStatic.cs" />
+    <Compile Include="StaticData\Champion\TagStaticConverter.cs" />
     <Compile Include="StaticData\DataRequested.cs" />
     <Compile Include="StaticData\ImageStatic.cs" />
     <Compile Include="StaticData\Champion\InfoStatic.cs" />
