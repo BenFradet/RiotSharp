@@ -13,6 +13,7 @@ namespace RiotSharp
     {
         AramUnranked5x5,
         CoopVsAI,
+        CoopVsAI3x3,
         OdinUnranked,
         RankedPremade3x3,
         RankedPremade5x5,
