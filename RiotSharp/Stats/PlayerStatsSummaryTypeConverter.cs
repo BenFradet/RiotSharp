@@ -25,6 +25,8 @@ namespace RiotSharp
                     return PlayerStatsSummaryType.AramUnranked5x5;
                 case "CoopVsAI":
                     return PlayerStatsSummaryType.CoopVsAI;
+                case "CoopVsAI3x3":
+                    return PlayerStatsSummaryType.CoopVsAI3x3;
                 case "OdinUnranked":
                     return PlayerStatsSummaryType.OdinUnranked;
                 case "RankedPremade3x3":
