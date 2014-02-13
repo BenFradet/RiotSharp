@@ -24,7 +24,7 @@ namespace RiotSharp
                 case "CLASSIC":
                     return GameMode.Classic;
                 case "ODIN":
-                    return GameMode.Odin;
+                    return GameMode.Dominion;
                 case "ARAM":
                     return GameMode.Aram;
                 case "TUTORIAL":

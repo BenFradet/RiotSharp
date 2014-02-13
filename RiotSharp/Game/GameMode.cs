@@ -19,7 +19,7 @@ namespace RiotSharp
         /// <summary>
         /// Dominion/Crystal Scar games.
         /// </summary>
-        Odin,
+        Dominion,
 
         /// <summary>
         /// ARAM games.

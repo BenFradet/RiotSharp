@@ -36,7 +36,8 @@ namespace RiotSharp
         /// Mode for which those items are recommended.
         /// </summary>
         [JsonProperty("mode")]
-        public string Mode { get; set; }
+        [JsonConverter(typeof(GameModeConverter))]
+        public GameMode Mode { get; set; }
         
         /// <summary>
         /// Priority of the recommended items list.
