@@ -71,18 +71,26 @@ namespace RiotSharp
             }
             catch(WebException ex)
             {
-                result = GetExcepcionResponse(ex);
+                result = GetExceptionResponse(ex);
             }
             return result;
         }
 
         protected async Task<string> GetResponseAsync(HttpWebRequest request)
         {
-            var response = (HttpWebResponse)(await request.GetResponseAsync());
             string result = string.Empty;
-            using (var reader = new StreamReader(response.GetResponseStream()))
+            try
             {
-                result = await reader.ReadToEndAsync();
+                var response = (HttpWebResponse)(await request.GetResponseAsync());
+                
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = await reader.ReadToEndAsync();
+                }
+            }
+            catch(WebException ex)
+            {
+                result = GetExceptionResponse(ex);
             }
             return result;
         }
@@ -100,7 +108,7 @@ namespace RiotSharp
             return result;
         }
         
-        protected string GetExcepcionResponse(WebException ex)
+        private string GetExceptionResponse(WebException ex)
         {
             string statusCode = string.Empty;
 
