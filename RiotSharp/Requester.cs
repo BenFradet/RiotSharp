@@ -59,11 +59,19 @@ namespace RiotSharp
 
         protected string GetResponse(HttpWebRequest request)
         {
-            var response = (HttpWebResponse)request.GetResponse();
             string result = string.Empty;
-            using (var reader = new StreamReader(response.GetResponseStream()))
+            try
             {
-                result = reader.ReadToEnd();
+                var response = (HttpWebResponse)request.GetResponse();
+                
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            catch(WebException ex)
+            {
+                result = GetExcepcionResponse(ex);
             }
             return result;
         }
@@ -90,6 +98,34 @@ namespace RiotSharp
                 }
             }
             return result;
+        }
+        
+        protected string GetExcepcionResponse(WebException ex)
+        {
+            string statusCode = string.Empty;
+
+            HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
+            if (webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+            {
+                statusCode = "503";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.NotFound)
+            {
+                statusCode = "404";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.InternalServerError)
+            {
+                statusCode = "500";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                statusCode = "401";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.BadRequest)
+            {
+                statusCode = "400";
+            }
+            return statusCode;
         }
     }
 }
