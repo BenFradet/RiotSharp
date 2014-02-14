@@ -11,7 +11,7 @@ namespace RiotSharp
 {
     class RateLimitedRequester : Requester
     {
-        private static RateLimitedRequester instance;
+        private static RateLimitedRequester instance; 
         private RateLimitedRequester()
          : base() { }
         public static new RateLimitedRequester Instance
