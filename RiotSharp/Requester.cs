@@ -59,22 +59,38 @@ namespace RiotSharp
 
         protected string GetResponse(HttpWebRequest request)
         {
-            var response = (HttpWebResponse)request.GetResponse();
             string result = string.Empty;
-            using (var reader = new StreamReader(response.GetResponseStream()))
+            try
             {
-                result = reader.ReadToEnd();
+                var response = (HttpWebResponse)request.GetResponse();
+                
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            catch(WebException ex)
+            {
+                result = GetExceptionResponse(ex);
             }
             return result;
         }
 
         protected async Task<string> GetResponseAsync(HttpWebRequest request)
         {
-            var response = (HttpWebResponse)(await request.GetResponseAsync());
             string result = string.Empty;
-            using (var reader = new StreamReader(response.GetResponseStream()))
+            try
             {
-                result = await reader.ReadToEndAsync();
+                var response = (HttpWebResponse)(await request.GetResponseAsync());
+                
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = await reader.ReadToEndAsync();
+                }
+            }
+            catch(WebException ex)
+            {
+                result = GetExceptionResponse(ex);
             }
             return result;
         }
@@ -90,6 +106,34 @@ namespace RiotSharp
                 }
             }
             return result;
+        }
+        
+        private string GetExceptionResponse(WebException ex)
+        {
+            string statusCode = string.Empty;
+
+            HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
+            if (webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+            {
+                statusCode = "{'data':{'response':503}}";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.NotFound)
+            {
+                statusCode = "{'data':{'response':404}}";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.InternalServerError)
+            {
+                statusCode = "{'data':{'response':500}}";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                statusCode = "{'data':{'response':401}}";
+            }
+            if (webResponse.StatusCode == HttpStatusCode.BadRequest)
+            {
+                statusCode = "{'data':{'response':400}}";
+            }
+            return statusCode;
         }
     }
 }
