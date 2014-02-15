@@ -15,19 +15,19 @@ namespace RiotSharp
         internal BasicDataStatic() { }
 
         /// <summary>
-        /// Equals ";"
+        /// Equals ";".
         /// </summary>
         [JsonProperty("colloq")]
         public string Colloq { get; set; }
 
         /// <summary>
-        /// Whether the item is to be consumed on full or not.
+        /// Whether the object is to be consumed on full or not.
         /// </summary>
         [JsonProperty("consumeOnFull")]
         public bool ConsumeOnFull { get; set; }
 
         /// <summary>
-        /// Whether the item is to be consumed or not.
+        /// Whether the object is to be consumed or not.
         /// </summary>
         [JsonProperty("consumed")]
         public bool Consumed { get; set; }
@@ -45,7 +45,7 @@ namespace RiotSharp
         public string Description { get; set; }
 
         /// <summary>
-        /// List of items' ids which build into this one.
+        /// List of object' ids which build into this one.
         /// </summary>
         [JsonProperty("from")]
         public List<int> From { get; set; }
@@ -57,7 +57,7 @@ namespace RiotSharp
         public GoldStatic Gold { get; set; }
 
         /// <summary>
-        /// This item's group.
+        /// This object's group.
         /// </summary>
         [JsonProperty("group")]
         public string Group { get; set; }
@@ -69,25 +69,31 @@ namespace RiotSharp
         public bool HideFromAll { get; set; }
 
         /// <summary>
-        /// Whether this item is in store or not.
+        /// This object's image.
+        /// </summary>
+        [JsonProperty("image")]
+        public ImageStatic Image { get; set; }
+
+        /// <summary>
+        /// Whether this object is in the store or not.
         /// </summary>
         [JsonProperty("inStore")]
         public bool InStore { get; set; }
 
         /// <summary>
-        /// List of items' ids this item builds into.
+        /// List of object' ids this item builds into.
         /// </summary>
         [JsonProperty("into")]
         public List<int> Into { get; set; }
 
         /// <summary>
-        /// Maps describing on which league of legends map this item is valid.
+        /// Maps describing on which league of legends map this object is valid.
         /// </summary>
         [JsonProperty("maps")]
         public Dictionary<string, bool> Maps { get; set; }
 
         /// <summary>
-        /// Name of the item.
+        /// Name of the object.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -105,7 +111,7 @@ namespace RiotSharp
         public string RequiredChampion { get; set; }
 
         /// <summary>
-        /// noidea.
+        /// Additional information if the object is a rune.
         /// </summary>
         [JsonProperty("rune")]
         public ItemRuneStatic Rune { get; set; }
@@ -123,7 +129,7 @@ namespace RiotSharp
         public int Stacks { get; set; }
 
         /// <summary>
-        /// Possible stats of an item.
+        /// Possible stats of this object.
         /// </summary>
         [JsonProperty("stats")]
         public StatsStatic Stats { get; set; }

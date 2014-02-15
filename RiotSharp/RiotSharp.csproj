@@ -105,7 +105,6 @@
     <Compile Include="StaticData\Item\ItemRuneStatic.cs" />
     <Compile Include="StaticData\Item\ItemStatic.cs" />
     <Compile Include="StaticData\Rune\RuneListStatic.cs" />
-    <Compile Include="StaticData\Rune\RuneStatic.cs" />
     <Compile Include="StaticData\Rune\RuneTypeStatic.cs" />
     <Compile Include="StaticData\StatsStatic.cs" />
     <Compile Include="StaticData\Item\ItemTreeStatic.cs" />

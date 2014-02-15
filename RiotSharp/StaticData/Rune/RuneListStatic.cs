@@ -18,13 +18,13 @@ namespace RiotSharp
         /// Basic data (empty object so far).
         /// </summary>
         [JsonProperty("basic")]
-        public object Basic { get; set; }
+        public BasicDataStatic BasicData { get; set; }
 
         /// <summary>
         /// Map of runes indexed by their id.
         /// </summary>
         [JsonProperty("data")]
-        public Dictionary<int, RuneStatic> Runes { get; set; }
+        public Dictionary<int, ItemStatic> Runes { get; set; }
 
         /// <summary>
         /// API type (rune).

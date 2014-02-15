@@ -81,6 +81,12 @@ namespace RiotSharp
         public int Key { get; set; }
 
         /// <summary>
+        /// Tooltip when leveling up this spell.
+        /// </summary>
+        [JsonProperty("leveltip")]
+        public LevelTipStatic LevelTip { get; set; }
+
+        /// <summary>
         /// Spell's maxrank (1).
         /// </summary>
         [JsonProperty("maxrank")]

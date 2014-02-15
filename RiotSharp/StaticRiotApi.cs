@@ -509,7 +509,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A rune.</returns>
-        public RuneStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.all
+        public ItemStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.all
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
@@ -538,7 +538,7 @@ namespace RiotSharp
                         , new List<string>() { string.Format("locale={0}", language.ToString())
                             , runeData == RuneData.none ? string.Empty
                                 : string.Format("runeData={0}", runeData.ToString()) });
-                    var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
+                    var rune = JsonConvert.DeserializeObject<ItemStatic>(json);
                     Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
                     return rune;
                 }
@@ -553,7 +553,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A rune.</returns>
-        public async Task<RuneStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.all
+        public async Task<ItemStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.all
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
@@ -582,7 +582,7 @@ namespace RiotSharp
                         , new List<string>() { string.Format("locale={0}", language.ToString())
                             , runeData == RuneData.none ? string.Empty
                                 : string.Format("runeData={0}", runeData.ToString()) });
-                    var rune = await JsonConvert.DeserializeObjectAsync<RuneStatic>(json);
+                    var rune = await JsonConvert.DeserializeObjectAsync<ItemStatic>(json);
                     Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
                     return rune;
                 }

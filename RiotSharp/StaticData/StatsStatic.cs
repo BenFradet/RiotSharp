@@ -24,6 +24,10 @@ namespace RiotSharp
 
         public double FlatCritDamageMod { get; set; }
 
+        public double FlatEnergyRegenMod { get; set; }
+
+        public double FlatEnergyPoolMod { get; set; }
+
         public double FlatEXPBonus { get; set; }
 
         public double FlatHPPoolMod { get; set; }
@@ -60,6 +64,8 @@ namespace RiotSharp
 
         public double PercentHPRegenMod { get; set; }
 
+        public double PewrcentLifeStealMod { get; set; }
+
         public double PercentMPPoolMod { get; set; }
 
         public double PercentMPRegenMod { get; set; }
@@ -71,6 +77,8 @@ namespace RiotSharp
         public double PercentPhysicalDamageMod { get; set; }
 
         public double PercentSpellBlockMod { get; set; }
+
+        public double PercentSpellVampMod { get; set; }
 
         [JsonProperty("rFlatArmorModPerLevel")]
         public double RFlatArmorModPerLevel { get; set; }
@@ -92,6 +100,12 @@ namespace RiotSharp
 
         [JsonProperty("rFlatDodgeModPerLevel")]
         public double RFlatDodgeModPerLevel { get; set; }
+
+        [JsonProperty("rFlatEnergyRegenModPerLevel")]
+        public double RFlatEnergyRegenModPerLevel { get; set; }
+
+        [JsonProperty("rFlatEnergyModPerLevel")]
+        public double RFlatEnergyModPerLevel { get; set; }
 
         [JsonProperty("rFlatGoldPer10Mod")]
         public double RFlatGoldPer10Mod { get; set; }

@@ -21,37 +21,79 @@ namespace RiotSharp
         public string Colloq { get; set; }
 
         /// <summary>
-        /// Description of this item.
+        /// Whether the object is to be consumed on full or not.
+        /// </summary>
+        [JsonProperty("consumeOnFull")]
+        public bool ConsumOnFull { get; set; }
+
+        /// <summary>
+        /// Whether the object is to be consumed or not.
+        /// </summary>
+        [JsonProperty("consumed")]
+        public bool Consumed { get; set; }
+
+        /// <summary>
+        /// Depth.
+        /// </summary>
+        [JsonProperty("depth")]
+        public int Depth { get; set; }
+
+        /// <summary>
+        /// Description.
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// Information about the value of this item.
+        /// List of object' ids which build into this one.
+        /// </summary>
+        [JsonProperty("from")]
+        public List<string> From { get; set; }
+
+        /// <summary>
+        /// Value information about this item.
         /// </summary>
         [JsonProperty("gold")]
         public GoldStatic Gold { get; set; }
 
         /// <summary>
-        /// This item's group.
+        /// This object's group.
         /// </summary>
         [JsonProperty("group")]
         public string Group { get; set; }
 
         /// <summary>
-        /// This item's image.
+        /// Hide from all.
+        /// </summary>
+        [JsonProperty("hideFromAll")]
+        public bool HideFromAll { get; set; }
+
+        /// <summary>
+        /// This object's image.
         /// </summary>
         [JsonProperty("image")]
         public ImageStatic Image { get; set; }
 
         /// <summary>
-        /// List of items' ids this item builds into.
+        /// Whether this object is in the store or not.
+        /// </summary>
+        [JsonProperty("inStore")]
+        public bool InStore { get; set; }
+
+        /// <summary>
+        /// List of object' ids this item builds into.
         /// </summary>
         [JsonProperty("into")]
         public List<int> Into { get; set; }
 
         /// <summary>
-        /// Item's name.
+        /// Maps describing on which league of legends map this object is valid.
+        /// </summary>
+        [JsonProperty("maps")]
+        public Dictionary<string, bool> Maps { get; set; }
+
+        /// <summary>
+        /// Name of the object.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -63,13 +105,37 @@ namespace RiotSharp
         public string PlainText { get; set; }
 
         /// <summary>
-        /// This item's stats.
+        /// Required champion.
         /// </summary>
-        [JsonProperty("stats")]
-        public Dictionary<string, double> Stats { get; set; }
+        [JsonProperty("requiredChampion")]
+        public string RequiredChampion { get; set; }
 
         /// <summary>
-        /// This item's tags.
+        /// Additional information if the object is a rune.
+        /// </summary>
+        [JsonProperty("rune")]
+        public RuneTypeStatic RuneType { get; set; }
+
+        /// <summary>
+        /// Id of the special recipe if there is one.
+        /// </summary>
+        [JsonProperty("specialRecipe")]
+        public int SpecialRecipe { get; set; }
+
+        /// <summary>
+        /// Stacks.
+        /// </summary>
+        [JsonProperty("stacks")]
+        public int Stacks { get; set; }
+
+        /// <summary>
+        /// Possible stats of this object.
+        /// </summary>
+        [JsonProperty("stats")]
+        public StatsStatic Stats { get; set; }
+
+        /// <summary>
+        /// List of possible tags (defense, perlevel, etc).
         /// </summary>
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }
