@@ -41,6 +41,11 @@ foreach (var stat in varusRanked.Stats)
 
 For a full description check the RiotSharpExample or RiotSharpTest projects.
 
+##Contribution
+
+Simply send a pull request.
+When adding new features, please provide the related unit tests within the pull request.
+
 ##Libraries used
 
 This wrapper uses [Json.NET](http://james.newtonking.com/json).
