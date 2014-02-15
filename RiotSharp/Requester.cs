@@ -115,23 +115,23 @@ namespace RiotSharp
             HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
             if (webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
-                statusCode = "503";
+                statusCode = "{'data':{'response':503}}";
             }
             if (webResponse.StatusCode == HttpStatusCode.NotFound)
             {
-                statusCode = "404";
+                statusCode = "{'data':{'response':404}}";
             }
             if (webResponse.StatusCode == HttpStatusCode.InternalServerError)
             {
-                statusCode = "500";
+                statusCode = "{'data':{'response':500}}";
             }
             if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
-                statusCode = "401";
+                statusCode = "{'data':{'response':401}}";
             }
             if (webResponse.StatusCode == HttpStatusCode.BadRequest)
             {
-                statusCode = "400";
+                statusCode = "{'data':{'response':400}}";
             }
             return statusCode;
         }
