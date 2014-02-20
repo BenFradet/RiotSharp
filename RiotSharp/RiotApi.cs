@@ -23,6 +23,8 @@ namespace RiotSharp
 
         private const string ChallengerLeagueRootUrl = "/api/lol/{0}/v2.3/league/challenger";
 
+        private const string TeamRootUrl = "/api/lol/{0}/v2.2/team";
+
         private RateLimitedRequester requester;
 
         private static RiotApi instance;
@@ -473,6 +475,32 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(ChallengerLeagueRootUrl, region.ToString())
                 , new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
             return await JsonConvert.DeserializeObjectAsync<League>(json);
+        }
+
+        /// <summary>
+        /// Get the teams for the specified ids synchronously.
+        /// </summary>
+        /// <param name="region">Region in which the teams are located.</param>
+        /// <param name="teamIds">List of string of the teams' ids.</param>
+        /// <returns>A map of teams indexed by their id.</returns>
+        public Dictionary<string, Team> GetTeams(Region region, List<string> teamIds)
+        {
+            var json = requester.CreateRequest(string.Format(TeamRootUrl, region.ToString())
+                + string.Format(IdUrl, BuildNamesString(teamIds)));
+            return JsonConvert.DeserializeObject<Dictionary<string, Team>>(json);
+        }
+
+        /// <summary>
+        /// Get the teams for the specified ids asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which the teams are located.</param>
+        /// <param name="teamIds">List of string of the teams' ids.</param>
+        /// <returns>A map of teams indexed by their id.</returns>
+        public async Task<Dictionary<string, Team>> GetTeamsAsync(Region region, List<string> teamIds)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(TeamRootUrl, region.ToString())
+                + string.Format(IdUrl, BuildNamesString(teamIds)));
+            return await JsonConvert.DeserializeObjectAsync<Dictionary<string, Team>>(json);
         }
 
         private string BuildIdsString(List<int> ids)

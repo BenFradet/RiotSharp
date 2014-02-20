@@ -19,14 +19,18 @@ namespace RiotSharpExample
             string name = ConfigurationManager.AppSettings["Summoner1Name"];
             int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
+            string team = ConfigurationManager.AppSettings["Team1Id"];
+            string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var tmp = api.GetSummonerV12Async(Region.euw, id);
+            var teams = api.GetTeams(Region.euw, new List<string> { team, team2 });
 
-            var teams = tmp.Result.GetTeamsV21();
+            var tmp = api.GetSummonerV12Async(Region.euw, id2);
 
-            var res = tmp.Result;
+            //var teams = tmp.Result.GetTeams();
 
-            var tmp2 = staticApi.GetChampions(Region.euw, ChampionData.recommended);
+            //var res = tmp.Result;
+
+            //var tmp2 = staticApi.GetChampions(Region.euw, ChampionData.recommended);
 
             //var tmp = api.GetSummoner(Region.euw, id2);
 

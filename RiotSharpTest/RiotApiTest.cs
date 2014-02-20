@@ -15,6 +15,8 @@ namespace RiotSharpTest
         private static string name = ConfigurationManager.AppSettings["Summoner1Name"];
         private static int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
         private static string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
+        private static string team = ConfigurationManager.AppSettings["Team1Id"];
+        private static string team2 = ConfigurationManager.AppSettings["Team2Id"];
         private static RiotApi api = RiotApi.GetInstance(apiKey, false);
 
         [TestMethod]
@@ -265,6 +267,26 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(league.Result.Entries);
             Assert.IsTrue(league.Result.Entries.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTeams_Test()
+        {
+            var teams = api.GetTeams(Region.euw, new List<string> { team, team2 });
+
+            Assert.IsNotNull(teams);
+            Assert.IsTrue(teams.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTeamsAsync_Test()
+        {
+            var teams = api.GetTeamsAsync(Region.euw, new List<string> { team, team2 });
+
+            Assert.IsNotNull(teams.Result);
+            Assert.IsTrue(teams.Result.Count == 2);
         }
     }
 }
