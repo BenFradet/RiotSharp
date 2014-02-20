@@ -145,6 +145,11 @@
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\SummonerBaseList.cs" />
     <Compile Include="Summoner\Talent.cs" />
+    <Compile Include="Team\Deprecated\MatchHistorySummaryV21.cs" />
+    <Compile Include="Team\Deprecated\TeamIdV21.cs" />
+    <Compile Include="Team\Deprecated\TeamStatDetailV21.cs" />
+    <Compile Include="Team\Deprecated\TeamStatSummaryV21.cs" />
+    <Compile Include="Team\Deprecated\TeamV21.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />
     <Compile Include="Team\MessageOfDay.cs" />
     <Compile Include="Team\Roster.cs" />
@@ -156,7 +161,6 @@
   <ItemGroup>
     <Folder Include="Stats\Deprecated\" />
     <Folder Include="Summoner\Deprecated\" />
-    <Folder Include="Team\Deprecated\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

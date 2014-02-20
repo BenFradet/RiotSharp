@@ -274,5 +274,25 @@ namespace RiotSharpTest
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count() > 0);
         }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetTeamsV21_Test()
+        {
+            var teams = summoner.GetTeamsV21();
+
+            Assert.IsNotNull(teams);
+            Assert.IsTrue(teams.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetTeamsV21Async_Test()
+        {
+            var teams = summoner.GetTeamsV21Async();
+
+            Assert.IsNotNull(teams.Result);
+            Assert.IsTrue(teams.Result.Count() > 0);
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace RiotSharp
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
+        private const string TeamV21RootUrl = "/api/{0}/v2.1/team";
         private const string TeamRootUrl = "/api/lol/{0}/v2.2/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
@@ -356,6 +357,30 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(TeamRootUrl, Region)
                 + string.Format(TeamBySummonerUrl, Id));
             return await JsonConvert.DeserializeObjectAsync<List<Team>>(json);
+        }
+        
+        /// <summary>
+        /// Get team information for this summoner synchronously.
+        /// </summary>
+        /// <returns>List of teams.</returns>
+        [Obsolete("The team api v2.1 is deprecated, please use GetTeam() instead.")]
+        public List<TeamV21> GetTeamsV21()
+        {
+            var json = requester.CreateRequest(string.Format(TeamV21RootUrl, Region)
+                + string.Format(TeamBySummonerUrl, Id));
+            return JsonConvert.DeserializeObject<List<TeamV21>>(json);
+        }
+
+        /// <summary>
+        /// Get team information for this summoner asynchronously.
+        /// </summary>
+        /// <returns>List of teams.</returns>
+        [Obsolete("The team api v2.1 is deprecated, please use GetTeamAsync() instead.")]
+        public async Task<List<TeamV21>> GetTeamsV21Async()
+        {
+            var json = await requester.CreateRequestAsync(string.Format(TeamV21RootUrl, Region)
+                + string.Format(TeamBySummonerUrl, Id));
+            return await JsonConvert.DeserializeObjectAsync<List<TeamV21>>(json);
         }
     }
 }
