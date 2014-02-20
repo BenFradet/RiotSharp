@@ -14,13 +14,11 @@ namespace RiotSharp
     /// </summary>
     public class SummonerBase
     {
-        private const string RootV11Url = "/api/lol/{0}/v1.1/summoner";
         private const string RootV12Url = "/api/lol/{0}/v1.2/summoner";
         private const string RootUrl = "/api/lol/{0}/v1.3/summoner";
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
 
-        private const string GameV11RootUrl = "/api/lol/{0}/v1.1/game";
         private const string GameV12RootUrl = "/api/lol/{0}/v1.2/game";
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
@@ -31,7 +29,6 @@ namespace RiotSharp
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
 
-        private const string StatsV11RootUrl = "/api/lol/{0}/v1.1/stats";
         private const string StatsRootUrl = "/api/lol/{0}/v1.2/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
@@ -107,28 +104,6 @@ namespace RiotSharp
         public async Task<List<RunePage>> GetRunePagesV12Async()
         {
             var json = await requester.CreateRequestAsync(string.Format(RootV12Url, Region) + string.Format(RunesUrl, Id));
-            return (await JsonConvert.DeserializeObjectAsync<RunePages>(json)).Pages;
-        }
-
-        /// <summary>
-        /// Get rune pages for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of rune pages.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetRunePages() instead.")]
-        public List<RunePage> GetRunePagesV11()
-        {
-            var json = requester.CreateRequest(string.Format(RootV11Url, Region) + string.Format(RunesUrl, Id));
-            return JsonConvert.DeserializeObject<RunePages>(json).Pages;
-        }
-
-        /// <summary>
-        /// Get rune pages for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of rune pages.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetRunePagesAsync() instead.")]
-        public async Task<List<RunePage>> GetRunePagesV11Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(RootV11Url, Region) + string.Format(RunesUrl, Id));
             return (await JsonConvert.DeserializeObjectAsync<RunePages>(json)).Pages;
         }
 

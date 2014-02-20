@@ -11,7 +11,6 @@ namespace RiotSharp
 {
     public class RiotApi
     {
-        private const string SummonerRootV11Url = "/api/lol/{0}/v1.1/summoner";
         private const string SummonerRootV12Url = "/api/lol/{0}/v1.2/summoner";
         private const string SummonerRootUrl = "/api/lol/{0}/v1.3/summoner";
         private const string ByNameUrl = "/by-name/{0}";
@@ -342,44 +341,6 @@ namespace RiotSharp
         public async Task<List<SummonerBase>> GetSummonersNamesV12Async(Region region, List<int> summonerIds)
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV12Url, region.ToString())
-                + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            var list = (await JsonConvert.DeserializeObjectAsync<SummonerBaseList>(json)).Summoners;
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Get a list of summoner's names and ids synchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
-        /// <returns>A list of ids and names of summoners.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonersNames() instead.")]
-        public List<SummonerBase> GetSummonersNamesV11(Region region, List<int> summonerIds)
-        {
-            var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString())
-                + string.Format(NamesUrl, BuildIdsString(summonerIds)));
-            var list = JsonConvert.DeserializeObject<SummonerBaseList>(json).Summoners;
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Get a list of summoner's names and ids asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
-        /// <returns>A list of ids and names of summoners.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonersNamesAsync() instead.")]
-        public async Task<List<SummonerBase>> GetSummonersNamesV11Async(Region region, List<int> summonerIds)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
                 + string.Format(NamesUrl, BuildIdsString(summonerIds)));
             var list = (await JsonConvert.DeserializeObjectAsync<SummonerBaseList>(json)).Summoners;
             foreach (var summ in list)

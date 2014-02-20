@@ -188,26 +188,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetSummonersNamesV11_Test()
-        {
-            var summoners = api.GetSummonersNamesV11(Region.euw, new List<int>() { id, id2 });
-
-            Assert.IsNotNull(summoners);
-            Assert.IsTrue(summoners.Count() == 2);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetSummonersNamesV11Async_Test()
-        {
-            var summoners = api.GetSummonersNamesV11Async(Region.euw, new List<int>() { id, id2 });
-
-            Assert.IsNotNull(summoners.Result);
-            Assert.IsTrue(summoners.Result.Count() == 2);
-        }
-
-        [TestMethod]
         [TestCategory("RiotApi")]
         public void GetChampions_Test()
         {

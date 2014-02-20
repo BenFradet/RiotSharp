@@ -56,26 +56,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetRunePagesV11_Test()
-        {
-            var runePages = summoner.GetRunePagesV11();
-
-            Assert.IsNotNull(runePages);
-            Assert.IsTrue(runePages.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetRunePagesV11Async_Test()
-        {
-            var runePages = summoner.GetRunePagesV11Async();
-
-            Assert.IsNotNull(runePages.Result);
-            Assert.IsTrue(runePages.Result.Count() > 0);
-        }
-
-        [TestMethod]
         [TestCategory("Summoner")]
         public void GetMasteryPages_Test()
         {
