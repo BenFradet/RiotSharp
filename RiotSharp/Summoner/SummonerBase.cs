@@ -177,29 +177,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Get mastery pages for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of mastery pages.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetMasteryPages() instead.")]
-        public List<MasteryPageV11> GetMasteryPagesV11()
-        {
-            var json = requester.CreateRequest(string.Format(RootV11Url, Region) + string.Format(MasteriesUrl, Id));
-            return JsonConvert.DeserializeObject<MasteryPagesV11>(json).Pages;
-        }
-
-        /// <summary>
-        /// Get mastery pages for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of mastery pages.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetMasteryPagesAsync() instead.")]
-        public async Task<List<MasteryPageV11>> GetMasteryPagesV11Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(RootV11Url, Region)
-                + string.Format(MasteriesUrl, Id));
-            return (await JsonConvert.DeserializeObjectAsync<MasteryPagesV11>(json)).Pages;
-        }
-
-        /// <summary>
         /// Get the 10 most recent games for this summoner synchronously.
         /// </summary>
         /// <returns>A list of the 10 most recent games.</returns>
@@ -241,29 +218,6 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(GameV12RootUrl, Region)
                 + string.Format(RecentGamesUrl, Id));
             return (await JsonConvert.DeserializeObjectAsync<RecentGamesV12>(json)).Games;
-        }
-
-        /// <summary>
-        /// Get the 10 most recent games for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of the 10 most recent games.</returns>
-        [Obsolete("The game api v1.1 is deprecated, please use GetRecentGames() instead.")]
-        public List<GameV11> GetRecentGamesV11()
-        {
-            var json = requester.CreateRequest(string.Format(GameV11RootUrl, Region) + string.Format(RecentGamesUrl, Id));
-            return JsonConvert.DeserializeObject<RecentGamesV11>(json).Games;
-        }
-
-        /// <summary>
-        /// Get the 10 most recent games for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of the 10 most recent games.</returns>
-        [Obsolete("The game api v1.1 is deprecated, please use GetRecentGamesAsync() instead.")]
-        public async Task<List<GameV11>> GetRecentGamesV11Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(GameV11RootUrl, Region)
-                + string.Format(RecentGamesUrl, Id));
-            return (await JsonConvert.DeserializeObjectAsync<RecentGamesV11>(json)).Games;
         }
 
         /// <summary>
@@ -384,33 +338,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Get player stats summaries for this summoner synchronously. One summary is returned per queue type.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        [Obsolete("The stats api v1.1 is deprecated, please use GetStatsSummaries() instead.")]
-        public List<PlayerStatsSummaryV11> GetStatsSummariesV11(Season season)
-        {
-            var json = requester.CreateRequest(string.Format(StatsV11RootUrl, Region) + string.Format(StatsSummaryUrl, Id)
-                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryListV11>(json).PlayerStatSummaries;
-        }
-
-        /// <summary>
-        /// Get player stats summaries for this summoner asynchronously. One summary is returned per queue type.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        [Obsolete("The stats api v1.1 is deprecated, please use GetStatsSummariesAsync() instead.")]
-        public async Task<List<PlayerStatsSummaryV11>> GetStatsSummariesV11Async(Season season)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(StatsV11RootUrl, Region)
-                + string.Format(StatsSummaryUrl, Id)
-                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
-            return (await JsonConvert.DeserializeObjectAsync<PlayerStatsSummaryListV11>(json)).PlayerStatSummaries;
-        }
-
-        /// <summary>
         /// Get ranked stats for this summoner synchronously. Includes statistics for Twisted Treeline and Summoner's Rift.
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
@@ -433,33 +360,6 @@ namespace RiotSharp
                 + string.Format(StatsRankedUrl, Id)
                 , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return (await JsonConvert.DeserializeObjectAsync<RankedStats>(json)).ChampionStats;
-        }
-
-        /// <summary>
-        /// Get ranked stats for this summoner synchronously. Includes statistics for Twisted Treeline and Summoner's Rift.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of champions stats.</returns>
-        [Obsolete("The stats api v1.1 is deprecated, please use GetStatsRanked() instead.")]
-        public List<ChampionStatsV11> GetStatsRankedV11(Season season)
-        {
-            var json = requester.CreateRequest(string.Format(StatsV11RootUrl, Region) + string.Format(StatsRankedUrl, Id)
-                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<RankedStatsV11>(json).ChampionStats;
-        }
-
-        /// <summary>
-        /// Get ranked stats for this summoner asynchronously. Includes statistics for Twisted Treeline and Summoner's Rift.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of champions stats.</returns>
-        [Obsolete("The stats api v1.1 is deprecated, please use GetStatsRankedAsync() instead.")]
-        public async Task<List<ChampionStatsV11>> GetStatsRankedV11Async(Season season)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(StatsV11RootUrl, Region)
-                + string.Format(StatsRankedUrl, Id)
-                , new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
-            return (await JsonConvert.DeserializeObjectAsync<RankedStatsV11>(json)).ChampionStats;
         }
 
         /// <summary>

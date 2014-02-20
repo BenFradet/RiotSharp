@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Champion\ChampionList.cs" />
     <Compile Include="Game\Deprecated\GameV12.cs" />
-    <Compile Include="Game\Deprecated\RecentGamesV11.cs" />
     <Compile Include="Game\Deprecated\RecentGamesV12.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameMode.cs" />
@@ -119,26 +118,17 @@
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
-    <Compile Include="Stats\Deprecated\AggregatedStatV11.cs" />
     <Compile Include="Champion\Champion.cs" />
-    <Compile Include="Stats\Deprecated\ChampionStatV11.cs" />
-    <Compile Include="Stats\Deprecated\ChampionStatsV11.cs" />
     <Compile Include="League\CharArrayConverter.cs" />
-    <Compile Include="Game\Deprecated\GameV11.cs" />
     <Compile Include="League\Deprecated\LeagueV21.cs" />
     <Compile Include="League\Deprecated\LeagueItemV21.cs" />
-    <Compile Include="Stats\Deprecated\PlayerStatsSummaryListV11.cs" />
-    <Compile Include="Stats\Deprecated\RankedStatsV11.cs" />
     <Compile Include="Stats\PlayerStatsSummary.cs" />
     <Compile Include="Stats\PlayerStatsSummaryList.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
     <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="Stats\RankedStats.cs" />
-    <Compile Include="Summoner\Deprecated\MasteryPagesV11.cs" />
-    <Compile Include="Summoner\Deprecated\MasteryPageV11.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Stats\Deprecated\PlayerStatsSummaryV11.cs" />
     <Compile Include="Game\Deprecated\RawStatV12.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="Summoner\MasteryPages.cs" />
@@ -153,7 +143,6 @@
     <Compile Include="Misc\Region.cs" />
     <Compile Include="RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
-    <Compile Include="Summoner\Deprecated\SummonerV11.cs" />
     <Compile Include="Summoner\SummonerBaseList.cs" />
     <Compile Include="Summoner\Talent.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />
@@ -165,6 +154,8 @@
     <Compile Include="Team\TeamStatSummary.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Stats\Deprecated\" />
+    <Folder Include="Summoner\Deprecated\" />
     <Folder Include="Team\Deprecated\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

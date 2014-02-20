@@ -113,38 +113,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Get a summoner by id synchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for a summoner.</param>
-        /// <param name="summonerId">Id of the summoner you're looking for.</param>
-        /// <returns>A summoner.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetSummoner() instead.")]
-        public SummonerV11 GetSummonerV11(Region region, int summonerId)
-        {
-            var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString())
-                + string.Format(IdUrl, summonerId));
-            var obj =  JsonConvert.DeserializeObject<SummonerV11>(json);
-            obj.Region = region;
-            return obj;
-        }
-
-        /// <summary>
-        /// Get a summoner by id asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for a summoner.</param>
-        /// <param name="summonerId">Id of the summoner you're looking for.</param>
-        /// <returns>A summoner.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonerAsync() instead.")]
-        public async Task<SummonerV11> GetSummonerV11Async(Region region, int summonerId)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
-                + string.Format(IdUrl, summonerId));
-            var obj = await JsonConvert.DeserializeObjectAsync<SummonerV11>(json);
-            obj.Region = region;
-            return obj;
-        }
-
-        /// <summary>
         /// Get summoners by ids synchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for summoners.</param>
@@ -239,38 +207,6 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootV12Url, region.ToString())
                 + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
             var obj = await JsonConvert.DeserializeObjectAsync<Summoner>(json);
-            obj.Region = region;
-            return obj;
-        }
-
-        /// <summary>
-        /// Get a summoner by name synchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for a summoner.</param>
-        /// <param name="summonerName">Name of the summoner you're looking for.</param>
-        /// <returns>A summoner.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetSummoner() instead.")]
-        public SummonerV11 GetSummonerV11(Region region, string summonerName)
-        {
-            var json = requester.CreateRequest(string.Format(SummonerRootV11Url, region.ToString()) 
-                + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            var obj = JsonConvert.DeserializeObject<SummonerV11>(json);
-            obj.Region = region;
-            return obj;
-        }
-
-        /// <summary>
-        /// Get a summoner by name asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for a summoner.</param>
-        /// <param name="summonerName">Name of the summoner you're looking for.</param>
-        /// <returns>A summoner.</returns>
-        [Obsolete("The summoner api v1.1 is deprecated, please use GetSummonerAsync() instead.")]
-        public async Task<SummonerV11> GetSummonerV11Async(Region region, string summonerName)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV11Url, region.ToString())
-                + string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)));
-            var obj = await JsonConvert.DeserializeObjectAsync<SummonerV11>(json);
             obj.Region = region;
             return obj;
         }
