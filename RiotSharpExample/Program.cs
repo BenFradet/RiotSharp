@@ -22,9 +22,15 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            var champs = staticApi.GetChampions(Region.euw);
+            var items = staticApi.GetItems(Region.euw);
+            var masteries = staticApi.GetMasteries(Region.euw);
+            var runes = staticApi.GetRunes(Region.euw);
+            var spells = staticApi.GetSummonerSpells(Region.euw);
+
             var teams = api.GetTeams(Region.euw, new List<string> { team, team2 });
 
-            var tmp = api.GetSummonerV12Async(Region.euw, id2);
+            //var tmp = api.GetSummonerV12Async(Region.euw, id2);
 
             //var teams = tmp.Result.GetTeams();
 

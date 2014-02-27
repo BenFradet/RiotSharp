@@ -62,7 +62,7 @@ namespace RiotSharp
         /// <param name="championData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A ChampionListStatic object containing all champions.</returns>
-        public ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.all
+        public ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ChampionListStaticWrapper>(ChampionsCacheKey);
@@ -87,7 +87,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A ChampionListStatic object containing all champions.</returns>
         public async Task<ChampionListStatic> GetChampionsAsync(Region region
-            , ChampionData championData = ChampionData.all, Language language = Language.en_US)
+            , ChampionData championData = ChampionData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ChampionListStaticWrapper>(ChampionsCacheKey);
             if (wrapper == null || language != wrapper.Language || championData != wrapper.ChampionData)
@@ -112,7 +112,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A champion.</returns>
         public ChampionStatic GetChampion(Region region, int championId
-            , ChampionData championData = ChampionData.all, Language language = Language.en_US)
+            , ChampionData championData = ChampionData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ChampionStaticWrapper>(ChampionCacheKey + championId);
             if (wrapper != null && wrapper.Language == language && wrapper.ChampionData == championData)
@@ -151,7 +151,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A champion.</returns>
         public async Task<ChampionStatic> GetChampionAsync(Region region, int championId
-            , ChampionData championData = ChampionData.all, Language language = Language.en_US)
+            , ChampionData championData = ChampionData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ChampionStaticWrapper>(ChampionCacheKey + championId);
             if (wrapper != null && wrapper.Language == language && wrapper.ChampionData == championData)
@@ -188,7 +188,8 @@ namespace RiotSharp
         /// <param name="itemData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>An ItemListStatic object containing all items.</returns>
-        public ItemListStatic GetItems(Region region, ItemData itemData = ItemData.all, Language language = Language.en_US)
+        public ItemListStatic GetItems(Region region, ItemData itemData = ItemData.none
+            , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ItemListStaticWrapper>(ItemsCacheKey);
             if (wrapper == null || language != wrapper.Language || itemData != wrapper.ItemData)
@@ -211,7 +212,7 @@ namespace RiotSharp
         /// <param name="itemData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>An ItemListStatic object containing all items.</returns>
-        public async Task<ItemListStatic> GetItemsAsync(Region region, ItemData itemData = ItemData.all
+        public async Task<ItemListStatic> GetItemsAsync(Region region, ItemData itemData = ItemData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ItemListStaticWrapper>(ItemsCacheKey);
@@ -236,7 +237,7 @@ namespace RiotSharp
         /// <param name="itemData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>An item.</returns>
-        public ItemStatic GetItem(Region region, int itemId, ItemData itemData = ItemData.all
+        public ItemStatic GetItem(Region region, int itemId, ItemData itemData = ItemData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ItemStaticWrapper>(ItemCacheKey + itemId);
@@ -280,7 +281,7 @@ namespace RiotSharp
         /// <param name="itemData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>An item.</returns>
-        public async Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.all
+        public async Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<ItemStaticWrapper>(ItemCacheKey + itemId);
@@ -323,7 +324,7 @@ namespace RiotSharp
         /// <param name="masteryData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>An MasteryListStatic object containing all masteries.</returns>
-        public MasteryListStatic GetMasteries(Region region, MasteryData masteryData = MasteryData.all
+        public MasteryListStatic GetMasteries(Region region, MasteryData masteryData = MasteryData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<MasteryListStaticWrapper>(MasteriesCacheKey);
@@ -348,7 +349,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>An MasteryListStatic object containing all masteries.</returns>
         public async Task<MasteryListStatic> GetMasteriesAsync(Region region
-            , MasteryData masteryData = MasteryData.all, Language language = Language.en_US)
+            , MasteryData masteryData = MasteryData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<MasteryListStaticWrapper>(MasteriesCacheKey);
             if (wrapper == null || language != wrapper.Language || masteryData != wrapper.MasteryData)
@@ -372,7 +373,7 @@ namespace RiotSharp
         /// <param name="masteryData">Data to retrieve.</param>
         /// <param name="language">Language of th data to be retrieved.</param>
         /// <returns>A mastery.</returns>
-        public MasteryStatic GetMastery(Region region, int masteryId, MasteryData masteryData = MasteryData.all
+        public MasteryStatic GetMastery(Region region, int masteryId, MasteryData masteryData = MasteryData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<MasteryStaticWrapper>(MasteryCacheKey + masteryId);
@@ -418,7 +419,7 @@ namespace RiotSharp
         /// <param name="language">Language of th data to be retrieved.</param>
         /// <returns>A mastery.</returns>
         public async Task<MasteryStatic> GetMasteryAsync(Region region, int masteryId
-            , MasteryData masteryData = MasteryData.all, Language language = Language.en_US)
+            , MasteryData masteryData = MasteryData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<MasteryStaticWrapper>(MasteryCacheKey + masteryId);
             if (wrapper != null && wrapper.Language == language && wrapper.MasteryData == masteryData)
@@ -461,7 +462,8 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A RuneListStatic object containing all runes.</returns>
-        public RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.all, Language language = Language.en_US)
+        public RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.none
+            , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
             if (wrapper == null || language != wrapper.Language || runeData != wrapper.RuneData)
@@ -484,7 +486,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A RuneListStatic object containing all runes.</returns>
-        public async Task<RuneListStatic> GetRunesAsync(Region region, RuneData runeData = RuneData.all
+        public async Task<RuneListStatic> GetRunesAsync(Region region, RuneData runeData = RuneData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
@@ -509,7 +511,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A rune.</returns>
-        public ItemStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.all
+        public ItemStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
@@ -553,7 +555,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A rune.</returns>
-        public async Task<ItemStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.all
+        public async Task<ItemStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
@@ -597,7 +599,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A SummonerSpellListStatic object containing all summoner spells.</returns>
         public SummonerSpellListStatic GetSummonerSpells(Region region
-            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+            , SummonerSpellData summonerSpellData = SummonerSpellData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
             if (wrapper == null || wrapper.Language != language || wrapper.SummonerSpellData != summonerSpellData)
@@ -621,7 +623,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A SummonerSpellListStatic object containing all summoner spells.</returns>
         public async Task<SummonerSpellListStatic> GetSummonerSpellsAsync(Region region
-            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+            , SummonerSpellData summonerSpellData = SummonerSpellData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
             if (wrapper == null || wrapper.Language != language || wrapper.SummonerSpellData != summonerSpellData)
@@ -646,7 +648,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A summoner spell.</returns>
         public SummonerSpellStatic GetSummonerSpell(Region region, SummonerSpell summonerSpell
-            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+            , SummonerSpellData summonerSpellData = SummonerSpellData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString());
             if (wrapper != null && wrapper.SummonerSpellData == summonerSpellData && wrapper.Language == language)
@@ -692,7 +694,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A summoner spell.</returns>
         public async Task<SummonerSpellStatic> GetSummonerSpellAsync(Region region, SummonerSpell summonerSpell
-            , SummonerSpellData summonerSpellData = SummonerSpellData.all, Language language = Language.en_US)
+            , SummonerSpellData summonerSpellData = SummonerSpellData.none, Language language = Language.en_US)
         {
             var wrapper = Cache.Get<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString());
             if (wrapper != null && wrapper.SummonerSpellData == summonerSpellData && wrapper.Language == language)
