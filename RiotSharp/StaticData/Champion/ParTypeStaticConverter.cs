@@ -50,7 +50,8 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            string result = ((ParTypeStatic)value).ToString();
+            serializer.Serialize(writer, result);
         }
     }
 }

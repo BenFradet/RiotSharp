@@ -8,6 +8,7 @@ using RiotSharp;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace RiotSharpExample
 {
@@ -25,38 +26,42 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var summ = api.GetSummoner(Region.euw, 20937547);
+            var champs = staticApi.GetChampions(Region.euw, ChampionData.partype);
+            var json = JsonConvert.SerializeObject(champs);
+            Console.WriteLine(json);
 
-            var recentGames = summ.GetRecentGames();
-            foreach (var game in recentGames)
-            {
-                Console.WriteLine(game.SubType);
-            }
+            //var summ = api.GetSummoner(Region.euw, 20937547);
 
-            using (var fileStream = File.Create("test.xml"))
-            {
-                var serializer = new XmlSerializer(typeof(Summoner));
-                serializer.Serialize(fileStream, summ);
-            }
+            //var recentGames = summ.GetRecentGames();
+            //foreach (var game in recentGames)
+            //{
+            //    Console.WriteLine(game.SubType);
+            //}
 
-            using (var fileStream = File.OpenRead("test.xml"))
-            {
-                var deserializer = new XmlSerializer(typeof(Summoner));
-                var summoner = (Summoner)deserializer.Deserialize(fileStream);
-                Console.WriteLine(summoner.Id);
-                Console.WriteLine(summoner.Level);
-                Console.WriteLine(summoner.Name);
-                Console.WriteLine(summoner.ProfileIconId);
-                Console.WriteLine(summoner.Region);
-                Console.WriteLine(summoner.RevisionDate);
-                var leagues = summoner.GetLeagues();
-                foreach (var league in leagues)
-                {
-                    Console.WriteLine(league.LeagueName);
-                    Console.WriteLine(league.LeaguePoints);
-                }
-            }
-            Console.ReadLine();
+            //using (var fileStream = File.Create("test.xml"))
+            //{
+            //    var serializer = new XmlSerializer(typeof(Summoner));
+            //    serializer.Serialize(fileStream, summ);
+            //}
+
+            //using (var fileStream = File.OpenRead("test.xml"))
+            //{
+            //    var deserializer = new XmlSerializer(typeof(Summoner));
+            //    var summoner = (Summoner)deserializer.Deserialize(fileStream);
+            //    Console.WriteLine(summoner.Id);
+            //    Console.WriteLine(summoner.Level);
+            //    Console.WriteLine(summoner.Name);
+            //    Console.WriteLine(summoner.ProfileIconId);
+            //    Console.WriteLine(summoner.Region);
+            //    Console.WriteLine(summoner.RevisionDate);
+            //    var leagues = summoner.GetLeagues();
+            //    foreach (var league in leagues)
+            //    {
+            //        Console.WriteLine(league.LeagueName);
+            //        Console.WriteLine(league.LeaguePoints);
+            //    }
+            //}
+            //Console.ReadLine();
 
             //var champs = staticApi.GetChampions(Region.euw);
             //var items = staticApi.GetItems(Region.euw);
