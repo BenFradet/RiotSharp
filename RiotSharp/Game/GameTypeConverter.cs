@@ -34,7 +34,24 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            var type = (GameType)value;
+            string result;
+            switch (type)
+            {
+                case GameType.CustomGame:
+                    result = "CUSTOM_GAME";
+                    break;
+                case GameType.MatchedGame:
+                    result = "MATCHED_GAME";
+                    break;
+                case GameType.TutorialGame:
+                    result = "TUTORIAL_GAME";
+                    break;
+                default:
+                    result = "";
+                    break;
+            }
+            serializer.Serialize(writer, result);
         }
     }
 }

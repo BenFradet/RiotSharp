@@ -65,8 +65,8 @@
     <Compile Include="League\Tier.cs" />
     <Compile Include="League\TierConverter.cs" />
     <Compile Include="Misc\DateTimeConverter.cs" />
-    <Compile Include="Misc\LongExtension.cs" />
-    <Compile Include="Misc\TimeSpanConverter.cs" />
+    <Compile Include="Misc\DateTimeUtil.cs" />
+    <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="Cache.cs" />
     <Compile Include="StaticData\Champion\Cache\ChampionStaticWrapper.cs" />

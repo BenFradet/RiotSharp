@@ -24,6 +24,7 @@ namespace RiotSharp
         Unranked3x3,
         OneForAll5x5,
         FirstBlood1x1,
-        FirstBlood2x2
+        FirstBlood2x2,
+        SummonersRift6x6
     }
 }

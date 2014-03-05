@@ -49,6 +49,8 @@ namespace RiotSharp
                     return PlayerStatsSummaryType.FirstBlood1x1;
                 case "FirstBlood2x2":
                     return PlayerStatsSummaryType.FirstBlood2x2;
+                case "SummonersRift6x6":
+                    return PlayerStatsSummaryType.SummonersRift6x6;
                 default:
                     return null;
             }
@@ -56,7 +58,7 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            serializer.Serialize(writer, ((PlayerStatsSummaryType)value).ToString());
         }
     }
 }

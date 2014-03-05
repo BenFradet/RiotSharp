@@ -15,7 +15,8 @@ namespace RiotSharp
             return typeof(List<string>).IsAssignableFrom(objectType);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue
+            , JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
             var list = token.Values<string>();
@@ -51,7 +52,12 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            var list = new List<string>();
+            foreach (var tag in (List<TagStatic>)value)
+            {
+                list.Add(tag.ToString());
+            }
+            serializer.Serialize(writer, list);
         }
     }
 }

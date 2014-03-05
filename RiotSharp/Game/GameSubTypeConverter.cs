@@ -60,7 +60,63 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            var subType = (GameSubType)value;
+            string result;
+            switch (subType)
+            {
+                case GameSubType.AramUnranked5x5:
+                    result = "ARAM_UNRANKED_5x5";
+                    break;
+                case GameSubType.Bot:
+                    result = "BOT";
+                    break;
+                case GameSubType.Bot3x3:
+                    result = "BOT_3x3";
+                    break;
+                case GameSubType.FirstBlood1x1:
+                    result = "FIRSTBLOOD_1x1";
+                    break;
+                case GameSubType.FirstBlood2x2:
+                    result = "FIRSTBLOOD_2x2";
+                    break;
+                case GameSubType.Hexakill:
+                    result = "SR_6x6";
+                    break;
+                case GameSubType.None:
+                    result = "NONE";
+                    break;
+                case GameSubType.Normal:
+                    result = "NORMAL";
+                    break;
+                case GameSubType.Normal3x3:
+                    result = "NORMAL_3x3";
+                    break;
+                case GameSubType.OdinUnranked:
+                    result = "ODIN_UNRANKED";
+                    break;
+                case GameSubType.OneForAll5x5:
+                    result = "ONEFORALL_5x5";
+                    break;
+                case GameSubType.RankedPremade3x3:
+                    result = "RANKED_PREMADE_3x3";
+                    break;
+                case GameSubType.RankedPremade5x5:
+                    result = "RANKED_PREMADE_5x5";
+                    break;
+                case GameSubType.RankedSolo5x5:
+                    result = "RANKED_SOLO_5x5";
+                    break;
+                case GameSubType.RankedTeam3x3:
+                    result = "RANKED_TEAM_3x3";
+                    break;
+                case GameSubType.RankedTeam5x5:
+                    result = "RANKED_TEAM_5x5";
+                    break;
+                default:
+                    result = "";
+                    break;
+            }
+            serializer.Serialize(writer, result);
         }
     }
 }

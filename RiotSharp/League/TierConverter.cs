@@ -40,7 +40,7 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            serializer.Serialize(writer, ((Tier)value).ToString().ToUpper());
         }
     }
 }
