@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a rune type (Static API).
     /// </summary>
+    [Serializable]
     public class RuneTypeStatic
     {
         internal RuneTypeStatic() { }

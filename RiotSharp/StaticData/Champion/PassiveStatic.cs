@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a champion's passive (Static API).
     /// </summary>
+    [Serializable]
     public class PassiveStatic
     {
         internal PassiveStatic() { }

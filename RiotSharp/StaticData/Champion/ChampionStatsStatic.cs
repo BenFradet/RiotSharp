@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// A few statistics of a champion (Static API).
     /// </summary>
+    [Serializable]
     public class ChampionStatsStatic
     {
         internal ChampionStatsStatic() { }

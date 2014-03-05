@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing an image (Static API).
     /// </summary>
+    [Serializable]
     public class ImageStatic
     {
         internal ImageStatic() { }

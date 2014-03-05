@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a list of masteries (Static API).
     /// </summary>
+    [Serializable]
     public class MasteryListStatic
     {
         internal MasteryListStatic() { }

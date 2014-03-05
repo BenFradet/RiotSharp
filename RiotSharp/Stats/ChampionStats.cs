@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Stats for all champions (Stats API).
     /// </summary>
+    [Serializable]
     public class ChampionStats
     {
         internal ChampionStats() { }

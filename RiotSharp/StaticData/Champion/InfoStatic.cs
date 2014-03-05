@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Basic information for a champion (Static API).
     /// </summary>
+    [Serializable]
     public class InfoStatic
     {
         internal InfoStatic() { }

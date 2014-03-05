@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a list of champions (Static API).
     /// </summary>
+    [Serializable]
     public class ChampionListStatic
     {
         internal ChampionListStatic() { }

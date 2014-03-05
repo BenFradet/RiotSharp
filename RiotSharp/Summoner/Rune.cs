@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Rune (Summoner API).
     /// </summary>
+    [Serializable]
     public class Rune
     {
         internal Rune() { }

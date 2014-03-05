@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a Game in the API.
     /// </summary>
+    [Serializable]
     public class Game
     {
         internal Game() { }

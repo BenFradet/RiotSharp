@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing some information about the items retrieved (Static API).
     /// </summary>
+    [Serializable]
     public class BasicDataStatic
     {
         internal BasicDataStatic() { }

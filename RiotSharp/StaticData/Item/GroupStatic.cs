@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing an item's group (Static API).
     /// </summary>
+    [Serializable]
     public class GroupStatic
     {
         internal GroupStatic() { }

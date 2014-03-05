@@ -12,6 +12,7 @@ namespace RiotSharp
     /// <summary>
     /// Page of runes (Summoner API).
     /// </summary>
+    [Serializable]
     public class RunePage
     {
         internal RunePage() { }

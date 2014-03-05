@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class reprenseting the tooltip when leveling up a spell on a champion (Static API).
     /// </summary>
+    [Serializable]
     public class LevelTipStatic
     {
         internal LevelTipStatic() { }

@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Slot for a rune (Summoner API).
     /// </summary>
+    [Serializable]
     public class RuneSlot
     {
         internal RuneSlot() { }

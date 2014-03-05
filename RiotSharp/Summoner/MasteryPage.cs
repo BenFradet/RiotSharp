@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Page of masteries (Summoner API).
     /// </summary>
+    [Serializable]
     public class MasteryPage
     {
         internal MasteryPage() { }

@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Talent (Summoner API).
     /// </summary>
+    [Serializable]
     public class Talent
     {
         internal Talent() { }

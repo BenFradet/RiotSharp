@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a League in the API.
     /// </summary>
+    [Serializable]
     public class League
     {
         internal League() { }

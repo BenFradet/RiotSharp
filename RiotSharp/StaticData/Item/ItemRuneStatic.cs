@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a rune if an item is a rune (Static API).
     /// </summary>
+    [Serializable]
     public class ItemRuneStatic
     {
         internal ItemRuneStatic() { }

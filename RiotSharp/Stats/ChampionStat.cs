@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Stat of a particular champion (League API).
     /// </summary>
+    [Serializable]
     public class ChampionStat : AggregatedStat
     {
         internal ChampionStat() : base() { }

@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a recommended item for a champion (Static API).
     /// </summary>
+    [Serializable]
     public class RecommendedStatic
     {
         internal RecommendedStatic() { }

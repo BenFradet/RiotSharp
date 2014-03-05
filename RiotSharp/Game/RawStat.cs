@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Raw stat of a game (Game API).
     /// </summary>
+    [Serializable]
     public class RawStat
     {
         internal RawStat() { }

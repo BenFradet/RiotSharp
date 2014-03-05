@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a spell of a champion (Static API).
     /// </summary>
+    [Serializable]
     public class SpellStatic
     {
         internal SpellStatic() { }

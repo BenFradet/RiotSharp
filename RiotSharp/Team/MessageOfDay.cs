@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Message of the day of the team (Team API).
     /// </summary>
+    [Serializable]
     public class MessageOfDay
     {
         internal MessageOfDay() { }

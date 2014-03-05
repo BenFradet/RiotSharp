@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Block of recommended items by type (starting, essential, offensive, etc) for a champion (Static API).
     /// </summary>
+    [Serializable]
     public class BlockStatic
     {
         internal BlockStatic() { }

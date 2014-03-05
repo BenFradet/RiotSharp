@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace RiotSharp
 {
     /// <summary>
     /// Class representing a Summoner in the API.
     /// </summary>
+    [Serializable]
     public class Summoner : SummonerBase
     {
         internal Summoner() : base() { }

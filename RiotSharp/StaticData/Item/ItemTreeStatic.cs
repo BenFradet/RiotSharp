@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing an item tree in the shop (Static API).
     /// </summary>
+    [Serializable]
     public class ItemTreeStatic
     {
         internal ItemTreeStatic() { }

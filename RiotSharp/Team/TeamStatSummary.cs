@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Stat summary of the team (Team API).
     /// </summary>
+    [Serializable]
     public class TeamStatSummary
     {
         internal TeamStatSummary() { }

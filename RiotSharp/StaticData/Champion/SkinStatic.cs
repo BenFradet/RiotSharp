@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a skin of a champion (Static API).
     /// </summary>
+    [Serializable]
     public class SkinStatic
     {
         internal SkinStatic() { }

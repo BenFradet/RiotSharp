@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing stats (Static API).
     /// </summary>
+    [Serializable]
     public class StatsStatic
     {
         internal StatsStatic() { }

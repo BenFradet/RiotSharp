@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// LeagueItem has entered a MiniSeries (League API).
     /// </summary>
+    [Serializable]
     public class MiniSeries
     {
         internal MiniSeries() { }

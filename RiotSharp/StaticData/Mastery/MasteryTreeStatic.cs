@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Mastery tree.
     /// </summary>
+    [Serializable]
     public class MasteryTreeStatic
     {
         internal MasteryTreeStatic() { }

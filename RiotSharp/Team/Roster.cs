@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Roster of the team (Team API).
     /// </summary>
+    [Serializable]
     public class Roster
     {
         internal Roster() { }

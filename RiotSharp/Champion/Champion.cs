@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing Champion in the API.
     /// </summary>
+    [Serializable]
     public class Champion
     {
         internal Champion() { }

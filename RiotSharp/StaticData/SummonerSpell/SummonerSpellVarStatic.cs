@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing various information about a summoner spell (Static API).
     /// </summary>
+    [Serializable]
     public class SummonerSpellVarStatic
     {
         internal SummonerSpellVarStatic() { }

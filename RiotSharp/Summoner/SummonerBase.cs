@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace RiotSharp
 {
     /// <summary>
     /// Class representing the name and id of a Summoner in the API.
     /// </summary>
+    [Serializable]
     public class SummonerBase
     {
         private const string RootV12Url = "/api/lol/{0}/v1.2/summoner";
@@ -37,8 +39,9 @@ namespace RiotSharp
         private const string TeamRootUrl = "/api/lol/{0}/v2.2/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
+        [field: NonSerialized]
         private RateLimitedRequester requester;
-        public Region Region { get; internal set; }
+        public Region Region { get; set; }
 
         internal SummonerBase()
         {
@@ -47,12 +50,13 @@ namespace RiotSharp
 
         internal SummonerBase(string id, string name, RateLimitedRequester requester, Region region)
         {
+            Console.WriteLine("summoner base not default constructor");
             this.requester = requester;
             Region = region;
             this.Name = name;
             this.Id = long.Parse(id);
         }
-
+        
         /// <summary>
         /// Summoner ID.
         /// </summary>

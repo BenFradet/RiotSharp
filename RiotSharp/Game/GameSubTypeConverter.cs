@@ -51,6 +51,8 @@ namespace RiotSharp
                     return GameSubType.FirstBlood1x1;
                 case "FIRSTBLOOD_2x2":
                     return GameSubType.FirstBlood2x2;
+                case "SR_6x6":
+                    return GameSubType.Hexakill;
                 default:
                     return null;
             }

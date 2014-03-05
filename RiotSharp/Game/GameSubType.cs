@@ -84,6 +84,11 @@ namespace RiotSharp
         /// <summary>
         /// Snowdown Showdown 2x2 games.
         /// </summary>
-        FirstBlood2x2
+        FirstBlood2x2,
+
+        /// <summary>
+        /// Hexakill games
+        /// </summary>
+        Hexakill
     }
 }

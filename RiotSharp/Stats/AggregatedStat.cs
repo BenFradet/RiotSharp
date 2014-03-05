@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// AggregatedStat (Stats API).
     /// </summary>
+    [Serializable]
     public class AggregatedStat
     {
         internal AggregatedStat() { }

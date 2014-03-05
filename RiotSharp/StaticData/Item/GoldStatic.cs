@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing an item's value (Static API).
     /// </summary>
+    [Serializable]
     public class GoldStatic
     {
         internal GoldStatic() { }

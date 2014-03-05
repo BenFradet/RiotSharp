@@ -10,6 +10,7 @@ namespace RiotSharp
     /// <summary>
     /// Class representing a list of items (Static API).
     /// </summary>
+    [Serializable]
     public class ItemListStatic
     {
         internal ItemListStatic() { }

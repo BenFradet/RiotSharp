@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Team or summoner in a league (League API).
     /// </summary>
+    [Serializable]
     public class LeagueItem
     {
         internal LeagueItem() { }

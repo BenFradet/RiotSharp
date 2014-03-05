@@ -11,6 +11,7 @@ namespace RiotSharp
     /// <summary>
     /// Information about team members (Team API).
     /// </summary>
+    [Serializable]
     public class TeamMemberInfo
     {
         internal TeamMemberInfo() { }
