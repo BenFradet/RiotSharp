@@ -1,5 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/benfradet/riotsharp.png?label=ready&title=Ready)](https://waffle.io/benfradet/riotsharp)
-# RiotSharp
+# RiotSharp [![Stories in Ready](https://badge.waffle.io/benfradet/riotsharp.png?label=ready&title=Ready)](https://waffle.io/benfradet/riotsharp)
 
 C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
