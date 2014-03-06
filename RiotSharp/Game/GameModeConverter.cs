@@ -40,7 +40,32 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            string result = ((GameMode)value).ToString().ToUpper();
+            var mode = (GameMode)value;
+            string result;
+            switch (mode)
+            {
+                case GameMode.Classic:
+                    result = "CLASSIC";
+                    break;
+                case GameMode.Aram:
+                    result = "ARAM";
+                    break;
+                case GameMode.Dominion:
+                    result = "ODIN";
+                    break;
+                case GameMode.FirstBlood:
+                    result = "FIRSTBLOOD";
+                    break;
+                case GameMode.OneForAll:
+                    result = "ONEFORALL";
+                    break;
+                case GameMode.Tutorial:
+                    result = "TUTORIAL";
+                    break;
+                default:
+                    result = string.Empty;
+                    break;
+            }
             serializer.Serialize(writer, result);
         }
     }

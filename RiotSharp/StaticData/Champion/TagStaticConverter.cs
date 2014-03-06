@@ -18,36 +18,40 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue
             , JsonSerializer serializer)
         {
-            var token = JToken.Load(reader);
-            var list = token.Values<string>();
-            var tags = new List<TagStatic>();
-            foreach (var str in list)
+            if (reader.Value != null)
             {
-                switch (str)
+                var token = JToken.Load(reader);
+                var list = token.Values<string>();
+                var tags = new List<TagStatic>();
+                foreach (var str in list)
                 {
-                    case "Fighter":
-                        tags.Add(TagStatic.Fighter);
-                        break;
-                    case "Tank":
-                        tags.Add(TagStatic.Tank);
-                        break;
-                    case "Mage":
-                        tags.Add(TagStatic.Mage);
-                        break;
-                    case "Assassin":
-                        tags.Add(TagStatic.Assassin);
-                        break;
-                    case "Support":
-                        tags.Add(TagStatic.Support);
-                        break;
-                    case "Marksman":
-                        tags.Add(TagStatic.Marksman);
-                        break;
-                    default:
-                        break;
+                    switch (str)
+                    {
+                        case "Fighter":
+                            tags.Add(TagStatic.Fighter);
+                            break;
+                        case "Tank":
+                            tags.Add(TagStatic.Tank);
+                            break;
+                        case "Mage":
+                            tags.Add(TagStatic.Mage);
+                            break;
+                        case "Assassin":
+                            tags.Add(TagStatic.Assassin);
+                            break;
+                        case "Support":
+                            tags.Add(TagStatic.Support);
+                            break;
+                        case "Marksman":
+                            tags.Add(TagStatic.Marksman);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                return tags;
             }
-            return tags;
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

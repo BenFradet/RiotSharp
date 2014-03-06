@@ -26,8 +26,10 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var champs = staticApi.GetChampions(Region.euw, ChampionData.tags);
+            var champs = staticApi.GetChampions(Region.euw, ChampionData.recommended);
             var json = JsonConvert.SerializeObject(champs);
+            File.WriteAllText("test.json", json);
+            champs = JsonConvert.DeserializeObject<ChampionListStatic>(File.ReadAllText("test.json"));
             Console.WriteLine(json);
 
             //var summ = api.GetSummoner(Region.euw, 20937547);
