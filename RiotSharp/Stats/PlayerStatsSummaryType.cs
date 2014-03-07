@@ -12,6 +12,7 @@ namespace RiotSharp
     public enum PlayerStatsSummaryType
     {
         AramUnranked5x5,
+        CAP5x5,
         CoopVsAI,
         CoopVsAI3x3,
         OdinUnranked,
