@@ -23,6 +23,8 @@ namespace RiotSharp
             {
                 case "AramUnranked5x5":
                     return PlayerStatsSummaryType.AramUnranked5x5;
+                case "CAP5x5":
+                    return PlayerStatsSummaryType.CAP5x5;
                 case "CoopVsAI":
                     return PlayerStatsSummaryType.CoopVsAI;
                 case "CoopVsAI3x3":
