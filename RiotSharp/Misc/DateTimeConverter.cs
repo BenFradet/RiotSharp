@@ -18,7 +18,11 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
-            return token.Value<long>().ToDateTimeFromMilliSeconds();
+            if (token.Value<long>() != null)
+            {
+                return token.Value<long>().ToDateTimeFromMilliSeconds();
+            }
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

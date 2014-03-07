@@ -18,18 +18,22 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            var str = token.Value<string>();
-            switch (str)
+            if (token.Value<string>() != null)
             {
-                case "CUSTOM_GAME":
-                    return GameType.CustomGame;
-                case "MATCHED_GAME":
-                    return GameType.MatchedGame;
-                case "TUTORIAL_GAME":
-                    return GameType.TutorialGame;
-                default:
-                    return null;
+                var str = token.Value<string>();
+                switch (str)
+                {
+                    case "CUSTOM_GAME":
+                        return GameType.CustomGame;
+                    case "MATCHED_GAME":
+                        return GameType.MatchedGame;
+                    case "TUTORIAL_GAME":
+                        return GameType.TutorialGame;
+                    default:
+                        return null;
+                }
             }
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

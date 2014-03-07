@@ -18,18 +18,22 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            var str = token.Value<string>();
-            switch (str)
+            if (token.Value<string>() != null)
             {
-                case "RANKED_SOLO_5x5":
-                    return Queue.RankedSolo5x5;
-                case "RANKED_TEAM_3x3":
-                    return Queue.RankedTeam3x3;
-                case "RANKED_TEAM_5x5":
-                    return Queue.RankedTeam5x5;
-                default:
-                    return null;
+                var str = token.Value<string>();
+                switch (str)
+                {
+                    case "RANKED_SOLO_5x5":
+                        return Queue.RankedSolo5x5;
+                    case "RANKED_TEAM_3x3":
+                        return Queue.RankedTeam3x3;
+                    case "RANKED_TEAM_5x5":
+                        return Queue.RankedTeam5x5;
+                    default:
+                        return null;
+                }
             }
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

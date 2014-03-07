@@ -18,9 +18,9 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue
             , JsonSerializer serializer)
         {
-            if (reader.Value != null)
+            var token = JToken.Load(reader);
+            if (token.Values<string>() != null)
             {
-                var token = JToken.Load(reader);
                 var list = token.Values<string>();
                 var tags = new List<TagStatic>();
                 foreach (var str in list)

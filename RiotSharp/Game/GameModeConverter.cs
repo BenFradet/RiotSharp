@@ -18,24 +18,28 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            var str = token.Value<string>();
-            switch (str)
+            if (token.Value<string>() != null)
             {
-                case "CLASSIC":
-                    return GameMode.Classic;
-                case "ODIN":
-                    return GameMode.Dominion;
-                case "ARAM":
-                    return GameMode.Aram;
-                case "TUTORIAL":
-                    return GameMode.Tutorial;
-                case "ONEFORALL":
-                    return GameMode.OneForAll;
-                case "FIRSTBLOOD":
-                    return GameMode.FirstBlood;
-                default:
-                    return null;
+                var str = token.Value<string>();
+                switch (str)
+                {
+                    case "CLASSIC":
+                        return GameMode.Classic;
+                    case "ODIN":
+                        return GameMode.Dominion;
+                    case "ARAM":
+                        return GameMode.Aram;
+                    case "TUTORIAL":
+                        return GameMode.Tutorial;
+                    case "ONEFORALL":
+                        return GameMode.OneForAll;
+                    case "FIRSTBLOOD":
+                        return GameMode.FirstBlood;
+                    default:
+                        return null;
+                }
             }
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

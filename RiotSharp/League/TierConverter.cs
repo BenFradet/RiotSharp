@@ -18,24 +18,28 @@ namespace RiotSharp
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            var str = token.Value<string>();
-            switch (str)
+            if (token.Value<string>() != null)
             {
-                case "CHALLENGER":
-                    return Tier.Challenger;
-                case "DIAMOND":
-                    return Tier.Diamond;
-                case "PLATINUM":
-                    return Tier.Platinum;
-                case "GOLD":
-                    return Tier.Gold;
-                case "SILVER":
-                    return Tier.Silver;
-                case "BRONZE":
-                    return Tier.Bronze;
-                default:
-                    return null;
+                var str = token.Value<string>();
+                switch (str)
+                {
+                    case "CHALLENGER":
+                        return Tier.Challenger;
+                    case "DIAMOND":
+                        return Tier.Diamond;
+                    case "PLATINUM":
+                        return Tier.Platinum;
+                    case "GOLD":
+                        return Tier.Gold;
+                    case "SILVER":
+                        return Tier.Silver;
+                    case "BRONZE":
+                        return Tier.Bronze;
+                    default:
+                        return null;
+                }
             }
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
