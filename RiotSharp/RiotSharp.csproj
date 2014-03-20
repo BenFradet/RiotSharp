@@ -45,8 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champion\ChampionList.cs" />
-    <Compile Include="Game\Deprecated\GameV12.cs" />
-    <Compile Include="Game\Deprecated\RecentGamesV12.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameMode.cs" />
     <Compile Include="Game\GameModeConverter.cs" />
@@ -120,8 +118,6 @@
     <Compile Include="Stats\ChampionStats.cs" />
     <Compile Include="Champion\Champion.cs" />
     <Compile Include="League\CharArrayConverter.cs" />
-    <Compile Include="League\Deprecated\LeagueV21.cs" />
-    <Compile Include="League\Deprecated\LeagueItemV21.cs" />
     <Compile Include="Stats\PlayerStatsSummary.cs" />
     <Compile Include="Stats\PlayerStatsSummaryList.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
@@ -129,7 +125,6 @@
     <Compile Include="Stats\RankedStats.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Game\Deprecated\RawStatV12.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="Summoner\MasteryPages.cs" />
     <Compile Include="Summoner\Rune.cs" />
@@ -145,11 +140,6 @@
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\SummonerBaseList.cs" />
     <Compile Include="Summoner\Talent.cs" />
-    <Compile Include="Team\Deprecated\MatchHistorySummaryV21.cs" />
-    <Compile Include="Team\Deprecated\TeamIdV21.cs" />
-    <Compile Include="Team\Deprecated\TeamStatDetailV21.cs" />
-    <Compile Include="Team\Deprecated\TeamStatSummaryV21.cs" />
-    <Compile Include="Team\Deprecated\TeamV21.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />
     <Compile Include="Team\MessageOfDay.cs" />
     <Compile Include="Team\Roster.cs" />
@@ -159,8 +149,10 @@
     <Compile Include="Team\TeamStatSummary.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Game\Deprecated\" />
     <Folder Include="Stats\Deprecated\" />
     <Folder Include="Summoner\Deprecated\" />
+    <Folder Include="Team\Deprecated\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

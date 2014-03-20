@@ -178,29 +178,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Get the 10 most recent games for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of the 10 most recent games.</returns>
-        [Obsolete("The game api v1.2 is deprecated, please use GetRecentGames() instead.")]
-        public List<GameV12> GetRecentGamesV12()
-        {
-            var json = requester.CreateRequest(string.Format(GameV12RootUrl, Region) + string.Format(RecentGamesUrl, Id));
-            return JsonConvert.DeserializeObject<RecentGamesV12>(json).Games;
-        }
-
-        /// <summary>
-        /// Get the 10 most recent games for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of the 10 most recent games.</returns>
-        [Obsolete("The game api v1.1 is deprecated, please use GetRecentGamesAsync() instead.")]
-        public async Task<List<GameV12>> GetRecentGamesV12Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(GameV12RootUrl, Region)
-                + string.Format(RecentGamesUrl, Id));
-            return (await JsonConvert.DeserializeObjectAsync<RecentGamesV12>(json)).Games;
-        }
-
-        /// <summary>
         /// Retrieve the league items for this specific summoner and not the entire league.
         /// </summary>
         /// <returns>A list of league items for each league the summoner is in.</returns>
@@ -268,30 +245,6 @@ namespace RiotSharp
             return await JsonConvert.DeserializeObjectAsync<Dictionary<string, LeagueV22>>(json);
         }
         
-        /// <summary>
-        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
-        /// </summary>
-        /// <returns>A map of leagues indexed by their id.</returns>
-        [Obsolete("The league api v2.1 is deprecated, please use GetLeagues() instead.")]
-        public Dictionary<string, LeagueV21> GetEntireLeaguesV21()
-        {
-            var json = requester.CreateRequest(string.Format(LeagueV21RootUrl, Region)
-                + string.Format(LeagueBySummonerUrl, Id));
-            return JsonConvert.DeserializeObject<Dictionary<string, LeagueV21>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams asynchronously.
-        /// </summary>
-        /// <returns>A map of leagues indexed by their id.</returns>
-        [Obsolete("The league api v2.1 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<Dictionary<string, LeagueV21>> GetEntireLeaguesV21Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(LeagueV21RootUrl, Region)
-                + string.Format(LeagueBySummonerUrl, Id));
-            return await JsonConvert.DeserializeObjectAsync<Dictionary<string, LeagueV21>>(json);
-        }
-
         /// <summary>
         /// Get player stats summaries for this summoner synchronously. One summary is returned per queue type.
         /// </summary>
@@ -361,30 +314,6 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(TeamRootUrl, Region)
                 + string.Format(TeamBySummonerUrl, Id));
             return await JsonConvert.DeserializeObjectAsync<List<Team>>(json);
-        }
-        
-        /// <summary>
-        /// Get team information for this summoner synchronously.
-        /// </summary>
-        /// <returns>List of teams.</returns>
-        [Obsolete("The team api v2.1 is deprecated, please use GetTeam() instead.")]
-        public List<TeamV21> GetTeamsV21()
-        {
-            var json = requester.CreateRequest(string.Format(TeamV21RootUrl, Region)
-                + string.Format(TeamBySummonerUrl, Id));
-            return JsonConvert.DeserializeObject<List<TeamV21>>(json);
-        }
-
-        /// <summary>
-        /// Get team information for this summoner asynchronously.
-        /// </summary>
-        /// <returns>List of teams.</returns>
-        [Obsolete("The team api v2.1 is deprecated, please use GetTeamAsync() instead.")]
-        public async Task<List<TeamV21>> GetTeamsV21Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(TeamV21RootUrl, Region)
-                + string.Format(TeamBySummonerUrl, Id));
-            return await JsonConvert.DeserializeObjectAsync<List<TeamV21>>(json);
-        }
+        }        
     }
 }
