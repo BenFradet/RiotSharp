@@ -493,7 +493,7 @@ namespace RiotSharp
             if (wrapper == null || language != wrapper.Language | runeData != wrapper.RuneData)
             {
                 var json = await requester.CreateRequestAsync(string.Format(RuneRootUrl, region.ToString())
-                    , new List<string>() { string.Format("local={0}", language.ToString())
+                    , new List<string>() { string.Format("locale={0}", language.ToString())
                         , runeData == RuneData.none ? string.Empty
                             : string.Format("runeListData={0}", runeData.ToString()) });
                 var runes = await JsonConvert.DeserializeObjectAsync<RuneListStatic>(json);
