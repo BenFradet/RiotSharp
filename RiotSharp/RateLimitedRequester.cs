@@ -11,9 +11,8 @@ namespace RiotSharp
 {
     class RateLimitedRequester : Requester
     {
-        private static RateLimitedRequester instance; 
-        private RateLimitedRequester()
-         : base() { }
+        private static RateLimitedRequester instance;
+        private RateLimitedRequester() : base() { }
         public static new RateLimitedRequester Instance
         {
             get
@@ -58,17 +57,28 @@ namespace RiotSharp
                 }
                 numberOfRequestsInLastTenS++;
 
-                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
+                if (!IsProdApi && numberOfRequestInLastTenM > MAX_REQUEST_PER_10M)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes <= 10) ;
-                    numberOfRequestInLastTenM = 0;
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601) ;
+                    numberOfRequestInLastTenM = 1;
                     firstRequestInLastTenM = DateTime.Now;
                 }
-                if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
+                if (!IsProdApi && numberOfRequestsInLastTenS > MAX_REQUEST_PER_10S)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 10) ;
-                    numberOfRequestsInLastTenS = 0;
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11) ;
+                    numberOfRequestsInLastTenS = 1;
                     firstRequestInLastTenS = DateTime.Now;
+                }
+
+                if (!IsProdApi && ((DateTime.Now - firstRequestInLastTenS).TotalSeconds > 10))
+                {
+                    firstRequestInLastTenS = DateTime.Now;
+                    numberOfRequestsInLastTenS = 1;
+                }
+                if (!IsProdApi && ((DateTime.Now - firstRequestInLastTenM).TotalMinutes > 10))
+                {
+                    firstRequestInLastTenM = DateTime.Now;
+                    numberOfRequestInLastTenM = 1;
                 }
             }
             semaphore.Release();
@@ -94,18 +104,31 @@ namespace RiotSharp
                 }
                 numberOfRequestsInLastTenS++;
 
-                if (!IsProdApi && numberOfRequestInLastTenM >= MAX_REQUEST_PER_10M)
+
+                if (!IsProdApi && numberOfRequestInLastTenM > MAX_REQUEST_PER_10M)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalMinutes <= 10) ;
-                    numberOfRequestInLastTenM = 0;
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601) ;
+                    numberOfRequestInLastTenM = 1;
                     firstRequestInLastTenM = DateTime.Now;
                 }
-                if (!IsProdApi && numberOfRequestsInLastTenS >= MAX_REQUEST_PER_10S)
+                if (!IsProdApi && numberOfRequestsInLastTenS > MAX_REQUEST_PER_10S)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 10) ;
-                    numberOfRequestsInLastTenS = 0;
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11) ;
+                    numberOfRequestsInLastTenS = 1;
                     firstRequestInLastTenS = DateTime.Now;
                 }
+
+                if (!IsProdApi && ((DateTime.Now - firstRequestInLastTenS).TotalSeconds > 10))
+                {
+                    firstRequestInLastTenS = DateTime.Now;
+                    numberOfRequestsInLastTenS = 1;
+                }
+                if (!IsProdApi && ((DateTime.Now - firstRequestInLastTenM).TotalMinutes > 10))
+                {
+                    firstRequestInLastTenM = DateTime.Now;
+                    numberOfRequestInLastTenM = 1;
+                }
+
             }
             semaphore.Release();
 
