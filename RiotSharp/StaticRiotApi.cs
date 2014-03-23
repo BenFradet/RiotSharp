@@ -170,7 +170,7 @@ namespace RiotSharp
                 {
                     var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString())
                         + string.Format(IdUrl, championId)
-                        , new List<string>() { string.Format("local={0}", language.ToString())
+                        , new List<string>() { string.Format("locale={0}", language.ToString())
                             , championData == ChampionData.none ? string.Empty 
                                 : string.Format("champData={0}", championData.ToString()) });
                     var champ = await JsonConvert.DeserializeObjectAsync<ChampionStatic>(json);
@@ -307,7 +307,7 @@ namespace RiotSharp
                 {
                     var json = await requester.CreateRequestAsync(string.Format(ItemRootUrl, region.ToString())
                         + string.Format(IdUrl, itemId)
-                        , new List<string>() { string.Format("local={0}", language.ToString())
+                        , new List<string>() { string.Format("locale={0}", language.ToString())
                             , itemData == ItemData.none ? string.Empty
                                 : string.Format("itemData={0}", itemData.ToString()) });
                     var item = await JsonConvert.DeserializeObjectAsync<ItemStatic>(json);
