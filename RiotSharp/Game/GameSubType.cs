@@ -89,6 +89,11 @@ namespace RiotSharp
         /// <summary>
         /// Hexakill games
         /// </summary>
-        Hexakill
+        Hexakill,
+
+        /// <summary>
+        /// Team Builder games
+        /// </summary>
+        TeamBuilder5x5,
     }
 }
