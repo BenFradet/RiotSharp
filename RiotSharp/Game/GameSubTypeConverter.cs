@@ -55,6 +55,8 @@ namespace RiotSharp
                         return GameSubType.FirstBlood2x2;
                     case "SR_6x6":
                         return GameSubType.Hexakill;
+                    case "CAP_5x5":
+                        return GameSubType.TeamBuilder5x5;
                     default:
                         return null;
                 }
@@ -115,6 +117,9 @@ namespace RiotSharp
                     break;
                 case GameSubType.RankedTeam5x5:
                     result = "RANKED_TEAM_5x5";
+                    break;
+                case GameSubType.TeamBuilder5x5:
+                    result = "CAP_5x5";
                     break;
                 default:
                     result = "";
