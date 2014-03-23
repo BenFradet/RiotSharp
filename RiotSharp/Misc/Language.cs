@@ -24,6 +24,10 @@ namespace RiotSharp
         /// </summary>
         es_ES,
         /// <summary>
+        /// Latam Spanish.
+        /// </summary>
+        es_MX,
+        /// <summary>
         /// French.
         /// </summary>
         fr_FR,
