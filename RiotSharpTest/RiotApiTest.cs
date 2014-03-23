@@ -38,24 +38,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetSummonerV12_ById_Test()
-        {
-            var summoner = api.GetSummonerV12(Region.euw, id);
-
-            Assert.AreEqual(summoner.Name, name);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetSummonerV12Async_ById_Test()
-        {
-            var summoner = api.GetSummonerV12Async(Region.euw, id);
-
-            Assert.AreEqual(summoner.Result.Name, name);
-        }
-
-        [TestMethod]
         [TestCategory("RiotApi")]
         public void GetSummoners_ById_Test()
         {
@@ -89,24 +71,6 @@ namespace RiotSharpTest
         public void GetSummonerAsync_ByName_Test()
         {
             var summoner = api.GetSummonerAsync(Region.euw, name);
-
-            Assert.AreEqual(summoner.Result.Id, id);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetSummonerV12_ByName_Test()
-        {
-            var summoner = api.GetSummonerV12(Region.euw, name);
-
-            Assert.AreEqual(summoner.Id, id);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetSummonerV12Async_ByName_Test()
-        {
-            var summoner = api.GetSummonerV12Async(Region.euw, name);
 
             Assert.AreEqual(summoner.Result.Id, id);
         }
@@ -164,26 +128,6 @@ namespace RiotSharpTest
         public void GetSummonersNamesAsync_Test()
         {
             var summoners = api.GetSummonersNamesAsync(Region.euw, new List<int>() { id, id2 });
-
-            Assert.IsNotNull(summoners.Result);
-            Assert.IsTrue(summoners.Result.Count() == 2);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetSummonersNamesV12_Test()
-        {
-            var summoners = api.GetSummonersNamesV12(Region.euw, new List<int>() { id, id2 });
-
-            Assert.IsNotNull(summoners);
-            Assert.IsTrue(summoners.Count() == 2);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetSummonersNamesV12Async_Test()
-        {
-            var summoners = api.GetSummonersNamesV12Async(Region.euw, new List<int>() { id, id2 });
 
             Assert.IsNotNull(summoners.Result);
             Assert.IsTrue(summoners.Result.Count() == 2);

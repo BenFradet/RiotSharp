@@ -91,28 +91,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Get rune pages for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of rune pages.</returns>
-        [Obsolete("The summoner api v1.2 is deprecated, please use GetRunePages() instead.")]
-        public List<RunePage> GetRunePagesV12()
-        {
-            var json = requester.CreateRequest(string.Format(RootV12Url, Region) + string.Format(RunesUrl, Id));
-            return JsonConvert.DeserializeObject<RunePages>(json).Pages;
-        }
-
-        /// <summary>
-        /// Get rune pages for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of rune pages.</returns>
-        [Obsolete("The summoner api v1.2 is deprecated, please use GetRunePagesAsync() instead.")]
-        public async Task<List<RunePage>> GetRunePagesV12Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(RootV12Url, Region) + string.Format(RunesUrl, Id));
-            return (await JsonConvert.DeserializeObjectAsync<RunePages>(json)).Pages;
-        }
-
-        /// <summary>
         /// Get mastery pages for this summoner synchronously.
         /// </summary>
         /// <returns>A list of mastery pages.</returns>
@@ -131,29 +109,6 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(RootUrl, Region) + string.Format(MasteriesUrl, Id));
             return (await JsonConvert.DeserializeObjectAsync<Dictionary<long, MasteryPages>>(json))
                 .Values.FirstOrDefault().Pages;
-        }
-
-        /// <summary>
-        /// Get mastery pages for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of mastery pages.</returns>
-        [Obsolete("The summoner api v1.2 is deprecated, please use GetMasteryPages() instead.")]
-        public List<MasteryPage> GetMasteryPagesV12()
-        {
-            var json = requester.CreateRequest(string.Format(RootV12Url, Region) + string.Format(MasteriesUrl, Id));
-            return JsonConvert.DeserializeObject<MasteryPages>(json).Pages;
-        }
-
-        /// <summary>
-        /// Get mastery pages for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of mastery pages.</returns>
-        [Obsolete("The summoner api v1.2 is deprecated, please use GetMasteryPagesAsync() instead.")]
-        public async Task<List<MasteryPage>> GetMasteryPagesV12Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(RootV12Url, Region) 
-                + string.Format(MasteriesUrl, Id));
-            return (await JsonConvert.DeserializeObjectAsync<MasteryPages>(json)).Pages;
         }
 
         /// <summary>
