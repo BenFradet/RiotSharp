@@ -175,6 +175,47 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Result.Count() > 0);
         }
 
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetStatsSummaries_CurrentSeason_Test()
+        {
+            var stats = summoner.GetStatsSummaries();
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetStatsSummariesAsync_CurrentSeason_Test()
+        {
+            var stats = summoner.GetStatsSummariesAsync();
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetStatsRanked_CurrentSeason_Test()
+        {
+            var stats = summoner.GetStatsRanked();
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetStatsRankedAsync_CurrentSeason_Test()
+        {
+            var stats = summoner.GetStatsRankedAsync();
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetTeams_Test()
