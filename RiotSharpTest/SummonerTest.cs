@@ -139,7 +139,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
         {
-            var stats = summoner.GetStatsSummaries(Season.Season3);
+            var stats = summoner.GetStatsSummaries();
 
             Assert.IsNotNull(stats);
             Assert.IsTrue(stats.Count() > 0);
@@ -169,7 +169,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsRankedAsync_Test()
         {
-            var stats = summoner.GetStatsRankedAsync(Season.Season3);
+            var stats = summoner.GetStatsRankedAsync();
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);
