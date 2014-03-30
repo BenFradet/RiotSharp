@@ -116,26 +116,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV22_Test()
-        {
-            var leagues = summoner.GetEntireLeaguesV22();
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV22Async_Test()
-        {
-            var leagues = summoner.GetEntireLeaguesV22Async();
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count() > 0);
-        }
-
-        [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
         {

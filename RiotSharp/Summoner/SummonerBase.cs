@@ -177,30 +177,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
-        /// </summary>
-        /// <returns>A map of leagues indexed by thei id.</returns>
-        [Obsolete("The league api v2.2 is deprecated, please use GetLeagues() instead.")]
-        public Dictionary<string, LeagueV22> GetEntireLeaguesV22()
-        {
-            var json = requester.CreateRequest(string.Format(LeagueV22RootUrl, Region) 
-                + string.Format(LeagueBySummonerUrl, Id));
-            return JsonConvert.DeserializeObject<Dictionary<string, LeagueV22>>(json);
-        }        
-
-        /// <summary>
-        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams asynchronously.
-        /// </summary>
-        /// <returns>A map of leagues indexed by their id.</returns>
-        [Obsolete("The league api v2.1 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<Dictionary<string, LeagueV22>> GetEntireLeaguesV22Async()
-        {
-            var json = await requester.CreateRequestAsync(string.Format(LeagueV22RootUrl, Region)
-                + string.Format(LeagueBySummonerUrl, Id));
-            return await JsonConvert.DeserializeObjectAsync<Dictionary<string, LeagueV22>>(json);
-        }
-
-        /// <summary>
         /// Get player stats summaries for this summoner synchronously, for the current season. One summary is returned per queue type.
         /// </summary>
         /// <returns>A list of player stats summaries.</returns>

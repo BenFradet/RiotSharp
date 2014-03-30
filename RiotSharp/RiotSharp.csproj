@@ -55,7 +55,6 @@
     <Compile Include="Game\GameSubTypeConverter.cs" />
     <Compile Include="Game\RecentGames.cs" />
     <Compile Include="Misc\Language.cs" />
-    <Compile Include="League\Deprecated\LeagueV22.cs" />
     <Compile Include="League\League.cs" />
     <Compile Include="League\LeagueItem.cs" />
     <Compile Include="League\Queue.cs" />
@@ -150,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Deprecated\" />
+    <Folder Include="League\Deprecated\" />
     <Folder Include="Stats\Deprecated\" />
     <Folder Include="Summoner\Deprecated\" />
     <Folder Include="Team\Deprecated\" />
