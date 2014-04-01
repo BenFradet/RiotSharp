@@ -26,6 +26,8 @@ namespace RiotSharp
         OneForAll5x5,
         FirstBlood1x1,
         FirstBlood2x2,
-        SummonersRift6x6
+        SummonersRift6x6,
+        URF,
+        URFBots
     }
 }
