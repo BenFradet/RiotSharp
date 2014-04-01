@@ -55,6 +55,10 @@ namespace RiotSharp
                         return PlayerStatsSummaryType.FirstBlood2x2;
                     case "SummonersRift6x6":
                         return PlayerStatsSummaryType.SummonersRift6x6;
+                    case "URF":
+                        return PlayerStatsSummaryType.URF;
+                    case "URFBots":
+                        return PlayerStatsSummaryType.URFBots;
                     default:
                         return null;
                 }
