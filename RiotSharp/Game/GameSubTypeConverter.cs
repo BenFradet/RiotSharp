@@ -57,6 +57,10 @@ namespace RiotSharp
                         return GameSubType.Hexakill;
                     case "CAP_5x5":
                         return GameSubType.TeamBuilder5x5;
+                    case "URF":
+                        return GameSubType.URF;
+                    case "URF_BOT":
+                        return GameSubType.URF_BOT;
                     default:
                         return null;
                 }
@@ -120,6 +124,12 @@ namespace RiotSharp
                     break;
                 case GameSubType.TeamBuilder5x5:
                     result = "CAP_5x5";
+                    break;
+                case GameSubType.URF:
+                    result = "URF";
+                    break;
+                case GameSubType.URF_BOT:
+                    result = "URF_BOT";
                     break;
                 default:
                     result = "";
