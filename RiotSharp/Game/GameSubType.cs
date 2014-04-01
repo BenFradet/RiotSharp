@@ -95,5 +95,16 @@ namespace RiotSharp
         /// Team Builder games
         /// </summary>
         TeamBuilder5x5,
+        
+         /// <summary>
+        /// URF games
+        /// </summary>
+        URF,
+        
+         /// <summary>
+        /// URF Bots games
+        /// </summary>
+        URF_BOT,
+        
     }
 }
