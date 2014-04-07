@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
@@ -23,12 +22,6 @@ namespace RiotSharp
         public bool Active { get; set; }
 
         /// <summary>
-        /// Champion attack rank.
-        /// </summary>
-        [JsonProperty("attackRank")]
-        public int AttackRank { get; set; }
-
-        /// <summary>
         /// Bot enabled flag (for custom games).
         /// </summary>
         [JsonProperty("botEnabled")]
@@ -41,18 +34,6 @@ namespace RiotSharp
         public bool BotMmEnabled { get; set; }
 
         /// <summary>
-        /// Champion defense rank.
-        /// </summary>
-        [JsonProperty("defenseRank")]
-        public int DefenseRank { get; set; }
-
-        /// <summary>
-        /// Champion difficulty rank.
-        /// </summary>
-        [JsonProperty("difficultyRank")]
-        public int DifficultyRank { get; set; }
-
-        /// <summary>
         /// Indicates if the champion is free to play. Free to play champions are rotated periodically.
         /// </summary>
         [JsonProperty("freeToPlay")]
@@ -63,18 +44,6 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; }
-
-        /// <summary>
-        /// Champion magic rank.
-        /// </summary>
-        [JsonProperty("magicRank")]
-        public int MagicRank { get; set; }
-
-        /// <summary>
-        /// Champion name.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
 
         /// <summary>
         /// Ranked play enabled flag.

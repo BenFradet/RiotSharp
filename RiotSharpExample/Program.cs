@@ -26,6 +26,8 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            var champions = api.GetChampions(Region.euw);
+
             var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
 
             var champs = staticApi.GetChampions(Region.euw, ChampionData.blurb);

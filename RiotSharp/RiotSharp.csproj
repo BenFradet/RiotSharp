@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Champion\Champion.cs" />
     <Compile Include="Champion\ChampionList.cs" />
+    <Compile Include="Champion\Deprecated\ChampionListV11.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameMode.cs" />
     <Compile Include="Game\GameModeConverter.cs" />
@@ -115,7 +117,7 @@
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
-    <Compile Include="Champion\Champion.cs" />
+    <Compile Include="Champion\Deprecated\ChampionV11.cs" />
     <Compile Include="League\CharArrayConverter.cs" />
     <Compile Include="Stats\PlayerStatsSummary.cs" />
     <Compile Include="Stats\PlayerStatsSummaryList.cs" />

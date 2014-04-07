@@ -154,6 +154,26 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Deprecated")]
+        public void GetChampionsV11_Test()
+        {
+            var champions = api.GetChampionsV11(Region.euw);
+
+            Assert.IsNotNull(champions);
+            Assert.IsTrue(champions.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetChampionsV11Async_Test()
+        {
+            var champions = api.GetChampionsV11Async(Region.euw);
+
+            Assert.IsNotNull(champions.Result);
+            Assert.IsTrue(champions.Result.Count() > 0);
+        }
+
+        [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMasteryPages_Test()
         {

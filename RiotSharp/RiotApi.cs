@@ -11,7 +11,6 @@ namespace RiotSharp
 {
     public class RiotApi
     {
-        private const string SummonerRootV12Url = "/api/lol/{0}/v1.2/summoner";
         private const string SummonerRootUrl = "/api/lol/{0}/v1.3/summoner";
         private const string ByNameUrl = "/by-name/{0}";
         private const string IdUrl = "/{0}";
@@ -19,7 +18,8 @@ namespace RiotSharp
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
 
-        private const string ChampionRootUrl = "/api/lol/{0}/v1.1/champion";
+        private const string ChampionRootV11Url = "/api/lol/{0}/v1.1/champion";
+        private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
 
         private const string ChallengerLeagueRootUrl = "/api/lol/{0}/v2.3/league/challenger";
 
@@ -270,6 +270,30 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()));
             return (await JsonConvert.DeserializeObjectAsync<ChampionList>(json)).Champions;
+        }
+
+        /// <summary>
+        /// Get the list of champions by region synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for champions.</param>
+        /// <returns>A list of champions.</returns>
+        [Obsolete("The champion api v1.1 is deprecated, please use GetChampions() instead.")]
+        public List<ChampionV11> GetChampionsV11(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(ChampionRootV11Url, region.ToString()));
+            return JsonConvert.DeserializeObject<ChampionListV11>(json).Champions;
+        }
+
+        /// <summary>
+        /// Get the list of champions by region asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for champions.</param>
+        /// <returns>A list of champions.</returns>
+        [Obsolete("The champion api v1.1 is deprecated, please use GetChampionsAsync() instead.")]
+        public async Task<List<ChampionV11>> GetChampionsV11Async(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(ChampionRootV11Url, region.ToString()));
+            return (await JsonConvert.DeserializeObjectAsync<ChampionListV11>(json)).Champions;
         }
 
         /// <summary>
