@@ -154,6 +154,26 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetChampion_Test()
+        {
+            var champion = api.GetChampion(Region.euw, 12);
+
+            Assert.IsNotNull(champion);
+            Assert.AreEqual<long>(champion.Id, 12);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChampionAsync_Test()
+        {
+            var champion = api.GetChampionAsync(Region.euw, 12);
+
+            Assert.IsNotNull(champion.Result);
+            Assert.AreEqual<long>(champion.Result.Id, 12);
+        }
+
+        [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Deprecated")]
         public void GetChampionsV11_Test()
         {

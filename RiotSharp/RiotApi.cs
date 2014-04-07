@@ -273,6 +273,32 @@ namespace RiotSharp
         }
 
         /// <summary>
+        /// Get a champion from its id synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a champion.</param>
+        /// <param name="championId">Id of the champion you're looking for.</param>
+        /// <returns>A champion.</returns>
+        public Champion GetChampion(Region region, int championId)
+        {
+            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString())
+                + string.Format(IdUrl, championId));
+            return JsonConvert.DeserializeObject<Champion>(json);
+        }
+
+        /// <summary>
+        /// Get a champion from its id asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a champion.</param>
+        /// <param name="championId">Id of the champion you're looking for.</param>
+        /// <returns>A champion.</returns>
+        public async Task<Champion> GetChampionAsync(Region region, int championId)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString())
+                + string.Format(IdUrl, championId));
+            return await JsonConvert.DeserializeObjectAsync<Champion>(json);
+        }
+
+        /// <summary>
         /// Get the list of champions by region synchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for champions.</param>
