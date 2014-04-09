@@ -39,6 +39,11 @@ namespace RiotSharp
         /// <summary>
         /// Snowdown Showdown games.
         /// </summary>
-        FirstBlood
+        FirstBlood,
+
+        /// <summary>
+        /// Game mode for only Rengar apparently.
+        /// </summary>
+        Any
     }
 }
