@@ -26,6 +26,18 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            var sum = api.GetSummoner(Region.euw, id);
+            foreach (var stat in sum.GetStatsRanked())
+            {
+                Console.WriteLine(stat.ChampionId);
+            }
+
+            foreach (int i in Enumerable.Range(id, 100))
+            {
+                var summ = api.GetSummoner(Region.euw, i);
+                Console.WriteLine(summ.Name);
+            }
+
             var champions = staticApi.GetChampions(Region.euw, ChampionData.all, Language.en_US);
 
             var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);

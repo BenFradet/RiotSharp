@@ -117,15 +117,17 @@
     <Compile Include="Stats\AggregatedStat.cs" />
     <Compile Include="Stats\ChampionStat.cs" />
     <Compile Include="Stats\ChampionStats.cs" />
+    <Compile Include="Stats\Deprecated\ChampionStatsV12.cs" />
     <Compile Include="Champion\Deprecated\ChampionV11.cs" />
     <Compile Include="League\CharArrayConverter.cs" />
     <Compile Include="Stats\PlayerStatsSummary.cs" />
     <Compile Include="Stats\PlayerStatsSummaryList.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
     <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
-    <Compile Include="Stats\RankedStats.cs" />
+    <Compile Include="Stats\Deprecated\RankedStatsV12.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="Game\Player.cs" />
+    <Compile Include="Stats\RankedStats.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="Summoner\MasteryPages.cs" />
     <Compile Include="Summoner\Rune.cs" />
@@ -152,7 +154,6 @@
   <ItemGroup>
     <Folder Include="Game\Deprecated\" />
     <Folder Include="League\Deprecated\" />
-    <Folder Include="Stats\Deprecated\" />
     <Folder Include="Summoner\Deprecated\" />
     <Folder Include="Team\Deprecated\" />
   </ItemGroup>

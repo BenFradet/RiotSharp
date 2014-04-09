@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
@@ -17,16 +16,10 @@ namespace RiotSharp
         internal ChampionStats() { }
 
         /// <summary>
-        /// Champion id.
+        /// Champion ID. Note that champion ID 0 represents the combined stats for all champions.
         /// </summary>
         [JsonProperty("id")]
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Champion name.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public int ChampionId { get; set; }
 
         /// <summary>
         /// Champion stats associated with the champion.

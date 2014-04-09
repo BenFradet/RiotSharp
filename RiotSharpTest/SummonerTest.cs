@@ -137,27 +137,6 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner")]
-        public void GetStatsRanked_Test()
-        {
-            var stats = summoner.GetStatsRanked(Season.Season3);
-
-            Assert.IsNotNull(stats);
-            Assert.IsTrue(stats.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async")]
-        public void GetStatsRankedAsync_Test()
-        {
-            var stats = summoner.GetStatsRankedAsync(Season.Season3);
-
-            Assert.IsNotNull(stats.Result);
-            Assert.IsTrue(stats.Result.Count() > 0);
-        }
-
-
-        [TestMethod]
-        [TestCategory("Summoner")]
         public void GetStatsSummaries_CurrentSeason_Test()
         {
             var stats = summoner.GetStatsSummaries();
@@ -178,6 +157,26 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner")]
+        public void GetStatsRanked_Test()
+        {
+            var stats = summoner.GetStatsRanked(Season.Season3);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetStatsRankedAsync_Test()
+        {
+            var stats = summoner.GetStatsRankedAsync(Season.Season3);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
         public void GetStatsRanked_CurrentSeason_Test()
         {
             var stats = summoner.GetStatsRanked();
@@ -191,6 +190,46 @@ namespace RiotSharpTest
         public void GetStatsRankedAsync_CurrentSeason_Test()
         {
             var stats = summoner.GetStatsRankedAsync();
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetStatsRankedV12_Test()
+        {
+            var stats = summoner.GetStatsRankedV12(Season.Season3);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetStatsRankedV12Async_Test()
+        {
+            var stats = summoner.GetStatsRankedV12Async(Season.Season3);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetStatsRankedV12_CurrentSeason_Test()
+        {
+            var stats = summoner.GetStatsRankedV12();
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetStatsRankedV12Async_CurrentSeason_Test()
+        {
+            var stats = summoner.GetStatsRankedV12Async();
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);
