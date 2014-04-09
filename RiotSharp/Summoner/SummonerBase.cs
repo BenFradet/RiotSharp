@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization;
 
 namespace RiotSharp
@@ -16,27 +15,22 @@ namespace RiotSharp
     [Serializable]
     public class SummonerBase
     {
-        private const string RootV12Url = "/api/lol/{0}/v1.2/summoner";
         private const string RootUrl = "/api/lol/{0}/v1.3/summoner";
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
 
-        private const string GameV12RootUrl = "/api/lol/{0}/v1.2/game";
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
-        private const string LeagueV21RootUrl = "/api/{0}/v2.1/league";
-        private const string LeagueV22RootUrl = "/api/lol/{0}/v2.2/league";
         private const string LeagueRootUrl = "/api/lol/{0}/v2.3/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
 
-        private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsRootV12Url = "/api/lol/{0}/v1.2/stats";
+        private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
-        private const string TeamV21RootUrl = "/api/{0}/v2.1/team";
         private const string TeamRootUrl = "/api/lol/{0}/v2.2/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
