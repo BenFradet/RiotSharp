@@ -10,6 +10,7 @@ namespace RiotSharp
 {
     public class RiotApi
     {
+        private const string SummonerRootV13Url = "/api/lol/{0}/v1.3/summoner";
         private const string SummonerRootUrl = "/api/lol/{0}/v1.3/summoner";
         private const string ByNameUrl = "/by-name/{0}";
         private const string IdUrl = "/{0}";
@@ -347,17 +348,40 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(MasteriesUrl, BuildIdsString(summonerIds)));
-            return ConstructMasteryDict(await JsonConvert.DeserializeObjectAsync<Dictionary<string, MasteryPages>>(json));
+            return ConstructMasteryDict(
+                await JsonConvert.DeserializeObjectAsync<Dictionary<string, MasteryPages>>(json));
         }
 
-        private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)
+        /// <summary>
+        /// Get mastery pages for a list summoners' ids synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
+        /// </returns>
+        [Obsolete("The summoner api v1.3 is deprecated, please use GetMasteryPages() instead.")]
+        public Dictionary<long, List<MasteryPageV13>> GetMasteryPagesV13(Region region, List<int> summonerIds)
         {
-            var returnDict = new Dictionary<long, List<MasteryPage>>();
-            foreach (var masteryPage in dict.Values)
-            {
-                returnDict.Add(masteryPage.SummonerId, masteryPage.Pages);
-            }
-            return returnDict;
+            var json = requester.CreateRequest(string.Format(SummonerRootV13Url, region.ToString())
+                + string.Format(MasteriesUrl, BuildIdsString(summonerIds)));
+            return ConstructMasteryDictV13(JsonConvert.DeserializeObject<Dictionary<string, MasteryPagesV13>>(json));
+        }
+
+        /// <summary>
+        /// Get mastery pages for a list summoners' ids asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
+        /// </returns>
+        [Obsolete("The summoner api v1.3 is deprecated, please use GetMasteryPagesAsync() instead.")]
+        public async Task<Dictionary<long, List<MasteryPageV13>>> GetMasteryPagesV13Async(Region region
+            , List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV13Url, region.ToString())
+                + string.Format(MasteriesUrl, BuildIdsString(summonerIds)));
+            return ConstructMasteryDictV13(
+                await JsonConvert.DeserializeObjectAsync<Dictionary<string, MasteryPagesV13>>(json));
         }
 
         /// <summary>
@@ -388,14 +412,35 @@ namespace RiotSharp
             return ConstructRuneDict(await JsonConvert.DeserializeObjectAsync<Dictionary<string, RunePages>>(json));
         }
 
-        private Dictionary<long, List<RunePage>> ConstructRuneDict(Dictionary<string, RunePages> dict)
+        /// <summary>
+        /// Get rune pages for a list summoners' ids synchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
+        /// </returns>
+        [Obsolete("The summoner api v1.3 is deprecated, please use GetRunePages() instead.")]
+        public Dictionary<long, List<RunePageV13>> GetRunePagesV13(Region region, List<int> summonerIds)
         {
-            var returnDict = new Dictionary<long, List<RunePage>>();
-            foreach (var runePage in dict.Values)
-            {
-                returnDict.Add(runePage.SummonerId, runePage.Pages);
-            }
-            return returnDict;
+            var json = requester.CreateRequest(string.Format(SummonerRootV13Url, region.ToString())
+                + string.Format(RunesUrl, BuildIdsString(summonerIds)));
+            return ConstructRuneDictV13(JsonConvert.DeserializeObject<Dictionary<string, RunePagesV13>>(json));
+        }
+
+        /// <summary>
+        /// Get rune pages for a list summoners' ids asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
+        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
+        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
+        /// </returns>
+        [Obsolete("The summoner api v1.3 is deprecated, please use GetRunePagesAsync() instead.")]
+        public async Task<Dictionary<long, List<RunePageV13>>> GetRunePagesV13Async(Region region, List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(SummonerRootV13Url, region.ToString())
+                + string.Format(RunesUrl, BuildIdsString(summonerIds)));
+            return ConstructRuneDictV13(
+                await JsonConvert.DeserializeObjectAsync<Dictionary<string, RunePagesV13>>(json));
         }
 
         /// <summary>
@@ -448,6 +493,46 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(TeamRootUrl, region.ToString())
                 + string.Format(IdUrl, BuildNamesString(teamIds)));
             return await JsonConvert.DeserializeObjectAsync<Dictionary<string, Team>>(json);
+        }
+
+        private Dictionary<long, List<MasteryPageV13>> ConstructMasteryDictV13(Dictionary<string, MasteryPagesV13> dict)
+        {
+            var returnDict = new Dictionary<long, List<MasteryPageV13>>();
+            foreach (var masteryPage in dict.Values)
+            {
+                returnDict.Add(masteryPage.SummonerId, masteryPage.Pages);
+            }
+            return returnDict;
+        }
+
+        private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)
+        {
+            var returnDict = new Dictionary<long, List<MasteryPage>>();
+            foreach (var masteryPage in dict.Values)
+            {
+                returnDict.Add(masteryPage.SummonerId, masteryPage.Pages);
+            }
+            return returnDict;
+        }
+
+        private Dictionary<long, List<RunePageV13>> ConstructRuneDictV13(Dictionary<string, RunePagesV13> dict)
+        {
+            var returnDict = new Dictionary<long, List<RunePageV13>>();
+            foreach (var runePage in dict.Values)
+            {
+                returnDict.Add(runePage.SummonerId, runePage.Pages);
+            }
+            return returnDict;
+        }
+
+        private Dictionary<long, List<RunePage>> ConstructRuneDict(Dictionary<string, RunePages> dict)
+        {
+            var returnDict = new Dictionary<long, List<RunePage>>();
+            foreach (var runePage in dict.Values)
+            {
+                returnDict.Add(runePage.SummonerId, runePage.Pages);
+            }
+            return returnDict;
         }
 
         private string BuildIdsString(List<int> ids)

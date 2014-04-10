@@ -128,13 +128,19 @@
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Stats\RankedStats.cs" />
+    <Compile Include="Summoner\Deprecated\MasteryPageV13.cs" />
+    <Compile Include="Summoner\Deprecated\MasteryPagesV13.cs" />
+    <Compile Include="Summoner\Mastery.cs" />
     <Compile Include="Summoner\MasteryPage.cs" />
     <Compile Include="Summoner\MasteryPages.cs" />
-    <Compile Include="Summoner\Rune.cs" />
+    <Compile Include="Summoner\Deprecated\RuneV13.cs" />
+    <Compile Include="Summoner\Deprecated\RunePageV13.cs" />
+    <Compile Include="Summoner\Deprecated\RunePagesV13.cs" />
+    <Compile Include="Summoner\Deprecated\RuneSlotV13.cs" />
+    <Compile Include="Stats\Season.cs" />
     <Compile Include="Summoner\RunePage.cs" />
     <Compile Include="Summoner\RunePages.cs" />
     <Compile Include="Summoner\RuneSlot.cs" />
-    <Compile Include="Stats\Season.cs" />
     <Compile Include="Summoner\Summoner.cs" />
     <Compile Include="Summoner\SummonerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,7 +148,7 @@
     <Compile Include="RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\SummonerBaseList.cs" />
-    <Compile Include="Summoner\Talent.cs" />
+    <Compile Include="Summoner\Deprecated\TalentV13.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />
     <Compile Include="Team\MessageOfDay.cs" />
     <Compile Include="Team\Roster.cs" />
@@ -154,7 +160,6 @@
   <ItemGroup>
     <Folder Include="Game\Deprecated\" />
     <Folder Include="League\Deprecated\" />
-    <Folder Include="Summoner\Deprecated\" />
     <Folder Include="Team\Deprecated\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,9 +11,10 @@ namespace RiotSharp
     /// Mastery page (Summoner API).
     /// </summary>
     [Serializable]
-    public class MasteryPage
+    [Obsolete("The summoner api v1.3 is deprecated, please use MasteryPage instead.")]
+    public class MasteryPageV13
     {
-        internal MasteryPage() { }
+        internal MasteryPageV13() { }
 
         /// <summary>
         /// Indicates if the mastery page is the current mastery page.
@@ -36,7 +37,7 @@ namespace RiotSharp
         /// <summary>
         /// List of mastery page talents associated with the mastery page.
         /// </summary>
-        [JsonProperty("masteries")]
-        public List<Mastery> Masteries { get; set; }
+        [JsonProperty("talents")]
+        public List<TalentV13> Talents { get; set; }
     }
 }

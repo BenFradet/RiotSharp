@@ -8,27 +8,21 @@ using Newtonsoft.Json;
 namespace RiotSharp
 {
     /// <summary>
-    /// Talent (Summoner API).
+    /// Mastery (Summoner API).
     /// </summary>
     [Serializable]
-    public class Talent
+    public class Mastery
     {
-        internal Talent() { }
+        internal Mastery() { }
 
         /// <summary>
-        /// Talent id.
+        /// Mastery id.
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
 
         /// <summary>
-        /// Talent name.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Talent rank.
+        /// Mastery rank (i.e. the number of points put into this mastery).
         /// </summary>
         [JsonProperty("rank")]
         public int Rank { get; set; }

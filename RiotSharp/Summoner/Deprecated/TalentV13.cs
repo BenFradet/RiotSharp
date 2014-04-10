@@ -8,35 +8,30 @@ using Newtonsoft.Json;
 namespace RiotSharp
 {
     /// <summary>
-    /// Rune (Summoner API).
+    /// Talent (Summoner API).
     /// </summary>
     [Serializable]
-    public class Rune
+    [Obsolete("The summoner api v1.3 is deprecated, please use Mastery instead.")]
+    public class TalentV13
     {
-        internal Rune() { }
+        internal TalentV13() { }
 
         /// <summary>
-        /// Rune description.
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Rune ID.
+        /// Talent id.
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
 
         /// <summary>
-        /// Rune name.
+        /// Talent name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Rune tier.
+        /// Talent rank.
         /// </summary>
-        [JsonProperty("tier")]
-        public int Tier { get; set; }
+        [JsonProperty("rank")]
+        public int Rank { get; set; }
     }
 }

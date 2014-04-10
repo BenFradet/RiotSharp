@@ -8,35 +8,36 @@ using Newtonsoft.Json;
 namespace RiotSharp
 {
     /// <summary>
-    /// Mastery page (Summoner API).
+    /// Page of runes (Summoner API).
     /// </summary>
     [Serializable]
-    public class MasteryPage
+    [Obsolete("The summoner api v1.3 is deprecated, please use RunePage instead.")]
+    public class RunePageV13
     {
-        internal MasteryPage() { }
+        internal RunePageV13() { }
 
         /// <summary>
-        /// Indicates if the mastery page is the current mastery page.
+        /// Indicates if the page is the current page.
         /// </summary>
         [JsonProperty("current")]
         public bool Current { get; set; }
 
         /// <summary>
-        /// Mastery page id.
+        /// Rune page ID.
         /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; }
 
         /// <summary>
-        /// Mastery page name.
+        /// Rune page name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// List of mastery page talents associated with the mastery page.
+        /// List of rune slots associated with the rune page.
         /// </summary>
-        [JsonProperty("masteries")]
-        public List<Mastery> Masteries { get; set; }
+        [JsonProperty("slots")]
+        public List<RuneSlotV13> Slots { get; set; }
     }
 }

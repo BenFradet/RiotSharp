@@ -61,6 +61,12 @@ namespace RiotSharp
         public bool Invalid { get; set; }
 
         /// <summary>
+        /// Ip earned.
+        /// </summary>
+        [JsonProperty("ipEarned")]
+        public int IpEarned { get; set; }
+
+        /// <summary>
         /// Level.
         /// </summary>
         [JsonProperty("level")]

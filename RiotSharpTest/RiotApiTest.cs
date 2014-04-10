@@ -214,6 +214,26 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Deprecated")]
+        public void GetMasteryPagesV13_Test()
+        {
+            var masteries = api.GetMasteryPagesV13(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(masteries);
+            Assert.IsTrue(masteries.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetMasteryPagesV13Async_Test()
+        {
+            var masteries = api.GetMasteryPagesV13Async(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(masteries.Result);
+            Assert.IsTrue(masteries.Result.Count == 2);
+        }
+
+        [TestMethod]
         [TestCategory("RiotApi")]
         public void GetRunePages_Test()
         {
@@ -228,6 +248,26 @@ namespace RiotSharpTest
         public void GetRunePagesAsync_Test()
         {
             var runes = api.GetRunePagesAsync(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(runes.Result);
+            Assert.IsTrue(runes.Result.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Deprecated")]
+        public void GetRunePagesV13_Test()
+        {
+            var runes = api.GetRunePagesV13(Region.euw, new List<int>() { id, id2 });
+
+            Assert.IsNotNull(runes);
+            Assert.IsTrue(runes.Count == 2);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
+        public void GetRunePagesV13Async_Test()
+        {
+            var runes = api.GetRunePagesV13Async(Region.euw, new List<int>() { id, id2 });
 
             Assert.IsNotNull(runes);
             Assert.IsTrue(runes.Result.Count == 2);

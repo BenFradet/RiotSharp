@@ -11,15 +11,16 @@ namespace RiotSharp
     /// Slot for a rune (Summoner API).
     /// </summary>
     [Serializable]
-    public class RuneSlot
+    [Obsolete("The summoner api v1.3 is deprecated, please use RuneSlot instead.")]
+    public class RuneSlotV13
     {
-        internal RuneSlot() { }
+        internal RuneSlotV13() { }
 
         /// <summary>
-        /// Rune ID associated with the rune slot.
+        /// Rune associated with the rune slot.
         /// </summary>
-        [JsonProperty("runeId")]
-        public int RuneId { get; set; }
+        [JsonProperty("rune")]
+        public RuneV13 Rune { get; set; }
 
         /// <summary>
         /// Rune slot ID.

@@ -7,10 +7,11 @@ using Newtonsoft.Json;
 
 namespace RiotSharp
 {
-    class RunePages
+    [Obsolete("The summoner api v1.3 is deprecated, please use MasteryPages instead.")]
+    class MasteryPagesV13
     {
         [JsonProperty("pages")]
-        public List<RunePage> Pages { get; set; }
+        public List<MasteryPageV13> Pages { get; set; }
 
         [JsonProperty("summonerId")]
         public long SummonerId { get; set; }
