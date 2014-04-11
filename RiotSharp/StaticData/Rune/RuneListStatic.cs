@@ -25,7 +25,7 @@ namespace RiotSharp
         /// Map of runes indexed by their id.
         /// </summary>
         [JsonProperty("data")]
-        public Dictionary<int, ItemStatic> Runes { get; set; }
+        public Dictionary<int, RuneStatic> Runes { get; set; }
 
         /// <summary>
         /// API type (rune).

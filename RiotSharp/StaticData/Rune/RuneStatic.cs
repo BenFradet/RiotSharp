@@ -8,12 +8,12 @@ using Newtonsoft.Json;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing an item (Static API).
+    /// Class representing a rune (Static API).
     /// </summary>
     [Serializable]
-    public class ItemStatic
+    public class RuneStatic
     {
-        internal ItemStatic() { }
+        internal RuneStatic() { }
 
         /// <summary>
         /// Equals ";".

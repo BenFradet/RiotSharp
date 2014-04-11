@@ -14,71 +14,55 @@ namespace RiotSharp
         /// <summary>
         /// Barrier.
         /// </summary>
-        Barrier,
-        /// <summary>
-        /// Surge.
-        /// </summary>
-        Surge,
+        Barrier = 21,
         /// <summary>
         /// Cleanse.
         /// </summary>
-        Cleanse,
+        Cleanse = 1,
         /// <summary>
         /// Clairvoyance.
         /// </summary>
-        Clairvoyance,
+        Clairvoyance = 2,
         /// <summary>
         /// Ignite.
         /// </summary>
-        Ignite,
+        Ignite = 14,
         /// <summary>
         /// Exhaust.
         /// </summary>
-        Exhaust,
+        Exhaust = 3,
         /// <summary>
         /// Flash.
         /// </summary>
-        Flash,
-        /// <summary>
-        /// Fortify.
-        /// </summary>
-        Fortify,
+        Flash = 4,
         /// <summary>
         /// Ghost.
         /// </summary>
-        Ghost,
+        Ghost = 6,
         /// <summary>
         /// Heal.
         /// </summary>
-        Heal,
+        Heal = 7,
         /// <summary>
         /// Clarity.
         /// </summary>
-        Clarity,
+        Clarity = 13,
         /// <summary>
         /// Garrison.
         /// </summary>
-        Garrison,
-        /// <summary>
-        /// Promote
-        /// </summary>
-        Promote,
-        /// <summary>
-        /// Rally.
-        /// </summary>
-        Rally,
+        Garrison = 17,
         /// <summary>
         /// Revive.
         /// </summary>
-        Revive,
+        Revive = 10,
         /// <summary>
         /// Smite.
         /// </summary>
-        Smite,
+        Smite = 11,
         /// <summary>
         /// Teleport.
         /// </summary>
-        Teleport
+        Teleport = 12   
     }
 
     static class SummonerSpellExtension
@@ -88,9 +72,6 @@ namespace RiotSharp
             string transformedString;
             switch (spell)
             {
-                case(SummonerSpell.Surge):
-                    transformedString = "BattleCry";
-                    break;
                 case (SummonerSpell.Cleanse):
                     transformedString = "Boost";
                     break;
@@ -105,9 +86,6 @@ namespace RiotSharp
                     break;
                 case (SummonerSpell.Garrison):
                     transformedString = "OdinGarrison";
-                    break;
-                case(SummonerSpell.Promote):
-                    transformedString = "PromoteSR";
                     break;
                 default:
                     transformedString = spell.ToString();

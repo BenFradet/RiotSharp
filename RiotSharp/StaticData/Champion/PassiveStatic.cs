@@ -32,5 +32,11 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Sanitized (HTML stripped) description of the passive.
+        /// </summary>
+        [JsonProperty("sanitizedDescription")]
+        public string SanitizedDescription { get; set; }
     }
 }

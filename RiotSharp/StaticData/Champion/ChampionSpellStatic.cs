@@ -11,9 +11,9 @@ namespace RiotSharp
     /// Class representing a spell of a champion (Static API).
     /// </summary>
     [Serializable]
-    public class SpellStatic
+    public class ChampionSpellStatic
     {
-        internal SpellStatic() { }
+        internal ChampionSpellStatic() { }
 
         /// <summary>
         /// List of the cooldowns for each level of the spell.
@@ -52,10 +52,10 @@ namespace RiotSharp
         public string Description { get; set; }
 
         /// <summary>
-        /// Effects of the spell (damage, etc).
+        /// Effects of the spell (damage, etc). This field is a List of List of Integer.
         /// </summary>
         [JsonProperty("effect")]
-        public List<object> Effects { get; set; }
+        public List<List<int>> Effects { get; set; }
 
         /// <summary>
         /// String representing the effects of the spell.
@@ -64,16 +64,16 @@ namespace RiotSharp
         public List<string> EffectBurns { get; set; }
 
         /// <summary>
-        /// String identifying a spell (champion's name + key to activate the spell, example: "AatroxQ".
-        /// </summary>
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Image of the spell.
         /// </summary>
         [JsonProperty("image")]
         public ImageStatic Image { get; set; }
+
+        /// <summary>
+        ///  String identifying a spell (champion's name + key to activate the spell, example: "AatroxQ".
+        /// </summary>
+        [JsonProperty("key")]
+        public string Key { get; set; }
 
         /// <summary>
         /// Tooltip when leveling up this spell.
@@ -94,7 +94,7 @@ namespace RiotSharp
         public string Name { get; set; }
 
         /// <summary>
-        /// Apparently a list of the range for each level of the spell.
+        /// This field is either a List of Integer or the String 'self' for spells that target one's own champion.
         /// </summary>
         [JsonProperty("range")]
         public object Range { get; set; }
@@ -112,6 +112,18 @@ namespace RiotSharp
         public string Resource { get; set; }
 
         /// <summary>
+        /// Sanitized (HTML stripped) description of the spell.
+        /// </summary>
+        [JsonProperty("sanitizedDescription")]
+        public string SanitizedDescription { get; set; }
+
+        /// <summary>
+        /// Sanitized (HTML stripped) tooltip of the spell.
+        /// </summary>
+        [JsonProperty("sanitizedTooltip")]
+        public string SanitizedTooltip { get; set; }
+
+        /// <summary>
         /// Tooltip for this spell.
         /// </summary>
         [JsonProperty("tooltip")]
@@ -121,6 +133,6 @@ namespace RiotSharp
         /// Various effects of this spell.
         /// </summary>
         [JsonProperty("vars")]
-        public List<object> Vars { get; set; }
+        public List<SpellVarsStatic> Vars { get; set; }
     }
 }

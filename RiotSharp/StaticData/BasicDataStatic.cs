@@ -115,7 +115,13 @@ namespace RiotSharp
         /// Additional information if the object is a rune.
         /// </summary>
         [JsonProperty("rune")]
-        public ItemRuneStatic Rune { get; set; }
+        public MetadataStatic Metadata { get; set; }
+
+        /// <summary>
+        /// Sanitized (HTML stripped) description of the item.
+        /// </summary>
+        [JsonProperty("sanitizedDescription")]
+        public string SanitizedDescription { get; set; }
 
         /// <summary>
         /// Id of the special recipe if there is one.

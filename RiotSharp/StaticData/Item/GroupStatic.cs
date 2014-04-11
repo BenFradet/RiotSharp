@@ -22,9 +22,9 @@ namespace RiotSharp
         public string MaxGroupOwnable { get; set; }
 
         /// <summary>
-        /// Id of the group.
+        /// Key of the group.
         /// </summary>
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("key")]
+        public string Key { get; set; }
     }
 }

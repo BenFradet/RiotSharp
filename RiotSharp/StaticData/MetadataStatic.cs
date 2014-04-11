@@ -8,12 +8,12 @@ using Newtonsoft.Json;
 namespace RiotSharp
 {
     /// <summary>
-    /// Class representing a rune if an item is a rune (Static API).
+    /// Class representing metadata on runes and items (Static API).
     /// </summary>
     [Serializable]
-    public class ItemRuneStatic
+    public class MetadataStatic
     {
-        internal ItemRuneStatic() { }
+        internal MetadataStatic() { }
 
         /// <summary>
         /// Whether this item is a rune or not.

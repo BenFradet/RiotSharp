@@ -37,7 +37,7 @@ namespace RiotSharp
         /// Name of this champion.
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Image of this champion.
@@ -55,7 +55,7 @@ namespace RiotSharp
         /// Id of this champion.
         /// </summary>
         [JsonProperty("key")]
-        public int Key { get; set; }
+        public string Key { get; set; }
 
         /// <summary>
         /// Lore of this champion.
@@ -98,7 +98,7 @@ namespace RiotSharp
         /// List of spells for this champion.
         /// </summary>
         [JsonProperty("spells")]
-        public List<SpellStatic> Spells { get; set; }
+        public List<ChampionSpellStatic> Spells { get; set; }
 
         /// <summary>
         /// Stats of this champions.

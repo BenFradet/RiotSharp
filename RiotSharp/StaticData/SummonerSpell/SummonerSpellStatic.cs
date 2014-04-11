@@ -55,7 +55,7 @@ namespace RiotSharp
         /// List of object representing the effects of this spell.
         /// </summary>
         [JsonProperty("effect")]
-        public List<object> Effects { get; set; }
+        public List<List<int>> Effects { get; set; }
 
         /// <summary>
         /// String representing the effects of this spell.
@@ -67,7 +67,7 @@ namespace RiotSharp
         /// Spell's id.
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Spell's image.
@@ -79,7 +79,7 @@ namespace RiotSharp
         /// Spell's key.
         /// </summary>
         [JsonProperty("key")]
-        public int Key { get; set; }
+        public string Key { get; set; }
 
         /// <summary>
         /// Tooltip when leveling up this spell.
@@ -106,7 +106,7 @@ namespace RiotSharp
         public string Name { get; set; }
 
         /// <summary>
-        /// Spell's range.
+        /// Spell's range. This field is either a List of Integer or the String 'self' for spells that target one's own champion.
         /// </summary>
         [JsonProperty("range")]
         public object Range { get; set; }
@@ -124,6 +124,18 @@ namespace RiotSharp
         public string Resource { get; set; }
 
         /// <summary>
+        /// Sanitized (HTML stripped) description of the spell.
+        /// </summary>
+        [JsonProperty("sanitizedDescription")]
+        public string SanitizedDescription { get; set; }
+
+        /// <summary>
+        /// Sanitized (HTML stripped) tooltip of the spell.
+        /// </summary>
+        [JsonProperty("sanitizedTooltip")]
+        public string SanitizedTooltip { get; set; }
+
+        /// <summary>
         /// Summoner level required to use this spell.
         /// </summary>
         [JsonProperty("summonerLevel")]
@@ -139,6 +151,6 @@ namespace RiotSharp
         /// Various information about this spell.
         /// </summary>
         [JsonProperty("vars")]
-        public List<SummonerSpellVarStatic> Vars { get; set; }
+        public List<SpellVarsStatic> Vars { get; set; }
     }
 }

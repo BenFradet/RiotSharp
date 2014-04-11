@@ -50,5 +50,11 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("ranks")]
         public int Rank { get; set; }
+
+        /// <summary>
+        /// Sanitized (HTML stripped) description of the mastery.
+        /// </summary>
+        [JsonProperty("sanitizedDescription")]
+        public List<string> SanitizedDescription { get; set; }
     }
 }

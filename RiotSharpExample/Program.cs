@@ -26,6 +26,9 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
+            Console.WriteLine(spell.Name);
+
             var sum = api.GetSummoner(Region.euw, id);
             foreach (var stat in sum.GetStatsRanked())
             {

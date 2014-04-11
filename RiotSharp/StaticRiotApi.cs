@@ -9,15 +9,15 @@ namespace RiotSharp
 {
     public class StaticRiotApi
     {
-        private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1/champion";
+        private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1.2/champion";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionCacheKey = "champion";
 
-        private const string ItemRootUrl = "/api/lol/static-data/{0}/v1/item";
+        private const string ItemRootUrl = "/api/lol/static-data/{0}/v1.2/item";
         private const string ItemsCacheKey = "items";
         private const string ItemCacheKey = "item";
 
-        private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1/mastery";
+        private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1.2/mastery";
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryCacheKey = "mastery";
 
@@ -25,7 +25,7 @@ namespace RiotSharp
         private const string RunesCacheKey = "runes";
         private const string RuneCacheKey = "rune";
 
-        private const string SummonerSpellRootUrl = "/api/lol/static-data/{0}/v1/summoner-spell";
+        private const string SummonerSpellRootUrl = "/api/lol/static-data/{0}/v1.2/summoner-spell";
         private const string SummonerSpellsCacheKey = "spells";
         private const string SummonerSpellCacheKey = "spell";
 
@@ -125,7 +125,7 @@ namespace RiotSharp
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.ChampionData == championData)
                 {
                     return listWrapper.ChampionListStatic.Champions.Values
-                        .Where((c) => c.Key == championId).FirstOrDefault();
+                        .Where((c) => c.Id == championId).FirstOrDefault();
                 }
                 else
                 {
@@ -164,7 +164,7 @@ namespace RiotSharp
                 if (listWrapper != null && listWrapper.Language == language && listWrapper.ChampionData == championData)
                 {
                     return listWrapper.ChampionListStatic.Champions.Values
-                        .Where((c) => c.Key == championId).FirstOrDefault();
+                        .Where((c) => c.Id == championId).FirstOrDefault();
                 }
                 else
                 {
@@ -511,7 +511,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A rune.</returns>
-        public ItemStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.none
+        public RuneStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
@@ -540,7 +540,7 @@ namespace RiotSharp
                         , new List<string>() { string.Format("locale={0}", language.ToString())
                             , runeData == RuneData.none ? string.Empty
                                 : string.Format("runeData={0}", runeData.ToString()) });
-                    var rune = JsonConvert.DeserializeObject<ItemStatic>(json);
+                    var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
                     Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
                     return rune;
                 }
@@ -555,7 +555,7 @@ namespace RiotSharp
         /// <param name="runeData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A rune.</returns>
-        public async Task<ItemStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.none
+        public async Task<RuneStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.none
             , Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
@@ -584,7 +584,7 @@ namespace RiotSharp
                         , new List<string>() { string.Format("locale={0}", language.ToString())
                             , runeData == RuneData.none ? string.Empty
                                 : string.Format("runeData={0}", runeData.ToString()) });
-                    var rune = await JsonConvert.DeserializeObjectAsync<ItemStatic>(json);
+                    var rune = await JsonConvert.DeserializeObjectAsync<RuneStatic>(json);
                     Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData));
                     return rune;
                 }
@@ -673,7 +673,7 @@ namespace RiotSharp
                 else
                 {
                     var json = requester.CreateRequest(string.Format(SummonerSpellRootUrl, region.ToString())
-                        + string.Format(IdUrl, summonerSpell.ToCustomString())
+                        + string.Format(IdUrl, (int)summonerSpell)
                         , new List<string>() { string.Format("locale={0}", language.ToString())
                             , summonerSpellData == SummonerSpellData.none ? string.Empty
                                 : string.Format("spellData={0}", summonerSpellData.ToString()) });
@@ -719,7 +719,7 @@ namespace RiotSharp
                 else
                 {
                     var json = await requester.CreateRequestAsync(string.Format(SummonerSpellRootUrl, region.ToString())
-                        + string.Format(IdUrl, summonerSpell.ToCustomString())
+                        + string.Format(IdUrl, (int)summonerSpell)
                         , new List<string>() { string.Format("locale={0}", language.ToString())
                             , summonerSpellData == SummonerSpellData.none ? string.Empty
                                 : string.Format("spellData={0}", summonerSpellData.ToString()) });

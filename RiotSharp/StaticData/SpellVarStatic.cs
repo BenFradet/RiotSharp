@@ -11,15 +11,21 @@ namespace RiotSharp
     /// Class representing various information about a summoner spell (Static API).
     /// </summary>
     [Serializable]
-    public class SummonerSpellVarStatic
+    public class SpellVarsStatic
     {
-        internal SummonerSpellVarStatic() { }
+        internal SpellVarsStatic() { }
 
         /// <summary>
         /// Coeff for this summoner spell for the summoner's level.
         /// </summary>
         [JsonProperty("coeff")]
         public object Coeff { get; set; }
+
+        /// <summary>
+        /// Seems to always be equal to + when it is present.
+        /// </summary>
+        [JsonProperty("dyn")]
+        public string Dyn { get; set; }
 
         /// <summary>
         /// Key.
