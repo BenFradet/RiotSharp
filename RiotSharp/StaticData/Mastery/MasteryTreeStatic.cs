@@ -18,16 +18,16 @@ namespace RiotSharp
         /// <summary>
         /// List of list of objects (masteryId, prereq) in the defense tree.
         /// </summary>
-        public List<object> Defense { get; set; }
+        public List<MasteryTreeListStatic> Defense { get; set; }
 
         /// <summary>
         /// List of list of objects (masteryId, prereq) in the offense tree.
         /// </summary>
-        public List<object> Offense { get; set; }
+        public List<MasteryTreeListStatic> Offense { get; set; }
 
         /// <summary>
         /// List of list of objects (masteryId, prereq) in the utility tree.
         /// </summary>
-        public List<object> Utility { get; set; }
+        public List<MasteryTreeListStatic> Utility { get; set; }
     }
 }

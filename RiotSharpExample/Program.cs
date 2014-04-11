@@ -26,8 +26,18 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
-            Console.WriteLine(spell.Name);
+            //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
+            //Console.WriteLine(spell.Name);
+
+            var masteries = staticApi.GetMasteries(Region.euw, MasteryData.all);
+            var tree = masteries.Tree;
+            foreach (var mastTree in tree.Defense)
+            {
+                foreach (var mast in mastTree.MasteryTreeItems)
+                {
+                    Console.WriteLine(mast.Prerequisite);
+                }
+            }
 
             var sum = api.GetSummoner(Region.euw, id);
             foreach (var stat in sum.GetStatsRanked())
