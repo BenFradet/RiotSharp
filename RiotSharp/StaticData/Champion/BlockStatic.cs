@@ -22,6 +22,12 @@ namespace RiotSharp
         public List<BlockItemStatic> Items { get; set; }
 
         /// <summary>
+        /// Rec math.
+        /// </summary>
+        [JsonProperty("recMath")]
+        public bool RecMath { get; set; }
+
+        /// <summary>
         /// Type of items (starting, essential, offensive, etc).
         /// </summary>
         [JsonProperty("type")]

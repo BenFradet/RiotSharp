@@ -38,5 +38,11 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("link")]
         public string Link { get; set; }
+
+        /// <summary>
+        /// Ranks with.
+        /// </summary>
+        [JsonProperty("ranksWith")]
+        public string RanksWith { get; set; }
     }
 }

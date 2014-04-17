@@ -16,6 +16,12 @@ namespace RiotSharp
         internal ChampionSpellStatic() { }
 
         /// <summary>
+        /// List of alternative images.
+        /// </summary>
+        [JsonProperty("altimages")]
+        public List<ImageStatic> Altimages { get; set; }
+
+        /// <summary>
         /// List of the cooldowns for each level of the spell.
         /// </summary>
         [JsonProperty("cooldown")]
