@@ -68,6 +68,7 @@
     <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="Cache.cs" />
+    <Compile Include="RiotSharpException.cs" />
     <Compile Include="StaticData\Champion\Cache\ChampionStaticWrapper.cs" />
     <Compile Include="StaticData\Item\Cache\ItemListStaticWrapper.cs" />
     <Compile Include="StaticData\Item\Cache\ItemStaticWrapper.cs" />

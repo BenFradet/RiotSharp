@@ -71,7 +71,7 @@ namespace RiotSharp
             }
             catch(WebException ex)
             {
-                result = GetExceptionResponse(ex);
+                HandleWebException(ex);
             }
             return result;
         }
@@ -90,7 +90,7 @@ namespace RiotSharp
             }
             catch(WebException ex)
             {
-                result = GetExceptionResponse(ex);
+                HandleWebException(ex);
             }
             return result;
         }
@@ -108,32 +108,22 @@ namespace RiotSharp
             return result;
         }
         
-        private string GetExceptionResponse(WebException ex)
+        private void HandleWebException(WebException ex)
         {
-            string statusCode = string.Empty;
-
-            HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
-            if (webResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+            HttpWebResponse response = (HttpWebResponse)ex.Response;
+            switch (response.StatusCode)
             {
-                statusCode = "{'data':{'response':503}}";
+                case HttpStatusCode.ServiceUnavailable:
+                    throw new RiotSharpException("503, Service unavailable");
+                case HttpStatusCode.InternalServerError:
+                    throw new RiotSharpException("500, Internal server error");
+                case HttpStatusCode.Unauthorized:
+                    throw new RiotSharpException("401, Unauthorized");
+                case HttpStatusCode.BadRequest:
+                    throw new RiotSharpException("400, Bad request");
+                case HttpStatusCode.NotFound:
+                    throw new RiotSharpException("404, Resource not found");
             }
-            if (webResponse.StatusCode == HttpStatusCode.NotFound)
-            {
-                statusCode = "{'data':{'response':404}}";
-            }
-            if (webResponse.StatusCode == HttpStatusCode.InternalServerError)
-            {
-                statusCode = "{'data':{'response':500}}";
-            }
-            if (webResponse.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                statusCode = "{'data':{'response':401}}";
-            }
-            if (webResponse.StatusCode == HttpStatusCode.BadRequest)
-            {
-                statusCode = "{'data':{'response':400}}";
-            }
-            return statusCode;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace RiotSharp
         /// List of cooldowns for this spell.
         /// </summary>
         [JsonProperty("cooldown")]
-        public List<int> Cooldowns { get; set; }
+        public List<float> Cooldowns { get; set; }
 
         /// <summary>
         /// String of cooldowns for this spell.
