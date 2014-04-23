@@ -26,14 +26,28 @@ var api = RiotApi.GetInstance("YOUR_API_KEY", false);
 
 To get a summoner:
 ```c#
+try
+{
   var summoner = api.GetSummoner(Region.euw, "StopOFlop");
+}
+catch(RiotSharpException ex)
+{
+  //Handle the exception however you want.
+}
 ```
 
 To get the stats in ranked for a specific champion for this summoner:
 ```c#
-var varusRanked = summoner.GetStatsRanked(Season.Season3)
-  .Where((s) => s.Name != null && s.Name.Equals("Varus"))
-  .FirstOrDefault();
+try
+{
+  var varusRanked = summoner.GetStatsRanked(Season.Season3)
+    .Where((s) => s.Name != null && s.Name.Equals("Varus"))
+    .FirstOrDefault();
+}
+catch(RiotSharpException ex)
+{
+  //Handle the exception however you want.
+}
   
 foreach (var stat in varusRanked.Stats)
   Console.WriteLine(stat.Name + "  " + stat.Value);
