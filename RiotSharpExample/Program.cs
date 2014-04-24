@@ -29,15 +29,17 @@ namespace RiotSharpExample
             //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
             //Console.WriteLine(spell.Name);
 
-            var masteries = staticApi.GetMasteries(Region.euw, MasteryData.all);
-            var tree = masteries.Tree;
-            foreach (var mastTree in tree.Defense)
-            {
-                foreach (var mast in mastTree.MasteryTreeItems)
-                {
-                    Console.WriteLine(mast.Prerequisite);
-                }
-            }
+            //var masteries = staticApi.GetMasteries(Region.euw, MasteryData.all);
+            //var tree = masteries.Tree;
+            //foreach (var mastTree in tree.Defense)
+            //{
+            //    foreach (var mast in mastTree.MasteryTreeItems)
+            //    {
+            //        Console.WriteLine(mast.Prerequisite);
+            //    }
+            //}
+
+            var champ = staticApi.GetChampion(Region.euw, 1, ChampionData.all);
 
             var sum = api.GetSummoner(Region.euw, id);
             foreach (var stat in sum.GetStatsRanked())
