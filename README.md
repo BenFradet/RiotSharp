@@ -11,6 +11,13 @@ C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
 ##Installation
 
+Install RiotSharp through NuGet:
+```
+PM> Install-Package RiotSharp
+```
+
+or
+
 1. Clone the repo (https://github.com/BenFradet/RiotSharp.git) or [download the zip file](https://github.com/BenFradet/RiotSharp/archive/master.zip).
 
 2. Build the RiotSharp project and add the library to your own application.
