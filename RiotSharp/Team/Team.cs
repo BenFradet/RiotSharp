@@ -102,7 +102,7 @@ namespace RiotSharp
         /// <summary>
         /// Stat summary of the team.
         /// </summary>
-        [JsonProperty("teamStatSumamry")]
+        [JsonProperty("teamStatSummary")]
         public TeamStatSummary TeamStatSummary { get; set; }
 
         /// <summary>

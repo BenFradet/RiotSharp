@@ -15,7 +15,8 @@ namespace RiotSharp
             return typeof(string).IsAssignableFrom(objectType);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, 
+            JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() != null)
