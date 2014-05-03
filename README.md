@@ -71,5 +71,9 @@ When adding new features, please provide the related unit tests within the pull 
 
 This wrapper uses [Json.NET](http://james.newtonking.com/json).
 
+##License
+
+This wrapper is under the [MIT license](LICENSE.md).
+
 ##Disclaimer
 This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
