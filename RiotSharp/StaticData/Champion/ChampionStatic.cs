@@ -34,7 +34,7 @@ namespace RiotSharp
         public List<string> EnemyTips { get; set; }
 
         /// <summary>
-        /// Name of this champion.
+        /// Id of this champion.
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
