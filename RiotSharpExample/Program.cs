@@ -26,11 +26,26 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var sum = api.GetSummoner(Region.na, 20851493);
-            var leagues = sum.GetLeagues();
-            foreach (var league in leagues)
-            {
-            }
+            var teams = api.GetTeams(Region.euw, new List<int> { id, id2 });
+
+            //foreach (var l in api.GetEntireLeagues(Region.euw, new List<string> { team2 }))
+            //{
+            //    if (l.Key.Equals(team)) Console.WriteLine("OK");
+            //    Console.WriteLine(l.Key);
+            //}
+
+            //var sum = api.GetSummoner(Region.euw, id);
+            //var teams = sum.GetTeams();
+            //foreach (var t in teams) Console.WriteLine(t.Name);
+
+            //var leagues = sum.GetLeaguesV23();
+            //foreach (var l in leagues) Console.WriteLine(l.LeagueName);
+
+            //var sum = api.GetSummoner(Region.na, 20851493);
+            //var leagues = sum.GetLeaguesV23();
+            //foreach (var league in leagues)
+            //{
+            //}
 
             //var spell = staticApi.GetSummonerSpell(Region.euw, SummonerSpell.Barrier, SummonerSpellData.none);
             //Console.WriteLine(spell.Name);
