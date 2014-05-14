@@ -56,12 +56,6 @@ namespace RiotSharp
         public List<MatchHistorySummary> MatchHistory { get; set; }
 
         /// <summary>
-        /// Message of the day.
-        /// </summary>
-        [JsonProperty("messageOfDay")]
-        public MessageOfDay MessageOfDay { get; set; }
-
-        /// <summary>
         /// Last time the team was modified.
         /// </summary>
         [JsonProperty("modifyDate")]
@@ -102,8 +96,8 @@ namespace RiotSharp
         /// <summary>
         /// Stat summary of the team.
         /// </summary>
-        [JsonProperty("teamStatSummary")]
-        public TeamStatSummary TeamStatSummary { get; set; }
+        [JsonProperty("teamStatDetails")]
+        public List<TeamStatDetail> TeamStatDetails { get; set; }
 
         /// <summary>
         /// Date when the third last member joined the team.

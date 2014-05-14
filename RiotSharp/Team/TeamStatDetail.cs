@@ -22,12 +22,6 @@ namespace RiotSharp
         public int AverageGamesPlayed { get; set; }
 
         /// <summary>
-        /// Full id of the team.
-        /// </summary>
-        [JsonProperty("fullId")]
-        public string FullId { get; set; }
-
-        /// <summary>
         /// Number of losses.
         /// </summary>
         [JsonProperty("losses")]

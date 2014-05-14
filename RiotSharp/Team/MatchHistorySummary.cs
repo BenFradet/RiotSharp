@@ -22,6 +22,13 @@ namespace RiotSharp
         public int Assists { get; set; }
 
         /// <summary>
+        /// Date when the match took place.
+        /// </summary>
+        [JsonProperty("date")]
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime Date { get; set; }
+
+        /// <summary>
         /// Number of deaths overall.
         /// </summary>
         [JsonProperty("deaths")]

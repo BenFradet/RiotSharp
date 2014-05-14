@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace RiotSharp
 {
     /// <summary>
-    /// LeagueItem has entered a MiniSeries (League API).
+    /// LeagueEntry has entered a MiniSeries (League API).
     /// </summary>
     [Serializable]
     public class MiniSeries
@@ -16,33 +16,27 @@ namespace RiotSharp
         internal MiniSeries() { }
 
         /// <summary>
-        /// Number of losses.
+        /// Number of current losses in the mini series.
         /// </summary>
         [JsonProperty("losses")]
         public int Losses { get; set; }
 
         /// <summary>
-        /// Array representing the progress in the MiniSeries L for a loss, W for a win, N for not played (I guess).
+        /// String showing the current, sequential mini series progress where 'W' represents a win, 'L' represents a loss, 
+        /// and 'N' represents a game that hasn't been played yet.
         /// </summary>
         [JsonProperty("progress")]
         [JsonConverter(typeof(CharArrayConverter))]
         public char[] Progress { get; set; }
 
         /// <summary>
-        /// Number of wins required (I guess).
+        /// Number of wins required for promotion.
         /// </summary>
         [JsonProperty("target")]
         public int Target { get; set; }
 
         /// <summary>
-        /// Time left to play the MiniSeries.
-        /// </summary>
-        [JsonProperty("timeLeftToPlayMillis")]
-        [JsonConverter(typeof(TimeSpanConverterFromMS))]
-        public TimeSpan TimeLeftToPlayMillis { get; set; }
-
-        /// <summary>
-        /// Number of wins.
+        /// Number of current wins in the mini series.
         /// </summary>
         [JsonProperty("wins")]
         public int Wins { get; set; }

@@ -588,11 +588,11 @@ namespace RiotSharp
         /// <param name="teamId">The team id.</param>
         /// <returns>A list of league item for the team specified in teamId.</returns>
         [Obsolete("The league api v2.3 is deprecated, please use GetLeagues() instead.")]
-        public List<LeagueItem> GetLeaguesV23(Region region, string teamId)
+        public List<LeagueItemV23> GetLeaguesV23(Region region, string teamId)
         {
             var json = requester.CreateRequest(string.Format(LeagueRootV23Url, region.ToString()) 
                 + string.Format(LeagueByTeamUrl, teamId) + LeagueEntryUrl);
-            return JsonConvert.DeserializeObject<List<LeagueItem>>(json);
+            return JsonConvert.DeserializeObject<List<LeagueItemV23>>(json);
         }
 
         /// <summary>
@@ -602,11 +602,11 @@ namespace RiotSharp
         /// <param name="teamId">The team id.</param>
         /// <returns>A list of league item for the team specified in teamId.</returns>
         [Obsolete("The league api v2.3 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<List<LeagueItem>> GetLeaguesV23Async(Region region, string teamId)
+        public async Task<List<LeagueItemV23>> GetLeaguesV23Async(Region region, string teamId)
         {
             var json = await requester.CreateRequestAsync(string.Format(LeagueRootV23Url, region.ToString()) 
                 + string.Format(LeagueByTeamUrl, teamId) + LeagueEntryUrl);
-            return await JsonConvert.DeserializeObjectAsync<List<LeagueItem>>(json);
+            return await JsonConvert.DeserializeObjectAsync<List<LeagueItemV23>>(json);
         }
 
         /// <summary>
@@ -616,11 +616,11 @@ namespace RiotSharp
         /// <param name="teamId">The team id.</param>
         /// <returns>A list of leagues for the team specified in teamId.</returns>
         [Obsolete("The league api v2.3 is deprecated, please use GetEntireLeagues() instead.")]
-        public List<League> GetEntireLeaguesV23(Region region, string teamId)
+        public List<LeagueV23> GetEntireLeaguesV23(Region region, string teamId)
         {
             var json = requester.CreateRequest(
                 string.Format(LeagueRootV23Url, region.ToString()) + string.Format(LeagueByTeamUrl, teamId));
-            return JsonConvert.DeserializeObject<List<League>>(json);
+            return JsonConvert.DeserializeObject<List<LeagueV23>>(json);
         }
 
         /// <summary>
@@ -630,11 +630,11 @@ namespace RiotSharp
         /// <param name="teamId">The team id.</param>
         /// <returns>A list of leagues for the team specified in teamId.</returns>
         [Obsolete("The league api v2.3 is deprecated, please use GetEntireLeaguesAsync() instead.")]
-        public async Task<List<League>> GetEntireLeaguesV23Async(Region region, string teamId)
+        public async Task<List<LeagueV23>> GetEntireLeaguesV23Async(Region region, string teamId)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(LeagueRootV23Url, region.ToString()) + string.Format(LeagueByTeamUrl, teamId));
-            return await JsonConvert.DeserializeObjectAsync<List<League>>(json);
+            return await JsonConvert.DeserializeObjectAsync<List<LeagueV23>>(json);
         }
 
         /// <summary>
@@ -644,11 +644,11 @@ namespace RiotSharp
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
         /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
         [Obsolete("The league api v2.3 is deprecated, please use GetChallengerLeague() instead.")]
-        public League GetChallengerLeagueV23(Region region, Queue queue)
+        public LeagueV23 GetChallengerLeagueV23(Region region, Queue queue)
         {
             var json = requester.CreateRequest(string.Format(LeagueRootV23Url, region.ToString()) + LeagueChallengerUrl
                 , new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
-            return JsonConvert.DeserializeObject<League>(json);
+            return JsonConvert.DeserializeObject<LeagueV23>(json);
         }
 
         /// <summary>
@@ -658,12 +658,12 @@ namespace RiotSharp
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
         /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
         [Obsolete("The league api v2.3 is deprecated, please use GetChallengerLeagueAsync() instead.")]
-        public async Task<League> GetChallengerLeagueV23Async(Region region, Queue queue)
+        public async Task<LeagueV23> GetChallengerLeagueV23Async(Region region, Queue queue)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(LeagueRootV23Url, region.ToString()) + LeagueChallengerUrl
                 , new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
-            return await JsonConvert.DeserializeObjectAsync<League>(json);
+            return await JsonConvert.DeserializeObjectAsync<LeagueV23>(json);
         }
 
         /// <summary>
@@ -725,11 +725,11 @@ namespace RiotSharp
         /// <param name="teamIds">List of string of the teams' ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
         [Obsolete("The teams api v2.2 is deprecated, please use GetTeams() instead.")]
-        public Dictionary<string, Team> GetTeamsV22(Region region, List<string> teamIds)
+        public Dictionary<string, TeamV22> GetTeamsV22(Region region, List<string> teamIds)
         {
             var json = requester.CreateRequest(string.Format(TeamRootV22Url, region.ToString())
                 + string.Format(IdUrl, BuildNamesString(teamIds)));
-            return JsonConvert.DeserializeObject<Dictionary<string, Team>>(json);
+            return JsonConvert.DeserializeObject<Dictionary<string, TeamV22>>(json);
         }
 
         /// <summary>
@@ -739,11 +739,11 @@ namespace RiotSharp
         /// <param name="teamIds">List of string of the teams' ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
         [Obsolete("The teams api v2.2 is deprecated, please use GetTeams() instead.")]
-        public async Task<Dictionary<string, Team>> GetTeamsV22Async(Region region, List<string> teamIds)
+        public async Task<Dictionary<string, TeamV22>> GetTeamsV22Async(Region region, List<string> teamIds)
         {
             var json = await requester.CreateRequestAsync(string.Format(TeamRootV22Url, region.ToString())
                 + string.Format(IdUrl, BuildNamesString(teamIds)));
-            return await JsonConvert.DeserializeObjectAsync<Dictionary<string, Team>>(json);
+            return await JsonConvert.DeserializeObjectAsync<Dictionary<string, TeamV22>>(json);
         }
 
         private Dictionary<long, List<MasteryPageV13>> ConstructMasteryDictV13(Dictionary<string, MasteryPagesV13> dict)

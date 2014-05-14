@@ -26,7 +26,11 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            //var leagues = api.GetLeagues(Region.euw, new List<int> { id });
+            //foreach (var l in leagues) Console.WriteLine(l.Key);
+
             var teams = api.GetTeams(Region.euw, new List<int> { id, id2 });
+            foreach (var t in teams) Console.WriteLine(t.Key);
 
             //foreach (var l in api.GetEntireLeagues(Region.euw, new List<string> { team2 }))
             //{
