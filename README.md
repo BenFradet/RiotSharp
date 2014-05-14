@@ -67,6 +67,8 @@ For a full description check the RiotSharpExample or RiotSharpTest projects.
 Simply send a pull request.
 When adding new features, please provide the related unit tests within the pull request.
 
+Moreover, the documentation is far from perfect so every bit of help is more than welcome.
+
 ##Libraries used
 
 This wrapper uses [Json.NET](http://james.newtonking.com/json).
