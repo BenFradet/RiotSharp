@@ -55,7 +55,7 @@ namespace RiotSharp
         /// Mini series data for the participant. Only present if the participant is currently in a mini series.
         /// </summary>
         [JsonProperty("miniSeries")]
-        public MiniSeriesV23 MiniSeries { get; set; }
+        public MiniSeries MiniSeries { get; set; }
 
         /// <summary>
         /// The ID of the participant (i.e., summoner or team) represented by this entry.
