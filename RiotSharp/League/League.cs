@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
@@ -34,14 +31,14 @@ namespace RiotSharp
         public string ParticipantId { get; set; }
 
         /// <summary>
-        /// League queue.
+        /// League queue (eg: RankedSolo5x5).
         /// </summary>
         [JsonProperty("queue")]
         [JsonConverter(typeof(QueueConverter))]
         public Queue Queue { get; set; }
 
         /// <summary>
-        /// League tier.
+        /// League tier (eg: Challenger).
         /// </summary>
         [JsonProperty("tier")]
         [JsonConverter(typeof(TierConverter))]

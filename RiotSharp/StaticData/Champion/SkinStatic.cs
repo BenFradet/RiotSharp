@@ -19,7 +19,7 @@ namespace RiotSharp
         /// Id of the skin.
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Name of the skin.

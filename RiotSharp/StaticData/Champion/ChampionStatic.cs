@@ -37,7 +37,7 @@ namespace RiotSharp
         /// Name of this champion.
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Image of this champion.

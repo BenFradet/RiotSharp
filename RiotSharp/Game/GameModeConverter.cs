@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -68,6 +64,8 @@ namespace RiotSharp
                 case GameMode.Tutorial:
                     result = "TUTORIAL";
                     break;
+
+                //Fix for rengar
                 case GameMode.Any:
                     result = "any";
                     break;

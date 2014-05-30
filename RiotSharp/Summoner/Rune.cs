@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
@@ -34,7 +30,8 @@ namespace RiotSharp
         public string Name { get; set; }
 
         /// <summary>
-        /// Rune tier.
+        /// <para>Rune tier.</para>
+        /// <para>Valid: 1 - 3</para>
         /// </summary>
         [JsonProperty("tier")]
         public int Tier { get; set; }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
@@ -16,20 +12,20 @@ namespace RiotSharp
         internal MiniSeries() { }
 
         /// <summary>
-        /// Number of losses.
+        /// Number of current losses in the mini series.
         /// </summary>
         [JsonProperty("losses")]
         public int Losses { get; set; }
 
         /// <summary>
-        /// Array representing the progress in the MiniSeries L for a loss, W for a win, N for not played (I guess).
+        /// Array representing the progress in the MiniSeries L for a loss, W for a win, N for not played.
         /// </summary>
         [JsonProperty("progress")]
         [JsonConverter(typeof(CharArrayConverter))]
         public char[] Progress { get; set; }
 
         /// <summary>
-        /// Number of wins required (I guess).
+        /// Number of wins required for promotion.
         /// </summary>
         [JsonProperty("target")]
         public int Target { get; set; }
@@ -42,7 +38,7 @@ namespace RiotSharp
         public TimeSpan TimeLeftToPlayMillis { get; set; }
 
         /// <summary>
-        /// Number of wins.
+        /// umber of current wins in the mini series.
         /// </summary>
         [JsonProperty("wins")]
         public int Wins { get; set; }

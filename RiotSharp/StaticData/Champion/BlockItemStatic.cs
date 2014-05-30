@@ -25,6 +25,6 @@ namespace RiotSharp
         /// Id of the recommended item.
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public long Id { get; set; }
     }
 }
