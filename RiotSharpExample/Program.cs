@@ -29,6 +29,11 @@ namespace RiotSharpExample
             //var leagues = api.GetLeagues(Region.euw, new List<int> { id });
             //foreach (var l in leagues) Console.WriteLine(l.Key);
 
+            var sum = api.GetSummoner(Region.euw, id);
+
+            Console.WriteLine(api.GetSummoner(Region.euw, id).Name);
+            Console.WriteLine(api.GetSummoner(Region.euw, id2).Name);
+
             var teams = api.GetTeams(Region.euw, new List<int> { id, id2 });
             foreach (var t in teams) Console.WriteLine(t.Key);
 
