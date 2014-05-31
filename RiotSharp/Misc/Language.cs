@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RiotSharp
+﻿namespace RiotSharp
 {
     /// <summary>
     /// Language for the data retrieved (Static API).
