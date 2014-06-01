@@ -67,7 +67,7 @@ namespace RiotSharp
         /// Spell's id.
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Spell's image.

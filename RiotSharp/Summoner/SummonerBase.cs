@@ -41,12 +41,12 @@ namespace RiotSharp
         }
 
         //summoner base not default constructor
-        internal SummonerBase(long id, string name, RateLimitedRequester requester, Region region)
+        internal SummonerBase(string id, string name, RateLimitedRequester requester, Region region)
         {
             this.requester = requester;
             Region = region;
             this.Name = name;
-            this.Id = id;
+            this.Id = long.Parse(id);
         }
         
         /// <summary>

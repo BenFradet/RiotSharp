@@ -25,6 +25,6 @@ namespace RiotSharp
         /// Id of the group.
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 }

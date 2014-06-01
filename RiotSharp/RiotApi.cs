@@ -194,7 +194,7 @@ namespace RiotSharp
             var json = requester.CreateRequest(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NamesUrl, summonerId));
             var child = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            return new SummonerBase(long.Parse(child.Keys.FirstOrDefault()), child.Values.FirstOrDefault(), requester, region);
+            return new SummonerBase(child.Keys.FirstOrDefault(), child.Values.FirstOrDefault(), requester, region);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(string.Format(SummonerRootUrl, region.ToString())
                 + string.Format(NamesUrl, summonerId));
             var child = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            return new SummonerBase(long.Parse(child.Keys.FirstOrDefault()), child.Values.FirstOrDefault(), requester, region);
+            return new SummonerBase(child.Keys.FirstOrDefault(), child.Values.FirstOrDefault(), requester, region);
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace RiotSharp
             var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             foreach (var child in children)
             {
-                summoners.Add(new SummonerBase(long.Parse(child.Key), child.Value, requester, region));
+                summoners.Add(new SummonerBase(child.Key, child.Value, requester, region));
             }
             return summoners;
         }
@@ -244,7 +244,7 @@ namespace RiotSharp
             var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             foreach (var sb in children)
             {
-                summoners.Add(new SummonerBase(long.Parse(sb.Key), sb.Value, requester, region));
+                summoners.Add(new SummonerBase(sb.Key, sb.Value, requester, region));
             }
             return summoners;
         }
