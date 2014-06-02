@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Net;
 using Newtonsoft.Json;
-using System.Runtime.Serialization;
 
 namespace RiotSharp
 {
@@ -46,9 +43,9 @@ namespace RiotSharp
             requester = RateLimitedRequester.Instance;
         }
 
+        //summoner base not default constructor
         internal SummonerBase(string id, string name, RateLimitedRequester requester, Region region)
         {
-            Console.WriteLine("summoner base not default constructor");
             this.requester = requester;
             Region = region;
             this.Name = name;

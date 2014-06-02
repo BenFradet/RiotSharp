@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
@@ -22,7 +18,8 @@ namespace RiotSharp
         public int RuneId { get; set; }
 
         /// <summary>
-        /// Rune slot ID.
+        /// <para>Rune slot ID.</para>
+        /// <para>Valid: 1 - 30</para>
         /// </summary>
         [JsonProperty("runeSlotId")]
         public int RuneSlotId { get; set; }

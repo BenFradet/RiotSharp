@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
 {
     /// <summary>
-    /// Mastery (Summoner API).
+    /// Class representing a Mastery in the API.
     /// </summary>
     [Serializable]
     public class Mastery

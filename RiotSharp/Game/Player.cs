@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
@@ -29,6 +25,8 @@ namespace RiotSharp
 
         /// <summary>
         /// Team id associated with player.
+        /// <para>Blue = 100</para>
+        /// <para>Purple = 200</para>
         /// </summary>
         [JsonProperty("teamId")]
         public int TeamId { get; set; }
