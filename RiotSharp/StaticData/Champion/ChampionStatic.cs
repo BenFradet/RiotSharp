@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace RiotSharp
@@ -28,7 +25,7 @@ namespace RiotSharp
         public string Blurb { get; set; }
 
         /// <summary>
-        /// LIst of tips to use while playing against this champion.
+        /// List of tips to use while playing against this champion.
         /// </summary>
         [JsonProperty("enemytips")]
         public List<string> EnemyTips { get; set; }
@@ -52,7 +49,10 @@ namespace RiotSharp
         public InfoStatic Info { get; set; }
 
         /// <summary>
-        /// Id of this champion.
+        /// Key of this champion.
+        /// <para>This is diffrent from the Name attribute! 
+        /// (Name = ingame display name, Key = codebase name 
+        /// [Fiddlesticks key = FiddleSticks, Wukong key = MonkeyKing, ... ]</para>
         /// </summary>
         [JsonProperty("key")]
         public string Key { get; set; }
@@ -70,7 +70,7 @@ namespace RiotSharp
         public string Name { get; set; }
 
         /// <summary>
-        /// Type of the champion (Mana, None, Energy, Shield, Rage, Ferocity, Heat, Dragonfury, Battlefury, Wind).
+        /// Resource type of the champion (Mana, None, Energy, Shield, Rage, Ferocity, Heat, Dragonfury, Battlefury, Wind).
         /// </summary>
         [JsonProperty("partype")]
         [JsonConverter(typeof(ParTypeStaticConverter))]
