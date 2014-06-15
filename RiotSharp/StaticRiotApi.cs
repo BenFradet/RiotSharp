@@ -51,7 +51,7 @@ namespace RiotSharp
         private StaticRiotApi(string apiKey)
         {
             requester = Requester.Instance;
-            Requester.RootDomain = "euw.api.pvp.net";
+            Requester.RootDomain = "global.api.pvp.net";
             Requester.ApiKey = apiKey;
         }
 
