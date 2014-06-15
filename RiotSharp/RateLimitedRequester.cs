@@ -39,8 +39,9 @@ namespace RiotSharp
         private const int MAX_REQUEST_PER_10S = 10;
         private const int MAX_REQUEST_PER_10M = 500;
 
-        public override string CreateRequest(string relativeUrl, List<string> addedArguments = null)
+        public override string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
         {
+            RootDomain = region.ToString() + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             semaphore.Wait();
@@ -86,8 +87,10 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
-        public override async Task<string> CreateRequestAsync(string relativeUrl, List<string> addedArguments = null)
+        public override async Task<string> CreateRequestAsync(string relativeUrl, Region region,
+            List<string> addedArguments = null)
         {
+            RootDomain = region.ToString() + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             await semaphore.WaitAsync();

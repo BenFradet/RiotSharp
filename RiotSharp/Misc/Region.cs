@@ -22,6 +22,10 @@
         /// </summary>
         na,
         /// <summary>
+        /// South korea.
+        /// </summary>
+        kr,
+        /// <summary>
         /// Latin America North.
         /// </summary>
         lan,

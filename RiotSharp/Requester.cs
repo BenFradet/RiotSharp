@@ -27,13 +27,14 @@ namespace RiotSharp
         public static string RootDomain { get; set; }
         public static string ApiKey { get; set; }
 
-        public virtual string CreateRequest(string relativeUrl, List<string> addedArguments = null)
+        public virtual string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
         {
             var request = PrepareRequest(relativeUrl, addedArguments);
             return GetResponse(request);
         }
 
-        public virtual async Task<string> CreateRequestAsync(string relativeUrl, List<string> addedArguments = null)
+        public virtual async Task<string> CreateRequestAsync(string relativeUrl, Region region,
+            List<string> addedArguments = null)
         {
             var request = PrepareRequest(relativeUrl, addedArguments);
             return await GetResponseAsync(request);
