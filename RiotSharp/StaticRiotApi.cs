@@ -24,7 +24,7 @@ namespace RiotSharp
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryCacheKey = "mastery";
 
-        private const string RuneRootUrl = "/api/lol/static-data/{0}/v1/rune";
+        private const string RuneRootUrl = "/api/lol/static-data/{0}/v1.2/rune";
         private const string RunesCacheKey = "runes";
         private const string RuneCacheKey = "rune";
 
