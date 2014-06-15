@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Entry point for the api.
+    /// </summary>
     public class RiotApi
     {
         private const string SummonerRootV13Url = "/api/lol/{0}/v1.3/summoner";
@@ -575,7 +578,8 @@ namespace RiotSharp
                 string.Format(LeagueRootV23Url, region.ToString()) +
                     string.Format(LeagueByTeamUrl, teamId) + LeagueEntryUrl,
                 region);
-            return await JsonConvert.DeserializeObjectAsync<List<LeagueItemV23>>(json);
+            return await Task.Factory.StartNew<List<LeagueItemV23>>(() =>
+                JsonConvert.DeserializeObject<List<LeagueItemV23>>(json));
         }
 
         /// <summary>
@@ -605,7 +609,8 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(
                 string.Format(LeagueRootV23Url, region.ToString()) + string.Format(LeagueByTeamUrl, teamId),
                 region);
-            return await JsonConvert.DeserializeObjectAsync<List<LeagueV23>>(json);
+            return await Task.Factory.StartNew<List<LeagueV23>>(() =>
+                JsonConvert.DeserializeObject<List<LeagueV23>>(json));
         }
 
         /// <summary>
@@ -637,7 +642,7 @@ namespace RiotSharp
                 string.Format(LeagueRootV23Url, region.ToString()) + LeagueChallengerUrl,
                 region,
                 new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
-            return await JsonConvert.DeserializeObjectAsync<LeagueV23>(json);
+            return await Task.Factory.StartNew<LeagueV23>(() => JsonConvert.DeserializeObject<LeagueV23>(json));
         }
 
         /// <summary>
@@ -727,7 +732,7 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(
                 string.Format(TeamRootV22Url, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
                 region);
-            return await JsonConvert.DeserializeObjectAsync<Dictionary<string, TeamV22>>(json);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Dictionary<string, TeamV22>>(json));
         }
 
         private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)

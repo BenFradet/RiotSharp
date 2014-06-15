@@ -216,7 +216,7 @@ namespace RiotSharp
                 string.Format(LeagueRootV23Url, Region) + string.Format(LeagueBySummonerUrl, Id) +
                     LeagueBySummonerEntryUrl,
                 Region);
-            return await JsonConvert.DeserializeObjectAsync<List<LeagueItemV23>>(json);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeagueItemV23>>(json));
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(
                 string.Format(LeagueRootV23Url, Region) + string.Format(LeagueBySummonerUrl, Id),
                 Region);
-            return await JsonConvert.DeserializeObjectAsync<List<LeagueV23>>(json);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeagueV23>>(json));
         }
 
         /// <summary>
@@ -408,7 +408,7 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(
                 string.Format(TeamRootV22Url, Region) + string.Format(TeamBySummonerUrl, Id),
                 Region);
-            return await JsonConvert.DeserializeObjectAsync<List<TeamV22>>(json);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<TeamV22>>(json));
         }
     }
 }
