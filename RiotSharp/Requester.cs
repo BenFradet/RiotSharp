@@ -29,6 +29,7 @@ namespace RiotSharp
 
         public virtual string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
         {
+            RootDomain = "global.api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments);
             return GetResponse(request);
         }
@@ -36,6 +37,7 @@ namespace RiotSharp
         public virtual async Task<string> CreateRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null)
         {
+            RootDomain = "global.api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments);
             return await GetResponseAsync(request);
         }
