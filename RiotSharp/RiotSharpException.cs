@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// RiotSharp exception.
+    /// </summary>
     public class RiotSharpException: Exception
     {
         public RiotSharpException() { }
