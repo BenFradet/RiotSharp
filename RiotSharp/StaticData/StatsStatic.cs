@@ -65,7 +65,7 @@ namespace RiotSharp
 
         public double PercentHPRegenMod { get; set; }
 
-        public double PewrcentLifeStealMod { get; set; }
+        public double PercentLifeStealMod { get; set; }
 
         public double PercentMPPoolMod { get; set; }
 
