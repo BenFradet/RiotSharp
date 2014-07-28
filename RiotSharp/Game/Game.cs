@@ -99,7 +99,8 @@ namespace RiotSharp
         /// </list>
         /// </summary>
         [JsonProperty("mapId")]
-        public int MapId { get; set; }
+        [JsonConverter(typeof(MapTypeConverter))]
+        public MapType MapType { get; set; }
 
         /// <summary>
         /// ID of first summoner spell.
