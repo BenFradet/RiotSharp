@@ -52,6 +52,8 @@
     <Compile Include="Game\GameModeConverter.cs" />
     <Compile Include="Game\GameType.cs" />
     <Compile Include="Game\GameTypeConverter.cs" />
+    <Compile Include="Game\MapType.cs" />
+    <Compile Include="Game\MapTypeConverter.cs" />
     <Compile Include="Game\RawStat.cs" />
     <Compile Include="Game\GameSubType.cs" />
     <Compile Include="Game\GameSubTypeConverter.cs" />

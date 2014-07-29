@@ -105,6 +105,8 @@ namespace RiotSharp
         /// URF Bots games
         /// </summary>
         URF_BOT,
+
+        NightmareBot
         
     }
 }

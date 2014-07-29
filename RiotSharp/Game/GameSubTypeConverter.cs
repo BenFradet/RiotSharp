@@ -57,6 +57,8 @@ namespace RiotSharp
                         return GameSubType.URF;
                     case "URF_BOT":
                         return GameSubType.URF_BOT;
+                    case "NIGHTMARE_BOT":
+                        return GameSubType.NightmareBot;
                     default:
                         return null;
                 }
@@ -126,6 +128,9 @@ namespace RiotSharp
                     break;
                 case GameSubType.URF_BOT:
                     result = "URF_BOT";
+                    break;
+                case GameSubType.NightmareBot:
+                    result = "NIGHTMARE_BOT";
                     break;
                 default:
                     result = "";
