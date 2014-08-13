@@ -7,7 +7,7 @@ using System.Runtime.Caching;
 
 namespace RiotSharp
 {
-    class Cache
+    static class Cache
     {
         private static readonly ObjectCache cache = MemoryCache.Default;
         private static readonly object lockObj = new object();
