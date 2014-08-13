@@ -73,7 +73,10 @@ namespace RiotSharp
             var json = requester.CreateRequest(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
             var obj = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.FirstOrDefault();
-            obj.Region = region;
+            if (obj != null)
+            {
+                obj.Region = region;
+            }
             return obj;
         }
 
@@ -89,7 +92,10 @@ namespace RiotSharp
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
             var obj = (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json))).Values.FirstOrDefault();
-            obj.Region = region;
+            if (obj != null)
+            {
+                obj.Region = region;
+            }
             return obj;
         }
 
@@ -145,7 +151,10 @@ namespace RiotSharp
                     string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)),
                 region);
             var obj = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.FirstOrDefault();
-            obj.Region = region;
+            if (obj != null)
+            {
+                obj.Region = region;
+            }
             return obj;
         }
 
@@ -163,7 +172,10 @@ namespace RiotSharp
                 region);
             var obj = (await Task.Factory.StartNew<Dictionary<string, Summoner>>(() => 
                     JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json))).Values.FirstOrDefault();
-            obj.Region = region;
+            if (obj != null)
+            {
+                obj.Region = region;
+            }
             return obj;
         }
 
