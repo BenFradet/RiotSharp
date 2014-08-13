@@ -139,8 +139,7 @@ namespace RiotSharp
                 if (listWrapper != null && listWrapper.Language == language && 
                     listWrapper.ChampionData == championData)
                 {
-                    return listWrapper.ChampionListStatic.Champions.Values
-                        .Where((c) => c.Id == championId).FirstOrDefault();
+                    return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
                 }
                 else
                 {
@@ -183,8 +182,7 @@ namespace RiotSharp
                 if (listWrapper != null && listWrapper.Language == language &&
                     listWrapper.ChampionData == championData)
                 {
-                    return listWrapper.ChampionListStatic.Champions.Values
-                        .Where((c) => c.Id == championId).FirstOrDefault();
+                    return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
                 }
                 else
                 {
