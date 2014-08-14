@@ -28,6 +28,7 @@ namespace RiotSharp
         FirstBlood2x2,
         SummonersRift6x6,
         URF,
-        URFBots
+        URFBots,
+        NightmareBot
     }
 }

@@ -59,6 +59,8 @@ namespace RiotSharp
                         return PlayerStatsSummaryType.URF;
                     case "URFBots":
                         return PlayerStatsSummaryType.URFBots;
+                    case "NightmareBot":
+                        return PlayerStatsSummaryType.NightmareBot;
                     default:
                         return null;
                 }
