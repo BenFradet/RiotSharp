@@ -360,25 +360,5 @@ namespace RiotSharpTest
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count > 0);
         }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetTeamsV22_Test()
-        {
-            var teams = api.GetTeamsV22(Region.euw, new List<string> { team, team2 });
-
-            Assert.IsNotNull(teams);
-            Assert.IsTrue(teams.Count > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetTeamsV22Async_Test()
-        {
-            var teams = api.GetTeamsV22Async(Region.euw, new List<string> { team, team2 });
-
-            Assert.IsNotNull(teams.Result);
-            Assert.IsTrue(teams.Result.Count > 0);
-        }
     }
 }

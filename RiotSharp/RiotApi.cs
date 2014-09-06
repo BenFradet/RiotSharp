@@ -621,36 +621,6 @@ namespace RiotSharp
                 JsonConvert.DeserializeObject<Dictionary<string, Team>>(json));
         }
 
-        /// <summary>
-        /// Get the teams for the specified ids synchronously.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="teamIds">List of string of the teams' ids.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        [Obsolete("The teams api v2.2 is deprecated, please use GetTeams() instead.")]
-        public Dictionary<string, TeamV22> GetTeamsV22(Region region, List<string> teamIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(TeamRootV22Url, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, TeamV22>>(json);
-        }
-
-        /// <summary>
-        /// Get the teams for the specified ids asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="teamIds">List of string of the teams' ids.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        [Obsolete("The teams api v2.2 is deprecated, please use GetTeams() instead.")]
-        public async Task<Dictionary<string, TeamV22>> GetTeamsV22Async(Region region, List<string> teamIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(TeamRootV22Url, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Dictionary<string, TeamV22>>(json));
-        }
-
         private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)
         {
             var returnDict = new Dictionary<long, List<MasteryPage>>();

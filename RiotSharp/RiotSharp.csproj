@@ -144,15 +144,11 @@
     <Compile Include="RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="Summoner\SummonerBaseList.cs" />
-    <Compile Include="Team\Deprecated\MatchHistorySummaryV22.cs" />
     <Compile Include="Team\MatchHistorySummary.cs" />
     <Compile Include="Team\MessageOfDay.cs" />
     <Compile Include="Team\Roster.cs" />
-    <Compile Include="Team\Deprecated\TeamV22.cs" />
     <Compile Include="Team\Team.cs" />
     <Compile Include="Team\TeamMemberInfo.cs" />
-    <Compile Include="Team\Deprecated\TeamStatDetailV22.cs" />
-    <Compile Include="Team\Deprecated\TeamStatSummaryV22.cs" />
     <Compile Include="Team\TeamStatDetail.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +157,7 @@
     <Folder Include="League\Deprecated\" />
     <Folder Include="Stats\Deprecated\" />
     <Folder Include="Summoner\Deprecated\" />
+    <Folder Include="Team\Deprecated\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

@@ -329,31 +329,5 @@ namespace RiotSharp
             return (await Task.Factory.StartNew<Dictionary<long, List<Team>>>(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, List<Team>>>(json)))[Id];
         }
-
-        /// <summary>
-        /// Get team information for this summoner synchronously.
-        /// </summary>
-        /// <returns>List of teams.</returns>
-        [Obsolete("The teams api v2.2 is deprecated, please use GetTeams() instead.")]
-        public List<TeamV22> GetTeamsV22()
-        {
-            var json = requester.CreateRequest(
-                string.Format(TeamRootV22Url, Region) + string.Format(TeamBySummonerUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<List<TeamV22>>(json);
-        }
-
-        /// <summary>
-        /// Get team information for this summoner asynchronously.
-        /// </summary>
-        /// <returns>List of teams.</returns>
-        [Obsolete("The teams api v2.2 is deprecated, please use GetTeamsAsync() instead.")]
-        public async Task<List<TeamV22>> GetTeamsV22Async()
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(TeamRootV22Url, Region) + string.Format(TeamBySummonerUrl, Id),
-                Region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<TeamV22>>(json));
-        }
     }
 }
