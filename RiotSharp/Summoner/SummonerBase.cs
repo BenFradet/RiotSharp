@@ -12,7 +12,6 @@ namespace RiotSharp
     [Serializable]
     public class SummonerBase
     {
-        private const string RootV13Url = "/api/lol/{0}/v1.3/summoner";
         private const string RootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
@@ -24,7 +23,6 @@ namespace RiotSharp
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
 
-        private const string StatsRootV12Url = "/api/lol/{0}/v1.2/stats";
         private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";

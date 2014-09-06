@@ -13,7 +13,6 @@ namespace RiotSharp
     /// </summary>
     public class RiotApi
     {
-        private const string SummonerRootV13Url = "/api/lol/{0}/v1.3/summoner";
         private const string SummonerRootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string ByNameUrl = "/by-name/{0}";
         private const string IdUrl = "/{0}";
@@ -21,7 +20,6 @@ namespace RiotSharp
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
 
-        private const string ChampionRootV11Url = "/api/lol/{0}/v1.1/champion";
         private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
 
         private const string LeagueRootUrl = "/api/lol/{0}/v2.4/league";
