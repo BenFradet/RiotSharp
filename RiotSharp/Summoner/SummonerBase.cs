@@ -192,61 +192,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Retrieves the league items for this specific summoner and not the entire league.
-        /// </summary>
-        /// <returns>A list of league items for each league the summoner is in.</returns>
-        [Obsolete("The league api v2.3 is deprecated, please use GetLeagues() instead.")]
-        public List<LeagueItemV23> GetLeaguesV23()
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV23Url, Region) + string.Format(LeagueBySummonerUrl, Id) +
-                    LeagueBySummonerEntryUrl,
-                Region);
-            return JsonConvert.DeserializeObject<List<LeagueItemV23>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves the league items for this specific summoner and not the entire league asynchronously.
-        /// </summary>
-        /// <returns>A list of league items for each league the summoner is in.</returns>
-        [Obsolete("The league api v2.3 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<List<LeagueItemV23>> GetLeaguesV23Async()
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV23Url, Region) + string.Format(LeagueBySummonerUrl, Id) +
-                    LeagueBySummonerEntryUrl,
-                Region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeagueItemV23>>(json));
-        }
-
-        /// <summary>
-        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
-        /// </summary>
-        /// <returns>List of leagues.</returns>
-        [Obsolete("The league api v2.3 is deprecated, please use GetEntireLeagues() instead.")]
-        public List<LeagueV23> GetEntireLeaguesV23()
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV23Url, Region) + string.Format(LeagueBySummonerUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<List<LeagueV23>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's
-        /// teams asynchronously.
-        /// </summary>
-        /// <returns>List of leagues.</returns>
-        [Obsolete("The league api v2.3 is deprecated, please use GetEntireLeaguesAsync() instead.")]
-        public async Task<List<LeagueV23>> GetEntireLeaguesV23Async()
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV23Url, Region) + string.Format(LeagueBySummonerUrl, Id),
-                Region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeagueV23>>(json));
-        }
-
-        /// <summary>
         /// Get player stats summaries for this summoner synchronously, for the current season.
         /// One summary is returned per queue type.
         /// </summary>

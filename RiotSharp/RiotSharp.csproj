@@ -62,8 +62,6 @@
     <Compile Include="League\LeagueEntry.cs" />
     <Compile Include="League\MiniSeries.cs" />
     <Compile Include="Misc\Language.cs" />
-    <Compile Include="League\Deprecated\LeagueV23.cs" />
-    <Compile Include="League\Deprecated\LeagueItemV23.cs" />
     <Compile Include="League\Queue.cs" />
     <Compile Include="League\QueueConverter.cs" />
     <Compile Include="League\Tier.cs" />
@@ -130,7 +128,6 @@
     <Compile Include="Stats\PlayerStatsSummaryList.cs" />
     <Compile Include="Stats\PlayerStatsSummaryType.cs" />
     <Compile Include="Stats\PlayerStatsSummaryTypeConverter.cs" />
-    <Compile Include="League\Deprecated\MiniSeriesV23.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Stats\RankedStats.cs" />
     <Compile Include="Summoner\Mastery.cs" />
@@ -161,6 +158,7 @@
   <ItemGroup>
     <Folder Include="Champion\Deprecated\" />
     <Folder Include="Game\Deprecated\" />
+    <Folder Include="League\Deprecated\" />
     <Folder Include="Stats\Deprecated\" />
     <Folder Include="Summoner\Deprecated\" />
   </ItemGroup>

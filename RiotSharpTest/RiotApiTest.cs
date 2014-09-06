@@ -322,66 +322,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetLeaguesV23_Test()
-        {
-            var leagues = api.GetLeaguesV23(Region.euw, team2);
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesV23Async_Test()
-        {
-            var leagues = api.GetLeaguesV23Async(Region.euw, team2);
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV23_Test()
-        {
-            var leagues = api.GetEntireLeaguesV23(Region.euw, team2);
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV23Async_Test()
-        {
-            var leagues = api.GetEntireLeaguesV23Async(Region.euw, team2);
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetChallengerLeagueV23_Test()
-        {
-            var league = api.GetChallengerLeagueV23(Region.euw, Queue.RankedSolo5x5);
-
-            Assert.IsNotNull(league.Entries);
-            Assert.IsTrue(league.Entries.Count > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetChallengerLeagueV23Async_Test()
-        {
-            var league = api.GetChallengerLeagueV23Async(Region.euw, Queue.RankedSolo5x5);
-
-            Assert.IsNotNull(league.Result.Entries);
-            Assert.IsTrue(league.Result.Entries.Count > 0);
-        }
-
-        [TestMethod]
         [TestCategory("RiotApi")]
         public void GetTeams_Summoners_Test()
         {
