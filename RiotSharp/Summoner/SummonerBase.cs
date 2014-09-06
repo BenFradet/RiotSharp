@@ -19,6 +19,7 @@ namespace RiotSharp
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
+        private const string LeagueRootUrl = "/api/lol/{0}/v2.5/league";
         private const string LeagueRootV24Url = "/api/lol/{0}/v2.4/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
@@ -132,6 +133,59 @@ namespace RiotSharp
                 Region);
             return (await Task.Factory.StartNew<RecentGames>(() =>
                 JsonConvert.DeserializeObject<RecentGames>(json))).Games;
+        }
+
+        /// <summary>
+        /// Retrieve the league items for this specific summoner and not the entire league.
+        /// </summary>
+        /// <returns>A list of league items for each league the summoner is in.</returns>
+        public List<League> GetLeagues()
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id) +
+                    LeagueBySummonerEntryUrl,
+                Region);
+            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)[Id];
+        }
+
+        /// <summary>
+        /// Retrieve the league items for this specific summoner and not the entire league asynchronously.
+        /// </summary>
+        /// <returns>A list of league items for each league the summoner is in.</returns>
+        public async Task<List<League>> GetLeaguesAsync()
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootV24Url, Region) + string.Format(LeagueBySummonerUrl, Id) +
+                    LeagueBySummonerEntryUrl,
+                Region);
+            return (await Task.Factory.StartNew<Dictionary<long, List<League>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)))[Id];
+        }
+
+        /// <summary>
+        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
+        /// </summary>
+        /// <returns>List of leagues.</returns>
+        public List<League> GetEntireLeagues()
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id),
+                Region);
+            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)[Id];
+        }
+
+        /// <summary>
+        /// Retrieves leagues data for this summoner, including leagues for all of this summoner's
+        /// teams asynchronously.
+        /// </summary>
+        /// <returns>List of leagues.</returns>
+        public async Task<List<League>> GetEntireLeaguesAsync()
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id),
+                Region);
+            return (await Task.Factory.StartNew<Dictionary<long, List<League>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)))[Id];
         }
 
         /// <summary>

@@ -22,6 +22,7 @@ namespace RiotSharp
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
 
+        private const string LeagueRootUrl = "/api/lol/{0}/v2.5/league";
         private const string LeagueRootV24Url = "/api/lol/{0}/v2.4/league";
         private const string LeagueChallengerUrl = "/challenger";
         private const string LeagueByTeamUrl = "/by-team/{0}";
@@ -401,6 +402,162 @@ namespace RiotSharp
                 region);
             return ConstructRuneDict(await Task.Factory.StartNew<Dictionary<string, RunePages>>(() =>
                 JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json)));
+        }
+
+        /// <summary>
+        /// Retrieves the league entries for the specified summoners.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="summonerIds">The summoner ids.</param>
+        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
+        public Dictionary<long, List<League>> GetLeagues(Region region, List<int> summonerIds)
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, BuildIdsString(summonerIds)) + LeagueEntryUrl,
+                region);
+            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+        }
+
+        /// <summary>
+        /// Retrieves the league entries for the specified summoners asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="summonerIds">The summoner ids.</param>
+        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
+        public async Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, BuildIdsString(summonerIds)) + LeagueEntryUrl,
+                region);
+            return await Task.Factory.StartNew<Dictionary<long, List<League>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
+        }
+
+        /// <summary>
+        /// Retrieves the entire leagues for the specified summoners.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="summonerIds">The summoner ids.</param>
+        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
+        public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<int> summonerIds)
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, BuildIdsString(summonerIds)),
+                region);
+            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+        }
+
+        /// <summary>
+        /// Retrieves the entire leagues for the specified summoners asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="summonerIds">The summoner ids.</param>
+        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
+        public async Task<Dictionary<long, List<League>>> GetEntireLeaguesAsync(Region region,
+            List<int> summonerIds)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, BuildIdsString(summonerIds)),
+                region);
+            return await Task.Factory.StartNew<Dictionary<long, List<League>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
+        }
+
+        /// <summary>
+        /// Retrieves the league entries for the specified teams.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
+        /// <param name="teamIds">The team ids.</param>
+        /// <returns>A map of list of leagues indexed by the team id.</returns>
+        public Dictionary<string, List<League>> GetLeagues(Region region, List<string> teamIds)
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueByTeamUrl, BuildNamesString(teamIds)) + LeagueEntryUrl,
+                region);
+            return JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
+        }
+
+        /// <summary>
+        /// Retrieves the league entries for the specified teams asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
+        /// <param name="teamIds">The team ids.</param>
+        /// <returns>A map of list of league entries indexed by the team id.</returns>
+        public async Task<Dictionary<string, List<League>>> GetLeaguesAsync(Region region, List<string> teamIds)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueByTeamUrl, BuildNamesString(teamIds)) + LeagueEntryUrl,
+                region);
+            return await Task.Factory.StartNew<Dictionary<string, List<League>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json));
+        }
+
+        /// <summary>
+        /// Retrieves the entire leagues for the specified teams.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
+        /// <param name="teamIds">The team ids.</param>
+        /// <returns>A map of list of entire leagues indexed by the team id.</returns>
+        public Dictionary<string, List<League>> GetEntireLeagues(Region region, List<string> teamIds)
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueByTeamUrl, BuildNamesString(teamIds)),
+                region);
+            return JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
+        }
+
+        /// <summary>
+        /// Retrieves the entire leagues for the specified teams asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
+        /// <param name="teamIds">The team ids.</param>
+        /// <returns>A map of list of entire leagues indexed by the team id.</returns>
+        public async Task<Dictionary<string, List<League>>> GetEntireLeaguesAsync(Region region,
+            List<string> teamIds)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueByTeamUrl, BuildNamesString(teamIds)),
+                region);
+            return await Task.Factory.StartNew<Dictionary<string, List<League>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json));
+        }
+
+        /// <summary>
+        /// Get the challenger league for a particular queue.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a challenger league.</param>
+        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
+        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
+        public League GetChallengerLeague(Region region, Queue queue)
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
+                region,
+                new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
+            return JsonConvert.DeserializeObject<League>(json);
+        }
+
+        /// <summary>
+        /// Get the challenger league for a particular queue asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a challenger league.</param>
+        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
+        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
+        public async Task<League> GetChallengerLeagueAsync(Region region, Queue queue)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
+                region,
+                new List<string>() { string.Format("type={0}", queue.ToCustomString()) });
+            return await Task.Factory.StartNew<League>(() => JsonConvert.DeserializeObject<League>(json));
         }
 
         /// <summary>

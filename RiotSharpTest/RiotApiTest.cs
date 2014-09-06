@@ -214,8 +214,116 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Deprecated")]
+        [TestCategory("RiotApi")]
         public void GetLeagues_BySummoner_Test()
+        {
+            var leagues = api.GetLeagues(Region.euw, new List<int> { id, id2 });
+
+            Assert.IsNotNull(leagues[id]);
+            Assert.IsNotNull(leagues[id2]);
+            Assert.IsTrue(leagues[id].Count > 0);
+            Assert.IsTrue(leagues[id2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeaguesAsync_BySummoner_Test()
+        {
+            var leagues = api.GetLeaguesAsync(Region.euw, new List<int> { id, id2 });
+
+            Assert.IsNotNull(leagues.Result[id]);
+            Assert.IsNotNull(leagues.Result[id2]);
+            Assert.IsTrue(leagues.Result[id].Count > 0);
+            Assert.IsTrue(leagues.Result[id2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetEntireLeagues_BySummoner_Test()
+        {
+            var leagues = api.GetEntireLeagues(Region.euw, new List<int> { id, id2 });
+
+            Assert.IsNotNull(leagues[id]);
+            Assert.IsNotNull(leagues[id2]);
+            Assert.IsTrue(leagues[id].Count > 0);
+            Assert.IsTrue(leagues[id2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetEntireLeaguesAsync_BySummoner_Test()
+        {
+            var leagues = api.GetEntireLeaguesAsync(Region.euw, new List<int> { id, id2 });
+
+            Assert.IsNotNull(leagues.Result[id]);
+            Assert.IsNotNull(leagues.Result[id2]);
+            Assert.IsTrue(leagues.Result[id].Count > 0);
+            Assert.IsTrue(leagues.Result[id2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetLeagues_ByTeam_Test()
+        {
+            var leagues = api.GetLeagues(Region.euw, new List<string> { team2 });
+
+            Assert.IsNotNull(leagues[team2]);
+            Assert.IsTrue(leagues[team2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeaguesAsync_ByTeam_Test()
+        {
+            var leagues = api.GetLeaguesAsync(Region.euw, new List<string> { team2 });
+
+            Assert.IsNotNull(leagues.Result[team2]);
+            Assert.IsTrue(leagues.Result[team2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetEntireLeagues_ByTeam_Test()
+        {
+            var leagues = api.GetEntireLeagues(Region.euw, new List<string> { team2 });
+
+            Assert.IsNotNull(leagues[team2]);
+            Assert.IsTrue(leagues[team2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetEntireLeaguesAsync_ByTeam_Test()
+        {
+            var leagues = api.GetEntireLeaguesAsync(Region.euw, new List<string> { team2 });
+
+            Assert.IsNotNull(leagues.Result[team2]);
+            Assert.IsTrue(leagues.Result[team2].Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetChallengerLeague_Test()
+        {
+            var league = api.GetChallengerLeague(Region.euw, Queue.RankedSolo5x5);
+
+            Assert.IsNotNull(league.Entries);
+            Assert.IsTrue(league.Entries.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChallengerLeagueAsync_Test()
+        {
+            var league = api.GetChallengerLeagueAsync(Region.euw, Queue.RankedSolo5x5);
+
+            Assert.IsNotNull(league.Result.Entries);
+            Assert.IsTrue(league.Result.Entries.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Deprecated")]
+        public void GetLeaguesV24_BySummoner_Test()
         {
             var leagues = api.GetLeaguesV24(Region.euw, new List<int> { id, id2 });
 
@@ -227,7 +335,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesAsync_BySummoner_Test()
+        public void GetLeaguesV24Async_BySummoner_Test()
         {
             var leagues = api.GetLeaguesV24Async(Region.euw, new List<int> { id, id2 });
 
@@ -239,7 +347,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetEntireLeagues_BySummoner_Test()
+        public void GetEntireLeaguesV24_BySummoner_Test()
         {
             var leagues = api.GetEntireLeaguesV24(Region.euw, new List<int> { id, id2 });
 
@@ -251,7 +359,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesAsync_BySummoner_Test()
+        public void GetEntireLeaguesV24Async_BySummoner_Test()
         {
             var leagues = api.GetEntireLeaguesV24Async(Region.euw, new List<int> { id, id2 });
 
@@ -263,7 +371,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetLeagues_ByTeam_Test()
+        public void GetLeaguesV24_ByTeam_Test()
         {
             var leagues = api.GetLeaguesV24(Region.euw, new List<string> { team2 });
 
@@ -273,7 +381,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesAsync_ByTeam_Test()
+        public void GetLeaguesV24Async_ByTeam_Test()
         {
             var leagues = api.GetLeaguesV24Async(Region.euw, new List<string> { team2 });
 
@@ -283,7 +391,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetEntireLeagues_ByTeam_Test()
+        public void GetEntireLeaguesV24_ByTeam_Test()
         {
             var leagues = api.GetEntireLeaguesV24(Region.euw, new List<string> { team2 });
 
@@ -293,7 +401,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesAsync_ByTeam_Test()
+        public void GetEntireLeaguesV24Async_ByTeam_Test()
         {
             var leagues = api.GetEntireLeaguesV24Async(Region.euw, new List<string> { team2 });
 
@@ -303,7 +411,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Deprecated")]
-        public void GetChallengerLeague_Test()
+        public void GetChallengerLeagueV24_Test()
         {
             var league = api.GetChallengerLeagueV24(Region.euw, Queue.RankedSolo5x5);
 
@@ -313,7 +421,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetChallengerLeagueAsync_Test()
+        public void GetChallengerLeagueV24Async_Test()
         {
             var league = api.GetChallengerLeagueV24Async(Region.euw, Queue.RankedSolo5x5);
 
