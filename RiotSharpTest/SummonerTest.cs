@@ -196,20 +196,20 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner")]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetTeams_Test()
         {
-            var teams = summoner.GetTeams();
+            var teams = summoner.GetTeamsV23();
 
             Assert.IsNotNull(teams);
             Assert.IsTrue(teams.Count() > 0);
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async")]
+        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetTeamsAsync_Test()
         {
-            var teams = summoner.GetTeamsAsync();
+            var teams = summoner.GetTeamsV23Async();
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count() > 0);

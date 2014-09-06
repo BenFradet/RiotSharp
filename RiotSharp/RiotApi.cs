@@ -28,7 +28,7 @@ namespace RiotSharp
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueEntryUrl = "/entry";
 
-        private const string TeamRootUrl = "/api/lol/{0}/v2.3/team";
+        private const string TeamRootV23Url = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerURL = "/by-summoner/{0}";
 
         private RateLimitedRequester requester;
@@ -49,7 +49,7 @@ namespace RiotSharp
             }
             return instance;
         }
-        
+
         private RiotApi(string apiKey, bool isProdApi)
         {
             requester = RateLimitedRequester.Instance;
@@ -575,10 +575,11 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="summonerIds">List of summoner ids</param>
         /// <returns>A map of teams indexed by the summoner's id.</returns>
-        public Dictionary<long, List<Team>> GetTeams(Region region, List<int> summonerIds)
+        [Obsolete("The team api v2.3 is deprecated, please use GetTeams() instead.")]
+        public Dictionary<long, List<Team>> GetTeamsV23(Region region, List<int> summonerIds)
         {
             var json = requester.CreateRequest(
-                string.Format(TeamRootUrl, region.ToString()) +
+                string.Format(TeamRootV23Url, region.ToString()) +
                     string.Format(TeamBySummonerURL, BuildIdsString(summonerIds)),
                 region);
             return JsonConvert.DeserializeObject<Dictionary<long, List<Team>>>(json);
@@ -590,10 +591,11 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="summonerIds">List of summoner ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
-        public async Task<Dictionary<long, List<Team>>> GetTeamsAsync(Region region, List<int> summonerIds)
+        [Obsolete("The team api v2.3 is deprecated, please use GetTeamsAsync() instead.")]
+        public async Task<Dictionary<long, List<Team>>> GetTeamsV23Async(Region region, List<int> summonerIds)
         {
             var json = await requester.CreateRequestAsync(
-                string.Format(TeamRootUrl, region.ToString()) +
+                string.Format(TeamRootV23Url, region.ToString()) +
                     string.Format(TeamBySummonerURL, BuildIdsString(summonerIds)),
                 region);
             return await Task.Factory.StartNew<Dictionary<long, List<Team>>>(() =>
@@ -606,10 +608,11 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="teamIds">List of string of the teams' ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
-        public Dictionary<string, Team> GetTeams(Region region, List<string> teamIds)
+        [Obsolete("The team api v2.3 is deprecated, please use GetTeams() instead.")]
+        public Dictionary<string, Team> GetTeamsV23(Region region, List<string> teamIds)
         {
             var json = requester.CreateRequest(
-                string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
+                string.Format(TeamRootV23Url, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
                 region);
             return JsonConvert.DeserializeObject<Dictionary<string, Team>>(json);
         }
@@ -620,10 +623,11 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="teamIds">List of string of the teams' ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
-        public async Task<Dictionary<string, Team>> GetTeamsAsync(Region region, List<string> teamIds)
+        [Obsolete("The team api v2.3 is deprecated, please use GetTeamsAsync() instead.")]
+        public async Task<Dictionary<string, Team>> GetTeamsV23Async(Region region, List<string> teamIds)
         {
             var json = await requester.CreateRequestAsync(
-                string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
+                string.Format(TeamRootV23Url, region.ToString()) + string.Format(IdUrl, BuildNamesString(teamIds)),
                 region);
             return await Task.Factory.StartNew<Dictionary<string, Team>>(() =>
                 JsonConvert.DeserializeObject<Dictionary<string, Team>>(json));

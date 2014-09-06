@@ -322,40 +322,40 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
+        [TestCategory("RiotApi"), TestCategory("Deprecated")]
         public void GetTeams_Summoners_Test()
         {
-            var teams = api.GetTeams(Region.euw, new List<int> { id, id2 });
+            var teams = api.GetTeamsV23(Region.euw, new List<int> { id, id2 });
 
             Assert.IsNotNull(teams);
             Assert.IsTrue(teams.Count > 0);
         }
 
         [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
+        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetTeamsAsync_Summoners_Test()
         {
-            var teams = api.GetTeamsAsync(Region.euw, new List<int> { id, id2 });
+            var teams = api.GetTeamsV23Async(Region.euw, new List<int> { id, id2 });
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count > 0);
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
+        [TestCategory("RiotApi"), TestCategory("Deprecated")]
         public void GetTeams_Test()
         {
-            var teams = api.GetTeams(Region.euw, new List<string> { team, team2 });
+            var teams = api.GetTeamsV23(Region.euw, new List<string> { team, team2 });
 
             Assert.IsNotNull(teams);
             Assert.IsTrue(teams.Count > 0);
         }
 
         [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
+        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetTeamsAsync_Test()
         {
-            var teams = api.GetTeamsAsync(Region.euw, new List<string> { team, team2 });
+            var teams = api.GetTeamsV23Async(Region.euw, new List<string> { team, team2 });
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count > 0);
