@@ -19,7 +19,7 @@ namespace RiotSharp
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
-        private const string LeagueRootUrl = "/api/lol/{0}/v2.4/league";
+        private const string LeagueRootV24Url = "/api/lol/{0}/v2.4/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
 
@@ -47,7 +47,7 @@ namespace RiotSharp
             this.Name = name;
             this.Id = long.Parse(id);
         }
-        
+
         /// <summary>
         /// Summoner ID.
         /// </summary>
@@ -138,10 +138,11 @@ namespace RiotSharp
         /// Retrieve the league items for this specific summoner and not the entire league.
         /// </summary>
         /// <returns>A list of league items for each league the summoner is in.</returns>
-        public List<League> GetLeagues()
+        [Obsolete("The league api v2.4 is deprecated, please use GetLeagues() instead.")]
+        public List<League> GetLeaguesV24()
         {
             var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id) +
+                string.Format(LeagueRootV24Url, Region) + string.Format(LeagueBySummonerUrl, Id) +
                     LeagueBySummonerEntryUrl,
                 Region);
             return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)[Id];
@@ -151,10 +152,11 @@ namespace RiotSharp
         /// Retrieve the league items for this specific summoner and not the entire league asynchronously.
         /// </summary>
         /// <returns>A list of league items for each league the summoner is in.</returns>
-        public async Task<List<League>> GetLeaguesAsync()
+        [Obsolete("The league api v2.4 is deprecated, please use GetLeaguesAsync() instead.")]
+        public async Task<List<League>> GetLeaguesV24Async()
         {
             var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id) +
+                string.Format(LeagueRootV24Url, Region) + string.Format(LeagueBySummonerUrl, Id) +
                     LeagueBySummonerEntryUrl,
                 Region);
             return (await Task.Factory.StartNew<Dictionary<long, List<League>>>(() =>
@@ -165,10 +167,11 @@ namespace RiotSharp
         /// Retrieves leagues data for this summoner, including leagues for all of this summoner's teams synchronously.
         /// </summary>
         /// <returns>List of leagues.</returns>
-        public List<League> GetEntireLeagues()
+        [Obsolete("The league api v2.4 is deprecated, please use GetEntireLeagues() instead.")]
+        public List<League> GetEntireLeaguesV24()
         {
             var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id),
+                string.Format(LeagueRootV24Url, Region) + string.Format(LeagueBySummonerUrl, Id),
                 Region);
             return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)[Id];
         }
@@ -178,10 +181,11 @@ namespace RiotSharp
         /// teams asynchronously.
         /// </summary>
         /// <returns>List of leagues.</returns>
-        public async Task<List<League>> GetEntireLeaguesAsync()
+        [Obsolete("The league api v2.4 is deprecated, please use GetEntireLeaguesAsync() instead.")]
+        public async Task<List<League>> GetEntireLeaguesV24Async()
         {
             var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id),
+                string.Format(LeagueRootV24Url, Region) + string.Format(LeagueBySummonerUrl, Id),
                 Region);
             return (await Task.Factory.StartNew<Dictionary<long, List<League>>>(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)))[Id];
