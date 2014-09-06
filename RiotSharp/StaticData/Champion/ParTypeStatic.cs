@@ -11,39 +11,9 @@
         BloodWell,
 
         /// <summary>
-        /// Mana.
+        /// Battlefury (Tryndamere).
         /// </summary>
-        Mana,
-
-        /// <summary>
-        /// Energy (Shen, Kennen, etc).
-        /// </summary>
-        Energy,
-
-        /// <summary>
-        /// None (Vladimir, Zac, Mundo, etc).
-        /// </summary>
-        None,
-
-        /// <summary>
-        /// Shield (Mordekaiser).
-        /// </summary>
-        Shield,
-
-        /// <summary>
-        /// Rage (Renekton).
-        /// </summary>
-        Rage,
-
-        /// <summary>
-        /// Ferocity (Rengar).
-        /// </summary>
-        Ferocity,
-
-        /// <summary>
-        /// Heat (Rumble).
-        /// </summary>
-        Heat,
+        Battlefury,
 
         /// <summary>
         /// Dragonfury (Shyvana).
@@ -51,9 +21,44 @@
         Dragonfury,
 
         /// <summary>
-        /// Battlefury (Tryndamere).
+        /// Energy (Shen, Kennen, etc).
         /// </summary>
-        Battlefury,
+        Energy,
+
+        /// <summary>
+        /// Ferocity (Rengar).
+        /// </summary>
+        Ferocity,
+
+        /// <summary>
+        /// Gnarfury (Gnar).
+        /// </summary>
+        Gnarfury,
+
+        /// <summary>
+        /// Heat (Rumble).
+        /// </summary>
+        Heat,
+
+        /// <summary>
+        /// Mana.
+        /// </summary>
+        Mana,
+
+        /// <summary>
+        /// None (Vladimir, Zac, Mundo, etc).
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Rage (Renekton).
+        /// </summary>
+        Rage,
+
+        /// <summary>
+        /// Shield (Mordekaiser).
+        /// </summary>
+        Shield,
 
         /// <summary>
         /// Wind (Yasuo).

@@ -19,26 +19,28 @@ namespace RiotSharp
                 var str = token.Value<string>();
                 switch (str)
                 {
-                    case "BloodWell":
-                        return ParTypeStatic.BloodWell;
-                    case "Mana":
-                        return ParTypeStatic.Mana;
-                    case "Energy":
-                        return ParTypeStatic.Energy;
-                    case "None":
-                        return ParTypeStatic.None;
-                    case "Shield":
-                        return ParTypeStatic.Shield;
-                    case "Rage":
-                        return ParTypeStatic.Rage;
-                    case "Ferocity":
-                        return ParTypeStatic.Ferocity;
-                    case "Heat":
-                        return ParTypeStatic.Heat;
-                    case "Dragonfury":
-                        return ParTypeStatic.Dragonfury;
                     case "Battlefury":
                         return ParTypeStatic.Battlefury;
+                    case "BloodWell":
+                        return ParTypeStatic.BloodWell;
+                    case "Dragonfury":
+                        return ParTypeStatic.Dragonfury;
+                    case "Energy":
+                        return ParTypeStatic.Energy;
+                    case "Ferocity":
+                        return ParTypeStatic.Ferocity;
+                    case "Gnarfury":
+                        return ParTypeStatic.Gnarfury;
+                    case "Heat":
+                        return ParTypeStatic.Heat;
+                    case "Mana":
+                        return ParTypeStatic.Mana;
+                    case "None":
+                        return ParTypeStatic.None;
+                    case "Rage":
+                        return ParTypeStatic.Rage;
+                    case "Shield":
+                        return ParTypeStatic.Shield;
                     case "Wind":
                         return ParTypeStatic.Wind;
                     default:
