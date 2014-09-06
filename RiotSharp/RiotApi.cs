@@ -24,14 +24,12 @@ namespace RiotSharp
         private const string ChampionRootV11Url = "/api/lol/{0}/v1.1/champion";
         private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
 
-        private const string LeagueRootV23Url = "/api/lol/{0}/v2.3/league";
         private const string LeagueRootUrl = "/api/lol/{0}/v2.4/league";
         private const string LeagueChallengerUrl = "/challenger";
         private const string LeagueByTeamUrl = "/by-team/{0}";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueEntryUrl = "/entry";
 
-        private const string TeamRootV22Url = "/api/lol/{0}/v2.2/team";
         private const string TeamRootUrl = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerURL = "/by-summoner/{0}";
 

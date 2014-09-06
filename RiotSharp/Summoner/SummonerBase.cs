@@ -20,7 +20,6 @@ namespace RiotSharp
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
-        private const string LeagueRootV23Url = "/api/lol/{0}/v2.3/league";
         private const string LeagueRootUrl = "/api/lol/{0}/v2.4/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
@@ -30,7 +29,6 @@ namespace RiotSharp
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
-        private const string TeamRootV22Url = "/api/lol/{0}/v2.2/team";
         private const string TeamRootUrl = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
