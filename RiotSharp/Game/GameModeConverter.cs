@@ -31,8 +31,8 @@ namespace RiotSharp
                         return GameMode.OneForAll;
                     case "FIRSTBLOOD":
                         return GameMode.FirstBlood;
-                    case "any":
-                        return GameMode.Any;
+                    case "ASCENSION":
+                        return GameMode.Ascension;
                     default:
                         return null;
                 }
@@ -64,10 +64,8 @@ namespace RiotSharp
                 case GameMode.Tutorial:
                     result = "TUTORIAL";
                     break;
-
-                //Fix for rengar
-                case GameMode.Any:
-                    result = "any";
+                case GameMode.Ascension:
+                    result = "ASCENSION";
                     break;
                 default:
                     result = string.Empty;

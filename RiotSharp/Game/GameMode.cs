@@ -36,8 +36,8 @@
         FirstBlood,
 
         /// <summary>
-        /// Game mode for only Rengar apparently.
+        /// I don't know what this game mode is for.
         /// </summary>
-        Any
+        Ascension
     }
 }
