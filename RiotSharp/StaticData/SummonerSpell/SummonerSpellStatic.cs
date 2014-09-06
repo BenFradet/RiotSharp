@@ -55,7 +55,7 @@ namespace RiotSharp
         /// List of object representing the effects of this spell.
         /// </summary>
         [JsonProperty("effect")]
-        public List<List<int>> Effects { get; set; }
+        public List<List<double>> Effects { get; set; }
 
         /// <summary>
         /// String representing the effects of this spell.
