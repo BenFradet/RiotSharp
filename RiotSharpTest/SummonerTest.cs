@@ -236,8 +236,28 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        [TestCategory("Summoner")]
         public void GetTeams_Test()
+        {
+            var teams = summoner.GetTeams();
+
+            Assert.IsNotNull(teams);
+            Assert.IsTrue(teams.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetTeamsAsync_Test()
+        {
+            var teams = summoner.GetTeamsAsync();
+
+            Assert.IsNotNull(teams.Result);
+            Assert.IsTrue(teams.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Deprecated")]
+        public void GetTeamsV23_Test()
         {
             var teams = summoner.GetTeamsV23();
 
@@ -247,7 +267,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetTeamsAsync_Test()
+        public void GetTeamsV23Async_Test()
         {
             var teams = summoner.GetTeamsV23Async();
 

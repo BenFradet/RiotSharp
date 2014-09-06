@@ -28,6 +28,7 @@ namespace RiotSharp
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
+        private const string TeamRootUrl = "/api/lol/{0}/v2.4/team";
         private const string TeamRootV23Url = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
@@ -357,6 +358,31 @@ namespace RiotSharp
                 new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return (await Task.Factory.StartNew<RankedStats>(() =>
                 JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
+        }
+
+        /// <summary>
+        /// Get team information for this summoner synchronously.
+        /// </summary>
+        /// <returns>List of teams.</returns>
+        public List<Team> GetTeams()
+        {
+            var json = requester.CreateRequest(
+                string.Format(TeamRootUrl, Region) + string.Format(TeamBySummonerUrl, Id),
+                Region);
+            return JsonConvert.DeserializeObject<Dictionary<long, List<Team>>>(json)[Id];
+        }
+
+        /// <summary>
+        /// Get team information for this summoner asynchronously.
+        /// </summary>
+        /// <returns>List of teams.</returns>
+        public async Task<List<Team>> GetTeamsAsync()
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(TeamRootUrl, Region) + string.Format(TeamBySummonerUrl, Id),
+                Region);
+            return (await Task.Factory.StartNew<Dictionary<long, List<Team>>>(() =>
+                JsonConvert.DeserializeObject<Dictionary<long, List<Team>>>(json)))[Id];
         }
 
         /// <summary>
