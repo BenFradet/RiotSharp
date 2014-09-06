@@ -136,7 +136,7 @@ namespace RiotSharp
             else
             {
                 var listWrapper = Cache.Get<ChampionListStaticWrapper>(ChampionsCacheKey);
-                if (listWrapper != null && listWrapper.Language == language && 
+                if (listWrapper != null && listWrapper.Language == language &&
                     listWrapper.ChampionData == championData)
                 {
                     return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
@@ -190,7 +190,7 @@ namespace RiotSharp
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
                         region,
                         new List<string>() {
-                            string.Format("locale={0}", language.ToString()), 
+                            string.Format("locale={0}", language.ToString()),
                             championData == ChampionData.none ?
                             string.Empty :
                             string.Format("champData={0}", championData.ToString())
