@@ -22,7 +22,7 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("buildingType")]
         [JsonConverter(typeof(BuildingTypeConverter))]
-        public BuildingType BuildingType { get; set; }
+        public BuildingType? BuildingType { get; set; }
 
         /// <summary>
         /// The creator ID of the event. Only present if relevant.
@@ -35,7 +35,7 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("eventType")]
         [JsonConverter(typeof(EventTypeConverter))]
-        public EventType EventType { get; set; }
+        public EventType? EventType { get; set; }
 
         /// <summary>
         /// The ending item ID of the event. Only present if relevant.
@@ -66,21 +66,21 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("laneType")]
         [JsonConverter(typeof(LaneTypeConverter))]
-        public LaneType LaneType { get; set; }
+        public LaneType? LaneType { get; set; }
 
         /// <summary>
         /// The level up type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("levelUpType")]
         [JsonConverter(typeof(LevelUpTypeConverter))]
-        public LevelUpType LevelUpType { get; set; }
+        public LevelUpType? LevelUpType { get; set; }
 
         /// <summary>
         /// The monster type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("monsterType")]
         [JsonConverter(typeof(MonsterTypeConverter))]
-        public MonsterType MonsterType { get; set; }
+        public MonsterType? MonsterType { get; set; }
 
         /// <summary>
         /// The participant ID of the event. Only present if relevant.
@@ -118,7 +118,7 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("towerType")]
         [JsonConverter(typeof(TowerTypeConverter))]
-        public TowerType TowerType { get; set; }
+        public TowerType? TowerType { get; set; }
 
         /// <summary>
         /// The victim ID of the event. Only present if relevant.
@@ -131,6 +131,6 @@ namespace RiotSharp
         /// </summary>
         [JsonProperty("wardType")]
         [JsonConverter(typeof(WardTypeConverter))]
-        public WardType WardType { get; set; }
+        public WardType? WardType { get; set; }
     }
 }

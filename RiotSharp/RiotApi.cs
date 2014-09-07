@@ -15,7 +15,6 @@ namespace RiotSharp
     {
         private const string SummonerRootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string ByNameUrl = "/by-name/{0}";
-        private const string IdUrl = "/{0}";
         private const string NamesUrl = "/{0}/name";
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
@@ -32,6 +31,10 @@ namespace RiotSharp
         private const string TeamRootUrl = "/api/lol/{0}/v2.4/team";
         private const string TeamRootV23Url = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerURL = "/by-summoner/{0}";
+
+        private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
+
+        private const string IdUrl = "/{0}";
 
         private RateLimitedRequester requester;
 
@@ -849,6 +852,39 @@ namespace RiotSharp
                 region);
             return await Task.Factory.StartNew<Dictionary<string, Team>>(() =>
                 JsonConvert.DeserializeObject<Dictionary<string, Team>>(json));
+        }
+
+        /// <summary>
+        /// Get match information about a specific match synchronously.
+        /// </summary>
+        /// <param name="region">Region in which the match took place.</param>
+        /// <param name="matchId">The match ID to be retrieved.</param>
+        /// <param name="includeTimeline">Whether or not to include timeline information.</param>
+        /// <returns>A match detail object containing information about the match.</returns>
+        public MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)
+        {
+            var json = requester.CreateRequest(
+                string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
+                region,
+                new List<string>() { string.Format("includeTimeline={0}", includeTimeline) });
+            return JsonConvert.DeserializeObject<MatchDetail>(json);
+        }
+
+        /// <summary>
+        /// Get match information about a specific match asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which the match took place.</param>
+        /// <param name="matchId">The match ID to be retrieved.</param>
+        /// <param name="includeTimeline">Whether or not to include timeline information.</param>
+        /// <returns>A match detail object containing information about the match.</returns>
+        public async Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
+                region,
+                new List<string>() { string.Format("includeTimeline={0}", includeTimeline) });
+            return await Task.Factory.StartNew<MatchDetail>(() =>
+                JsonConvert.DeserializeObject<MatchDetail>(json));
         }
 
         private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)
