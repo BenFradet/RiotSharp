@@ -32,6 +32,9 @@ namespace RiotSharp
         private const string TeamRootV23Url = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
+        private const string MatchHistoryRootUrl = "/api/lol/{0}/v2.2/matchhistory";
+        private const string IdUrl = "/{0}";
+
         [field: NonSerialized]
         private RateLimitedRequester requester;
         public Region Region { get; set; }
@@ -258,7 +261,7 @@ namespace RiotSharp
                 Region);
             return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
         }
-        
+
         /// <summary>
         /// Get player stats summaries for this summoner synchronously. One summary is returned per queue type.
         /// </summary>
@@ -272,7 +275,7 @@ namespace RiotSharp
                 new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
         }
-        
+
         /// <summary>
         /// Get player stats summaries for this summoner asynchronously, for the current season.
         /// One summary is returned per queue type.
@@ -410,6 +413,75 @@ namespace RiotSharp
                 Region);
             return (await Task.Factory.StartNew<Dictionary<long, List<Team>>>(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, List<Team>>>(json)))[Id];
+        }
+
+        /// <summary>
+        /// Get the match history of this summoner synchronously.
+        /// </summary>
+        /// <param name="beginIndex">The begin index to use for fetching games.
+        /// The range has to be less than or equal to 15.</param>
+        /// <param name="endIndex">The end index to use for fetching games.
+        /// The range has to be less than or equal to 15.</param>
+        /// <param name="championIds">List of champion IDs to use for fetching games.</param>
+        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
+        /// will be ignored.</param>
+        /// <returns>A player history object containing the match history for this summoner.</returns>
+        public PlayerHistory GetMatchHistory(int beginIndex = 0, int endIndex = 14,
+            List<int> championIds = null, List<Queue> rankedQueues = null)
+        {
+            var addedArguments = new List<string>() {
+                    string.Format("beginIndex={0}", beginIndex),
+                    string.Format("endIndex={0}", endIndex),
+            };
+            if (championIds != null)
+            {
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
+            }
+            if (rankedQueues != null)
+            {
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+            }
+
+            var json = requester.CreateRequest(
+                string.Format(MatchHistoryRootUrl, Region.ToString()) + string.Format(IdUrl, Id),
+                Region,
+                addedArguments);
+            return JsonConvert.DeserializeObject<PlayerHistory>(json);
+        }
+
+        /// <summary>
+        /// Get the match history of this summoner asynchronously.
+        /// </summary>
+        /// <param name="beginIndex">The begin index to use for fetching games.
+        /// endIndex - beginIndex has to be inferior to 15.</param>
+        /// <param name="endIndex">The end index to use for fetching games.
+        /// endIndex - beginIndex has to be inferior to 15.</param>
+        /// <param name="championIds">List of champion IDs to use for fetching games.</param>
+        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
+        /// will be ignored.</param>
+        /// <returns>A player history object containing the match history for this summoner.</returns>
+        public async Task<PlayerHistory> GetMatchHistoryAsync(int beginIndex = 0, int endIndex = 14,
+            List<int> championIds = null, List<Queue> rankedQueues = null)
+        {
+            var addedArguments = new List<string>() {
+                    string.Format("beginIndex={0}", beginIndex),
+                    string.Format("endIndex={0}", endIndex),
+            };
+            if (championIds != null)
+            {
+                addedArguments.Add(string.Format("championsIds={0}", Util.BuildIdsString(championIds)));
+            }
+            if (rankedQueues != null)
+            {
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+            }
+
+            var json = await requester.CreateRequestAsync(
+                string.Format(MatchHistoryRootUrl, Region.ToString()) + string.Format(IdUrl, Id),
+                Region,
+                addedArguments);
+            return await Task.Factory.StartNew<PlayerHistory>(() =>
+                JsonConvert.DeserializeObject<PlayerHistory>(json));
         }
     }
 }

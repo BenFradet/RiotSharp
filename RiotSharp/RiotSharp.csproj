@@ -103,7 +103,7 @@
     <Compile Include="League\Tier.cs" />
     <Compile Include="League\TierConverter.cs" />
     <Compile Include="Misc\DateTimeConverter.cs" />
-    <Compile Include="Misc\DateTimeUtil.cs" />
+    <Compile Include="Misc\Util.cs" />
     <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="Cache.cs" />
