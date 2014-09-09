@@ -36,7 +36,7 @@
         FirstBlood,
 
         /// <summary>
-        /// I don't know what this game mode is for.
+        /// Yet to be released ascension mode.
         /// </summary>
         Ascension
     }
