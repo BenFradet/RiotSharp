@@ -17,6 +17,7 @@ namespace RiotSharpTest
         private static string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
         private static string team = ConfigurationManager.AppSettings["Team1Id"];
         private static string team2 = ConfigurationManager.AppSettings["Team2Id"];
+        private static int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey, false);
 
         [TestMethod]
@@ -507,6 +508,50 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatch_WithoutTimeline_Test()
+        {
+            var game = api.GetMatch(Region.euw, gameId);
+
+            Assert.IsNotNull(game);
+            Assert.IsTrue(game.MatchId == gameId);
+            Assert.IsNull(game.Timeline);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatch_WithTimeline_Test()
+        {
+            var game = api.GetMatch(Region.euw, gameId, true);
+
+            Assert.IsNotNull(game);
+            Assert.IsTrue(game.MatchId == gameId);
+            Assert.IsNotNull(game.Timeline);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchAsync_WithoutTimeline_Test()
+        {
+            var game = api.GetMatchAsync(Region.euw, gameId);
+
+            Assert.IsNotNull(game.Result);
+            Assert.IsTrue(game.Result.MatchId == gameId);
+            Assert.IsNull(game.Result.Timeline);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchAsync_WithTimeline_Test()
+        {
+            var game = api.GetMatchAsync(Region.euw, gameId, true);
+
+            Assert.IsNotNull(game.Result);
+            Assert.IsTrue(game.Result.MatchId == gameId);
+            Assert.IsNotNull(game.Result.Timeline);
         }
     }
 }
