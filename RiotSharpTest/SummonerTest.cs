@@ -14,6 +14,8 @@ namespace RiotSharpTest
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey, false);
         private static Summoner summoner = api.GetSummoner(Region.euw, id);
+        private static int championId = 28;
+        private static Queue queue = Queue.RankedSolo5x5;
 
         [TestMethod]
         [TestCategory("Summoner")]
@@ -273,6 +275,82 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMatchHistory_Test()
+        {
+            var history = summoner.GetMatchHistory();
+
+            Assert.IsNotNull(history);
+            Assert.IsTrue(history.Matches.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMatchHistory_ChampionIds_Test()
+        {
+            var history = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
+
+            Assert.IsNotNull(history);
+            Assert.IsTrue(history.Matches.Count() > 0);
+            foreach (var match in history.Matches)
+            {
+                Assert.AreEqual(championId, match.Participants[0].ChampionId);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMatchHistory_RankedQueues_Test()
+        {
+            var history = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
+
+            Assert.IsNotNull(history);
+            Assert.IsTrue(history.Matches.Count() > 0);
+            foreach (var match in history.Matches)
+            {
+                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMatchHistoryAsync_Test()
+        {
+            var history = summoner.GetMatchHistoryAsync();
+
+            Assert.IsNotNull(history.Result);
+            Assert.IsTrue(history.Result.Matches.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMatchHistoryAsync_ChampionIds_Test()
+        {
+            var history = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
+
+            Assert.IsNotNull(history.Result);
+            Assert.IsTrue(history.Result.Matches.Count() > 0);
+            foreach (var match in history.Result.Matches)
+            {
+                Assert.AreEqual(championId, match.Participants[0].ChampionId);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMatchHistoryAsync_RankedQueues_Test()
+        {
+            var history = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
+
+            Assert.IsNotNull(history.Result);
+            Assert.IsTrue(history.Result.Matches.Count() > 0);
+            foreach (var match in history.Result.Matches)
+            {
+                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+            }
         }
     }
 }

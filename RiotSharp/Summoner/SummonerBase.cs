@@ -469,7 +469,7 @@ namespace RiotSharp
             };
             if (championIds != null)
             {
-                addedArguments.Add(string.Format("championsIds={0}", Util.BuildIdsString(championIds)));
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
             }
             if (rankedQueues != null)
             {
