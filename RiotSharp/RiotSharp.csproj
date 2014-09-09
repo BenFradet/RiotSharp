@@ -75,6 +75,7 @@
     <Compile Include="Match\LevelUpType.cs" />
     <Compile Include="Match\LevelUpTypeConverter.cs" />
     <Compile Include="Match\MatchDetail.cs" />
+    <Compile Include="Match\MatchSummary.cs" />
     <Compile Include="Match\MonsterType.cs" />
     <Compile Include="Match\MonsterTypeConverter.cs" />
     <Compile Include="Match\Participant.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Match\ParticipantStats.cs" />
     <Compile Include="Match\ParticipantTimeline.cs" />
     <Compile Include="Match\ParticipantTimelineData.cs" />
+    <Compile Include="Match\PlayerHistory.cs" />
     <Compile Include="Match\PlayerMatch.cs" />
     <Compile Include="Match\Position.cs" />
     <Compile Include="Match\QueueType.cs" />
