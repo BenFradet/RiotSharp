@@ -1,4 +1,4 @@
-﻿namespace RiotSharp
+﻿namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Participant's role (Match API).

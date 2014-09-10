@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RiotSharp.Misc;
+using RiotSharp.StaticDataEndpoint;
 
 namespace RiotSharp
 {

@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a banned champion (Game API).
     /// </summary>
+    [Serializable]
     public class BannedChampion
     {
         internal BannedChampion() { }

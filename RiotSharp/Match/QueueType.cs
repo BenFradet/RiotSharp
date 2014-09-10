@@ -1,4 +1,4 @@
-﻿namespace RiotSharp
+﻿namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Match queue type (Match API).

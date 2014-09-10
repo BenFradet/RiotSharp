@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using RiotSharp.Misc;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a particular event during a match (Match API).
     /// </summary>
+    [Serializable]
     public class Event
     {
         internal Event() { }

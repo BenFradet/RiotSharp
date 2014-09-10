@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a particular frame for a participant during a match (Match API).
     /// </summary>
+    [Serializable]
     public class ParticipantFrame
     {
         internal ParticipantFrame() { }

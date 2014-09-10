@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using RiotSharp.Misc;
 
 namespace RiotSharp
 {
@@ -66,7 +64,7 @@ namespace RiotSharp
             try
             {
                 var response = (HttpWebResponse)request.GetResponse();
-                
+
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     result = reader.ReadToEnd();
@@ -85,7 +83,7 @@ namespace RiotSharp
             try
             {
                 var response = (HttpWebResponse)(await request.GetResponseAsync());
-                
+
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     result = await reader.ReadToEndAsync();
@@ -110,7 +108,7 @@ namespace RiotSharp
             }
             return result;
         }
-        
+
         private void HandleWebException(WebException ex)
         {
             HttpWebResponse response = (HttpWebResponse)ex.Response;

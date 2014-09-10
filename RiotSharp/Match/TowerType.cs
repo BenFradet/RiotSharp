@@ -1,4 +1,4 @@
-﻿namespace RiotSharp
+﻿namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of tower (Match API).

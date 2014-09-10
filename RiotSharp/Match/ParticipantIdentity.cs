@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a participant's identity in a match (Match API).
     /// </summary>
+    [Serializable]
     public class ParticipantIdentity
     {
         internal ParticipantIdentity() { }
@@ -19,6 +21,6 @@ namespace RiotSharp
         /// Player information.
         /// </summary>
         [JsonProperty("player")]
-        public PlayerMatch Player { get; set; }
+        public Player Player { get; set; }
     }
 }

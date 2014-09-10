@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a team in a match (Match API).
     /// </summary>
-    public class TeamMatch
+    [Serializable]
+    public class Team
     {
-        internal TeamMatch() { }
+        internal Team() { }
 
         /// <summary>
         /// If game was draft mode, contains banned champion data, otherwise null.

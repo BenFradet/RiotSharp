@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a participant's timeline (Match API).
     /// </summary>
+    [Serializable]
     public class ParticipantTimeline
     {
         internal ParticipantTimeline() { }

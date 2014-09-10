@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using RiotSharp.Misc;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a match's timeline (Match API).
     /// </summary>
+    [Serializable]
     public class Timeline
     {
         internal Timeline() { }

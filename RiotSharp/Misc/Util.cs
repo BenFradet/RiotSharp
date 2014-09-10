@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RiotSharp
+namespace RiotSharp.Misc
 {
     static class Util
     {

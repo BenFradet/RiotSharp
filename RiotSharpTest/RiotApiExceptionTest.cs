@@ -2,8 +2,10 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
 using System.Configuration;
+
+using RiotSharp;
+using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {

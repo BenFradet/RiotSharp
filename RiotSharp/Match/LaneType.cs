@@ -1,4 +1,4 @@
-﻿namespace RiotSharp
+﻿namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Lane's type (Match API).

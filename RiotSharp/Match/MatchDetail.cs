@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Details about a match (Match API).
     /// </summary>
+    [Serializable]
     public class MatchDetail : MatchSummary
     {
         internal MatchDetail() : base() { }
