@@ -1,6 +1,4 @@
-﻿using RiotSharp.Misc;
-
-namespace RiotSharp.StaticDataEndpoint
+﻿namespace RiotSharp.StaticDataEndpoint
 {
     class SummonerSpellStaticWrapper
     {

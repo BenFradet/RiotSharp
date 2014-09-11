@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using RiotSharp.Misc;
 
 namespace RiotSharp.TeamEndpoint
 {

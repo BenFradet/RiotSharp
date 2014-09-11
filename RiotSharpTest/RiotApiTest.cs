@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using RiotSharp;
-using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {

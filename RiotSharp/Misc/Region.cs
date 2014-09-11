@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.Misc
+﻿namespace RiotSharp
 {
     /// <summary>
     /// Region for the API.

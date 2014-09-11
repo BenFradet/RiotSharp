@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using RiotSharp;
-using RiotSharp.Misc;
 using RiotSharp.SummonerEndpoint;
 using RiotSharp.StatsEndpoint;
 

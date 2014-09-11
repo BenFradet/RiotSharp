@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
 
 using RiotSharp;
-using RiotSharp.Misc;
 using RiotSharp.StaticDataEndpoint;
 
 namespace RiotSharpTest

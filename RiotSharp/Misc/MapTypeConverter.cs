@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.Misc
+namespace RiotSharp
 {
     public class MapTypeConverter : JsonConverter
     {

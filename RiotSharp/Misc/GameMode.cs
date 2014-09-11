@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.Misc
+﻿namespace RiotSharp
 {
     /// <summary>
     /// Mode of the game (Game API).

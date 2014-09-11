@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
 
 using RiotSharp;
-using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {
