@@ -60,6 +60,8 @@ namespace RiotSharp.GameEndpoint
                         return GameSubType.URF_BOT;
                     case "NIGHTMARE_BOT":
                         return GameSubType.NightmareBot;
+                    case "ASCENSION":
+                        return GameSubType.Ascension;
                     default:
                         return null;
                 }
@@ -132,6 +134,9 @@ namespace RiotSharp.GameEndpoint
                     break;
                 case GameSubType.NightmareBot:
                     result = "NIGHTMARE_BOT";
+                    break;
+                case GameSubType.Ascension:
+                    result = "ASCENSION";
                     break;
                 default:
                     result = "";

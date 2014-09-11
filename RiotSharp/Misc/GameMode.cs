@@ -36,7 +36,7 @@
         FirstBlood,
 
         /// <summary>
-        /// Yet to be released ascension mode.
+        /// Ascension mode games.
         /// </summary>
         Ascension
     }

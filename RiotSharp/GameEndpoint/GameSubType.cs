@@ -109,6 +109,11 @@ namespace RiotSharp.GameEndpoint
         /// <summary>
         /// Nightmare bots games.
         /// </summary>
-        NightmareBot
+        NightmareBot,
+
+        /// <summary>
+        /// Ascension mode games.
+        /// </summary>
+        Ascension
     }
 }
