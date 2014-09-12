@@ -58,6 +58,8 @@ namespace RiotSharp.StatsEndpoint
                         return PlayerStatsSummaryType.URFBots;
                     case "NightmareBot":
                         return PlayerStatsSummaryType.NightmareBot;
+                    case "Ascension":
+                        return PlayerStatsSummaryType.Ascension;
                     default:
                         return null;
                 }

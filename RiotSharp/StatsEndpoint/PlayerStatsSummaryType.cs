@@ -23,6 +23,7 @@
         SummonersRift6x6,
         URF,
         URFBots,
-        NightmareBot
+        NightmareBot,
+        Ascension
     }
 }
