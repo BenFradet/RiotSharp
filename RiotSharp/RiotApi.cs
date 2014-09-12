@@ -51,22 +51,24 @@ namespace RiotSharp
         /// <param name="apiKey">The api key.</param>
         /// <param name="isProdApi">Indicates if this is a production api or not.</param>
         /// <returns>The instance of RiotApi.</returns>
-        public static RiotApi GetInstance(string apiKey, bool isProdApi)
+        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitePer10m = 500)
         {
             if (instance == null || apiKey != RateLimitedRequester.ApiKey ||
-                isProdApi != RateLimitedRequester.IsProdApi)
+                rateLimitPer10s != RateLimitedRequester.RateLimitPer10S ||
+                rateLimitePer10m != RateLimitedRequester.RateLimitPer10M)
             {
-                instance = new RiotApi(apiKey, isProdApi);
+                instance = new RiotApi(apiKey, rateLimitPer10s, rateLimitePer10m);
             }
             return instance;
         }
 
-        private RiotApi(string apiKey, bool isProdApi)
+        private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitePer10m)
         {
             requester = RateLimitedRequester.Instance;
             RateLimitedRequester.RootDomain = "euw.api.pvp.net";
             RateLimitedRequester.ApiKey = apiKey;
-            RateLimitedRequester.IsProdApi = isProdApi;
+            RateLimitedRequester.RateLimitPer10S = rateLimitPer10s;
+            RateLimitedRequester.RateLimitPer10M = rateLimitePer10m;
         }
 
         /// <summary>
