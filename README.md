@@ -26,9 +26,15 @@ or
 
 In order to use the api you need an api key which you can get [here](https://developer.riotgames.com/).
 
-Entry point to the api:
+Entry point to the api if you do not own a production API key:
 ```c#
-var api = RiotApi.GetInstance("YOUR_API_KEY", false);
+var api = RiotApi.GetInstance("YOUR_API_KEY");
+```
+
+If you do own a production API key you can specify your own rate limits:
+```c#
+var api = RiotApi.GetInstance("YOUR_API_KEY",
+  your_rate_limit_per_10s, your_rate_limit_per_10m);
 ```
 
 To get a summoner:
