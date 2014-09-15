@@ -283,21 +283,21 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMatchHistory_Test()
         {
-            var history = summoner.GetMatchHistory();
+            var matches = summoner.GetMatchHistory();
 
-            Assert.IsNotNull(history);
-            Assert.IsTrue(history.Matches.Count() > 0);
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
         }
 
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetMatchHistory_ChampionIds_Test()
         {
-            var history = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
 
-            Assert.IsNotNull(history);
-            Assert.IsTrue(history.Matches.Count() > 0);
-            foreach (var match in history.Matches)
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
             {
                 Assert.AreEqual(championId, match.Participants[0].ChampionId);
             }
@@ -307,11 +307,11 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMatchHistory_RankedQueues_Test()
         {
-            var history = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
 
-            Assert.IsNotNull(history);
-            Assert.IsTrue(history.Matches.Count() > 0);
-            foreach (var match in history.Matches)
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
             {
                 Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
             }
@@ -321,21 +321,21 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_Test()
         {
-            var history = summoner.GetMatchHistoryAsync();
+            var matches = summoner.GetMatchHistoryAsync();
 
-            Assert.IsNotNull(history.Result);
-            Assert.IsTrue(history.Result.Matches.Count() > 0);
+            Assert.IsNotNull(matches.Result);
+            Assert.IsTrue(matches.Result.Count() > 0);
         }
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_ChampionIds_Test()
         {
-            var history = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
 
-            Assert.IsNotNull(history.Result);
-            Assert.IsTrue(history.Result.Matches.Count() > 0);
-            foreach (var match in history.Result.Matches)
+            Assert.IsNotNull(matches.Result);
+            Assert.IsTrue(matches.Result.Count() > 0);
+            foreach (var match in matches.Result)
             {
                 Assert.AreEqual(championId, match.Participants[0].ChampionId);
             }
@@ -345,11 +345,11 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_RankedQueues_Test()
         {
-            var history = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
 
-            Assert.IsNotNull(history.Result);
-            Assert.IsTrue(history.Result.Matches.Count() > 0);
-            foreach (var match in history.Result.Matches)
+            Assert.IsNotNull(matches.Result);
+            Assert.IsTrue(matches.Result.Count() > 0);
+            foreach (var match in matches.Result)
             {
                 Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
             }

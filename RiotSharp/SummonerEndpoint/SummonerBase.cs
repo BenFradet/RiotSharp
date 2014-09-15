@@ -431,8 +431,8 @@ namespace RiotSharp.SummonerEndpoint
         /// <param name="championIds">List of champion IDs to use for fetching games.</param>
         /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
         /// will be ignored.</param>
-        /// <returns>A player history object containing the match history for this summoner.</returns>
-        public PlayerHistory GetMatchHistory(int beginIndex = 0, int endIndex = 14,
+        /// <returns>A list of match summaries object.</returns>
+        public List<MatchSummary> GetMatchHistory(int beginIndex = 0, int endIndex = 14,
             List<int> championIds = null, List<Queue> rankedQueues = null)
         {
             var addedArguments = new List<string>() {
@@ -452,7 +452,7 @@ namespace RiotSharp.SummonerEndpoint
                 string.Format(MatchHistoryRootUrl, Region.ToString()) + string.Format(IdUrl, Id),
                 Region,
                 addedArguments);
-            return JsonConvert.DeserializeObject<PlayerHistory>(json);
+            return JsonConvert.DeserializeObject<PlayerHistory>(json).Matches;
         }
 
         /// <summary>
@@ -465,8 +465,8 @@ namespace RiotSharp.SummonerEndpoint
         /// <param name="championIds">List of champion IDs to use for fetching games.</param>
         /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
         /// will be ignored.</param>
-        /// <returns>A player history object containing the match history for this summoner.</returns>
-        public async Task<PlayerHistory> GetMatchHistoryAsync(int beginIndex = 0, int endIndex = 14,
+        /// <returns>A list of match summaries object.</returns>
+        public async Task<List<MatchSummary>> GetMatchHistoryAsync(int beginIndex = 0, int endIndex = 14,
             List<int> championIds = null, List<Queue> rankedQueues = null)
         {
             var addedArguments = new List<string>() {
@@ -486,8 +486,8 @@ namespace RiotSharp.SummonerEndpoint
                 string.Format(MatchHistoryRootUrl, Region.ToString()) + string.Format(IdUrl, Id),
                 Region,
                 addedArguments);
-            return await Task.Factory.StartNew<PlayerHistory>(() =>
-                JsonConvert.DeserializeObject<PlayerHistory>(json));
+            return await Task.Factory.StartNew<List<MatchSummary>>(() =>
+                JsonConvert.DeserializeObject<PlayerHistory>(json).Matches);
         }
     }
 }
