@@ -1019,7 +1019,7 @@ namespace RiotSharp
         /// <param name="season">If specified, stats for the given season are returned.
         /// Otherwise, stats for the current season are returned.</param>
         /// <returns>A list of player stats summaries.</returns>
-        public List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, Season season)
+        public List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, StatsEndpoint.Season season)
         {
             var json = requester.CreateRequest(
                 string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
@@ -1037,7 +1037,7 @@ namespace RiotSharp
         /// Otherwise, stats for the current season are returned.</param>
         /// <returns>A list of player stats summaries.</returns>
         public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId,
-            Season season)
+            StatsEndpoint.Season season)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
@@ -1084,7 +1084,7 @@ namespace RiotSharp
         /// <param name="season">If specified, stats for the given season are returned.
         /// Otherwise, stats for the current season are returned.</param>
         /// <returns>A list of champion stats.</returns>
-        public List<ChampionStats> GetStatsRanked(Region region, long summonerId, Season season)
+        public List<ChampionStats> GetStatsRanked(Region region, long summonerId, StatsEndpoint.Season season)
         {
             var json = requester.CreateRequest(
                 string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
@@ -1101,7 +1101,8 @@ namespace RiotSharp
         /// <param name="season">If specified, stats for the given season are returned.
         /// Otherwise, stats for the current season are returned.</param>
         /// <returns>A list of champion stats.</returns>
-        public async Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId, Season season)
+        public async Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId,
+            StatsEndpoint.Season season)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),

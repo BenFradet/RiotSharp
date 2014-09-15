@@ -272,7 +272,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of player stats summaries.</returns>
-        public List<PlayerStatsSummary> GetStatsSummaries(Season season)
+        public List<PlayerStatsSummary> GetStatsSummaries(StatsEndpoint.Season season)
         {
             var json = requester.CreateRequest(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
@@ -300,7 +300,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of player stats summaries.</returns>
-        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Season season)
+        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(StatsEndpoint.Season season)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
@@ -329,7 +329,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of champions stats.</returns>
-        public List<ChampionStats> GetStatsRanked(Season season)
+        public List<ChampionStats> GetStatsRanked(StatsEndpoint.Season season)
         {
             var json = requester.CreateRequest(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
@@ -358,7 +358,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of champions stats.</returns>
-        public async Task<List<ChampionStats>> GetStatsRankedAsync(Season season)
+        public async Task<List<ChampionStats>> GetStatsRankedAsync(StatsEndpoint.Season season)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),

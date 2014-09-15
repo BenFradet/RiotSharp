@@ -69,12 +69,14 @@ namespace RiotSharp.MatchEndpoint
         /// Region where the match was played.
         /// </summary>
         [JsonProperty("region")]
-        public string Region { get; set; }
+        [JsonConverter(typeof(RegionConverter))]
+        public Region Region { get; set; }
 
         /// <summary>
         /// Season match was played.
         /// </summary>
         [JsonProperty("season")]
-        public string Season { get; set; }
+        [JsonConverter(typeof(SeasonConverter))]
+        public Season Season { get; set; }
     }
 }

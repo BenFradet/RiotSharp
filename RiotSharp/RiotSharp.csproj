@@ -48,6 +48,8 @@
     <Compile Include="ChampionEndpoint\Champion.cs" />
     <Compile Include="ChampionEndpoint\ChampionList.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
+    <Compile Include="MatchEndpoint\Season.cs" />
+    <Compile Include="MatchEndpoint\SeasonConverter.cs" />
     <Compile Include="Misc\GameMode.cs" />
     <Compile Include="Misc\GameModeConverter.cs" />
     <Compile Include="GameEndpoint\GameType.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="LeagueEndpoint\Tier.cs" />
     <Compile Include="LeagueEndpoint\TierConverter.cs" />
     <Compile Include="Misc\DateTimeConverter.cs" />
+    <Compile Include="Misc\RegionConverter.cs" />
     <Compile Include="Misc\Util.cs" />
     <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
