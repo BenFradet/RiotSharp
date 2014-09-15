@@ -32,6 +32,8 @@ namespace RiotSharp
         private const string SummonerSpellsCacheKey = "spells";
         private const string SummonerSpellCacheKey = "spell";
 
+        private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
+
         private const string IdUrl = "/{0}";
 
         private Requester requester;
@@ -840,6 +842,28 @@ namespace RiotSharp
                     return spell;
                 }
             }
+        }
+
+        /// <summary>
+        /// Retrieve static api version data synchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve data.</param>
+        /// <returns>A list of versions as strings.</returns>
+        public List<string> GetVersions(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), region);
+            return JsonConvert.DeserializeObject<List<string>>(json);
+        }
+
+        /// <summary>
+        /// Retrieve static api version data asynchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve data.</param>
+        /// <returns>A list of versions as strings.</returns>
+        public async Task<List<string>> GetVersionsAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), region);
+            return await Task.Factory.StartNew<List<string>>(() => JsonConvert.DeserializeObject<List<string>>(json));
         }
     }
 }

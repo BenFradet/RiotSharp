@@ -206,5 +206,25 @@ namespace RiotSharpTest
 
             Assert.AreEqual(spell.Result.Name, "Barrier");
         }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetVersions_Test()
+        {
+            var versions = api.GetVersions(Region.euw);
+
+            Assert.IsNotNull(versions);
+            Assert.IsTrue(versions.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetVersionsAsync_Test()
+        {
+            var versions = api.GetVersionsAsync(Region.euw);
+
+            Assert.IsNotNull(versions.Result);
+            Assert.IsTrue(versions.Result.Count() > 0);
+        }
     }
 }
