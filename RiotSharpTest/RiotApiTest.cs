@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using RiotSharp;
+using RiotSharp.StatsEndpoint;
 
 namespace RiotSharpTest
 {
@@ -632,5 +633,86 @@ namespace RiotSharpTest
                 Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
             }
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetStatsSummaries_Test()
+        {
+            var stats = api.GetStatsSummaries(Region.euw, id, Season.Season3);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetStatsSummariesAsync_Test()
+        {
+            var stats = api.GetStatsSummariesAsync(Region.euw, id, Season.Season3);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetStatsSummaries_CurrentSeason_Test()
+        {
+            var stats = api.GetStatsSummaries(Region.euw, id);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetStatsSummariesAsync_CurrentSeason_Test()
+        {
+            var stats = api.GetStatsSummariesAsync(Region.euw, id);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetStatsRanked_Test()
+        {
+            var stats = api.GetStatsRanked(Region.euw, id, Season.Season3);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetStatsRankedAsync_Test()
+        {
+            var stats = api.GetStatsRankedAsync(Region.euw, id, Season.Season3);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetStatsRanked_CurrentSeason_Test()
+        {
+            var stats = api.GetStatsRanked(Region.euw, id);
+
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetStatsRankedAsync_CurrentSeason_Test()
+        {
+            var stats = api.GetStatsRankedAsync(Region.euw, id);
+
+            Assert.IsNotNull(stats.Result);
+            Assert.IsTrue(stats.Result.Count() > 0);
+        }
+
     }
 }

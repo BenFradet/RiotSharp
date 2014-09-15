@@ -37,6 +37,10 @@ namespace RiotSharp
         private const string TeamRootV23Url = "/api/lol/{0}/v2.3/team";
         private const string TeamBySummonerURL = "/by-summoner/{0}";
 
+        private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
+        private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
+        private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
+
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchHistoryRootUrl = "/api/lol/{0}/v2.2/matchhistory";
 
@@ -973,6 +977,135 @@ namespace RiotSharp
                 addedArguments);
             return await Task.Factory.StartNew<List<MatchSummary>>(() =>
                 JsonConvert.DeserializeObject<PlayerHistory>(json).Matches);
+        }
+
+        /// <summary>
+        /// Get player stats by summoner ID synchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
+        /// <returns>A list of player stats summaries.</returns>
+        public List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId)
+        {
+            var json = requester.CreateRequest(
+                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
+                region);
+            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
+        }
+
+        /// <summary>
+        /// Get player stats by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
+        /// <returns>A list of player stats summaries.</returns>
+        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
+                region);
+            return (await Task.Factory.StartNew<PlayerStatsSummaryList>(() =>
+                JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json))).PlayerStatSummaries;
+        }
+
+        /// <summary>
+        /// Get player stats by summoner ID synchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
+        /// <param name="season">If specified, stats for the given season are returned.
+        /// Otherwise, stats for the current season are returned.</param>
+        /// <returns>A list of player stats summaries.</returns>
+        public List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, Season season)
+        {
+            var json = requester.CreateRequest(
+                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
+                region,
+                new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
+            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
+        }
+
+        /// <summary>
+        /// Get player stats by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
+        /// <param name="season">If specified, stats for the given season are returned.
+        /// Otherwise, stats for the current season are returned.</param>
+        /// <returns>A list of player stats summaries.</returns>
+        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId,
+            Season season)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
+                region,
+                new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
+            return (await Task.Factory.StartNew<PlayerStatsSummaryList>(() =>
+                JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json))).PlayerStatSummaries;
+        }
+
+        /// <summary>
+        /// Get ranked stats by summoner ID synchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
+        /// <returns>A list of champion stats.</returns>
+        public List<ChampionStats> GetStatsRanked(Region region, long summonerId)
+        {
+            var json = requester.CreateRequest(
+                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
+                region);
+            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
+        }
+
+        /// <summary>
+        /// Get ranked stats by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
+        /// <returns>A list of champion stats.</returns>
+        public async Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
+                region);
+            return (await Task.Factory.StartNew<RankedStats>(() =>
+                JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
+        }
+
+        /// <summary>
+        /// Get ranked stats by summoner ID synchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
+        /// <param name="season">If specified, stats for the given season are returned.
+        /// Otherwise, stats for the current season are returned.</param>
+        /// <returns>A list of champion stats.</returns>
+        public List<ChampionStats> GetStatsRanked(Region region, long summonerId, Season season)
+        {
+            var json = requester.CreateRequest(
+                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
+                region,
+                new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
+            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
+        }
+
+        /// <summary>
+        /// Get ranked stats by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
+        /// <param name="season">If specified, stats for the given season are returned.
+        /// Otherwise, stats for the current season are returned.</param>
+        /// <returns>A list of champion stats.</returns>
+        public async Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId, Season season)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
+                region,
+                new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
+            return (await Task.Factory.StartNew<RankedStats>(() =>
+                JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
         }
 
         private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)
