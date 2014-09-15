@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RiotSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
+
+using RiotSharp;
+using RiotSharp.StaticDataEndpoint;
 
 namespace RiotSharpTest
 {
@@ -203,6 +205,44 @@ namespace RiotSharpTest
             var spell = api.GetSummonerSpellAsync(Region.euw, SummonerSpell.Barrier, SummonerSpellData.all);
 
             Assert.AreEqual(spell.Result.Name, "Barrier");
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetVersions_Test()
+        {
+            var versions = api.GetVersions(Region.euw);
+
+            Assert.IsNotNull(versions);
+            Assert.IsTrue(versions.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetVersionsAsync_Test()
+        {
+            var versions = api.GetVersionsAsync(Region.euw);
+
+            Assert.IsNotNull(versions.Result);
+            Assert.IsTrue(versions.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetRealm_Test()
+        {
+            var realm = api.GetRealm(Region.euw);
+
+            Assert.IsNotNull(realm);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetRealAsync_Test()
+        {
+            var realm = api.GetRealmAsync(Region.euw);
+
+            Assert.IsNotNull(realm.Result);
         }
     }
 }

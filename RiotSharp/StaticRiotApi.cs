@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RiotSharp.StaticDataEndpoint;
 
 namespace RiotSharp
 {
@@ -31,6 +31,10 @@ namespace RiotSharp
         private const string SummonerSpellRootUrl = "/api/lol/static-data/{0}/v1.2/summoner-spell";
         private const string SummonerSpellsCacheKey = "spells";
         private const string SummonerSpellCacheKey = "spell";
+
+        private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
+
+        private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
 
         private const string IdUrl = "/{0}";
 
@@ -136,7 +140,7 @@ namespace RiotSharp
             else
             {
                 var listWrapper = Cache.Get<ChampionListStaticWrapper>(ChampionsCacheKey);
-                if (listWrapper != null && listWrapper.Language == language && 
+                if (listWrapper != null && listWrapper.Language == language &&
                     listWrapper.ChampionData == championData)
                 {
                     return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
@@ -190,7 +194,7 @@ namespace RiotSharp
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
                         region,
                         new List<string>() {
-                            string.Format("locale={0}", language.ToString()), 
+                            string.Format("locale={0}", language.ToString()),
                             championData == ChampionData.none ?
                             string.Empty :
                             string.Format("champData={0}", championData.ToString())
@@ -840,6 +844,50 @@ namespace RiotSharp
                     return spell;
                 }
             }
+        }
+
+        /// <summary>
+        /// Retrieve static api version data synchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve data.</param>
+        /// <returns>A list of versions as strings.</returns>
+        public List<string> GetVersions(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), region);
+            return JsonConvert.DeserializeObject<List<string>>(json);
+        }
+
+        /// <summary>
+        /// Retrieve static api version data asynchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve data.</param>
+        /// <returns>A list of versions as strings.</returns>
+        public async Task<List<string>> GetVersionsAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), region);
+            return await Task.Factory.StartNew<List<string>>(() => JsonConvert.DeserializeObject<List<string>>(json));
+        }
+
+        /// <summary>
+        /// Retrieve real data synchronously.
+        /// </summary>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <returns>A realm object containing the requested information.</returns>
+        public Realm GetRealm(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), region);
+            return JsonConvert.DeserializeObject<Realm>(json);
+        }
+
+        /// <summary>
+        /// Retrieve real data asynchronously.
+        /// </summary>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <returns>A realm object containing the requested information.</returns>
+        public async Task<Realm> GetRealmAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), region);
+            return await Task.Factory.StartNew<Realm>(() => JsonConvert.DeserializeObject<Realm>(json));
         }
     }
 }

@@ -2,8 +2,9 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
 using System.Configuration;
+
+using RiotSharp;
 
 namespace RiotSharpTest
 {
@@ -12,7 +13,7 @@ namespace RiotSharpTest
     {
         private static string faultyApiKey = ConfigurationManager.AppSettings["FaultyApiKey"];
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        private static RiotApi faultyApi = RiotApi.GetInstance(faultyApiKey, false);
+        private static RiotApi faultyApi = RiotApi.GetInstance(faultyApiKey);
 
         [TestMethod]
         [TestCategory("Exception")]

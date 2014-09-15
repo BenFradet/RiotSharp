@@ -1,9 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+
+using RiotSharp;
+using RiotSharp.SummonerEndpoint;
+using RiotSharp.StatsEndpoint;
 
 namespace RiotSharpTest
 {
@@ -12,8 +14,10 @@ namespace RiotSharpTest
     {
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        private static RiotApi api = RiotApi.GetInstance(apiKey, false);
+        private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Summoner summoner = api.GetSummoner(Region.euw, id);
+        private static int championId = 28;
+        private static Queue queue = Queue.RankedSolo5x5;
 
         [TestMethod]
         [TestCategory("Summoner")]
@@ -117,9 +121,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetLeaguesV23_Test()
+        public void GetLeaguesV24_Test()
         {
-            var leagues = summoner.GetLeaguesV23();
+            var leagues = summoner.GetLeaguesV24();
 
             Assert.IsNotNull(leagues);
             Assert.IsTrue(leagues.Count() > 0);
@@ -127,9 +131,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesV23Async_Test()
+        public void GetLeaguesV24Async_Test()
         {
-            var leagues = summoner.GetLeaguesV23Async();
+            var leagues = summoner.GetLeaguesV24Async();
 
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);
@@ -137,9 +141,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetEntireV23Leagues_Test()
+        public void GetEntireLeaguesV24_Test()
         {
-            var leagues = summoner.GetEntireLeaguesV23();
+            var leagues = summoner.GetEntireLeaguesV24();
 
             Assert.IsNotNull(leagues);
             Assert.IsTrue(leagues.Count() > 0);
@@ -147,9 +151,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV23Async_Test()
+        public void GetEntireLeaguesV24Async_Test()
         {
-            var leagues = summoner.GetEntireLeaguesV23Async();
+            var leagues = summoner.GetEntireLeaguesV24Async();
 
             Assert.IsNotNull(leagues.Result);
             Assert.IsTrue(leagues.Result.Count() > 0);
@@ -257,9 +261,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetTeamsV22_Test()
+        public void GetTeamsV23_Test()
         {
-            var teams = summoner.GetTeamsV22();
+            var teams = summoner.GetTeamsV23();
 
             Assert.IsNotNull(teams);
             Assert.IsTrue(teams.Count() > 0);
@@ -267,12 +271,88 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetTeamsV22Async_Test()
+        public void GetTeamsV23Async_Test()
         {
-            var teams = summoner.GetTeamsV22Async();
+            var teams = summoner.GetTeamsV23Async();
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMatchHistory_Test()
+        {
+            var matches = summoner.GetMatchHistory();
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMatchHistory_ChampionIds_Test()
+        {
+            var matches = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(championId, match.Participants[0].ChampionId);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner")]
+        public void GetMatchHistory_RankedQueues_Test()
+        {
+            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMatchHistoryAsync_Test()
+        {
+            var matches = summoner.GetMatchHistoryAsync();
+
+            Assert.IsNotNull(matches.Result);
+            Assert.IsTrue(matches.Result.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMatchHistoryAsync_ChampionIds_Test()
+        {
+            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
+
+            Assert.IsNotNull(matches.Result);
+            Assert.IsTrue(matches.Result.Count() > 0);
+            foreach (var match in matches.Result)
+            {
+                Assert.AreEqual(championId, match.Participants[0].ChampionId);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Summoner"), TestCategory("Async")]
+        public void GetMatchHistoryAsync_RankedQueues_Test()
+        {
+            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
+
+            Assert.IsNotNull(matches.Result);
+            Assert.IsTrue(matches.Result.Count() > 0);
+            foreach (var match in matches.Result)
+            {
+                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+            }
         }
     }
 }
