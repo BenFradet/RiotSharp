@@ -34,6 +34,8 @@ namespace RiotSharp
 
         private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
 
+        private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
+
         private const string IdUrl = "/{0}";
 
         private Requester requester;
@@ -864,6 +866,28 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), region);
             return await Task.Factory.StartNew<List<string>>(() => JsonConvert.DeserializeObject<List<string>>(json));
+        }
+
+        /// <summary>
+        /// Retrieve real data synchronously.
+        /// </summary>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <returns>A realm object containing the requested information.</returns>
+        public Realm GetRealm(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), region);
+            return JsonConvert.DeserializeObject<Realm>(json);
+        }
+
+        /// <summary>
+        /// Retrieve real data asynchronously.
+        /// </summary>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <returns>A realm object containing the requested information.</returns>
+        public async Task<Realm> GetRealmAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), region);
+            return await Task.Factory.StartNew<Realm>(() => JsonConvert.DeserializeObject<Realm>(json));
         }
     }
 }

@@ -115,6 +115,7 @@
     <Compile Include="StaticDataEndpoint\Mastery\Cache\MasteryStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\MasteryTreeItemStatic.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\MasteryTreeListStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Realm.cs" />
     <Compile Include="StaticDataEndpoint\Rune\Cache\RuneListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Rune\Cache\RuneStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Rune\RuneStatic.cs" />

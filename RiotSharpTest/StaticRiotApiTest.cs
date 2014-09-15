@@ -226,5 +226,23 @@ namespace RiotSharpTest
             Assert.IsNotNull(versions.Result);
             Assert.IsTrue(versions.Result.Count() > 0);
         }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetRealm_Test()
+        {
+            var realm = api.GetRealm(Region.euw);
+
+            Assert.IsNotNull(realm);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetRealAsync_Test()
+        {
+            var realm = api.GetRealmAsync(Region.euw);
+
+            Assert.IsNotNull(realm.Result);
+        }
     }
 }
