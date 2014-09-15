@@ -20,6 +20,8 @@ namespace RiotSharp.LeagueEndpoint
                 var str = token.Value<string>();
                 switch (str)
                 {
+                    case "MASTER":
+                        return Tier.Master;
                     case "CHALLENGER":
                         return Tier.Challenger;
                     case "DIAMOND":

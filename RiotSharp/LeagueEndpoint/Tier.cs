@@ -6,6 +6,11 @@
     public enum Tier
     {
         /// <summary>
+        /// Master tier.
+        /// </summary>
+        Master,
+
+        /// <summary>
         /// Challenger tier.
         /// </summary>
         Challenger,
