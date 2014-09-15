@@ -714,5 +714,25 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Result.Count() > 0);
         }
 
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetRecentGames_Test()
+        {
+            var games = api.GetRecentGames(Region.euw, id);
+
+            Assert.IsNotNull(games);
+            Assert.IsTrue(games.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetRecentGamesAsync_Test()
+        {
+            var games = api.GetRecentGamesAsync(Region.euw, id);
+
+            Assert.IsNotNull(games.Result);
+            Assert.IsTrue(games.Result.Count() > 0);
+        }
+
     }
 }

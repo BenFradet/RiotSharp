@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using RiotSharp.ChampionEndpoint;
+using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
-using RiotSharp.TeamEndpoint;
 
 namespace RiotSharp
 {
@@ -25,6 +25,9 @@ namespace RiotSharp
         private const string RunesUrl = "/{0}/runes";
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
+
+        private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
+        private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
         private const string LeagueRootUrl = "/api/lol/{0}/v2.5/league";
         private const string LeagueRootV24Url = "/api/lol/{0}/v2.4/league";
@@ -1106,6 +1109,35 @@ namespace RiotSharp
                 new List<string>() { string.Format("season={0}", season.ToString().ToUpper()) });
             return (await Task.Factory.StartNew<RankedStats>(() =>
                 JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
+        }
+
+        /// <summary>
+        /// Get the 10 most recent games by summoner ID synchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
+        /// <returns>A list of the 10 most recent games.</returns>
+        public List<Game> GetRecentGames(Region region, long summonerId)
+        {
+            var json = requester.CreateRequest(
+                string.Format(GameRootUrl, region) + string.Format(RecentGamesUrl, summonerId),
+                region);
+            return JsonConvert.DeserializeObject<RecentGames>(json).Games;
+        }
+
+        /// <summary>
+        /// Get the 10 most recent games by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
+        /// <returns>A list of the 10 most recent games.</returns>
+        public async Task<List<Game>> GetRecentGamesAsync(Region region, long summonerId)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(GameRootUrl, region) + string.Format(RecentGamesUrl, summonerId),
+                region);
+            return (await Task.Factory.StartNew<RecentGames>(() =>
+                JsonConvert.DeserializeObject<RecentGames>(json))).Games;
         }
 
         private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)

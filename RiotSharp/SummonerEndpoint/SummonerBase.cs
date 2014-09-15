@@ -8,7 +8,6 @@ using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
-using RiotSharp.TeamEndpoint;
 
 namespace RiotSharp.SummonerEndpoint
 {
