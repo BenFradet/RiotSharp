@@ -8,7 +8,7 @@ using RiotSharp.StaticDataEndpoint;
 namespace RiotSharp
 {
     /// <summary>
-    /// Entry point for the static api.
+    /// Entry point for the static API.
     /// </summary>
     public class StaticRiotApi
     {

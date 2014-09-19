@@ -14,7 +14,7 @@ using RiotSharp.SummonerEndpoint;
 namespace RiotSharp
 {
     /// <summary>
-    /// Entry point for the api.
+    /// Entry point for the API.
     /// </summary>
     public class RiotApi
     {
