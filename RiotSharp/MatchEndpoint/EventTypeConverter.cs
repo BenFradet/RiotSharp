@@ -20,8 +20,12 @@ namespace RiotSharp.MatchEndpoint
                 var str = token.Value<string>();
                 switch (str)
                 {
+                    case "ASCENDED_EVENT":
+                        return EventType.AscendedEvent;
                     case "BUILDING_KILL":
                         return EventType.BuildingKill;
+                    case "CAPTURE_POINT":
+                        return EventType.CapturePoint;
                     case "CHAMPION_KILL":
                         return EventType.ChampionKill;
                     case "ELITE_MONSTER_KILL":

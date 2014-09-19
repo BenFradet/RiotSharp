@@ -41,6 +41,17 @@ namespace RiotSharp.MatchEndpoint
         public long MatchId { get; set; }
 
         /// <summary>
+        /// Match mode.
+        /// </summary>
+        [JsonProperty("matchMode")]
+        [JsonConverter(typeof(GameModeConverter))]
+        public GameMode MatchMode { get; set; }
+
+        [JsonProperty("matchType")]
+        [JsonConverter(typeof(GameTypeConverter))]
+        public GameType MatchType { get; set; }
+
+        /// <summary>
         /// Match version.
         /// </summary>
         [JsonProperty("matchVersion")]

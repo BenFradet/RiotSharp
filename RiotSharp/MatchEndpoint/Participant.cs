@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -18,10 +19,22 @@ namespace RiotSharp.MatchEndpoint
         public int ChampionId { get; set; }
 
         /// <summary>
+        /// List of mastery information.
+        /// </summary>
+        [JsonProperty("masteries")]
+        public List<Mastery> Masteries { get; set; }
+
+        /// <summary>
         /// Participant ID.
         /// </summary>
         [JsonProperty("participantId")]
         public int ParticipantId { get; set; }
+
+        /// <summary>
+        /// List of rune information.
+        /// </summary>
+        [JsonProperty("runes")]
+        public List<Rune> Runes { get; set; }
 
         /// <summary>
         /// First summoner spell ID.

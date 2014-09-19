@@ -24,6 +24,12 @@ namespace RiotSharp.MatchEndpoint
         public int ProfileIcon { get; set; }
 
         /// <summary>
+        /// Summoner ID.
+        /// </summary>
+        [JsonProperty("summonerId")]
+        public long SummonerId { get; set; }
+
+        /// <summary>
         /// Summoner name.
         /// </summary>
         [JsonProperty("summonerName")]
