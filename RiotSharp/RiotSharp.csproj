@@ -170,6 +170,7 @@
     <Compile Include="StatsEndpoint\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="GameEndpoint\Player.cs" />
     <Compile Include="StatsEndpoint\RankedStats.cs" />
+    <Compile Include="StatusEndpoint\Shard.cs" />
     <Compile Include="SummonerEndpoint\Mastery.cs" />
     <Compile Include="SummonerEndpoint\MasteryPage.cs" />
     <Compile Include="SummonerEndpoint\MasteryPages.cs" />
