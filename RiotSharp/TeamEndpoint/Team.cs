@@ -16,7 +16,7 @@ namespace RiotSharp.TeamEndpoint
         /// Date of the team creation.
         /// </summary>
         [JsonProperty("createDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime CreateDate { get; set; }
 
         /// <summary>
@@ -29,21 +29,21 @@ namespace RiotSharp.TeamEndpoint
         /// Date of the last game.
         /// </summary>
         [JsonProperty("lastGameDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime LastGameDate { get; set; }
 
         /// <summary>
         /// Date when the last member joined the team.
         /// </summary>
         [JsonProperty("lastJoinDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime LastJoinDate { get; set; }
 
         /// <summary>
         /// Date when the team last joined their queue.
         /// </summary>
         [JsonProperty("lastJoinedRankedTeamQueueDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime LastJoinedRankedTeamQueueDate { get; set; }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace RiotSharp.TeamEndpoint
         /// Last time the team was modified.
         /// </summary>
         [JsonProperty("modifyDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime ModifyDate { get; set; }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace RiotSharp.TeamEndpoint
         /// Date when the second last member joined the team..
         /// </summary>
         [JsonProperty("secondLastJoinDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime SecondLastJoinDate { get; set; }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace RiotSharp.TeamEndpoint
         /// Date when the third last member joined the team.
         /// </summary>
         [JsonProperty("thirdLastJoinDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime ThirdLastJoinDate { get; set; }
     }
 }

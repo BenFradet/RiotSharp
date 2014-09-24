@@ -24,7 +24,7 @@ namespace RiotSharp.MatchEndpoint
         /// match making, not when the game actually starts.
         /// </summary>
         [JsonProperty("matchCreation")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime MatchCreation { get; set; }
 
         /// <summary>
@@ -39,6 +39,17 @@ namespace RiotSharp.MatchEndpoint
         /// </summary>
         [JsonProperty("matchId")]
         public long MatchId { get; set; }
+
+        /// <summary>
+        /// Match mode.
+        /// </summary>
+        [JsonProperty("matchMode")]
+        [JsonConverter(typeof(GameModeConverter))]
+        public GameMode MatchMode { get; set; }
+
+        [JsonProperty("matchType")]
+        [JsonConverter(typeof(GameTypeConverter))]
+        public GameType MatchType { get; set; }
 
         /// <summary>
         /// Match version.

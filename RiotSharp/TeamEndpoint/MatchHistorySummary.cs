@@ -21,7 +21,7 @@ namespace RiotSharp.TeamEndpoint
         /// Date when the match took place.
         /// </summary>
         [JsonProperty("date")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime Date { get; set; }
 
         /// <summary>

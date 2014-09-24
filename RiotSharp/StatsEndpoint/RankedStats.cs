@@ -10,7 +10,7 @@ namespace RiotSharp.StatsEndpoint
         public List<ChampionStats> ChampionStats { get; set; }
 
         [JsonProperty("modifyDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime ModifyDate { get; set; }
 
         [JsonProperty("summonerId")]

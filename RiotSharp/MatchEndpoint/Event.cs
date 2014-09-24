@@ -13,6 +13,14 @@ namespace RiotSharp.MatchEndpoint
         internal Event() { }
 
         /// <summary>
+        /// The ascended type of the event. Only present if relevant.
+        /// Note that CLEAR_ASCENDED refers to when a participants kills the ascended player.
+        /// </summary>
+        [JsonProperty("ascendedType")]
+        [JsonConverter(typeof(AscendedTypeConverter))]
+        public AscendedType AscendedType { get; set; }
+
+        /// <summary>
         /// The assisting participant IDs of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("assistingParticipantIds")]
@@ -88,6 +96,13 @@ namespace RiotSharp.MatchEndpoint
         /// </summary>
         [JsonProperty("participantId")]
         public int ParticipantId { get; set; }
+
+        /// <summary>
+        /// The point captured in the event. Only present if relevant.
+        /// </summary>
+        [JsonProperty("pointCaptured")]
+        [JsonConverter(typeof(CapturePointConverter))]
+        public CapturePoint PointCaptured { get; set; }
 
         /// <summary>
         /// The position of the event. Only present if relevant.

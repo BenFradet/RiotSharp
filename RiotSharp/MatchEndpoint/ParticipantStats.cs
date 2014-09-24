@@ -206,7 +206,7 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Neutral jungle minions killed in your team's jungle.
         /// </summary>
-        [JsonProperty("neutralMinionsKilledJungle")]
+        [JsonProperty("neutralMinionsKilledTeamJungle")]
         public long NeutralMinionsKilledJungle { get; set; }
 
         /// <summary>

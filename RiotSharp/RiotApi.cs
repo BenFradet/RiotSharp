@@ -14,7 +14,7 @@ using RiotSharp.SummonerEndpoint;
 namespace RiotSharp
 {
     /// <summary>
-    /// Entry point for the api.
+    /// Entry point for the API.
     /// </summary>
     public class RiotApi
     {
@@ -56,7 +56,8 @@ namespace RiotSharp
         /// Get the instance of RiotApi.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
-        /// <param name="isProdApi">Indicates if this is a production api or not.</param>
+        /// <param name="rateLimitePer10s">The 10 seconds rate limit for your production api key.</param>
+        /// <param name="rateLimitePer10m">The 10 minutes rate limit for your production api key.</param>
         /// <returns>The instance of RiotApi.</returns>
         public static RiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitePer10m = 500)
         {
@@ -72,7 +73,6 @@ namespace RiotSharp
         private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitePer10m)
         {
             requester = RateLimitedRequester.Instance;
-            RateLimitedRequester.RootDomain = "euw.api.pvp.net";
             RateLimitedRequester.ApiKey = apiKey;
             RateLimitedRequester.RateLimitPer10S = rateLimitPer10s;
             RateLimitedRequester.RateLimitPer10M = rateLimitePer10m;

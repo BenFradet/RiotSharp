@@ -8,7 +8,7 @@ using RiotSharp.StaticDataEndpoint;
 namespace RiotSharp
 {
     /// <summary>
-    /// Entry point for the static api.
+    /// Entry point for the static API.
     /// </summary>
     public class StaticRiotApi
     {
@@ -38,6 +38,8 @@ namespace RiotSharp
 
         private const string IdUrl = "/{0}";
 
+        private const string RootDomain = "global.api.pvp.net";
+
         private Requester requester;
 
         private static StaticRiotApi instance;
@@ -58,7 +60,6 @@ namespace RiotSharp
         private StaticRiotApi(string apiKey)
         {
             requester = Requester.Instance;
-            Requester.RootDomain = "global.api.pvp.net";
             Requester.ApiKey = apiKey;
         }
 
@@ -77,7 +78,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(ChampionRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         championData == ChampionData.none ?
@@ -106,7 +107,7 @@ namespace RiotSharp
             {
                 var json = await requester.CreateRequestAsync(
                     string.Format(ChampionRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         championData == ChampionData.none ?
@@ -149,7 +150,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             championData == ChampionData.none ?
@@ -192,7 +193,7 @@ namespace RiotSharp
                 {
                     var json = await requester.CreateRequestAsync(
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             championData == ChampionData.none ?
@@ -223,7 +224,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(ItemRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         itemData == ItemData.none ?
@@ -252,7 +253,7 @@ namespace RiotSharp
             {
                 var json = await requester.CreateRequestAsync(
                     string.Format(ItemRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         itemData == ItemData.none ?
@@ -301,7 +302,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             itemData == ItemData.none ?
@@ -350,7 +351,7 @@ namespace RiotSharp
                 {
                     var json = await requester.CreateRequestAsync(
                         string.Format(ItemRootUrl, region.ToString())+ string.Format(IdUrl, itemId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             itemData == ItemData.none ?
@@ -381,7 +382,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(MasteryRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         masteryData == MasteryData.none ?
@@ -410,7 +411,7 @@ namespace RiotSharp
             {
                 var json = await requester.CreateRequestAsync(
                     string.Format(MasteryRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         masteryData == MasteryData.none ?
@@ -459,7 +460,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             masteryData == MasteryData.none ?
@@ -508,7 +509,7 @@ namespace RiotSharp
                 {
                     var json = await requester.CreateRequestAsync(
                         string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId.ToString()),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             masteryData == MasteryData.none ?
@@ -539,7 +540,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(RuneRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         runeData == RuneData.none ?
@@ -568,7 +569,7 @@ namespace RiotSharp
             {
                 var json = await requester.CreateRequestAsync(
                     string.Format(RuneRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         runeData == RuneData.none ?
@@ -617,7 +618,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             runeData == RuneData.none ?
@@ -666,7 +667,7 @@ namespace RiotSharp
                 {
                     var json = await requester.CreateRequestAsync(
                         string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             runeData == RuneData.none ?
@@ -697,7 +698,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(SummonerSpellRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         summonerSpellData == SummonerSpellData.none ?
@@ -726,7 +727,7 @@ namespace RiotSharp
             {
                 var json = await requester.CreateRequestAsync(
                     string.Format(SummonerSpellRootUrl, region.ToString()),
-                    region,
+                    RootDomain,
                     new List<string>() {
                         string.Format("locale={0}", language.ToString()),
                         summonerSpellData == SummonerSpellData.none ?
@@ -778,7 +779,7 @@ namespace RiotSharp
                     var json = requester.CreateRequest(
                         string.Format(SummonerSpellRootUrl, region.ToString()) +
                             string.Format(IdUrl, (int)summonerSpell),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             summonerSpellData == SummonerSpellData.none ?
@@ -830,7 +831,7 @@ namespace RiotSharp
                     var json = await requester.CreateRequestAsync(
                         string.Format(SummonerSpellRootUrl, region.ToString()) +
                             string.Format(IdUrl, (int)summonerSpell),
-                        region,
+                        RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
                             summonerSpellData == SummonerSpellData.none ?
@@ -853,7 +854,7 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public List<string> GetVersions(Region region)
         {
-            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), region);
+            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
             return JsonConvert.DeserializeObject<List<string>>(json);
         }
 
@@ -864,7 +865,8 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
-            var json = await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), region);
+            var json =
+                await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
             return await Task.Factory.StartNew<List<string>>(() => JsonConvert.DeserializeObject<List<string>>(json));
         }
 
@@ -875,7 +877,7 @@ namespace RiotSharp
         /// <returns>A realm object containing the requested information.</returns>
         public Realm GetRealm(Region region)
         {
-            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), region);
+            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
             return JsonConvert.DeserializeObject<Realm>(json);
         }
 
@@ -886,7 +888,7 @@ namespace RiotSharp
         /// <returns>A realm object containing the requested information.</returns>
         public async Task<Realm> GetRealmAsync(Region region)
         {
-            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), region);
+            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
             return await Task.Factory.StartNew<Realm>(() => JsonConvert.DeserializeObject<Realm>(json));
         }
     }

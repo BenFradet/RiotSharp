@@ -4,14 +4,15 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp
 {
-    class DateTimeConverter : JsonConverter
+    class DateTimeConverterFromLong : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(long);
+            return typeof(long).IsAssignableFrom(objectType);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+            JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
             if(token.Value<long?>() != null)

@@ -1,7 +1,7 @@
-﻿namespace RiotSharp.GameEndpoint
+﻿namespace RiotSharp
 {
     /// <summary>
-    /// Type of the game (Game API).
+    /// Type of the game.
     /// </summary>
     public enum GameType
     {

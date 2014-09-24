@@ -6,9 +6,39 @@
     public enum Language
     {
         /// <summary>
-        /// English.
+        /// American English.
         /// </summary>
         en_US,
+
+        /// <summary>
+        /// British English.
+        /// </summary>
+        en_GB,
+
+        /// <summary>
+        /// Polish English.
+        /// </summary>
+        en_PL,
+
+        /// <summary>
+        /// Australian English.
+        /// </summary>
+        en_AU,
+
+        /// <summary>
+        /// Polish.
+        /// </summary>
+        pl_PL,
+
+        /// <summary>
+        /// Czech.
+        /// </summary>
+        cs_CZ,
+
+        /// <summary>
+        /// Hungarian.
+        /// </summary>
+        hu_HU,
 
         /// <summary>
         /// German.
@@ -19,6 +49,11 @@
         /// Spanish.
         /// </summary>
         es_ES,
+
+        /// <summary>
+        /// Argentinian Spanish.
+        /// </summary>
+        es_AR,
 
         /// <summary>
         /// Latam Spanish.

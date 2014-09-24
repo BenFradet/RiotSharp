@@ -6,9 +6,19 @@
     public enum EventType
     {
         /// <summary>
+        /// Ascended event.
+        /// </summary>
+        AscendedEvent,
+
+        /// <summary>
         /// Triggers on building kills.
         /// </summary>
         BuildingKill,
+
+        /// <summary>
+        /// Triggers on captured point in dominion games.
+        /// </summary>
+        CapturePoint,
 
         /// <summary>
         /// Triggers on champion kills.
@@ -62,8 +72,12 @@
         {
             switch (eventType)
             {
+                case EventType.AscendedEvent:
+                    return "ASCENDED_EVENT";
                 case EventType.BuildingKill:
                     return "BUILDING_KILL";
+                case EventType.CapturePoint:
+                    return "CAPTURE_POINT";
                 case EventType.ChampionKill:
                     return "CHAMPION_KILL";
                 case EventType.EliteMonsterKill:

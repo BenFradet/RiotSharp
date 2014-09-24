@@ -25,6 +25,12 @@ namespace RiotSharp.MatchEndpoint
         public int BaronKills { get; set; }
 
         /// <summary>
+        /// If game was a dominion game, specifies the points the team had at game end, otherwise null.
+        /// </summary>
+        [JsonProperty("dominionVictoryScore")]
+        public long DominionVictoryScore { get; set; }
+
+        /// <summary>
         /// Number of times the team killed dragon.
         /// </summary>
         [JsonProperty("dragonKills")]

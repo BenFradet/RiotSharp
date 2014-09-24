@@ -32,9 +32,9 @@ namespace RiotSharp
 
         private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
-        public override string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
+        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
         {
-            RootDomain = region.ToString() + ".api.pvp.net";
+            rootDomain = region.ToString() + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             semaphore.Wait();
@@ -80,10 +80,10 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
-        public override async Task<string> CreateRequestAsync(string relativeUrl, Region region,
+        public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null)
         {
-            RootDomain = region.ToString() + ".api.pvp.net";
+            rootDomain = region.ToString() + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             await semaphore.WaitAsync();

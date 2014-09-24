@@ -15,14 +15,14 @@ namespace RiotSharp.TeamEndpoint
         /// Date this team member was invited.
         /// </summary>
         [JsonProperty("inviteDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime InviteDate { get; set; }
 
         /// <summary>
         /// Date this team member joined the team.
         /// </summary>
         [JsonProperty("joinDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime JoinDate { get; set; }
 
         /// <summary>
