@@ -56,6 +56,7 @@
     <Compile Include="MatchEndpoint\Rune.cs" />
     <Compile Include="MatchEndpoint\Converters\Season.cs" />
     <Compile Include="MatchEndpoint\Converters\SeasonConverter.cs" />
+    <Compile Include="Misc\DateTimeConverterFromString.cs" />
     <Compile Include="Misc\GameMode.cs" />
     <Compile Include="Misc\GameModeConverter.cs" />
     <Compile Include="Misc\GameType.cs" />
@@ -110,7 +111,7 @@
     <Compile Include="Misc\QueueConverter.cs" />
     <Compile Include="LeagueEndpoint\Converters\Tier.cs" />
     <Compile Include="LeagueEndpoint\Converters\TierConverter.cs" />
-    <Compile Include="Misc\DateTimeConverter.cs" />
+    <Compile Include="Misc\DateTimeConverterFromLong.cs" />
     <Compile Include="Misc\RegionConverter.cs" />
     <Compile Include="Misc\Util.cs" />
     <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
@@ -176,7 +177,13 @@
     <Compile Include="StatsEndpoint\Converters\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="GameEndpoint\Player.cs" />
     <Compile Include="StatsEndpoint\RankedStats.cs" />
+    <Compile Include="StatusEndpoint\Incident.cs" />
+    <Compile Include="StatusEndpoint\Message.cs" />
+    <Compile Include="StatusEndpoint\Service.cs" />
     <Compile Include="StatusEndpoint\Shard.cs" />
+    <Compile Include="StatusEndpoint\ShardStatus.cs" />
+    <Compile Include="StatusEndpoint\Translation.cs" />
+    <Compile Include="StatusRiotApi.cs" />
     <Compile Include="SummonerEndpoint\Mastery.cs" />
     <Compile Include="SummonerEndpoint\MasteryPage.cs" />
     <Compile Include="SummonerEndpoint\MasteryPages.cs" />
