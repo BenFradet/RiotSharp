@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -22,7 +19,7 @@ namespace RiotSharp
             if (token.Value<string>() != null)
             {
                 var str = token.Value<string>();
-                return DateTime.Parse(str);
+                return DateTime.ParseExact(str, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             }
             return null;
         }
