@@ -52,7 +52,7 @@
     <Compile Include="MatchEndpoint\Converters\AscendedTypeConverter.cs" />
     <Compile Include="MatchEndpoint\Converters\CapturePointConverter.cs" />
     <Compile Include="MatchEndpoint\Mastery.cs" />
-    <Compile Include="MatchEndpoint\Converters\CatpurePoint.cs" />
+    <Compile Include="MatchEndpoint\Converters\CapturePoint.cs" />
     <Compile Include="MatchEndpoint\Rune.cs" />
     <Compile Include="MatchEndpoint\Converters\Season.cs" />
     <Compile Include="MatchEndpoint\Converters\SeasonConverter.cs" />
