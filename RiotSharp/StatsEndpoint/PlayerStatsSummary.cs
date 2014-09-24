@@ -27,7 +27,7 @@ namespace RiotSharp.StatsEndpoint
         /// Date stats were last modified specified as epoch milliseconds.
         /// </summary>
         [JsonProperty("modifyDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime ModifyDate { get; set; }
 
         /// <summary>

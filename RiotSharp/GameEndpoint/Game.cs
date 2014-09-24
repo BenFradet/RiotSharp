@@ -22,7 +22,7 @@ namespace RiotSharp.GameEndpoint
         /// Date game was played.
         /// </summary>
         [JsonProperty("createDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime CreateDate { get; set; }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace RiotSharp.SummonerEndpoint
         /// Date summoner was last modified.
         /// </summary>
         [JsonProperty("revisionDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime RevisionDate { get; set; }
 
         /// <summary>

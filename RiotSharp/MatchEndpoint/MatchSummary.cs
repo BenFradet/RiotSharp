@@ -24,7 +24,7 @@ namespace RiotSharp.MatchEndpoint
         /// match making, not when the game actually starts.
         /// </summary>
         [JsonProperty("matchCreation")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime MatchCreation { get; set; }
 
         /// <summary>

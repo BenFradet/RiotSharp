@@ -15,7 +15,7 @@ namespace RiotSharp.TeamEndpoint
         /// Date of the message creation.
         /// </summary>
         [JsonProperty("createDate")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime CreateDate { get; set; }
 
         /// <summary>
