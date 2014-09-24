@@ -66,7 +66,7 @@ namespace RiotSharp
         /// </summary>
         /// <param name="region">Region for which to check the status.</param>
         /// <returns>A shard status object containing different information regarding the shard.</returns>
-        public ShardStatus GetShard(Region region)
+        public ShardStatus GetShardStatus(Region region)
         {
             var json =
                 requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region.ToString()), RootDomain);
@@ -79,7 +79,7 @@ namespace RiotSharp
         /// </summary>
         /// <param name="region">Region for which to check the status.</param>
         /// <returns>A shard status object containing different information regarding the shard.</returns>
-        public async Task<ShardStatus> GetShardAsync(Region region)
+        public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
             var json = await
                 requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region.ToString()), RootDomain);
