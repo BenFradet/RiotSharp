@@ -21,7 +21,7 @@ namespace RiotSharp
             }
         }
 
-        public static string RootDomain { get; set; }
+        protected static string RootDomain { get; set; }
         public static string ApiKey { get; set; }
 
         public virtual string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)

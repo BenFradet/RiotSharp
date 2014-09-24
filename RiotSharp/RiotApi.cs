@@ -72,7 +72,6 @@ namespace RiotSharp
         private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitePer10m)
         {
             requester = RateLimitedRequester.Instance;
-            RateLimitedRequester.RootDomain = "euw.api.pvp.net";
             RateLimitedRequester.ApiKey = apiKey;
             RateLimitedRequester.RateLimitPer10S = rateLimitPer10s;
             RateLimitedRequester.RateLimitPer10M = rateLimitePer10m;
