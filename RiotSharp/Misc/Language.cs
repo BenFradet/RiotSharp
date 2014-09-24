@@ -33,7 +33,7 @@
         /// <summary>
         /// Czech.
         /// </summary>
-        cz_CZ,
+        cs_CZ,
 
         /// <summary>
         /// Hungarian.
