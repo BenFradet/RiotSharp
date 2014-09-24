@@ -21,20 +21,20 @@ namespace RiotSharp
             }
         }
 
-        protected static string RootDomain { get; set; }
+        protected string rootDomain;
         public static string ApiKey { get; set; }
 
-        public virtual string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
+        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
         {
-            RootDomain = "global.api.pvp.net";
+            this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments);
             return GetResponse(request);
         }
 
-        public virtual async Task<string> CreateRequestAsync(string relativeUrl, Region region,
+        public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null)
         {
-            RootDomain = "global.api.pvp.net";
+            this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments);
             return await GetResponseAsync(request);
         }
@@ -45,12 +45,12 @@ namespace RiotSharp
             if (addedArguments == null)
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?api_key={2}"
-                    , RootDomain, relativeUrl, ApiKey));
+                    , rootDomain, relativeUrl, ApiKey));
             }
             else
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("https://{0}{1}?{2}api_key={3}"
-                    , RootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
+                    , rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
             }
             request.Method = "GET";
 
