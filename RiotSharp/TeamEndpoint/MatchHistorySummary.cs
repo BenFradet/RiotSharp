@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MatchHistorySummary.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Summary of the match history of the team (Team API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.TeamEndpoint
     [Serializable]
     public class MatchHistorySummary
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatchHistorySummary"/> class.
+        /// </summary>
         internal MatchHistorySummary() { }
 
         /// <summary>

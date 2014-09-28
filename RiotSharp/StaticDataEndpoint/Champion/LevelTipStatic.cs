@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LevelTipStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing the tooltip when leveling up a spell on a champion (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class LevelTipStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LevelTipStatic"/> class.
+        /// </summary>
         internal LevelTipStatic() { }
 
         /// <summary>

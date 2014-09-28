@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Champion.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a Champion in the API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.ChampionEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.ChampionEndpoint
     [Serializable]
     public class Champion
     {
-        internal Champion() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Champion"/> class.
+        /// </summary>
+        internal Champion()
+        {
+        }
 
         /// <summary>
         /// Indicates if the champion is active.

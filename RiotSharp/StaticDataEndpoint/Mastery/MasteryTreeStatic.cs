@@ -1,4 +1,13 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MasteryTreeStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Mastery tree.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +18,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class MasteryTreeStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MasteryTreeStatic"/> class.
+        /// </summary>
         internal MasteryTreeStatic() { }
 
         /// <summary>

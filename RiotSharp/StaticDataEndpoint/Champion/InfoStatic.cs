@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="InfoStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Basic information for a champion (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class InfoStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfoStatic"/> class.
+        /// </summary>
         internal InfoStatic() { }
 
         /// <summary>

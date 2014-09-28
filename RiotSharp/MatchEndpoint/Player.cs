@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Player.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Player in a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Player
     {
-        internal Player() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class.
+        /// </summary>
+        internal Player()
+        {
+        }
 
         /// <summary>
         /// Match history URI.

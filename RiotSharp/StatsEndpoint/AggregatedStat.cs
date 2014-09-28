@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AggregatedStat.cs" company="">
+//
+// </copyright>
+// <summary>
+//   AggregatedStat (Stats API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StatsEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StatsEndpoint
     [Serializable]
     public class AggregatedStat
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AggregatedStat"/> class.
+        /// </summary>
         internal AggregatedStat() { }
 
         /// <summary>

@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GameSubType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Game subtype of the game (Game API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace RiotSharp.GameEndpoint
 {

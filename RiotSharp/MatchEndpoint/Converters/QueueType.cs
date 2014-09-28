@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="QueueType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Match queue type (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Match queue type (Match API).
@@ -146,8 +154,20 @@
         NightmareBot5x5Rank5
     }
 
+    /// <summary>
+    /// The queue type extension.
+    /// </summary>
     static class QueueTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="queueType">
+        /// The queue type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this QueueType queueType)
         {
             switch (queueType)

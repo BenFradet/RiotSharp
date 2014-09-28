@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ChampionListStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a list of champions (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class ChampionListStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChampionListStatic"/> class.
+        /// </summary>
         internal ChampionListStatic() { }
 
         /// <summary>

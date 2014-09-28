@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AscendedType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Ascended type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Ascended type.
@@ -21,8 +29,20 @@
         MinionAscended
     }
 
+    /// <summary>
+    /// The ascended type extension.
+    /// </summary>
     static class AscendedTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="ascendedType">
+        /// The ascended type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this AscendedType ascendedType)
         {
             switch (ascendedType)

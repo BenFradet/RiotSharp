@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RunePage.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Page of runes (Summoner API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.SummonerEndpoint
     [Serializable]
     public class RunePage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunePage"/> class.
+        /// </summary>
         internal RunePage() { }
 
         /// <summary>

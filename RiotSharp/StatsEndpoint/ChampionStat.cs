@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ChampionStat.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Stat of a particular champion (League API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StatsEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.StatsEndpoint
     [Serializable]
     public class ChampionStat : AggregatedStat
     {
-        internal ChampionStat() : base() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChampionStat"/> class.
+        /// </summary>
+        internal ChampionStat()
+        {
+        }
 
         /// <summary>
         /// Maximum number of deaths, only returned for ranked stats.

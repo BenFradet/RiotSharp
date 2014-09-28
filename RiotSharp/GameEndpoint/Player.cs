@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Player.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Player in the game (Game API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.GameEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.GameEndpoint
     [Serializable]
     public class Player
     {
-        internal Player() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class.
+        /// </summary>
+        internal Player()
+        {
+        }
 
         /// <summary>
         /// Champion id associated with player.

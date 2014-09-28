@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Role.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Participant's role (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Participant's role (Match API).
@@ -31,8 +39,20 @@
         DuoSupport
     }
 
+    /// <summary>
+    /// The role extension.
+    /// </summary>
     static class RoleExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="role">
+        /// The role.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this Role role)
         {
             switch (role)

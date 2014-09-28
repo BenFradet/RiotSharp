@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TowerType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Type of tower (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of tower (Match API).
@@ -31,8 +39,20 @@
         UndefinedTurret
     }
 
+    /// <summary>
+    /// The tower type extension.
+    /// </summary>
     static class TowerTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="towerType">
+        /// The tower type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this TowerType towerType)
         {
             switch (towerType)

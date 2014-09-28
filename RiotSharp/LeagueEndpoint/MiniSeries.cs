@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MiniSeries.cs" company="">
+//
+// </copyright>
+// <summary>
+//   LeagueEntry has entered a MiniSeries (League API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.LeagueEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.LeagueEndpoint
     [Serializable]
     public class MiniSeries
     {
-        internal MiniSeries() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MiniSeries"/> class.
+        /// </summary>
+        internal MiniSeries()
+        {
+        }
 
         /// <summary>
         /// Number of current losses in the mini series.

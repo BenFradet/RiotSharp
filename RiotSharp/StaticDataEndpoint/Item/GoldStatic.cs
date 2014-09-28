@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GoldStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing an item's value (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class GoldStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GoldStatic"/> class.
+        /// </summary>
         internal GoldStatic() { }
 
         /// <summary>

@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MatchSummary.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Summary of a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -10,7 +20,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class MatchSummary
     {
-        internal MatchSummary() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatchSummary"/> class.
+        /// </summary>
+        internal MatchSummary()
+        {
+        }
 
         /// <summary>
         /// Map type.
@@ -47,6 +62,9 @@ namespace RiotSharp.MatchEndpoint
         [JsonConverter(typeof(GameModeConverter))]
         public GameMode MatchMode { get; set; }
 
+        /// <summary>
+        /// Gets or sets the match type.
+        /// </summary>
         [JsonProperty("matchType")]
         [JsonConverter(typeof(GameTypeConverter))]
         public GameType MatchType { get; set; }

@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParticipantTimeline.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a participant's timeline (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class ParticipantTimeline
     {
-        internal ParticipantTimeline() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParticipantTimeline"/> class.
+        /// </summary>
+        internal ParticipantTimeline()
+        {
+        }
 
         /// <summary>
         /// Ancient golem assists per minute timeline counts.

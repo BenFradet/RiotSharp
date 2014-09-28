@@ -1,4 +1,12 @@
-﻿namespace RiotSharp
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GameMode.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Mode of the game (Game API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp
 {
     /// <summary>
     /// Mode of the game (Game API).

@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ItemTreeStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing an item tree in the shop (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class ItemTreeStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemTreeStatic"/> class.
+        /// </summary>
         internal ItemTreeStatic() { }
 
         /// <summary>

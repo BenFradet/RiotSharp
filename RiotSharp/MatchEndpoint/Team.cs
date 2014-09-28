@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Team.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a team in a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -10,7 +20,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Team
     {
-        internal Team() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Team"/> class.
+        /// </summary>
+        internal Team()
+        {
+        }
 
         /// <summary>
         /// If game was draft mode, contains banned champion data, otherwise null.

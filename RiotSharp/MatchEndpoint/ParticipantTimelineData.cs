@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParticipantTimelineData.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class holding timeline values (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class ParticipantTimelineData
     {
-        internal ParticipantTimelineData() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParticipantTimelineData"/> class.
+        /// </summary>
+        internal ParticipantTimelineData()
+        {
+        }
 
         /// <summary>
         /// Value per minute from 10 min to 20 min.

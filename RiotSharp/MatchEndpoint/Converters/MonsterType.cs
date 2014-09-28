@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MonsterType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Type of monster (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of monster (Match API).
@@ -31,8 +39,20 @@
         Vilemaw
     }
 
+    /// <summary>
+    /// The monster type extension.
+    /// </summary>
     static class MonsterTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="monsterType">
+        /// The monster type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this MonsterType monsterType)
         {
             switch (monsterType)

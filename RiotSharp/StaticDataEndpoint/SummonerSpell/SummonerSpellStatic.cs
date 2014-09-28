@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SummonerSpellStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a summoner spell (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class SummonerSpellStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummonerSpellStatic"/> class.
+        /// </summary>
         internal SummonerSpellStatic() { }
 
         /// <summary>

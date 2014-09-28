@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LevelUpType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Type of level up (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of level up (Match API).
@@ -16,8 +24,20 @@
         Normal
     }
 
+    /// <summary>
+    /// The level up type extension.
+    /// </summary>
     static class LevelUpTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="levelUpType">
+        /// The level up type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this LevelUpType levelUpType)
         {
             switch (levelUpType)

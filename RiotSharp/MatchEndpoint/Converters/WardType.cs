@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WardType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Type of the ward (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of the ward (Match API).
@@ -36,8 +44,20 @@
         YellowTrinketUpgrade
     }
 
+    /// <summary>
+    /// The ward type extension.
+    /// </summary>
     static class WardTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="wardType">
+        /// The ward type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this WardType wardType)
         {
             switch (wardType)

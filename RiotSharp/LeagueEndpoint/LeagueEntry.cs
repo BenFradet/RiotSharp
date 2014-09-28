@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LeagueEntry.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Team or summoner in a league (League API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.LeagueEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.LeagueEndpoint
     [Serializable]
     public class LeagueEntry
     {
-        internal LeagueEntry() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LeagueEntry"/> class.
+        /// </summary>
+        internal LeagueEntry()
+        {
+        }
 
         /// <summary>
         /// The league division of the participant.

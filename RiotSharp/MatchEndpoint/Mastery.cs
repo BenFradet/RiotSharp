@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Mastery.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a mastery of a participant (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Mastery
     {
-        internal Mastery() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Mastery"/> class.
+        /// </summary>
+        internal Mastery()
+        {
+        }
 
         /// <summary>
         /// Mastery ID.

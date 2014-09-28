@@ -1,8 +1,21 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RunePages.cs" company="">
+//
+// </copyright>
+// <summary>
+//   The rune pages.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
 {
+    /// <summary>
+    /// The rune pages.
+    /// </summary>
     class RunePages
     {
         /// <summary>

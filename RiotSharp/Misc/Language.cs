@@ -1,4 +1,12 @@
-﻿namespace RiotSharp
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Language.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Language for the data retrieved (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp
 {
     /// <summary>
     /// Language for the data retrieved (Static API).

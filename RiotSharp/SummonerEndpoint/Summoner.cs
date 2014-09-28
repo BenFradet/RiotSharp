@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Summoner.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a Summoner in the API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.SummonerEndpoint
     [Serializable]
     public class Summoner : SummonerBase
     {
-        internal Summoner() : base() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Summoner"/> class.
+        /// </summary>
+        internal Summoner()
+        {
+        }
 
         /// <summary>
         /// ID of the summoner icon associated with the summoner.

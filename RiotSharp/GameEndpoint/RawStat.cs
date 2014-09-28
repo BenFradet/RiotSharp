@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RawStat.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Raw stat of a game (Game API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.GameEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.GameEndpoint
     [Serializable]
     public class RawStat
     {
-        internal RawStat() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RawStat"/> class.
+        /// </summary>
+        internal RawStat()
+        {
+        }
 
         /// <summary>
         /// Number of assists during the game.

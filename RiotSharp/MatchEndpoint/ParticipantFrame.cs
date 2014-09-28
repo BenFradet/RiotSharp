@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParticipantFrame.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a particular frame for a participant during a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class ParticipantFrame
     {
-        internal ParticipantFrame() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParticipantFrame"/> class.
+        /// </summary>
+        internal ParticipantFrame()
+        {
+        }
 
         /// <summary>
         /// Participant's current gold.

@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Participant.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a participant in a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -10,7 +20,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Participant
     {
-        internal Participant() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Participant"/> class.
+        /// </summary>
+        internal Participant()
+        {
+        }
 
         /// <summary>
         /// Champion ID.

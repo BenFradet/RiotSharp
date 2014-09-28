@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Frame.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a frame in a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -10,7 +20,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Frame
     {
-        internal Frame() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Frame"/> class.
+        /// </summary>
+        internal Frame()
+        {
+        }
 
         /// <summary>
         /// List of events for this frame.

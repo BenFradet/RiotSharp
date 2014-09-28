@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TeamStatDetail.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Team stats (Team API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.TeamEndpoint
     [Serializable]
     public class TeamStatDetail
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TeamStatDetail"/> class.
+        /// </summary>
         internal TeamStatDetail() { }
 
         /// <summary>

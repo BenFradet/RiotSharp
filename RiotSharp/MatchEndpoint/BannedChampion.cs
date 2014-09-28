@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BannedChampion.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a banned champion (Game API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,7 +19,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class BannedChampion
     {
-        internal BannedChampion() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BannedChampion"/> class.
+        /// </summary>
+        internal BannedChampion()
+        {
+        }
 
         /// <summary>
         /// Banned champion ID.

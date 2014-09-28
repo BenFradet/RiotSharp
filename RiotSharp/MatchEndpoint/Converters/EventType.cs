@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EventType.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Event's type (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Event's type (Match API).
@@ -66,8 +74,20 @@
         WardPlaced
     }
 
+    /// <summary>
+    /// The event type extension.
+    /// </summary>
     static class EventTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="eventType">
+        /// The event type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this EventType eventType)
         {
             switch (eventType)

@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Lane.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Participant's lane (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Participant's lane (Match API).
@@ -36,8 +44,20 @@
         Bottom
     }
 
+    /// <summary>
+    /// The lane extension.
+    /// </summary>
     static class LaneExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="lane">
+        /// The lane.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this Lane lane)
         {
             switch (lane)

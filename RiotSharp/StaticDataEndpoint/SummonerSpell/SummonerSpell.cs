@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SummonerSpell.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Enum representing the different summon spells.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Enum representing the different summon spells.
@@ -71,32 +79,45 @@
         Teleport = 12
     }
 
+    /// <summary>
+    /// The summoner spell extension.
+    /// </summary>
     static class SummonerSpellExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="spell">
+        /// The spell.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this SummonerSpell spell)
         {
             string transformedString;
             switch (spell)
             {
-                case (SummonerSpell.Cleanse):
+                case SummonerSpell.Cleanse:
                     transformedString = "Boost";
                     break;
-                case (SummonerSpell.Ignite):
+                case SummonerSpell.Ignite:
                     transformedString = "Dot";
                     break;
-                case(SummonerSpell.Ghost):
+                case SummonerSpell.Ghost:
                     transformedString = "Haste";
                     break;
-                case(SummonerSpell.Clarity):
+                case SummonerSpell.Clarity:
                     transformedString = "Mana";
                     break;
-                case (SummonerSpell.Garrison):
+                case SummonerSpell.Garrison:
                     transformedString = "OdinGarrison";
                     break;
                 default:
                     transformedString = spell.ToString();
                     break;
             }
+
             return "Summoner" + transformedString;
         }
     }

@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParTypeStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Enum representing a champion's resource.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Enum representing a champion's resource.

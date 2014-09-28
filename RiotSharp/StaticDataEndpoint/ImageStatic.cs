@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ImageStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing an image (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class ImageStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageStatic"/> class.
+        /// </summary>
         internal ImageStatic() { }
 
         /// <summary>

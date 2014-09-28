@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.LeagueEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Tier.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Tier of the league (League API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.LeagueEndpoint
 {
     /// <summary>
     /// Tier of the league (League API).

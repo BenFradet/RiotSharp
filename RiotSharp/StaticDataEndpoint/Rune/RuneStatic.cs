@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RuneStatic.cs" company="">
+//
+// </copyright>
+// <summary>
+//   Class representing a rune (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class RuneStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RuneStatic"/> class.
+        /// </summary>
         internal RuneStatic() { }
 
         /// <summary>
