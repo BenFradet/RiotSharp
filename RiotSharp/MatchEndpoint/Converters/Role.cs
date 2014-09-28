@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Role.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Participant's role (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Participant's role (Match API).
@@ -8,22 +16,22 @@
         /// <summary>
         /// Corresponds to duo lane.
         /// </summary>
-        Duo,
+        Duo, 
 
         /// <summary>
         /// Corresponds to no role.
         /// </summary>
-        None,
+        None, 
 
         /// <summary>
         /// Corresponds to solo lanes (mid or top).
         /// </summary>
-        Solo,
+        Solo, 
 
         /// <summary>
         /// Corresponds to ad carry.
         /// </summary>
-        DuoCarry,
+        DuoCarry, 
 
         /// <summary>
         /// Corresponds to support.
@@ -31,8 +39,20 @@
         DuoSupport
     }
 
+    /// <summary>
+    /// The role extension.
+    /// </summary>
     static class RoleExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="role">
+        /// The role.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this Role role)
         {
             switch (role)

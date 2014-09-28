@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Game.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a Game in the API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.GameEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.GameEndpoint
     [Serializable]
     public class Game
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Game"/> class.
+        /// </summary>
         internal Game() { }
 
         /// <summary>

@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MetadataStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing metadata on runes and items (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class MetadataStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetadataStatic"/> class.
+        /// </summary>
         internal MetadataStatic() { }
 
         /// <summary>

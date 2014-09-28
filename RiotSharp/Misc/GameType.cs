@@ -1,4 +1,12 @@
-﻿namespace RiotSharp
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GameType.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Type of the game.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp
 {
     /// <summary>
     /// Type of the game.
@@ -8,12 +16,12 @@
         /// <summary>
         /// Custom games.
         /// </summary>
-        CustomGame,
+        CustomGame, 
 
         /// <summary>
         /// Neither tutorial nor custom games
         /// </summary>
-        MatchedGame,
+        MatchedGame, 
 
         /// <summary>
         /// Tutorial games.

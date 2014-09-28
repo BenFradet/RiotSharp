@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GroupStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing an item's group (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class GroupStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GroupStatic"/> class.
+        /// </summary>
         internal GroupStatic() { }
 
         /// <summary>

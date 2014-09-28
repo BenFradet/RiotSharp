@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TagStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Enum representing a champion's type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Enum representing a champion's type.
@@ -8,27 +16,27 @@
         /// <summary>
         /// Fighter.
         /// </summary>
-        Fighter,
+        Fighter, 
 
         /// <summary>
         /// Tank.
         /// </summary>
-        Tank,
+        Tank, 
 
         /// <summary>
         /// Mage.
         /// </summary>
-        Mage,
+        Mage, 
 
         /// <summary>
         /// Assassin.
         /// </summary>
-        Assassin,
+        Assassin, 
 
         /// <summary>
         /// Support.
         /// </summary>
-        Support,
+        Support, 
 
         /// <summary>
         /// Marksman.

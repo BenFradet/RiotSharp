@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Translation.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a translation of a message (Status API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StatusEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StatusEndpoint
     [Serializable]
     public class Translation
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Translation"/> class.
+        /// </summary>
         internal Translation() { }
 
         /// <summary>

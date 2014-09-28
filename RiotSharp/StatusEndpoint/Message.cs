@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Message.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing messages for an incident (Status API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StatusEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StatusEndpoint
     [Serializable]
     public class Message
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Message"/> class.
+        /// </summary>
         internal Message() { }
 
         /// <summary>

@@ -1,4 +1,12 @@
-﻿namespace RiotSharp
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Language.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Language for the data retrieved (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp
 {
     /// <summary>
     /// Language for the data retrieved (Static API).
@@ -8,97 +16,97 @@
         /// <summary>
         /// American English.
         /// </summary>
-        en_US,
+        en_US, 
 
         /// <summary>
         /// British English.
         /// </summary>
-        en_GB,
+        en_GB, 
 
         /// <summary>
         /// Polish English.
         /// </summary>
-        en_PL,
+        en_PL, 
 
         /// <summary>
         /// Australian English.
         /// </summary>
-        en_AU,
+        en_AU, 
 
         /// <summary>
         /// Polish.
         /// </summary>
-        pl_PL,
+        pl_PL, 
 
         /// <summary>
         /// Czech.
         /// </summary>
-        cs_CZ,
+        cs_CZ, 
 
         /// <summary>
         /// Hungarian.
         /// </summary>
-        hu_HU,
+        hu_HU, 
 
         /// <summary>
         /// German.
         /// </summary>
-        de_DE,
+        de_DE, 
 
         /// <summary>
         /// Spanish.
         /// </summary>
-        es_ES,
+        es_ES, 
 
         /// <summary>
         /// Argentinian Spanish.
         /// </summary>
-        es_AR,
+        es_AR, 
 
         /// <summary>
         /// Latam Spanish.
         /// </summary>
-        es_MX,
+        es_MX, 
 
         /// <summary>
         /// French.
         /// </summary>
-        fr_FR,
+        fr_FR, 
 
         /// <summary>
         /// Italian.
         /// </summary>
-        it_IT,
+        it_IT, 
 
         /// <summary>
         /// Romanian.
         /// </summary>
-        ro_RO,
+        ro_RO, 
 
         /// <summary>
         /// Greek.
         /// </summary>
-        el_GR,
+        el_GR, 
 
         /// <summary>
         /// Portuguese.
         /// </summary>
-        pt_BR,
+        pt_BR, 
 
         /// <summary>
         /// Turkish.
         /// </summary>
-        tr_TR,
+        tr_TR, 
 
         /// <summary>
         /// Russian.
         /// </summary>
-        ru_RU,
+        ru_RU, 
 
         /// <summary>
         /// Chinese.
         /// </summary>
-        zh_CN,
+        zh_CN, 
 
         /// <summary>
         /// Korean.

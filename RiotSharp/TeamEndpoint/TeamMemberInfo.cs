@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TeamMemberInfo.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Information about team members (Team API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.TeamEndpoint
     [Serializable]
     public class TeamMemberInfo
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TeamMemberInfo"/> class.
+        /// </summary>
         internal TeamMemberInfo() { }
 
         /// <summary>

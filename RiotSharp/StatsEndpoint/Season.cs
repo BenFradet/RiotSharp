@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.StatsEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Season.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Season (Stats API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.StatsEndpoint
 {
     /// <summary>
     /// Season (Stats API).
@@ -8,7 +16,8 @@
         /// <summary>
         /// Season 3.
         /// </summary>
-        Season3,
+        Season3, 
+
         /// <summary>
         /// Season 4.
         /// </summary>

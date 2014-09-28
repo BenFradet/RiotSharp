@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SkinStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a skin of a champion (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class SkinStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkinStatic"/> class.
+        /// </summary>
         internal SkinStatic() { }
 
         /// <summary>

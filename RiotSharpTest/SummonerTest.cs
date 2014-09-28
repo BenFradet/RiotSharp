@@ -1,24 +1,63 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SummonerTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The summoner test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using RiotSharp;
-using RiotSharp.SummonerEndpoint;
 using RiotSharp.StatsEndpoint;
+using RiotSharp.SummonerEndpoint;
 
 namespace RiotSharpTest
 {
+    /// <summary>
+    /// The summoner test.
+    /// </summary>
     [TestClass]
     public class SummonerTest
     {
+        /// <summary>
+        /// The api key.
+        /// </summary>
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+
+        /// <summary>
+        /// The id.
+        /// </summary>
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+
+        /// <summary>
+        /// The api.
+        /// </summary>
         private static RiotApi api = RiotApi.GetInstance(apiKey);
+
+        /// <summary>
+        /// The summoner.
+        /// </summary>
         private static Summoner summoner = api.GetSummoner(Region.euw, id);
+
+        /// <summary>
+        /// The champion id.
+        /// </summary>
         private static int championId = 28;
+
+        /// <summary>
+        /// The queue.
+        /// </summary>
         private static Queue queue = Queue.RankedSolo5x5;
 
+        /// <summary>
+        /// The get rune pages_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetRunePages_Test()
@@ -29,6 +68,9 @@ namespace RiotSharpTest
             Assert.IsTrue(runePages.Count() > 0);
         }
 
+        /// <summary>
+        /// The get rune pages async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRunePagesAsync_Test()
@@ -39,6 +81,9 @@ namespace RiotSharpTest
             Assert.IsTrue(runePages.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get mastery pages_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetMasteryPages_Test()
@@ -49,6 +94,9 @@ namespace RiotSharpTest
             Assert.IsTrue(masteryPages.Count() > 0);
         }
 
+        /// <summary>
+        /// The get mastery pages async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMasteryPagesAsync_Test()
@@ -59,6 +107,9 @@ namespace RiotSharpTest
             Assert.IsTrue(masteryPages.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get recent games_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetRecentGames_Test()
@@ -69,6 +120,9 @@ namespace RiotSharpTest
             Assert.IsTrue(games.Count() > 0);
         }
 
+        /// <summary>
+        /// The get recent games async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetRecentGamesAsync_Test()
@@ -79,6 +133,9 @@ namespace RiotSharpTest
             Assert.IsTrue(games.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get leagues_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetLeagues_Test()
@@ -89,6 +146,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Count() > 0);
         }
 
+        /// <summary>
+        /// The get leagues async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetLeaguesAsync_Test()
@@ -99,6 +159,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get entire leagues_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetEntireLeagues_Test()
@@ -109,6 +172,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Count() > 0);
         }
 
+        /// <summary>
+        /// The get entire leagues async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetEntireLeaguesAsync_Test()
@@ -119,6 +185,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get leagues v 24_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetLeaguesV24_Test()
@@ -129,6 +198,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Count() > 0);
         }
 
+        /// <summary>
+        /// The get leagues v 24 async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetLeaguesV24Async_Test()
@@ -139,6 +211,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get entire leagues v 24_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetEntireLeaguesV24_Test()
@@ -149,6 +224,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Count() > 0);
         }
 
+        /// <summary>
+        /// The get entire leagues v 24 async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetEntireLeaguesV24Async_Test()
@@ -159,6 +237,9 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats summaries_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
@@ -169,6 +250,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats summaries async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsSummariesAsync_Test()
@@ -179,6 +263,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats summaries_ current season_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsSummaries_CurrentSeason_Test()
@@ -189,6 +276,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats summaries async_ current season_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsSummariesAsync_CurrentSeason_Test()
@@ -199,6 +289,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats ranked_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsRanked_Test()
@@ -209,6 +302,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats ranked async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsRankedAsync_Test()
@@ -219,6 +315,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats ranked_ current season_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsRanked_CurrentSeason_Test()
@@ -229,6 +328,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Count() > 0);
         }
 
+        /// <summary>
+        /// The get stats ranked async_ current season_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsRankedAsync_CurrentSeason_Test()
@@ -239,6 +341,9 @@ namespace RiotSharpTest
             Assert.IsTrue(stats.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get teams_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetTeams_Test()
@@ -249,6 +354,9 @@ namespace RiotSharpTest
             Assert.IsTrue(teams.Count() > 0);
         }
 
+        /// <summary>
+        /// The get teams async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetTeamsAsync_Test()
@@ -259,6 +367,9 @@ namespace RiotSharpTest
             Assert.IsTrue(teams.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get teams v 23_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Deprecated")]
         public void GetTeamsV23_Test()
@@ -269,6 +380,9 @@ namespace RiotSharpTest
             Assert.IsTrue(teams.Count() > 0);
         }
 
+        /// <summary>
+        /// The get teams v 23 async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
         public void GetTeamsV23Async_Test()
@@ -279,6 +393,9 @@ namespace RiotSharpTest
             Assert.IsTrue(teams.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get match history_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetMatchHistory_Test()
@@ -289,11 +406,14 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Count() > 0);
         }
 
+        /// <summary>
+        /// The get match history_ champion ids_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetMatchHistory_ChampionIds_Test()
         {
-            var matches = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistory(0, 14, new List<int> { championId });
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -303,11 +423,14 @@ namespace RiotSharpTest
             }
         }
 
+        /// <summary>
+        /// The get match history_ ranked queues_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner")]
         public void GetMatchHistory_RankedQueues_Test()
         {
-            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue> { queue });
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -317,6 +440,9 @@ namespace RiotSharpTest
             }
         }
 
+        /// <summary>
+        /// The get match history async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_Test()
@@ -327,11 +453,14 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get match history async_ champion ids_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_ChampionIds_Test()
         {
-            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int> { championId });
 
             Assert.IsNotNull(matches.Result);
             Assert.IsTrue(matches.Result.Count() > 0);
@@ -341,11 +470,14 @@ namespace RiotSharpTest
             }
         }
 
+        /// <summary>
+        /// The get match history async_ ranked queues_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_RankedQueues_Test()
         {
-            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue> { queue });
 
             Assert.IsNotNull(matches.Result);
             Assert.IsTrue(matches.Result.Count() > 0);

@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Rune.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a rune of a participant (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Rune
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rune"/> class.
+        /// </summary>
         internal Rune() { }
 
         /// <summary>

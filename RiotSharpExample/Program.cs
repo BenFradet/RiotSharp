@@ -1,12 +1,29 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The program.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Configuration;
-using System.Globalization;
 using RiotSharp;
 
 namespace RiotSharpExample
 {
+    /// <summary>
+    /// The program.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// The main.
+        /// </summary>
+        /// <param name="args">
+        /// The args.
+        /// </param>
         static void Main(string[] args)
         {
             var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);

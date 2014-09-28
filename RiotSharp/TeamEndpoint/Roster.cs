@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Roster.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Roster of the team (Team API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.TeamEndpoint
     [Serializable]
     public class Roster
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Roster"/> class.
+        /// </summary>
         internal Roster() { }
 
         /// <summary>

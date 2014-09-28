@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Service.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a service (Status API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StatusEndpoint
@@ -10,7 +20,12 @@ namespace RiotSharp.StatusEndpoint
     [Serializable]
     public class Service
     {
-        internal Service() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Service"/> class.
+        /// </summary>
+        internal Service()
+        {
+        }
 
         /// <summary>
         /// List of incidents for this service.

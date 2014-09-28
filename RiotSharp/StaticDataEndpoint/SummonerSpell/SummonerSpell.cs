@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SummonerSpell.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Enum representing the different summon spells.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Enum representing the different summon spells.
@@ -8,62 +16,62 @@
         /// <summary>
         /// Barrier.
         /// </summary>
-        Barrier = 21,
+        Barrier = 21, 
 
         /// <summary>
         /// Cleanse.
         /// </summary>
-        Cleanse = 1,
+        Cleanse = 1, 
 
         /// <summary>
         /// Clairvoyance.
         /// </summary>
-        Clairvoyance = 2,
+        Clairvoyance = 2, 
 
         /// <summary>
         /// Ignite.
         /// </summary>
-        Ignite = 14,
+        Ignite = 14, 
 
         /// <summary>
         /// Exhaust.
         /// </summary>
-        Exhaust = 3,
+        Exhaust = 3, 
 
         /// <summary>
         /// Flash.
         /// </summary>
-        Flash = 4,
+        Flash = 4, 
 
         /// <summary>
         /// Ghost.
         /// </summary>
-        Ghost = 6,
+        Ghost = 6, 
 
         /// <summary>
         /// Heal.
         /// </summary>
-        Heal = 7,
+        Heal = 7, 
 
         /// <summary>
         /// Clarity.
         /// </summary>
-        Clarity = 13,
+        Clarity = 13, 
 
         /// <summary>
         /// Garrison.
         /// </summary>
-        Garrison = 17,
+        Garrison = 17, 
 
         /// <summary>
         /// Revive.
         /// </summary>
-        Revive = 10,
+        Revive = 10, 
 
         /// <summary>
         /// Smite.
         /// </summary>
-        Smite = 11,
+        Smite = 11, 
 
         /// <summary>
         /// Teleport.
@@ -71,32 +79,45 @@
         Teleport = 12
     }
 
+    /// <summary>
+    /// The summoner spell extension.
+    /// </summary>
     static class SummonerSpellExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="spell">
+        /// The spell.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this SummonerSpell spell)
         {
             string transformedString;
             switch (spell)
             {
-                case (SummonerSpell.Cleanse):
+                case SummonerSpell.Cleanse:
                     transformedString = "Boost";
                     break;
-                case (SummonerSpell.Ignite):
+                case SummonerSpell.Ignite:
                     transformedString = "Dot";
                     break;
-                case(SummonerSpell.Ghost):
+                case SummonerSpell.Ghost:
                     transformedString = "Haste";
                     break;
-                case(SummonerSpell.Clarity):
+                case SummonerSpell.Clarity:
                     transformedString = "Mana";
                     break;
-                case (SummonerSpell.Garrison):
+                case SummonerSpell.Garrison:
                     transformedString = "OdinGarrison";
                     break;
                 default:
                     transformedString = spell.ToString();
                     break;
             }
+
             return "Summoner" + transformedString;
         }
     }

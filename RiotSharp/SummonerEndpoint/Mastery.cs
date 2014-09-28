@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Mastery.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a Mastery in the API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.SummonerEndpoint
     [Serializable]
     public class Mastery
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Mastery"/> class.
+        /// </summary>
         internal Mastery() { }
 
         /// <summary>

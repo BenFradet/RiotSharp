@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParticipantIdentity.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a participant's identity in a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class ParticipantIdentity
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParticipantIdentity"/> class.
+        /// </summary>
         internal ParticipantIdentity() { }
 
         /// <summary>

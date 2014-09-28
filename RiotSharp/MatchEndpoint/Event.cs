@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Event.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a particular event during a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Event
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Event"/> class.
+        /// </summary>
         internal Event() { }
 
         /// <summary>

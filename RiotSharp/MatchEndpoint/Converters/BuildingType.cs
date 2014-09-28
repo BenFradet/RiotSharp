@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BuildingType.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Building type (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Building type (Match API).
@@ -8,7 +16,7 @@
         /// <summary>
         /// Inhibitors.
         /// </summary>
-        InhibitorBuilding,
+        InhibitorBuilding, 
 
         /// <summary>
         /// Towers.
@@ -16,8 +24,20 @@
         TowerBuilding
     }
 
+    /// <summary>
+    /// The building type extension.
+    /// </summary>
     static class BuildingTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="buildingType">
+        /// The building type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this BuildingType buildingType)
         {
             switch (buildingType)

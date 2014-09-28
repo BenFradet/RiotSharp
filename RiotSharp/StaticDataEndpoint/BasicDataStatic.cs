@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BasicDataStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing some information about the items retrieved (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class BasicDataStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BasicDataStatic"/> class.
+        /// </summary>
         internal BasicDataStatic() { }
 
         /// <summary>

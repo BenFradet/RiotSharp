@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Team.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a Team in the API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.TeamEndpoint
     [Serializable]
     public class Team
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Team"/> class.
+        /// </summary>
         internal Team() { }
 
         /// <summary>

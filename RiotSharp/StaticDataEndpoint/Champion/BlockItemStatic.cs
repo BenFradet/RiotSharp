@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BlockItemStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Recommended items in a block (starting, essential, offensive, etc) for a champion (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class BlockItemStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlockItemStatic"/> class.
+        /// </summary>
         internal BlockItemStatic() { }
 
         /// <summary>

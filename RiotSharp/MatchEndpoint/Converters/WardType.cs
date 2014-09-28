@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WardType.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Type of the ward (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of the ward (Match API).
@@ -8,27 +16,27 @@
         /// <summary>
         /// Corresponds to green wards.
         /// </summary>
-        SightWard,
+        SightWard, 
 
         /// <summary>
         /// Corresponds to Teemo's mushrooms.
         /// </summary>
-        TeemoMushroom,
+        TeemoMushroom, 
 
         /// <summary>
         /// Undefined.
         /// </summary>
-        Undefined,
+        Undefined, 
 
         /// <summary>
         /// Corresponds to pink wards.
         /// </summary>
-        VisionWard,
+        VisionWard, 
 
         /// <summary>
         /// Corresponds to warding totems.
         /// </summary>
-        YellowTrinket,
+        YellowTrinket, 
 
         /// <summary>
         /// Corresponds to upgraded warding totems.
@@ -36,8 +44,20 @@
         YellowTrinketUpgrade
     }
 
+    /// <summary>
+    /// The ward type extension.
+    /// </summary>
     static class WardTypeExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="wardType">
+        /// The ward type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this WardType wardType)
         {
             switch (wardType)

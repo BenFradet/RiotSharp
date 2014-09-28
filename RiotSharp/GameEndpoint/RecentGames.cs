@@ -1,8 +1,21 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RecentGames.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The recent games.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.GameEndpoint
 {
+    /// <summary>
+    /// The recent games.
+    /// </summary>
     class RecentGames
     {
         /// <summary>

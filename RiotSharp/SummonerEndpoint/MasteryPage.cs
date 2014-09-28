@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MasteryPage.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Mastery page (Summoner API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.SummonerEndpoint
     [Serializable]
     public class MasteryPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MasteryPage"/> class.
+        /// </summary>
         internal MasteryPage() { }
 
         /// <summary>

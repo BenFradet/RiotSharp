@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParticipantStats.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class gathering statistics about a participant (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class ParticipantStats
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParticipantStats"/> class.
+        /// </summary>
         internal ParticipantStats() { }
 
         /// <summary>

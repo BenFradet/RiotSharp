@@ -1,18 +1,41 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StaticRiotApiTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The static riot api test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using System.Configuration;
+using System.Linq;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
 
 namespace RiotSharpTest
 {
+    /// <summary>
+    /// The static riot api test.
+    /// </summary>
     [TestClass]
     public class StaticRiotApiTest
     {
+        /// <summary>
+        /// The api key.
+        /// </summary>
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+
+        /// <summary>
+        /// The api.
+        /// </summary>
         private static StaticRiotApi api = StaticRiotApi.GetInstance(apiKey);
 
+        /// <summary>
+        /// The get champion_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetChampion_Test()
@@ -22,6 +45,9 @@ namespace RiotSharpTest
             Assert.AreEqual(champ.Name, "Annie");
         }
 
+        /// <summary>
+        /// The get champion async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetChampionAsync_Test()
@@ -31,6 +57,9 @@ namespace RiotSharpTest
             Assert.AreEqual(champ.Result.Name, "Annie");
         }
 
+        /// <summary>
+        /// The get champions_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetChampions_Test()
@@ -41,6 +70,9 @@ namespace RiotSharpTest
             Assert.IsTrue(champs.Champions.Count > 0);
         }
 
+        /// <summary>
+        /// The get champions async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetChampionsAsync_Test()
@@ -51,6 +83,9 @@ namespace RiotSharpTest
             Assert.IsTrue(champs.Result.Champions.Count > 0);
         }
 
+        /// <summary>
+        /// The get items_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetItems_Test()
@@ -61,6 +96,9 @@ namespace RiotSharpTest
             Assert.IsTrue(items.Items.Count > 0);
         }
 
+        /// <summary>
+        /// The get items async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetItemsAsync_Test()
@@ -71,6 +109,9 @@ namespace RiotSharpTest
             Assert.IsTrue(items.Result.Items.Count > 0);
         }
 
+        /// <summary>
+        /// The get item_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetItem_Test()
@@ -80,6 +121,9 @@ namespace RiotSharpTest
             Assert.AreEqual(item.Name, "Boots of Speed");
         }
 
+        /// <summary>
+        /// The get item async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetItemAsync_Test()
@@ -89,6 +133,9 @@ namespace RiotSharpTest
             Assert.AreEqual(item.Result.Name, "Boots of Speed");
         }
 
+        /// <summary>
+        /// The get masteries_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetMasteries_Test()
@@ -99,6 +146,9 @@ namespace RiotSharpTest
             Assert.IsTrue(masteries.Masteries.Count > 0);
         }
 
+        /// <summary>
+        /// The get masteries async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetMasteriesAsync_Test()
@@ -109,6 +159,9 @@ namespace RiotSharpTest
             Assert.IsTrue(masteries.Result.Masteries.Count > 0);
         }
 
+        /// <summary>
+        /// The get mastery_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetMastery_Test()
@@ -118,6 +171,9 @@ namespace RiotSharpTest
             Assert.AreEqual(mastery.Name, "Double-Edged Sword");
         }
 
+        /// <summary>
+        /// The get mastery async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetMasteryAsync_Test()
@@ -127,6 +183,9 @@ namespace RiotSharpTest
             Assert.AreEqual(mastery.Result.Name, "Double-Edged Sword");
         }
 
+        /// <summary>
+        /// The get runes_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetRunes_Test()
@@ -137,6 +196,9 @@ namespace RiotSharpTest
             Assert.IsTrue(runes.Runes.Count > 0);
         }
 
+        /// <summary>
+        /// The get runes async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetRunesAsync_Test()
@@ -147,6 +209,9 @@ namespace RiotSharpTest
             Assert.IsTrue(runes.Result.Runes.Count > 0);
         }
 
+        /// <summary>
+        /// The get rune_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetRune_Test()
@@ -156,6 +221,9 @@ namespace RiotSharpTest
             Assert.AreEqual(rune.Name, "Lesser Mark of Attack Damage");
         }
 
+        /// <summary>
+        /// The get rune async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetRuneAsync_Test()
@@ -165,6 +233,9 @@ namespace RiotSharpTest
             Assert.AreEqual(rune.Result.Name, "Lesser Mark of Attack Damage");
         }
 
+        /// <summary>
+        /// The get summoner spells_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetSummonerSpells_Test()
@@ -175,6 +246,9 @@ namespace RiotSharpTest
             Assert.IsTrue(spells.SummonerSpells.Count > 0);
         }
 
+        /// <summary>
+        /// The get summoner spells async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetSummonerSpellsAsync_Test()
@@ -185,6 +259,9 @@ namespace RiotSharpTest
             Assert.IsTrue(spells.Result.SummonerSpells.Count > 0);
         }
 
+        /// <summary>
+        /// The get summoner spell_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetSummonerSpell_Test()
@@ -194,6 +271,9 @@ namespace RiotSharpTest
             Assert.AreEqual(spell.Name, "Barrier");
         }
 
+        /// <summary>
+        /// The get summoner spell async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetSummonerSpellAsync_Test()
@@ -203,6 +283,9 @@ namespace RiotSharpTest
             Assert.AreEqual(spell.Result.Name, "Barrier");
         }
 
+        /// <summary>
+        /// The get versions_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetVersions_Test()
@@ -213,6 +296,9 @@ namespace RiotSharpTest
             Assert.IsTrue(versions.Count() > 0);
         }
 
+        /// <summary>
+        /// The get versions async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetVersionsAsync_Test()
@@ -223,6 +309,9 @@ namespace RiotSharpTest
             Assert.IsTrue(versions.Result.Count() > 0);
         }
 
+        /// <summary>
+        /// The get realm_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetRealm_Test()
@@ -232,6 +321,9 @@ namespace RiotSharpTest
             Assert.IsNotNull(realm);
         }
 
+        /// <summary>
+        /// The get real async_ test.
+        /// </summary>
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetRealAsync_Test()

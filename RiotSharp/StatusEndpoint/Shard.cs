@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Shard.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a shard (Status API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StatusEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StatusEndpoint
     [Serializable]
     public class Shard
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shard"/> class.
+        /// </summary>
         internal Shard() { }
 
         /// <summary>

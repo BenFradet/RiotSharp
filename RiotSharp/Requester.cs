@@ -1,29 +1,72 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Net;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Requester.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The requester.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
 using System.IO;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// The requester.
+    /// </summary>
     class Requester
     {
+        /// <summary>
+        /// The instance.
+        /// </summary>
         private static Requester instance;
-        protected Requester() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Requester"/> class.
+        /// </summary>
+        protected Requester()
+        {
+        }
+
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
         public static Requester Instance
         {
             get
             {
-                if (instance == null)
-                {
-                    instance = new Requester();
-                }
-                return instance;
+                return instance ?? (instance = new Requester());
             }
         }
 
+        /// <summary>
+        /// The root domain.
+        /// </summary>
         protected string rootDomain;
+
+        /// <summary>
+        /// Gets or sets the api key.
+        /// </summary>
         public static string ApiKey { get; set; }
 
+        /// <summary>
+        /// The create request.
+        /// </summary>
+        /// <param name="relativeUrl">
+        /// The relative url.
+        /// </param>
+        /// <param name="rootDomain">
+        /// The root domain.
+        /// </param>
+        /// <param name="addedArguments">
+        /// The added arguments.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
         {
             this.rootDomain = rootDomain;
@@ -31,7 +74,24 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
-        public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
+        /// <summary>
+        /// The create request async.
+        /// </summary>
+        /// <param name="relativeUrl">
+        /// The relative url.
+        /// </param>
+        /// <param name="rootDomain">
+        /// The root domain.
+        /// </param>
+        /// <param name="addedArguments">
+        /// The added arguments.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<string> CreateRequestAsync(
+            string relativeUrl,
+            string rootDomain,
             List<string> addedArguments = null)
         {
             this.rootDomain = rootDomain;
@@ -39,24 +99,54 @@ namespace RiotSharp
             return await GetResponseAsync(request);
         }
 
+        /// <summary>
+        /// The prepare request.
+        /// </summary>
+        /// <param name="relativeUrl">
+        /// The relative url.
+        /// </param>
+        /// <param name="addedArguments">
+        /// The added arguments.
+        /// </param>
+        /// <returns>
+        /// The <see cref="HttpWebRequest"/>.
+        /// </returns>
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments)
         {
-            HttpWebRequest request = null;
+            HttpWebRequest request;
             if (addedArguments == null)
             {
-                request = (HttpWebRequest)WebRequest.Create(string.Format("http://{0}{1}?api_key={2}"
-                    , rootDomain, relativeUrl, ApiKey));
+                request =
+                    (HttpWebRequest)
+                    WebRequest.Create(string.Format("http://{0}{1}?api_key={2}", rootDomain, relativeUrl, ApiKey));
             }
             else
             {
-                request = (HttpWebRequest)WebRequest.Create(string.Format("http://{0}{1}?{2}api_key={3}"
-                    , rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
+                request =
+                    (HttpWebRequest)
+                    WebRequest.Create(
+                        string.Format(
+                            "http://{0}{1}?{2}api_key={3}",
+                            rootDomain,
+                            relativeUrl,
+                            BuildArgumentsString(addedArguments),
+                            ApiKey));
             }
+
             request.Method = "GET";
 
             return request;
         }
 
+        /// <summary>
+        /// The get response.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         protected string GetResponse(HttpWebRequest request)
         {
             string result = string.Empty;
@@ -69,13 +159,23 @@ namespace RiotSharp
                     result = reader.ReadToEnd();
                 }
             }
-            catch(WebException ex)
+            catch (WebException ex)
             {
                 HandleWebException(ex);
             }
+
             return result;
         }
 
+        /// <summary>
+        /// The get response async.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         protected async Task<string> GetResponseAsync(HttpWebRequest request)
         {
             string result = string.Empty;
@@ -88,13 +188,23 @@ namespace RiotSharp
                     result = await reader.ReadToEndAsync();
                 }
             }
-            catch(WebException ex)
+            catch (WebException ex)
             {
                 HandleWebException(ex);
             }
+
             return result;
         }
 
+        /// <summary>
+        /// The build arguments string.
+        /// </summary>
+        /// <param name="arguments">
+        /// The arguments.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         protected string BuildArgumentsString(List<string> arguments)
         {
             string result = string.Empty;
@@ -105,12 +215,21 @@ namespace RiotSharp
                     result += arg + "&";
                 }
             }
+
             return result;
         }
 
+        /// <summary>
+        /// The handle web exception.
+        /// </summary>
+        /// <param name="ex">
+        /// The ex.
+        /// </param>
+        /// <exception cref="RiotSharpException">
+        /// </exception>
         private void HandleWebException(WebException ex)
         {
-            HttpWebResponse response = (HttpWebResponse)ex.Response;
+            var response = (HttpWebResponse)ex.Response;
             switch (response.StatusCode)
             {
                 case HttpStatusCode.ServiceUnavailable:

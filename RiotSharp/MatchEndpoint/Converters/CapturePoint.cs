@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CapturePoint.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a capture point in a dominion game (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a capture point in a dominion game (Match API).
@@ -8,22 +16,22 @@
         /// <summary>
         /// Point A.
         /// </summary>
-        PointA,
+        PointA, 
 
         /// <summary>
         /// Point B.
         /// </summary>
-        PointB,
+        PointB, 
 
         /// <summary>
         /// Point C.
         /// </summary>
-        PointC,
+        PointC, 
 
         /// <summary>
         /// Point D.
         /// </summary>
-        PointD,
+        PointD, 
 
         /// <summary>
         /// Point E.
@@ -31,8 +39,20 @@
         PointE
     }
 
+    /// <summary>
+    /// The capture point extension.
+    /// </summary>
     static class CapturePointExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="capturePoint">
+        /// The capture point.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this CapturePoint capturePoint)
         {
             switch (capturePoint)

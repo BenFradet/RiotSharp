@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MasteryStatic.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a mastery (Static API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.StaticDataEndpoint
     [Serializable]
     public class MasteryStatic
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MasteryStatic"/> class.
+        /// </summary>
         internal MasteryStatic() { }
 
         /// <summary>

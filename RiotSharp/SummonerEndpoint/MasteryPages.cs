@@ -1,8 +1,21 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MasteryPages.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The mastery pages.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
 {
+    /// <summary>
+    /// The mastery pages.
+    /// </summary>
     class MasteryPages
     {
         /// <summary>

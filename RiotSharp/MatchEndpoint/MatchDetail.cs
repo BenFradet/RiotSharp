@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MatchDetail.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Details about a match (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -10,7 +20,12 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class MatchDetail : MatchSummary
     {
-        internal MatchDetail() : base() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatchDetail"/> class.
+        /// </summary>
+        internal MatchDetail()
+        {
+        }
 
         /// <summary>
         /// Team information.

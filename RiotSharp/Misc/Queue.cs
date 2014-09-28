@@ -1,4 +1,12 @@
-﻿namespace RiotSharp
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Queue.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Queue of the league (League API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp
 {
     /// <summary>
     /// Queue of the league (League API).
@@ -8,12 +16,12 @@
         /// <summary>
         /// Solo queue 5 vs 5.
         /// </summary>
-        RankedSolo5x5,
+        RankedSolo5x5, 
 
         /// <summary>
         /// Team 3 vs 3.
         /// </summary>
-        RankedTeam3x3,
+        RankedTeam3x3, 
 
         /// <summary>
         /// Team 5 vs 5.
@@ -21,8 +29,20 @@
         RankedTeam5x5
     }
 
+    /// <summary>
+    /// The queue extension.
+    /// </summary>
     static class QueueExtension
     {
+        /// <summary>
+        /// The to custom string.
+        /// </summary>
+        /// <param name="queue">
+        /// The queue.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string ToCustomString(this Queue queue)
         {
             switch (queue)

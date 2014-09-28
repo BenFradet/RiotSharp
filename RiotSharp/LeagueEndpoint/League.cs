@@ -1,5 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="League.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Class representing a League in the API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.LeagueEndpoint
@@ -10,6 +20,9 @@ namespace RiotSharp.LeagueEndpoint
     [Serializable]
     public class League
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="League"/> class.
+        /// </summary>
         internal League() { }
 
         /// <summary>

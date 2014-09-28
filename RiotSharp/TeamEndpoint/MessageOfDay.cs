@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MessageOfDay.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Message of the day of the team (Team API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.TeamEndpoint
     [Serializable]
     public class MessageOfDay
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageOfDay"/> class.
+        /// </summary>
         internal MessageOfDay() { }
 
         /// <summary>

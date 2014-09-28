@@ -1,4 +1,14 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Position.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Participant's position (Match API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
@@ -9,6 +19,9 @@ namespace RiotSharp.MatchEndpoint
     [Serializable]
     public class Position
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Position"/> class.
+        /// </summary>
         internal Position() { }
 
         /// <summary>

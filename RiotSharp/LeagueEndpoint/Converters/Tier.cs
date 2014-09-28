@@ -1,4 +1,12 @@
-﻿namespace RiotSharp.LeagueEndpoint
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Tier.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Tier of the league (League API).
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace RiotSharp.LeagueEndpoint
 {
     /// <summary>
     /// Tier of the league (League API).
@@ -8,32 +16,32 @@
         /// <summary>
         /// Master tier.
         /// </summary>
-        Master,
+        Master, 
 
         /// <summary>
         /// Challenger tier.
         /// </summary>
-        Challenger,
+        Challenger, 
 
         /// <summary>
         /// Diamon tier.
         /// </summary>
-        Diamond,
+        Diamond, 
 
         /// <summary>
         /// Platinum tier.
         /// </summary>
-        Platinum,
+        Platinum, 
 
         /// <summary>
         /// Gold tier.
         /// </summary>
-        Gold,
+        Gold, 
 
         /// <summary>
         /// Silver tier.
         /// </summary>
-        Silver,
+        Silver, 
 
         /// <summary>
         /// Bronze tier.
