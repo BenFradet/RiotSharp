@@ -23,7 +23,9 @@ namespace RiotSharp.GameEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Game"/> class.
         /// </summary>
-        internal Game() { }
+        internal Game()
+        {
+        }
 
         /// <summary>
         /// Champion ID associated with game.

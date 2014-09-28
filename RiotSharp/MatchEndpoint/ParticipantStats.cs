@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="ParticipantStats"/> class.
         /// </summary>
-        internal ParticipantStats() { }
+        internal ParticipantStats()
+        {
+        }
 
         /// <summary>
         /// Number of assists.

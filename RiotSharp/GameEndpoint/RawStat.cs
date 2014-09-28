@@ -22,7 +22,9 @@ namespace RiotSharp.GameEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="RawStat"/> class.
         /// </summary>
-        internal RawStat() { }
+        internal RawStat()
+        {
+        }
 
         /// <summary>
         /// Number of assists during the game.

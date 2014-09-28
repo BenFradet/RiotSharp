@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
-        internal Player() { }
+        internal Player()
+        {
+        }
 
         /// <summary>
         /// Match history URI.

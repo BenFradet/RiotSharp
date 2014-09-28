@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Mastery"/> class.
         /// </summary>
-        internal Mastery() { }
+        internal Mastery()
+        {
+        }
 
         /// <summary>
         /// Mastery ID.

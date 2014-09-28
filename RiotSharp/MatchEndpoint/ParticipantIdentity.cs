@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="ParticipantIdentity"/> class.
         /// </summary>
-        internal ParticipantIdentity() { }
+        internal ParticipantIdentity()
+        {
+        }
 
         /// <summary>
         /// Participant ID.

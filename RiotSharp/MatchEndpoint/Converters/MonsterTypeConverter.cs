@@ -51,31 +51,30 @@ namespace RiotSharp.MatchEndpoint
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "BARON_NASHOR":
-                        return MonsterType.BaronNashor;
-                    case "BLUE_GOLEM":
-                        return MonsterType.BlueGolem;
-                    case "DRAGON":
-                        return MonsterType.Dragon;
-                    case "RED_LIZARD":
-                        return MonsterType.RedLizard;
-                    case "VILEMAW":
-                        return MonsterType.Vilemaw;
-                    default:
-                        return null;
-                }
+                return null;
             }
 
-            return null;
+            var str = token.Value<string>();
+            switch (str)
+            {
+                case "BARON_NASHOR":
+                    return MonsterType.BaronNashor;
+                case "BLUE_GOLEM":
+                    return MonsterType.BlueGolem;
+                case "DRAGON":
+                    return MonsterType.Dragon;
+                case "RED_LIZARD":
+                    return MonsterType.RedLizard;
+                case "VILEMAW":
+                    return MonsterType.Vilemaw;
+                default:
+                    return null;
+            }
         }
 
         /// <summary>

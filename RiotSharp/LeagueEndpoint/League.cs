@@ -23,7 +23,9 @@ namespace RiotSharp.LeagueEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="League"/> class.
         /// </summary>
-        internal League() { }
+        internal League()
+        {
+        }
 
         /// <summary>
         /// The requested league entries.

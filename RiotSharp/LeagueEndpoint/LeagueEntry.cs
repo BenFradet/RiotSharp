@@ -22,7 +22,9 @@ namespace RiotSharp.LeagueEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="LeagueEntry"/> class.
         /// </summary>
-        internal LeagueEntry() { }
+        internal LeagueEntry()
+        {
+        }
 
         /// <summary>
         /// The league division of the participant.

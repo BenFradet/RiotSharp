@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="BannedChampion"/> class.
         /// </summary>
-        internal BannedChampion() { }
+        internal BannedChampion()
+        {
+        }
 
         /// <summary>
         /// Banned champion ID.

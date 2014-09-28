@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="ParticipantTimeline"/> class.
         /// </summary>
-        internal ParticipantTimeline() { }
+        internal ParticipantTimeline()
+        {
+        }
 
         /// <summary>
         /// Ancient golem assists per minute timeline counts.

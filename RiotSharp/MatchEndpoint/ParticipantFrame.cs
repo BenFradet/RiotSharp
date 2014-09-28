@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="ParticipantFrame"/> class.
         /// </summary>
-        internal ParticipantFrame() { }
+        internal ParticipantFrame()
+        {
+        }
 
         /// <summary>
         /// Participant's current gold.

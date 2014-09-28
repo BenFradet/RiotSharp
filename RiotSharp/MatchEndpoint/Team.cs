@@ -23,7 +23,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Team"/> class.
         /// </summary>
-        internal Team() { }
+        internal Team()
+        {
+        }
 
         /// <summary>
         /// If game was draft mode, contains banned champion data, otherwise null.

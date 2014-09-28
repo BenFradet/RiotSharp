@@ -23,7 +23,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="MatchSummary"/> class.
         /// </summary>
-        internal MatchSummary() { }
+        internal MatchSummary()
+        {
+        }
 
         /// <summary>
         /// Map type.

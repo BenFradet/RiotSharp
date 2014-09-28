@@ -60,6 +60,7 @@ namespace RiotSharp
         /// The to add.
         /// </param>
         /// <typeparam name="T">
+        /// The Class.
         /// </typeparam>
         public static void Add<T>(string key, T toAdd) where T : class
         {

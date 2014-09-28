@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Rune"/> class.
         /// </summary>
-        internal Rune() { }
+        internal Rune()
+        {
+        }
 
         /// <summary>
         /// Rune rank.

@@ -23,7 +23,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Frame"/> class.
         /// </summary>
-        internal Frame() { }
+        internal Frame()
+        {
+        }
 
         /// <summary>
         /// List of events for this frame.

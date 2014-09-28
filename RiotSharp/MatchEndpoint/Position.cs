@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Position"/> class.
         /// </summary>
-        internal Position() { }
+        internal Position()
+        {
+        }
 
         /// <summary>
         /// Participant's X coordinate.

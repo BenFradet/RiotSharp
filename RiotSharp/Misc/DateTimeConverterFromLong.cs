@@ -51,11 +51,14 @@ namespace RiotSharp
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
             JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
-            if(token.Value<long?>() != null)
+            if (token.Value<long?>() != null)
             {
                 return token.Value<long>().ToDateTimeFromMilliSeconds();
             }

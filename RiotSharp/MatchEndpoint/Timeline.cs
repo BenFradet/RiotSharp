@@ -23,7 +23,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Timeline"/> class.
         /// </summary>
-        internal Timeline() { }
+        internal Timeline()
+        {
+        }
 
         /// <summary>
         /// Time between each returned frame.

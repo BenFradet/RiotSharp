@@ -22,7 +22,9 @@ namespace RiotSharp.ChampionEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Champion"/> class.
         /// </summary>
-        internal Champion() { }
+        internal Champion()
+        {
+        }
 
         /// <summary>
         /// Indicates if the champion is active.

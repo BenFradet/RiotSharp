@@ -22,7 +22,9 @@ namespace RiotSharp.LeagueEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="MiniSeries"/> class.
         /// </summary>
-        internal MiniSeries() { }
+        internal MiniSeries()
+        {
+        }
 
         /// <summary>
         /// Number of current losses in the mini series.

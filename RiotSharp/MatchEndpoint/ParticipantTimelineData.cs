@@ -22,7 +22,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="ParticipantTimelineData"/> class.
         /// </summary>
-        internal ParticipantTimelineData() { }
+        internal ParticipantTimelineData()
+        {
+        }
 
         /// <summary>
         /// Value per minute from 10 min to 20 min.

@@ -23,7 +23,9 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Event"/> class.
         /// </summary>
-        internal Event() { }
+        internal Event()
+        {
+        }
 
         /// <summary>
         /// The ascended type of the event. Only present if relevant.
