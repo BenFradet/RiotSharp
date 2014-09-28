@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BlockStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Block of recommended items by type (starting, essential, offensive, etc) for a champion (Static API).

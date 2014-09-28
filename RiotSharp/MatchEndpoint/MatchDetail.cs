@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MatchDetail.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Details about a match (Match API).

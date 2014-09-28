@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ChampionSpellStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a spell of a champion (Static API).

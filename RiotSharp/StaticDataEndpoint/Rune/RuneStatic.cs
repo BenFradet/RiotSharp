@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RuneStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a rune (Static API).

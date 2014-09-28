@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Mastery.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a mastery of a participant (Match API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PlayerStatsSummary.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Stats summary of a player (Stats API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SummonerBaseList.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The summoner base list.

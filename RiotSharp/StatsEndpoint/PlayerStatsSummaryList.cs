@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PlayerStatsSummaryList.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The player stats summary list.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LevelTipStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing the tooltip when leveling up a spell on a champion (Static API).

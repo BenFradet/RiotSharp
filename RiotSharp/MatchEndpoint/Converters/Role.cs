@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Role.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Participant's role (Match API).
@@ -16,22 +16,22 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Corresponds to duo lane.
         /// </summary>
-        Duo, 
+        Duo,
 
         /// <summary>
         /// Corresponds to no role.
         /// </summary>
-        None, 
+        None,
 
         /// <summary>
         /// Corresponds to solo lanes (mid or top).
         /// </summary>
-        Solo, 
+        Solo,
 
         /// <summary>
         /// Corresponds to ad carry.
         /// </summary>
-        DuoCarry, 
+        DuoCarry,
 
         /// <summary>
         /// Corresponds to support.

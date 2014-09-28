@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SummonerSpell.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Enum representing the different summon spells.
@@ -16,62 +16,62 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// Barrier.
         /// </summary>
-        Barrier = 21, 
+        Barrier = 21,
 
         /// <summary>
         /// Cleanse.
         /// </summary>
-        Cleanse = 1, 
+        Cleanse = 1,
 
         /// <summary>
         /// Clairvoyance.
         /// </summary>
-        Clairvoyance = 2, 
+        Clairvoyance = 2,
 
         /// <summary>
         /// Ignite.
         /// </summary>
-        Ignite = 14, 
+        Ignite = 14,
 
         /// <summary>
         /// Exhaust.
         /// </summary>
-        Exhaust = 3, 
+        Exhaust = 3,
 
         /// <summary>
         /// Flash.
         /// </summary>
-        Flash = 4, 
+        Flash = 4,
 
         /// <summary>
         /// Ghost.
         /// </summary>
-        Ghost = 6, 
+        Ghost = 6,
 
         /// <summary>
         /// Heal.
         /// </summary>
-        Heal = 7, 
+        Heal = 7,
 
         /// <summary>
         /// Clarity.
         /// </summary>
-        Clarity = 13, 
+        Clarity = 13,
 
         /// <summary>
         /// Garrison.
         /// </summary>
-        Garrison = 17, 
+        Garrison = 17,
 
         /// <summary>
         /// Revive.
         /// </summary>
-        Revive = 10, 
+        Revive = 10,
 
         /// <summary>
         /// Smite.
         /// </summary>
-        Smite = 11, 
+        Smite = 11,
 
         /// <summary>
         /// Teleport.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StaticRiotApi.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Entry point for the static API.
@@ -186,7 +186,7 @@ namespace RiotSharp
                     RootDomain,
                     new List<string>
                         {
-                            string.Format("locale={0}", language), 
+                            string.Format("locale={0}", language),
                             championData == ChampionData.none
                                 ? string.Empty
                                 : string.Format("champData={0}", championData)

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RateLimitedRequester.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The rate limited requester.
@@ -168,8 +168,8 @@ namespace RiotSharp
         /// The <see cref="Task"/>.
         /// </returns>
         public async Task<string> CreateRequestAsync(
-            string relativeUrl, 
-            Region region, 
+            string relativeUrl,
+            Region region,
             List<string> addedArguments = null)
         {
             rootDomain = region + ".api.pvp.net";

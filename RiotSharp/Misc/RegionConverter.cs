@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegionConverter.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The region converter.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GameType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Type of the game.
@@ -16,12 +16,12 @@ namespace RiotSharp
         /// <summary>
         /// Custom games.
         /// </summary>
-        CustomGame, 
+        CustomGame,
 
         /// <summary>
         /// Neither tutorial nor custom games
         /// </summary>
-        MatchedGame, 
+        MatchedGame,
 
         /// <summary>
         /// Tutorial games.

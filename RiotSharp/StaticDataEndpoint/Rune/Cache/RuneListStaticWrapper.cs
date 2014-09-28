@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RuneListStaticWrapper.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The rune list static wrapper.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ChampionStats.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Stats for all champions (Stats API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Incident.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing an incident inside a service (Status API).

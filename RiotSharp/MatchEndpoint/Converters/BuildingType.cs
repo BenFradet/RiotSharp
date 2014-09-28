@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BuildingType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Building type (Match API).
@@ -16,7 +16,7 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Inhibitors.
         /// </summary>
-        InhibitorBuilding, 
+        InhibitorBuilding,
 
         /// <summary>
         /// Towers.

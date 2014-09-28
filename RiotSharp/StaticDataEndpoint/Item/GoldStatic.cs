@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GoldStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing an item's value (Static API).

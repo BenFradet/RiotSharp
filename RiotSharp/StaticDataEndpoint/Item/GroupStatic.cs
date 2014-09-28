@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GroupStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing an item's group (Static API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Summoner.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a Summoner in the API.
@@ -23,7 +23,7 @@ namespace RiotSharp.SummonerEndpoint
         /// Initializes a new instance of the <see cref="Summoner"/> class.
         /// </summary>
         internal Summoner()
-        { 
+        {
         }
 
         /// <summary>

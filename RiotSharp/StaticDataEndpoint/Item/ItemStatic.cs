@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ItemStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing an item (Static API).

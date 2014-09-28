@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SummonerSpellStaticWrapper.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The summoner spell static wrapper.

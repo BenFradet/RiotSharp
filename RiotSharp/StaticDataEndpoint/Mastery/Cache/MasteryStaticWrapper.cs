@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MasteryStaticWrapper.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The mastery static wrapper.

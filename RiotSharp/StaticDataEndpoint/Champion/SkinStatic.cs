@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SkinStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a skin of a champion (Static API).

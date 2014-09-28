@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DataRequested.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Enum when requesting data for the Champion Static API.
@@ -17,72 +17,72 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// The none.
         /// </summary>
-        none, 
+        none,
 
         /// <summary>
         /// The all.
         /// </summary>
-        all, 
+        all,
 
         /// <summary>
         /// The image.
         /// </summary>
-        image, 
+        image,
 
         /// <summary>
         /// The skins.
         /// </summary>
-        skins, 
+        skins,
 
         /// <summary>
         /// The lore.
         /// </summary>
-        lore, 
+        lore,
 
         /// <summary>
         /// The blurb.
         /// </summary>
-        blurb, 
+        blurb,
 
         /// <summary>
         /// The allytips.
         /// </summary>
-        allytips, 
+        allytips,
 
         /// <summary>
         /// The enemytips.
         /// </summary>
-        enemytips, 
+        enemytips,
 
         /// <summary>
         /// The tags.
         /// </summary>
-        tags, 
+        tags,
 
         /// <summary>
         /// The partype.
         /// </summary>
-        partype, 
+        partype,
 
         /// <summary>
         /// The info.
         /// </summary>
-        info, 
+        info,
 
         /// <summary>
         /// The stats.
         /// </summary>
-        stats, 
+        stats,
 
         /// <summary>
         /// The spells.
         /// </summary>
-        spells, 
+        spells,
 
         /// <summary>
         /// The passive.
         /// </summary>
-        passive, 
+        passive,
 
         /// <summary>
         /// The recommended.
@@ -98,42 +98,42 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// The none.
         /// </summary>
-        none, 
+        none,
 
         /// <summary>
         /// The all.
         /// </summary>
-        all, 
+        all,
 
         /// <summary>
         /// The description.
         /// </summary>
-        description, 
+        description,
 
         /// <summary>
         /// The colloq.
         /// </summary>
-        colloq, 
+        colloq,
 
         /// <summary>
         /// The into.
         /// </summary>
-        into, 
+        into,
 
         /// <summary>
         /// The image.
         /// </summary>
-        image, 
+        image,
 
         /// <summary>
         /// The gold.
         /// </summary>
-        gold, 
+        gold,
 
         /// <summary>
         /// The tags.
         /// </summary>
-        tags, 
+        tags,
 
         /// <summary>
         /// The stats.
@@ -149,22 +149,22 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// The none.
         /// </summary>
-        none, 
+        none,
 
         /// <summary>
         /// The all.
         /// </summary>
-        all, 
+        all,
 
         /// <summary>
         /// The ranks.
         /// </summary>
-        ranks, 
+        ranks,
 
         /// <summary>
         /// The prereq.
         /// </summary>
-        prereq, 
+        prereq,
 
         /// <summary>
         /// The image.
@@ -180,32 +180,32 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// The none.
         /// </summary>
-        none, 
+        none,
 
         /// <summary>
         /// The all.
         /// </summary>
-        all, 
+        all,
 
         /// <summary>
         /// The image.
         /// </summary>
-        image, 
+        image,
 
         /// <summary>
         /// The stats.
         /// </summary>
-        stats, 
+        stats,
 
         /// <summary>
         /// The tags.
         /// </summary>
-        tags, 
+        tags,
 
         /// <summary>
         /// The colloq.
         /// </summary>
-        colloq, 
+        colloq,
 
         /// <summary>
         /// The plaintext.
@@ -221,87 +221,87 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// The none.
         /// </summary>
-        none, 
+        none,
 
         /// <summary>
         /// The all.
         /// </summary>
-        all, 
+        all,
 
         /// <summary>
         /// The key.
         /// </summary>
-        key, 
+        key,
 
         /// <summary>
         /// The image.
         /// </summary>
-        image, 
+        image,
 
         /// <summary>
         /// The tooltip.
         /// </summary>
-        tooltip, 
+        tooltip,
 
         /// <summary>
         /// The resource.
         /// </summary>
-        resource, 
+        resource,
 
         /// <summary>
         /// The maxrank.
         /// </summary>
-        maxrank, 
+        maxrank,
 
         /// <summary>
         /// The modes.
         /// </summary>
-        modes, 
+        modes,
 
         /// <summary>
         /// The cost type.
         /// </summary>
-        costType, 
+        costType,
 
         /// <summary>
         /// The cost.
         /// </summary>
-        cost, 
+        cost,
 
         /// <summary>
         /// The cost burn.
         /// </summary>
-        costBurn, 
+        costBurn,
 
         /// <summary>
         /// The range.
         /// </summary>
-        range, 
+        range,
 
         /// <summary>
         /// The range burn.
         /// </summary>
-        rangeBurn, 
+        rangeBurn,
 
         /// <summary>
         /// The effect.
         /// </summary>
-        effect, 
+        effect,
 
         /// <summary>
         /// The effect burn.
         /// </summary>
-        effectBurn, 
+        effectBurn,
 
         /// <summary>
         /// The cooldown.
         /// </summary>
-        cooldown, 
+        cooldown,
 
         /// <summary>
         /// The cooldown burn.
         /// </summary>
-        cooldownBurn, 
+        cooldownBurn,
 
         /// <summary>
         /// The vars.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Service.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a service (Status API).

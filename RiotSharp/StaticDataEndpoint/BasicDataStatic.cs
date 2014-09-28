@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BasicDataStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing some information about the items retrieved (Static API).

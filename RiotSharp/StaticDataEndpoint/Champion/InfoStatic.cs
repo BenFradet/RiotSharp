@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="InfoStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Basic information for a champion (Static API).

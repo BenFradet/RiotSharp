@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="League.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a League in the API.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ChampionStat.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Stat of a particular champion (League API).

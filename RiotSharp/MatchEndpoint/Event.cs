@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Event.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a particular event during a match (Match API).

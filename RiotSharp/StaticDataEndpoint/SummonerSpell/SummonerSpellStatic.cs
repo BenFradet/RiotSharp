@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SummonerSpellStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a summoner spell (Static API).

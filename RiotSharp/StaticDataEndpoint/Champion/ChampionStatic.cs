@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ChampionStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a champion (Static API).

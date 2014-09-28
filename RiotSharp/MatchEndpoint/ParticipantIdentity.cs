@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParticipantIdentity.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a participant's identity in a match (Match API).

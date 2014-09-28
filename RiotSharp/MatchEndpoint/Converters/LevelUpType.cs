@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LevelUpType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Type of level up (Match API).
@@ -16,7 +16,7 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// When leveling up involves evolving (notably Kha'zix).
         /// </summary>
-        Evolve, 
+        Evolve,
 
         /// <summary>
         /// Normal leveling up.

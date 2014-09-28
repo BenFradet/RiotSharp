@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Champion.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a Champion in the API.

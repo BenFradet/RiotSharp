@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StaticRiotApiExceptionTest.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The static riot api exception test.

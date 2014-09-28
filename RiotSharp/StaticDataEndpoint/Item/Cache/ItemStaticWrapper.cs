@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ItemStaticWrapper.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The item static wrapper.

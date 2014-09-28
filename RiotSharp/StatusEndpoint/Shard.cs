@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Shard.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a shard (Status API).

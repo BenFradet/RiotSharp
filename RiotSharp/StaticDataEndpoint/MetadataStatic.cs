@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MetadataStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing metadata on runes and items (Static API).

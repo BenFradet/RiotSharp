@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ItemTreeStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing an item tree in the shop (Static API).

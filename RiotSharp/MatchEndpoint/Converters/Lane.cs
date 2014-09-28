@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Lane.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Participant's lane (Match API).
@@ -16,27 +16,27 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Corresponds to mid lane.
         /// </summary>
-        Mid, 
+        Mid,
 
         /// <summary>
         /// Corresponds to mid lane.
         /// </summary>
-        Middle, 
+        Middle,
 
         /// <summary>
         /// Corresponds to top lane.
         /// </summary>
-        Top, 
+        Top,
 
         /// <summary>
         /// Corresponds to jungle.
         /// </summary>
-        Jungle, 
+        Jungle,
 
         /// <summary>
         /// Corresponds to bot lane.
         /// </summary>
-        Bot, 
+        Bot,
 
         /// <summary>
         /// Corresponds to bot lane.

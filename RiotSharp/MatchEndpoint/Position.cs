@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Position.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Participant's position (Match API).

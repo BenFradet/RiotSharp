@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TimeSpanConverterFromMS.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The time span converter from ms.

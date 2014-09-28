@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PassiveStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a champion's passive (Static API).

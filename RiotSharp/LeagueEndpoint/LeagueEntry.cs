@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LeagueEntry.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Team or summoner in a league (League API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Translation.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a translation of a message (Status API).

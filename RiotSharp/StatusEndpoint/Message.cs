@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Message.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing messages for an incident (Status API).

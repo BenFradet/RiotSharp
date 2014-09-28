@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Rune.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a rune of a participant (Match API).

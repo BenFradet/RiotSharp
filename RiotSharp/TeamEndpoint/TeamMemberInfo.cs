@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TeamMemberInfo.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Information about team members (Team API).

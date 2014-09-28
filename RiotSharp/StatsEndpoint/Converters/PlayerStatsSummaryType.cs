@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PlayerStatsSummaryType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Type of player stats (Stats API).
@@ -16,97 +16,97 @@ namespace RiotSharp.StatsEndpoint
         /// <summary>
         /// The aram unranked 5 x 5.
         /// </summary>
-        AramUnranked5x5, 
+        AramUnranked5x5,
 
         /// <summary>
         /// The ca p 5 x 5.
         /// </summary>
-        CAP5x5, 
+        CAP5x5,
 
         /// <summary>
         /// The coop vs ai.
         /// </summary>
-        CoopVsAI, 
+        CoopVsAI,
 
         /// <summary>
         /// The coop vs a i 3 x 3.
         /// </summary>
-        CoopVsAI3x3, 
+        CoopVsAI3x3,
 
         /// <summary>
         /// The odin unranked.
         /// </summary>
-        OdinUnranked, 
+        OdinUnranked,
 
         /// <summary>
         /// The ranked premade 3 x 3.
         /// </summary>
-        RankedPremade3x3, 
+        RankedPremade3x3,
 
         /// <summary>
         /// The ranked premade 5 x 5.
         /// </summary>
-        RankedPremade5x5, 
+        RankedPremade5x5,
 
         /// <summary>
         /// The ranked solo 5 x 5.
         /// </summary>
-        RankedSolo5x5, 
+        RankedSolo5x5,
 
         /// <summary>
         /// The ranked team 3 x 3.
         /// </summary>
-        RankedTeam3x3, 
+        RankedTeam3x3,
 
         /// <summary>
         /// The ranked team 5 x 5.
         /// </summary>
-        RankedTeam5x5, 
+        RankedTeam5x5,
 
         /// <summary>
         /// The unranked.
         /// </summary>
-        Unranked, 
+        Unranked,
 
         /// <summary>
         /// The unranked 3 x 3.
         /// </summary>
-        Unranked3x3, 
+        Unranked3x3,
 
         /// <summary>
         /// The one for all 5 x 5.
         /// </summary>
-        OneForAll5x5, 
+        OneForAll5x5,
 
         /// <summary>
         /// The first blood 1 x 1.
         /// </summary>
-        FirstBlood1x1, 
+        FirstBlood1x1,
 
         /// <summary>
         /// The first blood 2 x 2.
         /// </summary>
-        FirstBlood2x2, 
+        FirstBlood2x2,
 
         /// <summary>
         /// The summoners rift 6 x 6.
         /// </summary>
-        SummonersRift6x6, 
+        SummonersRift6x6,
 
         /// <summary>
         /// The urf.
         /// </summary>
-        URF, 
+        URF,
 
         /// <summary>
         /// The urf bots.
         /// </summary>
-        URFBots, 
+        URFBots,
 
         /// <summary>
         /// The nightmare bot.
         /// </summary>
-        NightmareBot, 
+        NightmareBot,
 
         /// <summary>
         /// The ascension.

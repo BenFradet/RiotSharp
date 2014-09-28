@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TagStaticConverter.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The tag static converter.

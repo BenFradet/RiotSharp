@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ItemListStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a list of items (Static API).

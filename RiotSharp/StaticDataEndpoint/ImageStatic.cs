@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ImageStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing an image (Static API).

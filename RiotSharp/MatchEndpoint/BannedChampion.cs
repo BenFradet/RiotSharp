@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BannedChampion.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a banned champion (Game API).

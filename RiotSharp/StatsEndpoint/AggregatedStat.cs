@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AggregatedStat.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   AggregatedStat (Stats API).

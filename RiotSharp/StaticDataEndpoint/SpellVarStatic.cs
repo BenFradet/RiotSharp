@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SpellVarStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing various information about a summoner spell (Static API).

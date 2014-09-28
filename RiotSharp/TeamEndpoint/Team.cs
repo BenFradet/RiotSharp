@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Team.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a Team in the API.

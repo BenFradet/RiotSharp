@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GameMode.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Mode of the game (Game API).
@@ -16,32 +16,32 @@ namespace RiotSharp
         /// <summary>
         /// Classic Summoner's Rift and Twisted Treeline games.
         /// </summary>
-        Classic, 
+        Classic,
 
         /// <summary>
         /// Dominion/Crystal Scar games.
         /// </summary>
-        Dominion, 
+        Dominion,
 
         /// <summary>
         /// ARAM games.
         /// </summary>
-        Aram, 
+        Aram,
 
         /// <summary>
         /// Tutorial games.
         /// </summary>
-        Tutorial, 
+        Tutorial,
 
         /// <summary>
         /// One for All games.
         /// </summary>
-        OneForAll, 
+        OneForAll,
 
         /// <summary>
         /// Snowdown Showdown games.
         /// </summary>
-        FirstBlood, 
+        FirstBlood,
 
         /// <summary>
         /// Ascension mode games.

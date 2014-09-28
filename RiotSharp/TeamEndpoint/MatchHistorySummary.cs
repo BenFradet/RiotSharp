@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MatchHistorySummary.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Summary of the match history of the team (Team API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TowerType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Type of tower (Match API).
@@ -16,22 +16,22 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Represents inhibitor turrets.
         /// </summary>
-        BaseTurret, 
+        BaseTurret,
 
         /// <summary>
         /// Represents inner turrets.
         /// </summary>
-        InnerTurret, 
+        InnerTurret,
 
         /// <summary>
         /// Represents nexus turrets.
         /// </summary>
-        NexusTurret, 
+        NexusTurret,
 
         /// <summary>
         /// Represents outer turrets.
         /// </summary>
-        OuterTurret, 
+        OuterTurret,
 
         /// <summary>
         /// Undefined turrets?

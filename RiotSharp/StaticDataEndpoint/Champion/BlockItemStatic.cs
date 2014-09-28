@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BlockItemStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Recommended items in a block (starting, essential, offensive, etc) for a champion (Static API).

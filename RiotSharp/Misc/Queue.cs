@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Queue.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Queue of the league (League API).
@@ -16,12 +16,12 @@ namespace RiotSharp
         /// <summary>
         /// Solo queue 5 vs 5.
         /// </summary>
-        RankedSolo5x5, 
+        RankedSolo5x5,
 
         /// <summary>
         /// Team 3 vs 3.
         /// </summary>
-        RankedTeam3x3, 
+        RankedTeam3x3,
 
         /// <summary>
         /// Team 5 vs 5.

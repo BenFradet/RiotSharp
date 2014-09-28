@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SummonerBase.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing the name and id of a Summoner in the API.

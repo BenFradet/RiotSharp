@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParticipantTimeline.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a participant's timeline (Match API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MiniSeries.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   LeagueEntry has entered a MiniSeries (League API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StatusRiotApi.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Entry point for the status API.

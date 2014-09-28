@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParticipantFrame.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a particular frame for a participant during a match (Match API).

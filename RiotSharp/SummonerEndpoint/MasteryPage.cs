@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MasteryPage.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Mastery page (Summoner API).

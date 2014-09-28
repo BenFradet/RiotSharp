@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ChampionListStaticWrapper.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The champion list static wrapper.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GameSubType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Game subtype of the game (Game API).
@@ -17,102 +17,102 @@ namespace RiotSharp.GameEndpoint
         /// <summary>
         /// Custom games.
         /// </summary>
-        None, 
+        None,
 
         /// <summary>
         /// Summoner's Rift unranked games.
         /// </summary>
-        Normal, 
+        Normal,
 
         /// <summary>
         /// Summoner's Rift and Crystal Scar games played against AI.
         /// </summary>
-        Bot, 
+        Bot,
 
         /// <summary>
         /// Summoner's Rift ranked solo queue games.
         /// </summary>
-        RankedSolo5x5, 
+        RankedSolo5x5,
 
         /// <summary>
         /// Twisted treeline ranked premade games.
         /// </summary>
-        RankedPremade3x3, 
+        RankedPremade3x3,
 
         /// <summary>
         /// Summoner's rift ranked premade games.
         /// </summary>
-        RankedPremade5x5, 
+        RankedPremade5x5,
 
         /// <summary>
         /// Dominion/Crystal Scar games.
         /// </summary>
-        OdinUnranked, 
+        OdinUnranked,
 
         /// <summary>
         /// Twisted Treeline ranked team games.
         /// </summary>
-        RankedTeam3x3, 
+        RankedTeam3x3,
 
         /// <summary>
         /// Summoner's Rift ranked team games.
         /// </summary>
-        RankedTeam5x5, 
+        RankedTeam5x5,
 
         /// <summary>
         /// Twisted Treeline unranked games.
         /// </summary>
-        Normal3x3, 
+        Normal3x3,
 
         /// <summary>
         /// Twisted Treeline games played against AI.
         /// </summary>
-        Bot3x3, 
+        Bot3x3,
 
         /// <summary>
         /// ARAM/Howling Abyss games.
         /// </summary>
-        AramUnranked5x5, 
+        AramUnranked5x5,
 
         /// <summary>
         /// One for All games.
         /// </summary>
-        OneForAll5x5, 
+        OneForAll5x5,
 
         /// <summary>
         /// Snowdown Showdown 1x1 games.
         /// </summary>
-        FirstBlood1x1, 
+        FirstBlood1x1,
 
         /// <summary>
         /// Snowdown Showdown 2x2 games.
         /// </summary>
-        FirstBlood2x2, 
+        FirstBlood2x2,
 
         /// <summary>
         /// Hexakill games
         /// </summary>
-        Hexakill, 
+        Hexakill,
 
         /// <summary>
         /// Team Builder games
         /// </summary>
-        TeamBuilder5x5, 
+        TeamBuilder5x5,
 
         /// <summary>
         /// URF games
         /// </summary>
-        URF, 
+        URF,
 
         /// <summary>
         /// URF Bots games
         /// </summary>
-        URF_BOT, 
+        URF_BOT,
 
         /// <summary>
         /// Nightmare bots games.
         /// </summary>
-        NightmareBot, 
+        NightmareBot,
 
         /// <summary>
         /// Ascension mode games.

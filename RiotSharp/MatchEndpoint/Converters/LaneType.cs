@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LaneType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Lane's type (Match API).
@@ -16,12 +16,12 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Corresponds to the bot lane.
         /// </summary>
-        BotLane, 
+        BotLane,
 
         /// <summary>
         /// Corresponds to the mid lane.
         /// </summary>
-        MidLane, 
+        MidLane,
 
         /// <summary>
         /// Corresponds to the top lane.

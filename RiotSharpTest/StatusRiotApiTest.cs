@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StatusRiotApiTest.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The status riot api test.

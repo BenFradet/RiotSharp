@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RuneListStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a list of runes (Static API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Realm.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a realm (Static API).

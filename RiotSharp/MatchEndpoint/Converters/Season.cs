@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Season.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Season (Match API).
@@ -16,17 +16,17 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Pre season 3.
         /// </summary>
-        PreSeason3, 
+        PreSeason3,
 
         /// <summary>
         /// Season 3.
         /// </summary>
-        Season3, 
+        Season3,
 
         /// <summary>
         /// Pre season 2014.
         /// </summary>
-        PreSeason2014, 
+        PreSeason2014,
 
         /// <summary>
         /// Season 2014

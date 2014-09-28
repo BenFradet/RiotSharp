@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParticipantTimelineData.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class holding timeline values (Match API).

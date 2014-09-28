@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Region.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Region for the API.
@@ -16,47 +16,47 @@ namespace RiotSharp
         /// <summary>
         /// Brasil.
         /// </summary>
-        br, 
+        br,
 
         /// <summary>
         /// North-eastern europe.
         /// </summary>
-        eune, 
+        eune,
 
         /// <summary>
         /// Western europe.
         /// </summary>
-        euw, 
+        euw,
 
         /// <summary>
         /// North america.
         /// </summary>
-        na, 
+        na,
 
         /// <summary>
         /// South korea.
         /// </summary>
-        kr, 
+        kr,
 
         /// <summary>
         /// Latin America North.
         /// </summary>
-        lan, 
+        lan,
 
         /// <summary>
         /// Latin America South.
         /// </summary>
-        las, 
+        las,
 
         /// <summary>
         /// Oceania.
         /// </summary>
-        oce, 
+        oce,
 
         /// <summary>
         /// Russia.
         /// </summary>
-        ru, 
+        ru,
 
         /// <summary>
         /// Turkey.

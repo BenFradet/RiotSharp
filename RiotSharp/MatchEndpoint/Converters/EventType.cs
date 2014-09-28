@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EventType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Event's type (Match API).
@@ -16,57 +16,57 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Ascended event.
         /// </summary>
-        AscendedEvent, 
+        AscendedEvent,
 
         /// <summary>
         /// Triggers on building kills.
         /// </summary>
-        BuildingKill, 
+        BuildingKill,
 
         /// <summary>
         /// Triggers on captured point in dominion games.
         /// </summary>
-        CapturePoint, 
+        CapturePoint,
 
         /// <summary>
         /// Triggers on champion kills.
         /// </summary>
-        ChampionKill, 
+        ChampionKill,
 
         /// <summary>
         /// Triggers on Nashor or Dragon kills.
         /// </summary>
-        EliteMonsterKill, 
+        EliteMonsterKill,
 
         /// <summary>
         /// Triggers on item destructions.
         /// </summary>
-        ItemDestroyed, 
+        ItemDestroyed,
 
         /// <summary>
         /// Triggers on item purchases.
         /// </summary>
-        ItemPurchased, 
+        ItemPurchased,
 
         /// <summary>
         /// Triggers on item sells.
         /// </summary>
-        ItemSold, 
+        ItemSold,
 
         /// <summary>
         /// Triggers on undo item purchases.
         /// </summary>
-        ItemUndo, 
+        ItemUndo,
 
         /// <summary>
         /// Triggers on skill level ups.
         /// </summary>
-        SkillLevelUp, 
+        SkillLevelUp,
 
         /// <summary>
         /// Triggers on ward kills.
         /// </summary>
-        WardKill, 
+        WardKill,
 
         /// <summary>
         /// Triggers on ward placements.

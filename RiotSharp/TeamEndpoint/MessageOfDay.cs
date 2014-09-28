@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MessageOfDay.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Message of the day of the team (Team API).

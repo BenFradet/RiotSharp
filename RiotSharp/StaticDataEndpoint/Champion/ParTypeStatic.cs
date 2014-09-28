@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParTypeStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Enum representing a champion's resource.
@@ -16,57 +16,57 @@ namespace RiotSharp.StaticDataEndpoint
         /// <summary>
         /// BloodWell (Aatrox).
         /// </summary>
-        BloodWell, 
+        BloodWell,
 
         /// <summary>
         /// Battlefury (Tryndamere).
         /// </summary>
-        Battlefury, 
+        Battlefury,
 
         /// <summary>
         /// Dragonfury (Shyvana).
         /// </summary>
-        Dragonfury, 
+        Dragonfury,
 
         /// <summary>
         /// Energy (Shen, Kennen, etc).
         /// </summary>
-        Energy, 
+        Energy,
 
         /// <summary>
         /// Ferocity (Rengar).
         /// </summary>
-        Ferocity, 
+        Ferocity,
 
         /// <summary>
         /// Gnarfury (Gnar).
         /// </summary>
-        Gnarfury, 
+        Gnarfury,
 
         /// <summary>
         /// Heat (Rumble).
         /// </summary>
-        Heat, 
+        Heat,
 
         /// <summary>
         /// Mana.
         /// </summary>
-        Mana, 
+        Mana,
 
         /// <summary>
         /// None (Vladimir, Zac, Mundo, etc).
         /// </summary>
-        None, 
+        None,
 
         /// <summary>
         /// Rage (Renekton).
         /// </summary>
-        Rage, 
+        Rage,
 
         /// <summary>
         /// Shield (Mordekaiser).
         /// </summary>
-        Shield, 
+        Shield,
 
         /// <summary>
         /// Wind (Yasuo).

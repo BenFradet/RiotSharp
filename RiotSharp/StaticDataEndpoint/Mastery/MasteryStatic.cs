@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MasteryStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a mastery (Static API).

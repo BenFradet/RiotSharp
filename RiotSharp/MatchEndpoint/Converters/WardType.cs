@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="WardType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Type of the ward (Match API).
@@ -16,27 +16,27 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Corresponds to green wards.
         /// </summary>
-        SightWard, 
+        SightWard,
 
         /// <summary>
         /// Corresponds to Teemo's mushrooms.
         /// </summary>
-        TeemoMushroom, 
+        TeemoMushroom,
 
         /// <summary>
         /// Undefined.
         /// </summary>
-        Undefined, 
+        Undefined,
 
         /// <summary>
         /// Corresponds to pink wards.
         /// </summary>
-        VisionWard, 
+        VisionWard,
 
         /// <summary>
         /// Corresponds to warding totems.
         /// </summary>
-        YellowTrinket, 
+        YellowTrinket,
 
         /// <summary>
         /// Corresponds to upgraded warding totems.

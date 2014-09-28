@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Frame.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a frame in a match (Match API).

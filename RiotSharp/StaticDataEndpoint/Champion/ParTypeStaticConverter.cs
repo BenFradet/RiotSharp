@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParTypeStaticConverter.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The par type static converter.

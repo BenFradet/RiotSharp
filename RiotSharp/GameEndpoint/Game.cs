@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Game.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a Game in the API.

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RiotSharpException.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   RiotSharp exception.

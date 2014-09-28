@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DateTimeConverterFromString.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The date time converter from string.
@@ -52,7 +52,7 @@ namespace RiotSharp
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, 
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);

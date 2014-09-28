@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RecommendedStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a recommended item for a champion (Static API).

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="CapturePoint.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a capture point in a dominion game (Match API).
@@ -16,22 +16,22 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Point A.
         /// </summary>
-        PointA, 
+        PointA,
 
         /// <summary>
         /// Point B.
         /// </summary>
-        PointB, 
+        PointB,
 
         /// <summary>
         /// Point C.
         /// </summary>
-        PointC, 
+        PointC,
 
         /// <summary>
         /// Point D.
         /// </summary>
-        PointD, 
+        PointD,
 
         /// <summary>
         /// Point E.

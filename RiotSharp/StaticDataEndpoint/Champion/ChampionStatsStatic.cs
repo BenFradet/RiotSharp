@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ChampionStatsStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   A few statistics of a champion (Static API).

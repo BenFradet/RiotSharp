@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MasteryTreeItemStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing a mastery tree item or talent (Static API).

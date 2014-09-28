@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StatsStatic.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Class representing stats (Static API).

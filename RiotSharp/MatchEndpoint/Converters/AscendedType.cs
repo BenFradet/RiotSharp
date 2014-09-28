@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AscendedType.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Ascended type.
@@ -16,12 +16,12 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Champion ascended.
         /// </summary>
-        ChampionAscended, 
+        ChampionAscended,
 
         /// <summary>
         /// Clear ascended.
         /// </summary>
-        ClearAscended, 
+        ClearAscended,
 
         /// <summary>
         /// Minion ascended.

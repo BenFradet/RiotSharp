@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="CapturePointConverter.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The capture point converter.
@@ -51,7 +51,7 @@ namespace RiotSharp.MatchEndpoint
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, 
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
