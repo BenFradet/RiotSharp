@@ -86,7 +86,7 @@ namespace RiotSharp.StaticDataEndpoint
         public ImageStatic Image { get; set; }
 
         /// <summary>
-        ///  String identifying a spell (champion's name + key to activate the spell, example: "AatroxQ".
+        /// String identifying a spell (champion's name + key to activate the spell, example: "AatroxQ".
         /// </summary>
         [JsonProperty("key")]
         public string Key { get; set; }
