@@ -23,7 +23,9 @@ namespace RiotSharp.StatusEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="Shard"/> class.
         /// </summary>
-        internal Shard() { }
+        internal Shard()
+        {   
+        }
 
         /// <summary>
         /// Hostname of the shard.
