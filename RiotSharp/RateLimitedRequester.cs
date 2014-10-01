@@ -90,16 +90,13 @@ namespace RiotSharp
         /// <param name="addedArguments">
         /// The added arguments.
         /// </param>
-        /// <param name="useSsl">
-        /// The use Ssl.
-        /// </param>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null, bool useSsl = true)
+        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useSsl);
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             semaphore.Wait();
             {
@@ -167,20 +164,16 @@ namespace RiotSharp
         /// <param name="addedArguments">
         /// The added arguments.
         /// </param>
-        /// <param name="useSsl">
-        /// The use Ssl.
-        /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         public async Task<string> CreateRequestAsync(
             string relativeUrl,
             Region region,
-            List<string> addedArguments = null,
-            bool useSsl = true)
+            List<string> addedArguments = null)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useSsl);
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             await semaphore.WaitAsync();
             {

@@ -3,4 +3,3 @@ obj/
 *.suo
 /TestResults
 *.nupkg
-*.Cache

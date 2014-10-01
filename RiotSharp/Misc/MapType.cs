@@ -14,17 +14,17 @@ namespace RiotSharp
     public enum MapType
     {
         /// <summary>
-        /// Summoner's Rift Summer Variant
+        ///  Summoner's Rift Summer Variant
         /// </summary>
         SummonersRiftSummerVariant = 1,
 
         /// <summary>
-        /// Summoner's Rift Autumn Variant
+        ///  Summoner's Rift Autumn Variant
         /// </summary>
         SummonersRiftAutumnVariant = 2,
 
         /// <summary>
-        /// The Proving Grounds Tutorial Map
+        ///  The Proving Grounds Tutorial Map
         /// </summary>
         TheProvingGrounds = 3,
 

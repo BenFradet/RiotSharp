@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StatusRiotApi.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Entry point for the status API.
@@ -69,7 +69,7 @@ namespace RiotSharp
         /// <returns>A list of shards.</returns>
         public List<Shard> GetShards()
         {
-            var json = requester.CreateRequest(StatusRootUrl, RootDomain, useSsl: false);
+            var json = requester.CreateRequest(StatusRootUrl, RootDomain);
             return JsonConvert.DeserializeObject<List<Shard>>(json);
         }
 
@@ -79,7 +79,7 @@ namespace RiotSharp
         /// <returns>A list of shards.</returns>
         public async Task<List<Shard>> GetShardsAsync()
         {
-            var json = await requester.CreateRequestAsync(StatusRootUrl, RootDomain, useSsl: false);
+            var json = await requester.CreateRequestAsync(StatusRootUrl, RootDomain);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Shard>>(json));
         }
 
@@ -96,7 +96,7 @@ namespace RiotSharp
         public ShardStatus GetShardStatus(Region region)
         {
             var json =
-                requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region), RootDomain, useSsl: false);
+                requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region), RootDomain);
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
@@ -113,7 +113,7 @@ namespace RiotSharp
         public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
             var json = await
-                requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region), RootDomain, useSsl: false);
+                requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region), RootDomain);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
     }
