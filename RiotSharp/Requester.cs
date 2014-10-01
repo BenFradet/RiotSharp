@@ -64,13 +64,16 @@ namespace RiotSharp
         /// <param name="addedArguments">
         /// The added arguments.
         /// </param>
+        /// <param name="useSsl">
+        /// The use Ssl.
+        /// </param>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
+        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null, bool useSsl = true)
         {
             this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments);
+            var request = PrepareRequest(relativeUrl, addedArguments, useSsl);
             return GetResponse(request);
         }
 
@@ -86,16 +89,20 @@ namespace RiotSharp
         /// <param name="addedArguments">
         /// The added arguments.
         /// </param>
+        /// <param name="useSsl">
+        /// The use Ssl.
+        /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         public async Task<string> CreateRequestAsync(
             string relativeUrl,
             string rootDomain,
-            List<string> addedArguments = null)
+            List<string> addedArguments = null,
+            bool useSsl = true)
         {
             this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments);
+            var request = PrepareRequest(relativeUrl, addedArguments, useSsl);
             return await GetResponseAsync(request);
         }
 
@@ -108,17 +115,23 @@ namespace RiotSharp
         /// <param name="addedArguments">
         /// The added arguments.
         /// </param>
+        /// <param name="useSsl">
+        /// The use Ssl.
+        /// </param>
         /// <returns>
         /// The <see cref="HttpWebRequest"/>.
         /// </returns>
-        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments)
+        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useSsl)
         {
             HttpWebRequest request;
+
+            var protocol = useSsl ? "https" : "http";
+
             if (addedArguments == null)
             {
                 request =
                     (HttpWebRequest)
-                    WebRequest.Create(string.Format("http://{0}{1}?api_key={2}", rootDomain, relativeUrl, ApiKey));
+                    WebRequest.Create(string.Format(protocol + "://{0}{1}?api_key={2}", rootDomain, relativeUrl, ApiKey));
             }
             else
             {
@@ -126,7 +139,8 @@ namespace RiotSharp
                     (HttpWebRequest)
                     WebRequest.Create(
                         string.Format(
-                            "http://{0}{1}?{2}api_key={3}",
+                            protocol +
+                            "://{0}{1}?{2}api_key={3}",
                             rootDomain,
                             relativeUrl,
                             BuildArgumentsString(addedArguments),

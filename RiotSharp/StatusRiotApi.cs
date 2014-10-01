@@ -69,7 +69,7 @@ namespace RiotSharp
         /// <returns>A list of shards.</returns>
         public List<Shard> GetShards()
         {
-            var json = requester.CreateRequest(StatusRootUrl, RootDomain);
+            var json = requester.CreateRequest(StatusRootUrl, RootDomain, useSsl: false);
             return JsonConvert.DeserializeObject<List<Shard>>(json);
         }
 
@@ -79,7 +79,7 @@ namespace RiotSharp
         /// <returns>A list of shards.</returns>
         public async Task<List<Shard>> GetShardsAsync()
         {
-            var json = await requester.CreateRequestAsync(StatusRootUrl, RootDomain);
+            var json = await requester.CreateRequestAsync(StatusRootUrl, RootDomain, useSsl: false);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Shard>>(json));
         }
 
@@ -96,7 +96,7 @@ namespace RiotSharp
         public ShardStatus GetShardStatus(Region region)
         {
             var json =
-                requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region), RootDomain);
+                requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region), RootDomain, useSsl: false);
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
@@ -113,7 +113,7 @@ namespace RiotSharp
         public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
             var json = await
-                requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region), RootDomain);
+                requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region), RootDomain, useSsl: false);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
     }
