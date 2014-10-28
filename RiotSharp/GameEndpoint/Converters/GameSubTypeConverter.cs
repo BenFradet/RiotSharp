@@ -91,7 +91,7 @@ namespace RiotSharp.GameEndpoint
                     result = "FIRSTBLOOD_2x2";
                     break;
                 case GameSubType.Hexakill:
-                    result = "SR_6x6";
+                    result = "HEXAKILL";
                     break;
                 case GameSubType.None:
                     result = "NONE";
