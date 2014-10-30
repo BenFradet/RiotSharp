@@ -9,6 +9,7 @@
 
 using System;
 using System.Configuration;
+using System.Linq;
 using RiotSharp;
 
 namespace RiotSharpExample
@@ -35,6 +36,18 @@ namespace RiotSharpExample
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
+
+            var sum = api.GetSummoner(Region.euw, id);
+            var leagues = sum.GetEntireLeagues();
+            var summaries = sum.GetStatsSummaries();
+
+            var summary = summaries.Where(summ => summ.PlayerStatSummaryType == RiotSharp.StatsEndpoint.PlayerStatsSummaryType.RankedSolo5x5)
+                .FirstOrDefault();
+
+            Console.WriteLine(summary.PlayerStatSummaryType);
+            Console.WriteLine(summary.Losses);
+            Console.WriteLine(summary.Wins);
+            Console.WriteLine();
 
             var shards = statusApi.GetShards();
 
