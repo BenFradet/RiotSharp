@@ -60,6 +60,8 @@ namespace RiotSharp.StatsEndpoint
                         return PlayerStatsSummaryType.NightmareBot;
                     case "Ascension":
                         return PlayerStatsSummaryType.Ascension;
+                    case "Hexakill":
+                        return PlayerStatsSummaryType.Hexakill;
                     default:
                         return null;
                 }
