@@ -24,12 +24,12 @@ namespace RiotSharp
         protected string rootDomain;
         public static string ApiKey { get; set; }
 
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
-        {
-            this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments);
-            return GetResponse(request);
-        }
+        //public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
+        //{
+        //    this.rootDomain = rootDomain;
+        //    var request = PrepareRequest(relativeUrl, addedArguments);
+        //    return GetResponse(request);
+        //}
 
         public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null)
