@@ -1,9 +1,8 @@
-﻿using System;
-using System.Configuration;
-using System.Globalization;
-using System.Linq;
+﻿using RiotSharp;
+using System;
 using System.Collections.Generic;
-using RiotSharp;
+using System.Configuration;
+using System.Linq;
 
 namespace RiotSharpExample
 {

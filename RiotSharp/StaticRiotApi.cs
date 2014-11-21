@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RiotSharp.StaticDataEndpoint;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RiotSharp
 {
@@ -350,7 +349,7 @@ namespace RiotSharp
                 else
                 {
                     var json = await requester.CreateRequestAsync(
-                        string.Format(ItemRootUrl, region.ToString())+ string.Format(IdUrl, itemId),
+                        string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
                         RootDomain,
                         new List<string>() {
                             string.Format("locale={0}", language.ToString()),
@@ -596,16 +595,16 @@ namespace RiotSharp
             Language language = Language.en_US)
         {
             var wrapper = Cache.Get<RuneStaticWrapper>(RuneCacheKey + runeId);
-            if(wrapper != null && wrapper.Language == language && wrapper.RuneData == RuneData.all)
+            if (wrapper != null && wrapper.Language == language && wrapper.RuneData == RuneData.all)
             {
                 return wrapper.RuneStatic;
             }
             else
             {
                 var listWrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
-                if(listWrapper != null && listWrapper.Language == language && listWrapper.RuneData == runeData)
+                if (listWrapper != null && listWrapper.Language == language && listWrapper.RuneData == runeData)
                 {
-                    if(listWrapper.RuneListStatic.Runes.ContainsKey(runeId))
+                    if (listWrapper.RuneListStatic.Runes.ContainsKey(runeId))
                     {
                         return listWrapper.RuneListStatic.Runes[runeId];
                     }

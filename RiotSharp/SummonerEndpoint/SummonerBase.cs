@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
+﻿using Newtonsoft.Json;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RiotSharp.SummonerEndpoint
 {
@@ -54,8 +53,8 @@ namespace RiotSharp.SummonerEndpoint
         {
             this.requester = requester;
             Region = region;
-            this.Name = name;
-            this.Id = long.Parse(id);
+            Name = name;
+            Id = long.Parse(id);
         }
 
         /// <summary>

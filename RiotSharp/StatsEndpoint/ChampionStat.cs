@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.StatsEndpoint
 {
@@ -9,7 +9,7 @@ namespace RiotSharp.StatsEndpoint
     [Serializable]
     public class ChampionStat : AggregatedStat
     {
-        internal ChampionStat() : base() { }
+        internal ChampionStat() { }
 
         /// <summary>
         /// Maximum number of deaths, only returned for ranked stats.

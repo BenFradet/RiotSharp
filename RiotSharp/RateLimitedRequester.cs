@@ -9,7 +9,7 @@ namespace RiotSharp
     class RateLimitedRequester : Requester
     {
         private static RateLimitedRequester instance;
-        private RateLimitedRequester() : base() { }
+        private RateLimitedRequester() { }
         public static new RateLimitedRequester Instance
         {
             get
@@ -27,14 +27,14 @@ namespace RiotSharp
 
         private DateTime firstRequestInLastTenS = DateTime.MinValue;
         private DateTime firstRequestInLastTenM = DateTime.MinValue;
-        private int numberOfRequestsInLastTenS = 0;
-        private int numberOfRequestInLastTenM = 0;
+        private int numberOfRequestsInLastTenS;
+        private int numberOfRequestInLastTenM;
 
         private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
         public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null)
         {
-            rootDomain = region.ToString() + ".api.pvp.net";
+            rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             semaphore.Wait();
@@ -53,13 +53,17 @@ namespace RiotSharp
 
                 if (numberOfRequestInLastTenM > RateLimitPer10M)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601) ;
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601)
+                    {
+                    }
                     numberOfRequestInLastTenM = 1;
                     firstRequestInLastTenM = DateTime.Now;
                 }
                 if (numberOfRequestsInLastTenS > RateLimitPer10S)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11) ;
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11)
+                    {
+                    }
                     numberOfRequestsInLastTenS = 1;
                     firstRequestInLastTenS = DateTime.Now;
                 }
@@ -83,7 +87,7 @@ namespace RiotSharp
         public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null)
         {
-            rootDomain = region.ToString() + ".api.pvp.net";
+            rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
 
             await semaphore.WaitAsync();
@@ -103,13 +107,17 @@ namespace RiotSharp
 
                 if (numberOfRequestInLastTenM > RateLimitPer10M)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601) ;
+                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601)
+                    {
+                    }
                     numberOfRequestInLastTenM = 1;
                     firstRequestInLastTenM = DateTime.Now;
                 }
                 if (numberOfRequestsInLastTenS > RateLimitPer10S)
                 {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11) ;
+                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11)
+                    {
+                    }
                     numberOfRequestsInLastTenS = 1;
                     firstRequestInLastTenS = DateTime.Now;
                 }

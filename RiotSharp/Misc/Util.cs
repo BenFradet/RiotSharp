@@ -23,7 +23,7 @@ namespace RiotSharp
             string concatenatedIds = string.Empty;
             for (int i = 0; i < ids.Count - 1; i++)
             {
-                concatenatedIds += ids[i].ToString() + ",";
+                concatenatedIds += ids[i] + ",";
             }
             return concatenatedIds + ids[ids.Count - 1];
         }

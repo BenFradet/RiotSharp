@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.SummonerEndpoint
 {
@@ -9,7 +9,7 @@ namespace RiotSharp.SummonerEndpoint
     [Serializable]
     public class Summoner : SummonerBase
     {
-        internal Summoner() : base() { }
+        internal Summoner() { }
 
         /// <summary>
         /// ID of the summoner icon associated with the summoner.

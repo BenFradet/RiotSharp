@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RiotSharp.StaticDataEndpoint
+﻿namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Enum when requesting data for the Champion Static API.
