@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RiotSharp.StatusEndpoint;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RiotSharp
 {
@@ -54,7 +54,7 @@ namespace RiotSharp
         public async Task<List<Shard>> GetShardsAsync()
         {
             var json = await requester.CreateRequestAsync(StatusRootUrl, RootDomain);
-            return await Task.Factory.StartNew<List<Shard>>(() => JsonConvert.DeserializeObject<List<Shard>>(json));
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Shard>>(json));
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace RiotSharp
         {
             var json = await
                 requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew<ShardStatus>(() => JsonConvert.DeserializeObject<ShardStatus>(json));
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
     }
 }

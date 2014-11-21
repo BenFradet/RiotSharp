@@ -78,7 +78,7 @@ namespace RiotSharp
                 var json = requester.CreateRequest(
                     string.Format(ChampionRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string> {
                         string.Format("locale={0}", language.ToString()),
                         championData == ChampionData.none ?
                         string.Empty :
@@ -86,7 +86,7 @@ namespace RiotSharp
                     });
                 var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
                 wrapper = new ChampionListStaticWrapper(champs, language, championData);
-                Cache.Add<ChampionListStaticWrapper>(ChampionsCacheKey, wrapper);
+                Cache.Add(ChampionsCacheKey, wrapper);
             }
             return wrapper.ChampionListStatic;
         }
@@ -107,7 +107,8 @@ namespace RiotSharp
                 var json = await requester.CreateRequestAsync(
                     string.Format(ChampionRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         championData == ChampionData.none ?
                         string.Empty :
@@ -116,7 +117,7 @@ namespace RiotSharp
                 var champs = await Task.Factory.StartNew(() =>
                     JsonConvert.DeserializeObject<ChampionListStatic>(json));
                 wrapper = new ChampionListStaticWrapper(champs, language, championData);
-                Cache.Add<ChampionListStaticWrapper>(ChampionsCacheKey, wrapper);
+                Cache.Add(ChampionsCacheKey, wrapper);
             }
             return wrapper.ChampionListStatic;
         }
@@ -150,14 +151,15 @@ namespace RiotSharp
                     var json = requester.CreateRequest(
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             championData == ChampionData.none ?
                             string.Empty :
                             string.Format("champData={0}", championData.ToString())
                         });
                     var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
-                    Cache.Add<ChampionStaticWrapper>(ChampionCacheKey + championId,
+                    Cache.Add(ChampionCacheKey + championId,
                         new ChampionStaticWrapper(champ, language, championData));
                     return champ;
                 }
@@ -193,15 +195,16 @@ namespace RiotSharp
                     var json = await requester.CreateRequestAsync(
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             championData == ChampionData.none ?
                             string.Empty :
                             string.Format("champData={0}", championData.ToString())
                         });
-                    var champ = await Task.Factory.StartNew<ChampionStatic>(() =>
+                    var champ = await Task.Factory.StartNew(() =>
                         JsonConvert.DeserializeObject<ChampionStatic>(json));
-                    Cache.Add<ChampionStaticWrapper>(ChampionCacheKey + championId,
+                    Cache.Add(ChampionCacheKey + championId,
                         new ChampionStaticWrapper(champ, language, championData));
                     return champ;
                 }
@@ -224,7 +227,8 @@ namespace RiotSharp
                 var json = requester.CreateRequest(
                     string.Format(ItemRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         itemData == ItemData.none ?
                         string.Empty :
@@ -232,7 +236,7 @@ namespace RiotSharp
                     });
                 var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
                 wrapper = new ItemListStaticWrapper(items, language, itemData);
-                Cache.Add<ItemListStaticWrapper>(ItemsCacheKey, wrapper);
+                Cache.Add(ItemsCacheKey, wrapper);
             }
             return wrapper.ItemListStatic;
         }
@@ -253,16 +257,17 @@ namespace RiotSharp
                 var json = await requester.CreateRequestAsync(
                     string.Format(ItemRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         itemData == ItemData.none ?
                         string.Empty :
                         string.Format("itemListData={0}", itemData.ToString())
                     });
-                var items = await Task.Factory.StartNew<ItemListStatic>(() =>
+                var items = await Task.Factory.StartNew(() =>
                     JsonConvert.DeserializeObject<ItemListStatic>(json));
                 wrapper = new ItemListStaticWrapper(items, language, itemData);
-                Cache.Add<ItemListStaticWrapper>(ItemsCacheKey, wrapper);
+                Cache.Add(ItemsCacheKey, wrapper);
             }
             return wrapper.ItemListStatic;
         }
@@ -302,14 +307,15 @@ namespace RiotSharp
                     var json = requester.CreateRequest(
                         string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             itemData == ItemData.none ?
                             string.Empty :
                             string.Format("itemData={0}", itemData.ToString())
                         });
                     var item = JsonConvert.DeserializeObject<ItemStatic>(json);
-                    Cache.Add<ItemStaticWrapper>(ItemCacheKey + itemId,
+                    Cache.Add(ItemCacheKey + itemId,
                         new ItemStaticWrapper(item, language, itemData));
                     return item;
                 }
@@ -351,15 +357,16 @@ namespace RiotSharp
                     var json = await requester.CreateRequestAsync(
                         string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             itemData == ItemData.none ?
                             string.Empty :
                             string.Format("itemData={0}", itemData.ToString())
                         });
-                    var item = await Task.Factory.StartNew<ItemStatic>(() =>
+                    var item = await Task.Factory.StartNew(() =>
                         JsonConvert.DeserializeObject<ItemStatic>(json));
-                    Cache.Add<ItemStaticWrapper>(ItemCacheKey + itemId,
+                    Cache.Add(ItemCacheKey + itemId,
                         new ItemStaticWrapper(item, language, itemData));
                     return item;
                 }
@@ -382,7 +389,8 @@ namespace RiotSharp
                 var json = requester.CreateRequest(
                     string.Format(MasteryRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         masteryData == MasteryData.none ?
                         string.Empty :
@@ -390,7 +398,7 @@ namespace RiotSharp
                     });
                 var masteries = JsonConvert.DeserializeObject<MasteryListStatic>(json);
                 wrapper = new MasteryListStaticWrapper(masteries, language, masteryData);
-                Cache.Add<MasteryListStaticWrapper>(MasteriesCacheKey, wrapper);
+                Cache.Add(MasteriesCacheKey, wrapper);
             }
             return wrapper.MasteryListStatic;
         }
@@ -411,16 +419,17 @@ namespace RiotSharp
                 var json = await requester.CreateRequestAsync(
                     string.Format(MasteryRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         masteryData == MasteryData.none ?
                         string.Empty :
                         string.Format("masteryListData={0}", masteryData.ToString())
                     });
-                var masteries = await Task.Factory.StartNew<MasteryListStatic>(() =>
+                var masteries = await Task.Factory.StartNew(() =>
                     JsonConvert.DeserializeObject<MasteryListStatic>(json));
                 wrapper = new MasteryListStaticWrapper(masteries, language, masteryData);
-                Cache.Add<MasteryListStaticWrapper>(MasteriesCacheKey, wrapper);
+                Cache.Add(MasteriesCacheKey, wrapper);
             }
             return wrapper.MasteryListStatic;
         }
@@ -460,14 +469,15 @@ namespace RiotSharp
                     var json = requester.CreateRequest(
                         string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             masteryData == MasteryData.none ?
                             string.Empty :
                             string.Format("masteryData={0}", masteryData.ToString())
                         });
                     var mastery = JsonConvert.DeserializeObject<MasteryStatic>(json);
-                    Cache.Add<MasteryStaticWrapper>(MasteryCacheKey + masteryId
+                    Cache.Add(MasteryCacheKey + masteryId
                         , new MasteryStaticWrapper(mastery, language, masteryData));
                     return mastery;
                 }
@@ -509,15 +519,16 @@ namespace RiotSharp
                     var json = await requester.CreateRequestAsync(
                         string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId.ToString()),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             masteryData == MasteryData.none ?
                             string.Empty :
                             string.Format("masteryData={0}", masteryData.ToString())
                         });
-                    var mastery = await Task.Factory.StartNew<MasteryStatic>(() =>
+                    var mastery = await Task.Factory.StartNew(() =>
                         JsonConvert.DeserializeObject<MasteryStatic>(json));
-                    Cache.Add<MasteryStaticWrapper>(MasteryCacheKey + masteryId
+                    Cache.Add(MasteryCacheKey + masteryId
                         , new MasteryStaticWrapper(mastery, language, masteryData));
                     return mastery;
                 }
@@ -540,7 +551,8 @@ namespace RiotSharp
                 var json = requester.CreateRequest(
                     string.Format(RuneRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         runeData == RuneData.none ?
                         string.Empty :
@@ -548,7 +560,7 @@ namespace RiotSharp
                     });
                 var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
                 wrapper = new RuneListStaticWrapper(runes, language, runeData);
-                Cache.Add<RuneListStaticWrapper>(RunesCacheKey, wrapper);
+                Cache.Add(RunesCacheKey, wrapper);
             }
             return wrapper.RuneListStatic;
         }
@@ -569,16 +581,17 @@ namespace RiotSharp
                 var json = await requester.CreateRequestAsync(
                     string.Format(RuneRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         runeData == RuneData.none ?
                         string.Empty :
                         string.Format("runeListData={0}", runeData.ToString())
                     });
-                var runes = await Task.Factory.StartNew<RuneListStatic>(() =>
+                var runes = await Task.Factory.StartNew(() =>
                     JsonConvert.DeserializeObject<RuneListStatic>(json));
                 wrapper = new RuneListStaticWrapper(runes, language, runeData);
-                Cache.Add<RuneListStaticWrapper>(RunesCacheKey, wrapper);
+                Cache.Add(RunesCacheKey, wrapper);
             }
             return wrapper.RuneListStatic;
         }
@@ -618,14 +631,15 @@ namespace RiotSharp
                     var json = requester.CreateRequest(
                         string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             runeData == RuneData.none ?
                             string.Empty :
                             string.Format("runeData={0}", runeData.ToString())
                         });
                     var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
-                    Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId,
+                    Cache.Add(RuneCacheKey + runeId,
                         new RuneStaticWrapper(rune, language, runeData));
                     return rune;
                 }
@@ -667,15 +681,16 @@ namespace RiotSharp
                     var json = await requester.CreateRequestAsync(
                         string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             runeData == RuneData.none ?
                             string.Empty :
                             string.Format("runeData={0}", runeData.ToString())
                         });
-                    var rune = await Task.Factory.StartNew<RuneStatic>(() =>
+                    var rune = await Task.Factory.StartNew(() =>
                         JsonConvert.DeserializeObject<RuneStatic>(json));
-                    Cache.Add<RuneStaticWrapper>(RuneCacheKey + runeId,
+                    Cache.Add(RuneCacheKey + runeId,
                         new RuneStaticWrapper(rune, language, runeData));
                     return rune;
                 }
@@ -698,7 +713,8 @@ namespace RiotSharp
                 var json = requester.CreateRequest(
                     string.Format(SummonerSpellRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         summonerSpellData == SummonerSpellData.none ?
                         string.Empty :
@@ -706,7 +722,7 @@ namespace RiotSharp
                     });
                 var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
                 wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
-                Cache.Add<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey, wrapper);
+                Cache.Add(SummonerSpellsCacheKey, wrapper);
             }
             return wrapper.SummonerSpellListStatic;
         }
@@ -727,16 +743,17 @@ namespace RiotSharp
                 var json = await requester.CreateRequestAsync(
                     string.Format(SummonerSpellRootUrl, region.ToString()),
                     RootDomain,
-                    new List<string>() {
+                    new List<string>
+                    {
                         string.Format("locale={0}", language.ToString()),
                         summonerSpellData == SummonerSpellData.none ?
                         string.Empty :
                         string.Format("spellData={0}", summonerSpellData.ToString())
                     });
-                var spells = await Task.Factory.StartNew<SummonerSpellListStatic>(() =>
+                var spells = await Task.Factory.StartNew(() =>
                     JsonConvert.DeserializeObject<SummonerSpellListStatic>(json));
                 wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
-                Cache.Add<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey, wrapper);
+                Cache.Add(SummonerSpellsCacheKey, wrapper);
             }
             return wrapper.SummonerSpellListStatic;
         }
@@ -779,14 +796,15 @@ namespace RiotSharp
                         string.Format(SummonerSpellRootUrl, region.ToString()) +
                             string.Format(IdUrl, (int)summonerSpell),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             summonerSpellData == SummonerSpellData.none ?
                             string.Empty :
                             string.Format("spellData={0}", summonerSpellData.ToString())
                         });
                     var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json);
-                    Cache.Add<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString(),
+                    Cache.Add(SummonerSpellCacheKey + summonerSpell.ToCustomString(),
                         new SummonerSpellStaticWrapper(spell, language, summonerSpellData));
                     return spell;
                 }
@@ -831,15 +849,16 @@ namespace RiotSharp
                         string.Format(SummonerSpellRootUrl, region.ToString()) +
                             string.Format(IdUrl, (int)summonerSpell),
                         RootDomain,
-                        new List<string>() {
+                        new List<string>
+                        {
                             string.Format("locale={0}", language.ToString()),
                             summonerSpellData == SummonerSpellData.none ?
                             string.Empty :
                             string.Format("spellData={0}", summonerSpellData.ToString())
                         });
-                    var spell = await Task.Factory.StartNew<SummonerSpellStatic>(() =>
+                    var spell = await Task.Factory.StartNew(() =>
                         JsonConvert.DeserializeObject<SummonerSpellStatic>(json));
-                    Cache.Add<SummonerSpellStaticWrapper>(SummonerSpellCacheKey + summonerSpell.ToCustomString(),
+                    Cache.Add(SummonerSpellCacheKey + summonerSpell.ToCustomString(),
                         new SummonerSpellStaticWrapper(spell, language, summonerSpellData));
                     return spell;
                 }
@@ -866,7 +885,7 @@ namespace RiotSharp
         {
             var json =
                 await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew<List<string>>(() => JsonConvert.DeserializeObject<List<string>>(json));
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
         }
 
         /// <summary>
@@ -888,7 +907,7 @@ namespace RiotSharp
         public async Task<Realm> GetRealmAsync(Region region)
         {
             var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew<Realm>(() => JsonConvert.DeserializeObject<Realm>(json));
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
         }
     }
 }

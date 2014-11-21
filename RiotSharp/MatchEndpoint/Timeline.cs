@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -16,7 +16,7 @@ namespace RiotSharp.MatchEndpoint
         /// Time between each returned frame.
         /// </summary>
         [JsonProperty("frameInterval")]
-        [JsonConverter(typeof(TimeSpanConverterFromMS))]
+        [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
         public TimeSpan FrameInterval { get; set; }
 
         /// <summary>
