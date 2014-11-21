@@ -9,7 +9,9 @@
 
 using System;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
+using System.Collections.Generic;
 using RiotSharp;
 
 namespace RiotSharpExample
@@ -37,21 +39,39 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var sum = api.GetSummoner(Region.euw, id);
-            var leagues = sum.GetEntireLeagues();
-            var summaries = sum.GetStatsSummaries();
-
-            var summary = summaries.Where(summ => summ.PlayerStatSummaryType == RiotSharp.StatsEndpoint.PlayerStatsSummaryType.RankedSolo5x5)
-                .FirstOrDefault();
-
-            Console.WriteLine(summary.PlayerStatSummaryType);
-            Console.WriteLine(summary.Losses);
-            Console.WriteLine(summary.Wins);
-            Console.WriteLine();
+            var summoner = api.GetSummoner(Region.euw, "TommyTrueLove");
+            var stats = summoner.GetStatsSummaries();
+            foreach (var stat in stats)
+            {
+                Console.WriteLine(stat.Wins);
+            }
 
             var shards = statusApi.GetShards();
 
             var shardStatus = statusApi.GetShardStatus(Region.euw);
+
+            var statSummaries = api.GetStatsSummaries(Region.euw, id);
+
+            var statsRanked = api.GetStatsRanked(Region.euw, id, RiotSharp.StatsEndpoint.Season.Season4);
+
+            foreach (var stat in statsRanked)
+            {
+                Console.WriteLine(stat.Stats.RankedSoloGamesPlayed);
+            }
+
+            var championIds = new List<int>();
+            for (int i = 0; i < 30; i += 15)
+            {
+                var matches = api.GetMatchHistory(Region.euw, id, i, i + 15, null,
+                    new List<Queue>() { Queue.RankedSolo5x5 });
+                foreach (var match in matches)
+                {
+                    championIds.Add(match.Participants[0].ChampionId);
+                }
+            }
+            var mostPlayedChampId = championIds.GroupBy(c => c).OrderByDescending(g => g.Count()).FirstOrDefault().Key;
+            var mostPlayedChamp = staticApi.GetChampion(Region.euw, mostPlayedChampId);
+            Console.WriteLine(mostPlayedChamp.Name);
 
             var games = api.GetRecentGames(Region.euw, id);
 

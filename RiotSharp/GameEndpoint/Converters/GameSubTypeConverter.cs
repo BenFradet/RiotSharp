@@ -93,7 +93,7 @@ namespace RiotSharp.GameEndpoint
                         return GameSubType.FirstBlood1x1;
                     case "FIRSTBLOOD_2x2":
                         return GameSubType.FirstBlood2x2;
-                    case "SR_6x6":
+                    case "HEXAKILL":
                         return GameSubType.Hexakill;
                     case "CAP_5x5":
                         return GameSubType.TeamBuilder5x5;
@@ -147,7 +147,7 @@ namespace RiotSharp.GameEndpoint
                     result = "FIRSTBLOOD_2x2";
                     break;
                 case GameSubType.Hexakill:
-                    result = "SR_6x6";
+                    result = "HEXAKILL";
                     break;
                 case GameSubType.None:
                     result = "NONE";

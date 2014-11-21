@@ -111,6 +111,11 @@ namespace RiotSharp.StatsEndpoint
         /// <summary>
         /// The ascension.
         /// </summary>
-        Ascension
+        Ascension,
+
+        /// <summary>
+        /// Hexakill.
+        /// </summary>
+        Hexakill
     }
 }
