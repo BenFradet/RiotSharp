@@ -85,14 +85,7 @@ namespace RiotSharp
         /// <returns>A summoner.</returns>
         public Summoner GetSummoner(Region region, int summonerId)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
-            var obj = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.FirstOrDefault();
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            return GetSummonerAsync(region, summonerId).Result;
         }
 
         /// <summary>
@@ -122,16 +115,7 @@ namespace RiotSharp
         /// <returns>A list of summoners.</returns>
         public List<Summoner> GetSummoners(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildIdsString(summonerIds)),
-                region);
-            var list = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
+            return GetSummonersAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -163,16 +147,7 @@ namespace RiotSharp
         /// <returns>A summoner.</returns>
         public Summoner GetSummoner(Region region, string summonerName)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)),
-                region);
-            var obj = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.FirstOrDefault();
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            return GetSummonerAsync(region, summonerName).Result;
         }
 
         /// <summary>
@@ -204,16 +179,7 @@ namespace RiotSharp
         /// <returns>A list of summoners.</returns>
         public List<Summoner> GetSummoners(Region region, List<string> summonerNames)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Util.BuildNamesString(summonerNames)),
-                region);
-            var list = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.ToList();
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
+            return GetSummonersAsync(region, summonerNames).Result;
         }
 
         /// <summary>
@@ -245,10 +211,7 @@ namespace RiotSharp
         /// <returns>A summoner (id and name).</returns>
         public SummonerBase GetSummonerName(Region region, int summonerId)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
-            var child = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            return new SummonerBase(child.Keys.FirstOrDefault(), child.Values.FirstOrDefault(), requester, region);
+            return GetSummonerNameAsync(region, summonerId).Result;
         }
 
         /// <summary>
@@ -273,17 +236,7 @@ namespace RiotSharp
         /// <returns>A list of ids and names of summoners.</returns>
         public List<SummonerBase> GetSummonersNames(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(NamesUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            var summoners = new List<SummonerBase>();
-            var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            foreach (var child in children)
-            {
-                summoners.Add(new SummonerBase(child.Key, child.Value, requester, region));
-            }
-            return summoners;
+            return GetSummonersNamesAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -314,8 +267,7 @@ namespace RiotSharp
         /// <returns>A list of champions.</returns>
         public List<Champion> GetChampions(Region region)
         {
-            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()), region);
-            return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
+            return GetChampionsAsync(region).Result;
         }
 
         /// <summary>
@@ -338,9 +290,7 @@ namespace RiotSharp
         /// <returns>A champion.</returns>
         public Champion GetChampion(Region region, int championId)
         {
-            var json = requester.CreateRequest(
-                string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId), region);
-            return JsonConvert.DeserializeObject<Champion>(json);
+            return GetChampionAsync(region, championId).Result;
         }
 
         /// <summary>
@@ -366,11 +316,7 @@ namespace RiotSharp
         /// </returns>
         public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(MasteriesUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return ConstructMasteryDict(JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json));
+            return GetMasteryPagesAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -400,11 +346,7 @@ namespace RiotSharp
         /// </returns>
         public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(RunesUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return ConstructRuneDict(JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json));
+            return GetRunePagesAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -432,11 +374,7 @@ namespace RiotSharp
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
         public Dictionary<long, List<League>> GetLeagues(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)) + LeagueEntryUrl,
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+            return GetLeaguesAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -463,11 +401,7 @@ namespace RiotSharp
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
         public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+            return GetEntireLeaguesAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -495,11 +429,7 @@ namespace RiotSharp
         /// <returns>A map of list of leagues indexed by the team id.</returns>
         public Dictionary<string, List<League>> GetLeagues(Region region, List<string> teamIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueByTeamUrl, Util.BuildNamesString(teamIds)) + LeagueEntryUrl,
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
+            return GetLeaguesAsync(region, teamIds).Result;
         }
 
         /// <summary>
@@ -526,11 +456,7 @@ namespace RiotSharp
         /// <returns>A map of list of entire leagues indexed by the team id.</returns>
         public Dictionary<string, List<League>> GetEntireLeagues(Region region, List<string> teamIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueByTeamUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
+            return GetEntireLeaguesAsync(region, teamIds).Result;
         }
 
         /// <summary>
@@ -558,11 +484,7 @@ namespace RiotSharp
         /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
         public League GetChallengerLeague(Region region, Queue queue)
         {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
-                region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
-            return JsonConvert.DeserializeObject<League>(json);
+            return GetChallengerLeagueAsync(region, queue).Result;
         }
 
         /// <summary>
@@ -581,172 +503,6 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Retrieves the league entries for the specified summoners.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids.</param>
-        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetLeagues() instead.")]
-        public Dictionary<long, List<League>> GetLeaguesV24(Region region, List<int> summonerIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)) + LeagueEntryUrl,
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves the league entries for the specified summoners asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids.</param>
-        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<Dictionary<long, List<League>>> GetLeaguesV24Async(Region region, List<int> summonerIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)) + LeagueEntryUrl,
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
-        }
-
-        /// <summary>
-        /// Retrieves the entire leagues for the specified summoners.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids.</param>
-        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetEntireLeagues() instead.")]
-        public Dictionary<long, List<League>> GetEntireLeaguesV24(Region region, List<int> summonerIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves the entire leagues for the specified summoners asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids.</param>
-        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetEntireLeaguesAsync() instead.")]
-        public async Task<Dictionary<long, List<League>>> GetEntireLeaguesV24Async(Region region,
-            List<int> summonerIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
-        }
-
-        /// <summary>
-        /// Retrieves the league entries for the specified teams.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids.</param>
-        /// <returns>A map of list of leagues indexed by the team id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetLeagues() instead.")]
-        public Dictionary<string, List<League>> GetLeaguesV24(Region region, List<string> teamIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueByTeamUrl, Util.BuildNamesString(teamIds)) + LeagueEntryUrl,
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves the league entries for the specified teams asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids.</param>
-        /// <returns>A map of list of league entries indexed by the team id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetLeaguesAsync() instead.")]
-        public async Task<Dictionary<string, List<League>>> GetLeaguesV24Async(Region region, List<string> teamIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueByTeamUrl, Util.BuildNamesString(teamIds)) + LeagueEntryUrl,
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json));
-        }
-
-        /// <summary>
-        /// Retrieves the entire leagues for the specified teams.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids.</param>
-        /// <returns>A map of list of entire leagues indexed by the team id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetEntireLeagues() instead.")]
-        public Dictionary<string, List<League>> GetEntireLeaguesV24(Region region, List<string> teamIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueByTeamUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
-        }
-
-        /// <summary>
-        /// Retrieves the entire leagues for the specified teams asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids.</param>
-        /// <returns>A map of list of entire leagues indexed by the team id.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetEntireLeaguesAsync() instead.")]
-        public async Task<Dictionary<string, List<League>>> GetEntireLeaguesV24Async(Region region,
-            List<string> teamIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV24Url, region.ToString()) +
-                    string.Format(LeagueByTeamUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json));
-        }
-
-        /// <summary>
-        /// Get the challenger league for a particular queue.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for a challenger league.</param>
-        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
-        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetChallengerLeague() instead.")]
-        public League GetChallengerLeagueV24(Region region, Queue queue)
-        {
-            var json = requester.CreateRequest(
-                string.Format(LeagueRootV24Url, region.ToString()) + LeagueChallengerUrl,
-                region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
-        /// <summary>
-        /// Get the challenger league for a particular queue asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for a challenger league.</param>
-        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
-        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
-        [Obsolete("The league api v2.4 is deprecated, please use GetChallengerLeagueAsync() instead.")]
-        public async Task<League> GetChallengerLeagueV24Async(Region region, Queue queue)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(LeagueRootV24Url, region.ToString()) + LeagueChallengerUrl,
-                region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
-        }
-
-        /// <summary>
         /// Get the teams for the specified ids synchronously.
         /// </summary>
         /// <param name="region">Region in which the teams are located.</param>
@@ -754,11 +510,7 @@ namespace RiotSharp
         /// <returns>A map of teams indexed by the summoner's id.</returns>
         public Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<int> summonerIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(TeamRootUrl, region.ToString()) +
-                    string.Format(TeamBySummonerURL, Util.BuildIdsString(summonerIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json);
+            return GetTeamsAsync(region, summonerIds).Result;
         }
 
         /// <summary>
@@ -785,10 +537,7 @@ namespace RiotSharp
         /// <returns>A map of teams indexed by their id.</returns>
         public Dictionary<string, TeamEndpoint.Team> GetTeams(Region region, List<string> teamIds)
         {
-            var json = requester.CreateRequest(
-                string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json);
+            return GetTeamsAsync(region, teamIds).Result;
         }
 
         /// <summary>
@@ -801,73 +550,6 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json));
-        }
-
-        /// <summary>
-        /// Get the teams for the specified ids synchronously.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="summonerIds">List of summoner ids</param>
-        /// <returns>A map of teams indexed by the summoner's id.</returns>
-        [Obsolete("The team api v2.3 is deprecated, please use GetTeams() instead.")]
-        public Dictionary<long, List<TeamEndpoint.Team>> GetTeamsV23(Region region, List<int> summonerIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(TeamRootV23Url, region.ToString()) +
-                    string.Format(TeamBySummonerURL, Util.BuildIdsString(summonerIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json);
-        }
-
-        /// <summary>
-        /// Get the teams for the specified ids asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="summonerIds">List of summoner ids.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        [Obsolete("The team api v2.3 is deprecated, please use GetTeamsAsync() instead.")]
-        public async Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsV23Async(Region region,
-            List<int> summonerIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(TeamRootV23Url, region.ToString()) +
-                    string.Format(TeamBySummonerURL, Util.BuildIdsString(summonerIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json));
-        }
-
-        /// <summary>
-        /// Get the teams for the specified ids synchronously.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="teamIds">List of string of the teams' ids.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        [Obsolete("The team api v2.3 is deprecated, please use GetTeams() instead.")]
-        public Dictionary<string, TeamEndpoint.Team> GetTeamsV23(Region region, List<string> teamIds)
-        {
-            var json = requester.CreateRequest(
-                string.Format(TeamRootV23Url, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildNamesString(teamIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json);
-        }
-
-        /// <summary>
-        /// Get the teams for the specified ids asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="teamIds">List of string of the teams' ids.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        [Obsolete("The team api v2.3 is deprecated, please use GetTeamsAsync() instead.")]
-        public async Task<Dictionary<string, TeamEndpoint.Team>> GetTeamsV23Async(Region region, List<string> teamIds)
-        {
-            var json = await requester.CreateRequestAsync(
-                string.Format(TeamRootV23Url, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildNamesString(teamIds)),
                 region);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json));

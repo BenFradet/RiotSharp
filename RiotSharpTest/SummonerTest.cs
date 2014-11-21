@@ -120,46 +120,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetLeaguesV24_Test()
-        {
-            var leagues = summoner.GetLeaguesV24();
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesV24Async_Test()
-        {
-            var leagues = summoner.GetLeaguesV24Async();
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV24_Test()
-        {
-            var leagues = summoner.GetEntireLeaguesV24();
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV24Async_Test()
-        {
-            var leagues = summoner.GetEntireLeaguesV24Async();
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count() > 0);
-        }
-
-        [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
         {
@@ -254,26 +214,6 @@ namespace RiotSharpTest
         public void GetTeamsAsync_Test()
         {
             var teams = summoner.GetTeamsAsync();
-
-            Assert.IsNotNull(teams.Result);
-            Assert.IsTrue(teams.Result.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetTeamsV23_Test()
-        {
-            var teams = summoner.GetTeamsV23();
-
-            Assert.IsNotNull(teams);
-            Assert.IsTrue(teams.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetTeamsV23Async_Test()
-        {
-            var teams = summoner.GetTeamsV23Async();
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count() > 0);
