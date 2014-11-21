@@ -87,7 +87,9 @@ namespace RiotSharp
         {
             var wrapper = Cache.Get<ChampionListStaticWrapper>(ChampionsCacheKey);
             if (wrapper != null && language == wrapper.Language && championData == wrapper.ChampionData)
+            { 
                 return wrapper.ChampionListStatic;
+            }
             var json = await requester.CreateRequestAsync(
                 string.Format(ChampionRootUrl, region.ToString()),
                 RootDomain,
@@ -183,7 +185,9 @@ namespace RiotSharp
         {
             var wrapper = Cache.Get<ItemListStaticWrapper>(ItemsCacheKey);
             if (wrapper != null && language == wrapper.Language && itemData == wrapper.ItemData)
+            {
                 return wrapper.ItemListStatic;
+            }
             var json = await requester.CreateRequestAsync(
                 string.Format(ItemRootUrl, region.ToString()),
                 RootDomain,
@@ -278,7 +282,9 @@ namespace RiotSharp
         {
             var wrapper = Cache.Get<MasteryListStaticWrapper>(MasteriesCacheKey);
             if (wrapper != null && language == wrapper.Language && masteryData == wrapper.MasteryData)
+            {
                 return wrapper.MasteryListStatic;
+            }
             var json = await requester.CreateRequestAsync(
                 string.Format(MasteryRootUrl, region.ToString()),
                 RootDomain,
@@ -373,7 +379,9 @@ namespace RiotSharp
         {
             var wrapper = Cache.Get<RuneListStaticWrapper>(RunesCacheKey);
             if (wrapper != null && !(language != wrapper.Language | runeData != wrapper.RuneData))
+            {
                 return wrapper.RuneListStatic;
+            }
             var json = await requester.CreateRequestAsync(
                 string.Format(RuneRootUrl, region.ToString()),
                 RootDomain,
@@ -468,7 +476,9 @@ namespace RiotSharp
         {
             var wrapper = Cache.Get<SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.SummonerSpellData == summonerSpellData)
+            {
                 return wrapper.SummonerSpellListStatic;
+            }
             var json = await requester.CreateRequestAsync(
                 string.Format(SummonerSpellRootUrl, region.ToString()),
                 RootDomain,
