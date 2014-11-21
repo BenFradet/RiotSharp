@@ -22,7 +22,6 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            //MapType mapType = (MapType)value;
             string result = ((int)value).ToString();
             serializer.Serialize(writer, result);
         }
