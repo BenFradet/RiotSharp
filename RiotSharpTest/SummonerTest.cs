@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Linq;
-
 using RiotSharp;
-using RiotSharp.SummonerEndpoint;
 using RiotSharp.StatsEndpoint;
+using RiotSharp.SummonerEndpoint;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 
 namespace RiotSharpTest
 {
@@ -233,7 +232,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMatchHistory_ChampionIds_Test()
         {
-            var matches = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistory(0, 14, new List<int> { championId });
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -247,7 +246,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMatchHistory_RankedQueues_Test()
         {
-            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue> { queue });
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -271,7 +270,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_ChampionIds_Test()
         {
-            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int> { championId });
 
             Assert.IsNotNull(matches.Result);
             Assert.IsTrue(matches.Result.Count() > 0);
@@ -285,7 +284,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_RankedQueues_Test()
         {
-            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue> { queue });
 
             Assert.IsNotNull(matches.Result);
             Assert.IsTrue(matches.Result.Count() > 0);
