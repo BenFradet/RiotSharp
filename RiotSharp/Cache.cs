@@ -15,10 +15,7 @@ namespace RiotSharp
                 {
                     return (T)cache[key];
                 }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
 
