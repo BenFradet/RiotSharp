@@ -1,7 +1,7 @@
-﻿using System;
-using System.Globalization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Globalization;
 
 namespace RiotSharp
 {
@@ -16,12 +16,9 @@ namespace RiotSharp
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
-            {
-                var str = token.Value<string>();
-                return DateTime.ParseExact(str, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            }
-            return null;
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            return DateTime.ParseExact(str, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

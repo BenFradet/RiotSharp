@@ -12,14 +12,7 @@ namespace RiotSharp
         private RateLimitedRequester() { }
         public static new RateLimitedRequester Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new RateLimitedRequester();
-                }
-                return instance;
-            }
+            get { return instance ?? (instance = new RateLimitedRequester()); }
         }
 
         public static int RateLimitPer10S { get; set; }

@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp
 {
@@ -15,17 +15,14 @@ namespace RiotSharp
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
-            {
-                var str = token.Value<string>();
-                return (MapType)(Enum.Parse(typeof(MapType), str));
-            }
-            return null;
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            return (MapType)(Enum.Parse(typeof(MapType), str));
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            MapType mapType = (MapType)value;
+            //MapType mapType = (MapType)value;
             string result = ((int)value).ToString();
             serializer.Serialize(writer, result);
         }

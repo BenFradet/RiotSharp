@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -15,28 +15,25 @@ namespace RiotSharp.MatchEndpoint
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "SIGHT_WARD":
-                        return WardType.SightWard;
-                    case "TEEMO_MUSHROOM":
-                        return WardType.TeemoMushroom;
-                    case "UNDEFINED":
-                        return WardType.Undefined;
-                    case "VISION_WARD":
-                        return WardType.VisionWard;
-                    case "YELLOW_TRINKET":
-                        return WardType.YellowTrinket;
-                    case "YELLOW_TRINKET_UPGRADE":
-                        return WardType.YellowTrinketUpgrade;
-                    default:
-                        return null;
-                }
+                case "SIGHT_WARD":
+                    return WardType.SightWard;
+                case "TEEMO_MUSHROOM":
+                    return WardType.TeemoMushroom;
+                case "UNDEFINED":
+                    return WardType.Undefined;
+                case "VISION_WARD":
+                    return WardType.VisionWard;
+                case "YELLOW_TRINKET":
+                    return WardType.YellowTrinket;
+                case "YELLOW_TRINKET_UPGRADE":
+                    return WardType.YellowTrinketUpgrade;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -15,40 +15,37 @@ namespace RiotSharp.MatchEndpoint
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "ASCENDED_EVENT":
-                        return EventType.AscendedEvent;
-                    case "BUILDING_KILL":
-                        return EventType.BuildingKill;
-                    case "CAPTURE_POINT":
-                        return EventType.CapturePoint;
-                    case "CHAMPION_KILL":
-                        return EventType.ChampionKill;
-                    case "ELITE_MONSTER_KILL":
-                        return EventType.EliteMonsterKill;
-                    case "ITEM_DESTROYED":
-                        return EventType.ItemDestroyed;
-                    case "ITEM_PURCHASED":
-                        return EventType.ItemPurchased;
-                    case "ITEM_SOLD":
-                        return EventType.ItemSold;
-                    case "ITEM_UNDO":
-                        return EventType.ItemUndo;
-                    case "SKILL_LEVEL_UP":
-                        return EventType.SkillLevelUp;
-                    case "WARD_KILL":
-                        return EventType.WardKill;
-                    case "WARD_PLACED":
-                        return EventType.WardPlaced;
-                    default:
-                        return null;
-                }
+                case "ASCENDED_EVENT":
+                    return EventType.AscendedEvent;
+                case "BUILDING_KILL":
+                    return EventType.BuildingKill;
+                case "CAPTURE_POINT":
+                    return EventType.CapturePoint;
+                case "CHAMPION_KILL":
+                    return EventType.ChampionKill;
+                case "ELITE_MONSTER_KILL":
+                    return EventType.EliteMonsterKill;
+                case "ITEM_DESTROYED":
+                    return EventType.ItemDestroyed;
+                case "ITEM_PURCHASED":
+                    return EventType.ItemPurchased;
+                case "ITEM_SOLD":
+                    return EventType.ItemSold;
+                case "ITEM_UNDO":
+                    return EventType.ItemUndo;
+                case "SKILL_LEVEL_UP":
+                    return EventType.SkillLevelUp;
+                case "WARD_KILL":
+                    return EventType.WardKill;
+                case "WARD_PLACED":
+                    return EventType.WardPlaced;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
