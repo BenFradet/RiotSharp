@@ -61,6 +61,8 @@ namespace RiotSharp.StatsEndpoint
                     return PlayerStatsSummaryType.Ascension;
                 case "Hexakill":
                     return PlayerStatsSummaryType.Hexakill;
+                case "KingPoro":
+                    return PlayerStatsSummaryType.KingPoro;
                 default:
                     return null;
             }

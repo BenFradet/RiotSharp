@@ -61,6 +61,8 @@ namespace RiotSharp.GameEndpoint
                     return GameSubType.NightmareBot;
                 case "ASCENSION":
                     return GameSubType.Ascension;
+                case "KING_PORO":
+                    return GameSubType.KingPoro;
                 default:
                     return null;
             }
@@ -134,6 +136,9 @@ namespace RiotSharp.GameEndpoint
                     break;
                 case GameSubType.Ascension:
                     result = "ASCENSION";
+                    break;
+                case GameSubType.KingPoro:
+                    result = "KING_PORO";
                     break;
                 default:
                     result = "";

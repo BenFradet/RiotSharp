@@ -25,6 +25,7 @@
         URFBots,
         NightmareBot,
         Ascension,
-        Hexakill
+        Hexakill,
+        KingPoro
     }
 }

@@ -33,6 +33,10 @@ namespace RiotSharp
                     return GameMode.FirstBlood;
                 case "ASCENSION":
                     return GameMode.Ascension;
+                case "INTRO":
+                    return GameMode.Intro;
+                case "KINGPORO":
+                    return GameMode.KingPoro;
                 default:
                     return null;
             }
@@ -64,6 +68,12 @@ namespace RiotSharp
                     break;
                 case GameMode.Ascension:
                     result = "ASCENSION";
+                    break;
+                case GameMode.Intro:
+                    result = "INTRO";
+                    break;
+                case GameMode.KingPoro:
+                    result = "KINGPORO";
                     break;
                 default:
                     result = string.Empty;

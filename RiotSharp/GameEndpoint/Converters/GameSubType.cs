@@ -108,6 +108,11 @@
         /// <summary>
         /// Ascension mode games.
         /// </summary>
-        Ascension
+        Ascension,
+
+        /// <summary>
+        /// King Poro games.
+        /// </summary>
+        KingPoro
     }
 }
