@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -15,24 +15,21 @@ namespace RiotSharp.MatchEndpoint
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "PRESEASON3":
-                        return Season.PreSeason3;
-                    case "SEASON3":
-                        return Season.Season3;
-                    case "PRESEASON2014":
-                        return Season.PreSeason2014;
-                    case "SEASON2014":
-                        return Season.Season2014;
-                    default:
-                        return null;
-                }
+                case "PRESEASON3":
+                    return Season.PreSeason3;
+                case "SEASON3":
+                    return Season.Season3;
+                case "PRESEASON2014":
+                    return Season.PreSeason2014;
+                case "SEASON2014":
+                    return Season.Season2014;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

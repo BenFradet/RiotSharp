@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Linq;
-
 using RiotSharp;
-using RiotSharp.SummonerEndpoint;
 using RiotSharp.StatsEndpoint;
+using RiotSharp.SummonerEndpoint;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 
 namespace RiotSharpTest
 {
@@ -120,46 +119,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetLeaguesV24_Test()
-        {
-            var leagues = summoner.GetLeaguesV24();
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetLeaguesV24Async_Test()
-        {
-            var leagues = summoner.GetLeaguesV24Async();
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV24_Test()
-        {
-            var leagues = summoner.GetEntireLeaguesV24();
-
-            Assert.IsNotNull(leagues);
-            Assert.IsTrue(leagues.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetEntireLeaguesV24Async_Test()
-        {
-            var leagues = summoner.GetEntireLeaguesV24Async();
-
-            Assert.IsNotNull(leagues.Result);
-            Assert.IsTrue(leagues.Result.Count() > 0);
-        }
-
-        [TestMethod]
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
         {
@@ -260,26 +219,6 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Deprecated")]
-        public void GetTeamsV23_Test()
-        {
-            var teams = summoner.GetTeamsV23();
-
-            Assert.IsNotNull(teams);
-            Assert.IsTrue(teams.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async"), TestCategory("Deprecated")]
-        public void GetTeamsV23Async_Test()
-        {
-            var teams = summoner.GetTeamsV23Async();
-
-            Assert.IsNotNull(teams.Result);
-            Assert.IsTrue(teams.Result.Count() > 0);
-        }
-
-        [TestMethod]
         [TestCategory("Summoner")]
         public void GetMatchHistory_Test()
         {
@@ -293,7 +232,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMatchHistory_ChampionIds_Test()
         {
-            var matches = summoner.GetMatchHistory(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistory(0, 14, new List<int> { championId });
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -307,7 +246,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetMatchHistory_RankedQueues_Test()
         {
-            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistory(0, 14, null, new List<Queue> { queue });
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -331,7 +270,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_ChampionIds_Test()
         {
-            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int>() { championId });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, new List<int> { championId });
 
             Assert.IsNotNull(matches.Result);
             Assert.IsTrue(matches.Result.Count() > 0);
@@ -345,7 +284,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetMatchHistoryAsync_RankedQueues_Test()
         {
-            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue>() { queue });
+            var matches = summoner.GetMatchHistoryAsync(0, 14, null, new List<Queue> { queue });
 
             Assert.IsNotNull(matches.Result);
             Assert.IsTrue(matches.Result.Count() > 0);

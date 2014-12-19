@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp
 {
@@ -19,36 +15,33 @@ namespace RiotSharp
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "BR":
-                        return Region.br;
-                    case "EUNE":
-                        return Region.eune;
-                    case "EUW":
-                        return Region.euw;
-                    case "KR":
-                        return Region.kr;
-                    case "LAN":
-                        return Region.lan;
-                    case "LAS":
-                        return Region.las;
-                    case "NA":
-                        return Region.na;
-                    case "OCE":
-                        return Region.oce;
-                    case "RU":
-                        return Region.ru;
-                    case "TR":
-                        return Region.tr;
-                    default:
-                        return null;
-                }
+                case "BR":
+                    return Region.br;
+                case "EUNE":
+                    return Region.eune;
+                case "EUW":
+                    return Region.euw;
+                case "KR":
+                    return Region.kr;
+                case "LAN":
+                    return Region.lan;
+                case "LAS":
+                    return Region.las;
+                case "NA":
+                    return Region.na;
+                case "OCE":
+                    return Region.oce;
+                case "RU":
+                    return Region.ru;
+                case "TR":
+                    return Region.tr;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

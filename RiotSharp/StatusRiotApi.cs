@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RiotSharp.StatusEndpoint;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RiotSharp
 {
@@ -25,11 +25,7 @@ namespace RiotSharp
         /// <returns>The instance of StatusRiotApi.</returns>
         public static StatusRiotApi GetInstance()
         {
-            if (instance == null)
-            {
-                instance = new StatusRiotApi();
-            }
-            return instance;
+            return instance ?? (instance = new StatusRiotApi());
         }
 
         private StatusRiotApi()
@@ -43,8 +39,7 @@ namespace RiotSharp
         /// <returns>A list of shards.</returns>
         public List<Shard> GetShards()
         {
-            var json = requester.CreateRequest(StatusRootUrl, RootDomain);
-            return JsonConvert.DeserializeObject<List<Shard>>(json);
+            return GetShardsAsync().Result;
         }
 
         /// <summary>
@@ -54,7 +49,7 @@ namespace RiotSharp
         public async Task<List<Shard>> GetShardsAsync()
         {
             var json = await requester.CreateRequestAsync(StatusRootUrl, RootDomain);
-            return await Task.Factory.StartNew<List<Shard>>(() => JsonConvert.DeserializeObject<List<Shard>>(json));
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Shard>>(json));
         }
 
         /// <summary>
@@ -65,9 +60,7 @@ namespace RiotSharp
         /// <returns>A shard status object containing different information regarding the shard.</returns>
         public ShardStatus GetShardStatus(Region region)
         {
-            var json =
-                requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<ShardStatus>(json);
+            return GetShardStatusAsync(region).Result;
         }
 
         /// <summary>
@@ -80,7 +73,7 @@ namespace RiotSharp
         {
             var json = await
                 requester.CreateRequestAsync(StatusRootUrl + string.Format(RegionUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew<ShardStatus>(() => JsonConvert.DeserializeObject<ShardStatus>(json));
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
     }
 }

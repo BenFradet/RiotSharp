@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp
 {
@@ -15,22 +15,19 @@ namespace RiotSharp
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "CUSTOM_GAME":
-                        return GameType.CustomGame;
-                    case "MATCHED_GAME":
-                        return GameType.MatchedGame;
-                    case "TUTORIAL_GAME":
-                        return GameType.TutorialGame;
-                    default:
-                        return null;
-                }
+                case "CUSTOM_GAME":
+                    return GameType.CustomGame;
+                case "MATCHED_GAME":
+                    return GameType.MatchedGame;
+                case "TUTORIAL_GAME":
+                    return GameType.TutorialGame;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

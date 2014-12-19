@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -126,7 +126,7 @@ namespace RiotSharp.MatchEndpoint
         /// Represents how much time into the game the event occurred.
         /// </summary>
         [JsonProperty("timestamp")]
-        [JsonConverter(typeof(TimeSpanConverterFromMS))]
+        [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
         public TimeSpan Timestamp { get; set; }
 
         /// <summary>

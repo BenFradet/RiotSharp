@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RiotSharp.GameEndpoint
+﻿namespace RiotSharp.GameEndpoint
 {
     /// <summary>
     /// Game subtype of the game (Game API).

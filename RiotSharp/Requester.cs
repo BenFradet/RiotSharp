@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Net;
 using System.IO;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace RiotSharp
 {
@@ -11,25 +11,11 @@ namespace RiotSharp
         protected Requester() { }
         public static Requester Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Requester();
-                }
-                return instance;
-            }
+            get { return instance ?? (instance = new Requester()); }
         }
 
         protected string rootDomain;
         public static string ApiKey { get; set; }
-
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
-        {
-            this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments);
-            return GetResponse(request);
-        }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null)
@@ -41,7 +27,7 @@ namespace RiotSharp
 
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments)
         {
-            HttpWebRequest request = null;
+            HttpWebRequest request;
             if (addedArguments == null)
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("http://{0}{1}?api_key={2}"
@@ -69,7 +55,7 @@ namespace RiotSharp
                     result = reader.ReadToEnd();
                 }
             }
-            catch(WebException ex)
+            catch (WebException ex)
             {
                 HandleWebException(ex);
             }
@@ -88,7 +74,7 @@ namespace RiotSharp
                     result = await reader.ReadToEndAsync();
                 }
             }
-            catch(WebException ex)
+            catch (WebException ex)
             {
                 HandleWebException(ex);
             }

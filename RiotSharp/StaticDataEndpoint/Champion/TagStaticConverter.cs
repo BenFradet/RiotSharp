@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace RiotSharp.StaticDataEndpoint
 {
@@ -16,39 +16,34 @@ namespace RiotSharp.StaticDataEndpoint
             , JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Values<string>() != null)
+            if (token.Values<string>() == null) return null;
+            var list = token.Values<string>();
+            var tags = new List<TagStatic>();
+            foreach (var str in list)
             {
-                var list = token.Values<string>();
-                var tags = new List<TagStatic>();
-                foreach (var str in list)
+                switch (str)
                 {
-                    switch (str)
-                    {
-                        case "Fighter":
-                            tags.Add(TagStatic.Fighter);
-                            break;
-                        case "Tank":
-                            tags.Add(TagStatic.Tank);
-                            break;
-                        case "Mage":
-                            tags.Add(TagStatic.Mage);
-                            break;
-                        case "Assassin":
-                            tags.Add(TagStatic.Assassin);
-                            break;
-                        case "Support":
-                            tags.Add(TagStatic.Support);
-                            break;
-                        case "Marksman":
-                            tags.Add(TagStatic.Marksman);
-                            break;
-                        default:
-                            break;
-                    }
+                    case "Fighter":
+                        tags.Add(TagStatic.Fighter);
+                        break;
+                    case "Tank":
+                        tags.Add(TagStatic.Tank);
+                        break;
+                    case "Mage":
+                        tags.Add(TagStatic.Mage);
+                        break;
+                    case "Assassin":
+                        tags.Add(TagStatic.Assassin);
+                        break;
+                    case "Support":
+                        tags.Add(TagStatic.Support);
+                        break;
+                    case "Marksman":
+                        tags.Add(TagStatic.Marksman);
+                        break;
                 }
-                return tags;
             }
-            return null;
+            return tags;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp.GameEndpoint
 {
@@ -15,58 +15,55 @@ namespace RiotSharp.GameEndpoint
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "NONE":
-                        return GameSubType.None;
-                    case "NORMAL":
-                        return GameSubType.Normal;
-                    case "BOT":
-                        return GameSubType.Bot;
-                    case "RANKED_SOLO_5x5":
-                        return GameSubType.RankedSolo5x5;
-                    case "RANKED_PREMADE_3x3":
-                        return GameSubType.RankedPremade3x3;
-                    case "RANKED_PREMADE_5x5":
-                        return GameSubType.RankedPremade5x5;
-                    case "ODIN_UNRANKED":
-                        return GameSubType.OdinUnranked;
-                    case "RANKED_TEAM_3x3":
-                        return GameSubType.RankedTeam3x3;
-                    case "RANKED_TEAM_5x5":
-                        return GameSubType.RankedTeam5x5;
-                    case "NORMAL_3x3":
-                        return GameSubType.Normal3x3;
-                    case "BOT_3x3":
-                        return GameSubType.Bot3x3;
-                    case "ARAM_UNRANKED_5x5":
-                        return GameSubType.AramUnranked5x5;
-                    case "ONEFORALL_5x5":
-                        return GameSubType.OneForAll5x5;
-                    case "FIRSTBLOOD_1x1":
-                        return GameSubType.FirstBlood1x1;
-                    case "FIRSTBLOOD_2x2":
-                        return GameSubType.FirstBlood2x2;
-                    case "HEXAKILL":
-                        return GameSubType.Hexakill;
-                    case "CAP_5x5":
-                        return GameSubType.TeamBuilder5x5;
-                    case "URF":
-                        return GameSubType.URF;
-                    case "URF_BOT":
-                        return GameSubType.URF_BOT;
-                    case "NIGHTMARE_BOT":
-                        return GameSubType.NightmareBot;
-                    case "ASCENSION":
-                        return GameSubType.Ascension;
-                    default:
-                        return null;
-                }
+                case "NONE":
+                    return GameSubType.None;
+                case "NORMAL":
+                    return GameSubType.Normal;
+                case "BOT":
+                    return GameSubType.Bot;
+                case "RANKED_SOLO_5x5":
+                    return GameSubType.RankedSolo5x5;
+                case "RANKED_PREMADE_3x3":
+                    return GameSubType.RankedPremade3x3;
+                case "RANKED_PREMADE_5x5":
+                    return GameSubType.RankedPremade5x5;
+                case "ODIN_UNRANKED":
+                    return GameSubType.OdinUnranked;
+                case "RANKED_TEAM_3x3":
+                    return GameSubType.RankedTeam3x3;
+                case "RANKED_TEAM_5x5":
+                    return GameSubType.RankedTeam5x5;
+                case "NORMAL_3x3":
+                    return GameSubType.Normal3x3;
+                case "BOT_3x3":
+                    return GameSubType.Bot3x3;
+                case "ARAM_UNRANKED_5x5":
+                    return GameSubType.AramUnranked5x5;
+                case "ONEFORALL_5x5":
+                    return GameSubType.OneForAll5x5;
+                case "FIRSTBLOOD_1x1":
+                    return GameSubType.FirstBlood1x1;
+                case "FIRSTBLOOD_2x2":
+                    return GameSubType.FirstBlood2x2;
+                case "HEXAKILL":
+                    return GameSubType.Hexakill;
+                case "CAP_5x5":
+                    return GameSubType.TeamBuilder5x5;
+                case "URF":
+                    return GameSubType.URF;
+                case "URF_BOT":
+                    return GameSubType.URF_BOT;
+                case "NIGHTMARE_BOT":
+                    return GameSubType.NightmareBot;
+                case "ASCENSION":
+                    return GameSubType.Ascension;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

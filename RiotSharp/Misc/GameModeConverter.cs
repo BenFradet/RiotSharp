@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp
 {
@@ -15,30 +15,27 @@ namespace RiotSharp
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "CLASSIC":
-                        return GameMode.Classic;
-                    case "ODIN":
-                        return GameMode.Dominion;
-                    case "ARAM":
-                        return GameMode.Aram;
-                    case "TUTORIAL":
-                        return GameMode.Tutorial;
-                    case "ONEFORALL":
-                        return GameMode.OneForAll;
-                    case "FIRSTBLOOD":
-                        return GameMode.FirstBlood;
-                    case "ASCENSION":
-                        return GameMode.Ascension;
-                    default:
-                        return null;
-                }
+                case "CLASSIC":
+                    return GameMode.Classic;
+                case "ODIN":
+                    return GameMode.Dominion;
+                case "ARAM":
+                    return GameMode.Aram;
+                case "TUTORIAL":
+                    return GameMode.Tutorial;
+                case "ONEFORALL":
+                    return GameMode.OneForAll;
+                case "FIRSTBLOOD":
+                    return GameMode.FirstBlood;
+                case "ASCENSION":
+                    return GameMode.Ascension;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

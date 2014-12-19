@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RiotSharp.LeagueEndpoint
 {
@@ -15,30 +15,27 @@ namespace RiotSharp.LeagueEndpoint
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() != null)
+            if (token.Value<string>() == null) return null;
+            var str = token.Value<string>();
+            switch (str)
             {
-                var str = token.Value<string>();
-                switch (str)
-                {
-                    case "MASTER":
-                        return Tier.Master;
-                    case "CHALLENGER":
-                        return Tier.Challenger;
-                    case "DIAMOND":
-                        return Tier.Diamond;
-                    case "PLATINUM":
-                        return Tier.Platinum;
-                    case "GOLD":
-                        return Tier.Gold;
-                    case "SILVER":
-                        return Tier.Silver;
-                    case "BRONZE":
-                        return Tier.Bronze;
-                    default:
-                        return null;
-                }
+                case "MASTER":
+                    return Tier.Master;
+                case "CHALLENGER":
+                    return Tier.Challenger;
+                case "DIAMOND":
+                    return Tier.Diamond;
+                case "PLATINUM":
+                    return Tier.Platinum;
+                case "GOLD":
+                    return Tier.Gold;
+                case "SILVER":
+                    return Tier.Silver;
+                case "BRONZE":
+                    return Tier.Bronze;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
