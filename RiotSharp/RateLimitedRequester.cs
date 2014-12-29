@@ -31,10 +31,10 @@ namespace RiotSharp
         private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
         public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
-            List<string> addedArguments = null)
+            List<string> addedArguments = null, bool useSsl = true)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments);
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useSsl);
 
             await semaphore.WaitAsync();
             {
