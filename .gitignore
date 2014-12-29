@@ -3,3 +3,9 @@ obj/
 *.suo
 /TestResults
 *.nupkg
+RiotSharp.sln.ide/edb.chk
+RiotSharp.sln.ide/edb.log
+RiotSharp.sln.ide/edbres00001.jrs
+RiotSharp.sln.ide/edbres00002.jrs
+RiotSharp.sln.ide/edbtmp.log
+RiotSharp.sln.ide/storage.ide
