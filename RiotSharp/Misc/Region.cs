@@ -61,6 +61,11 @@ namespace RiotSharp
         /// <summary>
         /// Turkey.
         /// </summary>
-        tr
+        tr,
+
+        /// <summary>
+        /// Global
+        /// </summary>
+        global
     }
 }

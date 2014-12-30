@@ -77,6 +77,8 @@ namespace RiotSharp
                         return GameMode.FirstBlood;
                     case "ASCENSION":
                         return GameMode.Ascension;
+                    case "INTRO":
+                        return GameMode.Intro;
                     default:
                         return null;
                 }

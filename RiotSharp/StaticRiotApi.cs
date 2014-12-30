@@ -115,7 +115,7 @@ namespace RiotSharp
         /// <summary>
         /// The root domain.
         /// </summary>
-        private const string RootDomain = "global.api.pvp.net";
+        private const Region RootDomain = Region.global;
 
         /// <summary>
         /// The requester.

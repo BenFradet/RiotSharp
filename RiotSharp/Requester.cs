@@ -70,6 +70,29 @@ namespace RiotSharp
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
+        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null, bool useSsl = true)
+        {
+            return CreateRequest(relativeUrl, region + ".api.pvp.net", addedArguments, useSsl);
+        }
+
+        /// <summary>
+        /// The create request.
+        /// </summary>
+        /// <param name="relativeUrl">
+        /// The relative url.
+        /// </param>
+        /// <param name="rootDomain">
+        /// The root domain.
+        /// </param>
+        /// <param name="addedArguments">
+        /// The added arguments.
+        /// </param>
+        /// <param name="useSsl">
+        /// The use Ssl.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null, bool useSsl = true)
         {
             this.rootDomain = rootDomain;
@@ -77,6 +100,33 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
+        /// <summary>
+        /// The create request async.
+        /// </summary>
+        /// <param name="relativeUrl">
+        /// The relative url.
+        /// </param>
+        /// <param name="rootDomain">
+        /// The root domain.
+        /// </param>
+        /// <param name="addedArguments">
+        /// The added arguments.
+        /// </param>
+        /// <param name="useSsl">
+        /// The use Ssl.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<string> CreateRequestAsync(
+            string relativeUrl,
+            Region region,
+            List<string> addedArguments = null,
+            bool useSsl = true)
+        {
+            return await CreateRequestAsync(relativeUrl, region + ".api.pvp.net", addedArguments, useSsl);
+        }
+        
         /// <summary>
         /// The create request async.
         /// </summary>

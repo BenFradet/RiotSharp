@@ -46,6 +46,11 @@ namespace RiotSharp
         /// <summary>
         /// Ascension mode games.
         /// </summary>
-        Ascension
+        Ascension,
+
+        /// <summary>
+        /// Intro mode games.
+        /// </summary>
+        Intro
     }
 }
