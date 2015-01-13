@@ -28,6 +28,11 @@
         /// <summary>
         /// Pre season 2015.
         /// </summary>
-        PreSeason2015
+        PreSeason2015,
+        
+        /// <summary>
+        /// Season 2015
+        /// </summary>
+        Season2015
     }
 }
