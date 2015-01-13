@@ -29,6 +29,8 @@ namespace RiotSharp.MatchEndpoint
                     return Season.Season2014;
                 case "PRESEASON2015":
                     return Season.PreSeason2015;
+                case "SEASON2015":
+                    return Season.Season2015;  
                 default:
                     return null;
             }
