@@ -23,6 +23,16 @@
         /// <summary>
         /// Season 2014
         /// </summary>
-        Season2014
+        Season2014,
+        
+        /// <summary>
+        /// Pre season 2015.
+        /// </summary>
+        PreSeason2015,
+        
+        /// <summary>
+        /// Season 2015
+        /// </summary>
+        Season2015
     }
 }
