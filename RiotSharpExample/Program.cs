@@ -20,6 +20,10 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            var match1 = api.GetMatch(Region.euw, 1929054645);
+
+            Console.WriteLine(match1.MapType);
+
             var shards = statusApi.GetShards();
 
             var shardStatus = statusApi.GetShardStatus(Region.euw);
