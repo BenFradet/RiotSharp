@@ -65,5 +65,11 @@ namespace RiotSharp.MatchEndpoint
         /// </summary>
         [JsonProperty("timeline")]
         public ParticipantTimeline Timeline { get; set; }
+        
+        /// <summary>
+        /// Highest achieved season tier.
+        /// </summary>
+        [JsonProperty("highestAchievedSeasonTier")]
+        public Tier HighestAchievedSeasonTier { get; set; }
     }
 }
