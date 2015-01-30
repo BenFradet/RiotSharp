@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RiotSharp.LeagueEndpoint;
 using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
