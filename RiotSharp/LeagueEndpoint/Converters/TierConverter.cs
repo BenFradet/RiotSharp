@@ -33,6 +33,8 @@ namespace RiotSharp.LeagueEndpoint
                     return Tier.Silver;
                 case "BRONZE":
                     return Tier.Bronze;
+                case "UNRANKED":
+                    return Tier.Unranked;
                 default:
                     return null;
             }

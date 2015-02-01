@@ -38,6 +38,11 @@
         /// <summary>
         /// Bronze tier.
         /// </summary>
-        Bronze
+        Bronze,
+        
+        /// <summary>
+        /// Unranked.
+        /// </summary>
+        Unranked
     }
 }
