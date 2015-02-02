@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RiotSharp.CurrentGameEndpoint.Converters;
+using RiotSharp.Misc;
 
 namespace RiotSharp.CurrentGameEndpoint
 {
@@ -111,7 +109,8 @@ namespace RiotSharp.CurrentGameEndpoint
 		/// The ID of the platform on which the game is being played
 		/// </summary>
 		[JsonProperty("platformId")]
-		public string PlatformId { get; set; }
+		[JsonConverter(typeof(PlatformConverter))]
+		public Platform Platform { get; set; }
 
 	}
 }

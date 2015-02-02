@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.ChampionEndpoint;
+using RiotSharp.CurrentGameEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
@@ -43,6 +44,8 @@ namespace RiotSharp
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchHistoryRootUrl = "/api/lol/{0}/v2.2/matchhistory";
+
+		private const string CurrentGameRootUrl = "/observer-mode/rest/consumer/getSpectatorGameInfo/{0}";
 
         private const string IdUrl = "/{0}";
 
@@ -924,5 +927,33 @@ namespace RiotSharp
             }
             return returnDict;
         }
+
+		/// <summary>
+		/// Gets the current game by summoner ID.
+		/// </summary>
+		/// <param name="region">Region where to retrieve the data.</param>
+		/// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
+		/// <returns>Current game of the summoner</returns>
+	    public CurrentGame GetCurrentGame(Region region, long summonerId)
+	    {
+		    var json = requester.CreateRequest(
+			    string.Format(CurrentGameRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+			    region);
+		    return JsonConvert.DeserializeObject<CurrentGame>(json);
+	    }
+
+		/// <summary>
+		/// Gets the current game by summoner ID asynchronously.
+		/// </summary>
+		/// <param name="region">Region where to retrieve the data.</param>
+		/// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
+		/// <returns>Current game of the summoner</returns>
+		public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
+		{
+			var json = await requester.CreateRequestAsync(
+				string.Format(CurrentGameRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+				region);
+			return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<CurrentGame>(json)));
+		}
     }
 }
