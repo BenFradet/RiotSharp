@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.Misc
+﻿namespace RiotSharp
 {
 	/// <summary>
 	/// Platform for the API.
