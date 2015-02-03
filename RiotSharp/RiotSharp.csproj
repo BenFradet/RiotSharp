@@ -55,6 +55,7 @@
     <Compile Include="CurrentGameEndpoint\Observer.cs" />
     <Compile Include="CurrentGameEndpoint\Participant.cs" />
     <Compile Include="CurrentGameEndpoint\Rune.cs" />
+    <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedTypeConverter.cs" />
