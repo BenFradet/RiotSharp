@@ -968,7 +968,7 @@ namespace RiotSharp
         public FeaturedGames GetFeaturedGames(Region region)
         {
             var json = requester.CreateRequest(
-                string.Format(CurrentGameRootUrl, region.ToString()),
+                FeaturedGamesRootUrl,
                 region);
             return JsonConvert.DeserializeObject<FeaturedGames>(json);
         }
@@ -981,7 +981,7 @@ namespace RiotSharp
         public async Task<FeaturedGames> GetFeaturedGamesAsync(Region region)
         {
             var json = await requester.CreateRequestAsync(
-                string.Format(CurrentGameRootUrl, region.ToString()),
+                FeaturedGamesRootUrl,
                 region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FeaturedGames>(json)));
         }
