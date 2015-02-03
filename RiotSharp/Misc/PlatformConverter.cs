@@ -14,8 +14,8 @@ namespace RiotSharp.Misc
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			var token = JToken.Load(reader);
-            if (token.Value<string>() == null) return null;
-            var str = token.Value<string>();
+			if (token.Value<string>() == null) return null;
+			var str = token.Value<string>();
 			switch (str)
 			{
 				case "NA1":
@@ -46,6 +46,38 @@ namespace RiotSharp.Misc
 		public override bool CanConvert(Type objectType)
 		{
 			return typeof(string).IsAssignableFrom(objectType);
+		}
+	}
+
+	public static class PlatformToRegionConverter
+	{
+		public static Region ConvertToRegion(this Platform platform)
+		{
+			switch (platform)
+			{
+				case Platform.NA1:
+					return Region.na;
+				case Platform.BR1:
+					return Region.br;
+				case Platform.LA1:
+					return Region.lan;
+				case Platform.LA2:
+					return Region.las;
+				case Platform.OC1:
+					return Region.oce;
+				case Platform.EUN1:
+					return Region.eune;
+				case Platform.TR1:
+					return Region.tr;
+				case Platform.RU:
+					return Region.ru;
+				case Platform.EUW1:
+					return Region.euw;
+				case Platform.KR:
+					return Region.kr;
+				default:
+					return Region.na;
+			}
 		}
 	}
 }
