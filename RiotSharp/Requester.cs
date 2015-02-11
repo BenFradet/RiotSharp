@@ -103,7 +103,15 @@ namespace RiotSharp
 
         private void HandleWebException(WebException ex)
         {
-            HttpWebResponse response = (HttpWebResponse)ex.Response;
+			HttpWebResponse response;
+			try { response = (HttpWebResponse)ex.Response; }
+			catch (System.NullReferenceException) { response = null; }
+
+			if (response == null)
+			{
+				throw new RiotSharpException(ex.Message);
+			}
+
             switch (response.StatusCode)
             {
                 case HttpStatusCode.ServiceUnavailable:
