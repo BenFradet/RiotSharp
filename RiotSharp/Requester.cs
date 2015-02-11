@@ -7,6 +7,7 @@ namespace RiotSharp
 {
     class Requester
     {
+        private bool UseHttps = true;
         private static Requester instance;
         protected Requester() { }
         public static Requester Instance
@@ -35,15 +36,16 @@ namespace RiotSharp
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments)
         {
             HttpWebRequest request;
+            string scheme = UseHttps ? System.Uri.UriSchemeHttps : System.Uri.UriSchemeHttp;
             if (addedArguments == null)
             {
-                request = (HttpWebRequest)WebRequest.Create(string.Format("http://{0}{1}?api_key={2}"
-                    , rootDomain, relativeUrl, ApiKey));
+                request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?api_key={3}"
+                    , scheme, rootDomain, relativeUrl, ApiKey));
             }
             else
             {
-                request = (HttpWebRequest)WebRequest.Create(string.Format("http://{0}{1}?{2}api_key={3}"
-                    , rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
+                request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?{3}api_key={4}"
+                    , scheme, rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
             }
             request.Method = "GET";
 
@@ -103,7 +105,21 @@ namespace RiotSharp
 
         private void HandleWebException(WebException ex)
         {
-            HttpWebResponse response = (HttpWebResponse)ex.Response;
+            HttpWebResponse response;
+            try 
+            { 
+                response = (HttpWebResponse)ex.Response; 
+            }
+            catch (System.NullReferenceException) 
+            { 
+                response = null; 
+            }
+
+            if (response == null)
+            {
+                throw new RiotSharpException(ex.Message);
+            }
+
             switch (response.StatusCode)
             {
                 case HttpStatusCode.ServiceUnavailable:
