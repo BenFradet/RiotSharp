@@ -7,7 +7,7 @@ namespace RiotSharp
 {
     class Requester
     {
-        private bool UseHttps = true;
+        private bool useHttps = true;
         private static Requester instance;
         protected Requester() { }
         public static Requester Instance
@@ -36,7 +36,7 @@ namespace RiotSharp
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments)
         {
             HttpWebRequest request;
-            string scheme = UseHttps ? System.Uri.UriSchemeHttps : System.Uri.UriSchemeHttp;
+            string scheme = useHttps ? System.Uri.UriSchemeHttps : System.Uri.UriSchemeHttp;
             if (addedArguments == null)
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?api_key={3}"
@@ -106,13 +106,13 @@ namespace RiotSharp
         private void HandleWebException(WebException ex)
         {
             HttpWebResponse response;
-            try 
-            { 
-                response = (HttpWebResponse)ex.Response; 
+            try
+            {
+                response = (HttpWebResponse)ex.Response;
             }
-            catch (System.NullReferenceException) 
-            { 
-                response = null; 
+            catch (System.NullReferenceException)
+            {
+                response = null;
             }
 
             if (response == null)
