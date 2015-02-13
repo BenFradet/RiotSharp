@@ -113,6 +113,11 @@
         /// <summary>
         /// King Poro games.
         /// </summary>
-        KingPoro
+        KingPoro,
+
+        /// <summary>
+        /// Counter Pick games.
+        /// </summary>
+        CounterPick
     }
 }

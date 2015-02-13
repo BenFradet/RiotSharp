@@ -26,6 +26,7 @@
         NightmareBot,
         Ascension,
         Hexakill,
-        KingPoro
+        KingPoro,
+        CounterPick
     }
 }
