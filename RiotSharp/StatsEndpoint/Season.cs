@@ -12,6 +12,10 @@
         /// <summary>
         /// Season 4.
         /// </summary>
-        Season4
+        Season4,
+        /// <summary>
+        /// Season 2015.
+        /// </summary>
+        Season2015
     }
 }
