@@ -63,6 +63,8 @@ namespace RiotSharp.GameEndpoint
                     return GameSubType.Ascension;
                 case "KING_PORO":
                     return GameSubType.KingPoro;
+                case "COUNTER_PICK":
+                    return GameSubType.CounterPick;
                 default:
                     return null;
             }
@@ -139,6 +141,9 @@ namespace RiotSharp.GameEndpoint
                     break;
                 case GameSubType.KingPoro:
                     result = "KING_PORO";
+                    break;
+                case GameSubType.CounterPick:
+                    result = "COUNTER_PICK";
                     break;
                 default:
                     result = "";
