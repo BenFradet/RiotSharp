@@ -36,11 +36,6 @@
         TwistedTreelineCurrent = 10,
 
         /// <summary>
-        /// Summoner's Rift	Current Version
-        /// </summary>
-        SummonersRiftCurrent = 11,
-
-        /// <summary>
         /// Howling Abyss ARAM Map
         /// </summary>
         HowlingAbyss = 12,
