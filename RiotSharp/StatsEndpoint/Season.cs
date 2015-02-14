@@ -9,10 +9,12 @@
         /// Season 3.
         /// </summary>
         Season3,
+
         /// <summary>
-        /// Season 4.
+        /// Season 2014.
         /// </summary>
-        Season4,
+        Season2014,
+
         /// <summary>
         /// Season 2015.
         /// </summary>
