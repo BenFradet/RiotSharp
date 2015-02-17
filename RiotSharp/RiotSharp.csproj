@@ -47,6 +47,15 @@
   <ItemGroup>
     <Compile Include="ChampionEndpoint\Champion.cs" />
     <Compile Include="ChampionEndpoint\ChampionList.cs" />
+    <Compile Include="CurrentGameEndpoint\BannedChampion.cs" />
+    <Compile Include="CurrentGameEndpoint\Converters\GameQueueType.cs" />
+    <Compile Include="CurrentGameEndpoint\Converters\GameQueueTypeConverter.cs" />
+    <Compile Include="CurrentGameEndpoint\CurrentGame.cs" />
+    <Compile Include="CurrentGameEndpoint\Mastery.cs" />
+    <Compile Include="CurrentGameEndpoint\Observer.cs" />
+    <Compile Include="CurrentGameEndpoint\Participant.cs" />
+    <Compile Include="CurrentGameEndpoint\Rune.cs" />
+    <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedTypeConverter.cs" />
@@ -107,6 +116,8 @@
     <Compile Include="MatchEndpoint\Converters\WardType.cs" />
     <Compile Include="MatchEndpoint\Converters\WardTypeConverter.cs" />
     <Compile Include="Misc\Language.cs" />
+    <Compile Include="Misc\Platform.cs" />
+    <Compile Include="Misc\PlatformConverter.cs" />
     <Compile Include="Misc\Queue.cs" />
     <Compile Include="Misc\QueueConverter.cs" />
     <Compile Include="LeagueEndpoint\Converters\Tier.cs" />
