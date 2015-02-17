@@ -44,7 +44,7 @@
 		/// Russia.
 		/// </summary>
 		RU,
-		
+
 		/// <summary>
 		/// Western Europe.
 		/// </summary>

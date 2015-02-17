@@ -15,7 +15,7 @@ namespace RiotSharpTest
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Summoner summoner = api.GetSummoner(Region.euw, id);
-        private static int championId = 28;
+        private static int championId = 31;
         private static Queue queue = Queue.RankedSolo5x5;
 
         [TestMethod]

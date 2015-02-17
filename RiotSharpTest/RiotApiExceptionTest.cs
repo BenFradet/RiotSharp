@@ -13,14 +13,14 @@ namespace RiotSharpTest
         private static RiotApi faultyApi = RiotApi.GetInstance(faultyApiKey);
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
         private static RiotApi api = RiotApi.GetInstance(apiKey);
-        private static Platform faultyPlatform = (Platform) Enum.Parse(typeof(Platform), ConfigurationManager.AppSettings["FaultyPlatform"]);        
+        private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
 
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
         public void GetSummoner_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetSummoner(Region.euw, id);
+            faultyApi.GetSummoner(region, id);
         }
 
         [TestMethod]
@@ -28,15 +28,7 @@ namespace RiotSharpTest
         [ExpectedException(typeof(RiotSharpException))]
         public void GetChampions_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetChampions(Region.euw);
-        }
-
-        [TestMethod]
-        [TestCategory("Exception")]
-        [ExpectedException(typeof(RiotSharpException))]
-        public void GetCurrentGame_ShouldThrowRiotSharpException_Test()
-        {
-            var game = api.GetCurrentGame(faultyPlatform, id);
+            faultyApi.GetChampions(region);
         }
     }
 }
