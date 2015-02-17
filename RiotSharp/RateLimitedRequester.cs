@@ -18,10 +18,10 @@ namespace RiotSharp
         public static int RateLimitPer10S { get; set; }
         public static int RateLimitPer10M { get; set; }
 
-        private DateTime firstRequestInLastTenS = DateTime.MinValue;
-        private DateTime firstRequestInLastTenM = DateTime.MinValue;
-        private int numberOfRequestsInLastTenS;
-        private int numberOfRequestInLastTenM;
+        private Dictionary<Region, DateTime> firstRequestsInLastTenS = new Dictionary<Region, DateTime>();
+        private Dictionary<Region, DateTime> firstRequestsInLastTenM = new Dictionary<Region, DateTime>();
+        private Dictionary<Region, int> numberOfRequestsInLastTenS = new Dictionary<Region, int>();
+        private Dictionary<Region, int> numberOfRequestsInLastTenM = new Dictionary<Region, int>();
 
         private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
@@ -32,45 +32,7 @@ namespace RiotSharp
 
             semaphore.Wait();
             {
-                if (firstRequestInLastTenM == DateTime.MinValue)
-                {
-                    firstRequestInLastTenM = DateTime.Now;
-                }
-                numberOfRequestInLastTenM++;
-
-                if (firstRequestInLastTenS == DateTime.MinValue)
-                {
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-                numberOfRequestsInLastTenS++;
-
-                if (numberOfRequestInLastTenM > RateLimitPer10M)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601)
-                    {
-                    }
-                    numberOfRequestInLastTenM = 1;
-                    firstRequestInLastTenM = DateTime.Now;
-                }
-                if (numberOfRequestsInLastTenS > RateLimitPer10S)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11)
-                    {
-                    }
-                    numberOfRequestsInLastTenS = 1;
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-
-                if ((DateTime.Now - firstRequestInLastTenS).TotalSeconds > 10)
-                {
-                    firstRequestInLastTenS = DateTime.Now;
-                    numberOfRequestsInLastTenS = 1;
-                }
-                if ((DateTime.Now - firstRequestInLastTenM).TotalMinutes > 10)
-                {
-                    firstRequestInLastTenM = DateTime.Now;
-                    numberOfRequestInLastTenM = 1;
-                }
+                HandleRateLimit(region);
             }
             semaphore.Release();
 
@@ -85,51 +47,82 @@ namespace RiotSharp
 
             await semaphore.WaitAsync();
             {
-                if (firstRequestInLastTenM == DateTime.MinValue)
-                {
-                    firstRequestInLastTenM = DateTime.Now;
-                }
-                numberOfRequestInLastTenM++;
-
-                if (firstRequestInLastTenS == DateTime.MinValue)
-                {
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-                numberOfRequestsInLastTenS++;
-
-
-                if (numberOfRequestInLastTenM > RateLimitPer10M)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenM).TotalSeconds <= 601)
-                    {
-                    }
-                    numberOfRequestInLastTenM = 1;
-                    firstRequestInLastTenM = DateTime.Now;
-                }
-                if (numberOfRequestsInLastTenS > RateLimitPer10S)
-                {
-                    while ((DateTime.Now - firstRequestInLastTenS).TotalSeconds <= 11)
-                    {
-                    }
-                    numberOfRequestsInLastTenS = 1;
-                    firstRequestInLastTenS = DateTime.Now;
-                }
-
-                if ((DateTime.Now - firstRequestInLastTenS).TotalSeconds > 10)
-                {
-                    firstRequestInLastTenS = DateTime.Now;
-                    numberOfRequestsInLastTenS = 1;
-                }
-                if ((DateTime.Now - firstRequestInLastTenM).TotalMinutes > 10)
-                {
-                    firstRequestInLastTenM = DateTime.Now;
-                    numberOfRequestInLastTenM = 1;
-                }
-
+                HandleRateLimit(region);
             }
             semaphore.Release();
 
             return await GetResponseAsync(request);
+        }
+
+        private void HandleRateLimit(Region region)
+        {
+            if (firstRequestsInLastTenM.ContainsKey(region))
+            {
+                if (firstRequestsInLastTenM[region] == DateTime.MinValue)
+                {
+                    firstRequestsInLastTenM[region] = DateTime.Now;
+                }
+            }
+            else
+            {
+                firstRequestsInLastTenM.Add(region, DateTime.MinValue);
+            }
+            if (numberOfRequestsInLastTenM.ContainsKey(region))
+            {
+                numberOfRequestsInLastTenM[region]++;
+            }
+            else
+            {
+                numberOfRequestsInLastTenM[region] = 1;
+            }
+
+            if (firstRequestsInLastTenS.ContainsKey(region))
+            {
+                if (firstRequestsInLastTenS[region] == DateTime.MinValue)
+                {
+                    firstRequestsInLastTenS[region] = DateTime.Now;
+                }
+            }
+            else
+            {
+                firstRequestsInLastTenS.Add(region, DateTime.MinValue);
+            }
+            if (numberOfRequestsInLastTenS.ContainsKey(region))
+            {
+                numberOfRequestsInLastTenS[region]++;
+            }
+            else
+            {
+                numberOfRequestsInLastTenS.Add(region, 1);
+            }
+
+            if (numberOfRequestsInLastTenM[region] > RateLimitPer10M)
+            {
+                while ((DateTime.Now - firstRequestsInLastTenM[region]).TotalMinutes <= 11)
+                {
+                }
+                numberOfRequestsInLastTenM[region] = 1;
+                firstRequestsInLastTenM[region] = DateTime.Now;
+            }
+            if (numberOfRequestsInLastTenS[region] > RateLimitPer10S)
+            {
+                while ((DateTime.Now - firstRequestsInLastTenS[region]).TotalSeconds <= 11)
+                {
+                }
+                numberOfRequestsInLastTenS[region] = 1;
+                firstRequestsInLastTenS[region] = DateTime.Now;
+            }
+
+            if ((DateTime.Now - firstRequestsInLastTenM[region]).TotalMinutes > 10)
+            {
+                numberOfRequestsInLastTenM[region] = 1;
+                firstRequestsInLastTenM[region] = DateTime.Now;
+            }
+            if ((DateTime.Now - firstRequestsInLastTenS[region]).TotalSeconds > 10)
+            {
+                numberOfRequestsInLastTenS[region] = 1;
+                firstRequestsInLastTenS[region] = DateTime.Now;
+            }
         }
     }
 }
