@@ -7,7 +7,6 @@ namespace RiotSharp
 {
     class Requester
     {
-        private bool useHttps = true;
         private static Requester instance;
         protected Requester() { }
         public static Requester Instance
@@ -18,22 +17,23 @@ namespace RiotSharp
         protected string rootDomain;
         public static string ApiKey { get; set; }
 
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null)
+        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+            bool useHttps = true)
         {
             this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments);
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
             return GetResponse(request);
         }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
-            List<string> addedArguments = null)
+            List<string> addedArguments = null, bool useHttps = true)
         {
             this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments);
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
             return await GetResponseAsync(request);
         }
 
-        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments)
+        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps)
         {
             HttpWebRequest request;
             string scheme = useHttps ? System.Uri.UriSchemeHttps : System.Uri.UriSchemeHttp;
