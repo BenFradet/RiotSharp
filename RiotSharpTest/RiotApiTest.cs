@@ -532,7 +532,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetStatsRanked_Test()
         {
-            var stats = api.GetStatsRanked(region, id, Season.Season3);
+            var stats = api.GetStatsRanked(region, id, Season.Season2015);
 
             Assert.IsNotNull(stats);
             Assert.IsTrue(stats.Count() > 0);
@@ -542,7 +542,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetStatsRankedAsync_Test()
         {
-            var stats = api.GetStatsRankedAsync(region, id, Season.Season3);
+            var stats = api.GetStatsRankedAsync(region, id, Season.Season2015);
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);
