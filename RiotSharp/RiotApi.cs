@@ -317,9 +317,10 @@ namespace RiotSharp
         /// </summary>
         /// <param name="region">Region in which you wish to look for champions.</param>
         /// <returns>A list of champions.</returns>
-        public List<Champion> GetChampions(Region region)
+        public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
-            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()), region);
+            var json = requester.CreateRequest(string.Format(ChampionRootUrl, region.ToString()), region,
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
             return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
 
@@ -328,9 +329,10 @@ namespace RiotSharp
         /// </summary>
         /// <param name="region">Region in which you wish to look for champions.</param>
         /// <returns>A list of champions.</returns>
-        public async Task<List<Champion>> GetChampionsAsync(Region region)
+        public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
-            var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()), region);
+            var json = await requester.CreateRequestAsync(string.Format(ChampionRootUrl, region.ToString()), region,
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
         }

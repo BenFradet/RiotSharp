@@ -162,6 +162,26 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
+        public void GetChampions_FreeToPlay_Test()
+        {
+            var champions = api.GetChampions(region, true);
+
+            Assert.IsNotNull(champions);
+            Assert.IsTrue(champions.Count() == 10);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChampionsAsync_FreeToPlay_Test()
+        {
+            var champions = api.GetChampionsAsync(region, true);
+
+            Assert.IsNotNull(champions.Result);
+            Assert.IsTrue(champions.Result.Count() == 10);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
         public void GetChampion_Test()
         {
             var champion = api.GetChampion(region, 12);
