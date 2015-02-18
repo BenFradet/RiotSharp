@@ -132,6 +132,7 @@
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Item\Cache\ItemListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Item\Cache\ItemStaticWrapper.cs" />
+    <Compile Include="StaticDataEndpoint\LanguageStringsData.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\Cache\MasteryListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\Cache\MasteryStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\MasteryTreeItemStatic.cs" />
