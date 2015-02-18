@@ -12,7 +12,6 @@ namespace RiotSharpTest
         private static string faultyApiKey = ConfigurationManager.AppSettings["FaultyApiKey"];
         private static RiotApi faultyApi = RiotApi.GetInstance(faultyApiKey);
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
-        private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
 
         [TestMethod]
