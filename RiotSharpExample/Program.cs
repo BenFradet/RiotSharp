@@ -20,9 +20,9 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
-            var api2 = RiotApi.GetInstance("lalalal");
-
             var summ = api.GetSummoner(Region.euw, name);
+
+            var teams = summ.GetTeams();
 
             var match1 = api.GetMatch(Region.euw, 1929054645);
 
