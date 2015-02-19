@@ -91,6 +91,24 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("StaticRiotApi")]
+        public void GetLanguageStrings_Test()
+        {
+            var strings = api.GetLanguageStrings(Region.euw);
+
+            Assert.IsTrue(strings.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetLanguageStringsAsync_Test()
+        {
+            var strings = api.GetLanguageStringsAsync(Region.euw);
+
+            Assert.IsTrue(strings.Result.Data.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
         public void GetMasteries_Test()
         {
             var masteries = api.GetMasteries(Region.euw, MasteryData.all);

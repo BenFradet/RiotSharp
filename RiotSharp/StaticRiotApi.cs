@@ -19,9 +19,17 @@ namespace RiotSharp
         private const string ItemsCacheKey = "items";
         private const string ItemCacheKey = "item";
 
+        private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
+
+        private const string LanguagesRootUrl = "/api/lol/static-data/{0}/v1.2/languages";
+
+        private const string MapRootUrl = "/api/lol/static-data/{0}/v1.2/map";
+
         private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1.2/mastery";
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryCacheKey = "mastery";
+
+        private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
 
         private const string RuneRootUrl = "/api/lol/static-data/{0}/v1.2/rune";
         private const string RunesCacheKey = "runes";
@@ -32,8 +40,6 @@ namespace RiotSharp
         private const string SummonerSpellCacheKey = "spell";
 
         private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
-
-        private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
 
         private const string IdUrl = "/{0}";
 
@@ -103,7 +109,7 @@ namespace RiotSharp
         {
             var wrapper = Cache.Get<ChampionListStaticWrapper>(ChampionsCacheKey);
             if (wrapper != null && language == wrapper.Language && championData == wrapper.ChampionData)
-            { 
+            {
                 return wrapper.ChampionListStatic;
             }
             var json = await requester.CreateRequestAsync(
@@ -357,6 +363,35 @@ namespace RiotSharp
         }
 
         /// <summary>
+        /// Retrieve language strings synchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve the data.</param>
+        /// <param name="language">Language of the data to be retrieved.</param>
+        /// <param name="version">Version of the dragon API.</param>
+        /// <returns>A object containing the language strings.</returns>
+        public LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
+            string version = "5.3.1")
+        {
+            var json = requester.CreateRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain);
+            return JsonConvert.DeserializeObject<LanguageStringsData>(json);
+        }
+
+        /// <summary>
+        /// Retrieve language strings asynchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve the data.</param>
+        /// <param name="language">Language of the data to be retrieved.</param>
+        /// <param name="version">Version of the dragon API.</param>
+        /// <returns>A object containing the language strings.</returns>
+        public async Task<LanguageStringsData> GetLanguageStringsAsync(Region region,
+            Language language = Language.en_US, string version = "5.3.1")
+        {
+            var json = await requester.CreateRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
+                RootDomain);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsData>(json));
+        }
+
+        /// <summary>
         /// Get a list of all masteries synchronously.
         /// </summary>
         /// <param name="region">Region from which to retrieve the data.</param>
@@ -504,6 +539,28 @@ namespace RiotSharp
             Cache.Add(MasteryCacheKey + masteryId
                 , new MasteryStaticWrapper(mastery, language, masteryData));
             return mastery;
+        }
+
+        /// <summary>
+        /// Retrieve real data synchronously.
+        /// </summary>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <returns>A realm object containing the requested information.</returns>
+        public Realm GetRealm(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            return JsonConvert.DeserializeObject<Realm>(json);
+        }
+
+        /// <summary>
+        /// Retrieve real data asynchronously.
+        /// </summary>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <returns>A realm object containing the requested information.</returns>
+        public async Task<Realm> GetRealmAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
         }
 
         /// <summary>
@@ -792,7 +849,8 @@ namespace RiotSharp
             if (listWrapper != null && listWrapper.SummonerSpellData == summonerSpellData
                 && listWrapper.Language == language)
             {
-                return listWrapper.SummonerSpellListStatic.SummonerSpells.ContainsKey(summonerSpell.ToCustomString()) ? listWrapper.SummonerSpellListStatic.SummonerSpells[summonerSpell.ToCustomString()] : null;
+                return listWrapper.SummonerSpellListStatic.SummonerSpells.ContainsKey(summonerSpell.ToCustomString()) ?
+                    listWrapper.SummonerSpellListStatic.SummonerSpells[summonerSpell.ToCustomString()] : null;
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(SummonerSpellRootUrl, region.ToString()) +
@@ -833,28 +891,6 @@ namespace RiotSharp
             var json =
                 await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
-        }
-
-        /// <summary>
-        /// Retrieve real data synchronously.
-        /// </summary>
-        /// <param name="region">Region corresponding to data to retrieve.</param>
-        /// <returns>A realm object containing the requested information.</returns>
-        public Realm GetRealm(Region region)
-        {
-            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<Realm>(json);
-        }
-
-        /// <summary>
-        /// Retrieve real data asynchronously.
-        /// </summary>
-        /// <param name="region">Region corresponding to data to retrieve.</param>
-        /// <returns>A realm object containing the requested information.</returns>
-        public async Task<Realm> GetRealmAsync(Region region)
-        {
-            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
         }
     }
 }
