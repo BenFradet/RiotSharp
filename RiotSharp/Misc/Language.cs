@@ -26,6 +26,16 @@
         en_AU,
 
         /// <summary>
+        /// Filipino English.
+        /// </summary>
+        en_PH,
+
+        /// <summary>
+        /// Singaporean English.
+        /// </summary>
+        en_SG,
+
+        /// <summary>
         /// Polish.
         /// </summary>
         pl_PL,
@@ -81,7 +91,12 @@
         el_GR,
 
         /// <summary>
-        /// Portuguese.
+        /// Portuguese
+        /// </summary>
+        pt_PT,
+
+        /// <summary>
+        /// Brazilian Portuguese.
         /// </summary>
         pt_BR,
 
@@ -101,8 +116,48 @@
         zh_CN,
 
         /// <summary>
+        /// Taiwanese Chinese.
+        /// </summary>
+        zh_TW,
+
+        /// <summary>
         /// Korean.
         /// </summary>
-        ko_KR
+        ko_KR,
+
+        /// <summary>
+        /// Bulgarian.
+        /// </summary>
+        bg_BG,
+
+        /// <summary>
+        /// Indonesian.
+        /// </summary>
+        id_ID,
+
+        /// <summary>
+        /// Malaysian.
+        /// </summary>
+        ms_MY,
+
+        /// <summary>
+        /// Malaysian Chinese.
+        /// </summary>
+        zh_MY,
+
+        /// <summary>
+        /// Dutch.
+        /// </summary>
+        nl_NL,
+
+        /// <summary>
+        /// Thaï.
+        /// </summary>
+        th_TH,
+
+        /// <summary>
+        /// Vietnamese.
+        /// </summary>
+        vn_VN
     }
 }

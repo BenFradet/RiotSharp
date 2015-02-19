@@ -392,6 +392,30 @@ namespace RiotSharp
         }
 
         /// <summary>
+        /// Get languages synchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve the data.</param>
+        /// <returns>A list of languages.</returns>
+        public List<Language> GetLanguages(Region region)
+        {
+            var json = requester.CreateRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
+            return JsonConvert.DeserializeObject<List<Language>>(json);
+        }
+
+        /// <summary>
+        /// Get languages asynchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve the data.</param>
+        /// <returns>A list of languages.</returns>
+        public async Task<List<Language>> GetLanguagesAsync(Region region)
+        {
+            var json = await requester.CreateRequestAsync(string.Format(LanguagesRootUrl, region.ToString()),
+                RootDomain);
+            return await Task.Factory.StartNew(() =>
+                JsonConvert.DeserializeObject<List<Language>>(json));
+        }
+
+        /// <summary>
         /// Get a list of all masteries synchronously.
         /// </summary>
         /// <param name="region">Region from which to retrieve the data.</param>

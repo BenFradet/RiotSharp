@@ -20,6 +20,10 @@ namespace RiotSharpExample
             string team = ConfigurationManager.AppSettings["Team1Id"];
             string team2 = ConfigurationManager.AppSettings["Team2Id"];
 
+            var data = staticApi.GetLanguages(Region.euw);
+
+            Console.WriteLine(data);
+
             var summ = api.GetSummoner(Region.euw, name);
 
             var teams = summ.GetTeams();
