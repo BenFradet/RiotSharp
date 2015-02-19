@@ -127,6 +127,24 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("StaticRiotApi")]
+        public void GetMaps_Test()
+        {
+            var maps = api.GetMaps(Region.euw);
+
+            Assert.IsTrue(maps.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetMapsAsync_Test()
+        {
+            var maps = api.GetMapsAsync(Region.euw);
+
+            Assert.IsTrue(maps.Result.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
         public void GetMasteries_Test()
         {
             var masteries = api.GetMasteries(Region.euw, MasteryData.all);

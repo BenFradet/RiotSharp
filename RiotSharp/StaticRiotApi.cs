@@ -372,7 +372,11 @@ namespace RiotSharp
         public LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
-            var json = requester.CreateRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
+                new List<string> {
+                    string.Format("locale={0}", language.ToString()),
+                    string.Format("version={0}", version)
+                });
             return JsonConvert.DeserializeObject<LanguageStringsData>(json);
         }
 
@@ -387,7 +391,10 @@ namespace RiotSharp
             Language language = Language.en_US, string version = "5.3.1")
         {
             var json = await requester.CreateRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
-                RootDomain);
+                RootDomain, new List<string> {
+                    string.Format("locale={0}", language.ToString()),
+                    string.Format("version={0}", version)
+                });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsData>(json));
         }
 
@@ -413,6 +420,42 @@ namespace RiotSharp
                 RootDomain);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<List<Language>>(json));
+        }
+
+        /// <summary>
+        /// Get maps synchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve the data.</param>
+        /// <param name="language">Language of the data to be retrieved.</param>
+        /// <param name="version">Version of the dragon API.</param>
+        /// <returns>A list of objects representing maps.</returns>
+        public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1")
+        {
+            var json = requester.CreateRequest(string.Format(MapRootUrl, region.ToString()), RootDomain,
+                new List<string> {
+                    string.Format("locale={0}", language.ToString()),
+                    string.Format("version={0}", version)
+                });
+            return JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList();
+        }
+
+        /// <summary>
+        /// Get maps asynchronously.
+        /// </summary>
+        /// <param name="region">Region from which to retrieve the data.</param>
+        /// <param name="language">Language of the data to be retrieved.</param>
+        /// <param name="version">Version of the dragon API.</param>
+        /// <returns>A list of objects representing maps.</returns>
+        public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
+            string version = "5.3.1")
+        {
+            var json = await requester.CreateRequestAsync(string.Format(MapRootUrl, region.ToString()), RootDomain,
+                new List<string> {
+                    string.Format("locale={0}", language.ToString()),
+                    string.Format("version={0}", version)
+                });
+            return await Task.Factory.StartNew(() =>
+                JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList());
         }
 
         /// <summary>
