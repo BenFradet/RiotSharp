@@ -12,12 +12,21 @@ namespace RiotSharp.StaticDataEndpoint
     {
         internal LanguageStringsData() { }
 
+        /// <summary>
+        /// Type of data returned.
+        /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
+        /// <summary>
+        /// Version of the dragon API.
+        /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; }
 
+        /// <summary>
+        /// Translated strings.
+        /// </summary>
         [JsonProperty("data")]
         public Dictionary<String, String> Data { get; set; }
     }

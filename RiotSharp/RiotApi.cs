@@ -608,7 +608,8 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="summonerIds">List of summoner ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
-        public async Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsAsync(Region region, List<int> summonerIds)
+        public async Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsAsync(Region region,
+            List<int> summonerIds)
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(TeamRootUrl, region.ToString()) +
