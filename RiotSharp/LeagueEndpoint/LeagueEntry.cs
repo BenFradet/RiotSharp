@@ -48,6 +48,12 @@ namespace RiotSharp.LeagueEndpoint
         public int LeaguePoints { get; set; }
 
         /// <summary>
+        /// The number of losses for the participant.
+        /// </summary>
+        [JsonProperty("losses")]
+        public int Losses { get; set; }
+
+        /// <summary>
         /// Mini series data for the participant. Only present if the participant is currently in a mini series.
         /// </summary>
         [JsonProperty("miniSeries")]
