@@ -70,7 +70,8 @@ For a full description check the RiotSharpExample or RiotSharpTest projects.
 
 ##Contribution
 
-Simply send a pull request.
+Simply send a pull request!
+
 When adding new features, please provide the related unit tests within the pull request.
 To run the unit tests you need to modify the [App.config](RiotSharpTest/App.config) file and fill out the appropriate values so the tests can run.
 
