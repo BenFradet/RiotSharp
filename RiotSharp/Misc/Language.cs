@@ -158,6 +158,11 @@
         /// <summary>
         /// Vietnamese.
         /// </summary>
-        vn_VN
+        vn_VN,
+
+        /// <summary>
+        /// Japanese.
+        /// </summary>
+        ja_JP
     }
 }
