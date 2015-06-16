@@ -350,6 +350,26 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
+        public void GetMasterLeague_Test()
+        {
+            var league = api.GetMasterLeague(region, Queue.RankedSolo5x5);
+
+            Assert.IsNotNull(league.Entries);
+            Assert.IsTrue(league.Entries.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMasterLeagueAsync_Test()
+        {
+            var league = api.GetMasterLeagueAsync(region, Queue.RankedSolo5x5);
+
+            Assert.IsNotNull(league.Result.Entries);
+            Assert.IsTrue(league.Result.Entries.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
         public void GetTeams_Summoners_Test()
         {
             var teams = api.GetTeams(region, new List<int> { id, id2 });
