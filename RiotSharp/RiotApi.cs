@@ -592,8 +592,8 @@ namespace RiotSharp
         /// <summary>
         /// Get the master league for a particular queue.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for a challenger league.</param>
-        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
+        /// <param name="region">Region in which you wish to look for a master league.</param>
+        /// <param name="queue">Queue in which you wish to look for a master league.</param>
         /// <returns>A league which contains all the masters for this specific region and queue.</returns>
         public League GetMasterLeague(Region region, Queue queue)
         {
