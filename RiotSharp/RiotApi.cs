@@ -33,6 +33,8 @@ namespace RiotSharp
 
         private const string LeagueRootUrl = "/api/lol/{0}/v2.5/league";
         private const string LeagueChallengerUrl = "/challenger";
+        private const string LeagueMasterUrl = "/master";
+
         private const string LeagueByTeamUrl = "/by-team/{0}";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueEntryUrl = "/entry";
@@ -582,6 +584,36 @@ namespace RiotSharp
         {
             var json = await requester.CreateRequestAsync(
                 string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
+                region,
+                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
+        }
+
+        /// <summary>
+        /// Get the master league for a particular queue.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a master league.</param>
+        /// <param name="queue">Queue in which you wish to look for a master league.</param>
+        /// <returns>A league which contains all the masters for this specific region and queue.</returns>
+        public League GetMasterLeague(Region region, Queue queue)
+        {
+            var json = requester.CreateRequest(
+                string.Format(LeagueRootUrl, region.ToString()) + LeagueMasterUrl,
+                region,
+                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
+            return JsonConvert.DeserializeObject<League>(json);
+        }
+
+        /// <summary>
+        /// Get the master league for a particular queue asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a master league.</param>
+        /// <param name="queue">Queue in which you wish to look for a master league.</param>
+        /// <returns>A league which contains all the masters for this specific region and queue.</returns>
+        public async Task<League> GetMasterLeagueAsync(Region region, Queue queue)
+        {
+            var json = await requester.CreateRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) + LeagueMasterUrl,
                 region,
                 new List<string> { string.Format("type={0}", queue.ToCustomString()) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
