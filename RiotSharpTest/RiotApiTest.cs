@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
-using RiotSharp.Misc;
-using RiotSharp.StatsEndpoint;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RiotSharp;
+using RiotSharp.StatsEndpoint;
 
 namespace RiotSharpTest
 {
@@ -21,8 +19,8 @@ namespace RiotSharpTest
         private static string team = ConfigurationManager.AppSettings["Team1Id"];
         private static string team2 = ConfigurationManager.AppSettings["Team2Id"];
         private static int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
+        private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
-        private static int championId = 18;
         private static Queue queue = Queue.RankedSolo5x5;
         private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
 
