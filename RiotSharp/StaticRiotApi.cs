@@ -9,7 +9,7 @@ namespace RiotSharp
     /// <summary>
     /// Entry point for the static API.
     /// </summary>
-    public class StaticRiotApi
+    public class StaticRiotApi : IStaticRiotApi
     {
         private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1.2/champion";
         private const string ChampionsCacheKey = "champions";

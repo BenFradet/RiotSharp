@@ -57,6 +57,9 @@
     <Compile Include="CurrentGameEndpoint\Rune.cs" />
     <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
+    <Compile Include="IRiotApi.cs" />
+    <Compile Include="IStaticRiotApi.cs" />
+    <Compile Include="IStatusRiotApi.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedTypeConverter.cs" />
     <Compile Include="MatchEndpoint\Converters\CapturePointConverter.cs" />
