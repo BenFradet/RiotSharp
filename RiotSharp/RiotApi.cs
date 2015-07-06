@@ -18,7 +18,7 @@ namespace RiotSharp
     /// <summary>
     /// Entry point for the API.
     /// </summary>
-    public class RiotApi
+    public class RiotApi : IRiotApi
     {
         private const string SummonerRootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string ByNameUrl = "/by-name/{0}";
