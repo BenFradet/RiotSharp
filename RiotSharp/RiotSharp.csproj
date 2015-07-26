@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventArgs\AfterReceiveReplyEventArgs.cs" />
+    <Compile Include="EventArgs\BeforeSendRequestEventArgs.cs" />
     <Compile Include="ChampionEndpoint\Champion.cs" />
     <Compile Include="ChampionEndpoint\ChampionList.cs" />
     <Compile Include="CurrentGameEndpoint\BannedChampion.cs" />
@@ -57,6 +59,9 @@
     <Compile Include="CurrentGameEndpoint\Rune.cs" />
     <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
+    <Compile Include="EventHandlers\AfterReceiveReplyEventHandler.cs" />
+    <Compile Include="EventHandlers\BeforeSendRequestEventHandler.cs" />
+    <Compile Include="IInterceptable.cs" />
     <Compile Include="IRiotApi.cs" />
     <Compile Include="IStaticRiotApi.cs" />
     <Compile Include="IStatusRiotApi.cs" />

@@ -22,7 +22,7 @@ namespace RiotSharpTest
         private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Queue queue = Queue.RankedSolo5x5;
-        private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
+        private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
 
         [TestMethod]
         [TestCategory("RiotApi")]
@@ -644,7 +644,64 @@ namespace RiotSharpTest
             Assert.IsNotNull(games.Result);
         }
 
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Interceptor")]
+        public void Interceptor_GetSummoner_ById_Test()
+        {
+            var requestId1 = Guid.Empty;
+            var requestId2 = Guid.Empty;
+            string responseRawData = null;
 
+            var beforeSendRequest = new BeforeSendRequestEventHandler(delegate(BeforeSendRequestEventArgs e)
+            {
+                requestId1 = e.RequestId;
+            });
 
+            var afterReceiveReply = new AfterReceiveReplyEventHandler(delegate(AfterReceiveReplyEventArgs e)
+            {
+                requestId2 = e.RequestId;
+                responseRawData = e.ResponseRawData;
+            });
+
+            api.BeforeSendRequest += beforeSendRequest;
+            api.AfterReceiveReply += afterReceiveReply;
+
+            var summoner = api.GetSummoner(region, id);
+
+            Assert.AreEqual(summoner.Name, name);
+            Assert.AreNotSame(requestId1, Guid.Empty);
+            Assert.AreEqual(requestId1, requestId2);
+            Assert.IsNotNull(responseRawData);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async"), TestCategory("Interceptor")]
+        public void Interceptor_GetSummonerAsync_ById_Test()
+        {
+            var requestId1 = Guid.Empty;
+            var requestId2 = Guid.Empty;
+            string responseRawData = null;
+
+            var beforeSendRequest = new BeforeSendRequestEventHandler(delegate(BeforeSendRequestEventArgs e)
+            {
+                requestId1 = e.RequestId;
+            });
+
+            var afterReceiveReply = new AfterReceiveReplyEventHandler(delegate(AfterReceiveReplyEventArgs e)
+            {
+                requestId2 = e.RequestId;
+                responseRawData = e.ResponseRawData;
+            });
+
+            api.BeforeSendRequest += beforeSendRequest;
+            api.AfterReceiveReply += afterReceiveReply;
+
+            var summoner = api.GetSummonerAsync(region, id);
+
+            Assert.AreEqual(summoner.Result.Name, name);
+            Assert.AreNotSame(requestId1, Guid.Empty);
+            Assert.AreEqual(requestId1, requestId2);
+            Assert.IsNotNull(responseRawData);
+        }
     }
 }
