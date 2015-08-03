@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RiotSharp.MatchEndpoint
 {
-    class MatchReference
+    public class MatchReference
     {
         /// <summary>
         /// The ID of the champion played during the match.

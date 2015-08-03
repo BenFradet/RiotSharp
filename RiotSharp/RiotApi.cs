@@ -48,6 +48,7 @@ namespace RiotSharp
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchHistoryRootUrl = "/api/lol/{0}/v2.2/matchhistory";
+        private const string MatchListRootUrl = "/api/lol/{0}/v2.2/matchlist/by-summoner";
 
         private const string CurrentGameRootUrl = "/observer-mode/rest/consumer/getSpectatorGameInfo/{0}";
 
@@ -786,6 +787,79 @@ namespace RiotSharp
                 addedArguments);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<PlayerHistory>(json).Matches);
+        }
+        
+        public List<MatchReference> GetMatchList(Region region, long summonerId,
+            List<long> championIds = null, List<Queue> rankedQueues = null, List<MatchEndpoint.Season> seasons = null, 
+            DateTime? beginTime = null, DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
+        {
+            var addedArguments = new List<string> {
+                    string.Format("beginIndex={0}", beginIndex),
+                    string.Format("endIndex={0}", endIndex),
+            };
+            if (beginTime != null)
+            {
+                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
+            }
+            if (endTime != null)
+            {
+                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
+            }
+            if (championIds != null)
+            {
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
+            }
+            if (rankedQueues != null)
+            {
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+            }
+            if (seasons != null)
+            {
+                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
+            }
+
+
+            var json = requester.CreateRequest(
+                string.Format(MatchHistoryRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+                region,
+                addedArguments);
+            return JsonConvert.DeserializeObject<MatchList>(json).Matches;
+        }
+        public async Task<List<MatchReference>> GetMatchListAsync(Region region, long summonerId,
+            List<long> championIds = null, List<Queue> rankedQueues = null, List<MatchEndpoint.Season> seasons = null,
+            DateTime? beginTime = null, DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
+        {
+            var addedArguments = new List<string> {
+                    string.Format("beginIndex={0}", beginIndex),
+                    string.Format("endIndex={0}", endIndex),
+            };
+            if (beginTime != null)
+            {
+                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
+            }
+            if (endTime != null)
+            {
+                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
+            }
+            if (championIds != null)
+            {
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
+            }
+            if (rankedQueues != null)
+            {
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+            }
+            if (seasons != null)
+            {
+                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
+            }
+
+
+            var json = await requester.CreateRequestAsync(
+                string.Format(MatchHistoryRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+                region,
+                addedArguments);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json).Matches);
         }
 
         /// <summary>
