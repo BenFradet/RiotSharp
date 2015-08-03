@@ -106,16 +106,16 @@ namespace RiotSharp.CurrentGameEndpoint.Converters
 					break;
 				case GameQueueType.Hexakill:
 					result = "HEXAKILL";
-               break;
-            case GameQueueType.BilgewaterAram5x5:
-               result = "BILGEWATER_ARAM_5x5";
-               break;
+					break;
+				case GameQueueType.BilgewaterAram5x5:
+					result = "BILGEWATER_ARAM_5x5";
+					break;
 				case GameQueueType.KingPoro5x5:
 					result = "KING_PORO_5x5";
-               break;
-            case GameQueueType.Bilgewater5x5:
-               result = "BILGEWATER_5x5";
-               break;
+					break;
+				case GameQueueType.Bilgewater5x5:
+					result = "BILGEWATER_5x5";
+					break;
 				default:
 					result = "";
 					break;
@@ -219,16 +219,16 @@ namespace RiotSharp.CurrentGameEndpoint.Converters
 					return GameQueueType.Ascension5x5;
 				case "HEXAKILL":
 				case "98":
-               return GameQueueType.Hexakill;
-            case "BILGEWATER_ARAM_5x5":
-            case "100":
-               return GameQueueType.BilgewaterAram5x5;
+					return GameQueueType.Hexakill;
+				case "BILGEWATER_ARAM_5x5":
+				case "100":
+					return GameQueueType.BilgewaterAram5x5;
 				case "KING_PORO_5x5":
 				case "300":
-               return GameQueueType.KingPoro5x5;
-            case "BILGEWATER_5x5":
-            case "313":
-               return GameQueueType.Bilgewater5x5;
+					return GameQueueType.KingPoro5x5;
+				case "BILGEWATER_5x5":
+				case "313":
+					return GameQueueType.Bilgewater5x5;
 				default:
 					return null;
 			}

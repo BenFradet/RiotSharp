@@ -153,21 +153,21 @@
 		/// <summary>
 		/// Twisted Treeline 6x6 Hexakill games
 		/// </summary>
-      Hexakill = 98,
+		Hexakill = 98,
 
-      /// <summary>
-      /// Butcher's Bridge games
-      /// </summary>
-      BilgewaterAram5x5 = 100,
+		/// <summary>
+		/// Butcher's Bridge games
+		/// </summary>
+		BilgewaterAram5x5 = 100,
 		
 		/// <summary>
 		/// King Poro games
 		/// </summary>
 		KingPoro5x5 = 300,
 
-      /// <summary>
-      /// Black Market Brawlers games
-      /// </summary>
-      Bilgewater5x5 = 313
+		/// <summary>
+		/// Black Market Brawlers games
+		/// </summary>
+		Bilgewater5x5 = 313
 	}
 }
