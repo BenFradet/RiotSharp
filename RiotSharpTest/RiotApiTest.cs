@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.StatsEndpoint;
+using RiotSharp.MatchEndpoint;
 
 namespace RiotSharpTest
 {
@@ -23,6 +24,9 @@ namespace RiotSharpTest
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Queue queue = Queue.RankedSolo5x5;
         private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
+        private static RiotSharp.MatchEndpoint.Season season = RiotSharp.MatchEndpoint.Season.Season2015;
+        private static DateTime beginTime = new DateTime(2015, 01, 01);
+        private static DateTime endTime { get { return DateTime.Now; } }
 
         [TestMethod]
         [TestCategory("RiotApi")]
@@ -528,9 +532,168 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
+        public void GetMatchList_Test()
+        {
+            var matches = api.GetMatchList(region, id).Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatchList_ChampionIds_Test()
+        {
+            var matches = api.GetMatchList(region, id, new List<long> { championId }).Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(championId.ToString(), match.ChampionID.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatchList_RankedQueues_Test()
+        {
+            var matches = api.GetMatchList(region, id, null, new List<Queue> { queue }).Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatchList_Seasons_Test()
+        {
+            var matches = api.GetMatchList(region, id, null, null, new List<RiotSharp.MatchEndpoint.Season> { season }).Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(season.ToString(), match.Season.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatchList_DateTimes_Test()
+        {
+            var matches = api.GetMatchList(region, id, null, null, null, beginTime, endTime).Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.IsTrue(DateTime.Compare(match.Timestamp, beginTime) >= 0);
+                Assert.IsTrue(DateTime.Compare(match.Timestamp, endTime) <= 0);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMatchList_Index_Test()
+        {
+            int beginIndex = 0; int endIndex = 32;
+            
+            var matches = api.GetMatchList(region, id, null, null, null, null, null, beginIndex, endIndex).Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() < (endIndex-beginIndex));
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchListAsync_Test()
+        {
+            var matches = api.GetMatchListAsync(region, id).Result.Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchListAsync_ChampionIds_Test()
+        {
+            var matches = api.GetMatchListAsync(region, id, new List<long> { championId }).Result.Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(championId.ToString(), match.ChampionID.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchListAsync_RankedQueues_Test()
+        {
+            var matches = api.GetMatchListAsync(region, id, null, new List<Queue> { queue }).Result.Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchListAsync_Seasons_Test()
+        {
+            var matches = api.GetMatchListAsync(region, id, null, null,
+                new List<RiotSharp.MatchEndpoint.Season> { season }).Result.Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.AreEqual(season.ToString(), match.Season.ToString());
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchListAsync_DateTimes_Test()
+        {
+            var matches = api.GetMatchListAsync(region, id, null, null, null, beginTime, endTime).Result.Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() > 0);
+            foreach (var match in matches)
+            {
+                Assert.IsTrue(DateTime.Compare(match.Timestamp, beginTime) >= 0);
+                Assert.IsTrue(DateTime.Compare(match.Timestamp, endTime) <= 0);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchListAsync_Index_Test()
+        {
+            int beginIndex = 0; int endIndex = 32;
+
+            var matches = api.GetMatchListAsync(region, id, null, null, null, null, null, beginIndex, endIndex).Result.Matches;
+
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Count() < (endIndex - beginIndex));
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
         public void GetStatsSummaries_Test()
         {
-            var stats = api.GetStatsSummaries(region, id, Season.Season3);
+            var stats = api.GetStatsSummaries(region, id, RiotSharp.StatsEndpoint.Season.Season3);
 
             Assert.IsNotNull(stats);
             Assert.IsTrue(stats.Count() > 0);
@@ -540,7 +703,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetStatsSummariesAsync_Test()
         {
-            var stats = api.GetStatsSummariesAsync(region, id, Season.Season3);
+            var stats = api.GetStatsSummariesAsync(region, id, RiotSharp.StatsEndpoint.Season.Season3);
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);
@@ -570,7 +733,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetStatsRanked_Test()
         {
-            var stats = api.GetStatsRanked(region, id, Season.Season2015);
+            var stats = api.GetStatsRanked(region, id, RiotSharp.StatsEndpoint.Season.Season2015);
 
             Assert.IsNotNull(stats);
             Assert.IsTrue(stats.Count() > 0);
@@ -580,7 +743,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetStatsRankedAsync_Test()
         {
-            var stats = api.GetStatsRankedAsync(region, id, Season.Season2015);
+            var stats = api.GetStatsRankedAsync(region, id, RiotSharp.StatsEndpoint.Season.Season2015);
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);

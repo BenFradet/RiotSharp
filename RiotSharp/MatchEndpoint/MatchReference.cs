@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace RiotSharp.MatchEndpoint
@@ -50,6 +51,13 @@ namespace RiotSharp.MatchEndpoint
         [JsonProperty("season")]
         [JsonConverter(typeof(SeasonConverter))]
         public Season Season { get; set; }
+
+        /// <summary>
+        /// The date/time of which the game lobby was created.
+        /// </summary>
+        [JsonProperty("timestamp")]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
+        public DateTime Timestamp { get; set; }
 
     }
 }

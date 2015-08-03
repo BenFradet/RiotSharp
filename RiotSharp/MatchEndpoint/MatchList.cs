@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RiotSharp.MatchEndpoint
 {
-    class MatchList
+    public class MatchList
     {
         /// <summary>
         /// The end index of the list of matches.
