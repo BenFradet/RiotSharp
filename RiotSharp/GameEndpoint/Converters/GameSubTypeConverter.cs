@@ -65,6 +65,8 @@ namespace RiotSharp.GameEndpoint
                     return GameSubType.KingPoro;
                 case "COUNTER_PICK":
                     return GameSubType.CounterPick;
+                case "BILGEWATER":
+                    return GameSubType.Bilgewater;
                 default:
                     return null;
             }
@@ -144,6 +146,9 @@ namespace RiotSharp.GameEndpoint
                     break;
                 case GameSubType.CounterPick:
                     result = "COUNTER_PICK";
+                    break;
+                case GameSubType.Bilgewater:
+                    result = "BILGEWATER";
                     break;
                 default:
                     result = "";

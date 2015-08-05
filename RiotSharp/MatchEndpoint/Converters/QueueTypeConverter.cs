@@ -69,6 +69,10 @@ namespace RiotSharp.MatchEndpoint
                     return QueueType.Urf5x5;
                 case "BOT_URF_5x5":
                     return QueueType.BotUrf5x5;
+                case "BILGEWATER_5x5":
+                    return QueueType.Bilgewater5x5;
+                case "BILGEWATER_ARAM_5x5":
+                    return QueueType.BilgewaterAram5x5;
                 case "NIGHTMARE_BOT_5x5_RANK1":
                     return QueueType.NightmareBot5x5Rank1;
                 case "NIGHTMARE_BOT_5x5_RANK2":
