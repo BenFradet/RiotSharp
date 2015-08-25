@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
@@ -13,9 +14,10 @@ namespace RiotSharpTest
     {
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
         private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
+        private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
+        private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
-        private static Summoner summoner = api.GetSummoner(Region.euw, id);
-        private static int championId = 31;
+        private static Summoner summoner = api.GetSummoner(region, id);
         private static Queue queue = Queue.RankedSolo5x5;
 
         [TestMethod]

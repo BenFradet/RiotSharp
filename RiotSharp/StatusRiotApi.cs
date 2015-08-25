@@ -8,7 +8,7 @@ namespace RiotSharp
     /// <summary>
     /// Entry point for the status API.
     /// </summary>
-    public class StatusRiotApi
+    public class StatusRiotApi : IStatusRiotApi
     {
         private const string StatusRootUrl = "/shards";
 

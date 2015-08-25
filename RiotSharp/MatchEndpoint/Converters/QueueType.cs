@@ -143,7 +143,17 @@
         /// <summary>
         /// Games against nightmare bots rank 5 5vs5.
         /// </summary>
-        NightmareBot5x5Rank5
+        NightmareBot5x5Rank5,
+
+        /// <summary>
+        /// Butcher's Bridge games.
+        /// </summary>
+        BilgewaterAram5x5,
+
+        /// <summary>
+        /// Black Market Brawlers games.
+        /// </summary>
+        Bilgewater5x5
     }
 
     static class QueueTypeExtension
@@ -208,6 +218,10 @@
                     return "SR_6x6";
                 case QueueType.Urf5x5:
                     return "URF_5x5";
+                case QueueType.Bilgewater5x5:
+                    return "BILGEWATER_5x5";
+                case QueueType.BilgewaterAram5x5:
+                    return "BILGEWATER_ARAM_5x5";
                 default:
                     return string.Empty;
             }

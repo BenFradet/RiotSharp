@@ -116,6 +116,11 @@
         KingPoro,
 
         /// <summary>
+        /// Black Market Brawlers games.
+        /// </summary>
+        Bilgewater,
+
+        /// <summary>
         /// Counter Pick games.
         /// </summary>
         CounterPick
