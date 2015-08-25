@@ -65,6 +65,8 @@ namespace RiotSharp.StatsEndpoint
                     return PlayerStatsSummaryType.KingPoro;
                 case "CounterPick":
                     return PlayerStatsSummaryType.CounterPick;
+                case "Bilgewater":
+                    return PlayerStatsSummaryType.Bilgewater;
                 default:
                     return null;
             }

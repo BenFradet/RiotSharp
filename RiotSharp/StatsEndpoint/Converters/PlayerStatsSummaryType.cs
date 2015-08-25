@@ -27,6 +27,7 @@
         Ascension,
         Hexakill,
         KingPoro,
-        CounterPick
+        CounterPick,
+        Bilgewater
     }
 }

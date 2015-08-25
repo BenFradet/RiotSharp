@@ -193,7 +193,7 @@ namespace RiotSharp.SummonerEndpoint
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)))[Id];
         }
-        
+
         /// <summary>
         /// Get player stats summaries for this summoner synchronously, for the current season.
         /// One summary is returned per queue type.
