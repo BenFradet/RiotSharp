@@ -4,6 +4,7 @@ using System.Configuration;
 
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
+using System;
 
 namespace RiotSharpTest
 {
@@ -293,6 +294,66 @@ namespace RiotSharpTest
             var realm = api.GetRealmAsync(Region.euw);
 
             Assert.IsNotNull(realm.Result);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Interceptor")]
+        public void Interceptor_GetChampion_Test()
+        {
+            var requestId1 = Guid.Empty;
+            var requestId2 = Guid.Empty;
+            string responseRawData = null;
+
+            var beforeSendRequest = new BeforeSendRequestEventHandler(delegate(BeforeSendRequestEventArgs e)
+            {
+                requestId1 = e.RequestId;
+            });
+
+            var afterReceiveReply = new AfterReceiveReplyEventHandler(delegate(AfterReceiveReplyEventArgs e)
+            {
+                requestId2 = e.RequestId;
+                responseRawData = e.ResponseRawData;
+            });
+
+            api.BeforeSendRequest += beforeSendRequest;
+            api.AfterReceiveReply += afterReceiveReply;
+
+            var champ = api.GetChampion(Region.euw, 1, ChampionData.all);
+
+            Assert.AreEqual(champ.Name, "Annie");
+            Assert.AreNotSame(requestId1, Guid.Empty);
+            Assert.AreEqual(requestId1, requestId2);
+            Assert.IsNotNull(responseRawData);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async"), TestCategory("Interceptor")]
+        public void Interceptor_GetChampionAsync_Test()
+        {
+            var requestId1 = Guid.Empty;
+            var requestId2 = Guid.Empty;
+            string responseRawData = null;
+
+            var beforeSendRequest = new BeforeSendRequestEventHandler(delegate(BeforeSendRequestEventArgs e)
+            {
+                requestId1 = e.RequestId;
+            });
+
+            var afterReceiveReply = new AfterReceiveReplyEventHandler(delegate(AfterReceiveReplyEventArgs e)
+            {
+                requestId2 = e.RequestId;
+                responseRawData = e.ResponseRawData;
+            });
+
+            api.BeforeSendRequest += beforeSendRequest;
+            api.AfterReceiveReply += afterReceiveReply;
+
+            var champ = api.GetChampionAsync(Region.euw, 1, ChampionData.all);
+
+            Assert.AreEqual(champ.Result.Name, "Annie");
+            Assert.AreNotSame(requestId1, Guid.Empty);
+            Assert.AreEqual(requestId1, requestId2);
+            Assert.IsNotNull(responseRawData);
         }
     }
 }

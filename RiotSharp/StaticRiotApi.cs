@@ -9,7 +9,7 @@ namespace RiotSharp
     /// <summary>
     /// Entry point for the static API.
     /// </summary>
-    public class StaticRiotApi : IStaticRiotApi
+    public class StaticRiotApi : IStaticRiotApi, IInterceptable
     {
         private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1.2/champion";
         private const string ChampionsCacheKey = "champions";
@@ -83,7 +83,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(ChampionRootUrl, region.ToString()),
-                    RootDomain,
+                    RootDomain, BeforeSendRequest, AfterReceiveReply,
                     new List<string> {
                         string.Format("locale={0}", language.ToString()),
                         championData == ChampionData.none ?
@@ -114,7 +114,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(ChampionRootUrl, region.ToString()),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -157,7 +157,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                        RootDomain,
+                        RootDomain, BeforeSendRequest, AfterReceiveReply,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -197,7 +197,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -227,7 +227,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(ItemRootUrl, region.ToString()),
-                    RootDomain,
+                    RootDomain, BeforeSendRequest, AfterReceiveReply,
                     new List<string>
                     {
                         string.Format("locale={0}", language.ToString()),
@@ -259,7 +259,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(ItemRootUrl, region.ToString()),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -308,7 +308,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
-                        RootDomain,
+                        RootDomain, BeforeSendRequest, AfterReceiveReply,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -347,7 +347,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -372,7 +372,8 @@ namespace RiotSharp
         public LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
-            var json = requester.CreateRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
+            var json = requester.CreateRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain, 
+                BeforeSendRequest, AfterReceiveReply,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -391,7 +392,7 @@ namespace RiotSharp
             Language language = Language.en_US, string version = "5.3.1")
         {
             var json = await requester.CreateRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
-                RootDomain, new List<string> {
+                RootDomain, BeforeSendRequest, AfterReceiveReply, new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
@@ -405,7 +406,8 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public List<Language> GetLanguages(Region region)
         {
-            var json = requester.CreateRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain, 
+                BeforeSendRequest, AfterReceiveReply);
             return JsonConvert.DeserializeObject<List<Language>>(json);
         }
 
@@ -417,7 +419,7 @@ namespace RiotSharp
         public async Task<List<Language>> GetLanguagesAsync(Region region)
         {
             var json = await requester.CreateRequestAsync(string.Format(LanguagesRootUrl, region.ToString()),
-                RootDomain);
+                RootDomain, BeforeSendRequest, AfterReceiveReply);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<List<Language>>(json));
         }
@@ -431,7 +433,8 @@ namespace RiotSharp
         /// <returns>A list of objects representing maps.</returns>
         public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1")
         {
-            var json = requester.CreateRequest(string.Format(MapRootUrl, region.ToString()), RootDomain,
+            var json = requester.CreateRequest(string.Format(MapRootUrl, region.ToString()), RootDomain, 
+                BeforeSendRequest, AfterReceiveReply,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -450,6 +453,7 @@ namespace RiotSharp
             string version = "5.3.1")
         {
             var json = await requester.CreateRequestAsync(string.Format(MapRootUrl, region.ToString()), RootDomain,
+                BeforeSendRequest, AfterReceiveReply,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -473,7 +477,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(MasteryRootUrl, region.ToString()),
-                    RootDomain,
+                    RootDomain, BeforeSendRequest, AfterReceiveReply,
                     new List<string>
                     {
                         string.Format("locale={0}", language.ToString()),
@@ -505,7 +509,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(MasteryRootUrl, region.ToString()),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -554,7 +558,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId),
-                        RootDomain,
+                        RootDomain, BeforeSendRequest, AfterReceiveReply,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -593,7 +597,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId.ToString()),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -615,7 +619,8 @@ namespace RiotSharp
         /// <returns>A realm object containing the requested information.</returns>
         public Realm GetRealm(Region region)
         {
-            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain,
+                BeforeSendRequest, AfterReceiveReply);
             return JsonConvert.DeserializeObject<Realm>(json);
         }
 
@@ -626,7 +631,8 @@ namespace RiotSharp
         /// <returns>A realm object containing the requested information.</returns>
         public async Task<Realm> GetRealmAsync(Region region)
         {
-            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain, 
+                BeforeSendRequest, AfterReceiveReply);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
         }
 
@@ -645,7 +651,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(RuneRootUrl, region.ToString()),
-                    RootDomain,
+                    RootDomain, BeforeSendRequest, AfterReceiveReply,
                     new List<string>
                     {
                         string.Format("locale={0}", language.ToString()),
@@ -677,7 +683,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(RuneRootUrl, region.ToString()),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -726,7 +732,7 @@ namespace RiotSharp
                 {
                     var json = requester.CreateRequest(
                         string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
-                        RootDomain,
+                        RootDomain, BeforeSendRequest, AfterReceiveReply,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -765,7 +771,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -795,7 +801,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateRequest(
                     string.Format(SummonerSpellRootUrl, region.ToString()),
-                    RootDomain,
+                    RootDomain, BeforeSendRequest, AfterReceiveReply,
                     new List<string>
                     {
                         string.Format("locale={0}", language.ToString()),
@@ -827,7 +833,7 @@ namespace RiotSharp
             }
             var json = await requester.CreateRequestAsync(
                 string.Format(SummonerSpellRootUrl, region.ToString()),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -879,7 +885,7 @@ namespace RiotSharp
                     var json = requester.CreateRequest(
                         string.Format(SummonerSpellRootUrl, region.ToString()) +
                             string.Format(IdUrl, (int)summonerSpell),
-                        RootDomain,
+                        RootDomain, BeforeSendRequest, AfterReceiveReply,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -922,7 +928,7 @@ namespace RiotSharp
             var json = await requester.CreateRequestAsync(
                 string.Format(SummonerSpellRootUrl, region.ToString()) +
                 string.Format(IdUrl, (int)summonerSpell),
-                RootDomain,
+                RootDomain, BeforeSendRequest, AfterReceiveReply,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -944,7 +950,8 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public List<string> GetVersions(Region region)
         {
-            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain,
+                BeforeSendRequest, AfterReceiveReply);
             return JsonConvert.DeserializeObject<List<string>>(json);
         }
 
@@ -956,8 +963,13 @@ namespace RiotSharp
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
             var json =
-                await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
+                await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain,
+                BeforeSendRequest, AfterReceiveReply);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
         }
+
+        public event BeforeSendRequestEventHandler BeforeSendRequest;
+
+        public event AfterReceiveReplyEventHandler AfterReceiveReply;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,20 +18,41 @@ namespace RiotSharp
         protected string rootDomain;
         public static string ApiKey { get; set; }
 
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+        public string CreateRequest(string relativeUrl, string rootDomain,
+            BeforeSendRequestEventHandler beforeSendRequestHandler,
+            AfterReceiveReplyEventHandler afterReceiveReplyHandler,
+            List<string> addedArguments = null,
             bool useHttps = true)
         {
             this.rootDomain = rootDomain;
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
-            return GetResponse(request);
+
+            var requestIdentifier = OnBeforeSendRequest(beforeSendRequestHandler, request.RequestUri);
+
+            var responseRawData = GetResponse(request);
+
+            OnAfterReceiveReply(afterReceiveReplyHandler, requestIdentifier, responseRawData);
+
+            return responseRawData;
         }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
+            BeforeSendRequestEventHandler beforeSendRequestHandler,
+            AfterReceiveReplyEventHandler afterReceiveReplyHandler,
             List<string> addedArguments = null, bool useHttps = true)
         {
             this.rootDomain = rootDomain;
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
-            return await GetResponseAsync(request);
+
+            var requestIdentifier = OnBeforeSendRequest(beforeSendRequestHandler, request.RequestUri);
+
+            var responseRawData = await GetResponseAsync(request);
+
+            OnAfterReceiveReply(afterReceiveReplyHandler, requestIdentifier, responseRawData);
+
+            return responseRawData;
         }
 
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps)
@@ -68,6 +90,7 @@ namespace RiotSharp
             {
                 HandleWebException(ex);
             }
+
             return result;
         }
 
@@ -132,6 +155,26 @@ namespace RiotSharp
                     throw new RiotSharpException("400, Bad request");
                 case HttpStatusCode.NotFound:
                     throw new RiotSharpException("404, Resource not found");
+            }
+        }
+
+        protected Guid OnBeforeSendRequest(BeforeSendRequestEventHandler beforeSendRequestHandler, Uri requestUri)
+        {
+            Guid requestIdentifier = Guid.NewGuid();
+
+            if (beforeSendRequestHandler != null)
+            {
+                beforeSendRequestHandler(new BeforeSendRequestEventArgs(requestUri, requestIdentifier));
+            }
+
+            return requestIdentifier;
+        }
+
+        protected void OnAfterReceiveReply(AfterReceiveReplyEventHandler afterReceiveReplyHandler, Guid requestIdentifier, string responseRawData)
+        {
+            if (afterReceiveReplyHandler != null)
+            {
+                afterReceiveReplyHandler(new AfterReceiveReplyEventArgs(responseRawData, requestIdentifier));
             }
         }
     }

@@ -25,8 +25,10 @@ namespace RiotSharp
 
         private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
-        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null,
-            bool useHttps = true)
+        public string CreateRequest(string relativeUrl, Region region,
+            BeforeSendRequestEventHandler beforeSendRequestHandler,
+            AfterReceiveReplyEventHandler afterReceiveReplyHandler,
+            List<string> addedArguments = null, bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps);
@@ -37,10 +39,18 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            return GetResponse(request);
+            var requestIdentifier = OnBeforeSendRequest(beforeSendRequestHandler, request.RequestUri);
+
+            var responseRawData = GetResponse(request);
+
+            OnAfterReceiveReply(afterReceiveReplyHandler, requestIdentifier, responseRawData);
+
+            return responseRawData;
         }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
+            BeforeSendRequestEventHandler beforeSendRequestHandler,
+            AfterReceiveReplyEventHandler afterReceiveReplyHandler,
             List<string> addedArguments = null, bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
@@ -52,7 +62,13 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            return await GetResponseAsync(request);
+            var requestIdentifier = OnBeforeSendRequest(beforeSendRequestHandler, request.RequestUri);
+
+            var responseRawData = await GetResponseAsync(request);
+
+            OnAfterReceiveReply(afterReceiveReplyHandler, requestIdentifier, responseRawData);
+
+            return responseRawData;
         }
 
         private void HandleRateLimit(Region region)
