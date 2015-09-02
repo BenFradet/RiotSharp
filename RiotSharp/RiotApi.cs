@@ -48,6 +48,7 @@ namespace RiotSharp
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchHistoryRootUrl = "/api/lol/{0}/v2.2/matchhistory";
+        private const string MatchListRootUrl = "/api/lol/{0}/v2.2/matchlist/by-summoner";
 
         private const string CurrentGameRootUrl = "/observer-mode/rest/consumer/getSpectatorGameInfo/{0}";
 
@@ -786,6 +787,107 @@ namespace RiotSharp
                 addedArguments);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<PlayerHistory>(json).Matches);
+        }
+
+        /// <summary>
+        /// Get the list of matches of a specific summoner synchronously.
+        /// </summary>
+        /// <param name="region">Region in which the summoner is.</param>
+        /// <param name="summonerId">Summoner ID for which you want to retrieve the match list.</param>
+        /// <param name="championIds">List of champion IDS to use for fetching games.</param>
+        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
+        ///  will be ignored.</param>
+        /// <param name="seasons">List of seasons for which to filter the match list by.</param>
+        /// <param name="beginTime">The earliest date you wish to get matches from.</param>
+        /// <param name="endTime">The latest date you wish to get matches from.</param>
+        /// <param name="beginIndex">The begin index to use for fetching matches.</param>
+        /// <param name="endIndex">The end index to use for fetching matches.</param>
+        /// <returns>A list of Match references object.</returns>
+        public MatchList GetMatchList(Region region, long summonerId,
+            List<long> championIds = null, List<Queue> rankedQueues = null, List<MatchEndpoint.Season> seasons = null, 
+            DateTime? beginTime = null, DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
+        {
+            var addedArguments = new List<string> {
+                    string.Format("beginIndex={0}", beginIndex),
+                    string.Format("endIndex={0}", endIndex),
+            };
+            if (beginTime != null)
+            {
+                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
+            }
+            if (endTime != null)
+            {
+                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
+            }
+            if (championIds != null)
+            {
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
+            }
+            if (rankedQueues != null)
+            {
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+            }
+            if (seasons != null)
+            {
+                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
+            }
+            
+            var json = requester.CreateRequest(
+                string.Format(MatchHistoryRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+                region,
+                addedArguments);
+            return JsonConvert.DeserializeObject<MatchList>(json);
+        }
+
+        /// <summary>
+        /// Get the list of matches of a specific summoner asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which the summoner is.</param>
+        /// <param name="summonerId">Summoner ID for which you want to retrieve the match list.</param>
+        /// <param name="championIds">List of champion IDS to use for fetching games.</param>
+        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
+        ///  will be ignored.</param>
+        /// <param name="seasons">List of seasons for which to filter the match list by.</param>
+        /// <param name="beginTime">The earliest date you wish to get matches from.</param>
+        /// <param name="endTime">The latest date you wish to get matches from.</param>
+        /// <param name="beginIndex">The begin index to use for fetching matches.</param>
+        /// <param name="endIndex">The end index to use for fetching matches.</param>
+        /// <returns>A list of Match references object.</returns>
+        public async Task<MatchList> GetMatchListAsync(Region region, long summonerId,
+            List<long> championIds = null, List<Queue> rankedQueues = null, List<MatchEndpoint.Season> seasons = null,
+            DateTime? beginTime = null, DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
+        {
+            var addedArguments = new List<string> {
+                    string.Format("beginIndex={0}", beginIndex),
+                    string.Format("endIndex={0}", endIndex),
+            };
+            if (beginTime != null)
+            {
+                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
+            }
+            if (endTime != null)
+            {
+                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
+            }
+            if (championIds != null)
+            {
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
+            }
+            if (rankedQueues != null)
+            {
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+            }
+            if (seasons != null)
+            {
+                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
+            }
+
+
+            var json = await requester.CreateRequestAsync(
+                string.Format(MatchHistoryRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+                region,
+                addedArguments);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
         }
 
         /// <summary>
