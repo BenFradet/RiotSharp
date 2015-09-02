@@ -44,25 +44,18 @@
             {
                 case Season.PreSeason3:
                     return "PRESEASON3";
-                    break;
                 case Season.Season3:
                     return "SEASON3";
-                    break;
                 case Season.PreSeason2014:
                     return "PRESEASON2014";
-                    break;
                 case Season.Season2014:
                     return "SEASON2014";
-                    break;
                 case Season.PreSeason2015:
                     return "PRESEASON2015";
-                    break;
                 case Season.Season2015:
-                    return "PRESEASON";
-                    break;
+                    return "SEASON2015";
                 default:
                     return string.Empty;
-                    break;
             }
         }
     }
