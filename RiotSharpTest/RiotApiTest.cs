@@ -572,7 +572,8 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMatchList_Seasons_Test()
         {
-            var matches = api.GetMatchList(region, id, null, null, new List<RiotSharp.MatchEndpoint.Season> { season }).Matches;
+            var matches = api.GetMatchList(region, id, null, null,
+                new List<RiotSharp.MatchEndpoint.Season> { season }).Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -601,12 +602,13 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMatchList_Index_Test()
         {
-            int beginIndex = 0; int endIndex = 32;
-            
+            int beginIndex = 0;
+            int endIndex = 32;
+
             var matches = api.GetMatchList(region, id, null, null, null, null, null, beginIndex, endIndex).Matches;
 
             Assert.IsNotNull(matches);
-            Assert.IsTrue(matches.Count() < (endIndex-beginIndex));
+            Assert.IsTrue(matches.Count() <= endIndex - beginIndex);
         }
 
         [TestMethod]
@@ -681,12 +683,14 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Index_Test()
         {
-            int beginIndex = 0; int endIndex = 32;
+            int beginIndex = 0;
+            int endIndex = 32;
 
-            var matches = api.GetMatchListAsync(region, id, null, null, null, null, null, beginIndex, endIndex).Result.Matches;
+            var matches = api
+                .GetMatchListAsync(region, id, null, null, null, null, null, beginIndex, endIndex).Result.Matches;
 
             Assert.IsNotNull(matches);
-            Assert.IsTrue(matches.Count() < (endIndex - beginIndex));
+            Assert.IsTrue(matches.Count() <= endIndex - beginIndex);
         }
 
         [TestMethod]
