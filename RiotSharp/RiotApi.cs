@@ -831,9 +831,9 @@ namespace RiotSharp
             {
                 addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
             }
-            
+
             var json = requester.CreateRequest(
-                string.Format(MatchHistoryRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+                string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
                 region,
                 addedArguments);
             return JsonConvert.DeserializeObject<MatchList>(json);
@@ -884,7 +884,7 @@ namespace RiotSharp
 
 
             var json = await requester.CreateRequestAsync(
-                string.Format(MatchHistoryRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
+                string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
                 region,
                 addedArguments);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
