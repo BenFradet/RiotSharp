@@ -564,7 +564,7 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Count() > 0);
             foreach (var match in matches)
             {
-                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+                Assert.AreEqual(queue.ToString(), match.Queue.ToString());
             }
         }
 
@@ -645,7 +645,7 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Count() > 0);
             foreach (var match in matches)
             {
-                Assert.AreEqual(queue.ToString(), match.QueueType.ToString());
+                Assert.AreEqual(queue.ToString(), match.Queue.ToString());
             }
         }
 
