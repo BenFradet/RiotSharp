@@ -54,12 +54,6 @@ namespace RiotSharp
         Task<Dictionary<string, TeamEndpoint.Team>> GetTeamsAsync(Region region, List<string> teamIds);
         MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false);
         Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false);
-        List<MatchSummary> GetMatchHistory(Region region, long summonerId,
-            int beginIndex = 0, int endIndex = 14,
-            List<int> championIds = null, List<Queue> rankedQueues = null);
-        Task<List<MatchSummary>> GetMatchHistoryAsync(Region region, long summonerId,
-            int beginIndex = 0, int endIndex = 14,
-            List<int> championIds = null, List<Queue> rankedQueues = null);
         List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId);
         Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId);
         List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, StatsEndpoint.Season season);

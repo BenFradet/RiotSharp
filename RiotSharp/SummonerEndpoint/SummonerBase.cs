@@ -34,7 +34,6 @@ namespace RiotSharp.SummonerEndpoint
         private const string TeamRootUrl = "/api/lol/{0}/v2.4/team";
         private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
-        private const string MatchHistoryRootUrl = "/api/lol/{0}/v2.2/matchhistory";
         private const string IdUrl = "/{0}";
 
         [field: NonSerialized]
@@ -331,77 +330,6 @@ namespace RiotSharp.SummonerEndpoint
                 Region);
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json)))[Id];
-        }
-
-        /// <summary>
-        /// Get the match history of this summoner synchronously.
-        /// </summary>
-        /// <param name="beginIndex">The begin index to use for fetching games.
-        /// The range has to be less than or equal to 15.</param>
-        /// <param name="endIndex">The end index to use for fetching games.
-        /// The range has to be less than or equal to 15.</param>
-        /// <param name="championIds">List of champion IDs to use for fetching games.</param>
-        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
-        /// will be ignored.</param>
-        /// <returns>A list of match summaries object.</returns>
-        public List<MatchSummary> GetMatchHistory(int beginIndex = 0, int endIndex = 14,
-            List<int> championIds = null, List<Queue> rankedQueues = null)
-        {
-            var addedArguments = new List<string>
-            {
-                    string.Format("beginIndex={0}", beginIndex),
-                    string.Format("endIndex={0}", endIndex),
-            };
-            if (championIds != null)
-            {
-                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
-            }
-            if (rankedQueues != null)
-            {
-                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
-            }
-
-            var json = requester.CreateRequest(
-                string.Format(MatchHistoryRootUrl, Region.ToString()) + string.Format(IdUrl, Id),
-                Region,
-                addedArguments);
-            return JsonConvert.DeserializeObject<PlayerHistory>(json).Matches;
-        }
-
-        /// <summary>
-        /// Get the match history of this summoner asynchronously.
-        /// </summary>
-        /// <param name="beginIndex">The begin index to use for fetching games.
-        /// endIndex - beginIndex has to be inferior to 15.</param>
-        /// <param name="endIndex">The end index to use for fetching games.
-        /// endIndex - beginIndex has to be inferior to 15.</param>
-        /// <param name="championIds">List of champion IDs to use for fetching games.</param>
-        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
-        /// will be ignored.</param>
-        /// <returns>A list of match summaries object.</returns>
-        public async Task<List<MatchSummary>> GetMatchHistoryAsync(int beginIndex = 0, int endIndex = 14,
-            List<int> championIds = null, List<Queue> rankedQueues = null)
-        {
-            var addedArguments = new List<string>
-            {
-                    string.Format("beginIndex={0}", beginIndex),
-                    string.Format("endIndex={0}", endIndex),
-            };
-            if (championIds != null)
-            {
-                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
-            }
-            if (rankedQueues != null)
-            {
-                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
-            }
-
-            var json = await requester.CreateRequestAsync(
-                string.Format(MatchHistoryRootUrl, Region.ToString()) + string.Format(IdUrl, Id),
-                Region,
-                addedArguments);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<PlayerHistory>(json).Matches);
         }
     }
 }

@@ -107,7 +107,6 @@
     <Compile Include="MatchEndpoint\ParticipantStats.cs" />
     <Compile Include="MatchEndpoint\ParticipantTimeline.cs" />
     <Compile Include="MatchEndpoint\ParticipantTimelineData.cs" />
-    <Compile Include="MatchEndpoint\PlayerHistory.cs" />
     <Compile Include="MatchEndpoint\Player.cs" />
     <Compile Include="MatchEndpoint\Position.cs" />
     <Compile Include="MatchEndpoint\Converters\QueueType.cs" />
