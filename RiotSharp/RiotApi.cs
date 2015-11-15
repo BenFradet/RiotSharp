@@ -728,7 +728,7 @@ namespace RiotSharp
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
         public MatchList GetMatchList(Region region, long summonerId,
-            List<long> championIds = null, List<Queue> rankedQueues = null, List<MatchEndpoint.Season> seasons = null, 
+            List<long> championIds = null, List<Queue> rankedQueues = null, List<MatchEndpoint.Season> seasons = null,
             DateTime? beginTime = null, DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
         {
             var addedArguments = new List<string> {

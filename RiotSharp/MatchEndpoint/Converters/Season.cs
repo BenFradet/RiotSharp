@@ -33,7 +33,17 @@
         /// <summary>
         /// Season 2015
         /// </summary>
-        Season2015
+        Season2015,
+
+        /// <summary>
+        /// Pre season 2016.
+        /// </summary>
+        PreSeason2016,
+
+        /// <summary>
+        /// Season 2016
+        /// </summary>
+        Season2016
     }
 
     static class SeasonExtension
@@ -54,6 +64,10 @@
                     return "PRESEASON2015";
                 case Season.Season2015:
                     return "SEASON2015";
+                case Season.PreSeason2016:
+                    return "PRESEASON2016";
+                case Season.Season2016:
+                    return "SEASON2016";
                 default:
                     return string.Empty;
             }
