@@ -1,4 +1,5 @@
 ﻿using RiotSharp;
+using RiotSharp.StaticDataEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,6 +23,8 @@ namespace RiotSharpExample
             int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
             Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
 
+            var mastery = staticApi.GetMastery(Region.euw, 4111, MasteryData.all);
+
             var languages = staticApi.GetLanguages(region);
 
             Console.WriteLine(string.Join(", ", languages));
@@ -39,20 +42,6 @@ namespace RiotSharpExample
             var shardStatus = statusApi.GetShardStatus(region);
 
             var statSummaries = api.GetStatsSummaries(region, id);
-
-            var championIds = new List<int>();
-            for (int i = 0; i < 30; i += 15)
-            {
-                var matches = api.GetMatchHistory(region, id, i, i + 15, null,
-                    new List<Queue>() { Queue.RankedSolo5x5 });
-                foreach (var match in matches)
-                {
-                    championIds.Add(match.Participants[0].ChampionId);
-                }
-            }
-            var mostPlayedChampId = championIds.GroupBy(c => c).OrderByDescending(g => g.Count()).FirstOrDefault().Key;
-            var mostPlayedChamp = staticApi.GetChampion(region, mostPlayedChampId);
-            Console.WriteLine(mostPlayedChamp.Name);
 
             var games = api.GetRecentGames(region, id);
 
