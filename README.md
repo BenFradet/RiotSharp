@@ -34,7 +34,7 @@ var api = RiotApi.GetInstance("YOUR_API_KEY");
 If you do own a production API key you can specify your own rate limits:
 ```c#
 var api = RiotApi.GetInstance("YOUR_API_KEY",
-  your_rate_limit_per_10s, your_rate_limit_per_10m);
+  yourRateLimitPer10s, yourRateLimitPer10m);
 ```
 
 To get a summoner:
@@ -43,9 +43,9 @@ try
 {
   var summoner = api.GetSummoner(Region.euw, "StopOFlop");
 }
-catch(RiotSharpException ex)
+catch (RiotSharpException ex)
 {
-  //Handle the exception however you want.
+  // Handle the exception however you want.
 }
 ```
 
@@ -57,13 +57,15 @@ try
     .Where((s) => s.Name != null && s.Name.Equals("Varus"))
     .FirstOrDefault();
 }
-catch(RiotSharpException ex)
+catch (RiotSharpException ex)
 {
-  //Handle the exception however you want.
+  // Handle the exception however you want.
 }
   
 foreach (var stat in varusRanked.Stats)
+{
   Console.WriteLine(stat.Name + "  " + stat.Value);
+}
 ```
 
 For a full description check the RiotSharpExample or RiotSharpTest projects.
