@@ -46,6 +46,11 @@
         Mana,
 
         /// <summary>
+        /// MP (Poppy, Lux, Caitlyn, etc).
+        /// </summary>
+        MP,
+
+        /// <summary>
         /// None (Vladimir, Zac, Mundo, etc).
         /// </summary>
         None,
