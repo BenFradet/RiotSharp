@@ -31,9 +31,11 @@ namespace RiotSharp.StaticDataEndpoint
                 case "Gnarfury":
                     return ParTypeStatic.Gnarfury;
                 case "Heat":
-                    return ParTypeStatic.Heat;
+                    return ParTypeStatic.Heat;                
                 case "Mana":
                     return ParTypeStatic.Mana;
+                case "MP":
+                    return ParTypeStatic.MP;
                 case "None":
                     return ParTypeStatic.None;
                 case "Rage":
