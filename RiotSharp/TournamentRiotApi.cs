@@ -194,16 +194,33 @@ namespace RiotSharp
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json)[0]);
         }
 
-        public void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType)
+        public void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
         {
-            var body = new Dictionary<string, object> { { "allowedParticipants", string.Join(",", allowedSummonerIds) }, { "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType } };
+            var body = BuildTournamentUpdateBody(allowedSummonerIds, spectatorType, pickType, mapType);
+
             requester.CreatePutRequest(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global, JsonConvert.SerializeObject(body));
         }
 
         public async void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType)
         {
-            var body = new Dictionary<string, object> { { "allowedParticipants", string.Join(",", allowedSummonerIds) }, { "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType } };
+            var body = BuildTournamentUpdateBody(allowedSummonerIds, spectatorType, pickType, mapType);
+
             await Task.Factory.StartNew(() => requester.CreatePutRequestAsync(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global, JsonConvert.SerializeObject(body)));
+        }
+
+        private Dictionary<string, object> BuildTournamentUpdateBody(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
+        {
+            var body = new Dictionary<string, object>();
+            if (allowedSummonerIds != null)
+                body.Add("allowedSummonerIds", string.Join(",", allowedSummonerIds));
+            if (spectatorType != null)
+                body.Add("spectatorType", spectatorType);
+            if (pickType != null)
+                body.Add("pickType", pickType);
+            if (mapType != null)
+                body.Add("mapType", mapType);
+
+            return body;
         }
     }
 }
