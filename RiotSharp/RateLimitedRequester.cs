@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,6 +42,27 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
+        public string CreatePostRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
+            bool useHttps = true)
+        {
+            rootDomain = region + ".api.pvp.net";
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
+
+            semaphore.Wait();
+            {
+                HandleRateLimit(region);
+            }
+            semaphore.Release();
+
+            byte[] byteArray = Encoding.UTF8.GetBytes(body);
+            Stream dataStream = request.GetRequestStream();
+
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            return GetResponse(request);
+        }
+
         public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null, bool useHttps = true)
         {
@@ -51,6 +74,27 @@ namespace RiotSharp
                 HandleRateLimit(region);
             }
             semaphore.Release();
+
+            return await GetResponseAsync(request);
+        }
+
+        public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
+            List<string> addedArguments = null, bool useHttps = true)
+        {
+            rootDomain = region + ".api.pvp.net";
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps);
+
+            await semaphore.WaitAsync();
+            {
+                HandleRateLimit(region);
+            }
+            semaphore.Release();
+
+            byte[] byteArray = Encoding.UTF8.GetBytes(body);
+            Stream dataStream = await request.GetRequestStreamAsync();
+
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
 
             return await GetResponseAsync(request);
         }

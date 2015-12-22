@@ -12,12 +12,12 @@ namespace RiotSharp
     {
         TournamentProvider CreateProvider(Region region, string url);
         Task<TournamentProvider> CreateProviderAsync(Region region, string url);
-        Tournament CreateTournament(TournamentProvider provider, string name);
-        Task<Tournament> CreateTournamentAsync(TournamentProvider provider, string name);
-        TournamentCodeDetail CreateTournamentCode(Tournament tournament, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData);
-        Task<TournamentCodeDetail> CreateTournamentCodeAsync(Tournament tournament, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData);
-        List<TournamentCodeDetail> CreateTournamentCodes(Tournament tournament, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1);
-        Task<List<TournamentCodeDetail>> CreateTournamentCodesAsync(Tournament tournament, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1);
+        Tournament CreateTournament(int providerId, string name);
+        Task<Tournament> CreateTournamentAsync(int providerId, string name);
+        string CreateTournamentCode(int tournamentId, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData);
+        Task<string> CreateTournamentCodeAsync(int tournamentId, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData);
+        List<string> CreateTournamentCodes(int tournamentId, int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1);
+        Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1);
         void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType);
         void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType);
         TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode);

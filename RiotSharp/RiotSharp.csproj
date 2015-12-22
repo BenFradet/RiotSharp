@@ -239,6 +239,7 @@
     <Compile Include="TournamentEndpoint\TournamentCodeDetail.cs" />
     <Compile Include="TournamentEndpoint\TournamentLobbyEvent.cs" />
     <Compile Include="TournamentEndpoint\TournamentProvider.cs" />
+    <Compile Include="TournamentRiotApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ChampionEndpoint\Deprecated\" />

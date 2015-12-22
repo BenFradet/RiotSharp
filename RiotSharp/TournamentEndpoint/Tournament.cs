@@ -23,12 +23,12 @@ namespace RiotSharp.TournamentEndpoint
             throw new NotImplementedException();
         }
 
-        List<TournamentCodeDetail> CreateTournamentCodes(int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
+        List<TournamentCodeDetail> CreateTournamentCodes(int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
         {
             throw new NotImplementedException();
         }
 
-        Task<List<TournamentCodeDetail>> CreateTournamentCodesAsync(int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
+        Task<List<TournamentCodeDetail>> CreateTournamentCodesAsync(int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
         {
             throw new NotImplementedException();
         }

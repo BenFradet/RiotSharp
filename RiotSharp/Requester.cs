@@ -34,7 +34,7 @@ namespace RiotSharp
             return await GetResponseAsync(request);
         }
 
-        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps)
+        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps, string httpMethod = "GET")
         {
             HttpWebRequest request;
             string scheme = useHttps ? "https" : "http";
@@ -48,7 +48,7 @@ namespace RiotSharp
                 request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?{3}api_key={4}"
                     , scheme, rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
             }
-            request.Method = "GET";
+            request.Method = httpMethod;
 
             return request;
         }
