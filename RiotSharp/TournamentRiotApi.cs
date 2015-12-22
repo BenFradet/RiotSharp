@@ -144,7 +144,6 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchDetailUrl, matchId), Region.global, new List<string> { string.Format("tournamentCode={0}", tournamentCode), string.Format("includeTimeline={0}", includeTimeline) });
 
-            // json is a list of strings
             var obj = JsonConvert.DeserializeObject<MatchDetail>(json);
 
             return obj;
@@ -159,7 +158,6 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchIdUrl, tournamentCode), Region.global);
 
-            // json is a list of strings
             var obj = JsonConvert.DeserializeObject<List<long>>(json);
 
             return obj[0];
@@ -172,7 +170,8 @@ namespace RiotSharp
 
         public void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType)
         {
-            throw new NotImplementedException();
+            var body = new Dictionary<string, object> { { "allowedSummonerIds", allowedSummonerIds }, { "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType } };
+            requester.CreatePutRequest(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global, JsonConvert.SerializeObject(body));
         }
 
         public void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType)

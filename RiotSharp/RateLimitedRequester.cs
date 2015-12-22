@@ -64,6 +64,27 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
+        public void CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
+    bool useHttps = true)
+        {
+            rootDomain = region + ".api.pvp.net";
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
+
+            semaphore.Wait();
+            {
+                HandleRateLimit(region);
+            }
+            semaphore.Release();
+
+            byte[] byteArray = Encoding.UTF8.GetBytes(body);
+            Stream dataStream = request.GetRequestStream();
+
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            GetResponse(request);
+        }
+
         public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null, bool useHttps = true)
         {
@@ -83,7 +104,7 @@ namespace RiotSharp
             List<string> addedArguments = null, bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps);
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
 
             await semaphore.WaitAsync();
             {
@@ -98,6 +119,27 @@ namespace RiotSharp
             dataStream.Close();
 
             return await GetResponseAsync(request);
+        }
+
+        public async void CreatePutRequestAsync(string relativeUrl, Region region, string body,
+    List<string> addedArguments = null, bool useHttps = true)
+        {
+            rootDomain = region + ".api.pvp.net";
+            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
+
+            await semaphore.WaitAsync();
+            {
+                HandleRateLimit(region);
+            }
+            semaphore.Release();
+
+            byte[] byteArray = Encoding.UTF8.GetBytes(body);
+            Stream dataStream = await request.GetRequestStreamAsync();
+
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            await GetResponseAsync(request);
         }
 
         private void HandleRateLimit(Region region)
