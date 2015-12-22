@@ -10,15 +10,16 @@ namespace RiotSharp
 {
     class RateLimitedRequester : Requester
     {
-        private static RateLimitedRequester instance;
-        private RateLimitedRequester() { }
-        public static new RateLimitedRequester Instance
-        {
-            get { return instance ?? (instance = new RateLimitedRequester()); }
-        }
 
-        public static int RateLimitPer10S { get; set; }
-        public static int RateLimitPer10M { get; set; }
+        public int RateLimitPer10S { get; set; }
+        public int RateLimitPer10M { get; set; }
+
+        internal RateLimitedRequester(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
+        {
+            ApiKey = apiKey;
+            RateLimitPer10S = rateLimitPer10s;
+            RateLimitPer10M = rateLimitPer10m;
+        }
 
         private Dictionary<Region, DateTime> firstRequestsInLastTenS = new Dictionary<Region, DateTime>();
         private Dictionary<Region, DateTime> firstRequestsInLastTenM = new Dictionary<Region, DateTime>();

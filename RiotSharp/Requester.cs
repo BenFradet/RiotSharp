@@ -8,18 +8,16 @@ namespace RiotSharp
 {
     class Requester
     {
-        private static Requester instance;
-        protected Requester() { }
-        public static Requester Instance
+        protected string rootDomain;
+        public string ApiKey { get; set; }
+
+        internal Requester(string apiKey = "")
         {
-            get { return instance ?? (instance = new Requester()); }
+            ApiKey = apiKey;
         }
 
-        protected string rootDomain;
-        public static string ApiKey { get; set; }
-
-        public string CreateRequest(string relativeUrl, string rootDomain,
-            List<string> addedArguments = null, bool useHttps = true)
+        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+            bool useHttps = true)
         {
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps);

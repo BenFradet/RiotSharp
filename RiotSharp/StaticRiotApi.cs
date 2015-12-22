@@ -59,7 +59,9 @@ namespace RiotSharp
         /// <returns>The instance of StaticRiotApi.</returns>
         public static StaticRiotApi GetInstance(string apiKey)
         {
-            if (instance == null || apiKey != Requester.ApiKey)
+            if (instance == null || 
+                Requesters.StaticRequester == null ||
+                apiKey != Requesters.StaticRequester.ApiKey)
             {
                 instance = new StaticRiotApi(apiKey);
             }
@@ -68,8 +70,8 @@ namespace RiotSharp
 
         private StaticRiotApi(string apiKey)
         {
-            requester = Requester.Instance;
-            Requester.ApiKey = apiKey;
+            Requesters.StaticRequester = new Requester(apiKey);
+            requester = Requesters.StaticRequester;
             cache = new Cache();
         }
 
