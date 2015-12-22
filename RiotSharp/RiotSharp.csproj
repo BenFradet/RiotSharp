@@ -72,6 +72,7 @@
     <Compile Include="IRiotApi.cs" />
     <Compile Include="IStaticRiotApi.cs" />
     <Compile Include="IStatusRiotApi.cs" />
+    <Compile Include="ITournamentRiotApi.cs" />
     <Compile Include="MatchEndpoint\MatchList.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedTypeConverter.cs" />
@@ -234,6 +235,10 @@
     <Compile Include="TeamEndpoint\Team.cs" />
     <Compile Include="TeamEndpoint\TeamMemberInfo.cs" />
     <Compile Include="TeamEndpoint\TeamStatDetail.cs" />
+    <Compile Include="TournamentEndpoint\Tournament.cs" />
+    <Compile Include="TournamentEndpoint\TournamentCodeDetail.cs" />
+    <Compile Include="TournamentEndpoint\TournamentLobbyEvent.cs" />
+    <Compile Include="TournamentEndpoint\TournamentProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ChampionEndpoint\Deprecated\" />
