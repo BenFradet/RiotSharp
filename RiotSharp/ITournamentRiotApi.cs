@@ -15,8 +15,8 @@ namespace RiotSharp
         Task<string> CreateTournamentCodeAsync(int tournamentId, int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData);
         List<string> CreateTournamentCodes(int tournamentId, int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1);
         Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1);
-        void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType);
-        void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType);
+        void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
+        void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
         TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode);
         Task<TournamentCodeDetail> GetTournamentCodeDetailsAsync(string tournamentCode);
         List<TournamentLobbyEvent> GetTournamentLobbyEvents(string tournamentCode);

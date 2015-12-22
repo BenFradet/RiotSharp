@@ -13,24 +13,24 @@ namespace RiotSharp.TournamentEndpoint
 
         public int Id { get; set; }
 
-        TournamentCodeDetail CreateTournamentCode(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
+        public string CreateTournamentCode(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
-            throw new NotImplementedException();
+            return TournamentRiotApi.GetInstance().CreateTournamentCode(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType, metaData);
         }
 
-        Task<TournamentCodeDetail> CreateTournamentCodeAsync(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
+        public async Task<string> CreateTournamentCodeAsync(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
-            throw new NotImplementedException();
+            return await TournamentRiotApi.GetInstance().CreateTournamentCodeAsync(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType, metaData);
         }
 
-        List<TournamentCodeDetail> CreateTournamentCodes(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
+        public List<string> CreateTournamentCodes(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
-            throw new NotImplementedException();
+            return TournamentRiotApi.GetInstance().CreateTournamentCodes(Id, teamSize, spectatorType, pickType, mapType, metaData, count);
         }
 
-        Task<List<TournamentCodeDetail>> CreateTournamentCodesAsync(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
+        public async Task<List<string>> CreateTournamentCodesAsync(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
-            throw new NotImplementedException();
+            return await TournamentRiotApi.GetInstance().CreateTournamentCodesAsync(Id, teamSize, spectatorType, pickType, mapType, metaData, count);
         }
     }
 }

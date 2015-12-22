@@ -70,6 +70,7 @@ namespace RiotSharp
         {
             rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
+            request.ContentType = "application/json";
 
             semaphore.Wait();
             {
@@ -106,6 +107,7 @@ namespace RiotSharp
         {
             rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
+            request.ContentType = "application/json";
 
             await semaphore.WaitAsync();
             {
@@ -127,6 +129,7 @@ namespace RiotSharp
         {
             rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
+            request.ContentType = "application/json";
 
             await semaphore.WaitAsync();
             {

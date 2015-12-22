@@ -25,7 +25,7 @@ namespace RiotSharp.TournamentEndpoint
                     return TournamentMapType.TwistedTreeline;
                 case "CRYSTAL_SCAR":
                     return TournamentMapType.CrystalScar;
-                case "HOWNLING_ABYSS":
+                case "HOWLING_ABYSS":
                     return TournamentMapType.HowlingAbyss;
                 default:
                     return null;

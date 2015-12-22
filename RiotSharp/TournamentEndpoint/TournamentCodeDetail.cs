@@ -22,7 +22,7 @@ namespace RiotSharp.TournamentEndpoint
         public string LobbyName { get; set; }
 
         [JsonProperty("map")]
-        public TournamentMapType Map { get; set; } // TODO: converter
+        public TournamentMapType Map { get; set; }
 
         [JsonProperty("metaData")]
         public string MetaData { get; set; }
@@ -34,7 +34,7 @@ namespace RiotSharp.TournamentEndpoint
         public string Password { get; set; }
         
         [JsonProperty("pickType")]
-        public TournamentPickType PickType { get; set; } // TODO: converter
+        public TournamentPickType PickType { get; set; }
 
         [JsonProperty("providerId")]
         public int ProviderId { get; set; }
@@ -51,19 +51,24 @@ namespace RiotSharp.TournamentEndpoint
         [JsonProperty("tournamentId")]
         public int TournamentId { get; set; }
 
-        public void Update(List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, MapType mapType)
+        public void Update(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
         {
-
+            TournamentRiotApi.GetInstance().UpdateTournamentCode(Code, allowedSummonerIds, spectatorType, pickType, mapType);
         }
 
-        public void UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, MapType mapType)
+        public async void UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
         {
-
+            await Task.Factory.StartNew(() => TournamentRiotApi.GetInstance().UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType));
         }
 
         public static TournamentCodeDetail Get(string tournamentCode)
         {
-            throw new NotImplementedException();
+            return TournamentRiotApi.GetInstance().GetTournamentCodeDetails(tournamentCode);
+        }
+
+        public static async Task<TournamentCodeDetail> GetAsync(string tournamentCode)
+        {
+            return await TournamentRiotApi.GetInstance().GetTournamentCodeDetailsAsync(tournamentCode);
         }
     }
 }

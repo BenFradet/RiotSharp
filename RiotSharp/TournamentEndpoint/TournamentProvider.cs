@@ -12,12 +12,12 @@ namespace RiotSharp.TournamentEndpoint
 
         public Tournament CreateTournament(string name)
         {
-            throw new NotImplementedException();
+            return TournamentRiotApi.GetInstance().CreateTournament(Id, name);
         }
 
-        public Task<Tournament> CreateTournamentAsync(string name)
+        public async Task<Tournament> CreateTournamentAsync(string name)
         {
-            throw new NotImplementedException();
+            return await TournamentRiotApi.GetInstance().CreateTournamentAsync(Id, name);
         }
     }
 }

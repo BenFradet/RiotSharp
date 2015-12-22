@@ -38,7 +38,12 @@ namespace RiotSharpTest
             Assert.AreNotEqual("", tournamentCode);
             var tournamentCodes = api.CreateTournamentCodes(tournament.Id, 1, spectatorType, pickType, mapType, string.Empty, 2);
             Assert.AreEqual(2, tournamentCodes.Count);
-            api.UpdateTournamentCode(tournamentCode, new List<long> { id, id2 }, TournamentSpectatorType.All, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss);
+
+            var tournamentCodeDetails = api.GetTournamentCodeDetails(tournamentCode);
+            api.UpdateTournamentCode(tournamentCode, null, null, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss);
+            var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetails(tournamentCode);
+            Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
+            Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
         }
 
         [TestMethod]
@@ -65,6 +70,46 @@ namespace RiotSharpTest
             Assert.AreEqual(Season.PreSeason2016, details.Season);
             Assert.AreEqual("5.24.0.256", details.MatchVersion);
         }
-        
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
+        {
+            var provider = api.CreateProviderAsync(region, url).Result;
+            Assert.AreNotEqual(0, provider.Id);
+            var tournament = api.CreateTournamentAsync(provider.Id, tournamentName).Result;
+            Assert.AreNotEqual(0, tournament.Id);
+            var tournamentCode = api.CreateTournamentCodeAsync(tournament.Id, 1, new List<long> { id, id2 }, spectatorType, pickType, mapType, string.Empty).Result;
+            Assert.AreNotEqual("", tournamentCode);
+            var tournamentCodes = api.CreateTournamentCodesAsync(tournament.Id, 1, spectatorType, pickType, mapType, string.Empty, 2).Result;
+            Assert.AreEqual(2, tournamentCodes.Count);
+            api.UpdateTournamentCodeAsync(tournamentCode, new List<long> { id, id2 }, TournamentSpectatorType.All, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss);
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        public void GetTournamentCodeDetailsAsync_Test()
+        {
+            var details = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
+            Assert.AreEqual(tournamentId, details.TournamentId);
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        public void GetTournamentMatchIdAsync_Test()
+        {
+            var id = api.GetTournamentMatchIdAsync(region, tournamentCode).Result;
+            Assert.AreEqual(matchId, id);
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        public void GetTournamentMatchAsync_Test()
+        {
+            var details = api.GetTournamentMatchAsync(region, matchId, tournamentCode, false).Result;
+            Assert.AreEqual(Season.PreSeason2016, details.Season);
+            Assert.AreEqual("5.24.0.256", details.MatchVersion);
+        }
+
     }
 }
