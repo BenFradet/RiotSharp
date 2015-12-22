@@ -2,10 +2,10 @@
 
 namespace RiotSharp.TournamentEndpoint
 {
-    [JsonConverter(typeof(TournamentPickTypeConverter))]
     /// <summary>
     /// Pick type of the game (Tournament API).
     /// </summary>
+    [JsonConverter(typeof(TournamentPickTypeConverter))]
     public enum TournamentPickType
     {
         BlindPick,
