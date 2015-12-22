@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.TournamentEndpoint;
@@ -35,9 +33,11 @@ namespace RiotSharp
         /// <returns>The instance of RiotApi.</returns>
         public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
         {
-            if (instance == null || apiKey != RateLimitedRequester.ApiKey ||
-                rateLimitPer10s != RateLimitedRequester.RateLimitPer10S ||
-                rateLimitPer10m != RateLimitedRequester.RateLimitPer10M)
+            if (instance == null || 
+                Requesters.TournamentRequester == null ||
+                apiKey != Requesters.TournamentRequester.ApiKey ||
+                rateLimitPer10s != Requesters.TournamentRequester.RateLimitPer10S ||
+                rateLimitPer10m != Requesters.TournamentRequester.RateLimitPer10M)
             {
                 instance = new TournamentRiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
             }
@@ -46,10 +46,8 @@ namespace RiotSharp
 
         private TournamentRiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {
-            requester = RateLimitedRequester.Instance;
-            RateLimitedRequester.ApiKey = apiKey;
-            RateLimitedRequester.RateLimitPer10S = rateLimitPer10s;
-            RateLimitedRequester.RateLimitPer10M = rateLimitPer10m;
+            Requesters.TournamentRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
+            requester = Requesters.TournamentRequester;
         }
 
         public TournamentProvider CreateProvider(Region region, string url)
@@ -78,12 +76,12 @@ namespace RiotSharp
             return obj;
         }
 
-        public Task<Tournament> CreateTournamentAsync(TournamentProvider provider, string name)
+        public Task<Tournament> CreateTournamentAsync(int providerId, string name)
         {
             throw new NotImplementedException();
         }
 
-        public string CreateTournamentCode(int tournamentId, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData)
+        public string CreateTournamentCode(int tournamentId, int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
             var body = new Dictionary<string, object> { { "teamSize", teamSize }, { "allowedSummonerIds", allowedSummonerIds },{ "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType }, { "metadata", metaData } };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodeUrl, Region.global, JsonConvert.SerializeObject(body), new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", 1) });
@@ -94,12 +92,12 @@ namespace RiotSharp
             return obj[0];
         }
 
-        public Task<string> CreateTournamentCodeAsync(int tournamentId, int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData)
+        public Task<string> CreateTournamentCodeAsync(int tournamentId, int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> CreateTournamentCodes(int tournamentId, int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
+        public List<string> CreateTournamentCodes(int tournamentId, int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
             var body = new Dictionary<string, object> { { "teamSize", teamSize }, { "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType }, { "metadata", metaData } };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodeUrl, Region.global, JsonConvert.SerializeObject(body), new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count) });
@@ -110,7 +108,7 @@ namespace RiotSharp
             return obj;
         }
 
-        public Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
+        public Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
             throw new NotImplementedException();
         }
@@ -161,12 +159,12 @@ namespace RiotSharp
             throw new NotImplementedException();
         }
 
-        public void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType)
+        public void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType)
+        public void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType)
         {
             throw new NotImplementedException();
         }

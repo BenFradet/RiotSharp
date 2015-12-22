@@ -34,7 +34,7 @@ namespace RiotSharp.TournamentEndpoint
         public string Password { get; set; }
         
         [JsonProperty("pickType")]
-        public PickType PickType { get; set; } // TODO: converter
+        public TournamentPickType PickType { get; set; } // TODO: converter
 
         [JsonProperty("providerId")]
         public int ProviderId { get; set; }
@@ -43,7 +43,7 @@ namespace RiotSharp.TournamentEndpoint
         public Region Region { get; set; }
 
         [JsonProperty("spectators")]
-        public SpectatorType Spectators { get; set; }
+        public TournamentSpectatorType Spectators { get; set; }
 
         [JsonProperty("teamSize")]
         public int TeamSize { get; set; }
@@ -51,19 +51,19 @@ namespace RiotSharp.TournamentEndpoint
         [JsonProperty("tournamentId")]
         public int TournamentId { get; set; }
 
-        public void Update(List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType)
+        public void Update(List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, MapType mapType)
         {
 
         }
 
-        public void UpdateAsync(List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType)
+        public void UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, MapType mapType)
         {
 
         }
 
         public static TournamentCodeDetail Get(string tournamentCode)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

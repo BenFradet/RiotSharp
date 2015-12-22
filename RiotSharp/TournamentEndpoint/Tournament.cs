@@ -13,22 +13,22 @@ namespace RiotSharp.TournamentEndpoint
 
         public int Id { get; set; }
 
-        TournamentCodeDetail CreateTournamentCode(int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData)
+        TournamentCodeDetail CreateTournamentCode(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
             throw new NotImplementedException();
         }
 
-        Task<TournamentCodeDetail> CreateTournamentCodeAsync(int teamSize, List<long> allowedSummonerIds, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData)
+        Task<TournamentCodeDetail> CreateTournamentCodeAsync(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
             throw new NotImplementedException();
         }
 
-        List<TournamentCodeDetail> CreateTournamentCodes(int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
+        List<TournamentCodeDetail> CreateTournamentCodes(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
             throw new NotImplementedException();
         }
 
-        Task<List<TournamentCodeDetail>> CreateTournamentCodesAsync(int teamSize, SpectatorType spectatorType, PickType pickType, MapType mapType, string metaData, int count = 1)
+        Task<List<TournamentCodeDetail>> CreateTournamentCodesAsync(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
             throw new NotImplementedException();
         }
