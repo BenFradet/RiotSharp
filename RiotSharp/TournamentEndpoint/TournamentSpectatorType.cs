@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RiotSharp.TournamentEndpoint
+﻿namespace RiotSharp.TournamentEndpoint
 {
     /// <summary>
     /// Spectator type of the game (Tournament API).
