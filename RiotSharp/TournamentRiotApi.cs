@@ -52,7 +52,8 @@ namespace RiotSharp
 
         public TournamentProvider CreateProvider(Region region, string url)
         {
-            var json = requester.CreateRequest(TournamentRootUrl + CreateProviderUrl, Region.global);
+            var body = new Dictionary<string, object> { { "url", url }, { "region", region.ToString().ToUpper() } };
+            var json = requester.CreatePostRequest(TournamentRootUrl + CreateProviderUrl, Region.global, JsonConvert.SerializeObject(body));
 
             // json is an int directly
             var obj = new TournamentProvider { Id = int.Parse(json) };
@@ -141,7 +142,12 @@ namespace RiotSharp
 
         public MatchDetail GetTournamentMatch(Region region, long matchId, string tournamentCode, bool includeTimeline)
         {
-            throw new NotImplementedException();
+            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchDetailUrl, matchId), Region.global, new List<string> { string.Format("tournamentCode={0}", tournamentCode), string.Format("includeTimeline={0}", includeTimeline) });
+
+            // json is a list of strings
+            var obj = JsonConvert.DeserializeObject<MatchDetail>(json);
+
+            return obj;
         }
 
         public Task<MatchDetail> GetTournamentMatchAsync(Region region, long matchId, string tournamentCode, bool includeTimeline)
@@ -151,7 +157,7 @@ namespace RiotSharp
 
         public long GetTournamentMatchId(Region region, string tournamentCode)
         {
-            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchIdUrl, tournamentCode), Region.global,  tournamentId);
+            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchIdUrl, tournamentCode), Region.global);
 
             // json is a list of strings
             var obj = JsonConvert.DeserializeObject<List<long>>(json);
