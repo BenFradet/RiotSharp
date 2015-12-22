@@ -151,7 +151,12 @@ namespace RiotSharp
 
         public long GetTournamentMatchId(Region region, string tournamentCode)
         {
-            throw new NotImplementedException();
+            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchIdUrl, tournamentCode), Region.global,  tournamentId);
+
+            // json is a list of strings
+            var obj = JsonConvert.DeserializeObject<List<long>>(json);
+
+            return obj[0];
         }
 
         public Task<long> GetTournamentMatchIdAsync(Region region, string tournamentCode)
