@@ -22,7 +22,7 @@ namespace RiotSharp.TournamentEndpoint
         public string LobbyName { get; set; }
 
         [JsonProperty("map")]
-        public MapType Map { get; set; } // TODO: converter
+        public TournamentMapType Map { get; set; } // TODO: converter
 
         [JsonProperty("metaData")]
         public string MetaData { get; set; }

@@ -1,5 +1,8 @@
-﻿namespace RiotSharp.TournamentEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.TournamentEndpoint
 {
+    [JsonConverter(typeof(TournamentPickTypeConverter))]
     /// <summary>
     /// Pick type of the game (Tournament API).
     /// </summary>

@@ -48,6 +48,7 @@ namespace RiotSharp
         {
             rootDomain = region + ".api.pvp.net";
             HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
+            request.ContentType = "application/json";
 
             semaphore.Wait();
             {

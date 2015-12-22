@@ -96,7 +96,7 @@ namespace RiotSharp
 
         public string CreateTournamentCode(int tournamentId, int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
         {
-            var body = new Dictionary<string, object> { { "teamSize", teamSize }, { "allowedSummonerIds", allowedSummonerIds },{ "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType }, { "metadata", metaData } };
+            var body = new Dictionary<string, object> { { "teamSize", teamSize }, { "allowedSummonerIds", new Dictionary<string, object> { { "participants", allowedSummonerIds } } },{ "spectatorType", spectatorType }, { "pickType", pickType }, { "mapType", mapType }, { "metadata", metaData } };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodeUrl, Region.global, JsonConvert.SerializeObject(body), new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", 1) });
 
             // json is a list of strings
@@ -164,7 +164,7 @@ namespace RiotSharp
 
         public MatchDetail GetTournamentMatch(Region region, long matchId, string tournamentCode, bool includeTimeline)
         {
-            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchDetailUrl, matchId), Region.global, new List<string> { string.Format("tournamentCode={0}", tournamentCode), string.Format("includeTimeline={0}", includeTimeline) });
+            var json = requester.CreateRequest(string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region, new List<string> { string.Format("tournamentCode={0}", tournamentCode), string.Format("includeTimeline={0}", includeTimeline) });
 
             var obj = JsonConvert.DeserializeObject<MatchDetail>(json);
 
@@ -180,7 +180,7 @@ namespace RiotSharp
 
         public long GetTournamentMatchId(Region region, string tournamentCode)
         {
-            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetMatchIdUrl, tournamentCode), Region.global);
+            var json = requester.CreateRequest(string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
 
             var obj = JsonConvert.DeserializeObject<List<long>>(json);
 
