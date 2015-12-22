@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RiotSharp;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.TournamentEndpoint;
@@ -72,6 +73,14 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [TestCategory("TournamentRiotApi")]
+        public void GetTournamentLobbyEvents_Test()
+        {
+            var events = api.GetTournamentLobbyEvents(tournamentCode);
+            Assert.IsTrue(events.Count(element => element.SummonerId == 24689119) > 0);
+        }
+
+        [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
         {
@@ -109,6 +118,14 @@ namespace RiotSharpTest
             var details = api.GetTournamentMatchAsync(region, matchId, tournamentCode, false).Result;
             Assert.AreEqual(Season.PreSeason2016, details.Season);
             Assert.AreEqual("5.24.0.256", details.MatchVersion);
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        public void GetTournamentLobbyEventsAsync_Test()
+        {
+            var events = api.GetTournamentLobbyEventsAsync(tournamentCode).Result;
+            Assert.IsTrue(events.Count(element => element.SummonerId == 24689119) > 0);
         }
 
     }
