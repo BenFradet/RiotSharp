@@ -14,18 +14,18 @@ namespace RiotSharp
 
         string CreateTournamentCode(int tournamentId, int teamSize, List<long> allowedSummonerIds,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
-            string metaData);
+            string metadata);
 
         Task<string> CreateTournamentCodeAsync(int tournamentId, int teamSize, List<long> allowedSummonerIds,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
-            string metaData);
+            string metadata);
 
         List<string> CreateTournamentCodes(int tournamentId, int teamSize, TournamentSpectatorType spectatorType,
-            TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1);
+            TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1);
 
         Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
-            string metaData, int count = 1);
+            string metadata, int count = 1);
 
         void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
