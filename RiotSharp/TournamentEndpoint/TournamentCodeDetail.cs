@@ -73,6 +73,7 @@ namespace RiotSharp.TournamentEndpoint
         ///     The tournament code's region.
         /// </summary>
         [JsonProperty("region")]
+        [JsonConverter(typeof(RegionConverter))]
         public Region Region { get; set; }
 
         /// <summary>
@@ -100,10 +101,10 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="spectatorType">The spectator type.</param>
         /// <param name="pickType">The pick type.</param>
         /// <param name="mapType">The map type.</param>
-        public void Update(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
+        public bool Update(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
             TournamentPickType? pickType, TournamentMapType? mapType)
         {
-            TournamentRiotApi.GetInstance()
+            return TournamentRiotApi.GetInstance()
                 .UpdateTournamentCode(Code, allowedSummonerIds, spectatorType, pickType, mapType);
         }
 
@@ -114,14 +115,13 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="spectatorType">The spectator type.</param>
         /// <param name="pickType">The pick type.</param>
         /// <param name="mapType">The map type.</param>
-        public async void UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
+        public async Task<bool> UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
             TournamentPickType? pickType, TournamentMapType? mapType)
         {
-            await
-                Task.Factory.StartNew(
-                    () =>
-                        TournamentRiotApi.GetInstance()
-                            .UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType));
+            return
+                await
+                    TournamentRiotApi.GetInstance()
+                        .UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType);
         }
 
         /// <summary>
