@@ -88,7 +88,7 @@ namespace RiotSharp
             var wrapper = cache.Get<string, ChampionListStaticWrapper>(ChampionsCacheKey);
             if (wrapper == null || language != wrapper.Language || championData != wrapper.ChampionData)
             {
-                var json = requester.CreateRequest(
+                var json = requester.CreateGetRequest(
                     string.Format(ChampionRootUrl, region.ToString()),
                     RootDomain,
                     new List<string> {
@@ -119,7 +119,7 @@ namespace RiotSharp
             {
                 return wrapper.ChampionListStatic;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(ChampionRootUrl, region.ToString()),
                 RootDomain,
                 new List<string>
@@ -162,7 +162,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateRequest(
+                    var json = requester.CreateGetRequest(
                         string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
                         RootDomain,
                         new List<string>
@@ -202,7 +202,7 @@ namespace RiotSharp
             {
                 return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
                 RootDomain,
                 new List<string>
@@ -232,7 +232,7 @@ namespace RiotSharp
             var wrapper = cache.Get<string, ItemListStaticWrapper>(ItemsCacheKey);
             if (wrapper == null || language != wrapper.Language || itemData != wrapper.ItemData)
             {
-                var json = requester.CreateRequest(
+                var json = requester.CreateGetRequest(
                     string.Format(ItemRootUrl, region.ToString()),
                     RootDomain,
                     new List<string>
@@ -264,7 +264,7 @@ namespace RiotSharp
             {
                 return wrapper.ItemListStatic;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(ItemRootUrl, region.ToString()),
                 RootDomain,
                 new List<string>
@@ -313,7 +313,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateRequest(
+                    var json = requester.CreateGetRequest(
                         string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
                         RootDomain,
                         new List<string>
@@ -353,7 +353,7 @@ namespace RiotSharp
                 return listWrapper.ItemListStatic.Items.ContainsKey(itemId) ?
                     listWrapper.ItemListStatic.Items[itemId] : null;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
                 RootDomain,
                 new List<string>
@@ -379,7 +379,7 @@ namespace RiotSharp
         public LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
-            var json = requester.CreateRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
+            var json = requester.CreateGetRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -397,7 +397,7 @@ namespace RiotSharp
         public async Task<LanguageStringsData> GetLanguageStringsAsync(Region region,
             Language language = Language.en_US, string version = "5.3.1")
         {
-            var json = await requester.CreateRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
+            var json = await requester.CreateGetRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
                 RootDomain, new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -412,7 +412,7 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public List<Language> GetLanguages(Region region)
         {
-            var json = requester.CreateRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateGetRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
             return JsonConvert.DeserializeObject<List<Language>>(json);
         }
 
@@ -423,7 +423,7 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public async Task<List<Language>> GetLanguagesAsync(Region region)
         {
-            var json = await requester.CreateRequestAsync(string.Format(LanguagesRootUrl, region.ToString()),
+            var json = await requester.CreateGetRequestAsync(string.Format(LanguagesRootUrl, region.ToString()),
                 RootDomain);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<List<Language>>(json));
@@ -438,7 +438,7 @@ namespace RiotSharp
         /// <returns>A list of objects representing maps.</returns>
         public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1")
         {
-            var json = requester.CreateRequest(string.Format(MapRootUrl, region.ToString()), RootDomain,
+            var json = requester.CreateGetRequest(string.Format(MapRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -456,7 +456,7 @@ namespace RiotSharp
         public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
-            var json = await requester.CreateRequestAsync(string.Format(MapRootUrl, region.ToString()), RootDomain,
+            var json = await requester.CreateGetRequestAsync(string.Format(MapRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -478,7 +478,7 @@ namespace RiotSharp
             var wrapper = cache.Get<string, MasteryListStaticWrapper>(MasteriesCacheKey);
             if (wrapper == null || language != wrapper.Language || masteryData != wrapper.MasteryData)
             {
-                var json = requester.CreateRequest(
+                var json = requester.CreateGetRequest(
                     string.Format(MasteryRootUrl, region.ToString()),
                     RootDomain,
                     new List<string>
@@ -510,7 +510,7 @@ namespace RiotSharp
             {
                 return wrapper.MasteryListStatic;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(MasteryRootUrl, region.ToString()),
                 RootDomain,
                 new List<string>
@@ -559,7 +559,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateRequest(
+                    var json = requester.CreateGetRequest(
                         string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId),
                         RootDomain,
                         new List<string>
@@ -598,7 +598,7 @@ namespace RiotSharp
             {
                 return listWrapper.MasteryListStatic.Masteries.ContainsKey(masteryId) ? listWrapper.MasteryListStatic.Masteries[masteryId] : null;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId.ToString()),
                 RootDomain,
                 new List<string>
@@ -622,7 +622,7 @@ namespace RiotSharp
         /// <returns>A realm object containing the requested information.</returns>
         public Realm GetRealm(Region region)
         {
-            var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateGetRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
             return JsonConvert.DeserializeObject<Realm>(json);
         }
 
@@ -633,7 +633,7 @@ namespace RiotSharp
         /// <returns>A realm object containing the requested information.</returns>
         public async Task<Realm> GetRealmAsync(Region region)
         {
-            var json = await requester.CreateRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            var json = await requester.CreateGetRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
         }
 
@@ -650,7 +650,7 @@ namespace RiotSharp
             var wrapper = cache.Get<string, RuneListStaticWrapper>(RunesCacheKey);
             if (wrapper == null || language != wrapper.Language || runeData != wrapper.RuneData)
             {
-                var json = requester.CreateRequest(
+                var json = requester.CreateGetRequest(
                     string.Format(RuneRootUrl, region.ToString()),
                     RootDomain,
                     new List<string>
@@ -682,7 +682,7 @@ namespace RiotSharp
             {
                 return wrapper.RuneListStatic;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(RuneRootUrl, region.ToString()),
                 RootDomain,
                 new List<string>
@@ -731,7 +731,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateRequest(
+                    var json = requester.CreateGetRequest(
                         string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
                         RootDomain,
                         new List<string>
@@ -771,7 +771,7 @@ namespace RiotSharp
                 return listWrapper.RuneListStatic.Runes.ContainsKey(runeId) ?
                     listWrapper.RuneListStatic.Runes[runeId] : null;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(RuneRootUrl, region.ToString()) + string.Format(IdUrl, runeId),
                 RootDomain,
                 new List<string>
@@ -800,7 +800,7 @@ namespace RiotSharp
             var wrapper = cache.Get<string, SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
             if (wrapper == null || wrapper.Language != language || wrapper.SummonerSpellData != summonerSpellData)
             {
-                var json = requester.CreateRequest(
+                var json = requester.CreateGetRequest(
                     string.Format(SummonerSpellRootUrl, region.ToString()),
                     RootDomain,
                     new List<string>
@@ -832,7 +832,7 @@ namespace RiotSharp
             {
                 return wrapper.SummonerSpellListStatic;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerSpellRootUrl, region.ToString()),
                 RootDomain,
                 new List<string>
@@ -883,7 +883,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateRequest(
+                    var json = requester.CreateGetRequest(
                         string.Format(SummonerSpellRootUrl, region.ToString()) +
                             string.Format(IdUrl, (int)summonerSpell),
                         RootDomain,
@@ -926,7 +926,7 @@ namespace RiotSharp
                 return listWrapper.SummonerSpellListStatic.SummonerSpells.ContainsKey(summonerSpell.ToCustomString()) ?
                     listWrapper.SummonerSpellListStatic.SummonerSpells[summonerSpell.ToCustomString()] : null;
             }
-            var json = await requester.CreateRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerSpellRootUrl, region.ToString()) +
                 string.Format(IdUrl, (int)summonerSpell),
                 RootDomain,
@@ -951,7 +951,7 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public List<string> GetVersions(Region region)
         {
-            var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateGetRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
             return JsonConvert.DeserializeObject<List<string>>(json);
         }
 
@@ -963,7 +963,7 @@ namespace RiotSharp
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
             var json =
-                await requester.CreateRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
+                await requester.CreateGetRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
         }
     }

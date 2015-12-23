@@ -41,7 +41,8 @@ namespace RiotSharpTest
             Assert.AreEqual(2, tournamentCodes.Count);
 
             var tournamentCodeDetails = api.GetTournamentCodeDetails(tournamentCode);
-            api.UpdateTournamentCode(tournamentCode, null, null, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss);
+            bool success = api.UpdateTournamentCode(tournamentCode, null, null, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss);
+            Assert.IsTrue(success);
             var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetails(tournamentCode);
             Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
             Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
@@ -92,7 +93,8 @@ namespace RiotSharpTest
             Assert.AreNotEqual("", tournamentCode);
             var tournamentCodes = api.CreateTournamentCodesAsync(tournament.Id, 1, spectatorType, pickType, mapType, string.Empty, 2).Result;
             Assert.AreEqual(2, tournamentCodes.Count);
-            api.UpdateTournamentCodeAsync(tournamentCode, new List<long> { id, id2 }, TournamentSpectatorType.All, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss);
+            bool success = api.UpdateTournamentCodeAsync(tournamentCode, new List<long> { id, id2 }, TournamentSpectatorType.All, TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss).Result;
+            Assert.IsTrue(success);
         }
 
         [TestMethod]

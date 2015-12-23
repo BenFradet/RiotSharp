@@ -32,6 +32,37 @@ namespace RiotSharp
         }
 
         /// <summary>
+        ///     Get the instance of RiotApi.
+        /// </summary>
+        /// <param name="apiKey">The api key.</param>
+        /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
+        /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
+        /// <returns>The instance of RiotApi.</returns>
+        public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
+        {
+            if (instance == null ||
+                Requesters.TournamentRequester == null ||
+                apiKey != Requesters.TournamentRequester.ApiKey ||
+                rateLimitPer10s != Requesters.TournamentRequester.RateLimitPer10S ||
+                rateLimitPer10m != Requesters.TournamentRequester.RateLimitPer10M)
+            {
+                instance = new TournamentRiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
+            }
+            return instance;
+        }
+
+        internal static TournamentRiotApi GetInstance()
+        {
+            if (instance == null ||
+                Requesters.TournamentRequester == null)
+            {
+                throw new NotSupportedException(
+                    "Can't get instance of TournamentRiotApi. Use the overloaded method GetInstance(apikey, rateLimitPer10s, rateLimitPer10m) anywhere in your code before calling any tournament API method.");
+            }
+            return instance;
+        }
+
+        /// <summary>
         ///     Creates a tournament provider and returns its ID.
         /// </summary>
         /// <param name="region">The region in which the provider will be running tournaments.</param>
@@ -283,7 +314,7 @@ namespace RiotSharp
         /// <returns>TournamentCodeDetail object with details of the tournament code.</returns>
         public TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode)
         {
-            var json = requester.CreateRequest(TournamentRootUrl + string.Format(GetCodeUrl, tournamentCode),
+            var json = requester.CreateGetRequest(TournamentRootUrl + string.Format(GetCodeUrl, tournamentCode),
                 Region.global);
             var obj = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
 
@@ -299,7 +330,7 @@ namespace RiotSharp
         {
             var json =
                 await
-                    requester.CreateRequestAsync(TournamentRootUrl + string.Format(GetCodeUrl, tournamentCode),
+                    requester.CreateGetRequestAsync(TournamentRootUrl + string.Format(GetCodeUrl, tournamentCode),
                         Region.global);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TournamentCodeDetail>(json));
@@ -312,7 +343,7 @@ namespace RiotSharp
         /// <returns>List of TournamentLobbyEvents.</returns>
         public List<TournamentLobbyEvent> GetTournamentLobbyEvents(string tournamentCode)
         {
-            var json = requester.CreateRequest(TournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
+            var json = requester.CreateGetRequest(TournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
                 Region.global);
             var obj = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
 
@@ -328,7 +359,7 @@ namespace RiotSharp
         {
             var json =
                 await
-                    requester.CreateRequestAsync(TournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
+                    requester.CreateGetRequestAsync(TournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
                         Region.global);
 
             return
@@ -350,7 +381,7 @@ namespace RiotSharp
         public MatchDetail GetTournamentMatch(Region region, long matchId, string tournamentCode, bool includeTimeline)
         {
             var json =
-                requester.CreateRequest(
+                requester.CreateGetRequest(
                     string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
                     new List<string>
                     {
@@ -376,7 +407,7 @@ namespace RiotSharp
         {
             var json =
                 await
-                    requester.CreateRequestAsync(
+                    requester.CreateGetRequestAsync(
                         string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
                         new List<string>
                         {
@@ -396,7 +427,7 @@ namespace RiotSharp
         public long GetTournamentMatchId(Region region, string tournamentCode)
         {
             var json =
-                requester.CreateRequest(
+                requester.CreateGetRequest(
                     string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
 
             var obj = JsonConvert.DeserializeObject<List<long>>(json);
@@ -414,7 +445,7 @@ namespace RiotSharp
         {
             var json =
                 await
-                    requester.CreateRequestAsync(
+                    requester.CreateGetRequestAsync(
                         string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json)[0]);
@@ -428,12 +459,13 @@ namespace RiotSharp
         /// <param name="spectatorType">The spectator type.</param>
         /// <param name="pickType">The pick type.</param>
         /// <param name="mapType">The map type.</param>
-        public void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds,
+        /// <returns>Success value.</returns>
+        public bool UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
         {
             var body = BuildTournamentUpdateBody(allowedSummonerIds, spectatorType, pickType, mapType);
 
-            requester.CreatePutRequest(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global,
+            return requester.CreatePutRequest(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global,
                 JsonConvert.SerializeObject(body));
         }
 
@@ -445,47 +477,14 @@ namespace RiotSharp
         /// <param name="spectatorType">The spectator type.</param>
         /// <param name="pickType">The pick type.</param>
         /// <param name="mapType">The map type.</param>
-        public async void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds,
+        /// /// <returns>Success value.</returns>
+        public async Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
         {
             var body = BuildTournamentUpdateBody(allowedSummonerIds, spectatorType, pickType, mapType);
 
-            await
-                Task.Factory.StartNew(
-                    () =>
-                        requester.CreatePutRequestAsync(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode),
-                            Region.global, JsonConvert.SerializeObject(body)));
-        }
-
-        /// <summary>
-        ///     Get the instance of RiotApi.
-        /// </summary>
-        /// <param name="apiKey">The api key.</param>
-        /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
-        /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
-        /// <returns>The instance of RiotApi.</returns>
-        public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
-        {
-            if (instance == null ||
-                Requesters.TournamentRequester == null ||
-                apiKey != Requesters.TournamentRequester.ApiKey ||
-                rateLimitPer10s != Requesters.TournamentRequester.RateLimitPer10S ||
-                rateLimitPer10m != Requesters.TournamentRequester.RateLimitPer10M)
-            {
-                instance = new TournamentRiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
-            }
-            return instance;
-        }
-
-        internal static TournamentRiotApi GetInstance()
-        {
-            if (instance == null ||
-                Requesters.TournamentRequester == null)
-            {
-                throw new NotSupportedException(
-                    "Can't get instance of TournamentRiotApi. Use the overloaded method GetInstance(apikey, rateLimitPer10s, rateLimitPer10m) anywhere in your code before calling any tournament API method.");
-            }
-            return instance;
+            return await requester.CreatePutRequestAsync(TournamentRootUrl + string.Format(PutCodeUrl, tournamentCode),
+                Region.global, JsonConvert.SerializeObject(body));
         }
 
         private Dictionary<string, object> BuildTournamentUpdateBody(List<long> allowedSummonerIds,

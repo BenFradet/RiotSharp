@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    class RateLimitedRequester : Requester
+    internal class RateLimitedRequester : Requester
     {
-
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }
 
@@ -21,18 +20,18 @@ namespace RiotSharp
             RateLimitPer10M = rateLimitPer10m;
         }
 
-        private Dictionary<Region, DateTime> firstRequestsInLastTenS = new Dictionary<Region, DateTime>();
-        private Dictionary<Region, DateTime> firstRequestsInLastTenM = new Dictionary<Region, DateTime>();
-        private Dictionary<Region, int> numberOfRequestsInLastTenS = new Dictionary<Region, int>();
-        private Dictionary<Region, int> numberOfRequestsInLastTenM = new Dictionary<Region, int>();
+        private readonly Dictionary<Region, DateTime> firstRequestsInLastTenS = new Dictionary<Region, DateTime>();
+        private readonly Dictionary<Region, DateTime> firstRequestsInLastTenM = new Dictionary<Region, DateTime>();
+        private readonly Dictionary<Region, int> numberOfRequestsInLastTenS = new Dictionary<Region, int>();
+        private readonly Dictionary<Region, int> numberOfRequestsInLastTenM = new Dictionary<Region, int>();
 
-        private SemaphoreSlim semaphore = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
-        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null,
+        public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps);
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
 
             semaphore.Wait();
             {
@@ -43,55 +42,11 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
-        public string CreatePostRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
-            bool useHttps = true)
-        {
-            rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
-            request.ContentType = "application/json";
-
-            semaphore.Wait();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
-
-            byte[] byteArray = Encoding.UTF8.GetBytes(body);
-            Stream dataStream = request.GetRequestStream();
-
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            return GetResponse(request);
-        }
-
-        public void CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
-    bool useHttps = true)
-        {
-            rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
-            request.ContentType = "application/json";
-
-            semaphore.Wait();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
-
-            byte[] byteArray = Encoding.UTF8.GetBytes(body);
-            Stream dataStream = request.GetRequestStream();
-
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            GetResponse(request);
-        }
-
-        public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
+        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null, bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps);
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
 
             await semaphore.WaitAsync();
             {
@@ -100,13 +55,36 @@ namespace RiotSharp
             semaphore.Release();
 
             return await GetResponseAsync(request);
+        }
+
+        public string CreatePostRequest(string relativeUrl, Region region, string body,
+            List<string> addedArguments = null,
+            bool useHttps = true)
+        {
+            rootDomain = region + ".api.pvp.net";
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
+            request.ContentType = "application/json";
+
+            semaphore.Wait();
+            {
+                HandleRateLimit(region);
+            }
+            semaphore.Release();
+
+            var byteArray = Encoding.UTF8.GetBytes(body);
+            var dataStream = request.GetRequestStream();
+
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            return GetResponse(request);
         }
 
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
             request.ContentType = "application/json";
 
             await semaphore.WaitAsync();
@@ -115,8 +93,8 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            byte[] byteArray = Encoding.UTF8.GetBytes(body);
-            Stream dataStream = await request.GetRequestStreamAsync();
+            var byteArray = Encoding.UTF8.GetBytes(body);
+            var dataStream = await request.GetRequestStreamAsync();
 
             dataStream.Write(byteArray, 0, byteArray.Length);
             dataStream.Close();
@@ -124,11 +102,43 @@ namespace RiotSharp
             return await GetResponseAsync(request);
         }
 
-        public async void CreatePutRequestAsync(string relativeUrl, Region region, string body,
-    List<string> addedArguments = null, bool useHttps = true)
+        public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
+            bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
-            HttpWebRequest request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
+            request.ContentType = "application/json";
+
+            semaphore.Wait();
+            {
+                HandleRateLimit(region);
+            }
+            semaphore.Release();
+
+            var byteArray = Encoding.UTF8.GetBytes(body);
+            var dataStream = request.GetRequestStream();
+
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+
+                return (int) response.StatusCode >= 200 && (int) response.StatusCode < 300; // if code is in 2xx (=OK) range, return success value = true.
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+                return false;
+            }
+        }
+
+        public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
+            List<string> addedArguments = null, bool useHttps = true)
+        {
+            rootDomain = region + ".api.pvp.net";
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
             request.ContentType = "application/json";
 
             await semaphore.WaitAsync();
@@ -137,13 +147,23 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            byte[] byteArray = Encoding.UTF8.GetBytes(body);
-            Stream dataStream = await request.GetRequestStreamAsync();
+            var byteArray = Encoding.UTF8.GetBytes(body);
+            var dataStream = await request.GetRequestStreamAsync();
 
             dataStream.Write(byteArray, 0, byteArray.Length);
             dataStream.Close();
 
-            await GetResponseAsync(request);
+            try
+            {
+                var response = (HttpWebResponse)(await request.GetResponseAsync());
+
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300; // if code is in 2xx (=OK) range, return success value = true.
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+                return false;
+            }
         }
 
         private void HandleRateLimit(Region region)

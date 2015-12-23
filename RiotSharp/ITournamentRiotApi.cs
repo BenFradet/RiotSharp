@@ -27,10 +27,10 @@ namespace RiotSharp
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata, int count = 1);
 
-        void UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds,
+        bool UpdateTournamentCode(string tournamentCode, List<long> allowedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
 
-        void UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds,
+        Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
 
         TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode);

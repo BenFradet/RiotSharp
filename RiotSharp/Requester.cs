@@ -16,7 +16,7 @@ namespace RiotSharp
             ApiKey = apiKey;
         }
 
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+        public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
             bool useHttps = true)
         {
             this.rootDomain = rootDomain;
@@ -24,7 +24,7 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
-        public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
+        public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null, bool useHttps = true)
         {
             this.rootDomain = rootDomain;
@@ -106,7 +106,7 @@ namespace RiotSharp
             return result;
         }
 
-        private void HandleWebException(WebException ex)
+        protected void HandleWebException(WebException ex)
         {
             HttpWebResponse response;
             try
