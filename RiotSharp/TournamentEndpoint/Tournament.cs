@@ -51,11 +51,8 @@ namespace RiotSharp.TournamentEndpoint
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata)
         {
-            return
-                await
-                    TournamentRiotApi.GetInstance()
-                        .CreateTournamentCodeAsync(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType,
-                            metadata);
+            return await TournamentRiotApi.GetInstance()
+                .CreateTournamentCodeAsync(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType, metadata);
         }
 
         /// <summary>
@@ -88,10 +85,8 @@ namespace RiotSharp.TournamentEndpoint
         public async Task<List<string>> CreateTournamentCodesAsync(int teamSize, TournamentSpectatorType spectatorType,
             TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1)
         {
-            return
-                await
-                    TournamentRiotApi.GetInstance()
-                        .CreateTournamentCodesAsync(Id, teamSize, spectatorType, pickType, mapType, metadata, count);
+            return await TournamentRiotApi.GetInstance()
+                .CreateTournamentCodesAsync(Id, teamSize, spectatorType, pickType, mapType, metadata, count);
         }
     }
 }

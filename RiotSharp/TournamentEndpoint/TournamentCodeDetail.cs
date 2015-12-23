@@ -118,10 +118,8 @@ namespace RiotSharp.TournamentEndpoint
         public async Task<bool> UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
             TournamentPickType? pickType, TournamentMapType? mapType)
         {
-            return
-                await
-                    TournamentRiotApi.GetInstance()
-                        .UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType);
+            return await TournamentRiotApi.GetInstance()
+                .UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType);
         }
 
         /// <summary>

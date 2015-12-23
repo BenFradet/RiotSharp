@@ -125,7 +125,8 @@ namespace RiotSharp
             {
                 var response = (HttpWebResponse)request.GetResponse();
 
-                return (int) response.StatusCode >= 200 && (int) response.StatusCode < 300; // if code is in 2xx (=OK) range, return success value = true.
+                // if code is in 2xx (=OK) range, return success value = true.
+                return (int) response.StatusCode >= 200 && (int) response.StatusCode < 300;
             }
             catch (WebException ex)
             {
@@ -157,7 +158,8 @@ namespace RiotSharp
             {
                 var response = (HttpWebResponse)(await request.GetResponseAsync());
 
-                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300; // if code is in 2xx (=OK) range, return success value = true.
+                // if code is in 2xx (=OK) range, return success value = true.
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
             }
             catch (WebException ex)
             {

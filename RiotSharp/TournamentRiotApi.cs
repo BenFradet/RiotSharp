@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RiotSharp.MatchEndpoint;
@@ -60,7 +61,9 @@ namespace RiotSharp
                 Requesters.TournamentApiRequester == null)
             {
                 throw new NotSupportedException(
-                    "Can't get instance of TournamentRiotApi. Use the overloaded method GetInstance(apikey, rateLimitPer10s, rateLimitPer10m) anywhere in your code before calling any tournament API method.");
+                    "Can't get instance of TournamentRiotApi. " +
+                    "Use the overloaded method GetInstance(apikey, rateLimitPer10s, rateLimitPer10m) " +
+                    "anywhere in your code before calling any tournament API method.");
             }
             return instance;
         }
@@ -82,9 +85,9 @@ namespace RiotSharp
                 JsonConvert.SerializeObject(body));
 
             // json is an int directly
-            var obj = new TournamentProvider {Id = int.Parse(json)};
+            var provider = new TournamentProvider {Id = int.Parse(json)};
 
-            return obj;
+            return provider;
         }
 
         /// <summary>
@@ -105,12 +108,7 @@ namespace RiotSharp
                     requester.CreatePostRequestAsync(TournamentRootUrl + CreateProviderUrl, Region.global,
                         JsonConvert.SerializeObject(body));
 
-            return await Task.Factory.StartNew(() =>
-            {
-                var t = new TournamentProvider {Id = int.Parse(json)};
-                Console.WriteLine(json);
-                return t;
-            });
+            return new TournamentProvider {Id = int.Parse(json)};
         }
 
         /// <summary>
@@ -126,9 +124,9 @@ namespace RiotSharp
                 JsonConvert.SerializeObject(body));
 
             // json is an int directly
-            var obj = new Tournament {Id = int.Parse(json)};
+            var tournament = new Tournament {Id = int.Parse(json)};
 
-            return obj;
+            return tournament;
         }
 
         /// <summary>
@@ -145,10 +143,7 @@ namespace RiotSharp
                     requester.CreatePostRequestAsync(TournamentRootUrl + CreateTournamentUrl, Region.global,
                         JsonConvert.SerializeObject(body));
 
-            // json is an int directly
-            var obj = new Tournament {Id = int.Parse(json)};
-
-            return await Task.Factory.StartNew(() => obj);
+            return new Tournament { Id = int.Parse(json) };
         }
 
         /// <summary>
@@ -187,9 +182,9 @@ namespace RiotSharp
                 new List<string> {string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", 1)});
 
             // json is a list of strings
-            var obj = JsonConvert.DeserializeObject<List<string>>(json);
+            var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
 
-            return obj[0];
+            return tournamentCodes.FirstOrDefault();
         }
 
         /// <summary>
@@ -233,7 +228,7 @@ namespace RiotSharp
                             string.Format("count={0}", 1)
                         });
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json)[0]);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json).FirstOrDefault());
         }
 
         /// <summary>
@@ -266,9 +261,9 @@ namespace RiotSharp
                 new List<string> {string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count)});
 
             // json is a list of strings
-            var obj = JsonConvert.DeserializeObject<List<string>>(json);
+            var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
 
-            return obj;
+            return tournamentCodes;
         }
 
         /// <summary>
@@ -319,9 +314,9 @@ namespace RiotSharp
         {
             var json = requester.CreateGetRequest(TournamentRootUrl + string.Format(GetCodeUrl, tournamentCode),
                 Region.global);
-            var obj = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
+            var tournamentCodeDetails = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
 
-            return obj;
+            return tournamentCodeDetails;
         }
 
         /// <summary>
@@ -348,9 +343,9 @@ namespace RiotSharp
         {
             var json = requester.CreateGetRequest(TournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
                 Region.global);
-            var obj = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
+            var lobbyEventsDTO = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
 
-            return obj["eventList"];
+            return lobbyEventsDTO["eventList"];
         }
 
         /// <summary>
@@ -367,10 +362,9 @@ namespace RiotSharp
 
             return
                 await
-                    Task.Factory.StartNew(
-                        () =>
-                            JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json)[
-                                "eventList"]);
+                    Task.Factory.StartNew(() =>
+                        JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json)["eventList"]
+                    );
         }
 
         /// <summary>
@@ -392,9 +386,9 @@ namespace RiotSharp
                         string.Format("includeTimeline={0}", includeTimeline)
                     });
 
-            var obj = JsonConvert.DeserializeObject<MatchDetail>(json);
+            var matchDetail = JsonConvert.DeserializeObject<MatchDetail>(json);
 
-            return obj;
+            return matchDetail;
         }
 
         /// <summary>
@@ -433,9 +427,9 @@ namespace RiotSharp
                 requester.CreateGetRequest(
                     string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
 
-            var obj = JsonConvert.DeserializeObject<List<long>>(json);
+            var matchIds = JsonConvert.DeserializeObject<List<long>>(json);
 
-            return obj[0];
+            return matchIds.FirstOrDefault();
         }
 
         /// <summary>
@@ -451,7 +445,7 @@ namespace RiotSharp
                     requester.CreateGetRequestAsync(
                         string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json)[0]);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json).FirstOrDefault());
         }
 
         /// <summary>
