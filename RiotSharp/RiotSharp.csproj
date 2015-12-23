@@ -84,6 +84,7 @@
     <Compile Include="MatchEndpoint\Converters\Season.cs" />
     <Compile Include="MatchEndpoint\Converters\SeasonConverter.cs" />
     <Compile Include="Misc\DateTimeConverterFromString.cs" />
+    <Compile Include="Misc\DateTimeConverterFromStringTimestamp.cs" />
     <Compile Include="Misc\GameMode.cs" />
     <Compile Include="Misc\GameModeConverter.cs" />
     <Compile Include="Misc\GameType.cs" />

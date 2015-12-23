@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace RiotSharp.TournamentEndpoint
 {
@@ -27,7 +28,7 @@ namespace RiotSharp.TournamentEndpoint
         ///     Timestamp from the event
         /// </summary>
         [JsonProperty("timestamp")]
-        [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public long Timestamp { get; set; }
+        [JsonConverter(typeof(DateTimeConverterFromStringTimestamp))]
+        public DateTime Timestamp { get; set; }
     }
 }
