@@ -30,8 +30,8 @@ namespace RiotSharp
 
         private StatusRiotApi()
         {
-            Requesters.StatusRequester = new Requester();
-            requester = Requesters.StatusRequester;
+            Requesters.StatusApiRequester = new Requester();
+            requester = Requesters.StatusApiRequester;
         }
 
         /// <summary>

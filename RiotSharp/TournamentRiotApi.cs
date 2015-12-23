@@ -27,8 +27,8 @@ namespace RiotSharp
 
         private TournamentRiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {
-            Requesters.TournamentRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
-            requester = Requesters.TournamentRequester;
+            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
+            requester = Requesters.TournamentApiRequester;
         }
 
         /// <summary>
@@ -41,10 +41,10 @@ namespace RiotSharp
         public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
         {
             if (instance == null ||
-                Requesters.TournamentRequester == null ||
-                apiKey != Requesters.TournamentRequester.ApiKey ||
-                rateLimitPer10s != Requesters.TournamentRequester.RateLimitPer10S ||
-                rateLimitPer10m != Requesters.TournamentRequester.RateLimitPer10M)
+                Requesters.TournamentApiRequester == null ||
+                apiKey != Requesters.TournamentApiRequester.ApiKey ||
+                rateLimitPer10s != Requesters.TournamentApiRequester.RateLimitPer10S ||
+                rateLimitPer10m != Requesters.TournamentApiRequester.RateLimitPer10M)
             {
                 instance = new TournamentRiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
             }
@@ -54,7 +54,7 @@ namespace RiotSharp
         internal static TournamentRiotApi GetInstance()
         {
             if (instance == null ||
-                Requesters.TournamentRequester == null)
+                Requesters.TournamentApiRequester == null)
             {
                 throw new NotSupportedException(
                     "Can't get instance of TournamentRiotApi. Use the overloaded method GetInstance(apikey, rateLimitPer10s, rateLimitPer10m) anywhere in your code before calling any tournament API method.");

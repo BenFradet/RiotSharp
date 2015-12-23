@@ -66,10 +66,10 @@ namespace RiotSharp
         /// <returns>The instance of RiotApi.</returns>
         public static RiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
         {
-            if (instance == null || Requesters.GameRequester == null || 
-                apiKey != Requesters.GameRequester.ApiKey ||
-                rateLimitPer10s != Requesters.GameRequester.RateLimitPer10S ||
-                rateLimitPer10m != Requesters.GameRequester.RateLimitPer10M)
+            if (instance == null || Requesters.RiotApiRequester == null || 
+                apiKey != Requesters.RiotApiRequester.ApiKey ||
+                rateLimitPer10s != Requesters.RiotApiRequester.RateLimitPer10S ||
+                rateLimitPer10m != Requesters.RiotApiRequester.RateLimitPer10M)
             {
                 instance = new RiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
             }
@@ -78,8 +78,8 @@ namespace RiotSharp
 
         private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {
-            Requesters.GameRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
-            requester = Requesters.GameRequester;
+            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
+            requester = Requesters.RiotApiRequester;
         }
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace RiotSharp.SummonerEndpoint
 
         internal SummonerBase()
         {
-            requester = Requesters.GameRequester;
+            requester = Requesters.RiotApiRequester;
         }
 
         //summoner base not default constructor
