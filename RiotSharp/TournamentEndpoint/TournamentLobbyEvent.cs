@@ -2,6 +2,9 @@
 
 namespace RiotSharp.TournamentEndpoint
 {
+    /// <summary>
+    /// Represents a tournament lobby event in the Riot tournament API.
+    /// </summary>
     public class TournamentLobbyEvent
     {
         internal TournamentLobbyEvent()
@@ -24,6 +27,7 @@ namespace RiotSharp.TournamentEndpoint
         ///     Timestamp from the event
         /// </summary>
         [JsonProperty("timestamp")]
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
         public long Timestamp { get; set; }
     }
 }

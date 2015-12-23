@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.TournamentEndpoint
 {
+    /// <summary>
+    /// Represents a tournament provider in the Riot API.
+    /// </summary>
     [Serializable]
     public class TournamentProvider
     {
@@ -10,6 +13,9 @@ namespace RiotSharp.TournamentEndpoint
         {
         }
 
+        /// <summary>
+        /// The provider ID.
+        /// </summary>
         public int Id { get; set; }
 
         /// <summary>

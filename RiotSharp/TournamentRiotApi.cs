@@ -7,6 +7,9 @@ using RiotSharp.TournamentEndpoint;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Entry point for the tournament API.
+    /// </summary>
     public class TournamentRiotApi : ITournamentRiotApi
     {
         private const string TournamentRootUrl = "/tournament/public/v1";
