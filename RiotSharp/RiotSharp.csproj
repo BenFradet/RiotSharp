@@ -240,13 +240,13 @@
     <Compile Include="TournamentEndpoint\Tournament.cs" />
     <Compile Include="TournamentEndpoint\TournamentCodeDetail.cs" />
     <Compile Include="TournamentEndpoint\TournamentLobbyEvent.cs" />
-    <Compile Include="TournamentEndpoint\TournamentMapType.cs" />
-    <Compile Include="TournamentEndpoint\TournamentMapTypeConverter.cs" />
-    <Compile Include="TournamentEndpoint\TournamentPickType.cs" />
-    <Compile Include="TournamentEndpoint\TournamentPickTypeConverter.cs" />
+    <Compile Include="TournamentEndpoint\Converters\TournamentMapType.cs" />
+    <Compile Include="TournamentEndpoint\Converters\TournamentMapTypeConverter.cs" />
+    <Compile Include="TournamentEndpoint\Converters\TournamentPickType.cs" />
+    <Compile Include="TournamentEndpoint\Converters\TournamentPickTypeConverter.cs" />
     <Compile Include="TournamentEndpoint\TournamentProvider.cs" />
-    <Compile Include="TournamentEndpoint\TournamentSpectatorType.cs" />
-    <Compile Include="TournamentEndpoint\TournamentSpectatorTypeConverter.cs" />
+    <Compile Include="TournamentEndpoint\Converters\TournamentSpectatorType.cs" />
+    <Compile Include="TournamentEndpoint\Converters\TournamentSpectatorTypeConverter.cs" />
     <Compile Include="TournamentRiotApi.cs" />
   </ItemGroup>
   <ItemGroup>
