@@ -32,7 +32,8 @@ namespace RiotSharp
             return await GetResponseAsync(request);
         }
 
-        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps, string httpMethod = "GET")
+        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps,
+            string httpMethod = "GET")
         {
             HttpWebRequest request;
             string scheme = useHttps ? "https" : "http";
