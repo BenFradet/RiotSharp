@@ -1,23 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 
 namespace RiotSharp.TournamentEndpoint
 {
-    class TournamentMapTypeConverter : JsonConverter
+    internal class TournamentMapTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(string).IsAssignableFrom(objectType);
+            return typeof (string).IsAssignableFrom(objectType);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, 
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() == null) return null;
             var str = token.Value<string>();
-            switch(str)
+            switch (str)
             {
                 case "SUMMONERS_RIFT":
                     return TournamentMapType.SummonersRift;
@@ -34,9 +34,9 @@ namespace RiotSharp.TournamentEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var map = (TournamentMapType)value;
+            var map = (TournamentMapType) value;
             string result;
-            switch(map)
+            switch (map)
             {
                 case TournamentMapType.SummonersRift:
                     result = "SUMMONERS_RIFT";

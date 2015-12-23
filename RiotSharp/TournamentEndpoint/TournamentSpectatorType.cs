@@ -3,9 +3,9 @@
 namespace RiotSharp.TournamentEndpoint
 {
     /// <summary>
-    /// Spectator type of the game (Tournament API).
+    ///     Spectator type of the game (Tournament API).
     /// </summary>
-    [JsonConverter(typeof(TournamentSpectatorTypeConverter))]
+    [JsonConverter(typeof (TournamentSpectatorTypeConverter))]
     public enum TournamentSpectatorType
     {
         None,

@@ -1,15 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-
 
 namespace RiotSharp.TournamentEndpoint
 {
-    class TournamentSpectatorTypeConverter : JsonConverter
+    internal class TournamentSpectatorTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(string).IsAssignableFrom(objectType);
+            return typeof (string).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
@@ -33,9 +32,9 @@ namespace RiotSharp.TournamentEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var spectatorType = (TournamentSpectatorType)value;
+            var spectatorType = (TournamentSpectatorType) value;
             string result;
-            switch(spectatorType)
+            switch (spectatorType)
             {
                 case TournamentSpectatorType.None:
                     result = "NONE";

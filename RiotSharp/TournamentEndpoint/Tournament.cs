@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RiotSharp.TournamentEndpoint
 {
     /// <summary>
-    /// Class representing a tournament for the Tournament API.
+    ///     Class representing a tournament for the Tournament API.
     /// </summary>
     [Serializable]
     public class Tournament
     {
-        internal Tournament() { }
+        internal Tournament()
+        {
+        }
 
         /// <summary>
-        /// Tournament's ID
+        ///     Tournament's ID
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Create a tournament code for the tournament.
+        ///     Create a tournament code for the tournament.
         /// </summary>
         /// <param name="teamSize">The team size for the tournament code game.</param>
         /// <param name="allowedSummonerIds">participants</param>
@@ -29,13 +29,16 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="mapType">The game map for the tournament code game</param>
         /// <param name="metaData">The metadata for tournament code.</param>
         /// <returns>The tournament code.</returns>
-        public string CreateTournamentCode(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
+        public string CreateTournamentCode(int teamSize, List<long> allowedSummonerIds,
+            TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
+            string metaData)
         {
-            return TournamentRiotApi.GetInstance().CreateTournamentCode(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType, metaData);
+            return TournamentRiotApi.GetInstance()
+                .CreateTournamentCode(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType, metaData);
         }
 
         /// <summary>
-        /// Create a tournament code for the tournament asynchronously.
+        ///     Create a tournament code for the tournament asynchronously.
         /// </summary>
         /// <param name="teamSize">The team size for the tournament code game.</param>
         /// <param name="allowedSummonerIds">participants</param>
@@ -44,13 +47,19 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="mapType">The game map for the tournament code game</param>
         /// <param name="metaData">The metadata for tournament code.</param>
         /// <returns>The tournament code.</returns>
-        public async Task<string> CreateTournamentCodeAsync(int teamSize, List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData)
+        public async Task<string> CreateTournamentCodeAsync(int teamSize, List<long> allowedSummonerIds,
+            TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
+            string metaData)
         {
-            return await TournamentRiotApi.GetInstance().CreateTournamentCodeAsync(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType, metaData);
+            return
+                await
+                    TournamentRiotApi.GetInstance()
+                        .CreateTournamentCodeAsync(Id, teamSize, allowedSummonerIds, spectatorType, pickType, mapType,
+                            metaData);
         }
 
         /// <summary>
-        /// Create multiple tournament codes for the tournament.
+        ///     Create multiple tournament codes for the tournament.
         /// </summary>
         /// <param name="teamSize">The team size for the tournament code game.</param>
         /// <param name="spectatorType">The spectator mode for the tournament code game.</param>
@@ -59,13 +68,15 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="metaData">The metadata for tournament code.</param>
         /// <param name="count">The number of codes to be created</param>
         /// <returns>A list of the created tournament codes</returns>
-        public List<string> CreateTournamentCodes(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
+        public List<string> CreateTournamentCodes(int teamSize, TournamentSpectatorType spectatorType,
+            TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
-            return TournamentRiotApi.GetInstance().CreateTournamentCodes(Id, teamSize, spectatorType, pickType, mapType, metaData, count);
+            return TournamentRiotApi.GetInstance()
+                .CreateTournamentCodes(Id, teamSize, spectatorType, pickType, mapType, metaData, count);
         }
 
         /// <summary>
-        /// Create multiple tournament codes for the tournament asynchronously.
+        ///     Create multiple tournament codes for the tournament asynchronously.
         /// </summary>
         /// <param name="teamSize">The team size for the tournament code game.</param>
         /// <param name="spectatorType">The spectator mode for the tournament code game.</param>
@@ -74,9 +85,13 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="metaData">The metadata for tournament code.</param>
         /// <param name="count">The number of codes to be created</param>
         /// <returns>A list of the created tournament codes</returns>
-        public async Task<List<string>> CreateTournamentCodesAsync(int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
+        public async Task<List<string>> CreateTournamentCodesAsync(int teamSize, TournamentSpectatorType spectatorType,
+            TournamentPickType pickType, TournamentMapType mapType, string metaData, int count = 1)
         {
-            return await TournamentRiotApi.GetInstance().CreateTournamentCodesAsync(Id, teamSize, spectatorType, pickType, mapType, metaData, count);
+            return
+                await
+                    TournamentRiotApi.GetInstance()
+                        .CreateTournamentCodesAsync(Id, teamSize, spectatorType, pickType, mapType, metaData, count);
         }
     }
 }
