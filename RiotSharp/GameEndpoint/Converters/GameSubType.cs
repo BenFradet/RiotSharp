@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.GameEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.GameEndpoint
 {
     /// <summary>
     /// Game subtype of the game (Game API).
     /// </summary>
+    [JsonConverter(typeof(GameSubTypeConverter))]
     public enum GameSubType
     {
         /// <summary>
