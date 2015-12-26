@@ -26,6 +26,7 @@ or
 
 ##Usage
 
+###Game API
 In order to use the api you need an api key which you can get [here](https://developer.riotgames.com/).
 
 Entry point to the api if you do not own a production API key:
@@ -63,12 +64,41 @@ catch (RiotSharpException ex)
 {
   // Handle the exception however you want.
 }
-  
+
 foreach (var stat in varusRanked.Stats)
 {
   Console.WriteLine(stat.Name + "  " + stat.Value);
 }
 ```
+
+###Tournament API
+
+You first have to apply for a tournament API key [here](https://developer.riotgames.com/).
+
+Entry point for the tournament API:
+```c#
+var tournamentApi = TournamentRiotApi.GetInstance("TOURNAMENT_API_KEY");
+```
+
+Next up, create a provider.
+The url will will receive callbacks callbacks with match results.
+```c#
+var provider = api.CreateProvider(region, url);
+```
+
+And create a tournament:
+```c#
+var tournament = api.CreateTournament(provider.Id, "TOURNAMENT_NAME");
+```
+
+Now you can create tournament codes (which you can use to join games):
+```c#
+var tournamentCode = api.CreateTournamentCode(tournament.Id, teamSize, allowedSummonerIds,
+    TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
+    TournamentMapType.SummonnersRift, string.Empty);
+```
+The tournament code can now be entered in the client to join a game with the specified settings.
+
 
 For a full description check the RiotSharpExample or RiotSharpTest projects.
 
