@@ -46,7 +46,6 @@ namespace RiotSharp.CurrentGameEndpoint
         /// </list>
         /// </summary>
         [JsonProperty("gameMode")]
-        [JsonConverter(typeof(GameModeConverter))]
         public GameMode GameMode { get; set; }
 
         /// <summary>
