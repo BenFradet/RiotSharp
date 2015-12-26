@@ -16,7 +16,6 @@ namespace RiotSharp.MatchEndpoint
         /// Map type.
         /// </summary>
         [JsonProperty("mapId")]
-        [JsonConverter(typeof(MapTypeConverter))]
         public MapType MapType { get; set; }
 
         /// <summary>
