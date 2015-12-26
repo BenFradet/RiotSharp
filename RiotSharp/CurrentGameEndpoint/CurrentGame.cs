@@ -53,7 +53,6 @@ namespace RiotSharp.CurrentGameEndpoint
         /// The queue type
         /// </summary>
         [JsonProperty("gameQueueConfigId")]
-        [JsonConverter(typeof(GameQueueTypeConverter))]
         public GameQueueType GameQueueType { get; set; }
 
         /// <summary>
