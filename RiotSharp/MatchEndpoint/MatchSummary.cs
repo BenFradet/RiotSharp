@@ -47,7 +47,6 @@ namespace RiotSharp.MatchEndpoint
         public GameMode MatchMode { get; set; }
 
         [JsonProperty("matchType")]
-        [JsonConverter(typeof(GameTypeConverter))]
         public GameType MatchType { get; set; }
 
         /// <summary>

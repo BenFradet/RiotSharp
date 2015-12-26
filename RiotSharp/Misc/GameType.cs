@@ -1,8 +1,11 @@
-﻿namespace RiotSharp
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp
 {
     /// <summary>
     /// Type of the game.
     /// </summary>
+    [JsonConverter(typeof(GameTypeConverter))]
     public enum GameType
     {
         /// <summary>

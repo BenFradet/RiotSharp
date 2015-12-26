@@ -71,7 +71,6 @@ namespace RiotSharp.CurrentGameEndpoint
         /// </list>
         /// </summary>
         [JsonProperty("gameType")]
-        [JsonConverter(typeof(GameTypeConverter))]
         public GameType GameType { get; set; }
 
         /// <summary>
