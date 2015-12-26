@@ -5,7 +5,6 @@ using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
-using RiotSharp.Misc;
 using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
 using System;

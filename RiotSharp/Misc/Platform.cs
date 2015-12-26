@@ -1,8 +1,11 @@
-﻿namespace RiotSharp
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp
 {
     /// <summary>
     /// Platform for the API.
     /// </summary>
+    [JsonConverter(typeof(PlatformConverter))]
     public enum Platform
     {
         /// <summary>
