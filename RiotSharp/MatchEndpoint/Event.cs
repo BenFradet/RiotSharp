@@ -95,7 +95,7 @@ namespace RiotSharp.MatchEndpoint
         /// The point captured in the event. Only present if relevant.
         /// </summary>
         [JsonProperty("pointCaptured")]
-        public CapturePoint PointCaptured { get; set; }
+        public CapturedPoint? CapturedPoint { get; set; }
 
         /// <summary>
         /// The position of the event. Only present if relevant.

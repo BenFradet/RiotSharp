@@ -5,8 +5,8 @@ namespace RiotSharp.MatchEndpoint
     /// <summary>
     /// Class representing a capture point in a dominion game (Match API).
     /// </summary>
-    [JsonConverter(typeof(CapturePointConverter))]
-    public enum CapturePoint
+    [JsonConverter(typeof(CapturedPointConverter))]
+    public enum CapturedPoint
     {
         /// <summary>
         /// Point A.
@@ -34,21 +34,21 @@ namespace RiotSharp.MatchEndpoint
         PointE
     }
 
-    static class CapturePointExtension
+    static class CapturedPointExtension
     {
-        public static string ToCustomString(this CapturePoint capturePoint)
+        public static string ToCustomString(this CapturedPoint capturePoint)
         {
             switch (capturePoint)
             {
-                case CapturePoint.PointA:
+                case CapturedPoint.PointA:
                     return "POINT_A";
-                case CapturePoint.PointB:
+                case CapturedPoint.PointB:
                     return "POINT_B";
-                case CapturePoint.PointC:
+                case CapturedPoint.PointC:
                     return "POINT_C";
-                case CapturePoint.PointD:
+                case CapturedPoint.PointD:
                     return "POINT_D";
-                case CapturePoint.PointE:
+                case CapturedPoint.PointE:
                     return "POINT_E";
                 default:
                     return string.Empty;
