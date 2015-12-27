@@ -70,7 +70,6 @@ namespace RiotSharp.MatchEndpoint
         /// Match queue type.
         /// </summary>
         [JsonProperty("queueType")]
-        [JsonConverter(typeof(QueueTypeConverter))]
         public QueueType QueueType { get; set; }
 
         /// <summary>
