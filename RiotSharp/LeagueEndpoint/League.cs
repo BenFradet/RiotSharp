@@ -44,7 +44,6 @@ namespace RiotSharp.LeagueEndpoint
         /// League tier (eg: Challenger).
         /// </summary>
         [JsonProperty("tier")]
-        [JsonConverter(typeof(TierConverter))]
         public Tier Tier { get; set; }
     }
 }
