@@ -71,7 +71,6 @@ namespace RiotSharp.MatchEndpoint
         /// The lane type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("laneType")]
-        [JsonConverter(typeof(LaneTypeConverter))]
         public LaneType? LaneType { get; set; }
 
         /// <summary>
