@@ -1,8 +1,11 @@
-﻿namespace RiotSharp
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp
 {
     /// <summary>
     /// Queue of the league (League API).
     /// </summary>
+    [JsonConverter(typeof(QueueConverter))]
     public enum Queue
     {
         /// <summary>
