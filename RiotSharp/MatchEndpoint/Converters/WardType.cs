@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of the ward (Match API).
     /// </summary>
+    [JsonConverter(typeof(WardTypeConverter))]
     public enum WardType
     {
         /// <summary>

@@ -138,7 +138,6 @@ namespace RiotSharp.MatchEndpoint
         /// The ward type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("wardType")]
-        [JsonConverter(typeof(WardTypeConverter))]
         public WardType? WardType { get; set; }
     }
 }
