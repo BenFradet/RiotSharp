@@ -16,7 +16,6 @@ namespace RiotSharp.MatchEndpoint
         /// Map type.
         /// </summary>
         [JsonProperty("mapId")]
-        [JsonConverter(typeof(MapTypeConverter))]
         public MapType MapType { get; set; }
 
         /// <summary>
@@ -44,11 +43,9 @@ namespace RiotSharp.MatchEndpoint
         /// Match mode.
         /// </summary>
         [JsonProperty("matchMode")]
-        [JsonConverter(typeof(GameModeConverter))]
         public GameMode MatchMode { get; set; }
 
         [JsonProperty("matchType")]
-        [JsonConverter(typeof(GameTypeConverter))]
         public GameType MatchType { get; set; }
 
         /// <summary>
@@ -73,21 +70,18 @@ namespace RiotSharp.MatchEndpoint
         /// Match queue type.
         /// </summary>
         [JsonProperty("queueType")]
-        [JsonConverter(typeof(QueueTypeConverter))]
         public QueueType QueueType { get; set; }
 
         /// <summary>
         /// Region where the match was played.
         /// </summary>
         [JsonProperty("region")]
-        [JsonConverter(typeof(RegionConverter))]
         public Region Region { get; set; }
 
         /// <summary>
         /// Season match was played.
         /// </summary>
         [JsonProperty("season")]
-        [JsonConverter(typeof(SeasonConverter))]
         public Season Season { get; set; }
     }
 }

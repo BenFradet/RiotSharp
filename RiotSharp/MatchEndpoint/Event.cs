@@ -17,7 +17,6 @@ namespace RiotSharp.MatchEndpoint
         /// Note that CLEAR_ASCENDED refers to when a participants kills the ascended player.
         /// </summary>
         [JsonProperty("ascendedType")]
-        [JsonConverter(typeof(AscendedTypeConverter))]
         public AscendedType AscendedType { get; set; }
 
         /// <summary>
@@ -30,7 +29,6 @@ namespace RiotSharp.MatchEndpoint
         /// The building type of the event (tower or inhibitor). Only present if relevant.
         /// </summary>
         [JsonProperty("buildingType")]
-        [JsonConverter(typeof(BuildingTypeConverter))]
         public BuildingType? BuildingType { get; set; }
 
         /// <summary>
@@ -43,7 +41,6 @@ namespace RiotSharp.MatchEndpoint
         /// Event type (building kills, champion kills, ward placements, items purchases, etc).
         /// </summary>
         [JsonProperty("eventType")]
-        [JsonConverter(typeof(EventTypeConverter))]
         public EventType? EventType { get; set; }
 
         /// <summary>
@@ -74,21 +71,18 @@ namespace RiotSharp.MatchEndpoint
         /// The lane type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("laneType")]
-        [JsonConverter(typeof(LaneTypeConverter))]
         public LaneType? LaneType { get; set; }
 
         /// <summary>
         /// The level up type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("levelUpType")]
-        [JsonConverter(typeof(LevelUpTypeConverter))]
         public LevelUpType? LevelUpType { get; set; }
 
         /// <summary>
         /// The monster type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("monsterType")]
-        [JsonConverter(typeof(MonsterTypeConverter))]
         public MonsterType? MonsterType { get; set; }
 
         /// <summary>
@@ -101,8 +95,7 @@ namespace RiotSharp.MatchEndpoint
         /// The point captured in the event. Only present if relevant.
         /// </summary>
         [JsonProperty("pointCaptured")]
-        [JsonConverter(typeof(CapturePointConverter))]
-        public CapturePoint PointCaptured { get; set; }
+        public CapturedPoint? CapturedPoint { get; set; }
 
         /// <summary>
         /// The position of the event. Only present if relevant.
@@ -133,7 +126,6 @@ namespace RiotSharp.MatchEndpoint
         /// The tower type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("towerType")]
-        [JsonConverter(typeof(TowerTypeConverter))]
         public TowerType? TowerType { get; set; }
 
         /// <summary>
@@ -146,7 +138,6 @@ namespace RiotSharp.MatchEndpoint
         /// The ward type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("wardType")]
-        [JsonConverter(typeof(WardTypeConverter))]
         public WardType? WardType { get; set; }
     }
 }

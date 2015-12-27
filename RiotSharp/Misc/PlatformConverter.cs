@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.Misc
+namespace RiotSharp
 {
     class PlatformConverter : JsonConverter
     {
@@ -11,7 +11,8 @@ namespace RiotSharp.Misc
             serializer.Serialize(writer, ((Platform)value).ToString().ToUpper());
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() == null) return null;

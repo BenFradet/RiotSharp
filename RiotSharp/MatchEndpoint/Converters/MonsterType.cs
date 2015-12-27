@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of monster (Match API).
     /// </summary>
+    [JsonConverter(typeof(MonsterTypeConverter))]
     public enum MonsterType
     {
         /// <summary>

@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Event's type (Match API).
     /// </summary>
+    [JsonConverter(typeof(EventTypeConverter))]
     public enum EventType
     {
         /// <summary>

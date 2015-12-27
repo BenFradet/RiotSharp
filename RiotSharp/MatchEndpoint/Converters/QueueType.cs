@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Match queue type (Match API).
     /// </summary>
+    [JsonConverter(typeof(QueueTypeConverter))]
     public enum QueueType
     {
         /// <summary>

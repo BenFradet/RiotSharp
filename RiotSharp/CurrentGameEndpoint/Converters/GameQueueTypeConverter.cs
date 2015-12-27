@@ -123,7 +123,8 @@ namespace RiotSharp.CurrentGameEndpoint.Converters
             serializer.Serialize(writer, result);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() == null) return null;

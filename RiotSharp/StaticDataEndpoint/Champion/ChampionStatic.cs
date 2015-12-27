@@ -74,7 +74,6 @@ namespace RiotSharp.StaticDataEndpoint
         /// Wind).
         /// </summary>
         [JsonProperty("partype")]
-        [JsonConverter(typeof(ParTypeStaticConverter))]
         public ParTypeStatic Partype { get; set; }
 
         /// <summary>
@@ -111,7 +110,7 @@ namespace RiotSharp.StaticDataEndpoint
         /// List of tags for this champion (Mage, Assassin, Tank, Support, etc).
         /// </summary>
         [JsonProperty("tags")]
-        [JsonConverter(typeof(TagStaticConverter))]
+        [JsonConverter(typeof(TagStaticListConverter))]
         public List<TagStatic> Tags { get; set; }
 
         /// <summary>

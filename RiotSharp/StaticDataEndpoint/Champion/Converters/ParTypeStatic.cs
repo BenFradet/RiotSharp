@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Enum representing a champion's resource.
     /// </summary>
+    [JsonConverter(typeof(ParTypeStaticConverter))]
     public enum ParTypeStatic
     {
         /// <summary>

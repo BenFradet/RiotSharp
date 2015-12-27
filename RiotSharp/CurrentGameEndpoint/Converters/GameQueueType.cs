@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.CurrentGameEndpoint.Converters
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.CurrentGameEndpoint.Converters
 {
     /// <summary>
     /// queueType and gameQueueConfigId subtype of CurrentGame API
     /// </summary>
+    [JsonConverter(typeof(GameQueueTypeConverter))]
     public enum GameQueueType
     {
         /// <summary>

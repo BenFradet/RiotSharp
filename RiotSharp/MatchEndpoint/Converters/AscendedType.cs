@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Ascended type.
     /// </summary>
+    [JsonConverter(typeof(AscendedTypeConverter))]
     public enum AscendedType
     {
         /// <summary>

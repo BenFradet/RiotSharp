@@ -63,9 +63,9 @@
     <Compile Include="MatchEndpoint\MatchList.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Converters\AscendedTypeConverter.cs" />
-    <Compile Include="MatchEndpoint\Converters\CapturePointConverter.cs" />
+    <Compile Include="MatchEndpoint\Converters\CapturedPointConverter.cs" />
     <Compile Include="MatchEndpoint\Mastery.cs" />
-    <Compile Include="MatchEndpoint\Converters\CapturePoint.cs" />
+    <Compile Include="MatchEndpoint\Converters\CapturedPoint.cs" />
     <Compile Include="MatchEndpoint\MatchReference.cs" />
     <Compile Include="MatchEndpoint\Rune.cs" />
     <Compile Include="MatchEndpoint\Converters\Season.cs" />
@@ -154,10 +154,10 @@
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionListStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\ParTypeStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\ParTypeStaticConverter.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\TagStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\TagStaticConverter.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Converters\ParTypeStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Converters\ParTypeStaticConverter.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Converters\TagStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Converters\TagStaticListConverter.cs" />
     <Compile Include="StaticDataEndpoint\DataRequested.cs" />
     <Compile Include="StaticDataEndpoint\ImageStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\InfoStatic.cs" />

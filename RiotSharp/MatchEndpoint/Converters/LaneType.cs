@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Lane's type (Match API).
     /// </summary>
+    [JsonConverter(typeof(LaneTypeConverter))]
     public enum LaneType
     {
         /// <summary>

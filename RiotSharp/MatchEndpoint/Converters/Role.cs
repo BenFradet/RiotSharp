@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Participant's role (Match API).
     /// </summary>
+    [JsonConverter(typeof(RoleConverter))]
     public enum Role
     {
         /// <summary>

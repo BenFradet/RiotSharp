@@ -4,7 +4,7 @@ using System;
 
 namespace RiotSharp.MatchEndpoint
 {
-    class CapturePointConverter : JsonConverter
+    class CapturedPointConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,15 +20,15 @@ namespace RiotSharp.MatchEndpoint
             switch (str)
             {
                 case "POINT_A":
-                    return CapturePoint.PointA;
+                    return CapturedPoint.PointA;
                 case "POINT_B":
-                    return CapturePoint.PointB;
+                    return CapturedPoint.PointB;
                 case "POINT_C":
-                    return CapturePoint.PointC;
+                    return CapturedPoint.PointC;
                 case "POINT_D":
-                    return CapturePoint.PointD;
+                    return CapturedPoint.PointD;
                 case "POINT_E":
-                    return CapturePoint.PointE;
+                    return CapturedPoint.PointE;
                 default:
                     return null;
             }
@@ -36,7 +36,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((CapturePoint)value).ToCustomString());
+            serializer.Serialize(writer, ((CapturedPoint)value).ToCustomString());
         }
     }
 }

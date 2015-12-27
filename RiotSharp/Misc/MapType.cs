@@ -1,8 +1,11 @@
-﻿namespace RiotSharp
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp
 {
     /// <summary>
     /// Mode of the game (Game API).
     /// </summary>
+    [JsonConverter(typeof(MapTypeConverter))]
     public enum MapType
     {
         /// <summary>

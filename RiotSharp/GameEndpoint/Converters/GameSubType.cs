@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.GameEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.GameEndpoint
 {
     /// <summary>
     /// Game subtype of the game (Game API).
     /// </summary>
+    [JsonConverter(typeof(GameSubTypeConverter))]
     public enum GameSubType
     {
         /// <summary>
@@ -98,7 +101,7 @@
         /// <summary>
         /// URF Bots games
         /// </summary>
-        URF_BOT,
+        URFBots,
 
         /// <summary>
         /// Nightmare bots games.

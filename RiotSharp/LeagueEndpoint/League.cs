@@ -38,14 +38,12 @@ namespace RiotSharp.LeagueEndpoint
         /// League queue (eg: RankedSolo5x5).
         /// </summary>
         [JsonProperty("queue")]
-        [JsonConverter(typeof(QueueConverter))]
         public Queue Queue { get; set; }
 
         /// <summary>
         /// League tier (eg: Challenger).
         /// </summary>
         [JsonProperty("tier")]
-        [JsonConverter(typeof(TierConverter))]
         public Tier Tier { get; set; }
     }
 }

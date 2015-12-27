@@ -44,7 +44,6 @@ namespace RiotSharp.StaticDataEndpoint
         /// Mode for which those items are recommended.
         /// </summary>
         [JsonProperty("mode")]
-        [JsonConverter(typeof(GameModeConverter))]
         public GameMode Mode { get; set; }
 
         /// <summary>

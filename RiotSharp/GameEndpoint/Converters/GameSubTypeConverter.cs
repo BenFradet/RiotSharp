@@ -56,7 +56,7 @@ namespace RiotSharp.GameEndpoint
                 case "URF":
                     return GameSubType.URF;
                 case "URF_BOT":
-                    return GameSubType.URF_BOT;
+                    return GameSubType.URFBots;
                 case "NIGHTMARE_BOT":
                     return GameSubType.NightmareBot;
                 case "ASCENSION":
@@ -132,7 +132,7 @@ namespace RiotSharp.GameEndpoint
                 case GameSubType.URF:
                     result = "URF";
                     break;
-                case GameSubType.URF_BOT:
+                case GameSubType.URFBots:
                     result = "URF_BOT";
                     break;
                 case GameSubType.NightmareBot:

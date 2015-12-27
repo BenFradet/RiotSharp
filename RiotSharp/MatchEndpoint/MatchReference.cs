@@ -16,7 +16,6 @@ namespace RiotSharp.MatchEndpoint
         /// Participant's lane.
         /// </summary>
         [JsonProperty("lane")]
-        [JsonConverter(typeof(LaneConverter))]
         public Lane Lane { get; set; }
 
         /// <summary>
@@ -35,21 +34,18 @@ namespace RiotSharp.MatchEndpoint
         /// Match queue type.
         /// </summary>
         [JsonProperty("queue")]
-        [JsonConverter(typeof(QueueConverter))]
         public Queue Queue { get; set; }
 
         /// <summary>
         /// Participant's role.
         /// </summary>
         [JsonProperty("role")]
-        [JsonConverter(typeof(RoleConverter))]
         public Role Role { get; set; }
 
         /// <summary>
         /// Season match was played.
         /// </summary>
         [JsonProperty("season")]
-        [JsonConverter(typeof(SeasonConverter))]
         public Season Season { get; set; }
 
         /// <summary>

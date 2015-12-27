@@ -734,8 +734,5 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(games.Result);
         }
-
-
-
     }
 }
