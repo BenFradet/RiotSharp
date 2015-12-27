@@ -41,7 +41,6 @@ namespace RiotSharp.MatchEndpoint
         /// Event type (building kills, champion kills, ward placements, items purchases, etc).
         /// </summary>
         [JsonProperty("eventType")]
-        [JsonConverter(typeof(EventTypeConverter))]
         public EventType? EventType { get; set; }
 
         /// <summary>
