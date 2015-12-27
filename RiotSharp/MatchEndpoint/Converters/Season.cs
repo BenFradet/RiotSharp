@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Season (Match API).
     /// </summary>
+    [JsonConverter(typeof(SeasonConverter))]
     public enum Season
     {
         /// <summary>

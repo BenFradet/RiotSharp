@@ -84,7 +84,6 @@ namespace RiotSharp.MatchEndpoint
         /// Season match was played.
         /// </summary>
         [JsonProperty("season")]
-        [JsonConverter(typeof(SeasonConverter))]
         public Season Season { get; set; }
     }
 }
