@@ -74,7 +74,6 @@ namespace RiotSharp.StaticDataEndpoint
         /// Wind).
         /// </summary>
         [JsonProperty("partype")]
-        [JsonConverter(typeof(ParTypeStaticConverter))]
         public ParTypeStatic Partype { get; set; }
 
         /// <summary>
