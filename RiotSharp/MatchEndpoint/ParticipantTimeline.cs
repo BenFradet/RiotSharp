@@ -117,7 +117,6 @@ namespace RiotSharp.MatchEndpoint
         /// Participant's lane.
         /// </summary>
         [JsonProperty("lane")]
-        [JsonConverter(typeof(LaneConverter))]
         public Lane Lane { get; set; }
 
         /// <summary>
