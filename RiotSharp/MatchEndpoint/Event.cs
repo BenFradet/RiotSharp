@@ -29,7 +29,6 @@ namespace RiotSharp.MatchEndpoint
         /// The building type of the event (tower or inhibitor). Only present if relevant.
         /// </summary>
         [JsonProperty("buildingType")]
-        [JsonConverter(typeof(BuildingTypeConverter))]
         public BuildingType? BuildingType { get; set; }
 
         /// <summary>
