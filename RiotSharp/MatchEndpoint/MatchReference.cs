@@ -40,14 +40,12 @@ namespace RiotSharp.MatchEndpoint
         /// Participant's role.
         /// </summary>
         [JsonProperty("role")]
-        [JsonConverter(typeof(RoleConverter))]
         public Role Role { get; set; }
 
         /// <summary>
         /// Season match was played.
         /// </summary>
         [JsonProperty("season")]
-        [JsonConverter(typeof(SeasonConverter))]
         public Season Season { get; set; }
 
         /// <summary>

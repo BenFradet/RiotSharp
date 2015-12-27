@@ -123,7 +123,6 @@ namespace RiotSharp.MatchEndpoint
         /// Participant's role.
         /// </summary>
         [JsonProperty("role")]
-        [JsonConverter(typeof(RoleConverter))]
         public Role Role { get; set; }
 
         /// <summary>
