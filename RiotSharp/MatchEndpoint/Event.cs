@@ -17,7 +17,6 @@ namespace RiotSharp.MatchEndpoint
         /// Note that CLEAR_ASCENDED refers to when a participants kills the ascended player.
         /// </summary>
         [JsonProperty("ascendedType")]
-        [JsonConverter(typeof(AscendedTypeConverter))]
         public AscendedType AscendedType { get; set; }
 
         /// <summary>
