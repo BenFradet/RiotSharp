@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of tower (Match API).
     /// </summary>
+    [JsonConverter(typeof(TowerTypeConverter))]
     public enum TowerType
     {
         /// <summary>

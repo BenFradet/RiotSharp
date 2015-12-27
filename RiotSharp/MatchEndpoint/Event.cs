@@ -126,7 +126,6 @@ namespace RiotSharp.MatchEndpoint
         /// The tower type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("towerType")]
-        [JsonConverter(typeof(TowerTypeConverter))]
         public TowerType? TowerType { get; set; }
 
         /// <summary>
