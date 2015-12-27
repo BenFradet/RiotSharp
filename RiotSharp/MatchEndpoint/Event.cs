@@ -83,7 +83,6 @@ namespace RiotSharp.MatchEndpoint
         /// The monster type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("monsterType")]
-        [JsonConverter(typeof(MonsterTypeConverter))]
         public MonsterType? MonsterType { get; set; }
 
         /// <summary>
