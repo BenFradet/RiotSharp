@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RiotSharp.StaticDataEndpoint
 {
-    class TagStaticConverter : JsonConverter
+    class TagStaticListConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

@@ -156,8 +156,8 @@
     <Compile Include="StaticDataEndpoint\Champion\ChampionListStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Converters\ParTypeStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Converters\ParTypeStaticConverter.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\TagStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\TagStaticConverter.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Converters\TagStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Converters\TagStaticListConverter.cs" />
     <Compile Include="StaticDataEndpoint\DataRequested.cs" />
     <Compile Include="StaticDataEndpoint\ImageStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\InfoStatic.cs" />
