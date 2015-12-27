@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a capture point in a dominion game (Match API).
     /// </summary>
+    [JsonConverter(typeof(CapturePointConverter))]
     public enum CapturePoint
     {
         /// <summary>
