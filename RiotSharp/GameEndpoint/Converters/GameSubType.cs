@@ -101,7 +101,7 @@ namespace RiotSharp.GameEndpoint
         /// <summary>
         /// URF Bots games
         /// </summary>
-        URF_BOT,
+        URFBots,
 
         /// <summary>
         /// Nightmare bots games.
