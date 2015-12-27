@@ -77,7 +77,6 @@ namespace RiotSharp.MatchEndpoint
         /// The level up type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("levelUpType")]
-        [JsonConverter(typeof(LevelUpTypeConverter))]
         public LevelUpType? LevelUpType { get; set; }
 
         /// <summary>

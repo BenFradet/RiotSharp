@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.MatchEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Type of level up (Match API).
     /// </summary>
+    [JsonConverter(typeof(LevelUpTypeConverter))]
     public enum LevelUpType
     {
         /// <summary>
