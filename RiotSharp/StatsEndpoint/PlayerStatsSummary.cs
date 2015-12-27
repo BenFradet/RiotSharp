@@ -34,7 +34,6 @@ namespace RiotSharp.StatsEndpoint
         /// Player stats summary type.
         /// </summary>
         [JsonProperty("playerStatSummaryType")]
-        [JsonConverter(typeof(PlayerStatsSummaryTypeConverter))]
         public PlayerStatsSummaryType PlayerStatSummaryType { get; set; }
 
         /// <summary>

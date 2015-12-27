@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.StatsEndpoint
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp.StatsEndpoint
 {
     /// <summary>
     /// Type of player stats (Stats API).
     /// </summary>
+    [JsonConverter(typeof(PlayerStatsSummaryTypeConverter))]
     public enum PlayerStatsSummaryType
     {
         AramUnranked5x5,
