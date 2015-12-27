@@ -76,7 +76,6 @@ namespace RiotSharp.MatchEndpoint
         /// Region where the match was played.
         /// </summary>
         [JsonProperty("region")]
-        [JsonConverter(typeof(RegionConverter))]
         public Region Region { get; set; }
 
         /// <summary>
