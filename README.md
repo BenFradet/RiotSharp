@@ -81,21 +81,22 @@ var tournamentApi = TournamentRiotApi.GetInstance("TOURNAMENT_API_KEY");
 ```
 
 Next up, create a provider.
-The url will will receive callbacks callbacks with match results.
+The url will will receive callbacks with match results.
 ```c#
-var provider = api.CreateProvider(region, url);
+var provider = tournamentApi.CreateProvider(region, url);
 ```
 
 And create a tournament:
 ```c#
-var tournament = api.CreateTournament(provider.Id, "TOURNAMENT_NAME");
+var tournament = tournamentApi.CreateTournament(provider.Id, "TOURNAMENT_NAME");
 ```
 
 Now you can create tournament codes (which you can use to join games):
 ```c#
-var tournamentCode = api.CreateTournamentCode(tournament.Id, teamSize, allowedSummonerIds,
-    TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
-    TournamentMapType.SummonnersRift, string.Empty);
+var tournamentCode = tournamentApi.CreateTournamentCode(tournament.Id,
+    teamSize, allowedSummonerIds, TournamentSpectatorType.All,
+    TournamentPickType.TournamentDraft, TournamentMapType.SummonnersRift,
+    string.Empty);
 ```
 The tournament code can now be entered in the client to join a game with the specified settings.
 
