@@ -80,7 +80,7 @@ namespace RiotSharp.TournamentEndpoint
         ///     The spectator mode for the tournament code game.
         /// </summary>
         [JsonProperty("spectators")]
-        public TournamentSpectatorType Spectators { get; set; }
+        public TournamentSpectatorType SpectatorType { get; set; }
 
         /// <summary>
         ///     The team size for the tournament code game.
