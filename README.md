@@ -111,8 +111,8 @@ You can then create codes in two ways:
 
 ```c#
 tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
-	TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
-	TournamentMapType.SummonnersRift, string.Empty);
+    TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
+    TournamentMapType.SummonnersRift, string.Empty);
 ```
 
 or, alternatively, if you do not wish to create a separate Tournament object, you can call the `CreateTournamentCode` method directly from the API as shown previously.
