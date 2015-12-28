@@ -81,7 +81,7 @@ var tournamentApi = TournamentRiotApi.GetInstance("TOURNAMENT_API_KEY");
 ```
 
 Next up, create a provider.
-The url will will receive callbacks with match results.
+The url will receive callbacks with match results.
 ```c#
 var provider = tournamentApi.CreateProvider(region, url);
 ```
@@ -99,6 +99,23 @@ var tournamentCode = tournamentApi.CreateTournamentCode(tournament.Id,
     string.Empty);
 ```
 The tournament code can now be entered in the client to join a game with the specified settings.
+Please note that you should save the provider and tournament IDs if you wish to create more tournament codes later on. You should not create a separate provider and tournament ID for every tournament code. Make sure to read Riot's [guidelines](https://developer.riotgames.com/docs/tournaments-api) on this topic.
+
+To create a Tournament object for an existing tournament, use the following syntax:
+
+```c#
+var tournament = new Tournament { Id = id };
+```
+
+You can then create codes in two ways:
+
+```c#
+tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
+	TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
+	TournamentMapType.SummonnersRift, string.Empty);
+```
+
+or, alternatively, if you do not wish to create a separate Tournament object, you can call the `CreateTournamentCode` method directly from the API as shown previously.
 
 
 For a full description check the RiotSharpExample or RiotSharpTest projects.
