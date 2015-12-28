@@ -58,8 +58,7 @@ namespace RiotSharp
         }
 
         public string CreatePostRequest(string relativeUrl, Region region, string body,
-            List<string> addedArguments = null,
-            bool useHttps = true)
+            List<string> addedArguments = null, bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
