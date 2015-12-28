@@ -5,7 +5,7 @@ namespace RiotSharp.TournamentEndpoint
     /// <summary>
     ///     Mode of the game (Tournament API).
     /// </summary>
-    [JsonConverter(typeof (TournamentMapTypeConverter))]
+    [JsonConverter(typeof(TournamentMapTypeConverter))]
     public enum TournamentMapType
     {
         /// <summary>

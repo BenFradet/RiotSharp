@@ -17,7 +17,7 @@ namespace RiotSharpTest
         private static readonly int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
 
         private static readonly Region region =
-            (Region) Enum.Parse(typeof (Region), ConfigurationManager.AppSettings["TournamentRegion"]);
+            (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["TournamentRegion"]);
 
         private static readonly string tournamentCode = ConfigurationManager.AppSettings["TournamentCode"];
         private static readonly long matchId = long.Parse(ConfigurationManager.AppSettings["MatchId"]);
