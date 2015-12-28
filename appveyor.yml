@@ -55,7 +55,6 @@ build:
 
 # scripts to run before build
 before_build:
-  - ps: $Env:API_KEY
   - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "API_KEY", $Env:API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
 
 #---------------------------------#
