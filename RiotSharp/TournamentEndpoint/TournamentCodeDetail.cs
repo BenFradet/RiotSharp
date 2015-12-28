@@ -73,7 +73,6 @@ namespace RiotSharp.TournamentEndpoint
         ///     The tournament code's region.
         /// </summary>
         [JsonProperty("region")]
-        [JsonConverter(typeof(RegionConverter))]
         public Region Region { get; set; }
 
         /// <summary>
