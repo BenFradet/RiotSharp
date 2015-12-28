@@ -77,7 +77,7 @@ namespace RiotSharp
         ///     must be well-formed, use the http or https protocol, and use the default port for the protocol (http URLs must use
         ///     port 80, https URLs must use port 443).
         /// </param>
-        /// <returns></returns>
+        /// <returns>The ID of the provider.</returns>
         public TournamentProvider CreateProvider(Region region, string url)
         {
             var body = new Dictionary<string, object> {{"url", url}, {"region", region.ToString().ToUpper()}};
@@ -99,7 +99,7 @@ namespace RiotSharp
         ///     must be well-formed, use the http or https protocol, and use the default port for the protocol (http URLs must use
         ///     port 80, https URLs must use port 443).
         /// </param>
-        /// <returns></returns>
+        /// <returns>The ID of the provider.</returns>
         public async Task<TournamentProvider> CreateProviderAsync(Region region, string url)
         {
             var body = new Dictionary<string, object> {{"url", url}, {"region", region.ToString().ToUpper()}};
@@ -116,7 +116,7 @@ namespace RiotSharp
         /// </summary>
         /// <param name="providerId">The provider ID to specify the regional registered provider data to associate this tournament.</param>
         /// <param name="name">The optional name of the tournament.</param>
-        /// <returns></returns>
+        /// <returns>The ID of the tournament.</returns>
         public Tournament CreateTournament(int providerId, string name)
         {
             var body = new Dictionary<string, object> {{"name", name}, {"providerId", providerId}};
@@ -134,7 +134,7 @@ namespace RiotSharp
         /// </summary>
         /// <param name="providerId">The provider ID to specify the regional registered provider data to associate this tournament.</param>
         /// <param name="name">The optional name of the tournament.</param>
-        /// <returns></returns>
+        /// <returns>The ID of the tournament.</returns>
         public async Task<Tournament> CreateTournamentAsync(int providerId, string name)
         {
             var body = new Dictionary<string, object> {{"name", name}, {"providerId", providerId}};
