@@ -1,0 +1,78 @@
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: 2.3.3.{build}
+
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Operating system (build VM template)
+os: Windows Server 2012
+
+# clone directory
+clone_folder: c:\projects\RiotSharp
+
+# environment variables
+environment:
+  API_KEY:
+    secure: GGfqrjvrelLGtdQg6lMRoZ9apyyV1SXp+s/G/wVm6LdKpQzIVVksdOYV5jaNqRCu
+
+# build cache to preserve files/folders between builds
+cache:
+  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+
+# enable patching of AssemblyInfo.* files
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
+# build Configuration, i.e. Debug, Release, etc.
+configuration: Release
+
+build:
+  parallel: true                  # enable MSBuild parallel builds
+  project: RiotSharp.sln          # path to Visual Studio solution or project
+
+  # MSBuild verbosity level
+  verbosity: minimal
+
+
+# scripts to run before build
+before_build:
+  - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "API_KEY", $Env:API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test:
+  assemblies:
+    - RiotSharpTest.dll
+
+#---------------------------------#
+#         notifications           #
+#---------------------------------#
+
+notifications:
+
+  # Email
+  - provider: Email
+    to:
+      - benjamin.fradet@gmail.com
+    on_build_status_changed: true
