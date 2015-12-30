@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing an item's group (Static API).
     /// </summary>
-    [Serializable]
     public class GroupStatic
     {
         internal GroupStatic() { }

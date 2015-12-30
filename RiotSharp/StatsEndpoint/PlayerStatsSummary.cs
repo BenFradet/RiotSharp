@@ -1,12 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.StatsEndpoint
 {
     /// <summary>
     /// Stats summary of a player (Stats API).
     /// </summary>
-    [Serializable]
     public class PlayerStatsSummary
     {
         internal PlayerStatsSummary() { }

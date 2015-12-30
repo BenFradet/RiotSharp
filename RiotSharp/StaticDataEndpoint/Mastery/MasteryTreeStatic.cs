@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Mastery tree.
     /// </summary>
-    [Serializable]
     public class MasteryTreeStatic
     {
         internal MasteryTreeStatic() { }

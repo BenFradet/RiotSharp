@@ -7,7 +7,6 @@ namespace RiotSharp.MatchEndpoint
     /// <summary>
     /// Class representing a match's timeline (Match API).
     /// </summary>
-    [Serializable]
     public class Timeline
     {
         internal Timeline() { }

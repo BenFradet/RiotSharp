@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing a recommended item for a champion (Static API).
     /// </summary>
-    [Serializable]
     public class RecommendedStatic
     {
         internal RecommendedStatic() { }

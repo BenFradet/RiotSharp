@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.LeagueEndpoint
 {
     /// <summary>
     /// Class representing a League in the API.
     /// </summary>
-    [Serializable]
     public class League
     {
         internal League() { }

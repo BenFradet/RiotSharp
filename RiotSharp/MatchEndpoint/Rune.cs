@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a rune of a participant (Match API).
     /// </summary>
-    [Serializable]
     public class Rune
     {
         internal Rune() { }

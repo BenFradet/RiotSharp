@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing the tooltip when leveling up a spell on a champion (Static API).
     /// </summary>
-    [Serializable]
     public class LevelTipStatic
     {
         internal LevelTipStatic() { }

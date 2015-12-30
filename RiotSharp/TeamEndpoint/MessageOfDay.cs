@@ -1,12 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.TeamEndpoint
 {
     /// <summary>
     /// Message of the day of the team (Team API).
     /// </summary>
-    [Serializable]
     public class MessageOfDay
     {
         internal MessageOfDay() { }

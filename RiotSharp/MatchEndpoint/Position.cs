@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Participant's position (Match API).
     /// </summary>
-    [Serializable]
     public class Position
     {
         internal Position() { }

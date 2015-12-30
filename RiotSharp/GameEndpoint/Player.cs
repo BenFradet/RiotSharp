@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.GameEndpoint
 {
     /// <summary>
     /// Player in the game (Game API).
     /// </summary>
-    [Serializable]
     public class Player
     {
         internal Player() { }

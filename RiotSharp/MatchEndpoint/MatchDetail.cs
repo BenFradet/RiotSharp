@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace RiotSharp.MatchEndpoint
@@ -7,7 +6,6 @@ namespace RiotSharp.MatchEndpoint
     /// <summary>
     /// Details about a match (Match API).
     /// </summary>
-    [Serializable]
     public class MatchDetail : MatchSummary
     {
         internal MatchDetail() { }

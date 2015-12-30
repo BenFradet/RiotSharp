@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
 {
     /// <summary>
     /// Class representing a Mastery in the API.
     /// </summary>
-    [Serializable]
     public class Mastery
     {
         internal Mastery() { }

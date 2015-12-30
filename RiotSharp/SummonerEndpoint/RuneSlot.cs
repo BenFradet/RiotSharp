@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
 {
     /// <summary>
     /// Slot for a rune (Summoner API).
     /// </summary>
-    [Serializable]
     public class RuneSlot
     {
         internal RuneSlot() { }

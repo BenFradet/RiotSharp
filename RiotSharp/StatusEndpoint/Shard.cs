@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StatusEndpoint
 {
     /// <summary>
     /// Class representing a shard (Status API).
     /// </summary>
-    [Serializable]
     public class Shard
     {
         internal Shard() { }

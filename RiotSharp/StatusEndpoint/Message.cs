@@ -7,7 +7,6 @@ namespace RiotSharp.StatusEndpoint
     /// <summary>
     /// Class representing messages for an incident (Status API).
     /// </summary>
-    [Serializable]
     public class Message
     {
         internal Message() { }

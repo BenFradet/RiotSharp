@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Basic information for a champion (Static API).
     /// </summary>
-    [Serializable]
     public class InfoStatic
     {
         internal InfoStatic() { }

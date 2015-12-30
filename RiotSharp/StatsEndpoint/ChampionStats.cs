@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StatsEndpoint
 {
     /// <summary>
     /// Stats for all champions (Stats API).
     /// </summary>
-    [Serializable]
     public class ChampionStats
     {
         internal ChampionStats() { }

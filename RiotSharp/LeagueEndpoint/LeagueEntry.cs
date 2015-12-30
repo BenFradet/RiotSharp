@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.LeagueEndpoint
 {
     /// <summary>
     /// Team or summoner in a league (League API).
     /// </summary>
-    [Serializable]
     public class LeagueEntry
     {
         internal LeagueEntry() { }

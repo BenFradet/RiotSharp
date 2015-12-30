@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.ChampionEndpoint
 {
     /// <summary>
     /// Class representing a Champion in the API.
     /// </summary>
-    [Serializable]
     public class Champion
     {
         internal Champion() { }

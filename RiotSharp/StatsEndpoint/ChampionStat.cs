@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace RiotSharp.StatsEndpoint
 {
     /// <summary>
     /// Stat of a particular champion (League API).
     /// </summary>
-    [Serializable]
     public class ChampionStat : AggregatedStat
     {
         internal ChampionStat() { }
