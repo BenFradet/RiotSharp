@@ -36,7 +36,7 @@ namespace RiotSharp
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps)
         {
             HttpWebRequest request;
-            string scheme = useHttps ? System.Uri.UriSchemeHttps : System.Uri.UriSchemeHttp;
+            string scheme = useHttps ? "https" : "http";
             if (addedArguments == null)
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?api_key={3}"
