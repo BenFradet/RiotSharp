@@ -17,12 +17,12 @@ namespace RiotSharp
         protected string rootDomain;
         public static string ApiKey { get; set; }
 
-        public string CreateRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
-            bool useHttps = true)
+        public async Task<string> CreateRequest(string relativeUrl, string rootDomain,
+            List<string> addedArguments = null, bool useHttps = true)
         {
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
-            return GetResponse(request);
+            return await GetResponse(request);
         }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
@@ -52,12 +52,12 @@ namespace RiotSharp
             return request;
         }
 
-        protected string GetResponse(HttpWebRequest request)
+        protected async Task<string> GetResponse(HttpWebRequest request)
         {
             string result = string.Empty;
             try
             {
-                var response = (HttpWebResponse)request.GetResponse();
+                var response = (HttpWebResponse) (await request.GetResponseAsync());
 
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {

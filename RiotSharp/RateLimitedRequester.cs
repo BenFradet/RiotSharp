@@ -25,7 +25,7 @@ namespace RiotSharp
 
         private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
-        public string CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null,
+        public async Task<string> CreateRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
@@ -37,7 +37,7 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            return GetResponse(request);
+            return await GetResponse(request);
         }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, Region region,
