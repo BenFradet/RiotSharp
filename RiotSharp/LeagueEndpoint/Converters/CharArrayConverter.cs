@@ -1,6 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Reflection;
 
 namespace RiotSharp.LeagueEndpoint
 {
@@ -8,7 +9,7 @@ namespace RiotSharp.LeagueEndpoint
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(char[]).IsAssignableFrom(objectType);
+            return typeof(char[]).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,

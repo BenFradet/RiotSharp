@@ -1,6 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Reflection;
 
 namespace RiotSharp
 {
@@ -8,7 +9,7 @@ namespace RiotSharp
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(long).IsAssignableFrom(objectType);
+            return typeof(long).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Reflection;
 
 namespace RiotSharp.StaticDataEndpoint
 {
@@ -8,7 +9,7 @@ namespace RiotSharp.StaticDataEndpoint
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(string).IsAssignableFrom(objectType);
+            return typeof(string).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -31,7 +32,7 @@ namespace RiotSharp.StaticDataEndpoint
                 case "Gnarfury":
                     return ParTypeStatic.Gnarfury;
                 case "Heat":
-                    return ParTypeStatic.Heat;                
+                    return ParTypeStatic.Heat;
                 case "Mana":
                     return ParTypeStatic.Mana;
                 case "MP":
