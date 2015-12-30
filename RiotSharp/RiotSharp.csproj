@@ -58,6 +58,7 @@
     <Compile Include="CurrentGameEndpoint\Rune.cs" />
     <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
+    <Compile Include="ICache.cs" />
     <Compile Include="IRiotApi.cs" />
     <Compile Include="IStaticRiotApi.cs" />
     <Compile Include="IStatusRiotApi.cs" />
