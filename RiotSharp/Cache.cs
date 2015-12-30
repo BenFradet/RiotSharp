@@ -11,7 +11,7 @@ namespace RiotSharp
         private IDictionary<object, CacheItem> cache = new Dictionary<object, CacheItem>();
         private IDictionary<object, SlidingDetails> slidingTimes = new Dictionary<object, SlidingDetails>();
 
-        private const int MonitorWaitDefault = 1000;
+        private const int DefaultMonitorWait = 1000;
         private const int MonitorWaitToUpdateSliding = 500;
 
         private readonly object sync = new object();
@@ -61,7 +61,7 @@ namespace RiotSharp
         /// <returns>The value if the key exists in the cache, null otherwise.</returns>
         public V Get<K, V>(K key) where V : class
         {
-            try
+            if (cache.ContainsKey(key))
             {
                 var cacheItem = cache[key];
 
@@ -80,9 +80,9 @@ namespace RiotSharp
                     }
                 }
 
-                return (V) cacheItem.Value;
+                return (V)cacheItem.Value;
             }
-            catch (Exception)
+            else
             {
                 return null;
             }
@@ -112,7 +112,7 @@ namespace RiotSharp
         /// </summary>
         public void Clear()
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
@@ -133,7 +133,7 @@ namespace RiotSharp
         /// <returns>Enumerator for the keys of a specific type.</returns>
         public IEnumerable<K> Keys<K>()
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
@@ -156,7 +156,7 @@ namespace RiotSharp
         /// <returns>Enumerator for all keys.</returns>
         public IEnumerable<object> Keys()
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
@@ -180,7 +180,7 @@ namespace RiotSharp
         /// <returns>Enumerator for the values of a specific type.</returns>
         public IEnumerable<V> Values<V>() where V : class
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
@@ -203,7 +203,7 @@ namespace RiotSharp
         /// <returns>Enumerator for all values.</returns>
         public IEnumerable<object> Values()
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
@@ -226,7 +226,7 @@ namespace RiotSharp
         /// <returns>Total amount of (key, value) pairs in the cache.</returns>
         public int Count()
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
@@ -247,7 +247,7 @@ namespace RiotSharp
 
         private void Add<K, V>(K key, V value, TimeSpan timeSpan, bool isSliding) where V : class
         {
-            if (Monitor.TryEnter(sync, MonitorWaitDefault))
+            if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
                 try
                 {
