@@ -70,7 +70,7 @@ namespace RiotSharp.SummonerEndpoint
         {
             var json = requester
                 .CreateRequest(string.Format(RootUrl, Region) + string.Format(RunesUrl, Id), Region);
-            return JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json.Result)
+            return JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json)
                 .Values.FirstOrDefault().Pages;
         }
 
@@ -96,7 +96,7 @@ namespace RiotSharp.SummonerEndpoint
             var json = requester.CreateRequest(
                 string.Format(RootUrl, Region) + string.Format(MasteriesUrl, Id),
                 Region);
-            return JsonConvert.DeserializeObject<Dictionary<long, MasteryPages>>(json.Result)
+            return JsonConvert.DeserializeObject<Dictionary<long, MasteryPages>>(json)
                 .Values.FirstOrDefault().Pages;
         }
 
@@ -122,7 +122,7 @@ namespace RiotSharp.SummonerEndpoint
             var json = requester.CreateRequest(
                 string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id),
                 Region);
-            return JsonConvert.DeserializeObject<RecentGames>(json.Result).Games;
+            return JsonConvert.DeserializeObject<RecentGames>(json).Games;
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace RiotSharp.SummonerEndpoint
                 string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id) +
                     LeagueBySummonerEntryUrl,
                 Region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json.Result)[Id];
+            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)[Id];
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace RiotSharp.SummonerEndpoint
             var json = requester.CreateRequest(
                 string.Format(LeagueRootUrl, Region) + string.Format(LeagueBySummonerUrl, Id),
                 Region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json.Result)[Id];
+            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)[Id];
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace RiotSharp.SummonerEndpoint
             var json = requester.CreateRequest(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
                 Region);
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json.Result).PlayerStatSummaries;
+            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace RiotSharp.SummonerEndpoint
                 string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
                 Region,
                 new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json.Result).PlayerStatSummaries;
+            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace RiotSharp.SummonerEndpoint
             var json = requester.CreateRequest(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
                 Region);
-            return JsonConvert.DeserializeObject<RankedStats>(json.Result).ChampionStats;
+            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace RiotSharp.SummonerEndpoint
                 string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
                 Region,
                 new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<RankedStats>(json.Result).ChampionStats;
+            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace RiotSharp.SummonerEndpoint
             var json = requester.CreateRequest(
                 string.Format(TeamRootUrl, Region) + string.Format(TeamBySummonerUrl, Id),
                 Region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json.Result)[Id];
+            return JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json)[Id];
         }
 
         /// <summary>

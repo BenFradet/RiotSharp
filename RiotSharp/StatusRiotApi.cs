@@ -40,7 +40,7 @@ namespace RiotSharp
         public List<Shard> GetShards()
         {
             var json = requester.CreateRequest(StatusRootUrl, RootDomain, null, false);
-            return JsonConvert.DeserializeObject<List<Shard>>(json.Result);
+            return JsonConvert.DeserializeObject<List<Shard>>(json);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace RiotSharp
         {
             var json = requester.CreateRequest(StatusRootUrl + string.Format(RegionUrl, region.ToString()),
                 RootDomain, null, false);
-            return JsonConvert.DeserializeObject<ShardStatus>(json.Result);
+            return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
         /// <summary>

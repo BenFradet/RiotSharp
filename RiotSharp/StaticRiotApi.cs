@@ -95,7 +95,7 @@ namespace RiotSharp
                         string.Empty :
                         string.Format("champData={0}", championData.ToString())
                     });
-                var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json.Result);
+                var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
                 wrapper = new ChampionListStaticWrapper(champs, language, championData);
                 cache.Add(ChampionsCacheKey, wrapper, DefaultSlidingExpiry);
             }
@@ -170,7 +170,7 @@ namespace RiotSharp
                             string.Empty :
                             string.Format("champData={0}", championData.ToString())
                         });
-                    var champ = JsonConvert.DeserializeObject<ChampionStatic>(json.Result);
+                    var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
                     cache.Add(ChampionCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
                         DefaultSlidingExpiry);
                     return champ;
@@ -240,7 +240,7 @@ namespace RiotSharp
                         string.Empty :
                         string.Format("itemListData={0}", itemData.ToString())
                     });
-                var items = JsonConvert.DeserializeObject<ItemListStatic>(json.Result);
+                var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
                 wrapper = new ItemListStaticWrapper(items, language, itemData);
                 cache.Add(ItemsCacheKey, wrapper, DefaultSlidingExpiry);
             }
@@ -321,7 +321,7 @@ namespace RiotSharp
                             string.Empty :
                             string.Format("itemData={0}", itemData.ToString())
                         });
-                    var item = JsonConvert.DeserializeObject<ItemStatic>(json.Result);
+                    var item = JsonConvert.DeserializeObject<ItemStatic>(json);
                     cache.Add(ItemCacheKey + itemId, new ItemStaticWrapper(item, language, itemData),
                         DefaultSlidingExpiry);
                     return item;
@@ -382,7 +382,7 @@ namespace RiotSharp
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return JsonConvert.DeserializeObject<LanguageStringsData>(json.Result);
+            return JsonConvert.DeserializeObject<LanguageStringsData>(json);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace RiotSharp
         public List<Language> GetLanguages(Region region)
         {
             var json = requester.CreateRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<List<Language>>(json.Result);
+            return JsonConvert.DeserializeObject<List<Language>>(json);
         }
 
         /// <summary>
@@ -441,7 +441,7 @@ namespace RiotSharp
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return JsonConvert.DeserializeObject<MapStaticWrapper>(json.Result).Data.Values.ToList();
+            return JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList();
         }
 
         /// <summary>
@@ -486,7 +486,7 @@ namespace RiotSharp
                         string.Empty :
                         string.Format("masteryListData={0}", masteryData.ToString())
                     });
-                var masteries = JsonConvert.DeserializeObject<MasteryListStatic>(json.Result);
+                var masteries = JsonConvert.DeserializeObject<MasteryListStatic>(json);
                 wrapper = new MasteryListStaticWrapper(masteries, language, masteryData);
                 cache.Add(MasteriesCacheKey, wrapper, DefaultSlidingExpiry);
             }
@@ -567,7 +567,7 @@ namespace RiotSharp
                             string.Empty :
                             string.Format("masteryData={0}", masteryData.ToString())
                         });
-                    var mastery = JsonConvert.DeserializeObject<MasteryStatic>(json.Result);
+                    var mastery = JsonConvert.DeserializeObject<MasteryStatic>(json);
                     cache.Add(MasteryCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
                         DefaultSlidingExpiry);
                     return mastery;
@@ -621,7 +621,7 @@ namespace RiotSharp
         public Realm GetRealm(Region region)
         {
             var json = requester.CreateRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<Realm>(json.Result);
+            return JsonConvert.DeserializeObject<Realm>(json);
         }
 
         /// <summary>
@@ -658,7 +658,7 @@ namespace RiotSharp
                         string.Empty :
                         string.Format("runeListData={0}", runeData.ToString())
                     });
-                var runes = JsonConvert.DeserializeObject<RuneListStatic>(json.Result);
+                var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
                 wrapper = new RuneListStaticWrapper(runes, language, runeData);
                 cache.Add(RunesCacheKey, wrapper, DefaultSlidingExpiry);
             }
@@ -739,7 +739,7 @@ namespace RiotSharp
                             string.Empty :
                             string.Format("runeData={0}", runeData.ToString())
                         });
-                    var rune = JsonConvert.DeserializeObject<RuneStatic>(json.Result);
+                    var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
                     cache.Add(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData),
                         DefaultSlidingExpiry);
                     return rune;
@@ -808,7 +808,7 @@ namespace RiotSharp
                         string.Empty :
                         string.Format("spellData={0}", summonerSpellData.ToString())
                     });
-                var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json.Result);
+                var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
                 wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
                 cache.Add(SummonerSpellsCacheKey, wrapper, DefaultSlidingExpiry);
             }
@@ -892,7 +892,7 @@ namespace RiotSharp
                             string.Empty :
                             string.Format("spellData={0}", summonerSpellData.ToString())
                         });
-                    var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json.Result);
+                    var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json);
                     cache.Add(SummonerSpellCacheKey + summonerSpell.ToCustomString(),
                         new SummonerSpellStaticWrapper(spell, language, summonerSpellData), DefaultSlidingExpiry);
                     return spell;
@@ -950,7 +950,7 @@ namespace RiotSharp
         public List<string> GetVersions(Region region)
         {
             var json = requester.CreateRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<List<string>>(json.Result);
+            return JsonConvert.DeserializeObject<List<string>>(json);
         }
 
         /// <summary>
