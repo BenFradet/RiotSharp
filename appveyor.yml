@@ -46,7 +46,7 @@ platform: Any CPU
 configuration: Release
 
 build:
-  parallel: true                  # enable MSBuild parallel builds
+  parallel: false                 # disnable MSBuild parallel builds
   project: RiotSharp.sln          # path to Visual Studio solution or project
 
   # MSBuild verbosity level
