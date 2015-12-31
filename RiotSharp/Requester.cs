@@ -58,7 +58,7 @@ namespace RiotSharp
             string result = string.Empty;
             try
             {
-                var response = (HttpWebResponse) (request.GetResponseAsync().Result);
+                var response = (HttpWebResponse)(request.GetResponseAsync().Result);
 
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
@@ -68,6 +68,10 @@ namespace RiotSharp
             catch (WebException ex)
             {
                 HandleWebException(ex);
+            }
+            catch (AggregateException ex)
+            {
+                HandleWebException((WebException) ex.InnerException);
             }
             return result;
         }
