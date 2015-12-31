@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,12 +18,12 @@ namespace RiotSharp
         protected string rootDomain;
         public static string ApiKey { get; set; }
 
-        public async Task<string> CreateRequest(string relativeUrl, string rootDomain,
+        public string CreateRequest(string relativeUrl, string rootDomain,
             List<string> addedArguments = null, bool useHttps = true)
         {
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
-            return await GetResponse(request);
+            return GetResponse(request);
         }
 
         public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
@@ -52,12 +53,12 @@ namespace RiotSharp
             return request;
         }
 
-        protected async Task<string> GetResponse(HttpWebRequest request)
+        protected string GetResponse(HttpWebRequest request)
         {
             string result = string.Empty;
             try
             {
-                var response = (HttpWebResponse) (await request.GetResponseAsync());
+                var response = (HttpWebResponse) (request.GetResponseAsync().Result);
 
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
