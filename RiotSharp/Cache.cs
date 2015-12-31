@@ -16,8 +16,6 @@ namespace RiotSharp
 
         private readonly object sync = new object();
 
-        public event EventHandler KeyRemoved;
-
         #region ICache interface
 
         /// <summary>
@@ -99,11 +97,6 @@ namespace RiotSharp
             {
                 cache.Remove(key);
                 slidingTimes.Remove(key);
-
-                if (KeyRemoved != null)
-                {
-                    KeyRemoved(key, new EventArgs());
-                }
             }
         }
 
