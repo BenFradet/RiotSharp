@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -11,6 +12,7 @@
 [assembly: AssemblyCopyright("Copyright (c) Benjamin Fradet 2013-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: InternalsVisibleTo("RiotSharpTest")]
 
 // Version information for an assembly consists of the following four values:
 //
