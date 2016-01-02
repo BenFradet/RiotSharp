@@ -177,7 +177,10 @@ namespace RiotSharp
             {
                 try
                 {
-                    return cache.Values.Where(v => v.GetType() == typeof(V)).Cast<V>().ToList();
+                    return cache.Values
+                        .Select(cacheItem => cacheItem.Value)
+                        .Where(v => v.GetType() == typeof(V))
+                        .Cast<V>().ToList();
                 }
                 finally
                 {
@@ -200,7 +203,7 @@ namespace RiotSharp
             {
                 try
                 {
-                    return cache.Values.ToList();
+                    return cache.Values.Select(cacheItem => cacheItem.Value).ToList();
                 }
                 finally
                 {
@@ -244,6 +247,7 @@ namespace RiotSharp
             {
                 try
                 {
+                    Remove(key);
                     cache.Add(key, new CacheItem(value, isSliding ? timeSpan : (TimeSpan?)null));
 
                     if (isSliding)
