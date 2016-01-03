@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
-using System.Collections.Generic;
+using System;
 using System.Configuration;
 using System.Linq;
 

@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
+using System.Linq;
 
 namespace RiotSharpTest
 {
