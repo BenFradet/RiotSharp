@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
-
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
+using System.Configuration;
+using System.Linq;
 
 namespace RiotSharpTest
 {
