@@ -1,12 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.StatusEndpoint
 {
     /// <summary>
     /// Class representing a translation of a message (Status API).
     /// </summary>
-    [Serializable]
     public class Translation
     {
         internal Translation() { }

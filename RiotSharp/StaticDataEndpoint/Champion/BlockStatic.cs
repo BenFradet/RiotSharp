@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Block of recommended items by type (starting, essential, offensive, etc) for a champion (Static API).
     /// </summary>
-    [Serializable]
     public class BlockStatic
     {
         internal BlockStatic() { }

@@ -1,12 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.GameEndpoint
 {
     /// <summary>
     /// Raw stat of a game (Game API).
     /// </summary>
-    [Serializable]
     public class RawStat
     {
         internal RawStat() { }

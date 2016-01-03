@@ -1,12 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RiotSharp.TeamEndpoint
 {
     /// <summary>
     /// Summary of the match history of the team (Team API).
     /// </summary>
-    [Serializable]
     public class MatchHistorySummary
     {
         internal MatchHistorySummary() { }

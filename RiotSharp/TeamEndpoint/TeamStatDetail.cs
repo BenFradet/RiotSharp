@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.TeamEndpoint
 {
     /// <summary>
     /// Team stats (Team API).
     /// </summary>
-    [Serializable]
     public class TeamStatDetail
     {
         internal TeamStatDetail() { }

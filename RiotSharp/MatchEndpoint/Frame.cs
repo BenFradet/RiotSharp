@@ -7,7 +7,6 @@ namespace RiotSharp.MatchEndpoint
     /// <summary>
     /// Class representing a frame in a match (Match API).
     /// </summary>
-    [Serializable]
     public class Frame
     {
         internal Frame() { }

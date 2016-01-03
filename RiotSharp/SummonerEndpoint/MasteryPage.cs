@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.SummonerEndpoint
 {
     /// <summary>
     /// Mastery page (Summoner API).
     /// </summary>
-    [Serializable]
     public class MasteryPage
     {
         internal MasteryPage() { }

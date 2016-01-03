@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing an image (Static API).
     /// </summary>
-    [Serializable]
     public class ImageStatic
     {
         internal ImageStatic() { }

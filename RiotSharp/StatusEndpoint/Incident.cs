@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StatusEndpoint
 {
     /// <summary>
     /// Class representing an incident inside a service (Status API).
     /// </summary>
-    [Serializable]
     public class Incident
     {
         internal Incident() { }

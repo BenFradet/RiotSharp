@@ -61,6 +61,7 @@
     <Compile Include="StatusRiotApiTest.cs" />
     <Compile Include="SummonerTest.cs" />
     <Compile Include="RiotApiExceptionTest.cs" />
+    <Compile Include="CacheTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RiotSharp\RiotSharp.csproj">

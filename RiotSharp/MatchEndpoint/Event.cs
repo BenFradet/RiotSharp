@@ -7,7 +7,6 @@ namespace RiotSharp.MatchEndpoint
     /// <summary>
     /// Class representing a particular event during a match (Match API).
     /// </summary>
-    [Serializable]
     public class Event
     {
         internal Event() { }

@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing metadata on runes and items (Static API).
     /// </summary>
-    [Serializable]
     public class MetadataStatic
     {
         internal MetadataStatic() { }

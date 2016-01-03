@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing a map (Static API).
     /// </summary>
-    [Serializable]
     public class MapStatic
     {
         internal MapStatic() { }

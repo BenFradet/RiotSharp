@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a team in a match (Match API).
     /// </summary>
-    [Serializable]
     public class Team
     {
         internal Team() { }

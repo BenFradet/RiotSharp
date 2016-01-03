@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class gathering statistics about a participant (Match API).
     /// </summary>
-    [Serializable]
     public class ParticipantStats
     {
         internal ParticipantStats() { }

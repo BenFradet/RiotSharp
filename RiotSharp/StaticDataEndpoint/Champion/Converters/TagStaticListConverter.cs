@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace RiotSharp.StaticDataEndpoint
 {
@@ -9,7 +10,7 @@ namespace RiotSharp.StaticDataEndpoint
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(List<string>).IsAssignableFrom(objectType);
+            return typeof(List<string>).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue

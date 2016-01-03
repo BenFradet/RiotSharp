@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing data returned by the language strings endpoint (Static API).
     /// </summary>
-    [Serializable]
     public class LanguageStringsData
     {
         internal LanguageStringsData() { }

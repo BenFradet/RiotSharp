@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing a mastery tree item or talent (Static API).
     /// </summary>
-    [Serializable]
     public class MasteryTreeItemStatic
     {
         internal MasteryTreeItemStatic() { }

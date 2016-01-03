@@ -129,8 +129,8 @@ namespace RiotSharp
         public List<Summoner> GetSummoners(Region region, List<int> summonerIds)
         {
             var json = requester.CreateRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildIdsString(summonerIds)),
+                string.Format(SummonerRootUrl,
+                    region.ToString()) + string.Format(IdUrl, Util.BuildIdsString(summonerIds)),
                 region);
             var list = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
             foreach (var summ in list)

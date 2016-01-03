@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
-using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +11,6 @@ namespace RiotSharp.SummonerEndpoint
     /// <summary>
     /// Class representing the name and id of a Summoner in the API.
     /// </summary>
-    [Serializable]
     public class SummonerBase
     {
         private const string RootUrl = "/api/lol/{0}/v1.4/summoner";
@@ -36,7 +33,6 @@ namespace RiotSharp.SummonerEndpoint
 
         private const string IdUrl = "/{0}";
 
-        [field: NonSerialized]
         private RateLimitedRequester requester;
         public Region Region { get; set; }
 
@@ -72,8 +68,10 @@ namespace RiotSharp.SummonerEndpoint
         /// <returns>A list of rune pages.</returns>
         public List<RunePage> GetRunePages()
         {
-            var json = requester.CreateRequest(string.Format(RootUrl, Region) + string.Format(RunesUrl, Id), Region);
-            return JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json).Values.FirstOrDefault().Pages;
+            var json = requester
+                .CreateRequest(string.Format(RootUrl, Region) + string.Format(RunesUrl, Id), Region);
+            return JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json)
+                .Values.FirstOrDefault().Pages;
         }
 
         /// <summary>

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing a spell of a champion (Static API).
     /// </summary>
-    [Serializable]
     public class ChampionSpellStatic
     {
         internal ChampionSpellStatic() { }

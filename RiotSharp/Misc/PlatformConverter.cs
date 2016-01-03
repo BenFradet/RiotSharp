@@ -1,14 +1,16 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Reflection;
 
 namespace RiotSharp
 {
     class PlatformConverter : JsonConverter
     {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+
+        public override bool CanConvert(Type objectType)
         {
-            serializer.Serialize(writer, ((Platform)value).ToString().ToUpper());
+            return typeof(string).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
         }
 
         public override object ReadJson(
@@ -44,9 +46,9 @@ namespace RiotSharp
             }
         }
 
-        public override bool CanConvert(Type objectType)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            return typeof(string).IsAssignableFrom(objectType);
+            serializer.Serialize(writer, ((Platform)value).ToString().ToUpper());
         }
     }
 

@@ -6,7 +6,6 @@ namespace RiotSharp.SummonerEndpoint
     /// <summary>
     /// Class representing a Summoner in the API.
     /// </summary>
-    [Serializable]
     public class Summoner : SummonerBase
     {
         internal Summoner() { }

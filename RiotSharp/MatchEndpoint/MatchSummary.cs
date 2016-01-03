@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Summary of a match (Match API).
     /// </summary>
-    [Serializable]
     public class MatchSummary
     {
         internal MatchSummary() { }

@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.StaticDataEndpoint
 {
     /// <summary>
     /// Class representing an item's value (Static API).
     /// </summary>
-    [Serializable]
     public class GoldStatic
     {
         internal GoldStatic() { }

@@ -1,12 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace RiotSharp.LeagueEndpoint
 {
     /// <summary>
     /// LeagueEntry has entered a MiniSeries (League API).
     /// </summary>
-    [Serializable]
     public class MiniSeries
     {
         internal MiniSeries() { }

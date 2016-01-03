@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using RiotSharp.LeagueEndpoint;
-using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace RiotSharp.MatchEndpoint
 {
     /// <summary>
     /// Class representing a participant in a match (Match API).
     /// </summary>
-    [Serializable]
     public class Participant
     {
         internal Participant() { }
