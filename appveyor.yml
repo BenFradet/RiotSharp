@@ -20,6 +20,8 @@ clone_folder: c:\projects\RiotSharp
 
 # environment variables
 environment:
+  TOURNAMENT_API_KEY:
+    secure: bsM+fl6l6wPOa4WruqOrwUiTiakBlrRVCeC5c+P7dAKsmkgSv+xQu0sXy93wB/YO
   API_KEY:
     secure: GGfqrjvrelLGtdQg6lMRoZ9apyyV1SXp+s/G/wVm6LdKpQzIVVksdOYV5jaNqRCu
 
@@ -55,6 +57,7 @@ build:
 
 # scripts to run before build
 before_build:
+  - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "TOURNAMENT_API_KEY", $Env:TOURNAMENT_API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
   - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "API_KEY", $Env:API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
 
 #---------------------------------#
