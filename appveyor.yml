@@ -21,7 +21,7 @@ clone_folder: c:\projects\RiotSharp
 # environment variables
 environment:
   API_KEY:
-    secure: GGfqrjvrelLGtdQg6lMRoZ9apyyV1SXp+s/G/wVm6LdKpQzIVVksdOYV5jaNqRCu
+    secure: bsM+fl6l6wPOa4WruqOrwUiTiakBlrRVCeC5c+P7dAKsmkgSv+xQu0sXy93wB/YO
 
 # build cache to preserve files/folders between builds
 cache:
