@@ -8,7 +8,6 @@ namespace RiotSharp.TournamentEndpoint
     /// <summary>
     ///     Class representing the details of a tournament code.
     /// </summary>
-    [Serializable]
     public class TournamentCodeDetail
     {
         internal TournamentCodeDetail()

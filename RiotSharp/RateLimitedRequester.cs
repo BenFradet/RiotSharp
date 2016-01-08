@@ -71,10 +71,10 @@ namespace RiotSharp
             semaphore.Release();
 
             var byteArray = Encoding.UTF8.GetBytes(body);
-            var dataStream = request.GetRequestStream();
+            var dataStream = request.GetRequestStreamAsync().Result;
 
             dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
+            dataStream.Dispose();
 
             return GetResponse(request);
         }
@@ -96,7 +96,7 @@ namespace RiotSharp
             var dataStream = await request.GetRequestStreamAsync();
 
             dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
+            dataStream.Dispose();
 
             return await GetResponseAsync(request);
         }
@@ -115,14 +115,14 @@ namespace RiotSharp
             semaphore.Release();
 
             var byteArray = Encoding.UTF8.GetBytes(body);
-            var dataStream = request.GetRequestStream();
+            var dataStream = request.GetRequestStreamAsync().Result;
 
             dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
+            dataStream.Dispose();
 
             try
             {
-                var response = (HttpWebResponse)request.GetResponse();
+                var response = (HttpWebResponse) request.GetResponseAsync().Result;
 
                 // if code is in 2xx (=OK) range, return success value = true.
                 return (int) response.StatusCode >= 200 && (int) response.StatusCode < 300;
@@ -151,7 +151,7 @@ namespace RiotSharp
             var dataStream = await request.GetRequestStreamAsync();
 
             dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
+            dataStream.Dispose();
 
             try
             {

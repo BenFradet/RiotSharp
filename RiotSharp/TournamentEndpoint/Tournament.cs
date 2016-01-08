@@ -7,7 +7,6 @@ namespace RiotSharp.TournamentEndpoint
     /// <summary>
     ///     Class representing a tournament for the Tournament API.
     /// </summary>
-    [Serializable]
     public class Tournament
     {
         internal Tournament()
