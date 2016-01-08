@@ -8,25 +8,23 @@ namespace RiotSharp
 {
     class Requester
     {
-        private static Requester instance;
-        protected Requester() { }
-        public static Requester Instance
+        protected string rootDomain;
+        public string ApiKey { get; set; }
+
+        internal Requester(string apiKey = "")
         {
-            get { return instance ?? (instance = new Requester()); }
+            ApiKey = apiKey;
         }
 
-        protected string rootDomain;
-        public static string ApiKey { get; set; }
-
-        public string CreateRequest(string relativeUrl, string rootDomain,
-            List<string> addedArguments = null, bool useHttps = true)
+        public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+            bool useHttps = true)
         {
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
             return GetResponse(request);
         }
 
-        public async Task<string> CreateRequestAsync(string relativeUrl, string rootDomain,
+        public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null, bool useHttps = true)
         {
             this.rootDomain = rootDomain;
@@ -34,7 +32,8 @@ namespace RiotSharp
             return await GetResponseAsync(request);
         }
 
-        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps)
+        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps,
+            string httpMethod = "GET")
         {
             HttpWebRequest request;
             string scheme = useHttps ? "https" : "http";
@@ -48,7 +47,7 @@ namespace RiotSharp
                 request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?{3}api_key={4}"
                     , scheme, rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
             }
-            request.Method = "GET";
+            request.Method = httpMethod;
 
             return request;
         }
@@ -108,7 +107,7 @@ namespace RiotSharp
             return result;
         }
 
-        private void HandleWebException(WebException ex)
+        protected void HandleWebException(WebException ex)
         {
             HttpWebResponse response;
             try
