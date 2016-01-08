@@ -21,7 +21,6 @@ namespace RiotSharpTest
 
         private static readonly string tournamentCode = ConfigurationManager.AppSettings["TournamentCode"];
         private static readonly long matchId = long.Parse(ConfigurationManager.AppSettings["MatchId"]);
-        private static readonly long tournamentId = int.Parse(ConfigurationManager.AppSettings["TournamentId"]);
         private static readonly string url = "http://www.example.com";
         private static readonly string tournamentName = "RiotSharpTestTournament";
         private static readonly TournamentSpectatorType spectatorType = TournamentSpectatorType.All;
@@ -52,14 +51,6 @@ namespace RiotSharpTest
             var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetails(tournamentCode);
             Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
             Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
-        }
-
-        [TestMethod]
-        [TestCategory("TournamentRiotApi")]
-        public void GetTournamentCodeDetails_Test()
-        {
-            var details = api.GetTournamentCodeDetails(tournamentCode);
-            Assert.AreEqual(tournamentId, details.TournamentId);
         }
 
         [TestMethod]
@@ -99,14 +90,6 @@ namespace RiotSharpTest
                 api.UpdateTournamentCodeAsync(tournamentCode, new List<long> {id, id2}, TournamentSpectatorType.All,
                     TournamentPickType.AllRandom, TournamentMapType.HowlingAbyss).Result;
             Assert.IsTrue(success);
-        }
-
-        [TestMethod]
-        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void GetTournamentCodeDetailsAsync_Test()
-        {
-            var details = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
-            Assert.AreEqual(tournamentId, details.TournamentId);
         }
 
         [TestMethod]
