@@ -117,8 +117,32 @@ tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
 
 or, alternatively, if you do not wish to create a separate Tournament object, you can call the `CreateTournamentCode` method directly from the API as shown previously.
 
+###Static API
 
-For a full description check the RiotSharpExample or RiotSharpTest projects.
+You can retrieve static information about the game thanks to the static API, there is no rate limiting on this API and RiotSharp
+caches as much data as possible to make as few calls as possible.
+
+First, as with the others APIs you need to obtain an instance of the API:
+
+```c#
+var staticApi = StaticRiotApi.GetInstance("API_KEY");
+```
+
+Then, you can, for example, retrieve data about champions:
+
+```c#
+var champions = staticApi.GetChampions(Region.euw, ChampionData.all).Champions.Values;
+foreach (var champion in champions)
+{
+    Console.WriteLine(champ.Name);
+    Console.WriteLine(champ.Lore);
+}
+```
+
+You can find a list of all the available operations in [IStaticRiotApi](RiotSharp/IStaticRiotApi.cs).
+
+
+For a full description check the [RiotSharpExample](RiotSharpExample) or [RiotSharpTest](RiotSharpTest) projects.
 
 ##Contribution
 
