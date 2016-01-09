@@ -118,6 +118,8 @@ tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
 
 or, alternatively, if you do not wish to create a separate Tournament object, you can call the `CreateTournamentCode` method directly from the API as shown previously.
 
+You can find a list of all the available operations in [ITournamentRiotApi](RiotSharp/ITournamentRiotApi.cs).
+
 ###Static API
 
 You can retrieve static information about the game thanks to the static API, there is no rate limiting on this API and RiotSharp
