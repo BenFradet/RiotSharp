@@ -71,6 +71,8 @@ foreach (var stat in varusRanked.Stats)
 }
 ```
 
+You can find a list of all the available operations in [IRiotApi](RiotSharp/IRiotApi.cs).
+
 ###Tournament API
 
 You first have to apply for a tournament API key [here](https://developer.riotgames.com/).
@@ -83,7 +85,7 @@ var tournamentApi = TournamentRiotApi.GetInstance("TOURNAMENT_API_KEY");
 Next up, create a provider.
 The url will receive callbacks with match results.
 ```c#
-var provider = tournamentApi.CreateProvider(region, url);
+var provider = tournamentApi.CreateProvider(Region.euw, url);
 ```
 
 And create a tournament:
@@ -98,17 +100,16 @@ var tournamentCode = tournamentApi.CreateTournamentCode(tournament.Id,
     TournamentPickType.TournamentDraft, TournamentMapType.SummonnersRift,
     string.Empty);
 ```
+
 The tournament code can now be entered in the client to join a game with the specified settings.
 Please note that you should save the provider and tournament IDs if you wish to create more tournament codes later on. You should not create a separate provider and tournament ID for every tournament code. Make sure to read Riot's [guidelines](https://developer.riotgames.com/docs/tournaments-api) on this topic.
 
 To create a Tournament object for an existing tournament, use the following syntax:
-
 ```c#
 var tournament = new Tournament { Id = id };
 ```
 
 You can then create codes in two ways:
-
 ```c#
 tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
     TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
@@ -117,8 +118,51 @@ tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
 
 or, alternatively, if you do not wish to create a separate Tournament object, you can call the `CreateTournamentCode` method directly from the API as shown previously.
 
+You can find a list of all the available operations in [ITournamentRiotApi](RiotSharp/ITournamentRiotApi.cs).
 
-For a full description check the RiotSharpExample or RiotSharpTest projects.
+###Static API
+
+You can retrieve static information about the game thanks to the static API, there is no rate limiting on this API and RiotSharp
+caches as much data as possible to make as few calls as possible.
+
+First, as with the others APIs you need to obtain an instance of the API:
+```c#
+var staticApi = StaticRiotApi.GetInstance("API_KEY");
+```
+
+Then, you can, for example, retrieve data about champions:
+```c#
+var champions = staticApi.GetChampions(Region.euw, ChampionData.all).Champions.Values;
+foreach (var champion in champions)
+{
+    Console.WriteLine(champ.Name);
+    Console.WriteLine(champ.Lore);
+}
+```
+
+You can find a list of all the available operations in [IStaticRiotApi](RiotSharp/IStaticRiotApi.cs).
+
+###Status API
+
+You can also retrieve information available on [status.leagueoflegends.com](http://status.leagueoflegends.com/#euw) with the Status API. This API is not constrained to the rate limiting and you do not have to supply an API key.
+
+```c#
+var statusApi = StatusRiotApi.GetInstance();
+var shardStatuses = statusApi.GetShardStatus(Region.euw);
+foreach (var service in shardStatuses.Services)
+{
+    Console.WriteLine(service.Name);
+    foreach (var incident in service.Incidents)
+    {
+        incident.Updates.ForEach(u => Console.WriteLine("  " + u.Content));
+    }
+}
+```
+
+You can find a list of all the available operations in [IStatusRiotApi](RiotSharp/IStatusRiotApi.cs).
+
+
+For a full description check the [RiotSharpExample](RiotSharpExample) or [RiotSharpTest](RiotSharpTest) projects.
 
 ##Contribution
 
