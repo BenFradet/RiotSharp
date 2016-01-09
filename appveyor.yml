@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: 2.3.3.{build}
+version: 2.4.0.{build}
 
 # Do not build on tags (GitHub only)
 skip_tags: true
@@ -48,7 +48,7 @@ platform: Any CPU
 configuration: Release
 
 build:
-  parallel: false                 # disnable MSBuild parallel builds
+  parallel: false                 # disable MSBuild parallel builds
   project: RiotSharp.sln          # path to Visual Studio solution or project
 
   # MSBuild verbosity level
