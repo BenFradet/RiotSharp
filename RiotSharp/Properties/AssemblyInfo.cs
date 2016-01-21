@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BenFradet")]
 [assembly: AssemblyProduct("RiotSharp")]
-[assembly: AssemblyCopyright("Copyright (c) Benjamin Fradet 2013-2015")]
+[assembly: AssemblyCopyright("Copyright (c) Benjamin Fradet 2013-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: InternalsVisibleTo("RiotSharpTest")]
