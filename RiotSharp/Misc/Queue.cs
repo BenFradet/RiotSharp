@@ -24,9 +24,14 @@ namespace RiotSharp
         RankedTeam5x5,
 
         /// <summary>
-        /// Team 5 v 5 - Dynamic Queue
+        /// Team 5 v 5 - Dynamic Queue - Ranked
         /// </summary>
-        TeamBuilderDraftRanked5x5
+        TeamBuilderDraftRanked5x5,
+
+        /// <summary>
+        /// Team 5 v 5 - Dynamic Queue - Unranked
+        /// </summary>
+        TeamBuilderDraftUnranked5x5
     }
 
     static class QueueExtension
