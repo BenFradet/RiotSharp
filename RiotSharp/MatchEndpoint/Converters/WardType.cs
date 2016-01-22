@@ -36,7 +36,12 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Corresponds to upgraded warding totems.
         /// </summary>
-        YellowTrinketUpgrade
+        YellowTrinketUpgrade,
+
+        /// <summary>
+        /// Corresponds to a blue trinket.
+        /// </summary>
+        BlueTrinket
     }
 
     static class WardTypeExtension
@@ -57,6 +62,8 @@ namespace RiotSharp.MatchEndpoint
                     return "YELLOW_TRINKET";
                 case WardType.YellowTrinketUpgrade:
                     return "YELLOW_TRINKET_UPGRADE";
+                case WardType.BlueTrinket:
+                    return "BLUE_TRINKET";
                 default:
                     return string.Empty;
             }

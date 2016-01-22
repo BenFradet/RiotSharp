@@ -32,6 +32,8 @@ namespace RiotSharp.MatchEndpoint
                     return WardType.YellowTrinket;
                 case "YELLOW_TRINKET_UPGRADE":
                     return WardType.YellowTrinketUpgrade;
+                case "BLUE_TRINKET":
+                    return WardType.BlueTrinket;
                 default:
                     return null;
             }

@@ -156,7 +156,17 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Black Market Brawlers games.
         /// </summary>
-        Bilgewater5x5
+        Bilgewater5x5,
+
+        /// <summary>
+        /// New team builder queue type in unranked.
+        /// </summary>
+        TeamBuilderDraftUnranked5x5,
+
+        /// <summary>
+        /// New team builder queue type in ranked.
+        /// </summary>
+        TeamBuilderDraftRanked5x5
     }
 
     static class QueueTypeExtension
@@ -225,6 +235,10 @@ namespace RiotSharp.MatchEndpoint
                     return "BILGEWATER_5x5";
                 case QueueType.BilgewaterAram5x5:
                     return "BILGEWATER_ARAM_5x5";
+                case QueueType.TeamBuilderDraftUnranked5x5:
+                    return "TEAM_BUILDER_DRAFT_UNRANKED_5x5";
+                case QueueType.TeamBuilderDraftRanked5x5:
+                    return "TEAM_BUILDER_DRAFT_RANKED_5x5";
                 default:
                     return string.Empty;
             }

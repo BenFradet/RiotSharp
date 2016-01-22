@@ -80,6 +80,10 @@ namespace RiotSharp.MatchEndpoint
                     return QueueType.NightmareBot5x5Rank2;
                 case "NIGHTMARE_BOT_5x5_RANK5":
                     return QueueType.NightmareBot5x5Rank5;
+                case "TEAM_BUILDER_DRAFT_UNRANKED_5x5":
+                    return QueueType.TeamBuilderDraftUnranked5x5;
+                case "TEAM_BUILDER_DRAFT_RANKED_5x5":
+                    return QueueType.TeamBuilderDraftRanked5x5;
                 default:
                     return null;
             }
