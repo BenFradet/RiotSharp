@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,8 +30,8 @@ namespace RiotSharp
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            rootDomain = region + ".api.pvp.net";
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
+            RootDomain = region + ".api.pvp.net";
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
 
             semaphore.Wait();
             {
@@ -42,11 +42,12 @@ namespace RiotSharp
             return GetResponse(request);
         }
 
+
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.pvp.net";
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
+            RootDomain = region + ".api.pvp.net";
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
 
             await semaphore.WaitAsync();
             {
@@ -60,7 +61,7 @@ namespace RiotSharp
         public string CreatePostRequest(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.pvp.net";
+            RootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
             request.ContentType = "application/json";
 
@@ -82,7 +83,7 @@ namespace RiotSharp
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.pvp.net";
+            RootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
             request.ContentType = "application/json";
 
@@ -104,7 +105,7 @@ namespace RiotSharp
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            rootDomain = region + ".api.pvp.net";
+            RootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
             request.ContentType = "application/json";
 
@@ -122,10 +123,10 @@ namespace RiotSharp
 
             try
             {
-                var response = (HttpWebResponse) request.GetResponseAsync().Result;
+                var response = (HttpWebResponse)request.GetResponseAsync().Result;
 
                 // if code is in 2xx (=OK) range, return success value = true.
-                return (int) response.StatusCode >= 200 && (int) response.StatusCode < 300;
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
             }
             catch (WebException ex)
             {
@@ -137,7 +138,7 @@ namespace RiotSharp
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.pvp.net";
+            RootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "PUT");
             request.ContentType = "application/json";
 

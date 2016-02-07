@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace RiotSharp
 {
     class Requester
     {
-        protected string rootDomain;
+        protected string RootDomain;
         public string ApiKey { get; set; }
 
         internal Requester(string apiKey = "")
@@ -19,18 +21,20 @@ namespace RiotSharp
         public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
-            return GetResponse(request);
+            RootDomain = rootDomain;
+            var requestNew = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
+            return GetResponse(requestNew);
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps);
-            return await GetResponseAsync(request);
+            RootDomain = rootDomain;
+            var requestNew = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
+            return await GetResponseAsync(requestNew);
         }
+
+
 
         protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps,
             string httpMethod = "GET")
@@ -40,16 +44,27 @@ namespace RiotSharp
             if (addedArguments == null)
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?api_key={3}"
-                    , scheme, rootDomain, relativeUrl, ApiKey));
+                    , scheme, RootDomain, relativeUrl, ApiKey));
             }
             else
             {
                 request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?{3}api_key={4}"
-                    , scheme, rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
+                    , scheme, RootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
             }
             request.Method = httpMethod;
 
             return request;
+        }
+
+        protected HttpRequestMessage PrepareRequest(string relativeUrl, List<string> addedArguments,
+            bool useHttps, HttpMethod httpMethod)
+        {
+            var scheme = useHttps ? "https" : "http";
+            var url = addedArguments == null ?
+                $"{scheme}://{RootDomain}{relativeUrl}?api_key={ApiKey}" :
+                $"{scheme}://{RootDomain}{relativeUrl}?{BuildArgumentsString(addedArguments)}api_key={ApiKey}";
+
+            return new HttpRequestMessage(httpMethod, url);
         }
 
         protected string GetResponse(HttpWebRequest request)
@@ -70,7 +85,26 @@ namespace RiotSharp
             }
             catch (AggregateException ex)
             {
-                HandleWebException((WebException) ex.InnerException);
+                HandleWebException((WebException)ex.InnerException);
+            }
+            return result;
+        }
+
+        protected string GetResponse(HttpRequestMessage request)
+        {
+            var result = string.Empty;
+            try
+            {
+                using (var client = new HttpClient())
+                using (var response = client.GetAsync(request.RequestUri).Result)
+                using (var content = response.Content)
+                {
+                    result = content.ReadAsStringAsync().Result;
+                }
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
             }
             return result;
         }
@@ -94,17 +128,30 @@ namespace RiotSharp
             return result;
         }
 
-        protected string BuildArgumentsString(List<string> arguments)
+        protected async Task<string> GetResponseAsync(HttpRequestMessage request)
         {
-            string result = string.Empty;
-            foreach (string arg in arguments)
+            var result = string.Empty;
+            try
             {
-                if (arg != string.Empty)
+                using (var client = new HttpClient())
+                using (var response = await client.GetAsync(request.RequestUri))
+                using (var content = response.Content)
                 {
-                    result += arg + "&";
+                    result = await content.ReadAsStringAsync();
                 }
             }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+            }
             return result;
+        }
+
+        protected string BuildArgumentsString(List<string> arguments)
+        {
+            return arguments
+                .Where(arg => arg != string.Empty)
+                .Aggregate(string.Empty, (current, arg) => current + (arg + "&"));
         }
 
         protected void HandleWebException(WebException ex)
@@ -114,7 +161,7 @@ namespace RiotSharp
             {
                 response = (HttpWebResponse)ex.Response;
             }
-            catch (System.NullReferenceException)
+            catch (NullReferenceException)
             {
                 response = null;
             }
