@@ -142,6 +142,7 @@
     <Compile Include="LeagueEndpoint\Converters\TierConverter.cs" />
     <Compile Include="Misc\DateTimeConverterFromLong.cs" />
     <Compile Include="Misc\RegionConverter.cs" />
+    <Compile Include="Misc\Slug.cs" />
     <Compile Include="Misc\Util.cs" />
     <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
