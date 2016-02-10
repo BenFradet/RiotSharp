@@ -171,6 +171,16 @@ namespace RiotSharp.CurrentGameEndpoint.Converters
         /// <summary>
         /// Black Market Brawlers games
         /// </summary>
-        Bilgewater5x5 = 313
+        Bilgewater5x5 = 313,
+
+        /// <summary>
+        /// Dynamic Queue Normal 5v5 Draft Pick games
+        /// </summary>
+        TeamBuilderDraftUnranked = 400,
+
+        /// <summary>
+        /// Dynamic Queue Ranked 5v5 Draft Pick games
+        /// </summary>
+        TeamBuilderDraftRanked = 410
     }
 }

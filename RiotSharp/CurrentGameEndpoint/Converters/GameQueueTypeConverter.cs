@@ -119,6 +119,12 @@ namespace RiotSharp.CurrentGameEndpoint.Converters
                 case "BILGEWATER_5x5":
                 case "313":
                     return GameQueueType.Bilgewater5x5;
+                case "400":
+                case "TEAM_BUILDER_DRAFT_UNRANKED_5x5":
+                    return GameQueueType.TeamBuilderDraftUnranked;
+                case "410":
+                case "TEAM_BUILDER_DRAFT_RANKED_5x5":
+                    return GameQueueType.TeamBuilderDraftRanked;
                 default:
                     return null;
             }
@@ -228,6 +234,12 @@ namespace RiotSharp.CurrentGameEndpoint.Converters
                     break;
                 case GameQueueType.Bilgewater5x5:
                     result = "BILGEWATER_5x5";
+                    break;
+                case GameQueueType.TeamBuilderDraftUnranked:
+                    result = "TEAM_BUILDER_DRAFT_UNRANKED_5x5";
+                    break;
+                case GameQueueType.TeamBuilderDraftRanked:
+                    result = "TEAM_BUILDER_DRAFT_RANKED_5x5";
                     break;
                 default:
                     result = "";
