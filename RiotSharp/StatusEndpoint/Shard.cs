@@ -38,6 +38,6 @@ namespace RiotSharp.StatusEndpoint
         /// Slug.
         /// </summary>
         [JsonProperty("slug")]
-        public Region Slug { get; set; }
+        public Slug Slug { get; set; }
     }
 }

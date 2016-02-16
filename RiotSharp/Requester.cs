@@ -183,6 +183,8 @@ namespace RiotSharp
                     throw new RiotSharpException("400, Bad request");
                 case HttpStatusCode.NotFound:
                     throw new RiotSharpException("404, Resource not found");
+                case HttpStatusCode.Forbidden:
+                    throw new RiotSharpException("403, Forbidden");
             }
         }
     }
