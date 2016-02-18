@@ -62,30 +62,23 @@ namespace RiotSharp
             List<string> addedArguments = null, bool useHttps = true)
         {
             RootDomain = region + ".api.pvp.net";
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
-            request.ContentType = "application/json";
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
+            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
             semaphore.Wait();
             {
                 HandleRateLimit(region);
             }
             semaphore.Release();
-
-            var byteArray = Encoding.UTF8.GetBytes(body);
-            var dataStream = request.GetRequestStreamAsync().Result;
-
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Dispose();
-
-            return GetResponse(request);
+            return PostResponse(request);
         }
 
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
             RootDomain = region + ".api.pvp.net";
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, "POST");
-            request.ContentType = "application/json";
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
+            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
             await semaphore.WaitAsync();
             {
@@ -93,13 +86,7 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            var byteArray = Encoding.UTF8.GetBytes(body);
-            var dataStream = await request.GetRequestStreamAsync();
-
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Dispose();
-
-            return await GetResponseAsync(request);
+            return await PostResponseAsync(request);
         }
 
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,

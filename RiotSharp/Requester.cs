@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -22,16 +21,16 @@ namespace RiotSharp
             bool useHttps = true)
         {
             RootDomain = rootDomain;
-            var requestNew = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            return GetResponse(requestNew);
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
+            return GetResponse(request);
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null, bool useHttps = true)
         {
             RootDomain = rootDomain;
-            var requestNew = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            return await GetResponseAsync(requestNew);
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
+            return await GetResponseAsync(request);
         }
 
 
@@ -67,29 +66,6 @@ namespace RiotSharp
             return new HttpRequestMessage(httpMethod, url);
         }
 
-        protected string GetResponse(HttpWebRequest request)
-        {
-            string result = string.Empty;
-            try
-            {
-                var response = (HttpWebResponse)(request.GetResponseAsync().Result);
-
-                using (var reader = new StreamReader(response.GetResponseStream()))
-                {
-                    result = reader.ReadToEnd();
-                }
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
-            }
-            catch (AggregateException ex)
-            {
-                HandleWebException((WebException)ex.InnerException);
-            }
-            return result;
-        }
-
         protected string GetResponse(HttpRequestMessage request)
         {
             var result = string.Empty;
@@ -109,16 +85,35 @@ namespace RiotSharp
             return result;
         }
 
-        protected async Task<string> GetResponseAsync(HttpWebRequest request)
+        protected string PostResponse(HttpRequestMessage request)
         {
-            string result = string.Empty;
+            var result = string.Empty;
             try
             {
-                var response = (HttpWebResponse)(await request.GetResponseAsync());
-
-                using (var reader = new StreamReader(response.GetResponseStream()))
+                using (var client = new HttpClient())
+                using (var response = client.PostAsync(request.RequestUri, request.Content).Result)
+                using (var content = response.Content)
                 {
-                    result = await reader.ReadToEndAsync();
+                    result = content.ReadAsStringAsync().Result;
+                }
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+            }
+            return result;
+        }
+
+        protected async Task<string> PostResponseAsync(HttpRequestMessage request)
+        {
+            var result = string.Empty;
+            try
+            {
+                using (var client = new HttpClient())
+                using (var response = client.PostAsync(request.RequestUri, request.Content).Result)
+                using (var content = response.Content)
+                {
+                    result = await content.ReadAsStringAsync();
                 }
             }
             catch (WebException ex)

@@ -81,6 +81,9 @@ namespace RiotSharp
         public TournamentProvider CreateProvider(Region region, string url)
         {
             var body = new Dictionary<string, object> {{"url", url}, {"region", region.ToString().ToUpper()}};
+
+
+
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateProviderUrl, Region.global,
                 JsonConvert.SerializeObject(body));
 
