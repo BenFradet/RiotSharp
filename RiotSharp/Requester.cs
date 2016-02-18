@@ -22,7 +22,7 @@ namespace RiotSharp
         {
             RootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            return GetResponse(request);
+            return GetResult(request);
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
@@ -30,29 +30,7 @@ namespace RiotSharp
         {
             RootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            return await GetResponseAsync(request);
-        }
-
-
-
-        protected HttpWebRequest PrepareRequest(string relativeUrl, List<string> addedArguments, bool useHttps,
-            string httpMethod = "GET")
-        {
-            HttpWebRequest request;
-            string scheme = useHttps ? "https" : "http";
-            if (addedArguments == null)
-            {
-                request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?api_key={3}"
-                    , scheme, RootDomain, relativeUrl, ApiKey));
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create(string.Format("{0}://{1}{2}?{3}api_key={4}"
-                    , scheme, RootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey));
-            }
-            request.Method = httpMethod;
-
-            return request;
+            return await GetResultAsync(request);
         }
 
         protected HttpRequestMessage PrepareRequest(string relativeUrl, List<string> addedArguments,
@@ -66,7 +44,7 @@ namespace RiotSharp
             return new HttpRequestMessage(httpMethod, url);
         }
 
-        protected string GetResponse(HttpRequestMessage request)
+        protected string GetResult(HttpRequestMessage request)
         {
             var result = string.Empty;
             try
@@ -85,7 +63,60 @@ namespace RiotSharp
             return result;
         }
 
-        protected string PostResponse(HttpRequestMessage request)
+        protected async Task<string> GetResultAsync(HttpRequestMessage request)
+        {
+            var result = string.Empty;
+            try
+            {
+                using (var client = new HttpClient())
+                using (var response = await client.GetAsync(request.RequestUri))
+                using (var content = response.Content)
+                {
+                    result = await content.ReadAsStringAsync();
+                }
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+            }
+            return result;
+        }
+
+        protected HttpResponseMessage GetResponse(HttpRequestMessage request)
+        {
+            HttpResponseMessage result = null;
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    result = client.GetAsync(request.RequestUri).Result;
+                }
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+            }
+            return result;
+        }
+
+        protected async Task<HttpResponseMessage> GetResponseAsync(HttpRequestMessage request)
+        {
+            HttpResponseMessage result = null;
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    result = await client.GetAsync(request.RequestUri);
+                }
+            }
+            catch (WebException ex)
+            {
+                HandleWebException(ex);
+            }
+            return result;
+        }
+
+        protected string Post(HttpRequestMessage request)
         {
             var result = string.Empty;
             try
@@ -104,7 +135,7 @@ namespace RiotSharp
             return result;
         }
 
-        protected async Task<string> PostResponseAsync(HttpRequestMessage request)
+        protected async Task<string> PostAsync(HttpRequestMessage request)
         {
             var result = string.Empty;
             try
@@ -123,24 +154,7 @@ namespace RiotSharp
             return result;
         }
 
-        protected async Task<string> GetResponseAsync(HttpRequestMessage request)
-        {
-            var result = string.Empty;
-            try
-            {
-                using (var client = new HttpClient())
-                using (var response = await client.GetAsync(request.RequestUri))
-                using (var content = response.Content)
-                {
-                    result = await content.ReadAsStringAsync();
-                }
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
-            }
-            return result;
-        }
+
 
         protected string BuildArgumentsString(List<string> arguments)
         {
