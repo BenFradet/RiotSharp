@@ -110,7 +110,7 @@ namespace RiotSharp
             try
             {
                 using (var client = new HttpClient())
-                using (var response = client.PostAsync(request.RequestUri, request.Content).Result)
+                using (var response = await client.PostAsync(request.RequestUri, request.Content))
                 using (var content = response.Content)
                 {
                     result = await content.ReadAsStringAsync();
