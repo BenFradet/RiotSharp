@@ -82,14 +82,14 @@ namespace RiotSharp
             return result;
         }
 
-        protected HttpResponseMessage GetResponse(HttpRequestMessage request)
+        protected HttpResponseMessage Put(HttpRequestMessage request)
         {
             HttpResponseMessage result = null;
             try
             {
                 using (var client = new HttpClient())
                 {
-                    result = client.GetAsync(request.RequestUri).Result;
+                    result = client.PutAsync(request.RequestUri, request.Content).Result;
                 }
             }
             catch (WebException ex)
@@ -99,14 +99,14 @@ namespace RiotSharp
             return result;
         }
 
-        protected async Task<HttpResponseMessage> GetResponseAsync(HttpRequestMessage request)
+        protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
         {
             HttpResponseMessage result = null;
             try
             {
                 using (var client = new HttpClient())
                 {
-                    result = await client.GetAsync(request.RequestUri);
+                    result = await client.PutAsync(request.RequestUri, request.Content);
                 }
             }
             catch (WebException ex)

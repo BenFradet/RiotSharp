@@ -69,7 +69,7 @@ namespace RiotSharp
                 HandleRateLimit(region);
             }
             semaphore.Release();
-            return PostResponse(request);
+            return Post(request);
         }
 
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
@@ -85,7 +85,7 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            return await PostResponseAsync(request);
+            return await PostAsync(request);
         }
 
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
@@ -101,7 +101,7 @@ namespace RiotSharp
             }
             semaphore.Release();
 
-            var response = GetResponse(request);
+            var response = Put(request);
             return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
         }
 
@@ -117,7 +117,8 @@ namespace RiotSharp
                 HandleRateLimit(region);
             }
             semaphore.Release();
-            var response = await GetResponseAsync(request);
+
+            var response = await PutAsync(request);
             return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
         }
 
