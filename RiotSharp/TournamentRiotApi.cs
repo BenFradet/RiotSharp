@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RiotSharp.MatchEndpoint;
+using RiotSharp.TournamentEndpoint;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using RiotSharp.MatchEndpoint;
-using RiotSharp.TournamentEndpoint;
 
 namespace RiotSharp
 {
@@ -80,15 +80,12 @@ namespace RiotSharp
         /// <returns>The ID of the provider.</returns>
         public TournamentProvider CreateProvider(Region region, string url)
         {
-            var body = new Dictionary<string, object> {{"url", url}, {"region", region.ToString().ToUpper()}};
-
-
-
+            var body = new Dictionary<string, object> { { "url", url }, { "region", region.ToString().ToUpper() } };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateProviderUrl, Region.global,
                 JsonConvert.SerializeObject(body));
 
             // json is an int directly
-            var provider = new TournamentProvider {Id = int.Parse(json)};
+            var provider = new TournamentProvider { Id = int.Parse(json) };
 
             return provider;
         }
@@ -105,13 +102,13 @@ namespace RiotSharp
         /// <returns>The ID of the provider.</returns>
         public async Task<TournamentProvider> CreateProviderAsync(Region region, string url)
         {
-            var body = new Dictionary<string, object> {{"url", url}, {"region", region.ToString().ToUpper()}};
+            var body = new Dictionary<string, object> { { "url", url }, { "region", region.ToString().ToUpper() } };
             var json =
                 await
                     requester.CreatePostRequestAsync(TournamentRootUrl + CreateProviderUrl, Region.global,
                         JsonConvert.SerializeObject(body));
 
-            return new TournamentProvider {Id = int.Parse(json)};
+            return new TournamentProvider { Id = int.Parse(json) };
         }
 
         /// <summary>
@@ -122,12 +119,12 @@ namespace RiotSharp
         /// <returns>The ID of the tournament.</returns>
         public Tournament CreateTournament(int providerId, string name)
         {
-            var body = new Dictionary<string, object> {{"name", name}, {"providerId", providerId}};
+            var body = new Dictionary<string, object> { { "name", name }, { "providerId", providerId } };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateTournamentUrl, Region.global,
                 JsonConvert.SerializeObject(body));
 
             // json is an int directly
-            var tournament = new Tournament {Id = int.Parse(json)};
+            var tournament = new Tournament { Id = int.Parse(json) };
 
             return tournament;
         }
@@ -140,7 +137,7 @@ namespace RiotSharp
         /// <returns>The ID of the tournament.</returns>
         public async Task<Tournament> CreateTournamentAsync(int providerId, string name)
         {
-            var body = new Dictionary<string, object> {{"name", name}, {"providerId", providerId}};
+            var body = new Dictionary<string, object> { { "name", name }, { "providerId", providerId } };
             var json =
                 await
                     requester.CreatePostRequestAsync(TournamentRootUrl + CreateTournamentUrl, Region.global,
@@ -182,7 +179,7 @@ namespace RiotSharp
             };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodeUrl, Region.global,
                 JsonConvert.SerializeObject(body),
-                new List<string> {string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", 1)});
+                new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", 1) });
 
             // json is a list of strings
             var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
@@ -261,7 +258,7 @@ namespace RiotSharp
             };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodeUrl, Region.global,
                 JsonConvert.SerializeObject(body),
-                new List<string> {string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count)});
+                new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count) });
 
             // json is a list of strings
             var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
