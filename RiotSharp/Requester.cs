@@ -9,7 +9,7 @@ namespace RiotSharp
 {
     class Requester
     {
-        protected string RootDomain;
+        protected string rootDomain;
         private readonly HttpClient _httpClient;
         public string ApiKey { get; set; }
 
@@ -22,7 +22,7 @@ namespace RiotSharp
         public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            RootDomain = rootDomain;
+            this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             return GetResult(request);
         }
@@ -30,7 +30,7 @@ namespace RiotSharp
         public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            RootDomain = rootDomain;
+            this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             return await GetResultAsync(request);
         }
@@ -40,8 +40,8 @@ namespace RiotSharp
         {
             var scheme = useHttps ? "https" : "http";
             var url = addedArguments == null ?
-                $"{scheme}://{RootDomain}{relativeUrl}?api_key={ApiKey}" :
-                $"{scheme}://{RootDomain}{relativeUrl}?{BuildArgumentsString(addedArguments)}api_key={ApiKey}";
+                $"{scheme}://{rootDomain}{relativeUrl}?api_key={ApiKey}" :
+                $"{scheme}://{rootDomain}{relativeUrl}?{BuildArgumentsString(addedArguments)}api_key={ApiKey}";
 
             return new HttpRequestMessage(httpMethod, url);
         }
