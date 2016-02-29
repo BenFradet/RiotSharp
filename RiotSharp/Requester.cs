@@ -10,13 +10,13 @@ namespace RiotSharp
     class Requester
     {
         protected string rootDomain;
-        private readonly HttpClient _httpClient;
+        private readonly HttpClient httpClient;
         public string ApiKey { get; set; }
 
         internal Requester(string apiKey = "")
         {
             ApiKey = apiKey;
-            _httpClient = new HttpClient();
+            httpClient = new HttpClient();
         }
 
         public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
@@ -51,7 +51,7 @@ namespace RiotSharp
             var result = string.Empty;
             try
             {
-                using (var response = _httpClient.GetAsync(request.RequestUri).Result)
+                using (var response = httpClient.GetAsync(request.RequestUri).Result)
                 using (var content = response.Content)
                 {
                     result = content.ReadAsStringAsync().Result;
@@ -69,7 +69,7 @@ namespace RiotSharp
             var result = string.Empty;
             try
             {
-                using (var response = await _httpClient.GetAsync(request.RequestUri))
+                using (var response = await httpClient.GetAsync(request.RequestUri))
                 using (var content = response.Content)
                 {
                     result = await content.ReadAsStringAsync();
@@ -87,7 +87,7 @@ namespace RiotSharp
             HttpResponseMessage result = null;
             try
             {
-                result = _httpClient.PutAsync(request.RequestUri, request.Content).Result;
+                result = httpClient.PutAsync(request.RequestUri, request.Content).Result;
             }
             catch (WebException ex)
             {
@@ -101,7 +101,7 @@ namespace RiotSharp
             HttpResponseMessage result = null;
             try
             {
-                result = await _httpClient.PutAsync(request.RequestUri, request.Content);
+                result = await httpClient.PutAsync(request.RequestUri, request.Content);
             }
             catch (WebException ex)
             {
@@ -115,7 +115,7 @@ namespace RiotSharp
             var result = string.Empty;
             try
             {
-                using (var response = _httpClient.PostAsync(request.RequestUri, request.Content).Result)
+                using (var response = httpClient.PostAsync(request.RequestUri, request.Content).Result)
                 using (var content = response.Content)
                 {
                     result = content.ReadAsStringAsync().Result;
@@ -133,7 +133,7 @@ namespace RiotSharp
             var result = string.Empty;
             try
             {
-                using (var response = await _httpClient.PostAsync(request.RequestUri, request.Content))
+                using (var response = await httpClient.PostAsync(request.RequestUri, request.Content))
                 using (var content = response.Content)
                 {
                     result = await content.ReadAsStringAsync();
