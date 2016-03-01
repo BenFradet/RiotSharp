@@ -11,6 +11,7 @@ namespace RiotSharpTest
         private static string faultyApiKey = ConfigurationManager.AppSettings["FaultyApiKey"];
         private static StaticRiotApi faultyStaticApi = StaticRiotApi.GetInstance(faultyApiKey);
 
+        [Ignore]
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
