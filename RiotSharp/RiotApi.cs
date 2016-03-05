@@ -54,6 +54,8 @@ namespace RiotSharp
 
         private const string IdUrl = "/{0}";
 
+        private const int MaximumSummonerIdsPerRequest = 40;
+
         private RateLimitedRequester requester;
 
         private static RiotApi instance;
@@ -127,10 +129,22 @@ namespace RiotSharp
         /// <returns>A list of summoners.</returns>
         public List<Summoner> GetSummoners(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildIdsString(summonerIds)), region);
-            var list = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumSummonerIdsPerRequest, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var list = new List<Summoner>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
+                    string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
+                        Util.BuildIdsString(group)), region);
+                var subList = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
+                list.AddRange(subList);
+            }
+
             foreach (var summ in list)
             {
                 summ.Region = region;
@@ -146,12 +160,23 @@ namespace RiotSharp
         /// <returns>A list of summoners.</returns>
         public async Task<List<Summoner>> GetSummonersAsync(Region region, List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildIdsString(summonerIds)),
-                region);
-            var list = (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json))).Values.ToList();
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumSummonerIdsPerRequest, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var list = new List<Summoner>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
+                        Util.BuildIdsString(group)), region);
+                var subList = (await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json))).Values.ToList();
+                list.AddRange(subList);
+            }
+            
             foreach (var summ in list)
             {
                 summ.Region = region;
