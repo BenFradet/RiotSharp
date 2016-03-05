@@ -88,7 +88,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        public Summoner GetSummoner(Region region, int summonerId)
+        public Summoner GetSummoner(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
@@ -106,7 +106,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        public async Task<Summoner> GetSummonerAsync(Region region, int summonerId)
+        public async Task<Summoner> GetSummonerAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
@@ -125,7 +125,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of summoners.</returns>
-        public List<Summoner> GetSummoners(Region region, List<int> summonerIds)
+        public List<Summoner> GetSummoners(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
@@ -144,7 +144,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of summoners.</returns>
-        public async Task<List<Summoner>> GetSummonersAsync(Region region, List<int> summonerIds)
+        public async Task<List<Summoner>> GetSummonersAsync(Region region, List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
@@ -247,7 +247,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner (id and name).</returns>
-        public SummonerBase GetSummonerName(Region region, int summonerId)
+        public SummonerBase GetSummonerName(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
@@ -261,7 +261,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner (id and name).</returns>
-        public async Task<SummonerBase> GetSummonerNameAsync(Region region, int summonerId)
+        public async Task<SummonerBase> GetSummonerNameAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
@@ -275,7 +275,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of ids and names of summoners.</returns>
-        public List<SummonerBase> GetSummonersNames(Region region, List<int> summonerIds)
+        public List<SummonerBase> GetSummonersNames(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) +
@@ -296,7 +296,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of ids and names of summoners.</returns>
-        public async Task<List<SummonerBase>> GetSummonersNamesAsync(Region region, List<int> summonerIds)
+        public async Task<List<SummonerBase>> GetSummonersNamesAsync(Region region, List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) +
@@ -370,7 +370,7 @@ namespace RiotSharp
         /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
         /// </returns>
-        public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<int> summonerIds)
+        public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) +
@@ -387,7 +387,7 @@ namespace RiotSharp
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
         /// </returns>
         public async Task<Dictionary<long, List<MasteryPage>>> GetMasteryPagesAsync(Region region,
-            List<int> summonerIds)
+            List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) +
@@ -404,7 +404,7 @@ namespace RiotSharp
         /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
         /// </returns>
-        public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<int> summonerIds)
+        public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) +
@@ -420,7 +420,7 @@ namespace RiotSharp
         /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
         /// </returns>
-        public async Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<int> summonerIds)
+        public async Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) +
@@ -436,7 +436,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        public Dictionary<long, List<League>> GetLeagues(Region region, List<int> summonerIds)
+        public Dictionary<long, List<League>> GetLeagues(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(LeagueRootUrl, region.ToString()) +
@@ -451,7 +451,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        public async Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<int> summonerIds)
+        public async Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(LeagueRootUrl, region.ToString()) +
@@ -467,7 +467,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
-        public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<int> summonerIds)
+        public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(LeagueRootUrl, region.ToString()) +
@@ -483,7 +483,7 @@ namespace RiotSharp
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
         public async Task<Dictionary<long, List<League>>> GetEntireLeaguesAsync(Region region,
-            List<int> summonerIds)
+            List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(LeagueRootUrl, region.ToString()) +
@@ -622,7 +622,7 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="summonerIds">List of summoner ids</param>
         /// <returns>A map of teams indexed by the summoner's id.</returns>
-        public Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<int> summonerIds)
+        public Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<long> summonerIds)
         {
             var json = requester.CreateGetRequest(
                 string.Format(TeamRootUrl, region.ToString()) +
@@ -638,7 +638,7 @@ namespace RiotSharp
         /// <param name="summonerIds">List of summoner ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
         public async Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsAsync(Region region,
-            List<int> summonerIds)
+            List<long> summonerIds)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(TeamRootUrl, region.ToString()) +

@@ -27,6 +27,6 @@ namespace RiotSharp.SummonerEndpoint
         /// Summoner level associated with the summoner.
         /// </summary>
         [JsonProperty("summonerLevel")]
-        public long Level { get; set; }
+        public int Level { get; set; }
     }
 }

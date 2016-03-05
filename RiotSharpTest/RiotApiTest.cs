@@ -48,7 +48,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummoners_ById_Test()
         {
-            var summoners = api.GetSummoners(region, new List<int> { id, id2 });
+            var summoners = api.GetSummoners(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(summoners);
             Assert.IsTrue(summoners.Count == 2);
@@ -58,7 +58,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersAsync_ById_Test()
         {
-            var summoners = api.GetSummonersAsync(region, new List<int> { id, id2 });
+            var summoners = api.GetSummonersAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(summoners.Result);
             Assert.IsTrue(summoners.Result.Count == 2);
@@ -124,7 +124,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummonersNames_Test()
         {
-            var summoners = api.GetSummonersNames(region, new List<int> { id, id2 });
+            var summoners = api.GetSummonersNames(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(summoners);
             Assert.IsTrue(summoners.Count() == 2);
@@ -134,7 +134,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersNamesAsync_Test()
         {
-            var summoners = api.GetSummonersNamesAsync(region, new List<int> { id, id2 });
+            var summoners = api.GetSummonersNamesAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(summoners.Result);
             Assert.IsTrue(summoners.Result.Count() == 2);
@@ -206,7 +206,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMasteryPages_Test()
         {
-            var masteries = api.GetMasteryPages(region, new List<int> { id, id2 });
+            var masteries = api.GetMasteryPages(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(masteries);
             Assert.IsTrue(masteries.Count == 2);
@@ -216,7 +216,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMasteryPagesAsync_Test()
         {
-            var masteries = api.GetMasteryPagesAsync(region, new List<int> { id, id2 });
+            var masteries = api.GetMasteryPagesAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(masteries.Result);
             Assert.IsTrue(masteries.Result.Count == 2);
@@ -226,7 +226,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetRunePages_Test()
         {
-            var runes = api.GetRunePages(region, new List<int> { id, id2 });
+            var runes = api.GetRunePages(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(runes);
             Assert.IsTrue(runes.Count == 2);
@@ -236,7 +236,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetRunePagesAsync_Test()
         {
-            var runes = api.GetRunePagesAsync(region, new List<int> { id, id2 });
+            var runes = api.GetRunePagesAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(runes.Result);
             Assert.IsTrue(runes.Result.Count == 2);
@@ -246,7 +246,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetLeagues_BySummoner_Test()
         {
-            var leagues = api.GetLeagues(region, new List<int> { id, id2 });
+            var leagues = api.GetLeagues(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(leagues[id]);
             Assert.IsNotNull(leagues[id2]);
@@ -258,7 +258,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetLeaguesAsync_BySummoner_Test()
         {
-            var leagues = api.GetLeaguesAsync(region, new List<int> { id, id2 });
+            var leagues = api.GetLeaguesAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(leagues.Result[id]);
             Assert.IsNotNull(leagues.Result[id2]);
@@ -270,7 +270,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetEntireLeagues_BySummoner_Test()
         {
-            var leagues = api.GetEntireLeagues(region, new List<int> { id, id2 });
+            var leagues = api.GetEntireLeagues(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(leagues[id]);
             Assert.IsNotNull(leagues[id2]);
@@ -282,7 +282,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetEntireLeaguesAsync_BySummoner_Test()
         {
-            var leagues = api.GetEntireLeaguesAsync(region, new List<int> { id, id2 });
+            var leagues = api.GetEntireLeaguesAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(leagues.Result[id]);
             Assert.IsNotNull(leagues.Result[id2]);
@@ -378,7 +378,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetTeams_Summoners_Test()
         {
-            var teams = api.GetTeams(region, new List<int> { id, id2 });
+            var teams = api.GetTeams(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(teams);
             Assert.IsTrue(teams.Count > 0);
@@ -388,7 +388,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTeamsAsync_Summoners_Test()
         {
-            var teams = api.GetTeamsAsync(region, new List<int> { id, id2 });
+            var teams = api.GetTeamsAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(teams.Result);
             Assert.IsTrue(teams.Result.Count > 0);
