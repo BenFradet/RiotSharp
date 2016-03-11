@@ -82,3 +82,8 @@ notifications:
     on_build_failure: true
     on_build_success: false
     on_build_status_changed: false
+  - provider: Webhook
+    url: https://webhooks.gitter.im/e/2668b239e8ba3b25f3ff
+    on_build_failure: true
+    on_build_success: false
+    on_build_status_changed: false
