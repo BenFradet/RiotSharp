@@ -50,17 +50,16 @@ namespace RiotSharp
         protected string GetResult(HttpRequestMessage request)
         {
             var result = string.Empty;
-            try
+            using (var response = httpClient.GetAsync(request.RequestUri).Result)
             {
-                using (var response = httpClient.GetAsync(request.RequestUri).Result)
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
                 using (var content = response.Content)
                 {
                     result = content.ReadAsStringAsync().Result;
                 }
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
             }
             return result;
         }
@@ -68,45 +67,36 @@ namespace RiotSharp
         protected async Task<string> GetResultAsync(HttpRequestMessage request)
         {
             var result = string.Empty;
-            try
+            using (var response = await httpClient.GetAsync(request.RequestUri))
             {
-                using (var response = await httpClient.GetAsync(request.RequestUri))
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
                 using (var content = response.Content)
                 {
                     result = await content.ReadAsStringAsync();
                 }
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
             }
             return result;
         }
 
         protected HttpResponseMessage Put(HttpRequestMessage request)
         {
-            HttpResponseMessage result = null;
-            try
+            var result = httpClient.PutAsync(request.RequestUri, request.Content).Result;
+            if (!result.IsSuccessStatusCode)
             {
-                result = httpClient.PutAsync(request.RequestUri, request.Content).Result;
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
+                HandleRequestFailure(result.StatusCode);
             }
             return result;
         }
 
         protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
         {
-            HttpResponseMessage result = null;
-            try
+            var result = await httpClient.PutAsync(request.RequestUri, request.Content);
+            if (!result.IsSuccessStatusCode)
             {
-                result = await httpClient.PutAsync(request.RequestUri, request.Content);
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
+                HandleRequestFailure(result.StatusCode);
             }
             return result;
         }
@@ -114,17 +104,16 @@ namespace RiotSharp
         protected string Post(HttpRequestMessage request)
         {
             var result = string.Empty;
-            try
+            using (var response = httpClient.PostAsync(request.RequestUri, request.Content).Result)
             {
-                using (var response = httpClient.PostAsync(request.RequestUri, request.Content).Result)
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
                 using (var content = response.Content)
                 {
                     result = content.ReadAsStringAsync().Result;
                 }
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
             }
             return result;
         }
@@ -132,17 +121,16 @@ namespace RiotSharp
         protected async Task<string> PostAsync(HttpRequestMessage request)
         {
             var result = string.Empty;
-            try
+            using (var response = await httpClient.PostAsync(request.RequestUri, request.Content))
             {
-                using (var response = await httpClient.PostAsync(request.RequestUri, request.Content))
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
                 using (var content = response.Content)
                 {
                     result = await content.ReadAsStringAsync();
                 }
-            }
-            catch (WebException ex)
-            {
-                HandleWebException(ex);
             }
             return result;
         }
@@ -156,24 +144,9 @@ namespace RiotSharp
                 .Aggregate(string.Empty, (current, arg) => current + (arg + "&"));
         }
 
-        protected void HandleWebException(WebException ex)
+        protected void HandleRequestFailure(HttpStatusCode statusCode)
         {
-            HttpWebResponse response;
-            try
-            {
-                response = (HttpWebResponse)ex.Response;
-            }
-            catch (NullReferenceException)
-            {
-                response = null;
-            }
-
-            if (response == null)
-            {
-                throw new RiotSharpException(ex.Message);
-            }
-
-            switch (response.StatusCode)
+            switch (statusCode)
             {
                 case HttpStatusCode.ServiceUnavailable:
                     throw new RiotSharpException("503, Service unavailable");
