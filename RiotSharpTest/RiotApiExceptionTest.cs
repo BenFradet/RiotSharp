@@ -14,7 +14,6 @@ namespace RiotSharpTest
         private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
         private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
 
-        [Ignore]
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
@@ -23,7 +22,6 @@ namespace RiotSharpTest
             faultyApi.GetSummoner(region, id);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
