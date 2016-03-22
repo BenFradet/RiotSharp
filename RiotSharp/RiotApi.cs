@@ -315,6 +315,7 @@ namespace RiotSharp
         /// Get the list of champions by region synchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for champions.</param>
+        /// <param name="freeToPlay">If set to true will return only free to play champions.</param>
         /// <returns>A list of champions.</returns>
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
@@ -327,6 +328,7 @@ namespace RiotSharp
         /// Get the list of champions by region asynchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for champions.</param>
+        /// <param name="freeToPlay">If set to true will return only free to play champions.</param>
         /// <returns>A list of champions.</returns>
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
@@ -1007,7 +1009,7 @@ namespace RiotSharp
         /// <summary>
         /// Gets the current game by summoner ID asynchronously.
         /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
         /// <returns>Current game of the summoner.</returns>
         public async Task<CurrentGame> GetCurrentGameAsync(Platform platform, long summonerId)
