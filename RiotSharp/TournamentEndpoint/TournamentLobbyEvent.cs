@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace RiotSharp.TournamentEndpoint
 {
@@ -17,7 +16,6 @@ namespace RiotSharp.TournamentEndpoint
         ///     The type of event that was triggered
         /// </summary>
         [JsonProperty("eventType")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public LobbyEvent EventType { get; set; }
 
         /// <summary>
@@ -32,16 +30,5 @@ namespace RiotSharp.TournamentEndpoint
         [JsonProperty("timestamp")]
         [JsonConverter(typeof(DateTimeConverterFromStringTimestamp))]
         public DateTime Timestamp { get; set; }
-    }
-
-    public enum LobbyEvent
-    {
-        PracticeGameCreatedEvent,
-        PlayerJoinedGameEvent,
-        PlayerSwitchedTeamEvent,
-        PlayerQuitGameEvent,
-        ChampSelectStartedEvent,
-        GameAllocationStartedEvent,
-        GameAllocatedToLsmEvent
     }
 }

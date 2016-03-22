@@ -246,6 +246,7 @@
     <Compile Include="TeamEndpoint\Team.cs" />
     <Compile Include="TeamEndpoint\TeamMemberInfo.cs" />
     <Compile Include="TeamEndpoint\TeamStatDetail.cs" />
+    <Compile Include="TournamentEndpoint\LobbyEvent.cs" />
     <Compile Include="TournamentEndpoint\Tournament.cs" />
     <Compile Include="TournamentEndpoint\TournamentCodeDetail.cs" />
     <Compile Include="TournamentEndpoint\TournamentLobbyEvent.cs" />
