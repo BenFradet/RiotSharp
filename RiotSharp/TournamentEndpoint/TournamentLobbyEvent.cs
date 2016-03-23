@@ -16,7 +16,7 @@ namespace RiotSharp.TournamentEndpoint
         ///     The type of event that was triggered
         /// </summary>
         [JsonProperty("eventType")]
-        public LobbyEvent EventType { get; set; }
+        public TournamentEventType EventType { get; set; }
 
         /// <summary>
         ///     The summoner that triggered the event

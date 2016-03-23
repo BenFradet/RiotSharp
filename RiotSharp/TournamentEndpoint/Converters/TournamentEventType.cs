@@ -7,7 +7,7 @@ namespace RiotSharp.TournamentEndpoint
     ///     The type of event that was triggered in the lobby (Tournament API).
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum LobbyEvent
+    public enum TournamentEventType
     {
         /// <summary>
         /// Lobby created.
