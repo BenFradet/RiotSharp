@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    #pragma warning disable 1591
     public interface IStaticRiotApi
     {
         ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.none,
@@ -60,4 +61,5 @@ namespace RiotSharp
         List<string> GetVersions(Region region);
         Task<List<string>> GetVersionsAsync(Region region);
     }
+    #pragma warning restore 1591
 }

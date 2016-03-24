@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
+    #pragma warning disable 1591
     public interface IRiotApi
     {
         Summoner GetSummoner(Region region, int summonerId);
@@ -68,4 +69,5 @@ namespace RiotSharp
         FeaturedGames GetFeaturedGames(Region region);
         Task<FeaturedGames> GetFeaturedGamesAsync(Region region);
     }
+    #pragma warning restore 1591
 }

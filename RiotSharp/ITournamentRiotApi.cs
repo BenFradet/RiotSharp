@@ -5,6 +5,7 @@ using RiotSharp.TournamentEndpoint;
 
 namespace RiotSharp
 {
+    #pragma warning disable 1591
     public interface ITournamentRiotApi
     {
         TournamentProvider CreateProvider(Region region, string url);
@@ -44,4 +45,5 @@ namespace RiotSharp
         Task<MatchDetail> GetTournamentMatchAsync(Region region, long matchId, string tournamentCode,
             bool includeTimeline);
     }
+    #pragma warning restore 1591
 }
