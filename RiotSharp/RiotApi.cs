@@ -54,6 +54,13 @@ namespace RiotSharp
 
         private const string IdUrl = "/{0}";
 
+        private const int MaximumGetSummoners = 40;
+        private const int MaximumGetMasteryPagesById = 40;
+        private const int MaximumGetRunePages = 40;
+        private const int MaximumGetLeagues = 10;
+        private const int MaximumGetEntireLeagues = 10;
+        private const int MaximumGetTeams = 10;
+
         private RateLimitedRequester requester;
 
         private static RiotApi instance;
@@ -88,7 +95,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        public Summoner GetSummoner(Region region, int summonerId)
+        public Summoner GetSummoner(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
@@ -106,7 +113,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        public async Task<Summoner> GetSummonerAsync(Region region, int summonerId)
+        public async Task<Summoner> GetSummonerAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
@@ -125,12 +132,24 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of summoners.</returns>
-        public List<Summoner> GetSummoners(Region region, List<int> summonerIds)
+        public List<Summoner> GetSummoners(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildIdsString(summonerIds)), region);
-            var list = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetSummoners, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var list = new List<Summoner>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
+                    string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
+                        Util.BuildIdsString(group)), region);
+                var subList = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
+                list.AddRange(subList);
+            }
+
             foreach (var summ in list)
             {
                 summ.Region = region;
@@ -144,14 +163,25 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of summoners.</returns>
-        public async Task<List<Summoner>> GetSummonersAsync(Region region, List<int> summonerIds)
+        public async Task<List<Summoner>> GetSummonersAsync(Region region, List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
-                    Util.BuildIdsString(summonerIds)),
-                region);
-            var list = (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json))).Values.ToList();
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetSummoners, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var list = new List<Summoner>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl,
+                        Util.BuildIdsString(group)), region);
+                var subList = (await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json))).Values.ToList();
+                list.AddRange(subList);
+            }
+            
             foreach (var summ in list)
             {
                 summ.Region = region;
@@ -208,11 +238,23 @@ namespace RiotSharp
         /// <returns>A list of summoners.</returns>
         public List<Summoner> GetSummoners(Region region, List<string> summonerNames)
         {
-            var json = requester.CreateGetRequest(
+            var summonerNameGroups = summonerNames
+                .Select((name, index) => new { Batch = index / MaximumGetSummoners, Name = name })
+                .GroupBy(x => x.Batch, x => x.Name)
+                .Select(g => g.ToList());
+
+            var list = new List<Summoner>();
+
+            foreach (var group in summonerNameGroups)
+            {
+                var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Util.BuildNamesString(summonerNames)),
+                    string.Format(ByNameUrl, Util.BuildNamesString(group)),
                 region);
-            var list = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.ToList();
+                var subList = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.ToList();
+                list.AddRange(subList);
+            }
+
             foreach (var summ in list)
             {
                 summ.Region = region;
@@ -228,12 +270,24 @@ namespace RiotSharp
         /// <returns>A list of summoners.</returns>
         public async Task<List<Summoner>> GetSummonersAsync(Region region, List<string> summonerNames)
         {
-            var json = await requester.CreateGetRequestAsync(
+            var summonerNameGroups = summonerNames
+                .Select((name, index) => new { Batch = index / MaximumGetSummoners, Name = name })
+                .GroupBy(x => x.Batch, x => x.Name)
+                .Select(g => g.ToList());
+
+            var list = new List<Summoner>();
+
+            foreach (var group in summonerNameGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Util.BuildNamesString(summonerNames)),
+                    string.Format(ByNameUrl, Util.BuildNamesString(group)),
                 region);
-            var list = (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json))).Values.ToList();
+                var subList = (await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json))).Values.ToList();
+                list.AddRange(subList);
+            }
+                
             foreach (var summ in list)
             {
                 summ.Region = region;
@@ -247,7 +301,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner (id and name).</returns>
-        public SummonerBase GetSummonerName(Region region, int summonerId)
+        public SummonerBase GetSummonerName(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
@@ -261,7 +315,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner (id and name).</returns>
-        public async Task<SummonerBase> GetSummonerNameAsync(Region region, int summonerId)
+        public async Task<SummonerBase> GetSummonerNameAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
@@ -275,18 +329,28 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of ids and names of summoners.</returns>
-        public List<SummonerBase> GetSummonersNames(Region region, List<int> summonerIds)
+        public List<SummonerBase> GetSummonersNames(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(NamesUrl, Util.BuildIdsString(summonerIds)),
-                region);
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetSummoners, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
             var summoners = new List<SummonerBase>();
-            var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            foreach (var child in children)
+
+            foreach (var group in summonerIdGroups)
             {
-                summoners.Add(new SummonerBase(child.Key, child.Value, requester, region));
+                var json = requester.CreateGetRequest(
+                string.Format(SummonerRootUrl, region.ToString()) +
+                    string.Format(NamesUrl, Util.BuildIdsString(group)),
+                region);
+                var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                foreach (var child in children)
+                {
+                    summoners.Add(new SummonerBase(child.Key, child.Value, requester, region));
+                }
             }
+
             return summoners;
         }
 
@@ -296,18 +360,29 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for summoners.</param>
         /// <param name="summonerIds">List of ids of the summoners you're looking for.</param>
         /// <returns>A list of ids and names of summoners.</returns>
-        public async Task<List<SummonerBase>> GetSummonersNamesAsync(Region region, List<int> summonerIds)
+        public async Task<List<SummonerBase>> GetSummonersNamesAsync(Region region, List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(NamesUrl, Util.BuildIdsString(summonerIds)),
-                region);
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetSummoners, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
             var summoners = new List<SummonerBase>();
-            var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            foreach (var sb in children)
+
+            foreach (var group in summonerIdGroups)
             {
-                summoners.Add(new SummonerBase(sb.Key, sb.Value, requester, region));
+                var json = await requester.CreateGetRequestAsync(
+                string.Format(SummonerRootUrl, region.ToString()) +
+                    string.Format(NamesUrl, Util.BuildIdsString(group)),
+                region);
+
+                var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                foreach (var sb in children)
+                {
+                    summoners.Add(new SummonerBase(sb.Key, sb.Value, requester, region));
+                }
             }
+
             return summoners;
         }
 
@@ -372,13 +447,30 @@ namespace RiotSharp
         /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
         /// </returns>
-        public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<int> summonerIds)
+        public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetMasteryPagesById, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<MasteryPage>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
                 string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(MasteriesUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return ConstructMasteryDict(JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json));
+                    string.Format(MasteriesUrl, Util.BuildIdsString(group)),
+                    region);
+                var subDict = ConstructMasteryDict(JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+            
+            return dict;
         }
 
         /// <summary>
@@ -389,14 +481,31 @@ namespace RiotSharp
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
         /// </returns>
         public async Task<Dictionary<long, List<MasteryPage>>> GetMasteryPagesAsync(Region region,
-            List<int> summonerIds)
+            List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetMasteryPagesById, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<MasteryPage>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(MasteriesUrl, Util.BuildIdsString(summonerIds)),
+                    string.Format(MasteriesUrl, Util.BuildIdsString(group)),
                 region);
-            return ConstructMasteryDict(await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json)));
+                var subDict = ConstructMasteryDict(await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json)));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -406,13 +515,30 @@ namespace RiotSharp
         /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
         /// </returns>
-        public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<int> summonerIds)
+        public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(RunesUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return ConstructRuneDict(JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json));
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetRunePages, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<RunePage>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
+                    string.Format(SummonerRootUrl, region.ToString()) +
+                        string.Format(RunesUrl, Util.BuildIdsString(group)),
+                    region);
+                var subDict = ConstructRuneDict(JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -422,14 +548,31 @@ namespace RiotSharp
         /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries.</param>
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
         /// </returns>
-        public async Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<int> summonerIds)
+        public async Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(RunesUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return ConstructRuneDict(await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json)));
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetRunePages, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<RunePage>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(SummonerRootUrl, region.ToString()) +
+                        string.Format(RunesUrl, Util.BuildIdsString(group)),
+                    region);
+                var subDict = ConstructRuneDict(await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json)));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -438,13 +581,30 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        public Dictionary<long, List<League>> GetLeagues(Region region, List<int> summonerIds)
+        public Dictionary<long, List<League>> GetLeagues(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)) + LeagueEntryUrl,
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetLeagues, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<League>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
+                    string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(group)) + LeagueEntryUrl,
+                    region);
+                var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -453,14 +613,31 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        public async Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<int> summonerIds)
+        public async Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)) + LeagueEntryUrl,
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetLeagues, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<League>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(group)) + LeagueEntryUrl,
+                    region);
+                var subDict = await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -469,13 +646,30 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
-        public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<int> summonerIds)
+        public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetEntireLeagues, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<League>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
+                    string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(group)),
+                    region);
+                var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -485,14 +679,31 @@ namespace RiotSharp
         /// <param name="summonerIds">The summoner ids.</param>
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
         public async Task<Dictionary<long, List<League>>> GetEntireLeaguesAsync(Region region,
-            List<int> summonerIds)
+            List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(summonerIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetEntireLeagues, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<League>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(LeagueRootUrl, region.ToString()) +
+                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(group)),
+                    region);
+                var subDict = await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -624,13 +835,30 @@ namespace RiotSharp
         /// <param name="region">Region in which the teams are located.</param>
         /// <param name="summonerIds">List of summoner ids</param>
         /// <returns>A map of teams indexed by the summoner's id.</returns>
-        public Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<int> summonerIds)
+        public Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<long> summonerIds)
         {
-            var json = requester.CreateGetRequest(
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetTeams, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<TeamEndpoint.Team>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = requester.CreateGetRequest(
                 string.Format(TeamRootUrl, region.ToString()) +
-                    string.Format(TeamBySummonerURL, Util.BuildIdsString(summonerIds)),
+                    string.Format(TeamBySummonerURL, Util.BuildIdsString(group)),
                 region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json);
+                var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json);
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -640,14 +868,31 @@ namespace RiotSharp
         /// <param name="summonerIds">List of summoner ids.</param>
         /// <returns>A map of teams indexed by their id.</returns>
         public async Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsAsync(Region region,
-            List<int> summonerIds)
+            List<long> summonerIds)
         {
-            var json = await requester.CreateGetRequestAsync(
+            var summonerIdGroups = summonerIds
+                .Select((id, index) => new { Batch = index / MaximumGetTeams, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<long, List<TeamEndpoint.Team>>();
+
+            foreach (var group in summonerIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
                 string.Format(TeamRootUrl, region.ToString()) +
-                    string.Format(TeamBySummonerURL, Util.BuildIdsString(summonerIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json));
+                    string.Format(TeamBySummonerURL, Util.BuildIdsString(group)),
+                    region);
+                var subDict = await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -658,10 +903,27 @@ namespace RiotSharp
         /// <returns>A map of teams indexed by their id.</returns>
         public Dictionary<string, TeamEndpoint.Team> GetTeams(Region region, List<string> teamIds)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json);
+            var teamIdGroups = teamIds
+                .Select((id, index) => new { Batch = index / MaximumGetTeams, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<string, TeamEndpoint.Team>();
+
+            foreach (var group in teamIdGroups)
+            {
+                var json = requester.CreateGetRequest(
+                    string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(group)),
+                    region);
+                var subDict = JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json);
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
@@ -672,11 +934,28 @@ namespace RiotSharp
         /// <returns>A map of teams indexed by their id.</returns>
         public async Task<Dictionary<string, TeamEndpoint.Team>> GetTeamsAsync(Region region, List<string> teamIds)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(teamIds)),
-                region);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json));
+            var teamIdGroups = teamIds
+                .Select((id, index) => new { Batch = index / MaximumGetTeams, Id = id })
+                .GroupBy(x => x.Batch, x => x.Id)
+                .Select(g => g.ToList());
+
+            var dict = new Dictionary<string, TeamEndpoint.Team>();
+
+            foreach (var group in teamIdGroups)
+            {
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(group)),
+                    region);
+                var subDict = await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json));
+
+                foreach (var item in subDict)
+                {
+                    dict[item.Key] = item.Value;
+                }
+            }
+
+            return dict;
         }
 
         /// <summary>
