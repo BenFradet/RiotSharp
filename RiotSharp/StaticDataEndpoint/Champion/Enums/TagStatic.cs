@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿namespace RiotSharp.StaticDataEndpoint.Champion.Enums
 {
     /// <summary>
     /// Enum representing a champion's type.

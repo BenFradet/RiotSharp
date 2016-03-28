@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.StaticDataEndpoint.Champion.Enums;
+using RiotSharp.StaticDataEndpoint.Champion.Enums.Converters;
 using System.Collections.Generic;
 
 namespace RiotSharp.StaticDataEndpoint

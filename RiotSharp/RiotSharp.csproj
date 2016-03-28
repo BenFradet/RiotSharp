@@ -178,10 +178,10 @@
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionListStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\Converters\ParTypeStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\Converters\ParTypeStaticConverter.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\Converters\TagStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\Converters\TagStaticListConverter.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Enums\ParTypeStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Enums\Converters\ParTypeStaticConverter.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Enums\TagStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Champion\Enums\Converters\TagStaticListConverter.cs" />
     <Compile Include="StaticDataEndpoint\DataRequested.cs" />
     <Compile Include="StaticDataEndpoint\ImageStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\InfoStatic.cs" />

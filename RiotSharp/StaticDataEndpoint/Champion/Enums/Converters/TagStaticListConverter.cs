@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Champion.Enums.Converters
 {
     class TagStaticListConverter : JsonConverter
     {

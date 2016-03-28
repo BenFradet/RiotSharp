@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Champion.Enums.Converters
 {
     class ParTypeStaticConverter : JsonConverter
     {

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.StaticDataEndpoint.Champion.Enums.Converters;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Champion.Enums
 {
     /// <summary>
     /// Enum representing a champion's resource.
