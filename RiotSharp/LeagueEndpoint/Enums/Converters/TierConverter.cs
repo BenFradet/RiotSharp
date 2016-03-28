@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.LeagueEndpoint
+namespace RiotSharp.LeagueEndpoint.Enums.Converters
 {
     class TierConverter : JsonConverter
     {

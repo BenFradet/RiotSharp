@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.LeagueEndpoint.Enums.Converters;
 
-namespace RiotSharp.LeagueEndpoint
+namespace RiotSharp.LeagueEndpoint.Enums
 {
     /// <summary>
     /// Tier of the league (League API).

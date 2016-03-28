@@ -146,8 +146,8 @@
     <Compile Include="Misc\PlatformConverter.cs" />
     <Compile Include="Misc\Queue.cs" />
     <Compile Include="Misc\QueueConverter.cs" />
-    <Compile Include="LeagueEndpoint\Converters\Tier.cs" />
-    <Compile Include="LeagueEndpoint\Converters\TierConverter.cs" />
+    <Compile Include="LeagueEndpoint\Enums\Tier.cs" />
+    <Compile Include="LeagueEndpoint\Enums\Converters\TierConverter.cs" />
     <Compile Include="Misc\DateTimeConverterFromLong.cs" />
     <Compile Include="Misc\RegionConverter.cs" />
     <Compile Include="Misc\Slug.cs" />
@@ -212,7 +212,7 @@
     <Compile Include="StatsEndpoint\AggregatedStat.cs" />
     <Compile Include="StatsEndpoint\ChampionStat.cs" />
     <Compile Include="StatsEndpoint\ChampionStats.cs" />
-    <Compile Include="LeagueEndpoint\Converters\CharArrayConverter.cs" />
+    <Compile Include="LeagueEndpoint\Enums\Converters\CharArrayConverter.cs" />
     <Compile Include="StatsEndpoint\PlayerStatsSummary.cs" />
     <Compile Include="StatsEndpoint\PlayerStatsSummaryList.cs" />
     <Compile Include="StatsEndpoint\Converters\PlayerStatsSummaryType.cs" />
