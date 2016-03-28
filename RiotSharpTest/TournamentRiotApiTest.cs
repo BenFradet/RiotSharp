@@ -5,6 +5,7 @@ using RiotSharp.TournamentEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharpTest
 {

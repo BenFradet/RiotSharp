@@ -3,9 +3,9 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.TournamentEndpoint
+namespace RiotSharp.TournamentEndpoint.Enums.Converters
 {
-    internal class TournamentSpectatorTypeConverter : JsonConverter
+    internal class TournamentMapTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,12 +20,14 @@ namespace RiotSharp.TournamentEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "NONE":
-                    return TournamentSpectatorType.None;
-                case "LOBBYONLY":
-                    return TournamentSpectatorType.LobbyOnly;
-                case "ALL":
-                    return TournamentSpectatorType.All;
+                case "SUMMONERS_RIFT":
+                    return TournamentMapType.SummonersRift;
+                case "TWISTED_TREELINE":
+                    return TournamentMapType.TwistedTreeline;
+                case "CRYSTAL_SCAR":
+                    return TournamentMapType.CrystalScar;
+                case "HOWLING_ABYSS":
+                    return TournamentMapType.HowlingAbyss;
                 default:
                     return null;
             }
@@ -33,18 +35,21 @@ namespace RiotSharp.TournamentEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var spectatorType = (TournamentSpectatorType) value;
+            var map = (TournamentMapType) value;
             string result;
-            switch (spectatorType)
+            switch (map)
             {
-                case TournamentSpectatorType.None:
-                    result = "NONE";
+                case TournamentMapType.SummonersRift:
+                    result = "SUMMONERS_RIFT";
                     break;
-                case TournamentSpectatorType.LobbyOnly:
-                    result = "LOBBYONLY";
+                case TournamentMapType.TwistedTreeline:
+                    result = "TWISTED_TREELINE";
                     break;
-                case TournamentSpectatorType.All:
-                    result = "ALL";
+                case TournamentMapType.CrystalScar:
+                    result = "CRYSTAL_SCAR";
+                    break;
+                case TournamentMapType.HowlingAbyss:
+                    result = "HOWLING_ABYSS";
                     break;
                 default:
                     result = string.Empty;

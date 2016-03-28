@@ -246,17 +246,17 @@
     <Compile Include="TeamEndpoint\Team.cs" />
     <Compile Include="TeamEndpoint\TeamMemberInfo.cs" />
     <Compile Include="TeamEndpoint\TeamStatDetail.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentEventType.cs" />
+    <Compile Include="TournamentEndpoint\Enums\TournamentEventType.cs" />
     <Compile Include="TournamentEndpoint\Tournament.cs" />
     <Compile Include="TournamentEndpoint\TournamentCodeDetail.cs" />
     <Compile Include="TournamentEndpoint\TournamentLobbyEvent.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentMapType.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentMapTypeConverter.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentPickType.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentPickTypeConverter.cs" />
+    <Compile Include="TournamentEndpoint\Enums\TournamentMapType.cs" />
+    <Compile Include="TournamentEndpoint\Enums\Converters\TournamentMapTypeConverter.cs" />
+    <Compile Include="TournamentEndpoint\Enums\TournamentPickType.cs" />
+    <Compile Include="TournamentEndpoint\Enums\Converters\TournamentPickTypeConverter.cs" />
     <Compile Include="TournamentEndpoint\TournamentProvider.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentSpectatorType.cs" />
-    <Compile Include="TournamentEndpoint\Converters\TournamentSpectatorTypeConverter.cs" />
+    <Compile Include="TournamentEndpoint\Enums\TournamentSpectatorType.cs" />
+    <Compile Include="TournamentEndpoint\Enums\Converters\TournamentSpectatorTypeConverter.cs" />
     <Compile Include="TournamentRiotApi.cs" />
   </ItemGroup>
   <ItemGroup>

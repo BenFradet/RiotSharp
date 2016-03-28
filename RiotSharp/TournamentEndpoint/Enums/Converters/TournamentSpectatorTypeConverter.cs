@@ -3,9 +3,9 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.TournamentEndpoint
+namespace RiotSharp.TournamentEndpoint.Enums.Converters
 {
-    internal class TournamentMapTypeConverter : JsonConverter
+    internal class TournamentSpectatorTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,14 +20,12 @@ namespace RiotSharp.TournamentEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "SUMMONERS_RIFT":
-                    return TournamentMapType.SummonersRift;
-                case "TWISTED_TREELINE":
-                    return TournamentMapType.TwistedTreeline;
-                case "CRYSTAL_SCAR":
-                    return TournamentMapType.CrystalScar;
-                case "HOWLING_ABYSS":
-                    return TournamentMapType.HowlingAbyss;
+                case "NONE":
+                    return TournamentSpectatorType.None;
+                case "LOBBYONLY":
+                    return TournamentSpectatorType.LobbyOnly;
+                case "ALL":
+                    return TournamentSpectatorType.All;
                 default:
                     return null;
             }
@@ -35,21 +33,18 @@ namespace RiotSharp.TournamentEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var map = (TournamentMapType) value;
+            var spectatorType = (TournamentSpectatorType) value;
             string result;
-            switch (map)
+            switch (spectatorType)
             {
-                case TournamentMapType.SummonersRift:
-                    result = "SUMMONERS_RIFT";
+                case TournamentSpectatorType.None:
+                    result = "NONE";
                     break;
-                case TournamentMapType.TwistedTreeline:
-                    result = "TWISTED_TREELINE";
+                case TournamentSpectatorType.LobbyOnly:
+                    result = "LOBBYONLY";
                     break;
-                case TournamentMapType.CrystalScar:
-                    result = "CRYSTAL_SCAR";
-                    break;
-                case TournamentMapType.HowlingAbyss:
-                    result = "HOWLING_ABYSS";
+                case TournamentSpectatorType.All:
+                    result = "ALL";
                     break;
                 default:
                     result = string.Empty;

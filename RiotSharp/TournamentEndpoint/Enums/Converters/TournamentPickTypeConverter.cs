@@ -3,7 +3,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.TournamentEndpoint
+namespace RiotSharp.TournamentEndpoint.Enums.Converters
 {
     internal class TournamentPickTypeConverter : JsonConverter
     {

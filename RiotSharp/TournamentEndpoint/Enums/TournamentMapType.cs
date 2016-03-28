@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.TournamentEndpoint.Enums.Converters;
 
-namespace RiotSharp.TournamentEndpoint
+namespace RiotSharp.TournamentEndpoint.Enums
 {
     /// <summary>
     ///     Mode of the game (Tournament API).

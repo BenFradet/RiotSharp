@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace RiotSharp.TournamentEndpoint
+namespace RiotSharp.TournamentEndpoint.Enums
 {
     /// <summary>
     ///     The type of event that was triggered in the lobby (Tournament API).
