@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.CurrentGameEndpoint.Converters
+namespace RiotSharp.CurrentGameEndpoint.Enums.Converters
 {
     class GameQueueTypeConverter : JsonConverter
     {

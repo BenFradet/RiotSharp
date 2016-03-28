@@ -67,8 +67,8 @@
     <Compile Include="ChampionEndpoint\Champion.cs" />
     <Compile Include="ChampionEndpoint\ChampionList.cs" />
     <Compile Include="CurrentGameEndpoint\BannedChampion.cs" />
-    <Compile Include="CurrentGameEndpoint\Converters\GameQueueType.cs" />
-    <Compile Include="CurrentGameEndpoint\Converters\GameQueueTypeConverter.cs" />
+    <Compile Include="CurrentGameEndpoint\Enums\GameQueueType.cs" />
+    <Compile Include="CurrentGameEndpoint\Enums\Converters\GameQueueTypeConverter.cs" />
     <Compile Include="CurrentGameEndpoint\CurrentGame.cs" />
     <Compile Include="CurrentGameEndpoint\Mastery.cs" />
     <Compile Include="CurrentGameEndpoint\Observer.cs" />
