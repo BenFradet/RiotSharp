@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.GameEndpoint.Enums.Converters;
 
-namespace RiotSharp.GameEndpoint
+namespace RiotSharp.GameEndpoint.Enums
 {
     /// <summary>
     /// Game subtype of the game (Game API).

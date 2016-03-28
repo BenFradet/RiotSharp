@@ -100,8 +100,8 @@
     <Compile Include="Misc\MapType.cs" />
     <Compile Include="Misc\MapTypeConverter.cs" />
     <Compile Include="GameEndpoint\RawStat.cs" />
-    <Compile Include="GameEndpoint\Converters\GameSubType.cs" />
-    <Compile Include="GameEndpoint\Converters\GameSubTypeConverter.cs" />
+    <Compile Include="GameEndpoint\Enums\GameSubType.cs" />
+    <Compile Include="GameEndpoint\Enums\Converters\GameSubTypeConverter.cs" />
     <Compile Include="GameEndpoint\RecentGames.cs" />
     <Compile Include="LeagueEndpoint\League.cs" />
     <Compile Include="LeagueEndpoint\LeagueEntry.cs" />
