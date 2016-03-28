@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.StatsEndpoint.Enums;
 using System;
 
 namespace RiotSharp.StatsEndpoint

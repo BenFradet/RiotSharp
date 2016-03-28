@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.StatsEndpoint.Enums.Converters;
 
-namespace RiotSharp.StatsEndpoint
+namespace RiotSharp.StatsEndpoint.Enums
 {
     /// <summary>
     /// Type of player stats (Stats API).

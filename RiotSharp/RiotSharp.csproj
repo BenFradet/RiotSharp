@@ -215,8 +215,8 @@
     <Compile Include="LeagueEndpoint\Enums\Converters\CharArrayConverter.cs" />
     <Compile Include="StatsEndpoint\PlayerStatsSummary.cs" />
     <Compile Include="StatsEndpoint\PlayerStatsSummaryList.cs" />
-    <Compile Include="StatsEndpoint\Converters\PlayerStatsSummaryType.cs" />
-    <Compile Include="StatsEndpoint\Converters\PlayerStatsSummaryTypeConverter.cs" />
+    <Compile Include="StatsEndpoint\Enums\PlayerStatsSummaryType.cs" />
+    <Compile Include="StatsEndpoint\Enums\Converters\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="GameEndpoint\Player.cs" />
     <Compile Include="StatsEndpoint\RankedStats.cs" />
     <Compile Include="StatusEndpoint\Incident.cs" />

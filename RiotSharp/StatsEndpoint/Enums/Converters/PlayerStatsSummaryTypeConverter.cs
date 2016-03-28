@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.StatsEndpoint
+namespace RiotSharp.StatsEndpoint.Enums.Converters
 {
     class PlayerStatsSummaryTypeConverter : JsonConverter
     {
