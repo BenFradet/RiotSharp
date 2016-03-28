@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
-    class RoleConverter : JsonConverter
+    class CapturedPointConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,16 +20,16 @@ namespace RiotSharp.MatchEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "DUO":
-                    return Role.Duo;
-                case "NONE":
-                    return Role.None;
-                case "SOLO":
-                    return Role.Solo;
-                case "DUO_CARRY":
-                    return Role.DuoCarry;
-                case "DUO_SUPPORT":
-                    return Role.DuoSupport;
+                case "POINT_A":
+                    return CapturedPoint.PointA;
+                case "POINT_B":
+                    return CapturedPoint.PointB;
+                case "POINT_C":
+                    return CapturedPoint.PointC;
+                case "POINT_D":
+                    return CapturedPoint.PointD;
+                case "POINT_E":
+                    return CapturedPoint.PointE;
                 default:
                     return null;
             }
@@ -37,7 +37,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((Role)value).ToCustomString());
+            serializer.Serialize(writer, ((CapturedPoint)value).ToCustomString());
         }
     }
 }

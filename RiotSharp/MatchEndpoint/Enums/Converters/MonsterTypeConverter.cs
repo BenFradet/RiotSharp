@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
-    class LaneTypeConverter : JsonConverter
+    class MonsterTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,12 +20,16 @@ namespace RiotSharp.MatchEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "BOT_LANE":
-                    return LaneType.BotLane;
-                case "MID_LANE":
-                    return LaneType.MidLane;
-                case "TOP_LANE":
-                    return LaneType.TopLane;
+                case "BARON_NASHOR":
+                    return MonsterType.BaronNashor;
+                case "BLUE_GOLEM":
+                    return MonsterType.BlueGolem;
+                case "DRAGON":
+                    return MonsterType.Dragon;
+                case "RED_LIZARD":
+                    return MonsterType.RedLizard;
+                case "VILEMAW":
+                    return MonsterType.Vilemaw;
                 default:
                     return null;
             }
@@ -33,7 +37,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((LaneType)value).ToCustomString());
+            serializer.Serialize(writer, ((MonsterType)value).ToCustomString());
         }
     }
 }

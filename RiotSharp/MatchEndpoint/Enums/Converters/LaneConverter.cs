@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
-    class TowerTypeConverter : JsonConverter
+    class LaneConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,16 +20,18 @@ namespace RiotSharp.MatchEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "BASE_TURRET":
-                    return TowerType.BaseTurret;
-                case "INNER_TURRET":
-                    return TowerType.InnerTurret;
-                case "NEXUS_TURRET":
-                    return TowerType.NexusTurret;
-                case "OUTER_TURRET":
-                    return TowerType.OuterTurret;
-                case "UNDEFINED_TURRET":
-                    return TowerType.UndefinedTurret;
+                case "MID":
+                    return Lane.Mid;
+                case "MIDDLE":
+                    return Lane.Middle;
+                case "TOP":
+                    return Lane.Top;
+                case "JUNGLE":
+                    return Lane.Jungle;
+                case "BOT":
+                    return Lane.Bot;
+                case "BOTTOM":
+                    return Lane.Bottom;
                 default:
                     return null;
             }
@@ -37,7 +39,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((TowerType)value).ToCustomString());
+            serializer.Serialize(writer, ((Lane)value).ToCustomString());
         }
     }
 }

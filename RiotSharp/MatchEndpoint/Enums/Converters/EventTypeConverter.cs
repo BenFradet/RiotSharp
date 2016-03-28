@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
     class EventTypeConverter : JsonConverter
     {

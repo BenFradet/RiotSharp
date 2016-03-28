@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
-    class BuildingTypeConverter : JsonConverter
+    class AscendedTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,10 +20,12 @@ namespace RiotSharp.MatchEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "INHIBITOR_BUILDING":
-                    return BuildingType.InhibitorBuilding;
-                case "TOWER_BUILDING":
-                    return BuildingType.TowerBuilding;
+                case "CHAMPION_ASCENDED":
+                    return AscendedType.ChampionAscended;
+                case "CLEAR_ASCENDED":
+                    return AscendedType.ClearAscended;
+                case "MINION_ASCENDED":
+                    return AscendedType.MinionAscended;
                 default:
                     return null;
             }
@@ -31,7 +33,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((BuildingType)value).ToCustomString());
+            serializer.Serialize(writer, ((AscendedType)value).ToCustomString());
         }
     }
 }

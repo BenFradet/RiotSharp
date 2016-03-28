@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.MatchEndpoint.Enums;
 using System;
 using System.Collections.Generic;
 

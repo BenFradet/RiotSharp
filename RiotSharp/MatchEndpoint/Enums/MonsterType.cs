@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.MatchEndpoint.Enums.Converters;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums
 {
     /// <summary>
     /// Type of monster (Match API).

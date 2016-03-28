@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
-    class CapturedPointConverter : JsonConverter
+    class WardTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,16 +20,20 @@ namespace RiotSharp.MatchEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "POINT_A":
-                    return CapturedPoint.PointA;
-                case "POINT_B":
-                    return CapturedPoint.PointB;
-                case "POINT_C":
-                    return CapturedPoint.PointC;
-                case "POINT_D":
-                    return CapturedPoint.PointD;
-                case "POINT_E":
-                    return CapturedPoint.PointE;
+                case "SIGHT_WARD":
+                    return WardType.SightWard;
+                case "TEEMO_MUSHROOM":
+                    return WardType.TeemoMushroom;
+                case "UNDEFINED":
+                    return WardType.Undefined;
+                case "VISION_WARD":
+                    return WardType.VisionWard;
+                case "YELLOW_TRINKET":
+                    return WardType.YellowTrinket;
+                case "YELLOW_TRINKET_UPGRADE":
+                    return WardType.YellowTrinketUpgrade;
+                case "BLUE_TRINKET":
+                    return WardType.BlueTrinket;
                 default:
                     return null;
             }
@@ -37,7 +41,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((CapturedPoint)value).ToCustomString());
+            serializer.Serialize(writer, ((WardType)value).ToCustomString());
         }
     }
 }

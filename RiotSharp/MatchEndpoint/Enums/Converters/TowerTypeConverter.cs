@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
-    class MonsterTypeConverter : JsonConverter
+    class TowerTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -20,16 +20,16 @@ namespace RiotSharp.MatchEndpoint
             var str = token.Value<string>();
             switch (str)
             {
-                case "BARON_NASHOR":
-                    return MonsterType.BaronNashor;
-                case "BLUE_GOLEM":
-                    return MonsterType.BlueGolem;
-                case "DRAGON":
-                    return MonsterType.Dragon;
-                case "RED_LIZARD":
-                    return MonsterType.RedLizard;
-                case "VILEMAW":
-                    return MonsterType.Vilemaw;
+                case "BASE_TURRET":
+                    return TowerType.BaseTurret;
+                case "INNER_TURRET":
+                    return TowerType.InnerTurret;
+                case "NEXUS_TURRET":
+                    return TowerType.NexusTurret;
+                case "OUTER_TURRET":
+                    return TowerType.OuterTurret;
+                case "UNDEFINED_TURRET":
+                    return TowerType.UndefinedTurret;
                 default:
                     return null;
             }
@@ -37,7 +37,7 @@ namespace RiotSharp.MatchEndpoint
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((MonsterType)value).ToCustomString());
+            serializer.Serialize(writer, ((TowerType)value).ToCustomString());
         }
     }
 }
