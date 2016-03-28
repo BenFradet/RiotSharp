@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using RiotSharp.CurrentGameEndpoint.Converters;
+using RiotSharp.CurrentGameEndpoint.Enums;
 using System;
 using System.Collections.Generic;
 

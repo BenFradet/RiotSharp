@@ -1,4 +1,4 @@
-﻿using RiotSharp.MatchEndpoint;
+﻿using RiotSharp.MatchEndpoint.Enums;
 using System;
 using System.Collections.Generic;
 

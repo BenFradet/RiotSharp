@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.LeagueEndpoint.Enums.Converters;
 
 namespace RiotSharp.LeagueEndpoint
 {

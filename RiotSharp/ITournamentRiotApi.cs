@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.TournamentEndpoint;
+using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharp
 {

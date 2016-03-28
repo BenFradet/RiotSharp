@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharp.TournamentEndpoint
 {

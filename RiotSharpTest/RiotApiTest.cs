@@ -22,7 +22,7 @@ namespace RiotSharpTest
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Queue queue = Queue.RankedSolo5x5;
         private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
-        private static RiotSharp.MatchEndpoint.Season season = RiotSharp.MatchEndpoint.Season.Season2015;
+        private static RiotSharp.MatchEndpoint.Enums.Season season = RiotSharp.MatchEndpoint.Enums.Season.Season2015;
         private static DateTime beginTime = new DateTime(2015, 01, 01);
         private static DateTime endTime { get { return DateTime.Now; } }
 
@@ -501,7 +501,7 @@ namespace RiotSharpTest
         public void GetMatchList_Seasons_Test()
         {
             var matches = api.GetMatchList(region, id, null, null,
-                new List<RiotSharp.MatchEndpoint.Season> { season }).Matches;
+                new List<RiotSharp.MatchEndpoint.Enums.Season> { season }).Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -582,7 +582,7 @@ namespace RiotSharpTest
         public void GetMatchListAsync_Seasons_Test()
         {
             var matches = api.GetMatchListAsync(region, id, null, null,
-                new List<RiotSharp.MatchEndpoint.Season> { season }).Result.Matches;
+                new List<RiotSharp.MatchEndpoint.Enums.Season> { season }).Result.Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);

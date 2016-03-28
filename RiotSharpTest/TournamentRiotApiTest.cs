@@ -1,10 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
-using RiotSharp.MatchEndpoint;
+using RiotSharp.MatchEndpoint.Enums;
 using RiotSharp.TournamentEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharpTest
 {
