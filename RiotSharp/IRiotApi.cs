@@ -8,6 +8,7 @@ using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RiotSharp.ChampionMasteryEndpoint;
 
 namespace RiotSharp
 {
@@ -68,6 +69,8 @@ namespace RiotSharp
         Task<CurrentGame> GetCurrentGameAsync(Platform platform, long summonerId);
         FeaturedGames GetFeaturedGames(Region region);
         Task<FeaturedGames> GetFeaturedGamesAsync(Region region);
+        ChampionMastery GetChampionMastery(Platform platform, long summonerId, long championId);
+        Task<ChampionMastery> GetChampionMasteryAsync(Platform platform, long summonerId, long championId);
     }
     #pragma warning restore 1591
 }

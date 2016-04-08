@@ -738,5 +738,50 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(games.Result);
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetChampionMastery_Test()
+        {
+            const long lucianId = 236;
+            var championMastery = api.GetChampionMastery(Platform.NA1, id, lucianId);
+            
+            Assert.IsNotNull(championMastery);
+            Assert.IsNotNull(championMastery.PlayerId);
+            Assert.IsNotNull(championMastery.ChampionId);
+            Assert.IsNotNull(championMastery.ChampionLevel);
+            Assert.IsNotNull(championMastery.ChampionPoints);
+            Assert.IsNotNull(championMastery.LastPlayTime);
+            Assert.IsNotNull(championMastery.ChampionPointsSinceLastLevel);
+            Assert.IsNotNull(championMastery.ChampionPointsUntilNextLevel);
+            Assert.IsNotNull(championMastery.ChestGranted);
+
+            Assert.AreEqual(id, championMastery.PlayerId);
+            Assert.AreEqual(lucianId, championMastery.ChampionId);
+            Assert.AreEqual(5, championMastery.ChampionLevel);
+        }
+
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetChampionMasteryAsync_Test()
+        {
+            const long lucianId = 236;
+            var championMastery = api.GetChampionMasteryAsync(Platform.NA1, id, lucianId).Result;
+
+            Assert.IsNotNull(championMastery);
+            Assert.IsNotNull(championMastery.PlayerId);
+            Assert.IsNotNull(championMastery.ChampionId);
+            Assert.IsNotNull(championMastery.ChampionLevel);
+            Assert.IsNotNull(championMastery.ChampionPoints);
+            Assert.IsNotNull(championMastery.LastPlayTime);
+            Assert.IsNotNull(championMastery.ChampionPointsSinceLastLevel);
+            Assert.IsNotNull(championMastery.ChampionPointsUntilNextLevel);
+            Assert.IsNotNull(championMastery.ChestGranted);
+
+            Assert.AreEqual(id, championMastery.PlayerId);
+            Assert.AreEqual(lucianId, championMastery.ChampionId);
+            Assert.AreEqual(5, championMastery.ChampionLevel);
+        }
     }
 }

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.ChampionMasteryEndpoint;
 
 namespace RiotSharp
 {
@@ -53,6 +54,9 @@ namespace RiotSharp
         private const string FeaturedGamesRootUrl = "/observer-mode/rest/featured";
 
         private const string IdUrl = "/{0}";
+
+        private const string ChampionMasteryRootUrl = "/championmastery/location/{0}/player/{1}";
+        private const string ChampionMasteryByChampionId = "/champion/{0}";
 
         private RateLimitedRequester requester;
 
@@ -1045,6 +1049,39 @@ namespace RiotSharp
                 FeaturedGamesRootUrl,
                 region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FeaturedGames>(json)));
+        }
+
+        /// <summary>
+        /// Gets a champion mastery by summoner ID synchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <param name="championId">ID of the champion for which to retrieve mastery.</param>
+        /// <returns>Champion mastery for summoner ID and champion ID.</returns>
+        public ChampionMastery GetChampionMastery(Platform platform, long summonerId, long championId)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+            var additionalUrl = string.Format(ChampionMasteryByChampionId, championId);
+
+            var json = requester.CreateGetRequest(rootUrl + additionalUrl, platform.ConvertToRegion());
+            return JsonConvert.DeserializeObject<ChampionMastery>(json);
+        }
+
+        /// <summary>
+        /// Gets a champion mastery by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <param name="championId">ID of the champion for which to retrieve mastery.</param>
+        /// <returns>Champion mastery for summoner ID and champion ID.</returns>
+        public async Task<ChampionMastery> GetChampionMasteryAsync(Platform platform,
+            long summonerId, long championId)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+            var additionalUrl = string.Format(ChampionMasteryByChampionId, championId);
+
+            var json = await requester.CreateGetRequestAsync(rootUrl + additionalUrl, platform.ConvertToRegion());
+            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ChampionMastery>(json)));
         }
     }
 }
