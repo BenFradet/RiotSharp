@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="ChampionEndpoint\Champion.cs" />
     <Compile Include="ChampionEndpoint\ChampionList.cs" />
+    <Compile Include="ChampionMasteryEndpoint\ChampionMastery.cs" />
     <Compile Include="CurrentGameEndpoint\BannedChampion.cs" />
     <Compile Include="CurrentGameEndpoint\Enums\GameQueueType.cs" />
     <Compile Include="CurrentGameEndpoint\Enums\Converters\GameQueueTypeConverter.cs" />
