@@ -809,5 +809,23 @@ namespace RiotSharpTest
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
                 championMastery.ChampionId == lucianId));
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTotalChampionMasteryScore_Test()
+        {
+            var totalChampionMasteryScore = api.GetTotalChampionMasteryScore(Platform.NA1, id);
+
+            Assert.IsTrue(totalChampionMasteryScore > -1);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTotalChampionMasteryScoreAsync_Test()
+        {
+            var totalChampionMasteryScore = api.GetTotalChampionMasteryScoreAsync(Platform.NA1, id).Result;
+
+            Assert.IsTrue(totalChampionMasteryScore > -1);
+        }
     }
 }

@@ -58,6 +58,7 @@ namespace RiotSharp
         private const string ChampionMasteryRootUrl = "/championmastery/location/{0}/player/{1}";
         private const string ChampionMasteryByChampionId = "/champion/{0}";
         private const string ChampionMasteryAllChampions = "/champions";
+        private const string ChampionMasteryTotalScore = "/score";
 
         private RateLimitedRequester requester;
 
@@ -1112,7 +1113,39 @@ namespace RiotSharp
 
             var json = await requester.CreateGetRequestAsync(rootUrl + ChampionMasteryAllChampions,
                 platform.ConvertToRegion());
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json))); ;
+            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
+        }
+
+        /// <summary>
+        /// Get a player's total champion mastery score,
+        /// which is sum of individual champion mastery levels, by summoner ID synchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <returns>Total champion mastery score for summoner ID.</returns>
+        public int GetTotalChampionMasteryScore(Platform platform, long summonerId)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+
+            var json = requester.CreateGetRequest(rootUrl + ChampionMasteryTotalScore,
+                platform.ConvertToRegion());
+            return JsonConvert.DeserializeObject<int>(json); ;
+        }
+
+        /// <summary>
+        /// Get a player's total champion mastery score,
+        /// which is sum of individual champion mastery levels, by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <returns>Total champion mastery score for summoner ID.</returns>
+        public async Task<int> GetTotalChampionMasteryScoreAsync(Platform platform, long summonerId)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+
+            var json = await requester.CreateGetRequestAsync(rootUrl + ChampionMasteryTotalScore,
+                platform.ConvertToRegion());
+            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json))); ;
         }
     }
 }
