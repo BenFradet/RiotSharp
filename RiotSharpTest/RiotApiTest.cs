@@ -827,5 +827,35 @@ namespace RiotSharpTest
 
             Assert.IsTrue(totalChampionMasteryScore > -1);
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTopChampionsMastery_Test()
+        {
+            var threeTopChampions = api.GetTopChampionsMastery(Platform.NA1, id);
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(threeTopChampions.Count == 3);
+
+            var sixTopChampions = api.GetTopChampionsMastery(Platform.NA1, id, 6);
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(sixTopChampions.Count == 6);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTopChampionsMasteryAsync_Test()
+        {
+            var threeTopChampions = api.GetTopChampionsMasteryAsync(Platform.NA1, id).Result;
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(threeTopChampions.Count == 3);
+
+            var sixTopChampions = api.GetTopChampionsMasteryAsync(Platform.NA1, id, 6).Result;
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(sixTopChampions.Count == 6);
+        }
     }
 }

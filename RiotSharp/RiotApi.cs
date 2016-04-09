@@ -59,6 +59,7 @@ namespace RiotSharp
         private const string ChampionMasteryByChampionId = "/champion/{0}";
         private const string ChampionMasteryAllChampions = "/champions";
         private const string ChampionMasteryTotalScore = "/score";
+        private const string ChampionMasteryTopChampions = "/topchampions";
 
         private RateLimitedRequester requester;
 
@@ -1098,7 +1099,7 @@ namespace RiotSharp
 
             var json = requester.CreateGetRequest(rootUrl + ChampionMasteryAllChampions,
                 platform.ConvertToRegion());
-            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json); ;
+            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
         }
 
         /// <summary>
@@ -1129,7 +1130,7 @@ namespace RiotSharp
 
             var json = requester.CreateGetRequest(rootUrl + ChampionMasteryTotalScore,
                 platform.ConvertToRegion());
-            return JsonConvert.DeserializeObject<int>(json); ;
+            return JsonConvert.DeserializeObject<int>(json);
         }
 
         /// <summary>
@@ -1145,7 +1146,43 @@ namespace RiotSharp
 
             var json = await requester.CreateGetRequestAsync(rootUrl + ChampionMasteryTotalScore,
                 platform.ConvertToRegion());
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json))); ;
+            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json)));
+        }
+
+        /// <summary>
+        /// Gets specified number of top champion mastery entries,
+        /// sorted by number of champion points descending, by summoner ID synchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
+        /// <returns>Top champions for summoner ID.</returns>
+        public List<ChampionMastery> GetTopChampionsMastery(Platform platform, long summonerId,
+            int count = 3)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+
+            var json = requester.CreateGetRequest(rootUrl + ChampionMasteryTopChampions,
+                platform.ConvertToRegion(), new List<string> { string.Format("count={0}", count) });
+            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
+        }
+
+        /// <summary>
+        /// Gets specified number of top champion mastery entries,
+        /// sorted by number of champion points descending, by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
+        /// <returns>Top champions for summoner ID.</returns>
+        public async Task<List<ChampionMastery>> GetTopChampionsMasteryAsync(Platform platform,
+            long summonerId, int count = 3)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+
+            var json = await requester.CreateGetRequestAsync(rootUrl + ChampionMasteryTopChampions,
+                platform.ConvertToRegion(), new List<string> { string.Format("count={0}", count) });
+            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
         }
     }
 }
