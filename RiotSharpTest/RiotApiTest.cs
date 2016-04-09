@@ -783,5 +783,31 @@ namespace RiotSharpTest
             Assert.AreEqual(lucianId, championMastery.ChampionId);
             Assert.AreEqual(5, championMastery.ChampionLevel);
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetAllChampionsMastery_Test()
+        {
+            var allChampionsMastery = api.GetAllChampionsMastery(Platform.NA1, id);
+
+            Assert.IsNotNull(allChampionsMastery);
+
+            const long lucianId = 236;
+            Assert.IsNotNull(allChampionsMastery.Find(championMastery => 
+                championMastery.ChampionId == lucianId));
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetAllChampionsMasteryAsync_Test()
+        {
+            var allChampionsMastery = api.GetAllChampionsMasteryAsync(Platform.NA1, id).Result;
+
+            Assert.IsNotNull(allChampionsMastery);
+
+            const long lucianId = 236;
+            Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
+                championMastery.ChampionId == lucianId));
+        }
     }
 }

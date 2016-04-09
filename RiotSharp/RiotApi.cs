@@ -57,6 +57,7 @@ namespace RiotSharp
 
         private const string ChampionMasteryRootUrl = "/championmastery/location/{0}/player/{1}";
         private const string ChampionMasteryByChampionId = "/champion/{0}";
+        private const string ChampionMasteryAllChampions = "/champions";
 
         private RateLimitedRequester requester;
 
@@ -1082,6 +1083,36 @@ namespace RiotSharp
 
             var json = await requester.CreateGetRequestAsync(rootUrl + additionalUrl, platform.ConvertToRegion());
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ChampionMastery>(json)));
+        }
+
+        /// <summary>
+        /// Gets all champions mastery by summoner ID synchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <returns>All champions mastery for summoner ID.</returns>
+        public List<ChampionMastery> GetAllChampionsMastery(Platform platform, long summonerId)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+
+            var json = requester.CreateGetRequest(rootUrl + ChampionMasteryAllChampions,
+                platform.ConvertToRegion());
+            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json); ;
+        }
+
+        /// <summary>
+        /// Gets all champions mastery by summoner ID asynchronously.
+        /// </summary>
+        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
+        /// <returns>All champions mastery for summoner ID.</returns>
+        public async Task<List<ChampionMastery>> GetAllChampionsMasteryAsync(Platform platform, long summonerId)
+        {
+            var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
+
+            var json = await requester.CreateGetRequestAsync(rootUrl + ChampionMasteryAllChampions,
+                platform.ConvertToRegion());
+            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json))); ;
         }
     }
 }
