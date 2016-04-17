@@ -7,11 +7,11 @@ using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
+using RiotSharp.ChampionMasteryEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RiotSharp.ChampionMasteryEndpoint;
 
 namespace RiotSharp
 {
