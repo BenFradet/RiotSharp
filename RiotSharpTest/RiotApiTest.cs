@@ -763,7 +763,7 @@ namespace RiotSharpTest
 
 
         [TestMethod]
-        [TestCategory("RiotApi")]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetChampionMasteryAsync_Test()
         {
             const long lucianId = 236;
@@ -798,7 +798,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetAllChampionsMasteryEntriesAsync_Test()
         {
             var allChampionsMastery = api.GetAllChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
@@ -820,7 +820,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTotalChampionMasteryScoreAsync_Test()
         {
             var totalChampionMasteryScore = api.GetTotalChampionMasteryScoreAsync(Platform.NA1, id).Result;
@@ -844,7 +844,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
-        [TestCategory("RiotApi")]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTopChampionsMasteryEntriesAsync_Test()
         {
             var threeTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
