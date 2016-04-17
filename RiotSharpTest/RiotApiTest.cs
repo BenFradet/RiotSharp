@@ -738,5 +738,108 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(games.Result);
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetChampionMastery_Test()
+        {
+            const long lucianId = 236;
+            var championMastery = api.GetChampionMastery(Platform.NA1, id, lucianId);
+            
+            Assert.IsNotNull(championMastery);
+           
+            Assert.AreEqual(id, championMastery.PlayerId);
+            Assert.AreEqual(lucianId, championMastery.ChampionId);
+            Assert.AreEqual(5, championMastery.ChampionLevel);
+        }
+
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChampionMasteryAsync_Test()
+        {
+            const long lucianId = 236;
+            var championMastery = api.GetChampionMasteryAsync(Platform.NA1, id, lucianId).Result;
+
+            Assert.IsNotNull(championMastery);
+
+            Assert.AreEqual(id, championMastery.PlayerId);
+            Assert.AreEqual(lucianId, championMastery.ChampionId);
+            Assert.AreEqual(5, championMastery.ChampionLevel);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetAllChampionsMasteryEntries_Test()
+        {
+            var allChampionsMastery = api.GetAllChampionsMasteryEntries(Platform.NA1, id);
+
+            Assert.IsNotNull(allChampionsMastery);
+
+            const long lucianId = 236;
+            Assert.IsNotNull(allChampionsMastery.Find(championMastery => 
+                championMastery.ChampionId == lucianId));
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetAllChampionsMasteryEntriesAsync_Test()
+        {
+            var allChampionsMastery = api.GetAllChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
+
+            Assert.IsNotNull(allChampionsMastery);
+
+            const long lucianId = 236;
+            Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
+                championMastery.ChampionId == lucianId));
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTotalChampionMasteryScore_Test()
+        {
+            var totalChampionMasteryScore = api.GetTotalChampionMasteryScore(Platform.NA1, id);
+
+            Assert.IsTrue(totalChampionMasteryScore > -1);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTotalChampionMasteryScoreAsync_Test()
+        {
+            var totalChampionMasteryScore = api.GetTotalChampionMasteryScoreAsync(Platform.NA1, id).Result;
+
+            Assert.IsTrue(totalChampionMasteryScore > -1);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetTopChampionsMasteryEntries_Test()
+        {
+            var threeTopChampions = api.GetTopChampionsMasteryEntries(Platform.NA1, id);
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(threeTopChampions.Count == 3);
+
+            var sixTopChampions = api.GetTopChampionsMasteryEntries(Platform.NA1, id, 6);
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(sixTopChampions.Count == 6);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTopChampionsMasteryEntriesAsync_Test()
+        {
+            var threeTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(threeTopChampions.Count == 3);
+
+            var sixTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id, 6).Result;
+
+            Assert.IsNotNull(threeTopChampions);
+            Assert.IsTrue(sixTopChampions.Count == 6);
+        }
     }
 }
