@@ -1092,7 +1092,7 @@ namespace RiotSharp
         /// </summary>
         /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
-        /// <returns>All champions mastery for summoner ID.</returns>
+        /// <returns>All champions mastery entries for the specified summoner ID.</returns>
         public List<ChampionMastery> GetAllChampionsMasteryEntries(Platform platform, long summonerId)
         {
             var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
@@ -1107,7 +1107,7 @@ namespace RiotSharp
         /// </summary>
         /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
-        /// <returns>All champions mastery for summoner ID.</returns>
+        /// <returns>All champions mastery entries for the specified summoner ID.</returns>
         public async Task<List<ChampionMastery>> GetAllChampionsMasteryEntriesAsync(Platform platform, long summonerId)
         {
             var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
@@ -1156,7 +1156,7 @@ namespace RiotSharp
         /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
-        /// <returns>Top champions for summoner ID.</returns>
+        /// <returns>A list of the top champion mastery entries for the specified summoner ID.</returns>
         public List<ChampionMastery> GetTopChampionsMasteryEntries(Platform platform, long summonerId,
             int count = 3)
         {
@@ -1174,7 +1174,7 @@ namespace RiotSharp
         /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
-        /// <returns>Top champions for summoner ID.</returns>
+        /// <returns>A list of the top champion mastery entries for the specified summoner ID.</returns>
         public async Task<List<ChampionMastery>> GetTopChampionsMasteryEntriesAsync(Platform platform,
             long summonerId, int count = 3)
         {
