@@ -75,8 +75,8 @@ namespace RiotSharp
         Task<List<ChampionMastery>> GetAllChampionsMasteryEntriesAsync(Platform platform, long summonerId);
         int GetTotalChampionMasteryScore(Platform platform, long summonerId);
         Task<int> GetTotalChampionMasteryScoreAsync(Platform platform, long summonerId);
-        List<ChampionMastery> GetTopChampionsMastery(Platform platform, long summonerId, int count);
-        Task<List<ChampionMastery>> GetTopChampionsMasteryAsync(Platform platform, long summonerId, int count);
+        List<ChampionMastery> GetTopChampionsMasteryEntries(Platform platform, long summonerId, int count);
+        Task<List<ChampionMastery>> GetTopChampionsMasteryEntriesAsync(Platform platform, long summonerId, int count);
     }
     #pragma warning restore 1591
 }

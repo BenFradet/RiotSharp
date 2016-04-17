@@ -830,14 +830,14 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetTopChampionsMastery_Test()
+        public void GetTopChampionsMasteryEntries_Test()
         {
-            var threeTopChampions = api.GetTopChampionsMastery(Platform.NA1, id);
+            var threeTopChampions = api.GetTopChampionsMasteryEntries(Platform.NA1, id);
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(threeTopChampions.Count == 3);
 
-            var sixTopChampions = api.GetTopChampionsMastery(Platform.NA1, id, 6);
+            var sixTopChampions = api.GetTopChampionsMasteryEntries(Platform.NA1, id, 6);
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);
@@ -845,14 +845,14 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetTopChampionsMasteryAsync_Test()
+        public void GetTopChampionsMasteryEntriesAsync_Test()
         {
-            var threeTopChampions = api.GetTopChampionsMasteryAsync(Platform.NA1, id).Result;
+            var threeTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(threeTopChampions.Count == 3);
 
-            var sixTopChampions = api.GetTopChampionsMasteryAsync(Platform.NA1, id, 6).Result;
+            var sixTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id, 6).Result;
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);

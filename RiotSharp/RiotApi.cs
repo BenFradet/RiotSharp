@@ -1157,7 +1157,7 @@ namespace RiotSharp
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
         /// <returns>Top champions for summoner ID.</returns>
-        public List<ChampionMastery> GetTopChampionsMastery(Platform platform, long summonerId,
+        public List<ChampionMastery> GetTopChampionsMasteryEntries(Platform platform, long summonerId,
             int count = 3)
         {
             var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
@@ -1175,7 +1175,7 @@ namespace RiotSharp
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
         /// <returns>Top champions for summoner ID.</returns>
-        public async Task<List<ChampionMastery>> GetTopChampionsMasteryAsync(Platform platform,
+        public async Task<List<ChampionMastery>> GetTopChampionsMasteryEntriesAsync(Platform platform,
             long summonerId, int count = 3)
         {
             var rootUrl = string.Format(ChampionMasteryRootUrl, platform, summonerId);
