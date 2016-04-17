@@ -1119,7 +1119,7 @@ namespace RiotSharp
 
         /// <summary>
         /// Get a player's total champion mastery score,
-        /// which is sum of individual champion mastery levels, by summoner ID synchronously.
+        /// which is the sum of individual champion mastery levels, by summoner ID synchronously.
         /// </summary>
         /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
@@ -1135,7 +1135,7 @@ namespace RiotSharp
 
         /// <summary>
         /// Get a player's total champion mastery score,
-        /// which is sum of individual champion mastery levels, by summoner ID asynchronously.
+        /// which is the sum of individual champion mastery levels, by summoner ID asynchronously.
         /// </summary>
         /// <param name="platform">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
