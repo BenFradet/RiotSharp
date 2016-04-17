@@ -34,7 +34,7 @@ namespace RiotSharp.StatusEndpoint
         /// Id of the message.
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Severity of the messaage.
