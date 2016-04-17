@@ -786,9 +786,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetAllChampionsMastery_Test()
+        public void GetAllChampionsMasteryEntries_Test()
         {
-            var allChampionsMastery = api.GetAllChampionsMastery(Platform.NA1, id);
+            var allChampionsMastery = api.GetAllChampionsMasteryEntries(Platform.NA1, id);
 
             Assert.IsNotNull(allChampionsMastery);
 
@@ -799,9 +799,9 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetAllChampionsMasteryAsync_Test()
+        public void GetAllChampionsMasteryEntriesAsync_Test()
         {
-            var allChampionsMastery = api.GetAllChampionsMasteryAsync(Platform.NA1, id).Result;
+            var allChampionsMastery = api.GetAllChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
 
             Assert.IsNotNull(allChampionsMastery);
 

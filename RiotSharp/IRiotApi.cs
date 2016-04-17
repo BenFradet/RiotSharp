@@ -71,8 +71,8 @@ namespace RiotSharp
         Task<FeaturedGames> GetFeaturedGamesAsync(Region region);
         ChampionMastery GetChampionMastery(Platform platform, long summonerId, long championId);
         Task<ChampionMastery> GetChampionMasteryAsync(Platform platform, long summonerId, long championId);
-        List<ChampionMastery> GetAllChampionsMastery(Platform platform, long summonerId);
-        Task<List<ChampionMastery>> GetAllChampionsMasteryAsync(Platform platform, long summonerId);
+        List<ChampionMastery> GetAllChampionsMasteryEntries(Platform platform, long summonerId);
+        Task<List<ChampionMastery>> GetAllChampionsMasteryEntriesAsync(Platform platform, long summonerId);
         int GetTotalChampionMasteryScore(Platform platform, long summonerId);
         Task<int> GetTotalChampionMasteryScoreAsync(Platform platform, long summonerId);
         List<ChampionMastery> GetTopChampionsMastery(Platform platform, long summonerId, int count);
