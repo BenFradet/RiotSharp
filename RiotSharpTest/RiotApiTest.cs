@@ -160,7 +160,6 @@ namespace RiotSharpTest
             Assert.IsTrue(champions.Result.Count() > 0);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetChampions_FreeToPlay_Test()
@@ -171,7 +170,6 @@ namespace RiotSharpTest
             Assert.IsTrue(champions.Count() == 10);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetChampionsAsync_FreeToPlay_Test()
