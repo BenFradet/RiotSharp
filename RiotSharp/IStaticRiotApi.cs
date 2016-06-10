@@ -40,8 +40,8 @@ namespace RiotSharp
             Language language = Language.en_US);
         Task<MasteryStatic> GetMasteryAsync(Region region, int masteryId,
             MasteryData masteryData = MasteryData.basic, Language language = Language.en_US);
-        Realm GetRealm(Region region);
-        Task<Realm> GetRealmAsync(Region region);
+        RealmStatic GetRealm(Region region);
+        Task<RealmStatic> GetRealmAsync(Region region);
         RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.basic
             , Language language = Language.en_US);
         Task<RuneListStatic> GetRunesAsync(Region region, RuneData runeData = RuneData.basic,

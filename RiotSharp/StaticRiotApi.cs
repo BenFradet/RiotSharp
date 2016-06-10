@@ -31,6 +31,7 @@ namespace RiotSharp
         private const string MasteryCacheKey = "mastery";
 
         private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
+        private const string RealmCacheKey = "realm";
 
         private const string RuneRootUrl = "/api/lol/static-data/{0}/v1.2/rune";
         private const string RunesCacheKey = "runes";
@@ -616,25 +617,45 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Retrieve real data synchronously.
+        /// Retrieve realm data synchronously.
         /// </summary>
         /// <param name="region">Region corresponding to data to retrieve.</param>
         /// <returns>A realm object containing the requested information.</returns>
-        public Realm GetRealm(Region region)
+        public RealmStatic GetRealm(Region region)
         {
+            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper.RealmStatic;
+            }
+
             var json = requester.CreateGetRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<Realm>(json);
+            var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
+
+            cache.Add(RealmCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+
+            return realm;
         }
 
         /// <summary>
-        /// Retrieve real data asynchronously.
+        /// Retrieve realm data asynchronously.
         /// </summary>
         /// <param name="region">Region corresponding to data to retrieve.</param>
         /// <returns>A realm object containing the requested information.</returns>
-        public async Task<Realm> GetRealmAsync(Region region)
+        public async Task<RealmStatic> GetRealmAsync(Region region)
         {
+            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper.RealmStatic;
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
+            var realm = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RealmStatic>(json));
+
+            cache.Add(RealmCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+
+            return realm;
         }
 
         /// <summary>

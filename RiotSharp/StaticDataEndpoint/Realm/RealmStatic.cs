@@ -6,9 +6,9 @@ namespace RiotSharp.StaticDataEndpoint
     /// <summary>
     /// Class representing a realm (Static API).
     /// </summary>
-    public class Realm
+    public class RealmStatic
     {
-        internal Realm() { }
+        internal RealmStatic() { }
 
         /// <summary>
         /// The base CDN url.
