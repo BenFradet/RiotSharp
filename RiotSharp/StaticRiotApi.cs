@@ -23,6 +23,7 @@ namespace RiotSharp
         private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
 
         private const string LanguagesRootUrl = "/api/lol/static-data/{0}/v1.2/languages";
+        private const string LanguagesCacheKey = "languages";
 
         private const string MapRootUrl = "/api/lol/static-data/{0}/v1.2/map";
 
@@ -413,8 +414,18 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public List<Language> GetLanguages(Region region)
         {
+            var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json = requester.CreateGetRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<List<Language>>(json);
+            var languages = JsonConvert.DeserializeObject<List<Language>>(json);
+
+            cache.Add(LanguagesCacheKey, languages, DefaultSlidingExpiry);
+
+            return languages;
         }
 
         /// <summary>
@@ -424,10 +435,20 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public async Task<List<Language>> GetLanguagesAsync(Region region)
         {
+            var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(LanguagesRootUrl, region.ToString()),
                 RootDomain);
-            return await Task.Factory.StartNew(() =>
+            var languages = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<List<Language>>(json));
+
+            cache.Add(LanguagesCacheKey, languages, DefaultSlidingExpiry);
+
+            return languages;
         }
 
         /// <summary>
