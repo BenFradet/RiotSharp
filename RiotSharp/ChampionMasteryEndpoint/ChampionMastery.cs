@@ -49,12 +49,6 @@ namespace RiotSharp.ChampionMasteryEndpoint
         public bool ChestGranted { get; set; }
 
         /// <summary>
-        /// The highest grade of this champion of current season.
-        /// </summary>
-        [JsonProperty("highestGrade")]
-        public string HighestGrade { get; set; }
-
-        /// <summary>
         /// Last time this champion was played by this player.
         /// </summary>
         [JsonProperty("lastPlayTime")]
