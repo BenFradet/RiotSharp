@@ -8,7 +8,7 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, key, name, and title
         /// </summary>
-        none,
+        basic,
 
         all,
         image,
@@ -34,7 +34,7 @@
         /// <summary>
         /// The default. Resolves to type, version, basic, data, id, name, plaintext, group, and description
         /// </summary>
-        none,
+        basic,
 
         all,
         description,
@@ -54,7 +54,7 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, name, and description
         /// </summary>
-        none,
+        basic,
 
         all,
         ranks,
@@ -70,7 +70,7 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, name, rune, and description
         /// </summary>
-        none,
+        basic,
 
         all,
         image,
@@ -88,7 +88,7 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, key, name, description, and summonerLevel
         /// </summary>
-        none,
+        basic,
 
         all,
         key,
