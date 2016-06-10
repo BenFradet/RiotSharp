@@ -5,7 +5,11 @@
     /// </summary>
     public enum ChampionData
     {
+        /// <summary>
+        /// The default. Resolves to type, version, data, id, key, name, and title
+        /// </summary>
         none,
+
         all,
         image,
         skins,
@@ -27,7 +31,11 @@
     /// </summary>
     public enum ItemData
     {
+        /// <summary>
+        /// The default. Resolves to type, version, basic, data, id, name, plaintext, group, and description
+        /// </summary>
         none,
+
         all,
         description,
         colloq,
@@ -43,7 +51,11 @@
     /// </summary>
     public enum MasteryData
     {
+        /// <summary>
+        /// The default. Resolves to type, version, data, id, name, and description
+        /// </summary>
         none,
+
         all,
         ranks,
         prereq,
@@ -55,7 +67,11 @@
     /// </summary>
     public enum RuneData
     {
+        /// <summary>
+        /// The default. Resolves to type, version, data, id, name, rune, and description
+        /// </summary>
         none,
+
         all,
         image,
         stats,
@@ -69,7 +85,11 @@
     /// </summary>
     public enum SummonerSpellData
     {
+        /// <summary>
+        /// The default. Resolves to type, version, data, id, key, name, description, and summonerLevel
+        /// </summary>
         none,
+
         all,
         key,
         image,
