@@ -21,6 +21,7 @@ namespace RiotSharp
         private const string ItemCacheKey = "item";
 
         private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
+        private const string LanguageStringsCacheKey = "languagestrings";
 
         private const string LanguagesRootUrl = "/api/lol/static-data/{0}/v1.2/languages";
         private const string LanguagesCacheKey = "languages";
@@ -378,15 +379,25 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
-        public LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
+        public LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.LanguageStringsStatic;
+            }
+
             var json = requester.CreateGetRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return JsonConvert.DeserializeObject<LanguageStringsData>(json);
+            var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
+
+            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), DefaultSlidingExpiry);
+
+            return languageStrings;
         }
 
         /// <summary>
@@ -396,15 +407,25 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
-        public async Task<LanguageStringsData> GetLanguageStringsAsync(Region region,
+        public async Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
             Language language = Language.en_US, string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.LanguageStringsStatic;
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
                 RootDomain, new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsData>(json));
+            var languageStrings = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
+
+            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), DefaultSlidingExpiry);
+
+            return languageStrings;
         }
 
         /// <summary>

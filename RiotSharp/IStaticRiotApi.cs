@@ -23,9 +23,9 @@ namespace RiotSharp
             Language language = Language.en_US);
         Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.basic,
             Language language = Language.en_US);
-        LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
+        LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "5.3.1");
-        Task<LanguageStringsData> GetLanguageStringsAsync(Region region,
+        Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
             Language language = Language.en_US, string version = "5.3.1");
         List<Language> GetLanguages(Region region);
         Task<List<Language>> GetLanguagesAsync(Region region);
