@@ -21,7 +21,7 @@ namespace RiotSharp
         private const string ItemCacheKey = "item";
 
         private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
-        private const string LanguageStringsCacheKey = "languagestrings";
+        private const string LanguageStringsCacheKey = "language-strings";
 
         private const string LanguagesRootUrl = "/api/lol/static-data/{0}/v1.2/languages";
         private const string LanguagesCacheKey = "languages";
@@ -45,7 +45,7 @@ namespace RiotSharp
         private const string SummonerSpellCacheKey = "spell";
 
         private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
-        private const string VersionCacheKey = "version";
+        private const string VersionCacheKey = "versions";
 
         private const string IdUrl = "/{0}";
 
@@ -424,7 +424,8 @@ namespace RiotSharp
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            var languageStrings = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
+            var languageStrings = await Task.Factory.StartNew(() 
+                => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
 
             cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
                 language, version), DefaultSlidingExpiry);
