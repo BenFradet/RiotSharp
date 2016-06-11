@@ -29,7 +29,6 @@ namespace RiotSharp
         private const string MapRootUrl = "/api/lol/static-data/{0}/v1.2/map";
         private const string MapCacheKey = "map";
 
-
         private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1.2/mastery";
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryCacheKey = "mastery";
@@ -398,7 +397,8 @@ namespace RiotSharp
                 });
             var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
 
-            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), DefaultSlidingExpiry);
+            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
+                language, version), DefaultSlidingExpiry);
 
             return languageStrings;
         }
@@ -426,7 +426,8 @@ namespace RiotSharp
                 });
             var languageStrings = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
 
-            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), DefaultSlidingExpiry);
+            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
+                language, version), DefaultSlidingExpiry);
 
             return languageStrings;
         }
