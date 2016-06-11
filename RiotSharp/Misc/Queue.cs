@@ -31,12 +31,7 @@ namespace RiotSharp
         /// <summary>
         /// Team 5 v 5 - Dynamic Queue - Unranked
         /// </summary>
-        TeamBuilderDraftUnranked5x5,
-
-        /// <summary>
-        /// Fix For => JsonConvert.DeserializeObject<MatchList>(jsoni);
-        /// </summary>
-        NULL
+        TeamBuilderDraftUnranked5x5
     }
 
     static class QueueExtension
@@ -51,8 +46,6 @@ namespace RiotSharp
                     return "RANKED_TEAM_3x3";
                 case Queue.RankedTeam5x5:
                     return "RANKED_TEAM_5x5";
-                case Queue.NULL:
-                    return "";
                 default:
                     return string.Empty;
             }

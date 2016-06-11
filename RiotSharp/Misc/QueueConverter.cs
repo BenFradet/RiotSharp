@@ -30,8 +30,6 @@ namespace RiotSharp
                     return Queue.TeamBuilderDraftRanked5x5;
                 case "TEAM_BUILDER_DRAFT_UNRANKED_5x5":
                     return Queue.TeamBuilderDraftUnranked5x5;
-                case "":
-                    return Queue.NULL;
                 default:
                     return null;
             }
