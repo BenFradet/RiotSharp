@@ -46,6 +46,10 @@ namespace RiotSharp
                     return "RANKED_TEAM_3x3";
                 case Queue.RankedTeam5x5:
                     return "RANKED_TEAM_5x5";
+                case Queue.TeamBuilderDraftRanked5x5:
+                    return "TEAM_BUILDER_DRAFT_RANKED_5x5";
+                case Queue.TeamBuilderDraftUnranked5x5:
+                    return "TEAM_BUILDER_DRAFT_UNRANKED_5x5";
                 default:
                     return string.Empty;
             }
