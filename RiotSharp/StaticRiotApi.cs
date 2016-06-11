@@ -27,6 +27,8 @@ namespace RiotSharp
         private const string LanguagesCacheKey = "languages";
 
         private const string MapRootUrl = "/api/lol/static-data/{0}/v1.2/map";
+        private const string MapCacheKey = "map";
+
 
         private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1.2/mastery";
         private const string MasteriesCacheKey = "masteries";
@@ -482,12 +484,22 @@ namespace RiotSharp
         /// <returns>A list of objects representing maps.</returns>
         public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.MapsStatic.Data.Values.ToList();
+            }
+
             var json = requester.CreateGetRequest(string.Format(MapRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList();
+            var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
+
+            cache.Add(MapCacheKey, new MapsStaticWrapper(maps, language, version), DefaultSlidingExpiry);
+
+            return maps.Data.Values.ToList();
         }
 
         /// <summary>
@@ -500,13 +512,23 @@ namespace RiotSharp
         public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.MapsStatic.Data.Values.ToList();
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(MapRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList());
+            var maps = await Task.Factory.StartNew(() =>
+                JsonConvert.DeserializeObject<MapsStatic>(json));
+
+            cache.Add(MapCacheKey, new MapsStaticWrapper(maps, language, version), DefaultSlidingExpiry);
+
+            return maps.Data.Values.ToList();
         }
 
         /// <summary>

@@ -3,10 +3,7 @@ using System.Collections.Generic;
 
 namespace RiotSharp.StaticDataEndpoint
 {
-    /// <summary>
-    /// Wrapper for the MapStatic class.
-    /// </summary>
-    class MapStaticWrapper
+    class MapsStatic
     {
         /// <summary>
         /// Map of id to map.

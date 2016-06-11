@@ -163,8 +163,9 @@
     <Compile Include="StaticDataEndpoint\Item\Cache\ItemStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\LanguageStrings\Cache\LanguageStringsStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\LanguageStrings\LanguageStringsStatic.cs" />
-    <Compile Include="StaticDataEndpoint\MapStatic.cs" />
-    <Compile Include="StaticDataEndpoint\MapStaticWrapper.cs" />
+    <Compile Include="StaticDataEndpoint\Map\MapsStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Map\MapStatic.cs" />
+    <Compile Include="StaticDataEndpoint\Map\Cache\MapsStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\Cache\MasteryListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\Cache\MasteryStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\MasteryTreeItemStatic.cs" />
