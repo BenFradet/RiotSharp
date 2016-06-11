@@ -7,9 +7,9 @@ namespace RiotSharp.StaticDataEndpoint
     /// <summary>
     /// Class representing data returned by the language strings endpoint (Static API).
     /// </summary>
-    public class LanguageStringsData
+    public class LanguageStringsStatic
     {
-        internal LanguageStringsData() { }
+        internal LanguageStringsStatic() { }
 
         /// <summary>
         /// Type of data returned.

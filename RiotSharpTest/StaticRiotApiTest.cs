@@ -287,7 +287,7 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetRealAsync_Test()
+        public void GetRealmAsync_Test()
         {
             var realm = api.GetRealmAsync(Region.euw);
 

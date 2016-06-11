@@ -21,16 +21,20 @@ namespace RiotSharp
         private const string ItemCacheKey = "item";
 
         private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
+        private const string LanguageStringsCacheKey = "language-strings";
 
         private const string LanguagesRootUrl = "/api/lol/static-data/{0}/v1.2/languages";
+        private const string LanguagesCacheKey = "languages";
 
         private const string MapRootUrl = "/api/lol/static-data/{0}/v1.2/map";
+        private const string MapCacheKey = "map";
 
         private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1.2/mastery";
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryCacheKey = "mastery";
 
         private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
+        private const string RealmCacheKey = "realm";
 
         private const string RuneRootUrl = "/api/lol/static-data/{0}/v1.2/rune";
         private const string RunesCacheKey = "runes";
@@ -41,6 +45,7 @@ namespace RiotSharp
         private const string SummonerSpellCacheKey = "spell";
 
         private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
+        private const string VersionCacheKey = "versions";
 
         private const string IdUrl = "/{0}";
 
@@ -376,15 +381,26 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
-        public LanguageStringsData GetLanguageStrings(Region region, Language language = Language.en_US,
+        public LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.LanguageStringsStatic;
+            }
+
             var json = requester.CreateGetRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return JsonConvert.DeserializeObject<LanguageStringsData>(json);
+            var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
+
+            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
+                language, version), DefaultSlidingExpiry);
+
+            return languageStrings;
         }
 
         /// <summary>
@@ -394,15 +410,27 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
-        public async Task<LanguageStringsData> GetLanguageStringsAsync(Region region,
+        public async Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
             Language language = Language.en_US, string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.LanguageStringsStatic;
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
                 RootDomain, new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<LanguageStringsData>(json));
+            var languageStrings = await Task.Factory.StartNew(() 
+                => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
+
+            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
+                language, version), DefaultSlidingExpiry);
+
+            return languageStrings;
         }
 
         /// <summary>
@@ -412,8 +440,18 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public List<Language> GetLanguages(Region region)
         {
+            var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json = requester.CreateGetRequest(string.Format(LanguagesRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<List<Language>>(json);
+            var languages = JsonConvert.DeserializeObject<List<Language>>(json);
+
+            cache.Add(LanguagesCacheKey, languages, DefaultSlidingExpiry);
+
+            return languages;
         }
 
         /// <summary>
@@ -423,10 +461,20 @@ namespace RiotSharp
         /// <returns>A list of languages.</returns>
         public async Task<List<Language>> GetLanguagesAsync(Region region)
         {
+            var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(LanguagesRootUrl, region.ToString()),
                 RootDomain);
-            return await Task.Factory.StartNew(() =>
+            var languages = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<List<Language>>(json));
+
+            cache.Add(LanguagesCacheKey, languages, DefaultSlidingExpiry);
+
+            return languages;
         }
 
         /// <summary>
@@ -438,12 +486,22 @@ namespace RiotSharp
         /// <returns>A list of objects representing maps.</returns>
         public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.MapsStatic.Data.Values.ToList();
+            }
+
             var json = requester.CreateGetRequest(string.Format(MapRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList();
+            var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
+
+            cache.Add(MapCacheKey, new MapsStaticWrapper(maps, language, version), DefaultSlidingExpiry);
+
+            return maps.Data.Values.ToList();
         }
 
         /// <summary>
@@ -456,13 +514,23 @@ namespace RiotSharp
         public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
             string version = "5.3.1")
         {
+            var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
+            if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
+            {
+                return wrapper.MapsStatic.Data.Values.ToList();
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(MapRootUrl, region.ToString()), RootDomain,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MapStaticWrapper>(json).Data.Values.ToList());
+            var maps = await Task.Factory.StartNew(() =>
+                JsonConvert.DeserializeObject<MapsStatic>(json));
+
+            cache.Add(MapCacheKey, new MapsStaticWrapper(maps, language, version), DefaultSlidingExpiry);
+
+            return maps.Data.Values.ToList();
         }
 
         /// <summary>
@@ -616,25 +684,45 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Retrieve real data synchronously.
+        /// Retrieve realm data synchronously.
         /// </summary>
         /// <param name="region">Region corresponding to data to retrieve.</param>
         /// <returns>A realm object containing the requested information.</returns>
-        public Realm GetRealm(Region region)
+        public RealmStatic GetRealm(Region region)
         {
+            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper.RealmStatic;
+            }
+
             var json = requester.CreateGetRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<Realm>(json);
+            var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
+
+            cache.Add(RealmCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+
+            return realm;
         }
 
         /// <summary>
-        /// Retrieve real data asynchronously.
+        /// Retrieve realm data asynchronously.
         /// </summary>
         /// <param name="region">Region corresponding to data to retrieve.</param>
         /// <returns>A realm object containing the requested information.</returns>
-        public async Task<Realm> GetRealmAsync(Region region)
+        public async Task<RealmStatic> GetRealmAsync(Region region)
         {
+            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper.RealmStatic;
+            }
+
             var json = await requester.CreateGetRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Realm>(json));
+            var realm = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RealmStatic>(json));
+
+            cache.Add(RealmCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+
+            return realm;
         }
 
         /// <summary>
@@ -951,8 +1039,18 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public List<string> GetVersions(Region region)
         {
+            var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json = requester.CreateGetRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<List<string>>(json);
+            var version = JsonConvert.DeserializeObject<List<string>>(json);
+
+            cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
+
+            return version;
         }
 
         /// <summary>
@@ -962,9 +1060,19 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
+            var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json =
                 await requester.CreateGetRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
+            var version = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
+
+            cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
+
+            return version;
         }
     }
 }
