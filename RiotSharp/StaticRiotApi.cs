@@ -44,6 +44,7 @@ namespace RiotSharp
         private const string SummonerSpellCacheKey = "spell";
 
         private const string VersionRootUrl = "/api/lol/static-data/{0}/v1.2/versions";
+        private const string VersionCacheKey = "version";
 
         private const string IdUrl = "/{0}";
 
@@ -1014,8 +1015,18 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public List<string> GetVersions(Region region)
         {
+            var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json = requester.CreateGetRequest(string.Format(VersionRootUrl, region.ToString()), RootDomain);
-            return JsonConvert.DeserializeObject<List<string>>(json);
+            var version = JsonConvert.DeserializeObject<List<string>>(json);
+
+            cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
+
+            return version;
         }
 
         /// <summary>
@@ -1025,9 +1036,19 @@ namespace RiotSharp
         /// <returns>A list of versions as strings.</returns>
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
+            var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
+            if (wrapper != null)
+            {
+                return wrapper;
+            }
+
             var json =
                 await requester.CreateGetRequestAsync(string.Format(VersionRootUrl, region.ToString()), RootDomain);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
+            var version = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
+
+            cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
+
+            return version;
         }
     }
 }
