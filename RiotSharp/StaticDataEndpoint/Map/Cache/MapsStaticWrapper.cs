@@ -8,7 +8,7 @@
 
         public MapsStaticWrapper(MapsStatic mapsStatic, Language language, string version)
         {
-            MapsStatic = MapsStatic;
+            MapsStatic = mapsStatic;
             Language = language;
             Version = version;
         }
