@@ -20,7 +20,8 @@ namespace RiotSharpTest
         public void GetResult_ShouldSendBackResult_Test()
         {
             var requester = new Requester(apiKey);
-            var json = requester.CreateGetRequest(ChampionRootUrl, RootDomain, new List<string> { $"locale=en_US", "" });
+            var json = requester.CreateGetRequest(ChampionRootUrl, RootDomain,
+                new List<string> { $"locale=en_US", "" });
 
             Assert.IsTrue(json.Length > 0);
         }
@@ -30,7 +31,8 @@ namespace RiotSharpTest
         public void GetResultAsync_ShouldSendBackResult_Test()
         {
             var requester = new Requester(apiKey);
-            var json = requester.CreateGetRequestAsync(ChampionRootUrl, RootDomain, new List<string> { $"locale=en_US", "" });
+            var json = requester.CreateGetRequestAsync(ChampionRootUrl, RootDomain,
+                new List<string> { $"locale=en_US", "" });
 
             Assert.IsTrue(json.Result.Length > 0);
         }
@@ -43,7 +45,8 @@ namespace RiotSharpTest
 
             try
             {
-                requester.CreateGetRequest(ImproperChampionRootUrl, RootDomain, new List<string> { $"locale=en_US", "" });
+                var json = requester.CreateGetRequest(ImproperChampionRootUrl, RootDomain,
+                    new List<string> { $"locale=en_US", "" });
             }
             catch (Exception ex)
             {
