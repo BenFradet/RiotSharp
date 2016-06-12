@@ -3,6 +3,7 @@ using RiotSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace RiotSharpTest
 {
@@ -39,36 +40,22 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("Requester")]
+        [ExpectedException(typeof(RiotSharpException))]
         public void GetResult_BadURL_ShouldThrowRiotSharpException_Test()
         {
             var requester = new Requester(apiKey);
-
-            try
-            {
-                var json = requester.CreateGetRequest(ImproperChampionRootUrl, RootDomain,
-                    new List<string> { $"locale=en_US", "" });
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof(RiotSharpException));
-            }
+            var json = requester.CreateGetRequest(ImproperChampionRootUrl, RootDomain,
+                new List<string> { $"locale=en_US", "" });
         }
 
         [TestMethod]
         [TestCategory("Requester")]
-        public void GetResultAsync_BadURL_ShouldThrowRiotSharpException_Test()
+        [ExpectedException(typeof(RiotSharpException))]
+        public async Task GetResultAsync_BadURL_ShouldThrowRiotSharpException_Test()
         {
             var requester = new Requester(apiKey);
-
-            try
-            {
-                var json = requester.CreateGetRequestAsync(ImproperChampionRootUrl,
-                    RootDomain, new List<string> { $"locale=en_US", "" });
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof(RiotSharpException));
-            }
+            var json = await requester.CreateGetRequestAsync(ImproperChampionRootUrl, RootDomain,
+                new List<string> { $"locale=en_US", "" });
         }
     }
 }
