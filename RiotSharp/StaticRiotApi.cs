@@ -382,7 +382,7 @@ namespace RiotSharp
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
         public LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
-            string version = "5.3.1")
+            string version = "")
         {
             var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
@@ -411,7 +411,7 @@ namespace RiotSharp
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
         public async Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
-            Language language = Language.en_US, string version = "5.3.1")
+            Language language = Language.en_US, string version = "")
         {
             var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
@@ -484,7 +484,7 @@ namespace RiotSharp
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A list of objects representing maps.</returns>
-        public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1")
+        public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "")
         {
             var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
@@ -512,7 +512,7 @@ namespace RiotSharp
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A list of objects representing maps.</returns>
         public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
-            string version = "5.3.1")
+            string version = "")
         {
             var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)

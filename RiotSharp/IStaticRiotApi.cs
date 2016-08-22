@@ -24,14 +24,14 @@ namespace RiotSharp
         Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.basic,
             Language language = Language.en_US);
         LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
-            string version = "5.3.1");
+            string version = "");
         Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
-            Language language = Language.en_US, string version = "5.3.1");
+            Language language = Language.en_US, string version = "");
         List<Language> GetLanguages(Region region);
         Task<List<Language>> GetLanguagesAsync(Region region);
-        List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "5.3.1");
+        List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "");
         Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
-            string version = "5.3.1");
+            string version = "");
         MasteryListStatic GetMasteries(Region region, MasteryData masteryData = MasteryData.basic,
             Language language = Language.en_US);
         Task<MasteryListStatic> GetMasteriesAsync(Region region,
