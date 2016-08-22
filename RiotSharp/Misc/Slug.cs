@@ -54,6 +54,11 @@ namespace RiotSharp
         /// <summary>
         /// Japan.
         /// </summary>
-        jp
+        jp,
+
+        /// <summary>
+        /// Republic of Korea.
+        /// </summary>
+        kr
     }
 }
