@@ -28,7 +28,7 @@ namespace RiotSharp.StatusEndpoint
         /// Id of the incident.
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// List of updates for this incident.
