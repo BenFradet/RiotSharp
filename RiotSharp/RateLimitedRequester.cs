@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    internal class RateLimitedRequester : Requester
+    internal class RateLimitedRequester : Requester, IRateLimitedRequester
     {
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }

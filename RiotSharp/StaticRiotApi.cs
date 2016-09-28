@@ -51,7 +51,7 @@ namespace RiotSharp
 
         private const string RootDomain = "global.api.pvp.net";
 
-        private Requester requester;
+        private IRequester requester;
 
         private Cache cache;
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);

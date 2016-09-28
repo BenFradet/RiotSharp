@@ -61,7 +61,7 @@ namespace RiotSharp
         private const string ChampionMasteryTotalScore = "/score";
         private const string ChampionMasteryTopChampions = "/topchampions";
 
-        private RateLimitedRequester requester;
+        private IRateLimitedRequester requester;
 
         private static RiotApi instance;
         /// <summary>
@@ -83,10 +83,25 @@ namespace RiotSharp
             return instance;
         }
 
+        public static RiotApi GetInstance(IRateLimitedRequester req)
+        {
+            RiotApi api = null;
+            if (req != null)
+            {
+                api = new RiotApi(req);
+            }
+            return api;
+        }
+
         private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
             requester = Requesters.RiotApiRequester;
+        }
+
+        private RiotApi(IRateLimitedRequester req)
+        {
+            requester = req;
         }
 
         /// <summary>
