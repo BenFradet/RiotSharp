@@ -748,7 +748,7 @@ namespace RiotSharpTest
            
             Assert.AreEqual(id, championMastery.PlayerId);
             Assert.AreEqual(lucianId, championMastery.ChampionId);
-            Assert.AreEqual(5, championMastery.ChampionLevel);
+            Assert.AreEqual(6, championMastery.ChampionLevel);
         }
 
 
@@ -763,7 +763,7 @@ namespace RiotSharpTest
 
             Assert.AreEqual(id, championMastery.PlayerId);
             Assert.AreEqual(lucianId, championMastery.ChampionId);
-            Assert.AreEqual(5, championMastery.ChampionLevel);
+            Assert.AreEqual(6, championMastery.ChampionLevel);
         }
 
         [TestMethod]
