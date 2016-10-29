@@ -127,6 +127,11 @@ namespace RiotSharp.StatsEndpoint.Enums
         /// <summary>
         /// Black Market Brawlers games.
         /// </summary>
-        Bilgewater
+        Bilgewater,
+
+        /// <summary>
+        /// Siege games.
+        /// </summary>
+        Siege
     }
 }
