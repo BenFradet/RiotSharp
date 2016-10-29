@@ -38,6 +38,8 @@ namespace RiotSharp
                     return GameMode.Intro;
                 case "KINGPORO":
                     return GameMode.KingPoro;
+                case "SIEGE":
+                    return GameMode.Siege;
                 default:
                     return null;
             }
@@ -75,6 +77,9 @@ namespace RiotSharp
                     break;
                 case GameMode.KingPoro:
                     result = "KINGPORO";
+                    break;
+                case GameMode.Siege:
+                    result = "SIEGE";
                     break;
                 default:
                     result = string.Empty;

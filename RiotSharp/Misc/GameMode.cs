@@ -51,6 +51,11 @@ namespace RiotSharp
         /// <summary>
         /// King Poro game mode.
         /// </summary>
-        KingPoro
+        KingPoro,
+
+        /// <summary>
+        /// Siege game mode.
+        /// </summary>
+        Siege
     }
 }
