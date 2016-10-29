@@ -288,7 +288,6 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Result[id2].Count > 0);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetLeagues_ByTeam_Test()
@@ -299,7 +298,6 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues[team2].Count > 0);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetLeaguesAsync_ByTeam_Test()
@@ -310,7 +308,6 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues.Result[team2].Count > 0);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetEntireLeagues_ByTeam_Test()
@@ -321,7 +318,6 @@ namespace RiotSharpTest
             Assert.IsTrue(leagues[team2].Count > 0);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetEntireLeaguesAsync_ByTeam_Test()
