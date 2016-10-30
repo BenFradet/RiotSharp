@@ -28,7 +28,7 @@ namespace RiotSharp
 
         private static TournamentRiotApi instance;
 
-        private readonly RateLimitedRequester requester;
+        private readonly IRateLimitedRequester requester;
 
         private TournamentRiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    class Requester
+    class Requester : IRequester
     {
         protected string rootDomain;
         private readonly HttpClient httpClient;

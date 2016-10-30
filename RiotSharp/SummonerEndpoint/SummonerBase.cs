@@ -33,7 +33,7 @@ namespace RiotSharp.SummonerEndpoint
 
         private const string IdUrl = "/{0}";
 
-        private RateLimitedRequester requester;
+        private IRateLimitedRequester requester;
         public Region Region { get; set; }
 
         internal SummonerBase()
@@ -42,7 +42,7 @@ namespace RiotSharp.SummonerEndpoint
         }
 
         //summoner base not default constructor
-        internal SummonerBase(string id, string name, RateLimitedRequester requester, Region region)
+        internal SummonerBase(string id, string name, IRateLimitedRequester requester, Region region)
         {
             this.requester = requester;
             Region = region;
