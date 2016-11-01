@@ -408,6 +408,7 @@ namespace RiotSharpTest
             Assert.IsTrue(teams.Result.Count > 0);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatch_WithoutTimeline_Test()
@@ -419,6 +420,7 @@ namespace RiotSharpTest
             Assert.IsNull(game.Timeline);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatch_WithTimeline_Test()
@@ -430,6 +432,7 @@ namespace RiotSharpTest
             Assert.IsNotNull(game.Timeline);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchAsync_WithoutTimeline_Test()
@@ -441,6 +444,7 @@ namespace RiotSharpTest
             Assert.IsNull(game.Result.Timeline);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchAsync_WithTimeline_Test()
@@ -452,6 +456,7 @@ namespace RiotSharpTest
             Assert.IsNotNull(game.Result.Timeline);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatchList_Test()
@@ -462,6 +467,7 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Count() > 0);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatchList_ChampionIds_Test()
@@ -476,6 +482,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatchList_RankedQueues_Test()
@@ -490,6 +497,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatchList_Seasons_Test()
@@ -505,6 +513,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatchList_DateTimes_Test()
@@ -520,6 +529,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatchList_Index_Test()
@@ -533,6 +543,7 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Count() <= endIndex - beginIndex);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Test()
@@ -543,6 +554,7 @@ namespace RiotSharpTest
             Assert.IsTrue(matches.Count() > 0);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_ChampionIds_Test()
@@ -557,6 +569,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_RankedQueues_Test()
@@ -571,6 +584,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Seasons_Test()
@@ -586,6 +600,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_DateTimes_Test()
@@ -601,6 +616,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Index_Test()
