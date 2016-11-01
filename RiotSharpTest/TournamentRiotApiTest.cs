@@ -29,6 +29,7 @@ namespace RiotSharpTest
 
         private static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(apiKey);
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi")]
         public void CreateProvider_CreateTournament_CreateTournamentCode_UpdateTournamentCode_Test()
@@ -53,6 +54,7 @@ namespace RiotSharpTest
             Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi")]
         public void GetTournamentMatchId_Test()
@@ -61,6 +63,7 @@ namespace RiotSharpTest
             Assert.AreEqual(matchId, id);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi")]
         public void GetTournamentMatch_Test()
@@ -70,6 +73,7 @@ namespace RiotSharpTest
             Assert.AreEqual("5.24.0.256", details.MatchVersion);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
@@ -98,6 +102,7 @@ namespace RiotSharpTest
             Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void GetTournamentMatchIdAsync_Test()
@@ -106,6 +111,7 @@ namespace RiotSharpTest
             Assert.AreEqual(matchId, id);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void GetTournamentMatchAsync_Test()
