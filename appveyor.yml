@@ -69,6 +69,13 @@ test:
   assemblies:
     - RiotSharpTest.dll
 
+# code coverage
+after_test:
+  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"c:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:""c:\projects\RiotSharp\RiotSharpTest\bin\Release\RiotSharpTest.dll" -filter:"+[RiotSharp]*  -[RiotSharp]RiotSharp.*Endpoint.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\RiotSharp_coverage.xml
+  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+  - pip install codecov
+  - codecov -f "RiotSharp_coverage.xml"
+
 #---------------------------------#
 #         notifications           #
 #---------------------------------#
