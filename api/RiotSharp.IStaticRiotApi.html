@@ -1,0 +1,1668 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IStaticRiotApi
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IStaticRiotApi
+   ">
+    <meta name="generator" content="docfx 2.7.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="RiotSharp_IStaticRiotApi" data-uid="RiotSharp.IStaticRiotApi">Interface IStaticRiotApi
+              </h1>
+              <div class="markdown level0 summary"></div>
+              <div class="markdown level0 conceptual"></div>
+              <h6><strong>Namespace</strong>:RiotSharp</h6>
+              <h6><strong>Assembly</strong>:RiotSharp.dll</h6>
+              <h5 id="RiotSharp_IStaticRiotApi_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public interface IStaticRiotApi</code></pre>
+              </div>
+              <h3 id="methods">Methods
+              </h3>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetChampion_" data-uid="RiotSharp.IStaticRiotApi.GetChampion*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetChampion_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_ChampionData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetChampion(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.ChampionData,RiotSharp.Language)">GetChampion(Region, Int32, ChampionData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">ChampionStatic GetChampion(Region region, int championId, ChampionData championData = ChampionData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>championId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionData.html#RiotSharp_StaticDataEndpoint_ChampionData">ChampionData</a></td>
+                    <td><em>championData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionStatic.html#RiotSharp_StaticDataEndpoint_ChampionStatic">ChampionStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetChampionAsync_" data-uid="RiotSharp.IStaticRiotApi.GetChampionAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetChampionAsync_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_ChampionData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetChampionAsync(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.ChampionData,RiotSharp.Language)">GetChampionAsync(Region, Int32, ChampionData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;ChampionStatic&gt; GetChampionAsync(Region region, int championId, ChampionData championData = ChampionData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>championId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionData.html#RiotSharp_StaticDataEndpoint_ChampionData">ChampionData</a></td>
+                    <td><em>championData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionStatic.html#RiotSharp_StaticDataEndpoint_ChampionStatic">ChampionStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetChampions_" data-uid="RiotSharp.IStaticRiotApi.GetChampions*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetChampions_RiotSharp_Region_RiotSharp_StaticDataEndpoint_ChampionData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetChampions(RiotSharp.Region,RiotSharp.StaticDataEndpoint.ChampionData,RiotSharp.Language)">GetChampions(Region, ChampionData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionData.html#RiotSharp_StaticDataEndpoint_ChampionData">ChampionData</a></td>
+                    <td><em>championData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionListStatic.html#RiotSharp_StaticDataEndpoint_ChampionListStatic">ChampionListStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetChampionsAsync_" data-uid="RiotSharp.IStaticRiotApi.GetChampionsAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetChampionsAsync_RiotSharp_Region_RiotSharp_StaticDataEndpoint_ChampionData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetChampionsAsync(RiotSharp.Region,RiotSharp.StaticDataEndpoint.ChampionData,RiotSharp.Language)">GetChampionsAsync(Region, ChampionData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;ChampionListStatic&gt; GetChampionsAsync(Region region, ChampionData championData = ChampionData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionData.html#RiotSharp_StaticDataEndpoint_ChampionData">ChampionData</a></td>
+                    <td><em>championData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.ChampionListStatic.html#RiotSharp_StaticDataEndpoint_ChampionListStatic">ChampionListStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetItem_" data-uid="RiotSharp.IStaticRiotApi.GetItem*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetItem_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_ItemData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetItem(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.ItemData,RiotSharp.Language)">GetItem(Region, Int32, ItemData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">ItemStatic GetItem(Region region, int itemId, ItemData itemData = ItemData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>itemId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ItemData.html#RiotSharp_StaticDataEndpoint_ItemData">ItemData</a></td>
+                    <td><em>itemData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ItemStatic.html#RiotSharp_StaticDataEndpoint_ItemStatic">ItemStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetItemAsync_" data-uid="RiotSharp.IStaticRiotApi.GetItemAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetItemAsync_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_ItemData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetItemAsync(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.ItemData,RiotSharp.Language)">GetItemAsync(Region, Int32, ItemData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;ItemStatic&gt; GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>itemId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ItemData.html#RiotSharp_StaticDataEndpoint_ItemData">ItemData</a></td>
+                    <td><em>itemData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.ItemStatic.html#RiotSharp_StaticDataEndpoint_ItemStatic">ItemStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetItems_" data-uid="RiotSharp.IStaticRiotApi.GetItems*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetItems_RiotSharp_Region_RiotSharp_StaticDataEndpoint_ItemData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetItems(RiotSharp.Region,RiotSharp.StaticDataEndpoint.ItemData,RiotSharp.Language)">GetItems(Region, ItemData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">ItemListStatic GetItems(Region region, ItemData itemData = ItemData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ItemData.html#RiotSharp_StaticDataEndpoint_ItemData">ItemData</a></td>
+                    <td><em>itemData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ItemListStatic.html#RiotSharp_StaticDataEndpoint_ItemListStatic">ItemListStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetItemsAsync_" data-uid="RiotSharp.IStaticRiotApi.GetItemsAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetItemsAsync_RiotSharp_Region_RiotSharp_StaticDataEndpoint_ItemData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetItemsAsync(RiotSharp.Region,RiotSharp.StaticDataEndpoint.ItemData,RiotSharp.Language)">GetItemsAsync(Region, ItemData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;ItemListStatic&gt; GetItemsAsync(Region region, ItemData itemData = ItemData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.ItemData.html#RiotSharp_StaticDataEndpoint_ItemData">ItemData</a></td>
+                    <td><em>itemData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.ItemListStatic.html#RiotSharp_StaticDataEndpoint_ItemListStatic">ItemListStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetLanguages_" data-uid="RiotSharp.IStaticRiotApi.GetLanguages*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetLanguages_RiotSharp_Region_" data-uid="RiotSharp.IStaticRiotApi.GetLanguages(RiotSharp.Region)">GetLanguages(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;Language&gt; GetLanguages(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetLanguagesAsync_" data-uid="RiotSharp.IStaticRiotApi.GetLanguagesAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetLanguagesAsync_RiotSharp_Region_" data-uid="RiotSharp.IStaticRiotApi.GetLanguagesAsync(RiotSharp.Region)">GetLanguagesAsync(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;Language&gt;&gt; GetLanguagesAsync(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetLanguageStrings_" data-uid="RiotSharp.IStaticRiotApi.GetLanguageStrings*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetLanguageStrings_RiotSharp_Region_RiotSharp_Language_System_String_" data-uid="RiotSharp.IStaticRiotApi.GetLanguageStrings(RiotSharp.Region,RiotSharp.Language,System.String)">GetLanguageStrings(Region, Language, String)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US, string version = &quot;&quot;)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>version</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.LanguageStringsStatic.html#RiotSharp_StaticDataEndpoint_LanguageStringsStatic">LanguageStringsStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetLanguageStringsAsync_" data-uid="RiotSharp.IStaticRiotApi.GetLanguageStringsAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetLanguageStringsAsync_RiotSharp_Region_RiotSharp_Language_System_String_" data-uid="RiotSharp.IStaticRiotApi.GetLanguageStringsAsync(RiotSharp.Region,RiotSharp.Language,System.String)">GetLanguageStringsAsync(Region, Language, String)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;LanguageStringsStatic&gt; GetLanguageStringsAsync(Region region, Language language = Language.en_US, string version = &quot;&quot;)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>version</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.LanguageStringsStatic.html#RiotSharp_StaticDataEndpoint_LanguageStringsStatic">LanguageStringsStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetMaps_" data-uid="RiotSharp.IStaticRiotApi.GetMaps*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetMaps_RiotSharp_Region_RiotSharp_Language_System_String_" data-uid="RiotSharp.IStaticRiotApi.GetMaps(RiotSharp.Region,RiotSharp.Language,System.String)">GetMaps(Region, Language, String)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;MapStatic&gt; GetMaps(Region region, Language language = Language.en_US, string version = &quot;&quot;)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>version</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.MapStatic.html#RiotSharp_StaticDataEndpoint_MapStatic">MapStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetMapsAsync_" data-uid="RiotSharp.IStaticRiotApi.GetMapsAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetMapsAsync_RiotSharp_Region_RiotSharp_Language_System_String_" data-uid="RiotSharp.IStaticRiotApi.GetMapsAsync(RiotSharp.Region,RiotSharp.Language,System.String)">GetMapsAsync(Region, Language, String)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;MapStatic&gt;&gt; GetMapsAsync(Region region, Language language = Language.en_US, string version = &quot;&quot;)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>version</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.MapStatic.html#RiotSharp_StaticDataEndpoint_MapStatic">MapStatic</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetMasteries_" data-uid="RiotSharp.IStaticRiotApi.GetMasteries*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetMasteries_RiotSharp_Region_RiotSharp_StaticDataEndpoint_MasteryData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetMasteries(RiotSharp.Region,RiotSharp.StaticDataEndpoint.MasteryData,RiotSharp.Language)">GetMasteries(Region, MasteryData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">MasteryListStatic GetMasteries(Region region, MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryData.html#RiotSharp_StaticDataEndpoint_MasteryData">MasteryData</a></td>
+                    <td><em>masteryData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryListStatic.html#RiotSharp_StaticDataEndpoint_MasteryListStatic">MasteryListStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetMasteriesAsync_" data-uid="RiotSharp.IStaticRiotApi.GetMasteriesAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetMasteriesAsync_RiotSharp_Region_RiotSharp_StaticDataEndpoint_MasteryData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetMasteriesAsync(RiotSharp.Region,RiotSharp.StaticDataEndpoint.MasteryData,RiotSharp.Language)">GetMasteriesAsync(Region, MasteryData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;MasteryListStatic&gt; GetMasteriesAsync(Region region, MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryData.html#RiotSharp_StaticDataEndpoint_MasteryData">MasteryData</a></td>
+                    <td><em>masteryData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryListStatic.html#RiotSharp_StaticDataEndpoint_MasteryListStatic">MasteryListStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetMastery_" data-uid="RiotSharp.IStaticRiotApi.GetMastery*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetMastery_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_MasteryData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetMastery(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.MasteryData,RiotSharp.Language)">GetMastery(Region, Int32, MasteryData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">MasteryStatic GetMastery(Region region, int masteryId, MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>masteryId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryData.html#RiotSharp_StaticDataEndpoint_MasteryData">MasteryData</a></td>
+                    <td><em>masteryData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryStatic.html#RiotSharp_StaticDataEndpoint_MasteryStatic">MasteryStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetMasteryAsync_" data-uid="RiotSharp.IStaticRiotApi.GetMasteryAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetMasteryAsync_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_MasteryData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetMasteryAsync(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.MasteryData,RiotSharp.Language)">GetMasteryAsync(Region, Int32, MasteryData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;MasteryStatic&gt; GetMasteryAsync(Region region, int masteryId, MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>masteryId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryData.html#RiotSharp_StaticDataEndpoint_MasteryData">MasteryData</a></td>
+                    <td><em>masteryData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.MasteryStatic.html#RiotSharp_StaticDataEndpoint_MasteryStatic">MasteryStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetRealm_" data-uid="RiotSharp.IStaticRiotApi.GetRealm*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetRealm_RiotSharp_Region_" data-uid="RiotSharp.IStaticRiotApi.GetRealm(RiotSharp.Region)">GetRealm(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">RealmStatic GetRealm(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RealmStatic.html#RiotSharp_StaticDataEndpoint_RealmStatic">RealmStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetRealmAsync_" data-uid="RiotSharp.IStaticRiotApi.GetRealmAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetRealmAsync_RiotSharp_Region_" data-uid="RiotSharp.IStaticRiotApi.GetRealmAsync(RiotSharp.Region)">GetRealmAsync(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;RealmStatic&gt; GetRealmAsync(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.RealmStatic.html#RiotSharp_StaticDataEndpoint_RealmStatic">RealmStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetRune_" data-uid="RiotSharp.IStaticRiotApi.GetRune*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetRune_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_RuneData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetRune(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.RuneData,RiotSharp.Language)">GetRune(Region, Int32, RuneData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">RuneStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>runeId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RuneData.html#RiotSharp_StaticDataEndpoint_RuneData">RuneData</a></td>
+                    <td><em>runeData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RuneStatic.html#RiotSharp_StaticDataEndpoint_RuneStatic">RuneStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetRuneAsync_" data-uid="RiotSharp.IStaticRiotApi.GetRuneAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetRuneAsync_RiotSharp_Region_System_Int32_RiotSharp_StaticDataEndpoint_RuneData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetRuneAsync(RiotSharp.Region,System.Int32,RiotSharp.StaticDataEndpoint.RuneData,RiotSharp.Language)">GetRuneAsync(Region, Int32, RuneData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;RuneStatic&gt; GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>runeId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RuneData.html#RiotSharp_StaticDataEndpoint_RuneData">RuneData</a></td>
+                    <td><em>runeData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.RuneStatic.html#RiotSharp_StaticDataEndpoint_RuneStatic">RuneStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetRunes_" data-uid="RiotSharp.IStaticRiotApi.GetRunes*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetRunes_RiotSharp_Region_RiotSharp_StaticDataEndpoint_RuneData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetRunes(RiotSharp.Region,RiotSharp.StaticDataEndpoint.RuneData,RiotSharp.Language)">GetRunes(Region, RuneData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RuneData.html#RiotSharp_StaticDataEndpoint_RuneData">RuneData</a></td>
+                    <td><em>runeData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RuneListStatic.html#RiotSharp_StaticDataEndpoint_RuneListStatic">RuneListStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetRunesAsync_" data-uid="RiotSharp.IStaticRiotApi.GetRunesAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetRunesAsync_RiotSharp_Region_RiotSharp_StaticDataEndpoint_RuneData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetRunesAsync(RiotSharp.Region,RiotSharp.StaticDataEndpoint.RuneData,RiotSharp.Language)">GetRunesAsync(Region, RuneData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;RuneListStatic&gt; GetRunesAsync(Region region, RuneData runeData = RuneData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.RuneData.html#RiotSharp_StaticDataEndpoint_RuneData">RuneData</a></td>
+                    <td><em>runeData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.RuneListStatic.html#RiotSharp_StaticDataEndpoint_RuneListStatic">RuneListStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetSummonerSpell_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpell*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetSummonerSpell_RiotSharp_Region_RiotSharp_StaticDataEndpoint_SummonerSpell_RiotSharp_StaticDataEndpoint_SummonerSpellData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpell(RiotSharp.Region,RiotSharp.StaticDataEndpoint.SummonerSpell,RiotSharp.StaticDataEndpoint.SummonerSpellData,RiotSharp.Language)">GetSummonerSpell(Region, SummonerSpell, SummonerSpellData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">SummonerSpellStatic GetSummonerSpell(Region region, SummonerSpell summonerSpell, SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpell.html#RiotSharp_StaticDataEndpoint_SummonerSpell">SummonerSpell</a></td>
+                    <td><em>summonerSpell</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellData.html#RiotSharp_StaticDataEndpoint_SummonerSpellData">SummonerSpellData</a></td>
+                    <td><em>summonerSpellData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellStatic.html#RiotSharp_StaticDataEndpoint_SummonerSpellStatic">SummonerSpellStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetSummonerSpellAsync_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpellAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetSummonerSpellAsync_RiotSharp_Region_RiotSharp_StaticDataEndpoint_SummonerSpell_RiotSharp_StaticDataEndpoint_SummonerSpellData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpellAsync(RiotSharp.Region,RiotSharp.StaticDataEndpoint.SummonerSpell,RiotSharp.StaticDataEndpoint.SummonerSpellData,RiotSharp.Language)">GetSummonerSpellAsync(Region, SummonerSpell, SummonerSpellData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;SummonerSpellStatic&gt; GetSummonerSpellAsync(Region region, SummonerSpell summonerSpell, SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpell.html#RiotSharp_StaticDataEndpoint_SummonerSpell">SummonerSpell</a></td>
+                    <td><em>summonerSpell</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellData.html#RiotSharp_StaticDataEndpoint_SummonerSpellData">SummonerSpellData</a></td>
+                    <td><em>summonerSpellData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellStatic.html#RiotSharp_StaticDataEndpoint_SummonerSpellStatic">SummonerSpellStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetSummonerSpells_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpells*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetSummonerSpells_RiotSharp_Region_RiotSharp_StaticDataEndpoint_SummonerSpellData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpells(RiotSharp.Region,RiotSharp.StaticDataEndpoint.SummonerSpellData,RiotSharp.Language)">GetSummonerSpells(Region, SummonerSpellData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">SummonerSpellListStatic GetSummonerSpells(Region region, SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellData.html#RiotSharp_StaticDataEndpoint_SummonerSpellData">SummonerSpellData</a></td>
+                    <td><em>summonerSpellData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellListStatic.html#RiotSharp_StaticDataEndpoint_SummonerSpellListStatic">SummonerSpellListStatic</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetSummonerSpellsAsync_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpellsAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetSummonerSpellsAsync_RiotSharp_Region_RiotSharp_StaticDataEndpoint_SummonerSpellData_RiotSharp_Language_" data-uid="RiotSharp.IStaticRiotApi.GetSummonerSpellsAsync(RiotSharp.Region,RiotSharp.StaticDataEndpoint.SummonerSpellData,RiotSharp.Language)">GetSummonerSpellsAsync(Region, SummonerSpellData, Language)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;SummonerSpellListStatic&gt; GetSummonerSpellsAsync(Region region, SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellData.html#RiotSharp_StaticDataEndpoint_SummonerSpellData">SummonerSpellData</a></td>
+                    <td><em>summonerSpellData</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Language.html#RiotSharp_Language">Language</a></td>
+                    <td><em>language</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StaticDataEndpoint.SummonerSpellListStatic.html#RiotSharp_StaticDataEndpoint_SummonerSpellListStatic">SummonerSpellListStatic</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetVersions_" data-uid="RiotSharp.IStaticRiotApi.GetVersions*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetVersions_RiotSharp_Region_" data-uid="RiotSharp.IStaticRiotApi.GetVersions(RiotSharp.Region)">GetVersions(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;string&gt; GetVersions(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IStaticRiotApi_GetVersionsAsync_" data-uid="RiotSharp.IStaticRiotApi.GetVersionsAsync*"></a>
+              <h4 id="RiotSharp_IStaticRiotApi_GetVersionsAsync_RiotSharp_Region_" data-uid="RiotSharp.IStaticRiotApi.GetVersionsAsync(RiotSharp.Region)">GetVersionsAsync(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;string&gt;&gt; GetVersionsAsync(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

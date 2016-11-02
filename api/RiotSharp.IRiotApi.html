@@ -1,0 +1,2978 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IRiotApi
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IRiotApi
+   ">
+    <meta name="generator" content="docfx 2.7.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="RiotSharp_IRiotApi" data-uid="RiotSharp.IRiotApi">Interface IRiotApi
+              </h1>
+              <div class="markdown level0 summary"></div>
+              <div class="markdown level0 conceptual"></div>
+              <h6><strong>Namespace</strong>:RiotSharp</h6>
+              <h6><strong>Assembly</strong>:RiotSharp.dll</h6>
+              <h5 id="RiotSharp_IRiotApi_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public interface IRiotApi</code></pre>
+              </div>
+              <h3 id="methods">Methods
+              </h3>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetAllChampionsMasteryEntries_" data-uid="RiotSharp.IRiotApi.GetAllChampionsMasteryEntries*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetAllChampionsMasteryEntries_RiotSharp_Platform_System_Int64_" data-uid="RiotSharp.IRiotApi.GetAllChampionsMasteryEntries(RiotSharp.Platform,System.Int64)">GetAllChampionsMasteryEntries(Platform, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;ChampionMastery&gt; GetAllChampionsMasteryEntries(Platform platform, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionMasteryEndpoint.ChampionMastery.html#RiotSharp_ChampionMasteryEndpoint_ChampionMastery">ChampionMastery</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetAllChampionsMasteryEntriesAsync_" data-uid="RiotSharp.IRiotApi.GetAllChampionsMasteryEntriesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetAllChampionsMasteryEntriesAsync_RiotSharp_Platform_System_Int64_" data-uid="RiotSharp.IRiotApi.GetAllChampionsMasteryEntriesAsync(RiotSharp.Platform,System.Int64)">GetAllChampionsMasteryEntriesAsync(Platform, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;ChampionMastery&gt;&gt; GetAllChampionsMasteryEntriesAsync(Platform platform, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionMasteryEndpoint.ChampionMastery.html#RiotSharp_ChampionMasteryEndpoint_ChampionMastery">ChampionMastery</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChallengerLeague_" data-uid="RiotSharp.IRiotApi.GetChallengerLeague*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChallengerLeague_RiotSharp_Region_RiotSharp_Queue_" data-uid="RiotSharp.IRiotApi.GetChallengerLeague(RiotSharp.Region,RiotSharp.Queue)">GetChallengerLeague(Region, Queue)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">League GetChallengerLeague(Region region, Queue queue)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Queue.html#RiotSharp_Queue">Queue</a></td>
+                    <td><em>queue</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChallengerLeagueAsync_" data-uid="RiotSharp.IRiotApi.GetChallengerLeagueAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChallengerLeagueAsync_RiotSharp_Region_RiotSharp_Queue_" data-uid="RiotSharp.IRiotApi.GetChallengerLeagueAsync(RiotSharp.Region,RiotSharp.Queue)">GetChallengerLeagueAsync(Region, Queue)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;League&gt; GetChallengerLeagueAsync(Region region, Queue queue)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Queue.html#RiotSharp_Queue">Queue</a></td>
+                    <td><em>queue</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChampion_" data-uid="RiotSharp.IRiotApi.GetChampion*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChampion_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.IRiotApi.GetChampion(RiotSharp.Region,System.Int32)">GetChampion(Region, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Champion GetChampion(Region region, int championId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>championId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.ChampionEndpoint.Champion.html#RiotSharp_ChampionEndpoint_Champion">Champion</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChampionAsync_" data-uid="RiotSharp.IRiotApi.GetChampionAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChampionAsync_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.IRiotApi.GetChampionAsync(RiotSharp.Region,System.Int32)">GetChampionAsync(Region, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Champion&gt; GetChampionAsync(Region region, int championId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>championId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionEndpoint.Champion.html#RiotSharp_ChampionEndpoint_Champion">Champion</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChampionMastery_" data-uid="RiotSharp.IRiotApi.GetChampionMastery*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChampionMastery_RiotSharp_Platform_System_Int64_System_Int64_" data-uid="RiotSharp.IRiotApi.GetChampionMastery(RiotSharp.Platform,System.Int64,System.Int64)">GetChampionMastery(Platform, Int64, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">ChampionMastery GetChampionMastery(Platform platform, long summonerId, long championId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>championId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.ChampionMasteryEndpoint.ChampionMastery.html#RiotSharp_ChampionMasteryEndpoint_ChampionMastery">ChampionMastery</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChampionMasteryAsync_" data-uid="RiotSharp.IRiotApi.GetChampionMasteryAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChampionMasteryAsync_RiotSharp_Platform_System_Int64_System_Int64_" data-uid="RiotSharp.IRiotApi.GetChampionMasteryAsync(RiotSharp.Platform,System.Int64,System.Int64)">GetChampionMasteryAsync(Platform, Int64, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;ChampionMastery&gt; GetChampionMasteryAsync(Platform platform, long summonerId, long championId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>championId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionMasteryEndpoint.ChampionMastery.html#RiotSharp_ChampionMasteryEndpoint_ChampionMastery">ChampionMastery</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChampions_" data-uid="RiotSharp.IRiotApi.GetChampions*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChampions_RiotSharp_Region_System_Boolean_" data-uid="RiotSharp.IRiotApi.GetChampions(RiotSharp.Region,System.Boolean)">GetChampions(Region, Boolean)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;Champion&gt; GetChampions(Region region, bool freeToPlay = false)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><em>freeToPlay</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionEndpoint.Champion.html#RiotSharp_ChampionEndpoint_Champion">Champion</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetChampionsAsync_" data-uid="RiotSharp.IRiotApi.GetChampionsAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetChampionsAsync_RiotSharp_Region_System_Boolean_" data-uid="RiotSharp.IRiotApi.GetChampionsAsync(RiotSharp.Region,System.Boolean)">GetChampionsAsync(Region, Boolean)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;Champion&gt;&gt; GetChampionsAsync(Region region, bool freeToPlay = false)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><em>freeToPlay</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionEndpoint.Champion.html#RiotSharp_ChampionEndpoint_Champion">Champion</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetCurrentGame_" data-uid="RiotSharp.IRiotApi.GetCurrentGame*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetCurrentGame_RiotSharp_Platform_System_Int64_" data-uid="RiotSharp.IRiotApi.GetCurrentGame(RiotSharp.Platform,System.Int64)">GetCurrentGame(Platform, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">CurrentGame GetCurrentGame(Platform platform, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.CurrentGameEndpoint.CurrentGame.html#RiotSharp_CurrentGameEndpoint_CurrentGame">CurrentGame</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetCurrentGameAsync_" data-uid="RiotSharp.IRiotApi.GetCurrentGameAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetCurrentGameAsync_RiotSharp_Platform_System_Int64_" data-uid="RiotSharp.IRiotApi.GetCurrentGameAsync(RiotSharp.Platform,System.Int64)">GetCurrentGameAsync(Platform, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;CurrentGame&gt; GetCurrentGameAsync(Platform platform, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.CurrentGameEndpoint.CurrentGame.html#RiotSharp_CurrentGameEndpoint_CurrentGame">CurrentGame</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetEntireLeagues_" data-uid="RiotSharp.IRiotApi.GetEntireLeagues*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetEntireLeagues_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetEntireLeagues(RiotSharp.Region,List{System.Int32})">GetEntireLeagues(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;long, List&lt;League&gt;&gt; GetEntireLeagues(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetEntireLeagues_" data-uid="RiotSharp.IRiotApi.GetEntireLeagues*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetEntireLeagues_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetEntireLeagues(RiotSharp.Region,List{System.String})">GetEntireLeagues(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;string, List&lt;League&gt;&gt; GetEntireLeagues(Region region, List&lt;string&gt; teamIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>teamIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.String</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetEntireLeaguesAsync_" data-uid="RiotSharp.IRiotApi.GetEntireLeaguesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetEntireLeaguesAsync(RiotSharp.Region,List{System.Int32})">GetEntireLeaguesAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;long, List&lt;League&gt;&gt;&gt; GetEntireLeaguesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetEntireLeaguesAsync_" data-uid="RiotSharp.IRiotApi.GetEntireLeaguesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetEntireLeaguesAsync(RiotSharp.Region,List{System.String})">GetEntireLeaguesAsync(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;string, List&lt;League&gt;&gt;&gt; GetEntireLeaguesAsync(Region region, List&lt;string&gt; teamIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>teamIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.String</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetFeaturedGames_" data-uid="RiotSharp.IRiotApi.GetFeaturedGames*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetFeaturedGames_RiotSharp_Region_" data-uid="RiotSharp.IRiotApi.GetFeaturedGames(RiotSharp.Region)">GetFeaturedGames(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">FeaturedGames GetFeaturedGames(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.FeaturedGamesEndpoint.FeaturedGames.html#RiotSharp_FeaturedGamesEndpoint_FeaturedGames">FeaturedGames</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetFeaturedGamesAsync_" data-uid="RiotSharp.IRiotApi.GetFeaturedGamesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetFeaturedGamesAsync_RiotSharp_Region_" data-uid="RiotSharp.IRiotApi.GetFeaturedGamesAsync(RiotSharp.Region)">GetFeaturedGamesAsync(Region)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;FeaturedGames&gt; GetFeaturedGamesAsync(Region region)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.FeaturedGamesEndpoint.FeaturedGames.html#RiotSharp_FeaturedGamesEndpoint_FeaturedGames">FeaturedGames</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetLeagues_" data-uid="RiotSharp.IRiotApi.GetLeagues*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetLeagues_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetLeagues(RiotSharp.Region,List{System.Int32})">GetLeagues(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;long, List&lt;League&gt;&gt; GetLeagues(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetLeagues_" data-uid="RiotSharp.IRiotApi.GetLeagues*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetLeagues_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetLeagues(RiotSharp.Region,List{System.String})">GetLeagues(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;string, List&lt;League&gt;&gt; GetLeagues(Region region, List&lt;string&gt; teamIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>teamIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.String</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetLeaguesAsync_" data-uid="RiotSharp.IRiotApi.GetLeaguesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetLeaguesAsync(RiotSharp.Region,List{System.Int32})">GetLeaguesAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;long, List&lt;League&gt;&gt;&gt; GetLeaguesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetLeaguesAsync_" data-uid="RiotSharp.IRiotApi.GetLeaguesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetLeaguesAsync(RiotSharp.Region,List{System.String})">GetLeaguesAsync(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;string, List&lt;League&gt;&gt;&gt; GetLeaguesAsync(Region region, List&lt;string&gt; teamIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>teamIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.String</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetMasterLeague_" data-uid="RiotSharp.IRiotApi.GetMasterLeague*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetMasterLeague_RiotSharp_Region_RiotSharp_Queue_" data-uid="RiotSharp.IRiotApi.GetMasterLeague(RiotSharp.Region,RiotSharp.Queue)">GetMasterLeague(Region, Queue)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">League GetMasterLeague(Region region, Queue queue)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Queue.html#RiotSharp_Queue">Queue</a></td>
+                    <td><em>queue</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetMasterLeagueAsync_" data-uid="RiotSharp.IRiotApi.GetMasterLeagueAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetMasterLeagueAsync_RiotSharp_Region_RiotSharp_Queue_" data-uid="RiotSharp.IRiotApi.GetMasterLeagueAsync(RiotSharp.Region,RiotSharp.Queue)">GetMasterLeagueAsync(Region, Queue)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;League&gt; GetMasterLeagueAsync(Region region, Queue queue)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Queue.html#RiotSharp_Queue">Queue</a></td>
+                    <td><em>queue</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.LeagueEndpoint.League.html#RiotSharp_LeagueEndpoint_League">League</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetMasteryPages_" data-uid="RiotSharp.IRiotApi.GetMasteryPages*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetMasteryPages_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetMasteryPages(RiotSharp.Region,List{System.Int32})">GetMasteryPages(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;long, List&lt;MasteryPage&gt;&gt; GetMasteryPages(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.MasteryPage.html#RiotSharp_SummonerEndpoint_MasteryPage">MasteryPage</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetMasteryPagesAsync_" data-uid="RiotSharp.IRiotApi.GetMasteryPagesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetMasteryPagesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetMasteryPagesAsync(RiotSharp.Region,List{System.Int32})">GetMasteryPagesAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;long, List&lt;MasteryPage&gt;&gt;&gt; GetMasteryPagesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.MasteryPage.html#RiotSharp_SummonerEndpoint_MasteryPage">MasteryPage</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetMatch_" data-uid="RiotSharp.IRiotApi.GetMatch*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetMatch_RiotSharp_Region_System_Int64_System_Boolean_" data-uid="RiotSharp.IRiotApi.GetMatch(RiotSharp.Region,System.Int64,System.Boolean)">GetMatch(Region, Int64, Boolean)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>matchId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><em>includeTimeline</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.MatchEndpoint.MatchDetail.html#RiotSharp_MatchEndpoint_MatchDetail">MatchDetail</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetMatchAsync_" data-uid="RiotSharp.IRiotApi.GetMatchAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetMatchAsync_RiotSharp_Region_System_Int64_System_Boolean_" data-uid="RiotSharp.IRiotApi.GetMatchAsync(RiotSharp.Region,System.Int64,System.Boolean)">GetMatchAsync(Region, Int64, Boolean)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;MatchDetail&gt; GetMatchAsync(Region region, long matchId, bool includeTimeline = false)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>matchId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><em>includeTimeline</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.MatchDetail.html#RiotSharp_MatchEndpoint_MatchDetail">MatchDetail</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetRecentGames_" data-uid="RiotSharp.IRiotApi.GetRecentGames*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetRecentGames_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.IRiotApi.GetRecentGames(RiotSharp.Region,System.Int64)">GetRecentGames(Region, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;Game&gt; GetRecentGames(Region region, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.GameEndpoint.Game.html#RiotSharp_GameEndpoint_Game">Game</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetRecentGamesAsync_" data-uid="RiotSharp.IRiotApi.GetRecentGamesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetRecentGamesAsync_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.IRiotApi.GetRecentGamesAsync(RiotSharp.Region,System.Int64)">GetRecentGamesAsync(Region, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;Game&gt;&gt; GetRecentGamesAsync(Region region, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.GameEndpoint.Game.html#RiotSharp_GameEndpoint_Game">Game</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetRunePages_" data-uid="RiotSharp.IRiotApi.GetRunePages*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetRunePages_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetRunePages(RiotSharp.Region,List{System.Int32})">GetRunePages(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;long, List&lt;RunePage&gt;&gt; GetRunePages(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.RunePage.html#RiotSharp_SummonerEndpoint_RunePage">RunePage</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetRunePagesAsync_" data-uid="RiotSharp.IRiotApi.GetRunePagesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetRunePagesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetRunePagesAsync(RiotSharp.Region,List{System.Int32})">GetRunePagesAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;long, List&lt;RunePage&gt;&gt;&gt; GetRunePagesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.RunePage.html#RiotSharp_SummonerEndpoint_RunePage">RunePage</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsRanked_" data-uid="RiotSharp.IRiotApi.GetStatsRanked*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsRanked_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.IRiotApi.GetStatsRanked(RiotSharp.Region,System.Int64)">GetStatsRanked(Region, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;ChampionStats&gt; GetStatsRanked(Region region, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.ChampionStats.html#RiotSharp_StatsEndpoint_ChampionStats">ChampionStats</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsRanked_" data-uid="RiotSharp.IRiotApi.GetStatsRanked*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsRanked_RiotSharp_Region_System_Int64_RiotSharp_StatsEndpoint_Season_" data-uid="RiotSharp.IRiotApi.GetStatsRanked(RiotSharp.Region,System.Int64,RiotSharp.StatsEndpoint.Season)">GetStatsRanked(Region, Int64, Season)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;ChampionStats&gt; GetStatsRanked(Region region, long summonerId, Season season)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StatsEndpoint.Season.html#RiotSharp_StatsEndpoint_Season">Season</a></td>
+                    <td><em>season</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.ChampionStats.html#RiotSharp_StatsEndpoint_ChampionStats">ChampionStats</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsRankedAsync_" data-uid="RiotSharp.IRiotApi.GetStatsRankedAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsRankedAsync_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.IRiotApi.GetStatsRankedAsync(RiotSharp.Region,System.Int64)">GetStatsRankedAsync(Region, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;ChampionStats&gt;&gt; GetStatsRankedAsync(Region region, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.ChampionStats.html#RiotSharp_StatsEndpoint_ChampionStats">ChampionStats</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsRankedAsync_" data-uid="RiotSharp.IRiotApi.GetStatsRankedAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsRankedAsync_RiotSharp_Region_System_Int64_RiotSharp_StatsEndpoint_Season_" data-uid="RiotSharp.IRiotApi.GetStatsRankedAsync(RiotSharp.Region,System.Int64,RiotSharp.StatsEndpoint.Season)">GetStatsRankedAsync(Region, Int64, Season)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;ChampionStats&gt;&gt; GetStatsRankedAsync(Region region, long summonerId, Season season)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StatsEndpoint.Season.html#RiotSharp_StatsEndpoint_Season">Season</a></td>
+                    <td><em>season</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.ChampionStats.html#RiotSharp_StatsEndpoint_ChampionStats">ChampionStats</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsSummaries_" data-uid="RiotSharp.IRiotApi.GetStatsSummaries*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsSummaries_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.IRiotApi.GetStatsSummaries(RiotSharp.Region,System.Int64)">GetStatsSummaries(Region, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;PlayerStatsSummary&gt; GetStatsSummaries(Region region, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.PlayerStatsSummary.html#RiotSharp_StatsEndpoint_PlayerStatsSummary">PlayerStatsSummary</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsSummaries_" data-uid="RiotSharp.IRiotApi.GetStatsSummaries*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsSummaries_RiotSharp_Region_System_Int64_RiotSharp_StatsEndpoint_Season_" data-uid="RiotSharp.IRiotApi.GetStatsSummaries(RiotSharp.Region,System.Int64,RiotSharp.StatsEndpoint.Season)">GetStatsSummaries(Region, Int64, Season)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;PlayerStatsSummary&gt; GetStatsSummaries(Region region, long summonerId, Season season)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StatsEndpoint.Season.html#RiotSharp_StatsEndpoint_Season">Season</a></td>
+                    <td><em>season</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.PlayerStatsSummary.html#RiotSharp_StatsEndpoint_PlayerStatsSummary">PlayerStatsSummary</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsSummariesAsync_" data-uid="RiotSharp.IRiotApi.GetStatsSummariesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsSummariesAsync_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.IRiotApi.GetStatsSummariesAsync(RiotSharp.Region,System.Int64)">GetStatsSummariesAsync(Region, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;PlayerStatsSummary&gt;&gt; GetStatsSummariesAsync(Region region, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.PlayerStatsSummary.html#RiotSharp_StatsEndpoint_PlayerStatsSummary">PlayerStatsSummary</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetStatsSummariesAsync_" data-uid="RiotSharp.IRiotApi.GetStatsSummariesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetStatsSummariesAsync_RiotSharp_Region_System_Int64_RiotSharp_StatsEndpoint_Season_" data-uid="RiotSharp.IRiotApi.GetStatsSummariesAsync(RiotSharp.Region,System.Int64,RiotSharp.StatsEndpoint.Season)">GetStatsSummariesAsync(Region, Int64, Season)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;PlayerStatsSummary&gt;&gt; GetStatsSummariesAsync(Region region, long summonerId, Season season)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.StatsEndpoint.Season.html#RiotSharp_StatsEndpoint_Season">Season</a></td>
+                    <td><em>season</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.StatsEndpoint.PlayerStatsSummary.html#RiotSharp_StatsEndpoint_PlayerStatsSummary">PlayerStatsSummary</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummoner_" data-uid="RiotSharp.IRiotApi.GetSummoner*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummoner_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.IRiotApi.GetSummoner(RiotSharp.Region,System.Int32)">GetSummoner(Region, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Summoner GetSummoner(Region region, int summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummoner_" data-uid="RiotSharp.IRiotApi.GetSummoner*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummoner_RiotSharp_Region_System_String_" data-uid="RiotSharp.IRiotApi.GetSummoner(RiotSharp.Region,System.String)">GetSummoner(Region, String)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Summoner GetSummoner(Region region, string summonerName)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>summonerName</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonerAsync_" data-uid="RiotSharp.IRiotApi.GetSummonerAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonerAsync_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.IRiotApi.GetSummonerAsync(RiotSharp.Region,System.Int32)">GetSummonerAsync(Region, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Summoner&gt; GetSummonerAsync(Region region, int summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonerAsync_" data-uid="RiotSharp.IRiotApi.GetSummonerAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonerAsync_RiotSharp_Region_System_String_" data-uid="RiotSharp.IRiotApi.GetSummonerAsync(RiotSharp.Region,System.String)">GetSummonerAsync(Region, String)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Summoner&gt; GetSummonerAsync(Region region, string summonerName)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>summonerName</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonerName_" data-uid="RiotSharp.IRiotApi.GetSummonerName*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonerName_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.IRiotApi.GetSummonerName(RiotSharp.Region,System.Int32)">GetSummonerName(Region, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">SummonerBase GetSummonerName(Region region, int summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonerNameAsync_" data-uid="RiotSharp.IRiotApi.GetSummonerNameAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonerNameAsync_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.IRiotApi.GetSummonerNameAsync(RiotSharp.Region,System.Int32)">GetSummonerNameAsync(Region, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;SummonerBase&gt; GetSummonerNameAsync(Region region, int summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummoners_" data-uid="RiotSharp.IRiotApi.GetSummoners*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummoners_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetSummoners(RiotSharp.Region,List{System.Int32})">GetSummoners(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;Summoner&gt; GetSummoners(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummoners_" data-uid="RiotSharp.IRiotApi.GetSummoners*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummoners_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetSummoners(RiotSharp.Region,List{System.String})">GetSummoners(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;Summoner&gt; GetSummoners(Region region, List&lt;string&gt; summonerNames)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>summonerNames</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonersAsync_" data-uid="RiotSharp.IRiotApi.GetSummonersAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonersAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetSummonersAsync(RiotSharp.Region,List{System.Int32})">GetSummonersAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;Summoner&gt;&gt; GetSummonersAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonersAsync_" data-uid="RiotSharp.IRiotApi.GetSummonersAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonersAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetSummonersAsync(RiotSharp.Region,List{System.String})">GetSummonersAsync(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;Summoner&gt;&gt; GetSummonersAsync(Region region, List&lt;string&gt; summonerNames)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>summonerNames</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.Summoner.html#RiotSharp_SummonerEndpoint_Summoner">Summoner</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonersNames_" data-uid="RiotSharp.IRiotApi.GetSummonersNames*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonersNames_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetSummonersNames(RiotSharp.Region,List{System.Int32})">GetSummonersNames(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;SummonerBase&gt; GetSummonersNames(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetSummonersNamesAsync_" data-uid="RiotSharp.IRiotApi.GetSummonersNamesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetSummonersNamesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetSummonersNamesAsync(RiotSharp.Region,List{System.Int32})">GetSummonersNamesAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;SummonerBase&gt;&gt; GetSummonersNamesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTeams_" data-uid="RiotSharp.IRiotApi.GetTeams*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTeams_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetTeams(RiotSharp.Region,List{System.Int32})">GetTeams(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;long, List&lt;Team&gt;&gt; GetTeams(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TeamEndpoint.Team.html#RiotSharp_TeamEndpoint_Team">Team</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTeams_" data-uid="RiotSharp.IRiotApi.GetTeams*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTeams_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetTeams(RiotSharp.Region,List{System.String})">GetTeams(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Dictionary&lt;string, Team&gt; GetTeams(Region region, List&lt;string&gt; teamIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>teamIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="RiotSharp.TeamEndpoint.Team.html#RiotSharp_TeamEndpoint_Team">Team</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTeamsAsync_" data-uid="RiotSharp.IRiotApi.GetTeamsAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTeamsAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.IRiotApi.GetTeamsAsync(RiotSharp.Region,List{System.Int32})">GetTeamsAsync(Region, List&lt;Int32&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;long, List&lt;Team&gt;&gt;&gt; GetTeamsAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TeamEndpoint.Team.html#RiotSharp_TeamEndpoint_Team">Team</a>&gt;&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTeamsAsync_" data-uid="RiotSharp.IRiotApi.GetTeamsAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTeamsAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.IRiotApi.GetTeamsAsync(RiotSharp.Region,List{System.String})">GetTeamsAsync(Region, List&lt;String&gt;)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;string, Team&gt;&gt; GetTeamsAsync(Region region, List&lt;string&gt; teamIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><em>teamIds</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="RiotSharp.TeamEndpoint.Team.html#RiotSharp_TeamEndpoint_Team">Team</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTopChampionsMasteryEntries_" data-uid="RiotSharp.IRiotApi.GetTopChampionsMasteryEntries*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTopChampionsMasteryEntries_RiotSharp_Platform_System_Int64_System_Int32_" data-uid="RiotSharp.IRiotApi.GetTopChampionsMasteryEntries(RiotSharp.Platform,System.Int64,System.Int32)">GetTopChampionsMasteryEntries(Platform, Int64, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">List&lt;ChampionMastery&gt; GetTopChampionsMasteryEntries(Platform platform, long summonerId, int count)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>count</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionMasteryEndpoint.ChampionMastery.html#RiotSharp_ChampionMasteryEndpoint_ChampionMastery">ChampionMastery</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTopChampionsMasteryEntriesAsync_" data-uid="RiotSharp.IRiotApi.GetTopChampionsMasteryEntriesAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTopChampionsMasteryEntriesAsync_RiotSharp_Platform_System_Int64_System_Int32_" data-uid="RiotSharp.IRiotApi.GetTopChampionsMasteryEntriesAsync(RiotSharp.Platform,System.Int64,System.Int32)">GetTopChampionsMasteryEntriesAsync(Platform, Int64, Int32)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;List&lt;ChampionMastery&gt;&gt; GetTopChampionsMasteryEntriesAsync(Platform platform, long summonerId, int count)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>count</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.ChampionMasteryEndpoint.ChampionMastery.html#RiotSharp_ChampionMasteryEndpoint_ChampionMastery">ChampionMastery</a>&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTotalChampionMasteryScore_" data-uid="RiotSharp.IRiotApi.GetTotalChampionMasteryScore*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTotalChampionMasteryScore_RiotSharp_Platform_System_Int64_" data-uid="RiotSharp.IRiotApi.GetTotalChampionMasteryScore(RiotSharp.Platform,System.Int64)">GetTotalChampionMasteryScore(Platform, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">int GetTotalChampionMasteryScore(Platform platform, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_IRiotApi_GetTotalChampionMasteryScoreAsync_" data-uid="RiotSharp.IRiotApi.GetTotalChampionMasteryScoreAsync*"></a>
+              <h4 id="RiotSharp_IRiotApi_GetTotalChampionMasteryScoreAsync_RiotSharp_Platform_System_Int64_" data-uid="RiotSharp.IRiotApi.GetTotalChampionMasteryScoreAsync(RiotSharp.Platform,System.Int64)">GetTotalChampionMasteryScoreAsync(Platform, Int64)</h4>
+              <div class="markdown level1 summary"></div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">Task&lt;int&gt; GetTotalChampionMasteryScoreAsync(Platform platform, long summonerId)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Platform.html#RiotSharp_Platform">Platform</a></td>
+                    <td><em>platform</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>summonerId</em></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

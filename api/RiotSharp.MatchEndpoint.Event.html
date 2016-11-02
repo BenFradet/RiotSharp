@@ -1,0 +1,671 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Event
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Event
+   ">
+    <meta name="generator" content="docfx 2.7.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="RiotSharp_MatchEndpoint_Event" data-uid="RiotSharp.MatchEndpoint.Event">Class Event
+              </h1>
+              <div class="markdown level0 summary"><p>Class representing a particular event during a match (Match API).</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">Event</span></div>
+              </div>
+              <h6><strong>Namespace</strong>:RiotSharp.MatchEndpoint</h6>
+              <h6><strong>Assembly</strong>:RiotSharp.dll</h6>
+              <h5 id="RiotSharp_MatchEndpoint_Event_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public class Event : object</code></pre>
+              </div>
+              <h3 id="properties">Properties
+              </h3>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_AscendedType_" data-uid="RiotSharp.MatchEndpoint.Event.AscendedType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_AscendedType" data-uid="RiotSharp.MatchEndpoint.Event.AscendedType">AscendedType</h4>
+              <div class="markdown level1 summary"><p>The ascended type of the event. Only present if relevant.
+Note that CLEAR_ASCENDED refers to when a participants kills the ascended player.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public AscendedType AscendedType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.MatchEndpoint.Enums.AscendedType.html#RiotSharp_MatchEndpoint_Enums_AscendedType">AscendedType</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_AssistingParticipantIds_" data-uid="RiotSharp.MatchEndpoint.Event.AssistingParticipantIds*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_AssistingParticipantIds" data-uid="RiotSharp.MatchEndpoint.Event.AssistingParticipantIds">AssistingParticipantIds</h4>
+              <div class="markdown level1 summary"><p>The assisting participant IDs of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public List&lt;int&gt; AssistingParticipantIds { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_BuildingType_" data-uid="RiotSharp.MatchEndpoint.Event.BuildingType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_BuildingType" data-uid="RiotSharp.MatchEndpoint.Event.BuildingType">BuildingType</h4>
+              <div class="markdown level1 summary"><p>The building type of the event (tower or inhibitor). Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public BuildingType? BuildingType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.BuildingType.html#RiotSharp_MatchEndpoint_Enums_BuildingType">BuildingType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_CapturedPoint_" data-uid="RiotSharp.MatchEndpoint.Event.CapturedPoint*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_CapturedPoint" data-uid="RiotSharp.MatchEndpoint.Event.CapturedPoint">CapturedPoint</h4>
+              <div class="markdown level1 summary"><p>The point captured in the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public CapturedPoint? CapturedPoint { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.CapturedPoint.html#RiotSharp_MatchEndpoint_Enums_CapturedPoint">CapturedPoint</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_CreatorId_" data-uid="RiotSharp.MatchEndpoint.Event.CreatorId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_CreatorId" data-uid="RiotSharp.MatchEndpoint.Event.CreatorId">CreatorId</h4>
+              <div class="markdown level1 summary"><p>The creator ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int CreatorId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_EventType_" data-uid="RiotSharp.MatchEndpoint.Event.EventType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_EventType" data-uid="RiotSharp.MatchEndpoint.Event.EventType">EventType</h4>
+              <div class="markdown level1 summary"><p>Event type (building kills, champion kills, ward placements, items purchases, etc).</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public EventType? EventType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.EventType.html#RiotSharp_MatchEndpoint_Enums_EventType">EventType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_ItemAfter_" data-uid="RiotSharp.MatchEndpoint.Event.ItemAfter*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_ItemAfter" data-uid="RiotSharp.MatchEndpoint.Event.ItemAfter">ItemAfter</h4>
+              <div class="markdown level1 summary"><p>The ending item ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int ItemAfter { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_ItemBefore_" data-uid="RiotSharp.MatchEndpoint.Event.ItemBefore*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_ItemBefore" data-uid="RiotSharp.MatchEndpoint.Event.ItemBefore">ItemBefore</h4>
+              <div class="markdown level1 summary"><p>The starting item ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int ItemBefore { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_ItemId_" data-uid="RiotSharp.MatchEndpoint.Event.ItemId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_ItemId" data-uid="RiotSharp.MatchEndpoint.Event.ItemId">ItemId</h4>
+              <div class="markdown level1 summary"><p>The item ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int ItemId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_KillerId_" data-uid="RiotSharp.MatchEndpoint.Event.KillerId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_KillerId" data-uid="RiotSharp.MatchEndpoint.Event.KillerId">KillerId</h4>
+              <div class="markdown level1 summary"><p>The killer ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int KillerId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_LaneType_" data-uid="RiotSharp.MatchEndpoint.Event.LaneType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_LaneType" data-uid="RiotSharp.MatchEndpoint.Event.LaneType">LaneType</h4>
+              <div class="markdown level1 summary"><p>The lane type of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LaneType? LaneType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.LaneType.html#RiotSharp_MatchEndpoint_Enums_LaneType">LaneType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_LevelUpType_" data-uid="RiotSharp.MatchEndpoint.Event.LevelUpType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_LevelUpType" data-uid="RiotSharp.MatchEndpoint.Event.LevelUpType">LevelUpType</h4>
+              <div class="markdown level1 summary"><p>The level up type of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public LevelUpType? LevelUpType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.LevelUpType.html#RiotSharp_MatchEndpoint_Enums_LevelUpType">LevelUpType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_MonsterType_" data-uid="RiotSharp.MatchEndpoint.Event.MonsterType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_MonsterType" data-uid="RiotSharp.MatchEndpoint.Event.MonsterType">MonsterType</h4>
+              <div class="markdown level1 summary"><p>The monster type of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public MonsterType? MonsterType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.MonsterType.html#RiotSharp_MatchEndpoint_Enums_MonsterType">MonsterType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_ParticipantId_" data-uid="RiotSharp.MatchEndpoint.Event.ParticipantId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_ParticipantId" data-uid="RiotSharp.MatchEndpoint.Event.ParticipantId">ParticipantId</h4>
+              <div class="markdown level1 summary"><p>The participant ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int ParticipantId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_Position_" data-uid="RiotSharp.MatchEndpoint.Event.Position*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_Position" data-uid="RiotSharp.MatchEndpoint.Event.Position">Position</h4>
+              <div class="markdown level1 summary"><p>The position of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Position Position { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.MatchEndpoint.Position.html#RiotSharp_MatchEndpoint_Position">Position</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_SkillSlot_" data-uid="RiotSharp.MatchEndpoint.Event.SkillSlot*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_SkillSlot" data-uid="RiotSharp.MatchEndpoint.Event.SkillSlot">SkillSlot</h4>
+              <div class="markdown level1 summary"><p>The skill slot of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int SkillSlot { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_TeamId_" data-uid="RiotSharp.MatchEndpoint.Event.TeamId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_TeamId" data-uid="RiotSharp.MatchEndpoint.Event.TeamId">TeamId</h4>
+              <div class="markdown level1 summary"><p>The team ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int TeamId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_Timestamp_" data-uid="RiotSharp.MatchEndpoint.Event.Timestamp*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_Timestamp" data-uid="RiotSharp.MatchEndpoint.Event.Timestamp">Timestamp</h4>
+              <div class="markdown level1 summary"><p>Represents how much time into the game the event occurred.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public TimeSpan Timestamp { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">TimeSpan</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_TowerType_" data-uid="RiotSharp.MatchEndpoint.Event.TowerType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_TowerType" data-uid="RiotSharp.MatchEndpoint.Event.TowerType">TowerType</h4>
+              <div class="markdown level1 summary"><p>The tower type of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public TowerType? TowerType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.TowerType.html#RiotSharp_MatchEndpoint_Enums_TowerType">TowerType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_VictimId_" data-uid="RiotSharp.MatchEndpoint.Event.VictimId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_VictimId" data-uid="RiotSharp.MatchEndpoint.Event.VictimId">VictimId</h4>
+              <div class="markdown level1 summary"><p>The victim ID of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int VictimId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Event_WardType_" data-uid="RiotSharp.MatchEndpoint.Event.WardType*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Event_WardType" data-uid="RiotSharp.MatchEndpoint.Event.WardType">WardType</h4>
+              <div class="markdown level1 summary"><p>The ward type of the event. Only present if relevant.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public WardType? WardType { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.Enums.WardType.html#RiotSharp_MatchEndpoint_Enums_WardType">WardType</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

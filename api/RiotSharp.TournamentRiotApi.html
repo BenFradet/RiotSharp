@@ -1,0 +1,1303 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TournamentRiotApi
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TournamentRiotApi
+   ">
+    <meta name="generator" content="docfx 2.7.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="RiotSharp_TournamentRiotApi" data-uid="RiotSharp.TournamentRiotApi">Class TournamentRiotApi
+              </h1>
+              <div class="markdown level0 summary"><p>Entry point for the tournament API.</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">TournamentRiotApi</span></div>
+              </div>
+              <h6><strong>Namespace</strong>:RiotSharp</h6>
+              <h6><strong>Assembly</strong>:RiotSharp.dll</h6>
+              <h5 id="RiotSharp_TournamentRiotApi_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public class TournamentRiotApi : object, ITournamentRiotApi</code></pre>
+              </div>
+              <h3 id="methods">Methods
+              </h3>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateProvider_" data-uid="RiotSharp.TournamentRiotApi.CreateProvider*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateProvider_RiotSharp_Region_System_String_" data-uid="RiotSharp.TournamentRiotApi.CreateProvider(RiotSharp.Region,System.String)">CreateProvider(Region, String)</h4>
+              <div class="markdown level1 summary"><p>Creates a tournament provider and returns its ID.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public TournamentProvider CreateProvider(Region region, string url)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>The region in which the provider will be running tournaments.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>url</em></td>
+                    <td><p>The provider&#39;s callback URL to which tournament game results in this region should be posted. The URL
+must be well-formed, use the http or https protocol, and use the default port for the protocol (http URLs must use
+port 80, https URLs must use port 443).</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.TournamentProvider.html#RiotSharp_TournamentEndpoint_TournamentProvider">TournamentProvider</a></td>
+                    <td><p>The ID of the provider.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateProvider_RiotSharp_Region_System_String_">ITournamentRiotApi.CreateProvider(Region, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateProviderAsync_" data-uid="RiotSharp.TournamentRiotApi.CreateProviderAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateProviderAsync_RiotSharp_Region_System_String_" data-uid="RiotSharp.TournamentRiotApi.CreateProviderAsync(RiotSharp.Region,System.String)">CreateProviderAsync(Region, String)</h4>
+              <div class="markdown level1 summary"><p>Creates a tournament provider and returns its object.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;TournamentProvider&gt; CreateProviderAsync(Region region, string url)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>The region in which the provider will be running tournaments.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>url</em></td>
+                    <td><p>The provider&#39;s callback URL to which tournament game results in this region should be posted. The URL
+must be well-formed, use the http or https protocol, and use the default port for the protocol (http URLs must use
+port 80, https URLs must use port 443).</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.TournamentProvider.html#RiotSharp_TournamentEndpoint_TournamentProvider">TournamentProvider</a>&gt;</td>
+                    <td><p>The ID of the provider.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateProviderAsync_RiotSharp_Region_System_String_">ITournamentRiotApi.CreateProviderAsync(Region, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateTournament_" data-uid="RiotSharp.TournamentRiotApi.CreateTournament*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateTournament_System_Int32_System_String_" data-uid="RiotSharp.TournamentRiotApi.CreateTournament(System.Int32,System.String)">CreateTournament(Int32, String)</h4>
+              <div class="markdown level1 summary"><p>Creates a tournament and returns its object.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Tournament CreateTournament(int providerId, string name)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>providerId</em></td>
+                    <td><p>The provider ID to specify the regional registered provider data to associate this tournament.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>name</em></td>
+                    <td><p>The optional name of the tournament.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Tournament.html#RiotSharp_TournamentEndpoint_Tournament">Tournament</a></td>
+                    <td><p>The ID of the tournament.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateTournament_System_Int32_System_String_">ITournamentRiotApi.CreateTournament(Int32, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateTournamentAsync_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateTournamentAsync_System_Int32_System_String_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentAsync(System.Int32,System.String)">CreateTournamentAsync(Int32, String)</h4>
+              <div class="markdown level1 summary"><p>Creates a tournament and returns its object.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;Tournament&gt; CreateTournamentAsync(int providerId, string name)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>providerId</em></td>
+                    <td><p>The provider ID to specify the regional registered provider data to associate this tournament.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>name</em></td>
+                    <td><p>The optional name of the tournament.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Tournament.html#RiotSharp_TournamentEndpoint_Tournament">Tournament</a>&gt;</td>
+                    <td><p>The ID of the tournament.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateTournamentAsync_System_Int32_System_String_">ITournamentRiotApi.CreateTournamentAsync(Int32, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateTournamentCode_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCode*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateTournamentCode_System_Int32_System_Int32_List_System_Int64__RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCode(System.Int32,System.Int32,List{System.Int64},RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType,RiotSharp.TournamentEndpoint.Enums.TournamentPickType,RiotSharp.TournamentEndpoint.Enums.TournamentMapType,System.String)">CreateTournamentCode(Int32, Int32, List&lt;Int64&gt;, TournamentSpectatorType, TournamentPickType, TournamentMapType, String)</h4>
+              <div class="markdown level1 summary"><p>Create a tournament code for the given tournament id.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public string CreateTournamentCode(int tournamentId, int teamSize, List&lt;long&gt; allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metadata)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>tournamentId</em></td>
+                    <td><p>The tournament ID</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>teamSize</em></td>
+                    <td><p>The team size of the game. Valid values are 1-5.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><em>allowedSummonerIds</em></td>
+                    <td><p>Optional list of participants in order to validate the players eligible to join the
+lobby. NOTE: We currently do not enforce participants at the team level, but rather the aggregate of teamOne and
+teamTwo. We may add the ability to enforce at the team level in the future.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType.html#RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType">TournamentSpectatorType</a></td>
+                    <td><em>spectatorType</em></td>
+                    <td><p>The spectator type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentPickType.html#RiotSharp_TournamentEndpoint_Enums_TournamentPickType">TournamentPickType</a></td>
+                    <td><em>pickType</em></td>
+                    <td><p>The pick type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentMapType.html#RiotSharp_TournamentEndpoint_Enums_TournamentMapType">TournamentMapType</a></td>
+                    <td><em>mapType</em></td>
+                    <td><p>The map type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>metadata</em></td>
+                    <td><p>Optional string that may contain any data in any format, if specified at all. Used to denote any
+custom information about the game.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><p>The tournament code in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateTournamentCode_System_Int32_System_Int32_List_System_Int64__RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_">ITournamentRiotApi.CreateTournamentCode(Int32, Int32, List&lt;Int64&gt;, TournamentSpectatorType, TournamentPickType, TournamentMapType, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateTournamentCodeAsync_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCodeAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateTournamentCodeAsync_System_Int32_System_Int32_List_System_Int64__RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCodeAsync(System.Int32,System.Int32,List{System.Int64},RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType,RiotSharp.TournamentEndpoint.Enums.TournamentPickType,RiotSharp.TournamentEndpoint.Enums.TournamentMapType,System.String)">CreateTournamentCodeAsync(Int32, Int32, List&lt;Int64&gt;, TournamentSpectatorType, TournamentPickType, TournamentMapType, String)</h4>
+              <div class="markdown level1 summary"><p>Create a tournament code for the given tournament id.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;string&gt; CreateTournamentCodeAsync(int tournamentId, int teamSize, List&lt;long&gt; allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metadata)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>tournamentId</em></td>
+                    <td><p>The tournament ID</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>teamSize</em></td>
+                    <td><p>The team size of the game. Valid values are 1-5.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><em>allowedSummonerIds</em></td>
+                    <td><p>Optional list of participants in order to validate the players eligible to join the
+lobby. NOTE: We currently do not enforce participants at the team level, but rather the aggregate of teamOne and
+teamTwo. We may add the ability to enforce at the team level in the future.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType.html#RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType">TournamentSpectatorType</a></td>
+                    <td><em>spectatorType</em></td>
+                    <td><p>The spectator type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentPickType.html#RiotSharp_TournamentEndpoint_Enums_TournamentPickType">TournamentPickType</a></td>
+                    <td><em>pickType</em></td>
+                    <td><p>The pick type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentMapType.html#RiotSharp_TournamentEndpoint_Enums_TournamentMapType">TournamentMapType</a></td>
+                    <td><em>mapType</em></td>
+                    <td><p>The map type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>metadata</em></td>
+                    <td><p>Optional string that may contain any data in any format, if specified at all. Used to denote any
+custom information about the game.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><p>The tournament code in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateTournamentCodeAsync_System_Int32_System_Int32_List_System_Int64__RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_">ITournamentRiotApi.CreateTournamentCodeAsync(Int32, Int32, List&lt;Int64&gt;, TournamentSpectatorType, TournamentPickType, TournamentMapType, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateTournamentCodes_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCodes*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateTournamentCodes_System_Int32_System_Int32_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_System_Int32_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCodes(System.Int32,System.Int32,RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType,RiotSharp.TournamentEndpoint.Enums.TournamentPickType,RiotSharp.TournamentEndpoint.Enums.TournamentMapType,System.String,System.Int32)">CreateTournamentCodes(Int32, Int32, TournamentSpectatorType, TournamentPickType, TournamentMapType, String, Int32)</h4>
+              <div class="markdown level1 summary"><p>Create multiple tournament codes for the given tournament id.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public List&lt;string&gt; CreateTournamentCodes(int tournamentId, int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>tournamentId</em></td>
+                    <td><p>The tournament ID</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>teamSize</em></td>
+                    <td><p>The team size of the game. Valid values are 1-5.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType.html#RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType">TournamentSpectatorType</a></td>
+                    <td><em>spectatorType</em></td>
+                    <td><p>The spectator type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentPickType.html#RiotSharp_TournamentEndpoint_Enums_TournamentPickType">TournamentPickType</a></td>
+                    <td><em>pickType</em></td>
+                    <td><p>The pick type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentMapType.html#RiotSharp_TournamentEndpoint_Enums_TournamentMapType">TournamentMapType</a></td>
+                    <td><em>mapType</em></td>
+                    <td><p>The map type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>metadata</em></td>
+                    <td><p>Optional string that may contain any data in any format, if specified at all. Used to denote any
+custom information about the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>count</em></td>
+                    <td><p>The number of codes to create (max 1000).</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
+                    <td><p>A list of tournament codes in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateTournamentCodes_System_Int32_System_Int32_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_System_Int32_">ITournamentRiotApi.CreateTournamentCodes(Int32, Int32, TournamentSpectatorType, TournamentPickType, TournamentMapType, String, Int32)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_CreateTournamentCodesAsync_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCodesAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_CreateTournamentCodesAsync_System_Int32_System_Int32_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_System_Int32_" data-uid="RiotSharp.TournamentRiotApi.CreateTournamentCodesAsync(System.Int32,System.Int32,RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType,RiotSharp.TournamentEndpoint.Enums.TournamentPickType,RiotSharp.TournamentEndpoint.Enums.TournamentMapType,System.String,System.Int32)">CreateTournamentCodesAsync(Int32, Int32, TournamentSpectatorType, TournamentPickType, TournamentMapType, String, Int32)</h4>
+              <div class="markdown level1 summary"><p>Create multiple tournament codes for the given tournament id.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;List&lt;string&gt;&gt; CreateTournamentCodesAsync(int tournamentId, int teamSize, TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>tournamentId</em></td>
+                    <td><p>The tournament ID</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>teamSize</em></td>
+                    <td><p>The team size of the game. Valid values are 1-5.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType.html#RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType">TournamentSpectatorType</a></td>
+                    <td><em>spectatorType</em></td>
+                    <td><p>The spectator type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentPickType.html#RiotSharp_TournamentEndpoint_Enums_TournamentPickType">TournamentPickType</a></td>
+                    <td><em>pickType</em></td>
+                    <td><p>The pick type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentMapType.html#RiotSharp_TournamentEndpoint_Enums_TournamentMapType">TournamentMapType</a></td>
+                    <td><em>mapType</em></td>
+                    <td><p>The map type of the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>metadata</em></td>
+                    <td><p>Optional string that may contain any data in any format, if specified at all. Used to denote any
+custom information about the game.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>count</em></td>
+                    <td><p>The number of codes to create (max 1000).</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+                    <td><p>A list of tournament codes in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_CreateTournamentCodesAsync_System_Int32_System_Int32_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType_RiotSharp_TournamentEndpoint_Enums_TournamentPickType_RiotSharp_TournamentEndpoint_Enums_TournamentMapType_System_String_System_Int32_">ITournamentRiotApi.CreateTournamentCodesAsync(Int32, Int32, TournamentSpectatorType, TournamentPickType, TournamentMapType, String, Int32)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetInstance_" data-uid="RiotSharp.TournamentRiotApi.GetInstance*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetInstance_System_String_System_Int32_System_Int32_" data-uid="RiotSharp.TournamentRiotApi.GetInstance(System.String,System.Int32,System.Int32)">GetInstance(String, Int32, Int32)</h4>
+              <div class="markdown level1 summary"><p>Get the instance of RiotApi.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>apiKey</em></td>
+                    <td><p>The api key.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>rateLimitPer10s</em></td>
+                    <td><p>The 10 seconds rate limit for your production api key.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><em>rateLimitPer10m</em></td>
+                    <td><p>The 10 minutes rate limit for your production api key.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentRiotApi.html#RiotSharp_TournamentRiotApi">TournamentRiotApi</a></td>
+                    <td><p>The instance of RiotApi.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentCodeDetails_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentCodeDetails*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentCodeDetails_System_String_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentCodeDetails(System.String)">GetTournamentCodeDetails(String)</h4>
+              <div class="markdown level1 summary"><p>Returns the details of a certain tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.TournamentEndpoint.TournamentCodeDetail.html#RiotSharp_TournamentEndpoint_TournamentCodeDetail">TournamentCodeDetail</a></td>
+                    <td><p>TournamentCodeDetail object with details of the tournament code.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentCodeDetails_System_String_">ITournamentRiotApi.GetTournamentCodeDetails(String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentCodeDetailsAsync_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentCodeDetailsAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentCodeDetailsAsync_System_String_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentCodeDetailsAsync(System.String)">GetTournamentCodeDetailsAsync(String)</h4>
+              <div class="markdown level1 summary"><p>Returns the details of a certain tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;TournamentCodeDetail&gt; GetTournamentCodeDetailsAsync(string tournamentCode)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.TournamentCodeDetail.html#RiotSharp_TournamentEndpoint_TournamentCodeDetail">TournamentCodeDetail</a>&gt;</td>
+                    <td><p>TournamentCodeDetail object with details of the tournament code.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentCodeDetailsAsync_System_String_">ITournamentRiotApi.GetTournamentCodeDetailsAsync(String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentLobbyEvents_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentLobbyEvents*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentLobbyEvents_System_String_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentLobbyEvents(System.String)">GetTournamentLobbyEvents(String)</h4>
+              <div class="markdown level1 summary"><p>Gets a list of lobby events by tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public List&lt;TournamentLobbyEvent&gt; GetTournamentLobbyEvents(string tournamentCode)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>A tournament code in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.TournamentLobbyEvent.html#RiotSharp_TournamentEndpoint_TournamentLobbyEvent">TournamentLobbyEvent</a>&gt;</td>
+                    <td><p>List of TournamentLobbyEvents.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentLobbyEvents_System_String_">ITournamentRiotApi.GetTournamentLobbyEvents(String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentLobbyEventsAsync_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentLobbyEventsAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentLobbyEventsAsync_System_String_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentLobbyEventsAsync(System.String)">GetTournamentLobbyEventsAsync(String)</h4>
+              <div class="markdown level1 summary"><p>Gets a list of lobby events by tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;List&lt;TournamentLobbyEvent&gt;&gt; GetTournamentLobbyEventsAsync(string tournamentCode)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>A tournament code in string format.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.TournamentLobbyEvent.html#RiotSharp_TournamentEndpoint_TournamentLobbyEvent">TournamentLobbyEvent</a>&gt;&gt;</td>
+                    <td><p>List of TournamentLobbyEvents.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentLobbyEventsAsync_System_String_">ITournamentRiotApi.GetTournamentLobbyEventsAsync(String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentMatch_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatch*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentMatch_RiotSharp_Region_System_Int64_System_String_System_Boolean_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatch(RiotSharp.Region,System.Int64,System.String,System.Boolean)">GetTournamentMatch(Region, Int64, String, Boolean)</h4>
+              <div class="markdown level1 summary"><p>Retrieve match by match ID and tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public MatchDetail GetTournamentMatch(Region region, long matchId, string tournamentCode, bool includeTimeline)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>The region of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>matchId</em></td>
+                    <td><p>The ID of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><em>includeTimeline</em></td>
+                    <td><p>Flag indicating whether or not to include match timeline data.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.MatchEndpoint.MatchDetail.html#RiotSharp_MatchEndpoint_MatchDetail">MatchDetail</a></td>
+                    <td><p>MatchDetail object.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentMatch_RiotSharp_Region_System_Int64_System_String_System_Boolean_">ITournamentRiotApi.GetTournamentMatch(Region, Int64, String, Boolean)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentMatchAsync_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatchAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentMatchAsync_RiotSharp_Region_System_Int64_System_String_System_Boolean_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatchAsync(RiotSharp.Region,System.Int64,System.String,System.Boolean)">GetTournamentMatchAsync(Region, Int64, String, Boolean)</h4>
+              <div class="markdown level1 summary"><p>Retrieve match by match ID and tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;MatchDetail&gt; GetTournamentMatchAsync(Region region, long matchId, string tournamentCode, bool includeTimeline)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>The region of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><em>matchId</em></td>
+                    <td><p>The ID of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><em>includeTimeline</em></td>
+                    <td><p>Flag indicating whether or not to include match timeline data.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.MatchDetail.html#RiotSharp_MatchEndpoint_MatchDetail">MatchDetail</a>&gt;</td>
+                    <td><p>MatchDetail object.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentMatchAsync_RiotSharp_Region_System_Int64_System_String_System_Boolean_">ITournamentRiotApi.GetTournamentMatchAsync(Region, Int64, String, Boolean)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentMatchId_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatchId*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentMatchId_RiotSharp_Region_System_String_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatchId(RiotSharp.Region,System.String)">GetTournamentMatchId(Region, String)</h4>
+              <div class="markdown level1 summary"><p>Retrieve match IDs by tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long GetTournamentMatchId(Region region, string tournamentCode)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>The region of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code of the match.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td><p>The match id of the match played with the tournament code entered.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentMatchId_RiotSharp_Region_System_String_">ITournamentRiotApi.GetTournamentMatchId(Region, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_GetTournamentMatchIdAsync_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatchIdAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_GetTournamentMatchIdAsync_RiotSharp_Region_System_String_" data-uid="RiotSharp.TournamentRiotApi.GetTournamentMatchIdAsync(RiotSharp.Region,System.String)">GetTournamentMatchIdAsync(Region, String)</h4>
+              <div class="markdown level1 summary"><p>Retrieve match IDs by tournament code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;long&gt; GetTournamentMatchIdAsync(Region region, string tournamentCode)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>The region of the match.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code of the match.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><p>The match id of the match played with the tournament code entered.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_GetTournamentMatchIdAsync_RiotSharp_Region_System_String_">ITournamentRiotApi.GetTournamentMatchIdAsync(Region, String)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_UpdateTournamentCode_" data-uid="RiotSharp.TournamentRiotApi.UpdateTournamentCode*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_UpdateTournamentCode_System_String_List_System_Int64__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentPickType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentMapType__" data-uid="RiotSharp.TournamentRiotApi.UpdateTournamentCode(System.String,List{System.Int64},System.Nullable{RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType},System.Nullable{RiotSharp.TournamentEndpoint.Enums.TournamentPickType},System.Nullable{RiotSharp.TournamentEndpoint.Enums.TournamentMapType})">UpdateTournamentCode(String, List&lt;Int64&gt;, Nullable&lt;TournamentSpectatorType&gt;, Nullable&lt;TournamentPickType&gt;, Nullable&lt;TournamentMapType&gt;)</h4>
+              <div class="markdown level1 summary"><p>Update the pick type, map, spectator type, or allowed summoners for a code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool UpdateTournamentCode(string tournamentCode, List&lt;long&gt; allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code to update</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><em>allowedSummonerIds</em></td>
+                    <td><p>List of summoner id&#39;s.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType.html#RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType">TournamentSpectatorType</a>&gt;</td>
+                    <td><em>spectatorType</em></td>
+                    <td><p>The spectator type.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentPickType.html#RiotSharp_TournamentEndpoint_Enums_TournamentPickType">TournamentPickType</a>&gt;</td>
+                    <td><em>pickType</em></td>
+                    <td><p>The pick type.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentMapType.html#RiotSharp_TournamentEndpoint_Enums_TournamentMapType">TournamentMapType</a>&gt;</td>
+                    <td><em>mapType</em></td>
+                    <td><p>The map type.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p>Success value.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_UpdateTournamentCode_System_String_List_System_Int64__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentPickType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentMapType__">ITournamentRiotApi.UpdateTournamentCode(String, List&lt;Int64&gt;, Nullable&lt;TournamentSpectatorType&gt;, Nullable&lt;TournamentPickType&gt;, Nullable&lt;TournamentMapType&gt;)</a></div>
+              
+              
+              <a id="RiotSharp_TournamentRiotApi_UpdateTournamentCodeAsync_" data-uid="RiotSharp.TournamentRiotApi.UpdateTournamentCodeAsync*"></a>
+              <h4 id="RiotSharp_TournamentRiotApi_UpdateTournamentCodeAsync_System_String_List_System_Int64__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentPickType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentMapType__" data-uid="RiotSharp.TournamentRiotApi.UpdateTournamentCodeAsync(System.String,List{System.Int64},System.Nullable{RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType},System.Nullable{RiotSharp.TournamentEndpoint.Enums.TournamentPickType},System.Nullable{RiotSharp.TournamentEndpoint.Enums.TournamentMapType})">UpdateTournamentCodeAsync(String, List&lt;Int64&gt;, Nullable&lt;TournamentSpectatorType&gt;, Nullable&lt;TournamentPickType&gt;, Nullable&lt;TournamentMapType&gt;)</h4>
+              <div class="markdown level1 summary"><p>Update the pick type, map, spectator type, or allowed summoners for a code.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; UpdateTournamentCodeAsync(string tournamentCode, List&lt;long&gt; allowedSummonerIds, TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><em>tournamentCode</em></td>
+                    <td><p>The tournament code to update</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><em>allowedSummonerIds</em></td>
+                    <td><p>List of summoner id&#39;s.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentSpectatorType.html#RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType">TournamentSpectatorType</a>&gt;</td>
+                    <td><em>spectatorType</em></td>
+                    <td><p>The spectator type.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentPickType.html#RiotSharp_TournamentEndpoint_Enums_TournamentPickType">TournamentPickType</a>&gt;</td>
+                    <td><em>pickType</em></td>
+                    <td><p>The pick type.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Nullable&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TournamentEndpoint.Enums.TournamentMapType.html#RiotSharp_TournamentEndpoint_Enums_TournamentMapType">TournamentMapType</a>&gt;</td>
+                    <td><em>mapType</em></td>
+                    <td><p>The map type.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+                    <td><p>Success value.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.ITournamentRiotApi.html#RiotSharp_ITournamentRiotApi_UpdateTournamentCodeAsync_System_String_List_System_Int64__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentSpectatorType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentPickType__System_Nullable_RiotSharp_TournamentEndpoint_Enums_TournamentMapType__">ITournamentRiotApi.UpdateTournamentCodeAsync(String, List&lt;Int64&gt;, Nullable&lt;TournamentSpectatorType&gt;, Nullable&lt;TournamentPickType&gt;, Nullable&lt;TournamentMapType&gt;)</a></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

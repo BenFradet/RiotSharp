@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>RiotSharp </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="RiotSharp ">
+    <meta name="generator" content="docfx 2.7.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+              <h1 id="riotsharp">RiotSharp</h1>
+              
+<p>C# Wrapper for the <a href="https://developer.riotgames.com/">Riot Games API</a></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>No need to worry about the 10 requests per 10s or the 500 requests per 10m rate limits, they are already implemented in the wrapper</li>
+<li>LINQ support</li>
+<li>Synchronous and asynchronous API</li>
+<li>Caching for the Static API</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Install RiotSharp through NuGet:</p>
+<pre><code>PM&gt; Install-Package RiotSharp
+</code></pre><p>or</p>
+<ol>
+<li><p>Clone the repo (<a href="https://github.com/BenFradet/RiotSharp.git">https://github.com/BenFradet/RiotSharp.git</a>) or <a href="https://github.com/BenFradet/RiotSharp/archive/master.zip">download the zip file</a>.</p>
+</li>
+<li><p>Build the RiotSharp project and add the library to your own application.</p>
+</li>
+</ol>
+<h2 id="usage">Usage</h2>
+<h3 id="game-api">Game API</h3>
+<p>In order to use the api you need an api key which you can get <a href="https://developer.riotgames.com/">here</a>.</p>
+<p>Entry point to the api if you do not own a production API key:</p>
+<pre><code class="lang-c#">var api = RiotApi.GetInstance(&quot;YOUR_API_KEY&quot;);
+</code></pre><p>If you do own a production API key you can specify your own rate limits:</p>
+<pre><code class="lang-c#">var api = RiotApi.GetInstance(&quot;YOUR_API_KEY&quot;,
+  yourRateLimitPer10s, yourRateLimitPer10m);
+</code></pre><p>To get a summoner:</p>
+<pre><code class="lang-c#">try
+{
+  var summoner = api.GetSummoner(Region.euw, &quot;StopOFlop&quot;);
+}
+catch (RiotSharpException ex)
+{
+  // Handle the exception however you want.
+}
+</code></pre><p>To get the stats in ranked for a specific champion for this summoner:</p>
+<pre><code class="lang-c#">try
+{
+  var varusRanked = summoner.GetStatsRanked(Season.Season3)
+    .Where((s) =&gt; s.Name != null &amp;&amp; s.Name.Equals(&quot;Varus&quot;))
+    .FirstOrDefault();
+}
+catch (RiotSharpException ex)
+{
+  // Handle the exception however you want.
+}
+
+foreach (var stat in varusRanked.Stats)
+{
+  Console.WriteLine(stat.Name + &quot;  &quot; + stat.Value);
+}
+</code></pre><p>You can find a list of all the available operations in <a href="https://github.com/BenFradet/RiotSharp/blob/develop/RiotSharp/IRiotApi.cs">IRiotApi</a>.</p>
+<h3 id="tournament-api">Tournament API</h3>
+<p>You first have to apply for a tournament API key <a href="https://developer.riotgames.com/">here</a>.</p>
+<p>Entry point for the tournament API:</p>
+<pre><code class="lang-c#">var tournamentApi = TournamentRiotApi.GetInstance(&quot;TOURNAMENT_API_KEY&quot;);
+</code></pre><p>Next up, create a provider.
+The url will receive callbacks with match results.</p>
+<pre><code class="lang-c#">var provider = tournamentApi.CreateProvider(Region.euw, url);
+</code></pre><p>And create a tournament:</p>
+<pre><code class="lang-c#">var tournament = tournamentApi.CreateTournament(provider.Id, &quot;TOURNAMENT_NAME&quot;);
+</code></pre><p>Now you can create tournament codes (which you can use to join games):</p>
+<pre><code class="lang-c#">var tournamentCode = tournamentApi.CreateTournamentCode(tournament.Id,
+    teamSize, allowedSummonerIds, TournamentSpectatorType.All,
+    TournamentPickType.TournamentDraft, TournamentMapType.SummonnersRift,
+    string.Empty);
+</code></pre><p>The tournament code can now be entered in the client to join a game with the specified settings.
+Please note that you should save the provider and tournament IDs if you wish to create more tournament codes later on. You should not create a separate provider and tournament ID for every tournament code. Make sure to read Riot&#39;s <a href="https://developer.riotgames.com/docs/tournaments-api">guidelines</a> on this topic.</p>
+<p>To create a Tournament object for an existing tournament, use the following syntax:</p>
+<pre><code class="lang-c#">var tournament = new Tournament { Id = id };
+</code></pre><p>You can then create codes in two ways:</p>
+<pre><code class="lang-c#">tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
+    TournamentSpectatorType.All, TournamentPickType.TournamentDraft,
+    TournamentMapType.SummonnersRift, string.Empty);
+</code></pre><p>or, alternatively, if you do not wish to create a separate Tournament object, you can call the <code>CreateTournamentCode</code> method directly from the API as shown previously.</p>
+<p>You can find a list of all the available operations in <a href="https://github.com/BenFradet/RiotSharp/blob/develop/RiotSharp/ITournamentRiotApi.cs">ITournamentRiotApi</a>.</p>
+<h3 id="static-api">Static API</h3>
+<p>You can retrieve static information about the game thanks to the static API, there is no rate limiting on this API and RiotSharp
+caches as much data as possible to make as few calls as possible.</p>
+<p>First, as with the others APIs you need to obtain an instance of the API:</p>
+<pre><code class="lang-c#">var staticApi = StaticRiotApi.GetInstance(&quot;API_KEY&quot;);
+</code></pre><p>Then, you can, for example, retrieve data about champions:</p>
+<pre><code class="lang-c#">var champions = staticApi.GetChampions(Region.euw, ChampionData.all).Champions.Values;
+foreach (var champion in champions)
+{
+    Console.WriteLine(champ.Name);
+    Console.WriteLine(champ.Lore);
+}
+</code></pre><p>You can find a list of all the available operations in <a href="https://github.com/BenFradet/RiotSharp/blob/develop/RiotSharp/IStaticRiotApi.cs">IStaticRiotApi</a>.</p>
+<h3 id="status-api">Status API</h3>
+<p>You can also retrieve information available on <a href="http://status.leagueoflegends.com/#euw">status.leagueoflegends.com</a> with the Status API. This API is not constrained to the rate limiting and you do not have to supply an API key.</p>
+<pre><code class="lang-c#">var statusApi = StatusRiotApi.GetInstance();
+var shardStatuses = statusApi.GetShardStatus(Region.euw);
+foreach (var service in shardStatuses.Services)
+{
+    Console.WriteLine(service.Name);
+    foreach (var incident in service.Incidents)
+    {
+        incident.Updates.ForEach(u =&gt; Console.WriteLine(&quot;  &quot; + u.Content));
+    }
+}
+</code></pre><p>You can find a list of all the available operations in <a href="https://github.com/BenFradet/RiotSharp/blob/develop/RiotSharp/IStatusRiotApi.cs">IStatusRiotApi</a>.</p>
+<p>For a full description check the <a href="https://github.com/BenFradet/RiotSharp/tree/develop/RiotSharpExample">RiotSharpExample</a> or <a href="https://github.com/BenFradet/RiotSharp/tree/develop/RiotSharpTest">RiotSharpTest</a> projects.</p>
+<h2 id="contribution">Contribution</h2>
+<p>Simply send a pull request! The <a href="https://github.com/BenFradet/RiotSharp/labels/up-for-grabs">up-for-grabs</a> label is a great place to start.</p>
+<p>When adding new features, please provide the related unit tests within the pull request.
+To run the unit tests you need to modify the <a href="https://github.com/BenFradet/RiotSharp/blob/develop/RiotSharpTest/App.config">App.config</a> file and fill out the appropriate values so the tests can run.</p>
+<p>Moreover, the documentation is far from perfect so every bit of help is more than welcome.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>RiotSharp isn&#39;t endorsed by Riot Games and doesn&#39;t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Team
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Team
+   ">
+    <meta name="generator" content="docfx 2.7.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="RiotSharp_MatchEndpoint_Team" data-uid="RiotSharp.MatchEndpoint.Team">Class Team
+              </h1>
+              <div class="markdown level0 summary"><p>Class representing a team in a match (Match API).</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">Team</span></div>
+              </div>
+              <h6><strong>Namespace</strong>:RiotSharp.MatchEndpoint</h6>
+              <h6><strong>Assembly</strong>:RiotSharp.dll</h6>
+              <h5 id="RiotSharp_MatchEndpoint_Team_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public class Team : object</code></pre>
+              </div>
+              <h3 id="properties">Properties
+              </h3>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_Bans_" data-uid="RiotSharp.MatchEndpoint.Team.Bans*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_Bans" data-uid="RiotSharp.MatchEndpoint.Team.Bans">Bans</h4>
+              <div class="markdown level1 summary"><p>If game was draft mode, contains banned champion data, otherwise null.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public List&lt;BannedChampion&gt; Bans { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.MatchEndpoint.BannedChampion.html#RiotSharp_MatchEndpoint_BannedChampion">BannedChampion</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_BaronKills_" data-uid="RiotSharp.MatchEndpoint.Team.BaronKills*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_BaronKills" data-uid="RiotSharp.MatchEndpoint.Team.BaronKills">BaronKills</h4>
+              <div class="markdown level1 summary"><p>Number of times the team killed baron.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int BaronKills { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_DominionVictoryScore_" data-uid="RiotSharp.MatchEndpoint.Team.DominionVictoryScore*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_DominionVictoryScore" data-uid="RiotSharp.MatchEndpoint.Team.DominionVictoryScore">DominionVictoryScore</h4>
+              <div class="markdown level1 summary"><p>If game was a dominion game, specifies the points the team had at game end, otherwise null.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public long DominionVictoryScore { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int64</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_DragonKills_" data-uid="RiotSharp.MatchEndpoint.Team.DragonKills*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_DragonKills" data-uid="RiotSharp.MatchEndpoint.Team.DragonKills">DragonKills</h4>
+              <div class="markdown level1 summary"><p>Number of times the team killed dragon.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int DragonKills { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_FirstBaron_" data-uid="RiotSharp.MatchEndpoint.Team.FirstBaron*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_FirstBaron" data-uid="RiotSharp.MatchEndpoint.Team.FirstBaron">FirstBaron</h4>
+              <div class="markdown level1 summary"><p>Flag indicating whether or not the team got the first baron kill.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool FirstBaron { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_FirstBlood_" data-uid="RiotSharp.MatchEndpoint.Team.FirstBlood*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_FirstBlood" data-uid="RiotSharp.MatchEndpoint.Team.FirstBlood">FirstBlood</h4>
+              <div class="markdown level1 summary"><p>Flag indicating whether or not the team got first blood.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool FirstBlood { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_FirstDragon_" data-uid="RiotSharp.MatchEndpoint.Team.FirstDragon*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_FirstDragon" data-uid="RiotSharp.MatchEndpoint.Team.FirstDragon">FirstDragon</h4>
+              <div class="markdown level1 summary"><p>Flag indicating whether or not the team got the first dragon kill.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool FirstDragon { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_FirstInhibitor_" data-uid="RiotSharp.MatchEndpoint.Team.FirstInhibitor*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_FirstInhibitor" data-uid="RiotSharp.MatchEndpoint.Team.FirstInhibitor">FirstInhibitor</h4>
+              <div class="markdown level1 summary"><p>Flag indicating whether or not the team destroyed the first inhibitor.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool FirstInhibitor { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_FirstTower_" data-uid="RiotSharp.MatchEndpoint.Team.FirstTower*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_FirstTower" data-uid="RiotSharp.MatchEndpoint.Team.FirstTower">FirstTower</h4>
+              <div class="markdown level1 summary"><p>Flag indicating whether or not the team destroyed the first tower.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool FirstTower { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_InhibitorKills_" data-uid="RiotSharp.MatchEndpoint.Team.InhibitorKills*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_InhibitorKills" data-uid="RiotSharp.MatchEndpoint.Team.InhibitorKills">InhibitorKills</h4>
+              <div class="markdown level1 summary"><p>Number of inhibitors the team destroyed.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int InhibitorKills { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_TeamId_" data-uid="RiotSharp.MatchEndpoint.Team.TeamId*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_TeamId" data-uid="RiotSharp.MatchEndpoint.Team.TeamId">TeamId</h4>
+              <div class="markdown level1 summary"><p>Team ID.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int TeamId { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_TowerKills_" data-uid="RiotSharp.MatchEndpoint.Team.TowerKills*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_TowerKills" data-uid="RiotSharp.MatchEndpoint.Team.TowerKills">TowerKills</h4>
+              <div class="markdown level1 summary"><p>Number of towers the team destroyed.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int TowerKills { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_VilemawKills_" data-uid="RiotSharp.MatchEndpoint.Team.VilemawKills*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_VilemawKills" data-uid="RiotSharp.MatchEndpoint.Team.VilemawKills">VilemawKills</h4>
+              <div class="markdown level1 summary"><p>Number of times the team killed vilemaw.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int VilemawKills { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="RiotSharp_MatchEndpoint_Team_Winner_" data-uid="RiotSharp.MatchEndpoint.Team.Winner*"></a>
+              <h4 id="RiotSharp_MatchEndpoint_Team_Winner" data-uid="RiotSharp.MatchEndpoint.Team.Winner">Winner</h4>
+              <div class="markdown level1 summary"><p>Flag indicating whether or not the team won.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool Winner { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
