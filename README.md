@@ -27,7 +27,7 @@ or
 
 ##Usage
 
-###Game API
+###Main API
 In order to use the api you need an api key which you can get [here](https://developer.riotgames.com/).
 
 Entry point to the api if you do not own a production API key:
