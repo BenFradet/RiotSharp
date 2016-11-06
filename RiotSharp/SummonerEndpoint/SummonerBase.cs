@@ -68,7 +68,8 @@ namespace RiotSharp.SummonerEndpoint
         /// <returns>A list of rune pages.</returns>
         public List<RunePage> GetRunePages()
         {
-            var json = requester.CreateGetRequest(string.Format(RootUrl, Region) + string.Format(RunesUrl, Id), Region);
+            var json =
+                requester.CreateGetRequest(string.Format(RootUrl, Region) + string.Format(RunesUrl, Id), Region);
             return JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json).Values.FirstOrDefault().Pages;
         }
 
@@ -207,7 +208,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of player stats summaries.</returns>
-        public List<PlayerStatsSummary> GetStatsSummaries(StatsEndpoint.Season season)
+        public List<PlayerStatsSummary> GetStatsSummaries(Season season)
         {
             var json = requester.CreateGetRequest(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
@@ -235,7 +236,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of player stats summaries.</returns>
-        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(StatsEndpoint.Season season)
+        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Season season)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
@@ -264,7 +265,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of champions stats.</returns>
-        public List<ChampionStats> GetStatsRanked(StatsEndpoint.Season season)
+        public List<ChampionStats> GetStatsRanked(Season season)
         {
             var json = requester.CreateGetRequest(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
@@ -293,7 +294,7 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         /// <param name="season">Season for which you want the stats.</param>
         /// <returns>A list of champions stats.</returns>
-        public async Task<List<ChampionStats>> GetStatsRankedAsync(StatsEndpoint.Season season)
+        public async Task<List<ChampionStats>> GetStatsRankedAsync(Season season)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),

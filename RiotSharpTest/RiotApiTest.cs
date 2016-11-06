@@ -124,7 +124,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummonersNames_Test()
         {
-            var summoners = api.GetSummonersNames(region, new List<long> { id, id2 });
+            var summoners = api.GetSummonerNames(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(summoners);
             Assert.IsTrue(summoners.Count() == 2);
@@ -134,7 +134,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersNamesAsync_Test()
         {
-            var summoners = api.GetSummonersNamesAsync(region, new List<long> { id, id2 });
+            var summoners = api.GetSummonerNamesAsync(region, new List<long> { id, id2 });
 
             Assert.IsNotNull(summoners.Result);
             Assert.IsTrue(summoners.Result.Count() == 2);
