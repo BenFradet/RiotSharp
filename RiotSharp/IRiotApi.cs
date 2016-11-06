@@ -25,8 +25,8 @@ namespace RiotSharp
         Task<List<Summoner>> GetSummonersAsync(Region region, List<string> summonerNames);
         SummonerBase GetSummonerName(Region region, long summonerId);
         Task<SummonerBase> GetSummonerNameAsync(Region region, long summonerId);
-        List<SummonerBase> GetSummonersNames(Region region, List<long> summonerIds);
-        Task<List<SummonerBase>> GetSummonersNamesAsync(Region region, List<long> summonerIds);
+        List<SummonerBase> GetSummonerNames(Region region, List<long> summonerIds);
+        Task<List<SummonerBase>> GetSummonerNamesAsync(Region region, List<long> summonerIds);
         List<Champion> GetChampions(Region region, bool freeToPlay = false);
         Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false);
         Champion GetChampion(Region region, int championId);
