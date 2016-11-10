@@ -68,6 +68,14 @@ namespace RiotSharp.GameEndpoint.Enums.Converters
                     return GameSubType.CounterPick;
                 case "BILGEWATER":
                     return GameSubType.Bilgewater;
+                case "RANKED_FLEX_TT":
+                    return GameSubType.RankedFlexTT;
+                case "RANKED_FLEX_SR":
+                    return GameSubType.RankedFlexSR;
+                case "SIEGE":
+                    return GameSubType.Siege;
+                case "SR_6x6":
+                    return GameSubType.SR6x6;
                 default:
                     return null;
             }
@@ -150,6 +158,18 @@ namespace RiotSharp.GameEndpoint.Enums.Converters
                     break;
                 case GameSubType.Bilgewater:
                     result = "BILGEWATER";
+                    break;
+                case GameSubType.SR6x6:
+                    result = "SR_6x6";
+                    break;
+                case GameSubType.Siege:
+                    result = "SIEGE";
+                    break;
+                case GameSubType.RankedFlexSR:
+                    result = "RANKED_FLEX_SR";
+                    break;
+                case GameSubType.RankedFlexTT:
+                    result = "RANKED_FLEX_TT";
                     break;
                 default:
                     result = "";
