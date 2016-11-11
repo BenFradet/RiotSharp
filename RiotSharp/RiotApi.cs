@@ -675,6 +675,7 @@ namespace RiotSharp
         public Dictionary<string, List<League>> GetEntireLeagues(Region region, List<string> teamIds)
         {
             var dict = new Dictionary<string, List<League>>();
+            var groups = MakeGroups(teamIds, MaxNrEntireLeagues);
             foreach (var group in MakeGroups(teamIds, MaxNrEntireLeagues))
             {
                 var json = requester.CreateGetRequest(
@@ -1373,12 +1374,14 @@ namespace RiotSharp
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
         }
 
-        private IEnumerable<List<T>> MakeGroups<T>(List<T> toSplit, int maxNrInAGroup)
+        private List<List<T>> MakeGroups<T>(List<T> toSplit, int chunkSize)
         {
             return toSplit
-                .Select((id, index) => new { Batch = index / MaxNrSummoners, Id = id })
-                .GroupBy(x => x.Batch, x => x.Id)
-                .Select(g => g.ToList());
+                .Distinct()
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
         }
     }
 }
