@@ -127,6 +127,26 @@ namespace RiotSharp.GameEndpoint.Enums
         /// <summary>
         /// Counter Pick games.
         /// </summary>
-        CounterPick
+        CounterPick,
+
+        /// <summary>
+        /// Ranked Flex Twisted Treeline games.
+        /// </summary>
+        RankedFlexTT,
+
+        /// <summary>
+        /// Ranked Flex Summoner's Rift games.
+        /// </summary>
+        RankedFlexSR,
+
+        /// <summary>
+        /// Nexus Siege games.
+        /// </summary>
+        Siege,
+
+        /// <summary>
+        /// Summoner's Rift 6x6 Hexakill games
+        /// </summary>
+        SR6x6
     }
 }
