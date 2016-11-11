@@ -25,6 +25,42 @@ namespace RiotSharpTest
         private static RiotSharp.MatchEndpoint.Enums.Season season = RiotSharp.MatchEndpoint.Enums.Season.Season2015;
         private static DateTime beginTime = new DateTime(2015, 01, 01);
         private static DateTime endTime { get { return DateTime.Now; } }
+        private static List<long> summonerIds = new List<long>()
+        {
+            23902591, 19676775, 22653737, 21759506, 22209505, 29299341, 19101354, 22166284, 31730794, 39974593,
+            23902591, 22790011, 65450936, 67592203, 39637575, 31272097, 23460015, 38627529, 23902591, 44027682,
+            20148263, 61138162, 52450898, 31944743, 22926530, 45019487, 19395392, 23902591, 30916825, 34141832,
+            46886818, 30994519, 39241634, 28169062, 57726999, 50925946, 41522929, 31718213, 23902591, 24301336,
+            28876579, 21465943, 20359176, 18984263, 22061503, 76817435, 28900842, 23902591, 49777173, 43748875,
+            25537355, 25284531, 43748877, 26203312, 33839074, 23902591, 59036943, 23214917, 42900539, 34010653,
+            19018526, 33031228, 45777129, 23902591, 20458413, 39682802, 50859594, 25518612, 43240226, 63932884,
+            21405713, 27551513, 23041221, 23902591, 44864177, 22922241, 19766814, 24754815, 67857142, 24549825,
+            60420048, 32961021, 23902591, 39533020, 19294507, 63897880, 33420487, 40101562, 41146842, 61277247
+        };
+        private static List<string> teamIds = new List<string>()
+        {
+            "TEAM-c09dc752-1b57-40bb-8373-cb244a200690",
+            "TEAM-3bd1b470-3b57-11e4-8b56-c81f66db96d8",
+            "TEAM-f619b780-43bc-11e3-8ac1-782bcb497d6f",
+            "TEAM-7df12a20-edb4-11e3-a1bd-782bcb497d6f",
+            "TEAM-5914f8c0-d4a0-11e4-ae33-c81f66db920c",
+            "TEAM-47b21030-0937-11e3-b73e-782bcb4ce61a",
+            "TEAM-fa862d00-498a-11e5-8d7f-c81f66dd7106",
+            "TEAM-462d4230-63c0-11e5-88c0-c81f66daeaa4",
+            "TEAM-70bcb400-ba3b-11e5-b50f-c81f66dd30e5",
+            "TEAM-5bfca170-a07f-11e2-b354-782bcb4ce61a",
+            "TEAM-b11619d0-7e83-11e6-b377-c81f66dd7106",
+            "TEAM-943f2d30-800c-11e6-97fc-c81f66dd32cd"
+        };
+        private static List<string> summonerNames = new List<string>()
+        {
+            "Hüxün", "Huikkeli", "poppego", "Masvell", "The 4th Legend", "D4rKAn1mA", "JamboJambo", "MamBoBamos",
+            "T0mbs", "uNluckY WallAce", "besni leptir", "InSoAlWeTrust", "Kalistharu", "mikele1997", "Rikudö",
+            "Ironíc", "ThaKinetic", "Level 7 Fiora", "Vodkah", "Vayne Only xD", "PF Chang Himself", "Oooshun Man",
+            "Paxwell", "Matsyboy", "KingBronko", "chat off", "d3gvsdo", "vipkossEUW", "Monkeyvillage",
+            "Synergizing", "iEvoile", "Cthlulu", "LelushLamperysh", "Press RR", "pfulius", "127 II StPO",
+            "El Bananero", "Jadi", "Wyburn", "The Vegan God", "Guztavo", "KebapRocker", "Potion Shop"
+        };
 
         [TestMethod]
         [TestCategory("RiotApi")]
@@ -48,20 +84,20 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummoners_ById_Test()
         {
-            var summoners = api.GetSummoners(region, new List<long> { id, id2 });
+            var summoners = api.GetSummoners(Region.euw, summonerIds);
 
             Assert.IsNotNull(summoners);
-            Assert.IsTrue(summoners.Count == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), summoners.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersAsync_ById_Test()
         {
-            var summoners = api.GetSummonersAsync(region, new List<long> { id, id2 });
+            var summoners = api.GetSummonersAsync(Region.euw, summonerIds);
 
             Assert.IsNotNull(summoners.Result);
-            Assert.IsTrue(summoners.Result.Count == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), summoners.Result.Count);
         }
 
         [TestMethod]
@@ -86,20 +122,20 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummoners_ByName_Test()
         {
-            var summoners = api.GetSummoners(region, new List<string> { name, name2 });
+            var summoners = api.GetSummoners(Region.euw, summonerNames);
 
             Assert.IsNotNull(summoners);
-            Assert.IsTrue(summoners.Count == 2);
+            Assert.AreEqual(summonerNames.Distinct().Count(), summoners.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersAsync_ByName_Test()
         {
-            var summoners = api.GetSummonersAsync(region, new List<string> { name, name2 });
+            var summoners = api.GetSummonersAsync(Region.euw, summonerNames);
 
             Assert.IsNotNull(summoners.Result);
-            Assert.IsTrue(summoners.Result.Count == 2);
+            Assert.AreEqual(summonerNames.Distinct().Count(), summoners.Result.Count);
         }
 
         [TestMethod]
@@ -124,20 +160,20 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetSummonersNames_Test()
         {
-            var summoners = api.GetSummonerNames(region, new List<long> { id, id2 });
+            var summoners = api.GetSummonerNames(Region.euw, summonerIds);
 
             Assert.IsNotNull(summoners);
-            Assert.IsTrue(summoners.Count() == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), summoners.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetSummonersNamesAsync_Test()
         {
-            var summoners = api.GetSummonerNamesAsync(region, new List<long> { id, id2 });
+            var summoners = api.GetSummonerNamesAsync(Region.euw, summonerIds);
 
             Assert.IsNotNull(summoners.Result);
-            Assert.IsTrue(summoners.Result.Count() == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), summoners.Result.Count);
         }
 
         [TestMethod]
@@ -204,128 +240,120 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMasteryPages_Test()
         {
-            var masteries = api.GetMasteryPages(region, new List<long> { id, id2 });
+            var masteries = api.GetMasteryPages(Region.euw, summonerIds);
 
             Assert.IsNotNull(masteries);
-            Assert.IsTrue(masteries.Count == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), masteries.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMasteryPagesAsync_Test()
         {
-            var masteries = api.GetMasteryPagesAsync(region, new List<long> { id, id2 });
+            var masteries = api.GetMasteryPagesAsync(Region.euw, summonerIds);
 
             Assert.IsNotNull(masteries.Result);
-            Assert.IsTrue(masteries.Result.Count == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), masteries.Result.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetRunePages_Test()
         {
-            var runes = api.GetRunePages(region, new List<long> { id, id2 });
+            var runes = api.GetRunePages(Region.euw, summonerIds);
 
             Assert.IsNotNull(runes);
-            Assert.IsTrue(runes.Count == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), runes.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetRunePagesAsync_Test()
         {
-            var runes = api.GetRunePagesAsync(region, new List<long> { id, id2 });
+            var runes = api.GetRunePagesAsync(Region.euw, summonerIds);
 
             Assert.IsNotNull(runes.Result);
-            Assert.IsTrue(runes.Result.Count == 2);
+            Assert.AreEqual(summonerIds.Distinct().Count(), runes.Result.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetLeagues_BySummoner_Test()
         {
-            var leagues = api.GetLeagues(region, new List<long> { id, id2 });
+            var leagues = api.GetLeagues(Region.euw, summonerIds);
 
-            Assert.IsNotNull(leagues[id]);
-            Assert.IsNotNull(leagues[id2]);
-            Assert.IsTrue(leagues[id].Count > 0);
-            Assert.IsTrue(leagues[id2].Count > 0);
+            Assert.IsNotNull(leagues);
+            Assert.AreEqual(summonerIds.Distinct().Count() - 4, leagues.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetLeaguesAsync_BySummoner_Test()
         {
-            var leagues = api.GetLeaguesAsync(region, new List<long> { id, id2 });
+            var leagues = api.GetLeaguesAsync(Region.euw, summonerIds);
 
-            Assert.IsNotNull(leagues.Result[id]);
-            Assert.IsNotNull(leagues.Result[id2]);
-            Assert.IsTrue(leagues.Result[id].Count > 0);
-            Assert.IsTrue(leagues.Result[id2].Count > 0);
+            Assert.IsNotNull(leagues);
+            Assert.AreEqual(summonerIds.Distinct().Count() - 4, leagues.Result.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetEntireLeagues_BySummoner_Test()
         {
-            var leagues = api.GetEntireLeagues(region, new List<long> { id, id2 });
+            var leagues = api.GetEntireLeagues(Region.euw, summonerIds);
 
-            Assert.IsNotNull(leagues[id]);
-            Assert.IsNotNull(leagues[id2]);
-            Assert.IsTrue(leagues[id].Count > 0);
-            Assert.IsTrue(leagues[id2].Count > 0);
+            Assert.IsNotNull(leagues);
+            Assert.AreEqual(summonerIds.Distinct().Count() - 4, leagues.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetEntireLeaguesAsync_BySummoner_Test()
         {
-            var leagues = api.GetEntireLeaguesAsync(region, new List<long> { id, id2 });
+            var leagues = api.GetEntireLeaguesAsync(Region.euw, summonerIds);
 
-            Assert.IsNotNull(leagues.Result[id]);
-            Assert.IsNotNull(leagues.Result[id2]);
-            Assert.IsTrue(leagues.Result[id].Count > 0);
-            Assert.IsTrue(leagues.Result[id2].Count > 0);
+            Assert.IsNotNull(leagues.Result);
+            Assert.AreEqual(summonerIds.Distinct().Count() - 4, leagues.Result.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetLeagues_ByTeam_Test()
         {
-            var leagues = api.GetLeagues(region, new List<string> { team2 });
+            var leagues = api.GetLeagues(Region.euw, teamIds);
 
-            Assert.IsNotNull(leagues[team2]);
-            Assert.IsTrue(leagues[team2].Count > 0);
+            Assert.IsNotNull(leagues);
+            Assert.AreEqual(4, leagues.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetLeaguesAsync_ByTeam_Test()
         {
-            var leagues = api.GetLeaguesAsync(region, new List<string> { team2 });
+            var leagues = api.GetLeaguesAsync(Region.euw, teamIds);
 
-            Assert.IsNotNull(leagues.Result[team2]);
-            Assert.IsTrue(leagues.Result[team2].Count > 0);
+            Assert.IsNotNull(leagues.Result);
+            Assert.AreEqual(4, leagues.Result.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetEntireLeagues_ByTeam_Test()
         {
-            var leagues = api.GetEntireLeagues(region, new List<string> { team2 });
+            var leagues = api.GetEntireLeagues(Region.euw, teamIds);
 
-            Assert.IsNotNull(leagues[team2]);
-            Assert.IsTrue(leagues[team2].Count > 0);
+            Assert.IsNotNull(leagues);
+            Assert.AreEqual(4, leagues.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetEntireLeaguesAsync_ByTeam_Test()
         {
-            var leagues = api.GetEntireLeaguesAsync(region, new List<string> { team2 });
+            var leagues = api.GetEntireLeaguesAsync(Region.euw, teamIds);
 
-            Assert.IsNotNull(leagues.Result[team2]);
-            Assert.IsTrue(leagues.Result[team2].Count > 0);
+            Assert.IsNotNull(leagues.Result);
+            Assert.AreEqual(4, leagues.Result.Count);
         }
 
         [TestMethod]
@@ -372,40 +400,40 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetTeams_Summoners_Test()
         {
-            var teams = api.GetTeams(region, new List<long> { id, id2 });
+            var teams = api.GetTeams(Region.euw, summonerIds);
 
             Assert.IsNotNull(teams);
-            Assert.IsTrue(teams.Count > 0);
+            Assert.IsTrue(summonerIds.Distinct().Count() / 2 < teams.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTeamsAsync_Summoners_Test()
         {
-            var teams = api.GetTeamsAsync(region, new List<long> { id, id2 });
+            var teams = api.GetTeamsAsync(Region.euw, summonerIds);
 
             Assert.IsNotNull(teams.Result);
-            Assert.IsTrue(teams.Result.Count > 0);
+            Assert.IsTrue(summonerIds.Distinct().Count() / 2 < teams.Result.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetTeams_Test()
         {
-            var teams = api.GetTeams(region, new List<string> { team, team2 });
+            var teams = api.GetTeams(Region.euw, teamIds);
 
             Assert.IsNotNull(teams);
-            Assert.IsTrue(teams.Count > 0);
+            Assert.AreEqual(teamIds.Distinct().Count(), teams.Count);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTeamsAsync_Test()
         {
-            var teams = api.GetTeamsAsync(region, new List<string> { team, team2 });
+            var teams = api.GetTeamsAsync(Region.euw, teamIds);
 
             Assert.IsNotNull(teams.Result);
-            Assert.IsTrue(teams.Result.Count > 0);
+            Assert.AreEqual(teamIds.Distinct().Count(), teams.Result.Count);
         }
 
         [Ignore]
@@ -755,9 +783,8 @@ namespace RiotSharpTest
         {
             const int lucianId = 236;
             var championMastery = api.GetChampionMastery(Platform.NA1, id, lucianId);
-            
+
             Assert.IsNotNull(championMastery);
-           
             Assert.AreEqual(id, championMastery.PlayerId);
             Assert.AreEqual(lucianId, championMastery.ChampionId);
             Assert.AreEqual(6, championMastery.ChampionLevel);
@@ -772,7 +799,6 @@ namespace RiotSharpTest
             var championMastery = api.GetChampionMasteryAsync(Platform.NA1, id, lucianId).Result;
 
             Assert.IsNotNull(championMastery);
-
             Assert.AreEqual(id, championMastery.PlayerId);
             Assert.AreEqual(lucianId, championMastery.ChampionId);
             Assert.AreEqual(6, championMastery.ChampionLevel);
@@ -782,12 +808,11 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetAllChampionsMasteryEntries_Test()
         {
+            const long lucianId = 236;
             var allChampionsMastery = api.GetAllChampionsMasteryEntries(Platform.NA1, id);
 
             Assert.IsNotNull(allChampionsMastery);
-
-            const long lucianId = 236;
-            Assert.IsNotNull(allChampionsMastery.Find(championMastery => 
+            Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
                 championMastery.ChampionId == lucianId));
         }
 
@@ -795,11 +820,10 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetAllChampionsMasteryEntriesAsync_Test()
         {
+            const long lucianId = 236;
             var allChampionsMastery = api.GetAllChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
 
             Assert.IsNotNull(allChampionsMastery);
-
-            const long lucianId = 236;
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
                 championMastery.ChampionId == lucianId));
         }
