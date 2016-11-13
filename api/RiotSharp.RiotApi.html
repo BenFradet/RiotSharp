@@ -407,13 +407,13 @@
               
               
               <a id="RiotSharp_RiotApi_GetChampionMastery_" data-uid="RiotSharp.RiotApi.GetChampionMastery*"></a>
-              <h4 id="RiotSharp_RiotApi_GetChampionMastery_RiotSharp_Platform_System_Int64_System_Int64_" data-uid="RiotSharp.RiotApi.GetChampionMastery(RiotSharp.Platform,System.Int64,System.Int64)">GetChampionMastery(Platform, Int64, Int64)</h4>
+              <h4 id="RiotSharp_RiotApi_GetChampionMastery_RiotSharp_Platform_System_Int64_System_Int32_" data-uid="RiotSharp.RiotApi.GetChampionMastery(RiotSharp.Platform,System.Int64,System.Int32)">GetChampionMastery(Platform, Int64, Int32)</h4>
               <div class="markdown level1 summary"><p>Gets a champion mastery by summoner ID synchronously.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public ChampionMastery GetChampionMastery(Platform platform, long summonerId, long championId)</code></pre>
+                <pre><code class="lang-csharp hljs">public ChampionMastery GetChampionMastery(Platform platform, long summonerId, int championId)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -438,7 +438,7 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Int32</span></td>
                     <td><em>championId</em></td>
                     <td><p>ID of the champion for which to retrieve mastery.</p>
 </td>
@@ -462,17 +462,17 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetChampionMastery_RiotSharp_Platform_System_Int64_System_Int64_">IRiotApi.GetChampionMastery(Platform, Int64, Int64)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetChampionMastery_RiotSharp_Platform_System_Int64_System_Int32_">IRiotApi.GetChampionMastery(Platform, Int64, Int32)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetChampionMasteryAsync_" data-uid="RiotSharp.RiotApi.GetChampionMasteryAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetChampionMasteryAsync_RiotSharp_Platform_System_Int64_System_Int64_" data-uid="RiotSharp.RiotApi.GetChampionMasteryAsync(RiotSharp.Platform,System.Int64,System.Int64)">GetChampionMasteryAsync(Platform, Int64, Int64)</h4>
+              <h4 id="RiotSharp_RiotApi_GetChampionMasteryAsync_RiotSharp_Platform_System_Int64_System_Int32_" data-uid="RiotSharp.RiotApi.GetChampionMasteryAsync(RiotSharp.Platform,System.Int64,System.Int32)">GetChampionMasteryAsync(Platform, Int64, Int32)</h4>
               <div class="markdown level1 summary"><p>Gets a champion mastery by summoner ID asynchronously.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;ChampionMastery&gt; GetChampionMasteryAsync(Platform platform, long summonerId, long championId)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;ChampionMastery&gt; GetChampionMasteryAsync(Platform platform, long summonerId, int championId)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -497,7 +497,7 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">System.Int64</span></td>
+                    <td><span class="xref">System.Int32</span></td>
                     <td><em>championId</em></td>
                     <td><p>ID of the champion for which to retrieve mastery.</p>
 </td>
@@ -521,7 +521,7 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetChampionMasteryAsync_RiotSharp_Platform_System_Int64_System_Int64_">IRiotApi.GetChampionMasteryAsync(Platform, Int64, Int64)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetChampionMasteryAsync_RiotSharp_Platform_System_Int64_System_Int32_">IRiotApi.GetChampionMasteryAsync(Platform, Int64, Int32)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetChampions_" data-uid="RiotSharp.RiotApi.GetChampions*"></a>
@@ -737,13 +737,13 @@
               
               
               <a id="RiotSharp_RiotApi_GetEntireLeagues_" data-uid="RiotSharp.RiotApi.GetEntireLeagues*"></a>
-              <h4 id="RiotSharp_RiotApi_GetEntireLeagues_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetEntireLeagues(RiotSharp.Region,List{System.Int32})">GetEntireLeagues(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified summoners.</p>
+              <h4 id="RiotSharp_RiotApi_GetEntireLeagues_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetEntireLeagues(RiotSharp.Region,List{System.Int64})">GetEntireLeagues(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified summoners, you can submit more than 10 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;League&gt;&gt; GetEntireLeagues(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;League&gt;&gt; GetEntireLeagues(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -762,9 +762,9 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>The summoner ids.</p>
+                    <td><p>The summoner ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -786,12 +786,12 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetEntireLeagues_RiotSharp_Region_List_System_Int32__">IRiotApi.GetEntireLeagues(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetEntireLeagues_RiotSharp_Region_List_System_Int64__">IRiotApi.GetEntireLeagues(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetEntireLeagues_" data-uid="RiotSharp.RiotApi.GetEntireLeagues*"></a>
               <h4 id="RiotSharp_RiotApi_GetEntireLeagues_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetEntireLeagues(RiotSharp.Region,List{System.String})">GetEntireLeagues(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified teams.</p>
+              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified teams, you can submit more than 10 team ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -817,7 +817,7 @@
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>teamIds</em></td>
-                    <td><p>The team ids.</p>
+                    <td><p>The team ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -843,13 +843,14 @@
               
               
               <a id="RiotSharp_RiotApi_GetEntireLeaguesAsync_" data-uid="RiotSharp.RiotApi.GetEntireLeaguesAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetEntireLeaguesAsync(RiotSharp.Region,List{System.Int32})">GetEntireLeaguesAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified summoners asynchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetEntireLeaguesAsync(RiotSharp.Region,List{System.Int64})">GetEntireLeaguesAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified summoners asynchronously, you can submit more than 10
+summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;League&gt;&gt;&gt; GetEntireLeaguesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;League&gt;&gt;&gt; GetEntireLeaguesAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -868,9 +869,9 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>The summoner ids.</p>
+                    <td><p>The summoner ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -892,12 +893,12 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetEntireLeaguesAsync(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetEntireLeaguesAsync(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetEntireLeaguesAsync_" data-uid="RiotSharp.RiotApi.GetEntireLeaguesAsync*"></a>
               <h4 id="RiotSharp_RiotApi_GetEntireLeaguesAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetEntireLeaguesAsync(RiotSharp.Region,List{System.String})">GetEntireLeaguesAsync(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified teams asynchronously.</p>
+              <div class="markdown level1 summary"><p>Retrieves the entire leagues for the specified teams asynchronously, you can submit more than 10 team ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -923,7 +924,7 @@
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>teamIds</em></td>
-                    <td><p>The team ids.</p>
+                    <td><p>The team ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1100,13 +1101,13 @@
               
               
               <a id="RiotSharp_RiotApi_GetLeagues_" data-uid="RiotSharp.RiotApi.GetLeagues*"></a>
-              <h4 id="RiotSharp_RiotApi_GetLeagues_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetLeagues(RiotSharp.Region,List{System.Int32})">GetLeagues(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified summoners.</p>
+              <h4 id="RiotSharp_RiotApi_GetLeagues_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetLeagues(RiotSharp.Region,List{System.Int64})">GetLeagues(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified summoners, you can submit more than 10 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;League&gt;&gt; GetLeagues(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;League&gt;&gt; GetLeagues(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1125,9 +1126,9 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>The summoner ids.</p>
+                    <td><p>The summoner ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1149,12 +1150,12 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetLeagues_RiotSharp_Region_List_System_Int32__">IRiotApi.GetLeagues(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetLeagues_RiotSharp_Region_List_System_Int64__">IRiotApi.GetLeagues(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetLeagues_" data-uid="RiotSharp.RiotApi.GetLeagues*"></a>
               <h4 id="RiotSharp_RiotApi_GetLeagues_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetLeagues(RiotSharp.Region,List{System.String})">GetLeagues(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified teams.</p>
+              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified teams, you can submit more than 10 team ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1180,7 +1181,7 @@
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>teamIds</em></td>
-                    <td><p>The team ids.</p>
+                    <td><p>The team ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1206,13 +1207,14 @@
               
               
               <a id="RiotSharp_RiotApi_GetLeaguesAsync_" data-uid="RiotSharp.RiotApi.GetLeaguesAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetLeaguesAsync(RiotSharp.Region,List{System.Int32})">GetLeaguesAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified summoners asynchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetLeaguesAsync(RiotSharp.Region,List{System.Int64})">GetLeaguesAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified summoners asynchronously, you can submit more than 10
+summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;League&gt;&gt;&gt; GetLeaguesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;League&gt;&gt;&gt; GetLeaguesAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1231,9 +1233,9 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>The summoner ids.</p>
+                    <td><p>The summoner ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1255,12 +1257,12 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetLeaguesAsync(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetLeaguesAsync(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetLeaguesAsync_" data-uid="RiotSharp.RiotApi.GetLeaguesAsync*"></a>
               <h4 id="RiotSharp_RiotApi_GetLeaguesAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetLeaguesAsync(RiotSharp.Region,List{System.String})">GetLeaguesAsync(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified teams asynchronously.</p>
+              <div class="markdown level1 summary"><p>Retrieves the league entries for the specified teams asynchronously, you can submit more than 10 team ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -1286,7 +1288,7 @@
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>teamIds</em></td>
-                    <td><p>The team ids.</p>
+                    <td><p>The team ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1418,13 +1420,13 @@
               
               
               <a id="RiotSharp_RiotApi_GetMasteryPages_" data-uid="RiotSharp.RiotApi.GetMasteryPages*"></a>
-              <h4 id="RiotSharp_RiotApi_GetMasteryPages_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetMasteryPages(RiotSharp.Region,List{System.Int32})">GetMasteryPages(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get mastery pages for a list summoners&#39; ids synchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetMasteryPages_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetMasteryPages(RiotSharp.Region,List{System.Int64})">GetMasteryPages(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get mastery pages for a list of summoner ids synchronously, you can submit more than 40 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;MasteryPage&gt;&gt; GetMasteryPages(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;MasteryPage&gt;&gt; GetMasteryPages(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1443,9 +1445,10 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>A list of summoners&#39; ids for which you wish to retrieve the masteries.</p>
+                    <td><p>A list of summoners&#39; ids for which you wish to retrieve the masteries, not
+limited to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1467,17 +1470,17 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetMasteryPages_RiotSharp_Region_List_System_Int32__">IRiotApi.GetMasteryPages(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetMasteryPages_RiotSharp_Region_List_System_Int64__">IRiotApi.GetMasteryPages(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetMasteryPagesAsync_" data-uid="RiotSharp.RiotApi.GetMasteryPagesAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetMasteryPagesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetMasteryPagesAsync(RiotSharp.Region,List{System.Int32})">GetMasteryPagesAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get mastery pages for a list summoners&#39; ids asynchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetMasteryPagesAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetMasteryPagesAsync(RiotSharp.Region,List{System.Int64})">GetMasteryPagesAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get mastery pages for a list of summoner ids asynchronously, you can submit more than 40 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;MasteryPage&gt;&gt;&gt; GetMasteryPagesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;MasteryPage&gt;&gt;&gt; GetMasteryPagesAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1496,9 +1499,10 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>A list of summoners&#39; ids for which you wish to retrieve the masteries.</p>
+                    <td><p>A list of summoners&#39; ids for which you wish to retrieve the masteries, not
+limited to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1520,7 +1524,7 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetMasteryPagesAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetMasteryPagesAsync(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetMasteryPagesAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetMasteryPagesAsync(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetMatch_" data-uid="RiotSharp.RiotApi.GetMatch*"></a>
@@ -1936,13 +1940,13 @@
               
               
               <a id="RiotSharp_RiotApi_GetRunePages_" data-uid="RiotSharp.RiotApi.GetRunePages*"></a>
-              <h4 id="RiotSharp_RiotApi_GetRunePages_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetRunePages(RiotSharp.Region,List{System.Int32})">GetRunePages(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get rune pages for a list summoners&#39; ids synchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetRunePages_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetRunePages(RiotSharp.Region,List{System.Int64})">GetRunePages(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get rune pages for a list of summoner ids synchronously, you can submit more than 40 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;RunePage&gt;&gt; GetRunePages(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;RunePage&gt;&gt; GetRunePages(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -1961,9 +1965,10 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>A list of summoners&#39; ids for which you wish to retrieve the masteries.</p>
+                    <td><p>A list of summoner ids for which you wish to retrieve the masteries, not limited
+to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -1985,17 +1990,17 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetRunePages_RiotSharp_Region_List_System_Int32__">IRiotApi.GetRunePages(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetRunePages_RiotSharp_Region_List_System_Int64__">IRiotApi.GetRunePages(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetRunePagesAsync_" data-uid="RiotSharp.RiotApi.GetRunePagesAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetRunePagesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetRunePagesAsync(RiotSharp.Region,List{System.Int32})">GetRunePagesAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get rune pages for a list summoners&#39; ids asynchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetRunePagesAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetRunePagesAsync(RiotSharp.Region,List{System.Int64})">GetRunePagesAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get rune pages for a list of summoner ids asynchronously, you can submit more than 40 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;RunePage&gt;&gt;&gt; GetRunePagesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;RunePage&gt;&gt;&gt; GetRunePagesAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2014,9 +2019,10 @@
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>A list of summoners&#39; ids for which you wish to retrieve the masteries.</p>
+                    <td><p>A list of summoner ids for which you wish to retrieve the masteries, not limited
+to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -2038,7 +2044,7 @@
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetRunePagesAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetRunePagesAsync(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetRunePagesAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetRunePagesAsync(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetStatsRanked_" data-uid="RiotSharp.RiotApi.GetStatsRanked*"></a>
@@ -2494,13 +2500,13 @@ Otherwise, stats for the current season are returned.</p>
               
               
               <a id="RiotSharp_RiotApi_GetSummoner_" data-uid="RiotSharp.RiotApi.GetSummoner*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummoner_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.RiotApi.GetSummoner(RiotSharp.Region,System.Int32)">GetSummoner(Region, Int32)</h4>
+              <h4 id="RiotSharp_RiotApi_GetSummoner_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.RiotApi.GetSummoner(RiotSharp.Region,System.Int64)">GetSummoner(Region, Int64)</h4>
               <div class="markdown level1 summary"><p>Get a summoner by id synchronously.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Summoner GetSummoner(Region region, int summonerId)</code></pre>
+                <pre><code class="lang-csharp hljs">public Summoner GetSummoner(Region region, long summonerId)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2519,7 +2525,7 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="xref">System.Int64</span></td>
                     <td><em>summonerId</em></td>
                     <td><p>Id of the summoner you&#39;re looking for.</p>
 </td>
@@ -2543,7 +2549,7 @@ Otherwise, stats for the current season are returned.</p>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummoner_RiotSharp_Region_System_Int32_">IRiotApi.GetSummoner(Region, Int32)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummoner_RiotSharp_Region_System_Int64_">IRiotApi.GetSummoner(Region, Int64)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetSummoner_" data-uid="RiotSharp.RiotApi.GetSummoner*"></a>
@@ -2600,13 +2606,13 @@ Otherwise, stats for the current season are returned.</p>
               
               
               <a id="RiotSharp_RiotApi_GetSummonerAsync_" data-uid="RiotSharp.RiotApi.GetSummonerAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummonerAsync_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.RiotApi.GetSummonerAsync(RiotSharp.Region,System.Int32)">GetSummonerAsync(Region, Int32)</h4>
+              <h4 id="RiotSharp_RiotApi_GetSummonerAsync_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.RiotApi.GetSummonerAsync(RiotSharp.Region,System.Int64)">GetSummonerAsync(Region, Int64)</h4>
               <div class="markdown level1 summary"><p>Get a summoner by id asynchronously.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;Summoner&gt; GetSummonerAsync(Region region, int summonerId)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;Summoner&gt; GetSummonerAsync(Region region, long summonerId)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2625,7 +2631,7 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="xref">System.Int64</span></td>
                     <td><em>summonerId</em></td>
                     <td><p>Id of the summoner you&#39;re looking for.</p>
 </td>
@@ -2649,7 +2655,7 @@ Otherwise, stats for the current season are returned.</p>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerAsync_RiotSharp_Region_System_Int32_">IRiotApi.GetSummonerAsync(Region, Int32)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerAsync_RiotSharp_Region_System_Int64_">IRiotApi.GetSummonerAsync(Region, Int64)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetSummonerAsync_" data-uid="RiotSharp.RiotApi.GetSummonerAsync*"></a>
@@ -2706,13 +2712,13 @@ Otherwise, stats for the current season are returned.</p>
               
               
               <a id="RiotSharp_RiotApi_GetSummonerName_" data-uid="RiotSharp.RiotApi.GetSummonerName*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummonerName_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.RiotApi.GetSummonerName(RiotSharp.Region,System.Int32)">GetSummonerName(Region, Int32)</h4>
+              <h4 id="RiotSharp_RiotApi_GetSummonerName_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.RiotApi.GetSummonerName(RiotSharp.Region,System.Int64)">GetSummonerName(Region, Int64)</h4>
               <div class="markdown level1 summary"><p>Get a  summoner&#39;s name and id synchronously.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public SummonerBase GetSummonerName(Region region, int summonerId)</code></pre>
+                <pre><code class="lang-csharp hljs">public SummonerBase GetSummonerName(Region region, long summonerId)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2731,7 +2737,7 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="xref">System.Int64</span></td>
                     <td><em>summonerId</em></td>
                     <td><p>Id of the summoner you&#39;re looking for.</p>
 </td>
@@ -2755,17 +2761,17 @@ Otherwise, stats for the current season are returned.</p>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerName_RiotSharp_Region_System_Int32_">IRiotApi.GetSummonerName(Region, Int32)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerName_RiotSharp_Region_System_Int64_">IRiotApi.GetSummonerName(Region, Int64)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetSummonerNameAsync_" data-uid="RiotSharp.RiotApi.GetSummonerNameAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummonerNameAsync_RiotSharp_Region_System_Int32_" data-uid="RiotSharp.RiotApi.GetSummonerNameAsync(RiotSharp.Region,System.Int32)">GetSummonerNameAsync(Region, Int32)</h4>
+              <h4 id="RiotSharp_RiotApi_GetSummonerNameAsync_RiotSharp_Region_System_Int64_" data-uid="RiotSharp.RiotApi.GetSummonerNameAsync(RiotSharp.Region,System.Int64)">GetSummonerNameAsync(Region, Int64)</h4>
               <div class="markdown level1 summary"><p>Get a  summoner&#39;s name and id asynchronously.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;SummonerBase&gt; GetSummonerNameAsync(Region region, int summonerId)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;SummonerBase&gt; GetSummonerNameAsync(Region region, long summonerId)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2784,7 +2790,7 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="xref">System.Int64</span></td>
                     <td><em>summonerId</em></td>
                     <td><p>Id of the summoner you&#39;re looking for.</p>
 </td>
@@ -2808,17 +2814,17 @@ Otherwise, stats for the current season are returned.</p>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerNameAsync_RiotSharp_Region_System_Int32_">IRiotApi.GetSummonerNameAsync(Region, Int32)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerNameAsync_RiotSharp_Region_System_Int64_">IRiotApi.GetSummonerNameAsync(Region, Int64)</a></div>
               
               
-              <a id="RiotSharp_RiotApi_GetSummoners_" data-uid="RiotSharp.RiotApi.GetSummoners*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummoners_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetSummoners(RiotSharp.Region,List{System.Int32})">GetSummoners(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get summoners by ids synchronously.</p>
+              <a id="RiotSharp_RiotApi_GetSummonerNames_" data-uid="RiotSharp.RiotApi.GetSummonerNames*"></a>
+              <h4 id="RiotSharp_RiotApi_GetSummonerNames_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetSummonerNames(RiotSharp.Region,List{System.Int64})">GetSummonerNames(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get a list of summoner&#39;s names and ids synchronously, you can submit more than 40 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public List&lt;Summoner&gt; GetSummoners(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public List&lt;SummonerBase&gt; GetSummonerNames(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2837,9 +2843,115 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>List of ids of the summoners you&#39;re looking for.</p>
+                    <td><p>List of ids of the summoners you&#39;re looking for, not limited to 40.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;</td>
+                    <td><p>A list of ids and names of summoners.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerNames_RiotSharp_Region_List_System_Int64__">IRiotApi.GetSummonerNames(Region, List&lt;Int64&gt;)</a></div>
+              
+              
+              <a id="RiotSharp_RiotApi_GetSummonerNamesAsync_" data-uid="RiotSharp.RiotApi.GetSummonerNamesAsync*"></a>
+              <h4 id="RiotSharp_RiotApi_GetSummonerNamesAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetSummonerNamesAsync(RiotSharp.Region,List{System.Int64})">GetSummonerNamesAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get a list of summoner&#39;s names and ids asynchronously, you can submit more than 40 summoner ids.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;List&lt;SummonerBase&gt;&gt; GetSummonerNamesAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>Region in which you wish to look for summoners.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td><p>List of ids of the summoners you&#39;re looking for, not limited to 40.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;&gt;</td>
+                    <td><p>A list of ids and names of summoners.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonerNamesAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetSummonerNamesAsync(Region, List&lt;Int64&gt;)</a></div>
+              
+              
+              <a id="RiotSharp_RiotApi_GetSummoners_" data-uid="RiotSharp.RiotApi.GetSummoners*"></a>
+              <h4 id="RiotSharp_RiotApi_GetSummoners_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetSummoners(RiotSharp.Region,List{System.Int64})">GetSummoners(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get summoners by ids synchronously, you can submit more than 40 summoner ids.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public List&lt;Summoner&gt; GetSummoners(Region region, List&lt;long&gt; summonerIds)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
+                    <td><em>region</em></td>
+                    <td><p>Region in which you wish to look for summoners.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+                    <td><em>summonerIds</em></td>
+                    <td><p>List of ids of the summoners you&#39;re looking for, not limited to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -2861,12 +2973,12 @@ Otherwise, stats for the current season are returned.</p>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummoners_RiotSharp_Region_List_System_Int32__">IRiotApi.GetSummoners(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummoners_RiotSharp_Region_List_System_Int64__">IRiotApi.GetSummoners(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetSummoners_" data-uid="RiotSharp.RiotApi.GetSummoners*"></a>
               <h4 id="RiotSharp_RiotApi_GetSummoners_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetSummoners(RiotSharp.Region,List{System.String})">GetSummoners(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get summoners by names synchronously.</p>
+              <div class="markdown level1 summary"><p>Get summoners by names synchronously, you can submit more than 40 summoner names.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -2892,7 +3004,7 @@ Otherwise, stats for the current season are returned.</p>
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>summonerNames</em></td>
-                    <td><p>List of names of the summoners you&#39;re looking for.</p>
+                    <td><p>List of names of the summoners you&#39;re looking for, not limited to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -2918,13 +3030,13 @@ Otherwise, stats for the current season are returned.</p>
               
               
               <a id="RiotSharp_RiotApi_GetSummonersAsync_" data-uid="RiotSharp.RiotApi.GetSummonersAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummonersAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetSummonersAsync(RiotSharp.Region,List{System.Int32})">GetSummonersAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get summoners by ids asynchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetSummonersAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetSummonersAsync(RiotSharp.Region,List{System.Int64})">GetSummonersAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get summoners by ids asynchronously, you can submit more than 40 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Summoner&gt;&gt; GetSummonersAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Summoner&gt;&gt; GetSummonersAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -2943,9 +3055,9 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>List of ids of the summoners you&#39;re looking for.</p>
+                    <td><p>List of ids of the summoners you&#39;re looking for, not limited to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -2967,12 +3079,12 @@ Otherwise, stats for the current season are returned.</p>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonersAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetSummonersAsync(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonersAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetSummonersAsync(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetSummonersAsync_" data-uid="RiotSharp.RiotApi.GetSummonersAsync*"></a>
               <h4 id="RiotSharp_RiotApi_GetSummonersAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetSummonersAsync(RiotSharp.Region,List{System.String})">GetSummonersAsync(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get summoners by names asynchronously.</p>
+              <div class="markdown level1 summary"><p>Get summoners by names asynchronously, you can submit more than 40 summoner names.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -2998,7 +3110,7 @@ Otherwise, stats for the current season are returned.</p>
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>summonerNames</em></td>
-                    <td><p>List of names of the summoners you&#39;re looking for.</p>
+                    <td><p>List of names of the summoners you&#39;re looking for, not limited to 40.</p>
 </td>
                   </tr>
                 </tbody>
@@ -3023,120 +3135,14 @@ Otherwise, stats for the current season are returned.</p>
                   <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonersAsync_RiotSharp_Region_List_System_String__">IRiotApi.GetSummonersAsync(Region, List&lt;String&gt;)</a></div>
               
               
-              <a id="RiotSharp_RiotApi_GetSummonersNames_" data-uid="RiotSharp.RiotApi.GetSummonersNames*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummonersNames_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetSummonersNames(RiotSharp.Region,List{System.Int32})">GetSummonersNames(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get a list of summoner&#39;s names and ids synchronously.</p>
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public List&lt;SummonerBase&gt; GetSummonersNames(Region region, List&lt;int&gt; summonerIds)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
-                    <td><em>region</em></td>
-                    <td><p>Region in which you wish to look for summoners.</p>
-</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-                    <td><em>summonerIds</em></td>
-                    <td><p>List of ids of the summoners you&#39;re looking for.</p>
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;</td>
-                    <td><p>A list of ids and names of summoners.</p>
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonersNames_RiotSharp_Region_List_System_Int32__">IRiotApi.GetSummonersNames(Region, List&lt;Int32&gt;)</a></div>
-              
-              
-              <a id="RiotSharp_RiotApi_GetSummonersNamesAsync_" data-uid="RiotSharp.RiotApi.GetSummonersNamesAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetSummonersNamesAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetSummonersNamesAsync(RiotSharp.Region,List{System.Int32})">GetSummonersNamesAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get a list of summoner&#39;s names and ids asynchronously.</p>
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;List&lt;SummonerBase&gt;&gt; GetSummonersNamesAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="RiotSharp.Region.html#RiotSharp_Region">Region</a></td>
-                    <td><em>region</em></td>
-                    <td><p>Region in which you wish to look for summoners.</p>
-</td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-                    <td><em>summonerIds</em></td>
-                    <td><p>List of ids of the summoners you&#39;re looking for.</p>
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.SummonerEndpoint.SummonerBase.html#RiotSharp_SummonerEndpoint_SummonerBase">SummonerBase</a>&gt;&gt;</td>
-                    <td><p>A list of ids and names of summoners.</p>
-</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetSummonersNamesAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetSummonersNamesAsync(Region, List&lt;Int32&gt;)</a></div>
-              
-              
               <a id="RiotSharp_RiotApi_GetTeams_" data-uid="RiotSharp.RiotApi.GetTeams*"></a>
-              <h4 id="RiotSharp_RiotApi_GetTeams_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetTeams(RiotSharp.Region,List{System.Int32})">GetTeams(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get the teams for the specified ids synchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetTeams_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetTeams(RiotSharp.Region,List{System.Int64})">GetTeams(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get the teams for the specified ids synchronously, you can submit more than 10 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;Team&gt;&gt; GetTeams(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Dictionary&lt;long, List&lt;Team&gt;&gt; GetTeams(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -3155,9 +3161,9 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>List of summoner ids</p>
+                    <td><p>List of summoner ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -3173,18 +3179,18 @@ Otherwise, stats for the current season are returned.</p>
                 <tbody>
                   <tr>
                     <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TeamEndpoint.Team.html#RiotSharp_TeamEndpoint_Team">Team</a>&gt;&gt;</td>
-                    <td><p>A map of teams indexed by the summoner&#39;s id.</p>
+                    <td><p>A map of teams indexed by summoner id.</p>
 </td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetTeams_RiotSharp_Region_List_System_Int32__">IRiotApi.GetTeams(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetTeams_RiotSharp_Region_List_System_Int64__">IRiotApi.GetTeams(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetTeams_" data-uid="RiotSharp.RiotApi.GetTeams*"></a>
               <h4 id="RiotSharp_RiotApi_GetTeams_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetTeams(RiotSharp.Region,List{System.String})">GetTeams(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get the teams for the specified ids synchronously.</p>
+              <div class="markdown level1 summary"><p>Get the teams for the specified ids synchronously, you can submit more than 10 team ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -3210,7 +3216,7 @@ Otherwise, stats for the current season are returned.</p>
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>teamIds</em></td>
-                    <td><p>List of string of the teams&#39; ids.</p>
+                    <td><p>List of the team ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -3236,13 +3242,13 @@ Otherwise, stats for the current season are returned.</p>
               
               
               <a id="RiotSharp_RiotApi_GetTeamsAsync_" data-uid="RiotSharp.RiotApi.GetTeamsAsync*"></a>
-              <h4 id="RiotSharp_RiotApi_GetTeamsAsync_RiotSharp_Region_List_System_Int32__" data-uid="RiotSharp.RiotApi.GetTeamsAsync(RiotSharp.Region,List{System.Int32})">GetTeamsAsync(Region, List&lt;Int32&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get the teams for the specified ids asynchronously.</p>
+              <h4 id="RiotSharp_RiotApi_GetTeamsAsync_RiotSharp_Region_List_System_Int64__" data-uid="RiotSharp.RiotApi.GetTeamsAsync(RiotSharp.Region,List{System.Int64})">GetTeamsAsync(Region, List&lt;Int64&gt;)</h4>
+              <div class="markdown level1 summary"><p>Get the teams for the specified ids asynchronously, you can submit more than 10 summoner ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;Team&gt;&gt;&gt; GetTeamsAsync(Region region, List&lt;int&gt; summonerIds)</code></pre>
+                <pre><code class="lang-csharp hljs">public Task&lt;Dictionary&lt;long, List&lt;Team&gt;&gt;&gt; GetTeamsAsync(Region region, List&lt;long&gt; summonerIds)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -3261,9 +3267,9 @@ Otherwise, stats for the current season are returned.</p>
 </td>
                   </tr>
                   <tr>
-                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
                     <td><em>summonerIds</em></td>
-                    <td><p>List of summoner ids.</p>
+                    <td><p>List of summoner ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
@@ -3279,18 +3285,18 @@ Otherwise, stats for the current season are returned.</p>
                 <tbody>
                   <tr>
                     <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">System.Int64</span>, <span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="RiotSharp.TeamEndpoint.Team.html#RiotSharp_TeamEndpoint_Team">Team</a>&gt;&gt;&gt;</td>
-                    <td><p>A map of teams indexed by their id.</p>
+                    <td><p>A map of teams indexed by summoner id.</p>
 </td>
                   </tr>
                 </tbody>
               </table>
               <h5 class="implements">Implements</h5>
-                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetTeamsAsync_RiotSharp_Region_List_System_Int32__">IRiotApi.GetTeamsAsync(Region, List&lt;Int32&gt;)</a></div>
+                  <div><a class="xref" href="RiotSharp.IRiotApi.html#RiotSharp_IRiotApi_GetTeamsAsync_RiotSharp_Region_List_System_Int64__">IRiotApi.GetTeamsAsync(Region, List&lt;Int64&gt;)</a></div>
               
               
               <a id="RiotSharp_RiotApi_GetTeamsAsync_" data-uid="RiotSharp.RiotApi.GetTeamsAsync*"></a>
               <h4 id="RiotSharp_RiotApi_GetTeamsAsync_RiotSharp_Region_List_System_String__" data-uid="RiotSharp.RiotApi.GetTeamsAsync(RiotSharp.Region,List{System.String})">GetTeamsAsync(Region, List&lt;String&gt;)</h4>
-              <div class="markdown level1 summary"><p>Get the teams for the specified ids asynchronously.</p>
+              <div class="markdown level1 summary"><p>Get the teams for the specified ids asynchronously, you can submit more than 10 team ids.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
@@ -3316,7 +3322,7 @@ Otherwise, stats for the current season are returned.</p>
                   <tr>
                     <td><span class="xref">List&lt;&gt;</span>&lt;<span class="xref">System.String</span>&gt;</td>
                     <td><em>teamIds</em></td>
-                    <td><p>List of string of the teams&#39; ids.</p>
+                    <td><p>List of the team ids, not limited to 10.</p>
 </td>
                   </tr>
                 </tbody>
