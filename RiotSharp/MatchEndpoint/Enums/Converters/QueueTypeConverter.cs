@@ -84,6 +84,10 @@ namespace RiotSharp.MatchEndpoint.Enums.Converters
                     return QueueType.TeamBuilderDraftUnranked5x5;
                 case "TEAM_BUILDER_DRAFT_RANKED_5x5":
                     return QueueType.TeamBuilderDraftRanked5x5;
+                case "RANKED_FLEX_SR":
+                    return QueueType.RankedFlexSR;
+                case "RANKED_FLEX_TT":
+                    return QueueType.RankedFlexTT;
                 default:
                     return null;
             }

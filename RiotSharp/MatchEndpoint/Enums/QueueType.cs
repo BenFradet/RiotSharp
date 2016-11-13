@@ -167,7 +167,17 @@ namespace RiotSharp.MatchEndpoint.Enums
         /// <summary>
         /// New team builder queue type in ranked.
         /// </summary>
-        TeamBuilderDraftRanked5x5
+        TeamBuilderDraftRanked5x5,
+
+        /// <summary>
+        /// Ranked Flex Summoner's Rift games.
+        /// </summary>
+        RankedFlexSR,
+
+        /// <summary>
+        /// Ranked Flex Twisted Treeline games.
+        /// </summary>
+        RankedFlexTT
     }
 
     static class QueueTypeExtension
@@ -240,6 +250,10 @@ namespace RiotSharp.MatchEndpoint.Enums
                     return "TEAM_BUILDER_DRAFT_UNRANKED_5x5";
                 case QueueType.TeamBuilderDraftRanked5x5:
                     return "TEAM_BUILDER_DRAFT_RANKED_5x5";
+                case QueueType.RankedFlexSR:
+                    return "RANKED_FLEX_SR";
+                case QueueType.RankedFlexTT:
+                    return "RANKED_FLEX_TT";
                 default:
                     return string.Empty;
             }
