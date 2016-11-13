@@ -132,6 +132,16 @@ namespace RiotSharp.StatsEndpoint.Enums
         /// <summary>
         /// Siege games.
         /// </summary>
-        Siege
+        Siege,
+
+        /// <summary>
+        /// New Summoner's Rift ranked games.
+        /// </summary>
+        RankedFlexSR,
+
+        /// <summary>
+        /// New Twisted Treeline ranked games.
+        /// </summary>
+        RankedFlexTT
     }
 }
