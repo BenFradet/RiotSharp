@@ -809,7 +809,7 @@ namespace RiotSharpTest
         public void GetAllChampionsMasteryEntries_Test()
         {
             const long lucianId = 236;
-            var allChampionsMastery = api.GetAllChampionsMasteryEntries(Platform.NA1, id);
+            var allChampionsMastery = api.GetChampionMasteries(Platform.NA1, id);
 
             Assert.IsNotNull(allChampionsMastery);
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
@@ -821,7 +821,7 @@ namespace RiotSharpTest
         public void GetAllChampionsMasteryEntriesAsync_Test()
         {
             const long lucianId = 236;
-            var allChampionsMastery = api.GetAllChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
+            var allChampionsMastery = api.GetChampionMasteriesAsync(Platform.NA1, id).Result;
 
             Assert.IsNotNull(allChampionsMastery);
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
