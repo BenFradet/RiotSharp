@@ -49,6 +49,9 @@ namespace RiotSharp
                 case "TR":
                 case "tr":
                     return Region.tr;
+                case "JP":
+                case "jp":
+                    return Region.jp;
                 default:
                     return null;
             }
