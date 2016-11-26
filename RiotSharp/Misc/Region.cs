@@ -57,6 +57,11 @@ namespace RiotSharp
         /// Turkey.
         /// </summary>
         tr,
+        
+        /// <summary>
+        /// Japan.
+        /// </summary>
+        jp,
 
         /// <summary>
         /// Global.
