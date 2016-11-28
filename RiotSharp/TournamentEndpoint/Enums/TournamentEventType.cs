@@ -42,6 +42,12 @@ namespace RiotSharp.TournamentEndpoint.Enums
         /// <summary>
         /// Game begins.
         /// </summary>
-        GameAllocatedToLsmEvent
+        GameAllocatedToLsmEvent,
+
+        PlayerBannedFromGameEvent,
+
+        OwnerChangedEvent,
+
+        GameDissolvedEvent,
     }
 }
