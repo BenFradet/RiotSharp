@@ -177,8 +177,13 @@ namespace RiotSharp.MatchEndpoint.Enums
         /// <summary>
         /// Ranked Flex Twisted Treeline games.
         /// </summary>
-        RankedFlexTT
-    }
+        RankedFlexTT,
+
+        /// <summary>
+        /// Team - Dynamic Queue - Ranked Solo
+        /// </summary>
+        TeamBuilderRankedSolo
+   }
 
     static class QueueTypeExtension
     {
@@ -254,6 +259,8 @@ namespace RiotSharp.MatchEndpoint.Enums
                     return "RANKED_FLEX_SR";
                 case QueueType.RankedFlexTT:
                     return "RANKED_FLEX_TT";
+                case QueueType.TeamBuilderRankedSolo:
+                    return "TEAM_BUILDER_RANKED_SOLO";
                 default:
                     return string.Empty;
             }

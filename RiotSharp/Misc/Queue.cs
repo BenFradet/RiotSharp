@@ -41,7 +41,12 @@ namespace RiotSharp
         /// <summary>
         /// New Twisted Treeline ranked games.
         /// </summary>
-        RankedFlexTT
+        RankedFlexTT,
+
+        /// <summary>
+        /// Team - Dynamic Queue - Ranked Solo
+        /// </summary>
+        TeamBuilderRankedSolo
     }
 
     static class QueueExtension
@@ -64,6 +69,8 @@ namespace RiotSharp
                     return "RANKED_FLEX_SR";
                 case Queue.RankedFlexTT:
                     return "RANKED_FLEX_TT";
+                case Queue.TeamBuilderRankedSolo:
+                    return "TEAM_BUILDER_RANKED_SOLO";
                 default:
                     return string.Empty;
             }
