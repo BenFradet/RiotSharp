@@ -44,11 +44,11 @@ namespace RiotSharp
         RankedFlexTT,
 
         /// <summary>
-        /// Team - Dynamic Queue - Ranked Solo
+        /// Ranked Solo games from current season that use Team Builder matchmaking
         /// </summary>
         TeamBuilderRankedSolo
     }
-
+    
     static class QueueExtension
     {
         public static string ToCustomString(this Queue queue)

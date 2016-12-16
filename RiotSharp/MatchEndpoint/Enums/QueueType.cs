@@ -180,11 +180,11 @@ namespace RiotSharp.MatchEndpoint.Enums
         RankedFlexTT,
 
         /// <summary>
-        /// Team - Dynamic Queue - Ranked Solo
+        /// Ranked Solo games from current season that use Team Builder matchmaking
         /// </summary>
         TeamBuilderRankedSolo
-   }
-
+    }
+    
     static class QueueTypeExtension
     {
         public static string ToCustomString(this QueueType queueType)
