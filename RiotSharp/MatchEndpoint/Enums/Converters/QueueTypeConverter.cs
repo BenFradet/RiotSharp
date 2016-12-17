@@ -88,6 +88,8 @@ namespace RiotSharp.MatchEndpoint.Enums.Converters
                     return QueueType.RankedFlexSR;
                 case "RANKED_FLEX_TT":
                     return QueueType.RankedFlexTT;
+                case "TEAM_BUILDER_RANKED_SOLO":
+                    return QueueType.TeamBuilderRankedSolo;
                 default:
                     return null;
             }
