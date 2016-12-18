@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 
 namespace RiotSharpTest
 {
@@ -37,6 +38,7 @@ namespace RiotSharpTest
             21405713, 27551513, 23041221, 23902591, 44864177, 22922241, 19766814, 24754815, 67857142, 24549825,
             60420048, 32961021, 23902591, 39533020, 19294507, 63897880, 33420487, 40101562, 41146842, 61277247
         };
+        private const long unrankedSummonerId = 76723437; // NA
         private static List<string> teamIds = new List<string>()
         {
             "TEAM-c09dc752-1b57-40bb-8373-cb244a200690",
@@ -296,6 +298,23 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(leagues);
             Assert.AreEqual(summonerIds.Distinct().Count() - 4, leagues.Result.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        [ExpectedException(typeof(RiotSharpException))]
+        public void GetLeagues_ByUnrankedSummoner_Test()
+        {
+            try
+            {
+                api.GetLeagues(Region.na, new List<long>(1) { unrankedSummonerId });
+            }
+            catch (RiotSharpException e)
+            {
+                // API gives 404 when valid summoner is unranked.
+                Assert.AreEqual(HttpStatusCode.NotFound, e.HttpStatusCode);
+                throw;
+            }
         }
 
         [TestMethod]
