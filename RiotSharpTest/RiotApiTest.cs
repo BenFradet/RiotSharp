@@ -3,7 +3,9 @@ using RiotSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RiotSharpTest
 {
@@ -68,7 +70,7 @@ namespace RiotSharpTest
         {
             var summoner = api.GetSummoner(region, id);
 
-            Assert.AreEqual(summoner.Name, name);
+            Assert.AreEqual(name, summoner.Name);
         }
 
         [TestMethod]
@@ -77,7 +79,7 @@ namespace RiotSharpTest
         {
             var summoner = api.GetSummonerAsync(region, id);
 
-            Assert.AreEqual(summoner.Result.Name, name);
+            Assert.AreEqual(name, summoner.Result.Name);
         }
 
         [TestMethod]
@@ -144,7 +146,7 @@ namespace RiotSharpTest
         {
             var summoner = api.GetSummonerName(region, id);
 
-            Assert.AreEqual(summoner.Name, name);
+            Assert.AreEqual(name, summoner.Name);
         }
 
         [TestMethod]
@@ -153,7 +155,7 @@ namespace RiotSharpTest
         {
             var summoner = api.GetSummonerNameAsync(region, id);
 
-            Assert.AreEqual(summoner.Result.Name, name);
+            Assert.AreEqual(name, summoner.Result.Name);
         }
 
         [TestMethod]
@@ -876,6 +878,31 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);
+        }
+
+        /// <summary>
+        /// Makes sure rate limits for different regions don't interfere.
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public async Task RateLimitIndependence_Test()
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+
+            var euwTasks = summonerIds.Take(11).Select(
+                s => api.GetSummonerAsync(Region.euw, s));
+            var euwTask = Task.WhenAll(euwTasks).ContinueWith(
+                res => sw.Elapsed);
+
+            var naTask = api.GetSummonerAsync(Region.na, 69009277).ContinueWith(
+                res => sw.Elapsed);
+
+            await naTask;
+            await euwTask;
+
+            Assert.IsTrue(naTask.Result < euwTask.Result);
         }
     }
 }
