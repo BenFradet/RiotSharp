@@ -287,10 +287,10 @@ namespace RiotSharpTest
         private void AssertDelayed(TimeSpan expected, int i=0)
         {
             var actual = Stopwatch.Elapsed;
-            Console.WriteLine($"{i}: Expected: {expected}, Actual: {actual}");
-            Assert.IsTrue(expected < actual, $"{i} too soon. Expected: {expected}. Actual: {actual}.");
+            Assert.IsTrue(expected < actual,
+                string.Format("{0} too soon. Expected: {1}. Actual: {2}.", i, expected, actual));
             Assert.IsTrue(actual < TimeSpan.FromTicks((int) (expected.Ticks * ErrorFactor + ErrorDelay.Ticks)),
-                $"{i} too late. Expected: {expected}. Actual: {actual}.");
+                string.Format("{0} too late. Expected: {1}. Actual: {2}.", i, expected, actual));
         }
     }
 }
