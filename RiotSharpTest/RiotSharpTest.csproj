@@ -56,6 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RateLimiterTest.cs" />
     <Compile Include="RiotApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticRiotApiExceptionTest.cs" />

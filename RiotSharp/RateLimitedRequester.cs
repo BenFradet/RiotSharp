@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace RiotSharp
@@ -19,24 +17,15 @@ namespace RiotSharp
             RateLimitPer10M = rateLimitPer10m;
         }
 
-        private readonly Dictionary<Region, DateTime> firstRequestsInLastTenS = new Dictionary<Region, DateTime>();
-        private readonly Dictionary<Region, DateTime> firstRequestsInLastTenM = new Dictionary<Region, DateTime>();
-        private readonly Dictionary<Region, int> numberOfRequestsInLastTenS = new Dictionary<Region, int>();
-        private readonly Dictionary<Region, int> numberOfRequestsInLastTenM = new Dictionary<Region, int>();
-
-        private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
+        private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
 
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-
-            semaphore.Wait();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
+            
+            GetRateLimiter(region).HandleRateLimit();
 
             return GetResult(request);
         }
@@ -47,12 +36,8 @@ namespace RiotSharp
         {
             rootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-
-            await semaphore.WaitAsync();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
+            
+            await GetRateLimiter(region).HandleRateLimitAsync();
 
             return await GetResultAsync(request);
         }
@@ -64,11 +49,8 @@ namespace RiotSharp
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            semaphore.Wait();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
+            GetRateLimiter(region).HandleRateLimit();
+
             return Post(request);
         }
 
@@ -79,11 +61,7 @@ namespace RiotSharp
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            await semaphore.WaitAsync();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
+            await GetRateLimiter(region).HandleRateLimitAsync();
 
             return await PostAsync(request);
         }
@@ -95,11 +73,7 @@ namespace RiotSharp
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            semaphore.Wait();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
+            GetRateLimiter(region).HandleRateLimit();
 
             var response = Put(request);
             return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
@@ -112,85 +86,22 @@ namespace RiotSharp
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            await semaphore.WaitAsync();
-            {
-                HandleRateLimit(region);
-            }
-            semaphore.Release();
+            await GetRateLimiter(region).HandleRateLimitAsync();
 
             var response = await PutAsync(request);
             return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
         }
 
-        private void HandleRateLimit(Region region)
+        /// <summary>
+        /// Returns the respective region's RateLimiter, creating it if needed.
+        /// </summary>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        private RateLimiter GetRateLimiter(Region region)
         {
-            if (firstRequestsInLastTenM.ContainsKey(region))
-            {
-                if (firstRequestsInLastTenM[region] == DateTime.MinValue)
-                {
-                    firstRequestsInLastTenM[region] = DateTime.Now;
-                }
-            }
-            else
-            {
-                firstRequestsInLastTenM.Add(region, DateTime.MinValue);
-            }
-            if (numberOfRequestsInLastTenM.ContainsKey(region))
-            {
-                numberOfRequestsInLastTenM[region]++;
-            }
-            else
-            {
-                numberOfRequestsInLastTenM[region] = 1;
-            }
-
-            if (firstRequestsInLastTenS.ContainsKey(region))
-            {
-                if (firstRequestsInLastTenS[region] == DateTime.MinValue)
-                {
-                    firstRequestsInLastTenS[region] = DateTime.Now;
-                }
-            }
-            else
-            {
-                firstRequestsInLastTenS.Add(region, DateTime.MinValue);
-            }
-            if (numberOfRequestsInLastTenS.ContainsKey(region))
-            {
-                numberOfRequestsInLastTenS[region]++;
-            }
-            else
-            {
-                numberOfRequestsInLastTenS.Add(region, 1);
-            }
-
-            if (numberOfRequestsInLastTenM[region] > RateLimitPer10M)
-            {
-                while ((DateTime.Now - firstRequestsInLastTenM[region]).TotalMinutes <= 11)
-                {
-                }
-                numberOfRequestsInLastTenM[region] = 1;
-                firstRequestsInLastTenM[region] = DateTime.Now;
-            }
-            if (numberOfRequestsInLastTenS[region] > RateLimitPer10S)
-            {
-                while ((DateTime.Now - firstRequestsInLastTenS[region]).TotalSeconds <= 11)
-                {
-                }
-                numberOfRequestsInLastTenS[region] = 1;
-                firstRequestsInLastTenS[region] = DateTime.Now;
-            }
-
-            if ((DateTime.Now - firstRequestsInLastTenM[region]).TotalMinutes > 10)
-            {
-                numberOfRequestsInLastTenM[region] = 1;
-                firstRequestsInLastTenM[region] = DateTime.Now;
-            }
-            if ((DateTime.Now - firstRequestsInLastTenS[region]).TotalSeconds > 10)
-            {
-                numberOfRequestsInLastTenS[region] = 1;
-                firstRequestsInLastTenS[region] = DateTime.Now;
-            }
+            if (!rateLimiters.ContainsKey(region))
+                rateLimiters[region] = new RateLimiter(RateLimitPer10S, RateLimitPer10M);
+            return rateLimiters[region]; 
         }
     }
 }
