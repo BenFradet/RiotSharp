@@ -53,7 +53,7 @@ namespace RiotSharp
             string concatenatedQueues = string.Empty;
             for (int i = 0; i < queues.Count - 1; i++)
             {
-                concatenatedQueues += queues[i].ToCustomString();
+                concatenatedQueues += queues[i].ToCustomString() + ",";
             }
             return concatenatedQueues + queues[queues.Count - 1].ToCustomString();
         }
@@ -62,7 +62,7 @@ namespace RiotSharp
             string concatenatedQueues = string.Empty;
             for (int i = 0; i < seasons.Count - 1; i++)
             {
-                concatenatedQueues += seasons[i].ToCustomString();
+                concatenatedQueues += seasons[i].ToCustomString() + ",";
             }
             return concatenatedQueues + seasons[seasons.Count - 1].ToCustomString();
         }
