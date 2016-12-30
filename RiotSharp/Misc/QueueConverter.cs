@@ -34,6 +34,8 @@ namespace RiotSharp
                     return Queue.RankedFlexSR;
                 case "RANKED_FLEX_TT":
                     return Queue.RankedFlexTT;
+                case "TEAM_BUILDER_RANKED_SOLO":
+                    return Queue.TeamBuilderRankedSolo;
                 default:
                     return null;
             }

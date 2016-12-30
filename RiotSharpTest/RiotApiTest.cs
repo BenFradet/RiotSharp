@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 
 namespace RiotSharpTest
 {
@@ -37,6 +38,7 @@ namespace RiotSharpTest
             21405713, 27551513, 23041221, 23902591, 44864177, 22922241, 19766814, 24754815, 67857142, 24549825,
             60420048, 32961021, 23902591, 39533020, 19294507, 63897880, 33420487, 40101562, 41146842, 61277247
         };
+        private const long unrankedSummonerId = 76723437; // NA
         private static List<string> teamIds = new List<string>()
         {
             "TEAM-c09dc752-1b57-40bb-8373-cb244a200690",
@@ -197,6 +199,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [Ignore]
         [TestCategory("RiotApi")]
         public void GetChampions_FreeToPlay_Test()
         {
@@ -207,6 +210,7 @@ namespace RiotSharpTest
         }
 
         [TestMethod]
+        [Ignore]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetChampionsAsync_FreeToPlay_Test()
         {
@@ -294,6 +298,23 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(leagues);
             Assert.AreEqual(summonerIds.Distinct().Count() - 4, leagues.Result.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        [ExpectedException(typeof(RiotSharpException))]
+        public void GetLeagues_ByUnrankedSummoner_Test()
+        {
+            try
+            {
+                api.GetLeagues(Region.na, new List<long>(1) { unrankedSummonerId });
+            }
+            catch (RiotSharpException e)
+            {
+                // API gives 404 when valid summoner is unranked.
+                Assert.AreEqual(HttpStatusCode.NotFound, e.HttpStatusCode);
+                throw;
+            }
         }
 
         [TestMethod]
@@ -809,7 +830,7 @@ namespace RiotSharpTest
         public void GetAllChampionsMasteryEntries_Test()
         {
             const long lucianId = 236;
-            var allChampionsMastery = api.GetAllChampionsMasteryEntries(Platform.NA1, id);
+            var allChampionsMastery = api.GetChampionMasteries(Platform.NA1, id);
 
             Assert.IsNotNull(allChampionsMastery);
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
@@ -821,7 +842,7 @@ namespace RiotSharpTest
         public void GetAllChampionsMasteryEntriesAsync_Test()
         {
             const long lucianId = 236;
-            var allChampionsMastery = api.GetAllChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
+            var allChampionsMastery = api.GetChampionMasteriesAsync(Platform.NA1, id).Result;
 
             Assert.IsNotNull(allChampionsMastery);
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
@@ -850,12 +871,12 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetTopChampionsMasteryEntries_Test()
         {
-            var threeTopChampions = api.GetTopChampionsMasteryEntries(Platform.NA1, id);
+            var threeTopChampions = api.GetTopChampionsMasteries(Platform.NA1, id);
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(threeTopChampions.Count == 3);
 
-            var sixTopChampions = api.GetTopChampionsMasteryEntries(Platform.NA1, id, 6);
+            var sixTopChampions = api.GetTopChampionsMasteries(Platform.NA1, id, 6);
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);
@@ -865,12 +886,12 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTopChampionsMasteryEntriesAsync_Test()
         {
-            var threeTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id).Result;
+            var threeTopChampions = api.GetTopChampionsMasteriesAsync(Platform.NA1, id).Result;
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(threeTopChampions.Count == 3);
 
-            var sixTopChampions = api.GetTopChampionsMasteryEntriesAsync(Platform.NA1, id, 6).Result;
+            var sixTopChampions = api.GetTopChampionsMasteriesAsync(Platform.NA1, id, 6).Result;
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);

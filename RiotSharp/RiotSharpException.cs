@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace RiotSharp
 {
@@ -7,12 +8,12 @@ namespace RiotSharp
     /// </summary>
     public class RiotSharpException: Exception
     {
-        public RiotSharpException() { }
+        /// <summary>HTTP error code returned by the Riot API, causing this exception.</summary>
+        public readonly HttpStatusCode HttpStatusCode;
 
-        public RiotSharpException(string message)
-            : base(message) { }
-
-        public RiotSharpException(string message, Exception inner)
-            : base(message, inner) { }
+        public RiotSharpException(string message, HttpStatusCode httpStatusCode) : base(message)
+        {
+            HttpStatusCode = httpStatusCode;
+        }
     }
 }

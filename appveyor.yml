@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: 2.5.0.{build}
+version: 2.6.0.{build}
 
 # Do not build on tags (GitHub only)
 skip_tags: true

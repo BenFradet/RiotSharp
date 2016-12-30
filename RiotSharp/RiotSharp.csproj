@@ -157,6 +157,7 @@
     <Compile Include="Misc\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\TimeSpanConverterFromS.cs" />
     <Compile Include="Cache.cs" />
+    <Compile Include="RateLimiter.cs" />
     <Compile Include="Requesters.cs" />
     <Compile Include="RiotSharpException.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionStaticWrapper.cs" />

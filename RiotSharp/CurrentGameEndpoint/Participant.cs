@@ -42,7 +42,7 @@ namespace RiotSharp.CurrentGameEndpoint
         /// The ID of the first summoner spell used by this participant
         /// </summary>
         [JsonProperty("spell1Id")]
-        public long SummonuerSpell1 { get; set; }
+        public long SummonerSpell1 { get; set; }
 
         /// <summary>
         /// The ID of the second summoner spell used by this participant
