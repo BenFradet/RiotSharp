@@ -86,6 +86,12 @@ namespace RiotSharp.MatchEndpoint
         public MonsterType? MonsterType { get; set; }
 
         /// <summary>
+        /// The monster type of the event. Only present if relevant.
+        /// </summary>
+        [JsonProperty("monsterSubType")]
+        public MonsterSubType? MonsterSubType { get; set; }
+
+        /// <summary>
         /// The participant ID of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("participantId")]
