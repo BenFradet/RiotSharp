@@ -83,6 +83,8 @@
     <Compile Include="IStaticRiotApi.cs" />
     <Compile Include="IStatusRiotApi.cs" />
     <Compile Include="ITournamentRiotApi.cs" />
+    <Compile Include="MatchEndpoint\Enums\Converters\MonsterSubTypeConverter.cs" />
+    <Compile Include="MatchEndpoint\Enums\MonsterSubType.cs" />
     <Compile Include="MatchEndpoint\MatchList.cs" />
     <Compile Include="MatchEndpoint\Enums\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\AscendedTypeConverter.cs" />
