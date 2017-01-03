@@ -23,6 +23,11 @@
         /// <summary>
         /// Season 2016.
         /// </summary>
-        Season2016
+        Season2016,
+        
+        /// <summary>
+        /// Season 2017.
+        /// </summary>
+        Season2017
     }
 }
