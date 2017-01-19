@@ -37,9 +37,9 @@ namespace RiotSharp
                 case "TEAM_BUILDER_RANKED_SOLO":
                     return Queue.TeamBuilderRankedSolo;
                 case "RANKED_PREMADE_3x3":
-                  return Queue.RankedPremade3x3;
+                    return Queue.RankedPremade3x3;
                 case "RANKED_PREMADE_5x5":
-                  return Queue.RankedPremade5x5;
+                    return Queue.RankedPremade5x5;
                 default:
                     return null;
             }
