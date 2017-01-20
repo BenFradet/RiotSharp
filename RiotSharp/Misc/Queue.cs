@@ -46,7 +46,17 @@ namespace RiotSharp
         /// <summary>
         /// Ranked Solo games from current season that use Team Builder matchmaking
         /// </summary>
-        TeamBuilderRankedSolo
+        TeamBuilderRankedSolo,
+
+        /// <summary>
+        /// Used for both historical Ranked Premade 3v3 games
+        /// </summary>
+        RankedPremade3x3,
+
+        /// <summary>
+        /// Ranked Premade 5v5 games
+        /// </summary>
+        RankedPremade5x5
     }
     
     static class QueueExtension
