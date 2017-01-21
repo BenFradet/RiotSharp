@@ -37,6 +37,12 @@ namespace RiotSharp.MatchEndpoint
         public Queue Queue { get; set; }
 
         /// <summary>
+        /// The region match was played in.
+        /// </summary>
+        [JsonProperty("region")]
+        public Region Region { get; set; }
+
+        /// <summary>
         /// Participant's role.
         /// </summary>
         [JsonProperty("role")]
