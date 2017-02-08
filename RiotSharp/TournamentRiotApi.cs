@@ -490,7 +490,7 @@ namespace RiotSharp
         {
             var body = new Dictionary<string, object>();
             if (allowedSummonerIds != null)
-                body.Add("allowedSummonerIds", string.Join(",", allowedSummonerIds));
+                body.Add("allowedParticipants", string.Join(",", allowedSummonerIds));
             if (spectatorType != null)
                 body.Add("spectatorType", spectatorType);
             if (pickType != null)
