@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BenFradet")]
 [assembly: AssemblyProduct("RiotSharp")]
-[assembly: AssemblyCopyright("Copyright (c) Benjamin Fradet 2013-2016")]
+[assembly: AssemblyCopyright("Copyright (c) Benjamin Fradet 2013-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: InternalsVisibleTo("RiotSharpTest")]
@@ -24,4 +24,4 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.6.0.*")]
+[assembly: AssemblyVersion("2.5.2.*")]
