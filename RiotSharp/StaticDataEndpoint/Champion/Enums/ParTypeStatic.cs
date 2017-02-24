@@ -55,7 +55,7 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         MP,
 
         /// <summary>
-        /// None (Vladimir, Zac, Mundo, etc).
+        /// None (Zac, Mundo, etc).
         /// </summary>
         None,
 
@@ -74,12 +74,24 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         /// </summary>
         Wind,
 
+        /// <summary>
+        /// Courage (Kled).
+        /// </summary>
         Courage,
 
+        /// <summary>
+        /// Crimson Rush (Vladimir).
+        /// </summary>
         CrimsonRush,
 
+        /// <summary>
+        /// Flow (Yasuo).
+        /// </summary>
         Flow,
 
+        /// <summary>
+        /// Fury (Renekton).
+        /// </summary>
         Fury,
     }
 }
