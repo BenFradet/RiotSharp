@@ -60,7 +60,7 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         None,
 
         /// <summary>
-        /// Rage (Renekton).
+        /// Rage (Renekton before rework).
         /// </summary>
         Rage,
 
@@ -70,7 +70,7 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         Shield,
 
         /// <summary>
-        /// Wind (Yasuo).
+        /// Wind (Yasuo before rework).
         /// </summary>
         Wind,
 
