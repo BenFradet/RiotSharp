@@ -72,6 +72,14 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         /// <summary>
         /// Wind (Yasuo).
         /// </summary>
-        Wind
+        Wind,
+
+        Courage,
+
+        CrimsonRush,
+
+        Flow,
+
+        Fury,
     }
 }
