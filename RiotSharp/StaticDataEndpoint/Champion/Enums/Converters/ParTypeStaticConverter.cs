@@ -22,6 +22,7 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums.Converters
                 case "Battlefury":
                     return ParTypeStatic.Battlefury;
                 case "BloodWell":
+                case "Blood Well":
                     return ParTypeStatic.BloodWell;
                 case "Dragonfury":
                     return ParTypeStatic.Dragonfury;
@@ -45,6 +46,14 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums.Converters
                     return ParTypeStatic.Shield;
                 case "Wind":
                     return ParTypeStatic.Wind;
+                case "Courage":
+                    return ParTypeStatic.Courage;
+                case "Crimson Rush":
+                    return ParTypeStatic.CrimsonRush;
+                case "Flow":
+                    return ParTypeStatic.Flow;
+                case "Fury":
+                    return ParTypeStatic.Fury;
                 default:
                     return null;
             }

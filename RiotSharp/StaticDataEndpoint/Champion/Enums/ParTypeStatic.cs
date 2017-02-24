@@ -55,12 +55,12 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         MP,
 
         /// <summary>
-        /// None (Vladimir, Zac, Mundo, etc).
+        /// None (Zac, Mundo, etc).
         /// </summary>
         None,
 
         /// <summary>
-        /// Rage (Renekton).
+        /// Rage (Renekton before rework).
         /// </summary>
         Rage,
 
@@ -70,8 +70,28 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums
         Shield,
 
         /// <summary>
-        /// Wind (Yasuo).
+        /// Wind (Yasuo before rework).
         /// </summary>
-        Wind
+        Wind,
+
+        /// <summary>
+        /// Courage (Kled).
+        /// </summary>
+        Courage,
+
+        /// <summary>
+        /// Crimson Rush (Vladimir).
+        /// </summary>
+        CrimsonRush,
+
+        /// <summary>
+        /// Flow (Yasuo).
+        /// </summary>
+        Flow,
+
+        /// <summary>
+        /// Fury (Renekton).
+        /// </summary>
+        Fury,
     }
 }
