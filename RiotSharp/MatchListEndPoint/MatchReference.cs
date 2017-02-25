@@ -2,7 +2,7 @@
 using RiotSharp.MatchEndpoint.Enums;
 using System;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchListEndpoint
 {
     public class MatchReference
     {

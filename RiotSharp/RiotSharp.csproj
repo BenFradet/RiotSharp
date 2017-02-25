@@ -85,13 +85,13 @@
     <Compile Include="ITournamentRiotApi.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\MonsterSubTypeConverter.cs" />
     <Compile Include="MatchEndpoint\Enums\MonsterSubType.cs" />
-    <Compile Include="MatchEndpoint\MatchList.cs" />
+    <Compile Include="MatchListEndPoint\MatchList.cs" />
     <Compile Include="MatchEndpoint\Enums\AscendedType.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\AscendedTypeConverter.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\CapturedPointConverter.cs" />
     <Compile Include="MatchEndpoint\Mastery.cs" />
     <Compile Include="MatchEndpoint\Enums\CapturedPoint.cs" />
-    <Compile Include="MatchEndpoint\MatchReference.cs" />
+    <Compile Include="MatchListEndPoint\MatchReference.cs" />
     <Compile Include="MatchEndpoint\Rune.cs" />
     <Compile Include="MatchEndpoint\Enums\Season.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\SeasonConverter.cs" />
@@ -148,8 +148,8 @@
     <Compile Include="Misc\Language.cs" />
     <Compile Include="Misc\Platform.cs" />
     <Compile Include="Misc\PlatformConverter.cs" />
-    <Compile Include="Misc\Queue.cs" />
-    <Compile Include="Misc\QueueConverter.cs" />
+    <Compile Include="MatchListEndPoint\Queue.cs" />
+    <Compile Include="MatchListEndPoint\QueueConverter.cs" />
     <Compile Include="LeagueEndpoint\Enums\Tier.cs" />
     <Compile Include="LeagueEndpoint\Enums\Converters\TierConverter.cs" />
     <Compile Include="Misc\DateTimeConverterFromLong.cs" />
