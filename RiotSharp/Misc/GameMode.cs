@@ -56,6 +56,12 @@ namespace RiotSharp
         /// <summary>
         /// Nexus Siege game mode.
         /// </summary>
-        Siege
+        Siege,
+        
+        
+        /// <summary>
+        /// Assassinate game mode.
+        /// </summary>
+        Assassinate
     }
 }

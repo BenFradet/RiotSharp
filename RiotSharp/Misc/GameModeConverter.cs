@@ -40,6 +40,8 @@ namespace RiotSharp
                     return GameMode.KingPoro;
                 case "SIEGE":
                     return GameMode.Siege;
+                case "ASSASSINATE":
+                    return GameMode.Assassinate;
                 default:
                     return null;
             }
@@ -80,6 +82,9 @@ namespace RiotSharp
                     break;
                 case GameMode.Siege:
                     result = "SIEGE";
+                    break;
+                case GameMode.Assassinate:
+                    result = "ASSASSINATE";
                     break;
                 default:
                     result = string.Empty;
