@@ -81,6 +81,9 @@ namespace RiotSharp
                 case GameMode.Siege:
                     result = "SIEGE";
                     break;
+                case GameMode.Assassinate:
+                    result = "Assassinate";
+                    break;
                 default:
                     result = string.Empty;
                     break;
