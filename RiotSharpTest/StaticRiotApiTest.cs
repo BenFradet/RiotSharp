@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
@@ -48,6 +50,16 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(champs.Result.Champions);
             Assert.IsTrue(champs.Result.Champions.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void SerializeChampions_Test()
+        {
+            var champs = api.GetChampions(Region.euw, ChampionData.basic);
+            ICollection<ChampionStatic> champ = champs.Champions.Values;
+            string json = JsonConvert.SerializeObject(champ);
+            champ = JsonConvert.DeserializeObject<List<ChampionStatic>>(json);
         }
 
         [TestMethod]
