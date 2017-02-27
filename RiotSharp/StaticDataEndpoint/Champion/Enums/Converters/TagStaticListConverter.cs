@@ -17,6 +17,7 @@ namespace RiotSharp.StaticDataEndpoint.Champion.Enums.Converters
             , JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
+            if (token.Type == JTokenType.Null) return null;
             if (token.Values<string>() == null) return null;
             var list = token.Values<string>();
             var tags = new List<TagStatic>();
