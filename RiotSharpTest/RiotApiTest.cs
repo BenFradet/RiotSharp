@@ -20,7 +20,6 @@ namespace RiotSharpTest
         private static string team2 = ConfigurationManager.AppSettings["Team2Id"];
         private static int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
         private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
-        private static int idWithCurrentgame = int.Parse(ConfigurationManager.AppSettings["SummonerIdWithCurrentGame"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Queue queue = Queue.RankedSolo5x5;
         private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
@@ -239,30 +238,6 @@ namespace RiotSharpTest
 
             Assert.IsNotNull(champion.Result);
             Assert.AreEqual(champion.Result.Id, 12);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi")]
-        public void GetCurrentGame_Test()
-        {
-            if (idWithCurrentgame != 0) {
-                var currentGame = api.GetCurrentGame(Platform.NA1, idWithCurrentgame);
-
-                Assert.IsNotNull(currentGame);
-                Assert.IsTrue(currentGame.Participants.Any(p => p.SummonerId == idWithCurrentgame));
-            }
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetCurrentGameAsync_Test()
-        {
-            if (idWithCurrentgame != 0) {
-                var currentGame = api.GetCurrentGameAsync(Platform.NA1, idWithCurrentgame);
-
-                Assert.IsNotNull(currentGame.Result);
-                Assert.IsTrue(currentGame.Result.Participants.Any(p => p.SummonerId == idWithCurrentgame));
-            }
         }
 
         [TestMethod]
