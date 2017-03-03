@@ -142,6 +142,11 @@ namespace RiotSharp.StatsEndpoint.Enums
         /// <summary>
         /// New Twisted Treeline ranked games.
         /// </summary>
-        RankedFlexTT
+        RankedFlexTT,
+
+        /// <summary>
+        /// Assassinate
+        /// </summary>
+        Assassinate
     }
 }
