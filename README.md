@@ -5,14 +5,14 @@
 
 C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
-##Features
+## Features
 
 - No need to worry about the 10 requests per 10s or the 500 requests per 10m rate limits, they are already implemented in the wrapper
 - LINQ support
 - Synchronous and asynchronous API
 - Caching for the Static API
 
-##Installation
+## Installation
 
 Install RiotSharp through NuGet:
 ```
@@ -25,9 +25,9 @@ or
 
 2. Build the RiotSharp project and add the library to your own application.
 
-##Usage
+## Usage
 
-###Main API
+### Main API
 In order to use the api you need an api key which you can get [here](https://developer.riotgames.com/).
 
 Entry point to the api if you do not own a production API key:
@@ -74,7 +74,7 @@ foreach (var stat in varusRanked.Stats)
 
 You can find a list of all the available operations in [IRiotApi](RiotSharp/IRiotApi.cs).
 
-###Tournament API
+### Tournament API
 
 You first have to apply for a tournament API key [here](https://developer.riotgames.com/).
 
@@ -121,7 +121,7 @@ or, alternatively, if you do not wish to create a separate Tournament object, yo
 
 You can find a list of all the available operations in [ITournamentRiotApi](RiotSharp/ITournamentRiotApi.cs).
 
-###Static API
+### Static API
 
 You can retrieve static information about the game thanks to the static API, there is no rate limiting on this API and RiotSharp
 caches as much data as possible to make as few calls as possible.
@@ -143,7 +143,7 @@ foreach (var champion in champions)
 
 You can find a list of all the available operations in [IStaticRiotApi](RiotSharp/IStaticRiotApi.cs).
 
-###Status API
+### Status API
 
 You can also retrieve information available on [status.leagueoflegends.com](http://status.leagueoflegends.com/#euw) with the Status API. This API is not constrained to the rate limiting and you do not have to supply an API key.
 
@@ -165,7 +165,7 @@ You can find a list of all the available operations in [IStatusRiotApi](RiotShar
 
 For a full description check the [RiotSharpExample](RiotSharpExample) or [RiotSharpTest](RiotSharpTest) projects.
 
-##Contribution
+## Contribution
 
 Simply send a pull request! The [up-for-grabs](https://github.com/BenFradet/RiotSharp/labels/up-for-grabs) label is a great place to start.
 
@@ -174,13 +174,14 @@ To run the unit tests you need to modify the [App.config](RiotSharpTest/App.conf
 
 Moreover, the documentation is far from perfect so every bit of help is more than welcome.
 
-##Libraries used
+## Libraries used
 
 This wrapper uses [Json.NET](http://james.newtonking.com/json).
 
-##License
+## License
 
 This wrapper is under the [MIT license](LICENSE.md).
 
-##Disclaimer
+## Disclaimer
+
 RiotSharp isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
