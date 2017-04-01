@@ -2,7 +2,8 @@
 using RiotSharp.StaticDataEndpoint;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using System.Linq;
 
 namespace RiotSharpExample
@@ -11,17 +12,19 @@ namespace RiotSharpExample
     {
         static void Main(string[] args)
         {
-            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);
-            var staticApi = StaticRiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);
+            var conf = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+            var api = RiotApi.GetInstance(conf["ApiKey"]);
+            var staticApi = StaticRiotApi.GetInstance(conf["ApiKey"]);
             var statusApi = StatusRiotApi.GetInstance();
-            int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-            string name = ConfigurationManager.AppSettings["Summoner1Name"];
-            int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
-            string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
-            string team = ConfigurationManager.AppSettings["Team1Id"];
-            string team2 = ConfigurationManager.AppSettings["Team2Id"];
-            int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
-            Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
+            int id = int.Parse(conf["Summoner1Id"]);
+            string name = conf["Summoner1Name"];
+            int id2 = int.Parse(conf["Summoner2Id"]);
+            string name2 = conf["Summoner2Name"];
+            string team = conf["Team1Id"];
+            string team2 = conf["Team2Id"];
+            int gameId = int.Parse(conf["GameId"]);
+            Region region = (Region)Enum.Parse(typeof(Region), conf["Region"]);
 
             var mastery = staticApi.GetMastery(Region.euw, 6111, MasteryData.all);
 
