@@ -2,7 +2,8 @@
 using RiotSharp;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Net;
 
@@ -11,18 +12,19 @@ namespace RiotSharpTest
     [TestClass]
     public class RiotApiTest
     {
-        private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
-        private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        private static string name = ConfigurationManager.AppSettings["Summoner1Name"];
-        private static int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
-        private static string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
-        private static string team = ConfigurationManager.AppSettings["Team1Id"];
-        private static string team2 = ConfigurationManager.AppSettings["Team2Id"];
-        private static int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
-        private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
+        private static IConfigurationRoot conf = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        private static string apiKey = conf["ApiKey"];
+        private static int id = int.Parse(conf["Summoner1Id"]);
+        private static string name = conf["Summoner1Name"];
+        private static int id2 = int.Parse(conf["Summoner2Id"]);
+        private static string name2 = conf["Summoner2Name"];
+        private static string team = conf["Team1Id"];
+        private static string team2 = conf["Team2Id"];
+        private static int gameId = int.Parse(conf["GameId"]);
+        private static int championId = int.Parse(conf["ChampionId"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Queue queue = Queue.RankedSolo5x5;
-        private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
+        private static Region region = (Region) Enum.Parse(typeof(Region), conf["Region"]);
         private static RiotSharp.MatchEndpoint.Enums.Season season = RiotSharp.MatchEndpoint.Enums.Season.Season2015;
         private static DateTime beginTime = new DateTime(2015, 01, 01);
         private static DateTime endTime { get { return DateTime.Now; } }

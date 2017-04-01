@@ -4,7 +4,8 @@ using RiotSharp.MatchEndpoint.Enums;
 using RiotSharp.TournamentEndpoint;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration;
 using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharpTest
@@ -12,15 +13,16 @@ namespace RiotSharpTest
     [TestClass]
     public class TournamentRiotApiTest
     {
-        private static readonly string apiKey = ConfigurationManager.AppSettings["TournamentApiKey"];
-        private static readonly int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        private static readonly int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
+        private static IConfigurationRoot conf = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        private static readonly string apiKey = conf["TournamentApiKey"];
+        private static readonly int id = int.Parse(conf["Summoner1Id"]);
+        private static readonly int id2 = int.Parse(conf["Summoner2Id"]);
 
         private static readonly Region region =
-            (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["TournamentRegion"]);
+            (Region)Enum.Parse(typeof(Region), conf["TournamentRegion"]);
 
-        private static readonly string tournamentCode = ConfigurationManager.AppSettings["TournamentCode"];
-        private static readonly long matchId = long.Parse(ConfigurationManager.AppSettings["MatchId"]);
+        private static readonly string tournamentCode = conf["TournamentCode"];
+        private static readonly long matchId = long.Parse(conf["MatchId"]);
         private static readonly string url = "http://www.example.com";
         private static readonly string tournamentName = "RiotSharpTestTournament";
         private static readonly TournamentSpectatorType spectatorType = TournamentSpectatorType.All;

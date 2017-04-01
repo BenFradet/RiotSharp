@@ -1,14 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
-using System.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace RiotSharpTest
 {
     [TestClass]
     public class StaticRiotApiExceptionTest
     {
-        private static string faultyApiKey = ConfigurationManager.AppSettings["FaultyApiKey"];
+        private static IConfigurationRoot conf = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        private static string faultyApiKey = conf["FaultyApiKey"];
         private static StaticRiotApi faultyStaticApi = StaticRiotApi.GetInstance(faultyApiKey);
 
         [TestMethod]
