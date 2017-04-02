@@ -32,7 +32,12 @@ namespace RiotSharp.MatchEndpoint.Enums
         /// <summary>
         /// Corresponds to Vilemaw (on the 3vs3 map).
         /// </summary>
-        Vilemaw
+        Vilemaw,
+
+        /// <summary>
+        /// Corresponds to Rift Herald.
+        /// </summary>
+        RiftHerald
     }
 
     static class MonsterTypeExtension
@@ -51,6 +56,8 @@ namespace RiotSharp.MatchEndpoint.Enums
                     return "RED_LIZARD";
                 case MonsterType.Vilemaw:
                     return "VILEMAW";
+                case MonsterType.RiftHerald:
+                    return "RIFTHERALD";
                 default:
                     return string.Empty;
             }

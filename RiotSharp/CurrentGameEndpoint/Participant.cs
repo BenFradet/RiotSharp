@@ -51,6 +51,13 @@ namespace RiotSharp.CurrentGameEndpoint
         public long SummonerSpell2 { get; set; }
 
         /// <summary>
+        /// The summoner ID of this participant
+        /// Only available for ranked matches
+        /// </summary>
+        [JsonProperty("summonerId")]
+        public long SummonerId { get; set; }
+
+        /// <summary>
         /// The summoner name of this participant
         /// </summary>
         [JsonProperty("summonerName")]

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace RiotSharp.MatchEndpoint
+namespace RiotSharp.MatchListEndpoint
 {
     public class MatchList
     {

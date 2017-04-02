@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.MatchEndpoint.Enums.Converters;
 
-namespace RiotSharp.MatchEndpoint.Enums
+namespace RiotSharp
 {
     /// <summary>
     /// Participant's role (Match API).

@@ -74,6 +74,8 @@ namespace RiotSharp.StatsEndpoint.Enums.Converters
                     return PlayerStatsSummaryType.RankedFlexSR;
                 case "RankedFlexTT":
                     return PlayerStatsSummaryType.RankedFlexTT;
+                case "Assassinate":
+                    return PlayerStatsSummaryType.Assassinate;
                 default:
                     return null;
             }
