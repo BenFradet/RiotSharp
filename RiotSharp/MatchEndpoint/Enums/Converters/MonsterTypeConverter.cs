@@ -30,6 +30,8 @@ namespace RiotSharp.MatchEndpoint.Enums.Converters
                     return MonsterType.RedLizard;
                 case "VILEMAW":
                     return MonsterType.Vilemaw;
+                case "RIFTHERALD":
+                    return MonsterType.RiftHerald;
                 default:
                     return null;
             }
