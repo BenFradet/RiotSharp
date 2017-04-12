@@ -74,7 +74,7 @@ namespace RiotSharp.StaticDataEndpoint
         /// Wind).
         /// </summary>
         [JsonProperty("partype")]
-        public ParTypeStatic Partype { get; set; }
+        public string Partype { get; set; }
 
         /// <summary>
         /// Information about this champion's passive.

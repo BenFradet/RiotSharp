@@ -186,8 +186,6 @@
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionListStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionListStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\Enums\ParTypeStatic.cs" />
-    <Compile Include="StaticDataEndpoint\Champion\Enums\Converters\ParTypeStaticConverter.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Enums\TagStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Enums\Converters\TagStaticListConverter.cs" />
     <Compile Include="StaticDataEndpoint\DataRequested.cs" />
