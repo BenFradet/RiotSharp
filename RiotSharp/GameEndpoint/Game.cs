@@ -42,7 +42,7 @@ namespace RiotSharp.GameEndpoint
         /// Game mode.
         /// </summary>
         [JsonProperty("gameMode")]
-        public GameMode GameMode { get; set; }
+        public string GameMode { get; set; }
 
         /// <summary>
         /// Game type.
