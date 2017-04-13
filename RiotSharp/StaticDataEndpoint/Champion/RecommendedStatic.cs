@@ -42,7 +42,7 @@ namespace RiotSharp.StaticDataEndpoint
         /// Mode for which those items are recommended.
         /// </summary>
         [JsonProperty("mode")]
-        public GameMode Mode { get; set; }
+        public string Mode { get; set; }
 
         /// <summary>
         /// Priority of the recommended items list.

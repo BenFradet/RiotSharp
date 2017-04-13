@@ -98,7 +98,6 @@
     <Compile Include="Misc\Converters\DateTimeConverterFromString.cs" />
     <Compile Include="Misc\Converters\DateTimeConverterFromStringTimestamp.cs" />
     <Compile Include="Misc\GameMode.cs" />
-    <Compile Include="Misc\Converters\GameModeConverter.cs" />
     <Compile Include="Misc\GameType.cs" />
     <Compile Include="Misc\Converters\GameTypeConverter.cs" />
     <Compile Include="Misc\MapType.cs" />
