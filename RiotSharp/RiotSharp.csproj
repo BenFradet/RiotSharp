@@ -95,6 +95,7 @@
     <Compile Include="MatchEndpoint\Rune.cs" />
     <Compile Include="MatchEndpoint\Enums\Season.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\SeasonConverter.cs" />
+    <Compile Include="MatchListEndPoint\Queue.cs" />
     <Compile Include="Misc\Converters\DateTimeConverterFromString.cs" />
     <Compile Include="Misc\Converters\DateTimeConverterFromStringTimestamp.cs" />
     <Compile Include="Misc\GameMode.cs" />
@@ -147,8 +148,6 @@
     <Compile Include="Misc\Language.cs" />
     <Compile Include="Misc\Platform.cs" />
     <Compile Include="Misc\Converters\PlatformConverter.cs" />
-    <Compile Include="MatchListEndPoint\Enums\Queue.cs" />
-    <Compile Include="MatchListEndPoint\Enums\Converters\QueueConverter.cs" />
     <Compile Include="LeagueEndpoint\Enums\Tier.cs" />
     <Compile Include="LeagueEndpoint\Enums\Converters\TierConverter.cs" />
     <Compile Include="Misc\Converters\DateTimeConverterFromLong.cs" />
