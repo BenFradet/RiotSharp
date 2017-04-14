@@ -9,6 +9,8 @@ using RiotSharp.SummonerEndpoint;
 using RiotSharp.ChampionMasteryEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
+using RiotSharp.MatchListEndpoint;
 
 namespace RiotSharp
 {
@@ -53,6 +55,12 @@ namespace RiotSharp
         Task<Dictionary<string, TeamEndpoint.Team>> GetTeamsAsync(Region region, List<string> teamIds);
         MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false);
         Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false);
+        MatchList GetMatchList(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null,
+            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null,
+            int? beginIndex = null, int? endIndex = null);
+        Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null,
+            List<string> rankedQueues = null, List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,
+            DateTime? endTime = null, int? beginIndex = null, int? endIndex = null);
         List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId);
         Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId);
         List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, Season season);
