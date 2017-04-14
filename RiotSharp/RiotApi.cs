@@ -706,12 +706,12 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a challenger league.</param>
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
         /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
-        public League GetChallengerLeague(Region region, Queue queue)
+        public League GetChallengerLeague(Region region, string queue)
         {
             var json = requester.CreateGetRequest(
                 string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
                 region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
+                new List<string> { string.Format("type={0}", queue) });
             return JsonConvert.DeserializeObject<League>(json);
         }
 
@@ -721,12 +721,12 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a challenger league.</param>
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
         /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
-        public async Task<League> GetChallengerLeagueAsync(Region region, Queue queue)
+        public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
                 region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
+                new List<string> { string.Format("type={0}", queue) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
         }
 
@@ -736,12 +736,12 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a master league.</param>
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
         /// <returns>A league which contains all the masters for this specific region and queue.</returns>
-        public League GetMasterLeague(Region region, Queue queue)
+        public League GetMasterLeague(Region region, string queue)
         {
             var json = requester.CreateGetRequest(
                 string.Format(LeagueRootUrl, region.ToString()) + LeagueMasterUrl,
                 region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
+                new List<string> { string.Format("type={0}", queue) });
             return JsonConvert.DeserializeObject<League>(json);
         }
 
@@ -751,12 +751,12 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a master league.</param>
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
         /// <returns>A league which contains all the masters for this specific region and queue.</returns>
-        public async Task<League> GetMasterLeagueAsync(Region region, Queue queue)
+        public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(LeagueRootUrl, region.ToString()) + LeagueMasterUrl,
                 region,
-                new List<string> { string.Format("type={0}", queue.ToCustomString()) });
+                new List<string> { string.Format("type={0}", queue) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
         }
 
@@ -898,7 +898,7 @@ namespace RiotSharp
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
         public MatchList GetMatchList(Region region, long summonerId,
-            List<long> championIds = null, List<Queue> rankedQueues = null,
+            List<long> championIds = null, List<string> rankedQueues = null,
             List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null,
             int? beginIndex = null, int? endIndex = null)
         {
@@ -949,7 +949,7 @@ namespace RiotSharp
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
         public async Task<MatchList> GetMatchListAsync(Region region, long summonerId,
-            List<long> championIds = null, List<Queue> rankedQueues = null,
+            List<long> championIds = null, List<string> rankedQueues = null,
             List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,
             DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
         {

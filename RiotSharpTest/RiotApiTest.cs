@@ -21,7 +21,7 @@ namespace RiotSharpTest
         private static int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
         private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
-        private static Queue queue = Queue.RankedSolo5x5;
+        private static string queue = Queue.RankedSolo5x5;
         private static Region region = (Region) Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
         private static RiotSharp.MatchEndpoint.Enums.Season season = RiotSharp.MatchEndpoint.Enums.Season.Season2015;
         private static DateTime beginTime = new DateTime(2015, 01, 01);
@@ -536,7 +536,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMatchList_RankedQueues_Test()
         {
-            var matches = api.GetMatchList(region, id, null, new List<Queue> { queue }).Matches;
+            var matches = api.GetMatchList(region, id, null, new List<string> { queue }).Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -623,7 +623,7 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_RankedQueues_Test()
         {
-            var matches = api.GetMatchListAsync(region, id, null, new List<Queue> { queue }).Result.Matches;
+            var matches = api.GetMatchListAsync(region, id, null, new List<string> { queue }).Result.Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
