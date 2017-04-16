@@ -98,6 +98,7 @@
     <Compile Include="MatchListEndPoint\Queue.cs" />
     <Compile Include="Misc\Converters\DateTimeConverterFromString.cs" />
     <Compile Include="Misc\Converters\DateTimeConverterFromStringTimestamp.cs" />
+    <Compile Include="Misc\CultureInfoExtensions.cs" />
     <Compile Include="Misc\GameMode.cs" />
     <Compile Include="Misc\GameType.cs" />
     <Compile Include="Misc\Converters\GameTypeConverter.cs" />
