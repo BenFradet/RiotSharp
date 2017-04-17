@@ -19,7 +19,7 @@ namespace RiotSharpTest
         private static Region region = (Region)Enum.Parse(typeof(Region), conf["Region"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);
         private static Summoner summoner = api.GetSummoner(region, id);
-        private static Queue queue = Queue.RankedSolo5x5;
+        private static string queue = Queue.RankedSolo5x5;
 
         [TestMethod]
         [TestCategory("Summoner")]

@@ -5,63 +5,61 @@ namespace RiotSharp
     /// <summary>
     /// Mode of the game (Game API).
     /// </summary>
-    [JsonConverter(typeof(GameModeConverter))]
-    public enum GameMode
+    public static class GameMode
     {
         /// <summary>
         /// Classic Summoner's Rift and Twisted Treeline games.
         /// </summary>
-        Classic,
+        public const string Classic = "CLASSIC";
 
         /// <summary>
         /// Dominion/Crystal Scar games.
         /// </summary>
-        Dominion,
+        public const string Dominion = "ODIN";
 
         /// <summary>
         /// ARAM games.
         /// </summary>
-        Aram,
+        public const string Aram = "ARAM";
 
         /// <summary>
         /// Tutorial games.
         /// </summary>
-        Tutorial,
+        public const string Tutorial = "TUTORIAL";
 
         /// <summary>
         /// One for All games.
         /// </summary>
-        OneForAll,
+        public const string OneForAll = "ONEFORALL";
 
         /// <summary>
         /// Snowdown Showdown games.
         /// </summary>
-        FirstBlood,
+        public const string FirstBlood = "FIRSTBLOOD";
 
         /// <summary>
         /// Ascension mode games.
         /// </summary>
-        Ascension,
+        public const string Ascension = "ASCENSION";
 
         /// <summary>
         /// Introduction game mode.
         /// </summary>
-        Intro,
+        public const string Intro = "INTRO";
 
         /// <summary>
         /// King Poro game mode.
         /// </summary>
-        KingPoro,
+        public const string KingPoro = "KINGPORO";
 
         /// <summary>
         /// Nexus Siege game mode.
         /// </summary>
-        Siege,
-        
-        
+        public const string Siege = "SIEGE";
+
         /// <summary>
         /// Assassinate game mode.
         /// </summary>
-        Assassinate
+        public const string Assassinate = "ASSASSINATE";
     }
 }
