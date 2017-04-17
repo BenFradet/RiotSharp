@@ -12,24 +12,37 @@ namespace RiotSharpTest
     [TestClass]
     public class CultureInfoExtensionsTest
     {
-        private static List<CultureInfo> supportedNeutralCultureInfos = new List<CultureInfo>
+        private static Dictionary<Language, CultureInfo> supportedNeutralCultureInfos = new Dictionary<Language, CultureInfo>
         {
-            new CultureInfo("cs"), new CultureInfo("de"), new CultureInfo("el"), new CultureInfo("en"),
-            new CultureInfo("es"), new CultureInfo("fr"), new CultureInfo("hu"), new CultureInfo("id"),
-            new CultureInfo("it"), new CultureInfo("ja"), new CultureInfo("ko"), new CultureInfo("ms"), 
-            new CultureInfo("pl"), new CultureInfo("pt"), new CultureInfo("ro"), new CultureInfo("ru"), 
-            new CultureInfo("th"), new CultureInfo("tr"), new CultureInfo("vn"), new CultureInfo("zh") 
+            { Language.cs_CZ, new CultureInfo("cs") }, { Language.de_DE, new CultureInfo("de") },
+            { Language.el_GR, new CultureInfo("el") }, { Language.en_US, new CultureInfo("en") },
+            { Language.es_ES, new CultureInfo("es") }, { Language.fr_FR, new CultureInfo("fr") },
+            { Language.hu_HU, new CultureInfo("hu") }, { Language.id_ID, new CultureInfo("id") },
+            { Language.it_IT, new CultureInfo("it") }, { Language.ja_JP, new CultureInfo("ja") },
+            { Language.ko_KR, new CultureInfo("ko") }, { Language.ms_MY, new CultureInfo("ms") },
+            { Language.pl_PL, new CultureInfo("pl") }, { Language.pt_BR, new CultureInfo("pt") },
+            { Language.ro_RO, new CultureInfo("ro") }, { Language.ru_RU, new CultureInfo("ru") },
+            { Language.th_TH, new CultureInfo("th") }, { Language.tr_TR, new CultureInfo("tr") },
+            { Language.vn_VN, new CultureInfo("vn") }, { Language.zh_CN, new CultureInfo("zh") },
+           
         };
-        private static List<CultureInfo> directlySupportedCultureInfos = new List<CultureInfo>
+        private static Dictionary<Language, CultureInfo> directlySupportedCultureInfos = new Dictionary<Language, CultureInfo>
         {
-            new CultureInfo("cs-CZ"), new CultureInfo("de-DE"), new CultureInfo("el-GR"), new CultureInfo("en-AU"),
-            new CultureInfo("en-GB"), new CultureInfo("en-PH"), new CultureInfo("en-PL"), new CultureInfo("en-SG"),
-            new CultureInfo("en-US"), new CultureInfo("es-AR"), new CultureInfo("es-ES"), new CultureInfo("es-MX"),
-            new CultureInfo("fr-FR"), new CultureInfo("hu-HU"), new CultureInfo("id-ID"), new CultureInfo("it-IT"),
-            new CultureInfo("ja-JP"), new CultureInfo("ko-KR"), new CultureInfo("ms-MY"), new CultureInfo("pl-PL"),
-            new CultureInfo("pt-BR"), new CultureInfo("ro-RO"), new CultureInfo("ru-RU"), new CultureInfo("th-TH"),
-            new CultureInfo("tr-TR"), new CultureInfo("vn-VN"), new CultureInfo("zh-CN"), new CultureInfo("zh-MY"),
-            new CultureInfo("zh-TW")
+            { Language.cs_CZ, new CultureInfo("cs-CZ") }, { Language.de_DE, new CultureInfo("de-DE") },
+            { Language.el_GR, new CultureInfo("el-GR") }, { Language.en_AU, new CultureInfo("en-AU") },
+            { Language.en_GB, new CultureInfo("en-GB") }, { Language.en_PH, new CultureInfo("en-PH") },
+            { Language.en_PL, new CultureInfo("en-PL") }, { Language.en_SG, new CultureInfo("en-SG") },
+            { Language.en_US, new CultureInfo("en-US") }, { Language.es_AR, new CultureInfo("es-AR") },
+            { Language.es_ES, new CultureInfo("es-ES") }, { Language.es_MX, new CultureInfo("es-MX") },
+            { Language.fr_FR, new CultureInfo("fr-FR") }, { Language.hu_HU, new CultureInfo("hu-HU") },
+            { Language.id_ID, new CultureInfo("id-ID") }, { Language.it_IT, new CultureInfo("it-IT") },
+            { Language.ja_JP, new CultureInfo("ja-JP") }, { Language.ko_KR, new CultureInfo("ko-KR") },
+            { Language.ms_MY, new CultureInfo("ms-MY") }, { Language.pl_PL, new CultureInfo("pl-PL") },
+            { Language.pt_BR, new CultureInfo("pt-BR") }, { Language.ro_RO, new CultureInfo("ro-RO") },
+            { Language.ru_RU, new CultureInfo("ru-RU") }, { Language.th_TH, new CultureInfo("th-TH") },
+            { Language.tr_TR, new CultureInfo("tr-TR") }, { Language.vn_VN, new CultureInfo("vn-VN") },
+            { Language.zh_CN, new CultureInfo("zh-CN") }, { Language.zh_MY, new CultureInfo("zh-MY") },
+            { Language.zh_TW, new CultureInfo("zh-TW") }
         };
         private static CultureInfo unsupportedNeutralCultureInfo = new CultureInfo("et");
         private static CultureInfo unsupportedCultureInfo = new CultureInfo("et-ET");
@@ -37,18 +50,13 @@ namespace RiotSharpTest
         [TestMethod]
         public void ToLanguage_SupportedNeutralCultureInfo_ReturnsLanguage()
         {
-            foreach(var neutralCulture in supportedNeutralCultureInfos)
+            foreach(var supportedNeutralCulture in supportedNeutralCultureInfos)
             {               
-                try
-                {
-                    // Act
-                    var language = neutralCulture.ToLanguage();
-                }
-                catch
-                {
-                    // Assert
-                    Assert.Fail("Conversion of " + neutralCulture.Name + " failed.");
-                }
+                // Act
+                var language = supportedNeutralCulture.Value.ToLanguage();
+
+                // Assert
+                Assert.AreEqual(supportedNeutralCulture.Key, language);
             }
         }
 
@@ -57,16 +65,11 @@ namespace RiotSharpTest
         {
             foreach (var directlySupportedCulture in directlySupportedCultureInfos)
             {
-                try
-                {
-                    // Act
-                    var language = directlySupportedCulture.ToLanguage();
-                }
-                catch
-                {
-                    // Assert
-                    Assert.Fail("Conversion of " + directlySupportedCulture.Name + " failed.");
-                }
+                // Act
+                var language = directlySupportedCulture.Value.ToLanguage();
+
+                // Assert
+                Assert.AreEqual(directlySupportedCulture.Key, language);
             }
         }
 

@@ -17,7 +17,8 @@ namespace RiotSharp
         /// <exception cref="ArgumentException">Thrown if an unsupported CultureInfo is provided.</exception>
         public static Language ToLanguage(this CultureInfo cultureInfo)
         {
-            if (cultureInfo.IsNeutralCulture) // Neutral cultures don't have an equivalent in Riot's API, therefore they need to be mapped to a default
+            // Neutral cultures don't have an equivalent in Riot's API, therefore they need to be mapped to a default
+            if (cultureInfo.IsNeutralCulture) 
             {
                 return ParseNeutralCulture(cultureInfo);
             }
@@ -31,7 +32,8 @@ namespace RiotSharp
                 }
                 else
                 {
-                    return ParseNeutralCulture(cultureInfo.Parent); // Parent culture is always neutral (as far as the supported languages go)
+                    // Parent culture is always neutral (as far as the supported languages go)
+                    return ParseNeutralCulture(cultureInfo.Parent); 
                 }
             }
         }
@@ -81,7 +83,7 @@ namespace RiotSharp
                 case "zh":
                     return Language.zh_CN;
                 default:
-                    throw new ArgumentException("Unsupported language:" + cultureInfo.Name);
+                    throw new ArgumentException("Unsupported language: " + cultureInfo.Name);
             }
         }
     }
