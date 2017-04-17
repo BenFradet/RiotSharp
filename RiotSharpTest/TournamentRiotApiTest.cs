@@ -37,11 +37,11 @@ namespace RiotSharpTest
             Assert.AreNotEqual(0, provider.Id);
             var tournament = api.CreateTournament(provider.Id, tournamentName);
             Assert.AreNotEqual(0, tournament.Id);
-            var tmpTournamentCode = api.CreateTournamentCode(tournament.Id, 1, spectatorType,
-                pickType, mapType, new List<long> { id, id2 }, string.Empty);
+            var tmpTournamentCode = api.CreateTournamentCode(tournament.Id, 1, new List<long> { id, id2 }, spectatorType,
+                pickType, mapType, string.Empty);
             Assert.AreNotEqual("", tmpTournamentCode);
             var tournamentCodes = api.CreateTournamentCodes(tournament.Id, 1, spectatorType, pickType, mapType,
-                new List<long> { id, id2 }, string.Empty, 2);
+                 string.Empty, 2);
             Assert.AreEqual(2, tournamentCodes.Count);
 
             var tournamentCodeDetails = api.GetTournamentCodeDetails(tmpTournamentCode);
@@ -79,11 +79,11 @@ namespace RiotSharpTest
             var tournament = api.CreateTournamentAsync(provider.Id, tournamentName).Result;
             Assert.AreNotEqual(0, tournament.Id);
             var tmpTournamentCode = api
-                .CreateTournamentCodeAsync(tournament.Id, 1, spectatorType, pickType, mapType, new List<long> { id, id2 }, string.Empty)
+                .CreateTournamentCodeAsync(tournament.Id, 1, new List<long> { id, id2 }, spectatorType, pickType, mapType, string.Empty)
                 .Result;
             Assert.AreNotEqual("", tmpTournamentCode);
             var tournamentCodes = api
-                .CreateTournamentCodesAsync(tournament.Id, 1, spectatorType, pickType, mapType, new List<long> { id, id2 }, string.Empty, 2)
+                .CreateTournamentCodesAsync(tournament.Id, 1, spectatorType, pickType, mapType, string.Empty, 2)
                 .Result;
             Assert.AreEqual(2, tournamentCodes.Count);
             var tournamentCodeDetails = api.GetTournamentCodeDetails(tmpTournamentCode);
