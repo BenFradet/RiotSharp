@@ -9,6 +9,12 @@ namespace RiotSharp
 {
     public static class CultureInfoExtensions
     {
+        /// <summary>
+        /// Converts the value of this instance to its equivalent Language representation.
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+        /// <returns>The Language representation of the value of this instance.</returns>
+        /// <exception cref="ArgumentException">Thrown if an unsupported CultureInfo is provided.</exception>
         public static Language ToLanguage(this CultureInfo cultureInfo)
         {
             if (cultureInfo.IsNeutralCulture) // Neutral cultures don't have an equivalent in Riot's API, therefore they need to be mapped to a default
