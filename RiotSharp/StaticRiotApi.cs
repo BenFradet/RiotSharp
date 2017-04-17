@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    /// <summary>
-    /// Entry point for the static API.
-    /// </summary>
     public class StaticRiotApi : IStaticRiotApi
     {
+        #region Private Fields
+        
         private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1.2/champion";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionCacheKey = "champion";
@@ -57,6 +56,9 @@ namespace RiotSharp
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);
 
         private static StaticRiotApi instance;
+
+        #endregion
+
         /// <summary>
         /// Get the instance of StaticRiotApi.
         /// </summary>
@@ -79,14 +81,7 @@ namespace RiotSharp
             requester = Requesters.StaticApiRequester;
             cache = new Cache();
         }
-
-        /// <summary>
-        /// Get a list of all champions synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="championData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A ChampionListStatic object containing all champions.</returns>
+     
         public ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.basic,
             Language language = Language.en_US)
         {
@@ -108,14 +103,7 @@ namespace RiotSharp
             }
             return wrapper.ChampionListStatic;
         }
-
-        /// <summary>
-        /// Get a list of all champions asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="championData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A ChampionListStatic object containing all champions.</returns>
+    
         public async Task<ChampionListStatic> GetChampionsAsync(Region region,
             ChampionData championData = ChampionData.basic, Language language = Language.en_US)
         {
@@ -140,15 +128,7 @@ namespace RiotSharp
             cache.Add(ChampionsCacheKey, wrapper, DefaultSlidingExpiry);
             return wrapper.ChampionListStatic;
         }
-
-        /// <summary>
-        /// Get a champion synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="championId">Id of the champion to retrieve.</param>
-        /// <param name="championData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A champion.</returns>
+     
         public ChampionStatic GetChampion(Region region, int championId,
             ChampionData championData = ChampionData.basic, Language language = Language.en_US)
         {
@@ -184,15 +164,7 @@ namespace RiotSharp
                 }
             }
         }
-
-        /// <summary>
-        /// Get a champion asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="championId">Id of the champion to retrieve.</param>
-        /// <param name="championData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A champion.</returns>
+     
         public async Task<ChampionStatic> GetChampionAsync(Region region, int championId,
             ChampionData championData = ChampionData.basic, Language language = Language.en_US)
         {
@@ -223,14 +195,7 @@ namespace RiotSharp
                 DefaultSlidingExpiry);
             return champ;
         }
-
-        /// <summary>
-        /// Get a list of all items synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="itemData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>An ItemListStatic object containing all items.</returns>
+     
         public ItemListStatic GetItems(Region region, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
@@ -253,14 +218,7 @@ namespace RiotSharp
             }
             return wrapper.ItemListStatic;
         }
-
-        /// <summary>
-        /// Get a list of all items synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="itemData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>An ItemListStatic object containing all items.</returns>
+  
         public async Task<ItemListStatic> GetItemsAsync(Region region, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
@@ -285,15 +243,7 @@ namespace RiotSharp
             cache.Add(ItemsCacheKey, wrapper, DefaultSlidingExpiry);
             return wrapper.ItemListStatic;
         }
-
-        /// <summary>
-        /// Get an item synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="itemId">Id of the item to retrieve.</param>
-        /// <param name="itemData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>An item.</returns>
+    
         public ItemStatic GetItem(Region region, int itemId, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
@@ -335,15 +285,7 @@ namespace RiotSharp
                 }
             }
         }
-
-        /// <summary>
-        /// Get an item asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="itemId">Id of the item to retrieve.</param>
-        /// <param name="itemData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>An item.</returns>
+  
         public async Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
@@ -373,14 +315,7 @@ namespace RiotSharp
             cache.Add(ItemCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), DefaultSlidingExpiry);
             return item;
         }
-
-        /// <summary>
-        /// Retrieve language strings synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <param name="version">Version of the dragon API.</param>
-        /// <returns>A object containing the language strings.</returns>
+   
         public LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "")
         {
@@ -402,14 +337,7 @@ namespace RiotSharp
 
             return languageStrings;
         }
-
-        /// <summary>
-        /// Retrieve language strings asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <param name="version">Version of the dragon API.</param>
-        /// <returns>A object containing the language strings.</returns>
+    
         public async Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
             Language language = Language.en_US, string version = "")
         {
@@ -432,12 +360,7 @@ namespace RiotSharp
 
             return languageStrings;
         }
-
-        /// <summary>
-        /// Get languages synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <returns>A list of languages.</returns>
+      
         public List<Language> GetLanguages(Region region)
         {
             var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
@@ -453,12 +376,7 @@ namespace RiotSharp
 
             return languages;
         }
-
-        /// <summary>
-        /// Get languages asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <returns>A list of languages.</returns>
+    
         public async Task<List<Language>> GetLanguagesAsync(Region region)
         {
             var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
@@ -476,14 +394,7 @@ namespace RiotSharp
 
             return languages;
         }
-
-        /// <summary>
-        /// Get maps synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <param name="version">Version of the dragon API.</param>
-        /// <returns>A list of objects representing maps.</returns>
+      
         public List<MapStatic> GetMaps(Region region, Language language = Language.en_US, string version = "")
         {
             var wrapper = cache.Get<string, MapsStaticWrapper>(MapCacheKey);
@@ -503,14 +414,7 @@ namespace RiotSharp
 
             return maps.Data.Values.ToList();
         }
-
-        /// <summary>
-        /// Get maps asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <param name="version">Version of the dragon API.</param>
-        /// <returns>A list of objects representing maps.</returns>
+       
         public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
             string version = "")
         {
@@ -532,14 +436,7 @@ namespace RiotSharp
 
             return maps.Data.Values.ToList();
         }
-
-        /// <summary>
-        /// Get a list of all masteries synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="masteryData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>An MasteryListStatic object containing all masteries.</returns>
+   
         public MasteryListStatic GetMasteries(Region region, MasteryData masteryData = MasteryData.basic,
             Language language = Language.en_US)
         {
@@ -562,14 +459,7 @@ namespace RiotSharp
             }
             return wrapper.MasteryListStatic;
         }
-
-        /// <summary>
-        /// Get a list of all masteries asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="masteryData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>An MasteryListStatic object containing all masteries.</returns>
+      
         public async Task<MasteryListStatic> GetMasteriesAsync(Region region,
             MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)
         {
@@ -594,15 +484,7 @@ namespace RiotSharp
             cache.Add(MasteriesCacheKey, wrapper, DefaultSlidingExpiry);
             return wrapper.MasteryListStatic;
         }
-
-        /// <summary>
-        /// Get a mastery synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="masteryId">Id of the mastery to retrieve.</param>
-        /// <param name="masteryData">Data to retrieve.</param>
-        /// <param name="language">Language of th data to be retrieved.</param>
-        /// <returns>A mastery.</returns>
+      
         public MasteryStatic GetMastery(Region region, int masteryId, MasteryData masteryData = MasteryData.basic,
             Language language = Language.en_US)
         {
@@ -644,15 +526,7 @@ namespace RiotSharp
                 }
             }
         }
-
-        /// <summary>
-        /// Get a mastery asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="masteryId">Id of the mastery to retrieve.</param>
-        /// <param name="masteryData">Data to retrieve.</param>
-        /// <param name="language">Language of th data to be retrieved.</param>
-        /// <returns>A mastery.</returns>
+  
         public async Task<MasteryStatic> GetMasteryAsync(Region region, int masteryId,
             MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)
         {
@@ -682,12 +556,7 @@ namespace RiotSharp
                 DefaultSlidingExpiry);
             return mastery;
         }
-
-        /// <summary>
-        /// Retrieve realm data synchronously.
-        /// </summary>
-        /// <param name="region">Region corresponding to data to retrieve.</param>
-        /// <returns>A realm object containing the requested information.</returns>
+    
         public RealmStatic GetRealm(Region region)
         {
             var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
@@ -703,12 +572,7 @@ namespace RiotSharp
 
             return realm;
         }
-
-        /// <summary>
-        /// Retrieve realm data asynchronously.
-        /// </summary>
-        /// <param name="region">Region corresponding to data to retrieve.</param>
-        /// <returns>A realm object containing the requested information.</returns>
+    
         public async Task<RealmStatic> GetRealmAsync(Region region)
         {
             var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
@@ -724,14 +588,7 @@ namespace RiotSharp
 
             return realm;
         }
-
-        /// <summary>
-        /// Get a list of all runes synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="runeData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A RuneListStatic object containing all runes.</returns>
+    
         public RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.basic
             , Language language = Language.en_US)
         {
@@ -754,14 +611,7 @@ namespace RiotSharp
             }
             return wrapper.RuneListStatic;
         }
-
-        /// <summary>
-        /// Get a list of all runes asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="runeData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A RuneListStatic object containing all runes.</returns>
+     
         public async Task<RuneListStatic> GetRunesAsync(Region region, RuneData runeData = RuneData.basic,
             Language language = Language.en_US)
         {
@@ -786,15 +636,7 @@ namespace RiotSharp
             cache.Add(RunesCacheKey, wrapper, DefaultSlidingExpiry);
             return wrapper.RuneListStatic;
         }
-
-        /// <summary>
-        /// Get a rune synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="runeId">Id of the rune to retrieve.</param>
-        /// <param name="runeData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A rune.</returns>
+     
         public RuneStatic GetRune(Region region, int runeId, RuneData runeData = RuneData.basic,
             Language language = Language.en_US)
         {
@@ -837,14 +679,6 @@ namespace RiotSharp
             }
         }
 
-        /// <summary>
-        /// Get a rune asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="runeId">Id of the rune to retrieve.</param>
-        /// <param name="runeData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A rune.</returns>
         public async Task<RuneStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.basic,
             Language language = Language.en_US)
         {
@@ -874,14 +708,7 @@ namespace RiotSharp
             cache.Add(RuneCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData), DefaultSlidingExpiry);
             return rune;
         }
-
-        /// <summary>
-        /// Get a list of all summoner spells synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="summonerSpellData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A SummonerSpellListStatic object containing all summoner spells.</returns>
+     
         public SummonerSpellListStatic GetSummonerSpells(Region region,
             SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)
         {
@@ -904,14 +731,7 @@ namespace RiotSharp
             }
             return wrapper.SummonerSpellListStatic;
         }
-
-        /// <summary>
-        /// Get a list of all summoner spells asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="summonerSpellData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A SummonerSpellListStatic object containing all summoner spells.</returns>
+ 
         public async Task<SummonerSpellListStatic> GetSummonerSpellsAsync(Region region,
             SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)
         {
@@ -936,15 +756,7 @@ namespace RiotSharp
             cache.Add(SummonerSpellsCacheKey, wrapper, DefaultSlidingExpiry);
             return wrapper.SummonerSpellListStatic;
         }
-
-        /// <summary>
-        /// Get a summoner spell synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="summonerSpell">Summoner spell to retrieve.</param>
-        /// <param name="summonerSpellData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A summoner spell.</returns>
+    
         public SummonerSpellStatic GetSummonerSpell(Region region, SummonerSpell summonerSpell,
             SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)
         {
@@ -989,15 +801,7 @@ namespace RiotSharp
                 }
             }
         }
-
-        /// <summary>
-        /// Get a summoner spell asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="summonerSpell">Summoner spell to retrieve.</param>
-        /// <param name="summonerSpellData">Data to retrieve.</param>
-        /// <param name="language">Language of the data to be retrieved.</param>
-        /// <returns>A summoner spell.</returns>
+      
         public async Task<SummonerSpellStatic> GetSummonerSpellAsync(Region region, SummonerSpell summonerSpell,
             SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US)
         {
@@ -1031,12 +835,7 @@ namespace RiotSharp
                 new SummonerSpellStaticWrapper(spell, language, summonerSpellData), DefaultSlidingExpiry);
             return spell;
         }
-
-        /// <summary>
-        /// Retrieve static api version data synchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve data.</param>
-        /// <returns>A list of versions as strings.</returns>
+      
         public List<string> GetVersions(Region region)
         {
             var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
@@ -1052,12 +851,7 @@ namespace RiotSharp
 
             return version;
         }
-
-        /// <summary>
-        /// Retrieve static api version data asynchronously.
-        /// </summary>
-        /// <param name="region">Region from which to retrieve data.</param>
-        /// <returns>A list of versions as strings.</returns>
+      
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
             var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
