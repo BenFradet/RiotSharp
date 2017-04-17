@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Misc\CultureInfoExtensionsTest.cs" />
     <Compile Include="RateLimiterTest.cs" />
     <Compile Include="RiotApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
