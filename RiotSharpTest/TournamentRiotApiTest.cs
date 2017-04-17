@@ -114,5 +114,84 @@ namespace RiotSharpTest
             Assert.AreEqual(Season.PreSeason2016, details.Season);
             Assert.AreEqual("5.24.0.256", details.MatchVersion);
         }
+
+        #region CreateTournamentCodes
+       
+        [TestMethod]
+        [TestCategory("TournamentRiotApi")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCodes_InvalidTeamSize_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCodesAsync_InvalidTeamSize_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi")]
+        public void CreateTournamentCodes_CountGreaterThan100_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCodesAsync_CountGreaterThan100_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCodes_CountLessThan1_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCodesAsync_CountLessThan1_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        #endregion
+
+        #region CreateTournamentCode
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCode_InvalidTeamSize_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTournamentCodeAsync_InvalidTeamSize_ThrowsArgumentException()
+        {
+            // TO DO
+            Assert.Fail();
+        }
+
+        #endregion
     }
 }
