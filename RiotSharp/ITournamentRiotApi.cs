@@ -69,6 +69,7 @@ namespace RiotSharp
         ///     custom information about the game.
         /// </param>
         /// <returns>The tournament code in string format.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid <paramref name="teamSize"/> is provided.</exception>
         string CreateTournamentCode(int tournamentId, int teamSize, List<long> allowedSummonerIds,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata);
@@ -91,6 +92,7 @@ namespace RiotSharp
         ///     custom information about the game.
         /// </param>
         /// <returns>The tournament code in string format.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid <paramref name="teamSize"/> is provided.</exception>
         Task<string> CreateTournamentCodeAsync(int tournamentId, int teamSize, List<long> allowedSummonerIds,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata);
@@ -109,6 +111,7 @@ namespace RiotSharp
         /// </param>
         /// <param name="count">The number of codes to create (max 1000).</param>
         /// <returns>A list of tournament codes in string format.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid <paramref name="teamSize"/> or an invalid <paramref name="count"/> is provided.</exception>
         List<string> CreateTournamentCodes(int tournamentId, int teamSize, TournamentSpectatorType spectatorType,
             TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1);
 
@@ -126,6 +129,7 @@ namespace RiotSharp
         /// </param>
         /// <param name="count">The number of codes to create (max 1000).</param>
         /// <returns>A list of tournament codes in string format.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid <paramref name="teamSize"/> or an invalid <paramref name="count"/> is provided.</exception>
         Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata, int count = 1);      

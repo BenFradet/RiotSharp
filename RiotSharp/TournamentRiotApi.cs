@@ -120,6 +120,7 @@ namespace RiotSharp
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata)
         {
+            ValidateTeamSize(teamSize);
             var body = new Dictionary<string, object>
             {
                 {"teamSize", teamSize},
@@ -143,6 +144,7 @@ namespace RiotSharp
             List<long> allowedSummonerIds, TournamentSpectatorType spectatorType, TournamentPickType pickType,
             TournamentMapType mapType, string metadata)
         {
+            ValidateTeamSize(teamSize);
             var body = new Dictionary<string, object>
             {
                 {"teamSize", teamSize},
@@ -168,6 +170,8 @@ namespace RiotSharp
         public List<string> CreateTournamentCodes(int tournamentId, int teamSize, TournamentSpectatorType spectatorType,
             TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1)
         {
+            ValidateTeamSize(teamSize);
+            ValidateTournamentCodeCount(count);
             var body = new Dictionary<string, object>
             {
                 {"teamSize", teamSize},
@@ -190,6 +194,8 @@ namespace RiotSharp
             TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
             string metadata, int count = 1)
         {
+            ValidateTeamSize(teamSize);
+            ValidateTournamentCodeCount(count);
             var body = new Dictionary<string, object>
             {
                 {"teamSize", teamSize},
@@ -338,6 +344,20 @@ namespace RiotSharp
                 body.Add("mapType", mapType);
 
             return body;
+        }
+
+        private void ValidateTeamSize(int teamSize)
+        {
+            if (teamSize < 1 || teamSize > 5)
+                throw new ArgumentException("Invalid team size. Valid values are 1-5.", nameof(teamSize));
+        }
+
+        private void ValidateTournamentCodeCount(int count)
+        {
+            if (count > 1000)
+                throw new ArgumentException("Invalid count. You cannot create more than 1000 codes at once.", nameof(count));
+            if (count < 1)
+                throw new ArgumentException("Invalid count. The value of count must be greater than 0.", nameof(count));
         }
     }
 }
