@@ -101,11 +101,12 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="spectatorType">The spectator type.</param>
         /// <param name="pickType">The pick type.</param>
         /// <param name="mapType">The map type.</param>
-        public bool Update(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
+        [Obsolete]
+        public bool UpdateV1(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
             TournamentPickType? pickType, TournamentMapType? mapType)
         {
             return TournamentRiotApi.GetInstance()
-                .UpdateTournamentCode(Code, allowedSummonerIds, spectatorType, pickType, mapType);
+                .UpdateTournamentCodeV1(Code, allowedSummonerIds, spectatorType, pickType, mapType);
         }
 
         /// <summary>
@@ -115,11 +116,12 @@ namespace RiotSharp.TournamentEndpoint
         /// <param name="spectatorType">The spectator type.</param>
         /// <param name="pickType">The pick type.</param>
         /// <param name="mapType">The map type.</param>
-        public async Task<bool> UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
+        [Obsolete]
+        public async Task<bool> UpdateV1Async(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
             TournamentPickType? pickType, TournamentMapType? mapType)
         {
             return await TournamentRiotApi.GetInstance()
-                .UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType);
+                .UpdateTournamentCodeV1Async(Code, allowedSummonerIds, spectatorType, pickType, mapType);
         }
 
         /// <summary>
@@ -127,9 +129,10 @@ namespace RiotSharp.TournamentEndpoint
         /// </summary>
         /// <param name="tournamentCode">The tournament code.</param>
         /// <returns>the tournament code object associated with a tournament code string.</returns>
-        public static TournamentCodeDetail Get(string tournamentCode)
+        [Obsolete]
+        public static TournamentCodeDetail GetV1(string tournamentCode)
         {
-            return TournamentRiotApi.GetInstance().GetTournamentCodeDetails(tournamentCode);
+            return TournamentRiotApi.GetInstance().GetTournamentCodeDetailsV1(tournamentCode);
         }
 
         /// <summary>
@@ -137,9 +140,10 @@ namespace RiotSharp.TournamentEndpoint
         /// </summary>
         /// <param name="tournamentCode">The tournament code.</param>
         /// <returns>the tournament code object associated with a tournament code string.</returns>
-        public static async Task<TournamentCodeDetail> GetAsync(string tournamentCode)
+        [Obsolete]
+        public static async Task<TournamentCodeDetail> GetV1Async(string tournamentCode)
         {
-            return await TournamentRiotApi.GetInstance().GetTournamentCodeDetailsAsync(tournamentCode);
+            return await TournamentRiotApi.GetInstance().GetTournamentCodeDetailsV1Async(tournamentCode);
         }
     }
 }

@@ -6,8 +6,10 @@ namespace RiotSharp.TournamentEndpoint
     /// <summary>
     /// Represents a tournament provider in the Riot API.
     /// </summary>
+    [Obsolete]
     public class TournamentProvider
     {
+        [Obsolete]
         internal TournamentProvider()
         {
         }
@@ -22,9 +24,10 @@ namespace RiotSharp.TournamentEndpoint
         /// </summary>
         /// <param name="name">An optional tournament name.</param>
         /// <returns>A tournament instance.</returns>
-        public Tournament CreateTournament(string name)
+        [Obsolete]
+        public Tournament CreateTournamentV1(string name)
         {
-            return TournamentRiotApi.GetInstance().CreateTournament(Id, name);
+            return TournamentRiotApi.GetInstance().CreateTournamentV1(Id, name);
         }
 
         /// <summary>
@@ -32,9 +35,10 @@ namespace RiotSharp.TournamentEndpoint
         /// </summary>
         /// <param name="name">An optional tournament name.</param>
         /// <returns>A tournament instance.</returns>
-        public async Task<Tournament> CreateTournamentAsync(string name)
+        [Obsolete]
+        public async Task<Tournament> CreateTournamentV1Async(string name)
         {
-            return await TournamentRiotApi.GetInstance().CreateTournamentAsync(Id, name);
+            return await TournamentRiotApi.GetInstance().CreateTournamentV1Async(Id, name);
         }
     }
 }
