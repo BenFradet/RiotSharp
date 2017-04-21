@@ -125,7 +125,7 @@ namespace RiotSharpTest
             {
                 // Act 
                 var tournamentCodes = api.CreateTournamentCodes(0, 0, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "");
             }
             catch (ArgumentException e)
             {
@@ -143,7 +143,7 @@ namespace RiotSharpTest
             {
                 // Act 
                 var tournamentCodes = api.CreateTournamentCodesAsync(0, 0, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "").Result;
             }
             catch(AggregateException e)
             {
@@ -163,7 +163,7 @@ namespace RiotSharpTest
             {
                 // Act 
                 var tournamentCodes = api.CreateTournamentCodes(0, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, count: 1001);
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "", count: 1001);
             }
             catch (ArgumentException e)
             {
@@ -181,7 +181,7 @@ namespace RiotSharpTest
             {
                 // Act 
                 var tournamentCodes = api.CreateTournamentCodesAsync(0, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, count: 1001).Result;
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "", count: 1001).Result;
             }
             catch (AggregateException e)
             {
@@ -201,7 +201,7 @@ namespace RiotSharpTest
             {
                 // Act 
                 var tournamentCodes = api.CreateTournamentCodes(0, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, count: 0);
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "", count: 0);
             }
             catch (ArgumentException e)
             {
@@ -219,7 +219,7 @@ namespace RiotSharpTest
             {
                 // Act 
                 var tournamentCodes = api.CreateTournamentCodesAsync(0, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, count: 0).Result;
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "", count: 0).Result;
             }
             catch (AggregateException e)
             {
@@ -242,8 +242,8 @@ namespace RiotSharpTest
             try
             {
                 // Act 
-                var tournamentCodes = api.CreateTournamentCode(0, 0, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
+                var tournamentCodes = api.CreateTournamentCode(0, 0, new List<long>(), TournamentSpectatorType.All, 
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "");
             }
             catch (ArgumentException e)
             {
@@ -260,8 +260,8 @@ namespace RiotSharpTest
             try
             {
                 // Act 
-                var tournamentCodes = api.CreateTournamentCodeAsync(0, 0, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
+                var tournamentCodes = api.CreateTournamentCodeAsync(0, 0, new List<long>(), TournamentSpectatorType.All, 
+                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, "").Result;
             }
             catch (AggregateException e)
             {
