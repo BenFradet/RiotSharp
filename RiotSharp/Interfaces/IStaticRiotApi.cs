@@ -11,7 +11,7 @@ using RiotSharp.StaticDataEndpoint.Realm;
 using RiotSharp.StaticDataEndpoint.Rune;
 using RiotSharp.StaticDataEndpoint.SummonerSpell;
 
-namespace RiotSharp
+namespace RiotSharp.Interfaces
 {
 
     /// <summary>

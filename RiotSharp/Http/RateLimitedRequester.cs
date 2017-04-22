@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using RiotSharp.Http.Interfaces;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 
-namespace RiotSharp
+namespace RiotSharp.Http
 {
-    internal class RateLimitedRequester : Requester, 
+    /// <summary>
+    /// A requester with a rate limiter
+    /// </summary>
+    internal class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }
@@ -20,18 +24,21 @@ namespace RiotSharp
 
         private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
 
+        #region Public Methods
+
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
             rootDomain = region + ".api.pvp.net";
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            
+
             GetRateLimiter(region).HandleRateLimit();
 
-            var response = Get(request);
-            return GetResponseContent(response);
+            using (var response = Get(request))
+            {
+                return GetResponseContent(response);
+            }              
         }
-
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null, bool useHttps = true)
@@ -41,8 +48,10 @@ namespace RiotSharp
             
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            var response = await GetAsync(request);
-            return await GetResponseContentAsync(response);
+            using (var response = await GetAsync(request))
+            {
+                return await GetResponseContentAsync(response);
+            }
         }
 
         public string CreatePostRequest(string relativeUrl, Region region, string body,
@@ -54,8 +63,10 @@ namespace RiotSharp
 
             GetRateLimiter(region).HandleRateLimit();
 
-            var response = Post(request);
-            return GetResponseContent(response);
+            using (var response = Post(request))
+            {
+                return GetResponseContent(response);
+            }     
         }
 
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
@@ -67,8 +78,10 @@ namespace RiotSharp
 
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            var response = await PostAsync(request);
-            return await GetResponseContentAsync(response);
+            using (var response = await PostAsync(request))
+            {
+                return await GetResponseContentAsync(response);
+            }
         }
 
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
@@ -80,8 +93,10 @@ namespace RiotSharp
 
             GetRateLimiter(region).HandleRateLimit();
 
-            var response = Put(request);
-            return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            using (var response = Put(request))
+            {
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            }              
         }
 
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
@@ -93,9 +108,13 @@ namespace RiotSharp
 
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            var response = await PutAsync(request);
-            return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            using (var response = await PutAsync(request))
+            {
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            }                
         }
+
+        #endregion
 
         /// <summary>
         /// Returns the respective region's RateLimiter, creating it if needed.

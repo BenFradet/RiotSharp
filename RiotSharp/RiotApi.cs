@@ -4,6 +4,9 @@ using RiotSharp.ChampionMasteryEndpoint;
 using RiotSharp.CurrentGameEndpoint;
 using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
@@ -66,7 +69,7 @@ namespace RiotSharp
         private const int MaxNrLeagues = 10;
         private const int MaxNrEntireLeagues = 10;
 
-        private RateLimitedRequester requester;
+        private IRateLimitedRequester requester;
 
         private static RiotApi instance;
 

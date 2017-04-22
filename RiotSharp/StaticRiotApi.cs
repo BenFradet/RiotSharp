@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Http;
+using RiotSharp.Interfaces;
 using RiotSharp.StaticDataEndpoint;
 using System;
 using System.Collections.Generic;

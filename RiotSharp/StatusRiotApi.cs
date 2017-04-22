@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.StatusEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +19,7 @@ namespace RiotSharp
 
         private const string RootDomain = "status.leagueoflegends.com";
 
-        private Requester requester;
+        private IRequester requester;
 
         private static StatusRiotApi instance;
 

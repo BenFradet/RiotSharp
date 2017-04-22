@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint.Enums;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Http;
+using RiotSharp.Interfaces;
 
 namespace RiotSharp
 {
@@ -28,7 +31,7 @@ namespace RiotSharp
 
         private static TournamentRiotApi instance;
 
-        private readonly RateLimitedRequester requester;
+        private readonly IRateLimitedRequester requester;
 
         #endregion
 
