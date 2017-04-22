@@ -1,8 +1,8 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
-namespace RiotSharp.Misc.Converters
+namespace RiotSharp
 {
     class TimeSpanConverterFromMilliseconds : JsonConverter
     {

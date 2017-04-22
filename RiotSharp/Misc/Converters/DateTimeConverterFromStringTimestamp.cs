@@ -3,7 +3,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.Misc.Converters
+namespace RiotSharp
 {
     class DateTimeConverterFromStringTimestamp : JsonConverter
     {

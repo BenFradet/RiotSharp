@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.StatsEndpoint.Enums;
 using System;
-using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.StatsEndpoint
 {

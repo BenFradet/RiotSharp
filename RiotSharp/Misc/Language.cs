@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.Misc
+﻿namespace RiotSharp
 {
     /// <summary>
     /// Language for the data retrieved (Static API).

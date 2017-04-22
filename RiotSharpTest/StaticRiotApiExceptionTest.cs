@@ -2,7 +2,6 @@
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
 using System.Configuration;
-using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {

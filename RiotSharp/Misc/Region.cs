@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using RiotSharp.Misc.Converters;
 
-namespace RiotSharp.Misc
+namespace RiotSharp
 {
     /// <summary>
     /// Region for the API.

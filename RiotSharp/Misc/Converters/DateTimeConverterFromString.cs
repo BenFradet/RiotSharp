@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Globalization;
 using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
-namespace RiotSharp.Misc.Converters
+namespace RiotSharp
 {
     class DateTimeConverterFromString : JsonConverter
     {

@@ -1,4 +1,6 @@
-﻿namespace RiotSharp.Misc
+﻿using Newtonsoft.Json;
+
+namespace RiotSharp
 {
     /// <summary>
     /// Mode of the game (Game API).

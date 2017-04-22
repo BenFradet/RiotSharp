@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.StatusEndpoint
 {

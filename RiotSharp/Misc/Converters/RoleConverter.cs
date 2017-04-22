@@ -1,9 +1,9 @@
-﻿using System;
-using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Reflection;
 
-namespace RiotSharp.Misc.Converters
+namespace RiotSharp.MatchEndpoint.Enums.Converters
 {
     class RoleConverter : JsonConverter
     {

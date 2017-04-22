@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using RiotSharp.MatchListEndpoint;
-using RiotSharp.Misc;
 
 namespace RiotSharp
 {
