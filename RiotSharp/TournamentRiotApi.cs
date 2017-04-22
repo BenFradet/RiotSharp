@@ -14,19 +14,12 @@ namespace RiotSharp
     {
         #region Private Fields
 
-        private const string TournamentRootUrlV1 = "/tournament/public/v1";
         private const string TournamentRootUrl = "/lol/tournament/v3";
-        private const string CreateCodeUrlV1 = "/code";
         private const string CreateCodesUrl = "/codes";
-        private const string GetCodeUrlV1 = "/code/{0}";
         private const string GetCodesUrl = "/codes/{0}";
-        private const string PutCodeUrlV1 = "/code/{0}";
         private const string PutCodeUrl = "/codes/{0}";
-        private const string LobbyEventUrlV1 = "/lobby/events/by-code/{0}";
         private const string LobbyEventUrl = "/lol/tournament/v3/lobby-events/by-code/{0}";
-        private const string CreateProviderUrlV1 = "/provider";
         private const string CreateProviderUrl = "/providers";
-        private const string CreateTournamentUrlV1 = "/tournament";
         private const string CreateTournamentUrl = "/tournaments";
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
@@ -90,7 +83,6 @@ namespace RiotSharp
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateProviderUrl, Region.global,
                 JsonConvert.SerializeObject(body));
 
-            // Json is an int directly
             return int.Parse(json);
         }
 
@@ -119,7 +111,6 @@ namespace RiotSharp
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateTournamentUrl, Region.global,
                 JsonConvert.SerializeObject(body));
 
-            // Json is an int directly
             return int.Parse(json);
         }
 
@@ -145,18 +136,17 @@ namespace RiotSharp
             ValidateTournamentCodeCount(count);
             var body = new Dictionary<string, object>
             {
-                {"teamSize", teamSize},
-                {"allowedSummonerIds", allowedParticipantIds},
-                {"spectatorType", spectatorType},
-                {"pickType", pickType},
-                {"mapType", mapType},
-                {"metadata", metadata}
+                { "teamSize", teamSize },
+                { "allowedSummonerIds", allowedParticipantIds },
+                { "spectatorType", spectatorType },
+                { "pickType", pickType },
+                { "mapType", mapType },
+                { "metadata", metadata }
             };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodesUrl, Region.global,
                 JsonConvert.SerializeObject(body, null, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
                 new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count) });
 
-            // Json is a list of strings
             var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
 
             return tournamentCodes;
@@ -170,12 +160,12 @@ namespace RiotSharp
             ValidateTournamentCodeCount(count);
             var body = new Dictionary<string, object>
             {
-                {"teamSize", teamSize},
-                {"allowedSummonerIds", allowedParticipantIds},
-                {"spectatorType", spectatorType},
-                {"pickType", pickType},
-                {"mapType", mapType},
-                {"metadata", metadata}
+                { "teamSize", teamSize },
+                { "allowedSummonerIds", allowedParticipantIds },
+                { "spectatorType", spectatorType },
+                { "pickType", pickType },
+                { "mapType", mapType },
+                { "metadata", metadata }
             };
             var json = await requester.CreatePostRequestAsync(TournamentRootUrl + CreateCodesUrl, Region.global,
                 JsonConvert.SerializeObject(body, null, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
@@ -303,250 +293,6 @@ namespace RiotSharp
                         string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json).FirstOrDefault());
-        }
-
-        #endregion
-
-        #region Version 1
-
-        [Obsolete]
-        public TournamentProvider CreateProviderV1(Region region, string url)
-        {
-            var body = new Dictionary<string, object>
-            {
-                { "url", url },
-                { "region", region.ToString().ToUpper() }
-            };
-            var json = requester.CreatePostRequest(TournamentRootUrlV1 + CreateProviderUrlV1, Region.global,
-                JsonConvert.SerializeObject(body));
-
-            // Json is an int directly
-            var provider = new TournamentProvider { Id = int.Parse(json) };
-
-            return provider;
-        }
-
-        [Obsolete]
-        public async Task<TournamentProvider> CreateProviderV1Async(Region region, string url)
-        {
-            var body = new Dictionary<string, object>
-            {
-                { "url", url },
-                { "region", region.ToString().ToUpper() }
-            };
-            var json =
-                await
-                    requester.CreatePostRequestAsync(TournamentRootUrlV1 + CreateProviderUrlV1, Region.global,
-                        JsonConvert.SerializeObject(body));
-
-            return new TournamentProvider { Id = int.Parse(json) };
-        }
-
-        [Obsolete]
-        public Tournament CreateTournamentV1(int providerId, string name)
-        {
-            var body = new Dictionary<string, object> {
-                { "name", name },
-                { "providerId", providerId }
-            };
-            var json = requester.CreatePostRequest(TournamentRootUrlV1 + CreateTournamentUrlV1, Region.global,
-                JsonConvert.SerializeObject(body));
-
-            // Json is an int directly
-            var tournament = new Tournament { Id = int.Parse(json) };
-
-            return tournament;
-        }
-
-        [Obsolete]
-        public async Task<Tournament> CreateTournamentV1Async(int providerId, string name)
-        {
-            var body = new Dictionary<string, object>
-            {
-                { "name", name },
-                { "providerId", providerId }
-            };
-            var json =
-                await
-                    requester.CreatePostRequestAsync(TournamentRootUrlV1 + CreateTournamentUrlV1, Region.global,
-                        JsonConvert.SerializeObject(body));
-
-            return new Tournament { Id = int.Parse(json) };
-        }
-
-        [Obsolete]
-        public string CreateTournamentCodeV1(int tournamentId, int teamSize, List<long> allowedSummonerIds,
-            TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
-            string metadata)
-        {
-            ValidateTeamSize(teamSize);
-            if (allowedSummonerIds == null)
-                allowedSummonerIds = new List<long>();
-            var body = new Dictionary<string, object>
-            {
-                {"teamSize", teamSize},
-                {"allowedSummonerIds", new Dictionary<string, object> {{"participants", allowedSummonerIds}}},
-                {"spectatorType", spectatorType},
-                {"pickType", pickType},
-                {"mapType", mapType},
-                {"metadata", metadata}
-            };
-            var json = requester.CreatePostRequest(TournamentRootUrlV1 + CreateCodeUrlV1, Region.global,
-                JsonConvert.SerializeObject(body),
-                new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", 1) });
-
-            // json is a list of strings
-            var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
-
-            return tournamentCodes.FirstOrDefault();
-        }
-
-        [Obsolete]
-        public async Task<string> CreateTournamentCodeV1Async(int tournamentId, int teamSize, List<long> allowedSummonerIds,
-            TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
-            string metadata)
-        {
-            ValidateTeamSize(teamSize);
-            if (allowedSummonerIds == null)
-                allowedSummonerIds = new List<long>();
-            var body = new Dictionary<string, object>
-            {
-                {"teamSize", teamSize},
-                {"allowedSummonerIds", new Dictionary<string, object> {{"participants", allowedSummonerIds}}},
-                {"spectatorType", spectatorType},
-                {"pickType", pickType},
-                {"mapType", mapType},
-                {"metadata", metadata}
-            };
-            var json =
-                await
-                    requester.CreatePostRequestAsync(TournamentRootUrlV1 + CreateCodeUrlV1, Region.global,
-                        JsonConvert.SerializeObject(body),
-                        new List<string>
-                        {
-                            string.Format("tournamentId={0}", tournamentId),
-                            string.Format("count={0}", 1)
-                        });
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json).FirstOrDefault());
-        }
-
-        [Obsolete]
-        public List<string> CreateTournamentCodesV1(int tournamentId, int teamSize, TournamentSpectatorType spectatorType,
-            TournamentPickType pickType, TournamentMapType mapType, string metadata, int count = 1)
-        {
-            ValidateTeamSize(teamSize);
-            ValidateTournamentCodeCount(count);
-            var body = new Dictionary<string, object>
-            {
-                {"teamSize", teamSize},
-                {"spectatorType", spectatorType},
-                {"pickType", pickType},
-                {"mapType", mapType},
-                {"metadata", metadata}
-            };
-            var json = requester.CreatePostRequest(TournamentRootUrlV1 + CreateCodeUrlV1, Region.global,
-                JsonConvert.SerializeObject(body),
-                new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count) });
-
-            // Json is a list of strings
-            var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
-
-            return tournamentCodes;
-        }
-
-        [Obsolete]
-        public async Task<List<string>> CreateTournamentCodesV1Async(int tournamentId, int teamSize,
-            TournamentSpectatorType spectatorType, TournamentPickType pickType, TournamentMapType mapType,
-            string metadata, int count = 1)
-        {
-            ValidateTeamSize(teamSize);
-            ValidateTournamentCodeCount(count);
-            var body = new Dictionary<string, object>
-            {
-                {"teamSize", teamSize},
-                {"spectatorType", spectatorType},
-                {"pickType", pickType},
-                {"mapType", mapType},
-                {"metadata", metadata}
-            };
-            var json =
-                await
-                    requester.CreatePostRequestAsync(TournamentRootUrl + CreateCodeUrlV1, Region.global,
-                        JsonConvert.SerializeObject(body),
-                        new List<string>
-                        {
-                            string.Format("tournamentId={0}", tournamentId),
-                            string.Format("count={0}", count)
-                        });
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
-        }
-
-        [Obsolete]
-        public TournamentCodeDetail GetTournamentCodeDetailsV1(string tournamentCode)
-        {
-            var json = requester.CreateGetRequest(TournamentRootUrlV1 + string.Format(GetCodeUrlV1, tournamentCode),
-                Region.global);
-            var tournamentCodeDetails = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
-
-            return tournamentCodeDetails;
-        }
-
-        [Obsolete]
-        public async Task<TournamentCodeDetail> GetTournamentCodeDetailsV1Async(string tournamentCode)
-        {
-            var json =
-                await
-                    requester.CreateGetRequestAsync(TournamentRootUrlV1 + string.Format(GetCodeUrlV1, tournamentCode),
-                        Region.global);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TournamentCodeDetail>(json));
-        }
-
-        [Obsolete]
-        public List<TournamentLobbyEvent> GetTournamentLobbyEventsV1(string tournamentCode)
-        {
-            var json = requester.CreateGetRequest(TournamentRootUrlV1 + string.Format(LobbyEventUrlV1, tournamentCode),
-                Region.global);
-            var lobbyEventsDTO = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
-
-            return lobbyEventsDTO["eventList"];
-        }
-
-        [Obsolete]
-        public async Task<List<TournamentLobbyEvent>> GetTournamentLobbyEventsV1Async(string tournamentCode)
-        {
-            var json =
-                await
-                    requester.CreateGetRequestAsync(TournamentRootUrlV1 + string.Format(LobbyEventUrlV1, tournamentCode),
-                        Region.global);
-
-            return
-                await
-                    Task.Factory.StartNew(() =>
-                        JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json)["eventList"]
-                    );
-        }
-
-        [Obsolete]
-        public bool UpdateTournamentCodeV1(string tournamentCode, List<long> allowedSummonerIds,
-            TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
-        {
-            var body = BuildTournamentUpdateBody(allowedSummonerIds, spectatorType, pickType, mapType);
-
-            return requester.CreatePutRequest(TournamentRootUrlV1 + string.Format(PutCodeUrlV1, tournamentCode), Region.global,
-                JsonConvert.SerializeObject(body));
-        }
-
-        [Obsolete]
-        public async Task<bool> UpdateTournamentCodeV1Async(string tournamentCode, List<long> allowedSummonerIds,
-            TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
-        {
-            var body = BuildTournamentUpdateBody(allowedSummonerIds, spectatorType, pickType, mapType);
-
-            return await requester.CreatePutRequestAsync(TournamentRootUrlV1 + string.Format(PutCodeUrlV1, tournamentCode),
-                Region.global, JsonConvert.SerializeObject(body));
         }
 
         #endregion

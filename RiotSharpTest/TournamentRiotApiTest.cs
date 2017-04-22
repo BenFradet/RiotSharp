@@ -222,47 +222,5 @@ namespace RiotSharpTest
         }
 
         #endregion
-
-        #region CreateTournamentCode
-
-        [TestMethod]
-        [TestCategory("TournamentRiotApi")]
-        public void CreateTournamentCodeV1_InvalidTeamSize_ThrowsArgumentException()
-        {
-            try
-            {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodeV1(0, 0, null, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, string.Empty);
-            }
-            catch (ArgumentException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(ArgumentException));
-                Assert.AreEqual("teamSize", e.ParamName);
-            }
-        }
-
-        [TestMethod]
-        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void CreateTournamentCodeAsync_InvalidTeamSize_ThrowsArgumentException()
-        {
-            try
-            {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodeV1Async(0, 0, null, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift, string.Empty).Result;
-            }
-            catch (AggregateException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(AggregateException));
-                Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
-                var argumentException = (ArgumentException)e.InnerException;
-                Assert.AreEqual("teamSize", argumentException.ParamName);
-            }
-        }
-
-        #endregion
     }
 }
