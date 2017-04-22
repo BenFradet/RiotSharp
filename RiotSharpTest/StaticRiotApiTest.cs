@@ -3,7 +3,8 @@ using Newtonsoft.Json;
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
-using System.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 namespace RiotSharpTest
@@ -11,7 +12,8 @@ namespace RiotSharpTest
     [TestClass]
     public class StaticRiotApiTest
     {
-        private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+        private static IConfigurationRoot conf = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        private static string apiKey = conf["ApiKey"];
         private static StaticRiotApi api = StaticRiotApi.GetInstance(apiKey);
 
         [TestMethod]
