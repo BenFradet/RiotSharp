@@ -5,6 +5,7 @@ using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {

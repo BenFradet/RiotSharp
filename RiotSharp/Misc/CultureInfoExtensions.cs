@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RiotSharp
+namespace RiotSharp.Misc
 {
     public static class CultureInfoExtensions
     {

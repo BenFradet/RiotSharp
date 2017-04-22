@@ -1,6 +1,7 @@
 ﻿using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RiotSharp.Misc;
 
 namespace RiotSharp
 {
