@@ -1,7 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using RiotSharp.StaticDataEndpoint.Champion;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.SummonerSpell
 {
     /// <summary>
     /// Class representing a summoner spell (Static API).

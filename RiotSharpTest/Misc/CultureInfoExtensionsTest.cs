@@ -1,13 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RiotSharp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RiotSharp.Misc;
 
-namespace RiotSharpTest
+namespace RiotSharpTest.Misc
 {
     [TestClass]
     public class CultureInfoExtensionsTest

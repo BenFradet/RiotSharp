@@ -5,6 +5,8 @@ using RiotSharp.SummonerEndpoint;
 using System;
 using System.Configuration;
 using System.Linq;
+using RiotSharp.MatchListEndPoint;
+using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {

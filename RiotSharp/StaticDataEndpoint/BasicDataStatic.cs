@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using RiotSharp.StaticDataEndpoint.Item;
 
 namespace RiotSharp.StaticDataEndpoint
 {

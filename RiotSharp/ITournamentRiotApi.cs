@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.MatchEndpoint;
+using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint;
 using RiotSharp.TournamentEndpoint.Enums;
 

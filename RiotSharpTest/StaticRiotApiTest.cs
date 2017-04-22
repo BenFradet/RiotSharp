@@ -5,6 +5,9 @@ using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using RiotSharp.Misc;
+using RiotSharp.StaticDataEndpoint.Champion;
+using RiotSharp.StaticDataEndpoint.SummonerSpell;
 
 namespace RiotSharpTest
 {

@@ -6,13 +6,15 @@ using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
-using RiotSharp.MatchListEndpoint;
 using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.MatchListEndPoint;
+using RiotSharp.Misc;
+using RiotSharp.Misc.Converters;
 
 namespace RiotSharp
 {

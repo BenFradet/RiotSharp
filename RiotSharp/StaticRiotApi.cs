@@ -4,6 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.Misc;
+using RiotSharp.StaticDataEndpoint.Champion;
+using RiotSharp.StaticDataEndpoint.Champion.Cache;
+using RiotSharp.StaticDataEndpoint.Item;
+using RiotSharp.StaticDataEndpoint.Item.Cache;
+using RiotSharp.StaticDataEndpoint.LanguageStrings;
+using RiotSharp.StaticDataEndpoint.LanguageStrings.Cache;
+using RiotSharp.StaticDataEndpoint.Map;
+using RiotSharp.StaticDataEndpoint.Map.Cache;
+using RiotSharp.StaticDataEndpoint.Mastery;
+using RiotSharp.StaticDataEndpoint.Mastery.Cache;
+using RiotSharp.StaticDataEndpoint.Realm;
+using RiotSharp.StaticDataEndpoint.Realm.Cache;
+using RiotSharp.StaticDataEndpoint.Rune;
+using RiotSharp.StaticDataEndpoint.Rune.Cache;
+using RiotSharp.StaticDataEndpoint.SummonerSpell;
+using RiotSharp.StaticDataEndpoint.SummonerSpell.Cache;
 
 namespace RiotSharp
 {

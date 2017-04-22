@@ -1,6 +1,15 @@
 ﻿using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RiotSharp.Misc;
+using RiotSharp.StaticDataEndpoint.Champion;
+using RiotSharp.StaticDataEndpoint.Item;
+using RiotSharp.StaticDataEndpoint.LanguageStrings;
+using RiotSharp.StaticDataEndpoint.Map;
+using RiotSharp.StaticDataEndpoint.Mastery;
+using RiotSharp.StaticDataEndpoint.Realm;
+using RiotSharp.StaticDataEndpoint.Rune;
+using RiotSharp.StaticDataEndpoint.SummonerSpell;
 
 namespace RiotSharp
 {

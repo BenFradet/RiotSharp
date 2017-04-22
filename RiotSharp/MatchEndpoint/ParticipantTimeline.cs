@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.MatchEndpoint.Enums;
+using RiotSharp.Misc;
 
 namespace RiotSharp.MatchEndpoint
 {
