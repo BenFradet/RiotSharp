@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp
 {
-    class Requester
+    class Requester : IRequester
     {
         protected string rootDomain;
         private readonly HttpClient httpClient;
@@ -19,12 +19,16 @@ namespace RiotSharp
             httpClient = new HttpClient();
         }
 
+        #region Public Methods
+        
         public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
             bool useHttps = true)
         {
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            return GetResult(request);
+            var result = string.Empty;
+            var response = GetAsync(request).Result;
+            return GetResponseContent(response);
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
@@ -32,8 +36,85 @@ namespace RiotSharp
         {
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            return await GetResultAsync(request);
+            var response = GetAsync(request).Result;
+            return await GetResponseContentAsync(response);
+        }           
+
+        public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            using (var response = httpClient.GetAsync(request.RequestUri).Result)
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
+                return response;
+            }
         }
+
+        public async Task<HttpResponseMessage> GetAsync(HttpRequestMessage request)
+        {
+            using (var response = await httpClient.GetAsync(request.RequestUri))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
+                return response;
+            }         
+        }
+
+        public HttpResponseMessage Put(HttpRequestMessage request)
+        {
+            using (var response = httpClient.PutAsync(request.RequestUri, request.Content).Result)
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
+                return response;
+            }
+        }
+
+        public async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
+        {
+            using (var response = await httpClient.PutAsync(request.RequestUri, request.Content))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
+                return response;
+            }
+        }
+
+        public HttpResponseMessage Post(HttpRequestMessage request)
+        {
+            using (var response = httpClient.PostAsync(request.RequestUri, request.Content).Result)
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
+                return response;
+            }
+        }
+
+        public async Task<HttpResponseMessage> PostAsync(HttpRequestMessage request)
+        {
+            using (var response = await httpClient.PostAsync(request.RequestUri, request.Content))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    HandleRequestFailure(response.StatusCode);
+                }
+                return response;
+            }
+        }
+
+        #endregion
+
+        #region Protected Methods
 
         protected HttpRequestMessage PrepareRequest(string relativeUrl, List<string> addedArguments,
             bool useHttps, HttpMethod httpMethod)
@@ -46,96 +127,6 @@ namespace RiotSharp
 
             return new HttpRequestMessage(httpMethod, url);
         }
-
-        protected string GetResult(HttpRequestMessage request)
-        {
-            var result = string.Empty;
-            using (var response = httpClient.GetAsync(request.RequestUri).Result)
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    HandleRequestFailure(response.StatusCode);
-                }
-                using (var content = response.Content)
-                {
-                    result = content.ReadAsStringAsync().Result;
-                }
-            }
-            return result;
-        }
-
-        protected async Task<string> GetResultAsync(HttpRequestMessage request)
-        {
-            var result = string.Empty;
-            using (var response = await httpClient.GetAsync(request.RequestUri))
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    HandleRequestFailure(response.StatusCode);
-                }
-                using (var content = response.Content)
-                {
-                    result = await content.ReadAsStringAsync();
-                }
-            }
-            return result;
-        }
-
-        protected HttpResponseMessage Put(HttpRequestMessage request)
-        {
-            var result = httpClient.PutAsync(request.RequestUri, request.Content).Result;
-            if (!result.IsSuccessStatusCode)
-            {
-                HandleRequestFailure(result.StatusCode);
-            }
-            return result;
-        }
-
-        protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
-        {
-            var result = await httpClient.PutAsync(request.RequestUri, request.Content);
-            if (!result.IsSuccessStatusCode)
-            {
-                HandleRequestFailure(result.StatusCode);
-            }
-            return result;
-        }
-
-        protected string Post(HttpRequestMessage request)
-        {
-            var result = string.Empty;
-            using (var response = httpClient.PostAsync(request.RequestUri, request.Content).Result)
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    HandleRequestFailure(response.StatusCode);
-                }
-                using (var content = response.Content)
-                {
-                    result = content.ReadAsStringAsync().Result;
-                }
-            }
-            return result;
-        }
-
-        protected async Task<string> PostAsync(HttpRequestMessage request)
-        {
-            var result = string.Empty;
-            using (var response = await httpClient.PostAsync(request.RequestUri, request.Content))
-            {
-                if (!response.IsSuccessStatusCode)
-                {
-                    HandleRequestFailure(response.StatusCode);
-                }
-                using (var content = response.Content)
-                {
-                    result = await content.ReadAsStringAsync();
-                }
-            }
-            return result;
-        }
-
-
 
         protected string BuildArgumentsString(List<string> arguments)
         {
@@ -164,5 +155,34 @@ namespace RiotSharp
                     throw new RiotSharpException("429, Rate Limit Exceeded", statusCode);
             }
         }
+
+        protected string GetResponseContent(HttpResponseMessage response)
+        {
+            var result = string.Empty;
+            using (response)
+            {
+                using (var content = response.Content)
+                {
+                    result = content.ReadAsStringAsync().Result;
+                }
+            }
+            return result;
+        }
+
+        protected async Task<string> GetResponseContentAsync(HttpResponseMessage response)
+        {
+            Task<string> result = null;
+            using (response)
+            {
+                using (var content = response.Content)
+                {
+                    result =  content.ReadAsStringAsync();
+                }
+            }
+            return await result;
+        }
+
+        #endregion
+
     }
 }

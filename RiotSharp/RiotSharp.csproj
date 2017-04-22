@@ -79,6 +79,8 @@
     <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
     <Compile Include="ICache.cs" />
+    <Compile Include="IRateLimitedRequester.cs" />
+    <Compile Include="IRequester.cs" />
     <Compile Include="IRiotApi.cs" />
     <Compile Include="IStaticRiotApi.cs" />
     <Compile Include="IStatusRiotApi.cs" />

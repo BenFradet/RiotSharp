@@ -6,7 +6,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp
 {
-    internal class RateLimitedRequester : Requester
+    internal class RateLimitedRequester : Requester, 
     {
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }
@@ -28,7 +28,8 @@ namespace RiotSharp
             
             GetRateLimiter(region).HandleRateLimit();
 
-            return GetResult(request);
+            var response = Get(request);
+            return GetResponseContent(response);
         }
 
 
@@ -40,7 +41,8 @@ namespace RiotSharp
             
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            return await GetResultAsync(request);
+            var response = await GetAsync(request);
+            return await GetResponseContentAsync(response);
         }
 
         public string CreatePostRequest(string relativeUrl, Region region, string body,
@@ -52,7 +54,8 @@ namespace RiotSharp
 
             GetRateLimiter(region).HandleRateLimit();
 
-            return Post(request);
+            var response = Post(request);
+            return GetResponseContent(response);
         }
 
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
@@ -64,7 +67,8 @@ namespace RiotSharp
 
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            return await PostAsync(request);
+            var response = await PostAsync(request);
+            return await GetResponseContentAsync(response);
         }
 
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
