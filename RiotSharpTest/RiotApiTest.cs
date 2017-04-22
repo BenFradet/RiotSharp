@@ -16,6 +16,7 @@ namespace RiotSharpTest
         private static string name = ConfigurationManager.AppSettings["Summoner1Name"];
         private static int id2 = int.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
         private static string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
+
         private static int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
         private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
         private static RiotApi api = RiotApi.GetInstance(apiKey);

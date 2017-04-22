@@ -37,7 +37,7 @@ namespace RiotSharp
 
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueEntryUrl = "/entry";
-
+        
         private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
@@ -487,7 +487,7 @@ namespace RiotSharp
                 new List<string> { string.Format("type={0}", queue) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
         }
-  
+        
         public MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)
         {
             var json = requester.CreateGetRequest(
