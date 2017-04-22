@@ -10,7 +10,7 @@ using RiotSharp.ChampionMasteryEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
-using RiotSharp.MatchListEndPoint;
+using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 
 namespace RiotSharp

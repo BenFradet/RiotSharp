@@ -4,7 +4,7 @@ using RiotSharp.MatchEndpoint.Enums;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 
-namespace RiotSharp.MatchListEndPoint
+namespace RiotSharp.MatchListEndpoint
 {
     public class MatchReference
     {

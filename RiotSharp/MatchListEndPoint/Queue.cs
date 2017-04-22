@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.MatchListEndPoint
+﻿namespace RiotSharp.MatchListEndpoint
 {
     public static class Queue
     {

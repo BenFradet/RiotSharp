@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
-using RiotSharp.MatchListEndPoint;
+using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 
 namespace RiotSharpTest
