@@ -35,12 +35,8 @@ namespace RiotSharp
         private const string LeagueChallengerUrl = "/challenger";
         private const string LeagueMasterUrl = "/master";
 
-        private const string LeagueByTeamUrl = "/by-team/{0}";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueEntryUrl = "/entry";
-
-        private const string TeamRootUrl = "/api/lol/{0}/v2.4/team";
-        private const string TeamBySummonerURL = "/by-summoner/{0}";
 
         private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
@@ -67,7 +63,6 @@ namespace RiotSharp
         private const int MaxNrRunePages = 40;
         private const int MaxNrLeagues = 10;
         private const int MaxNrEntireLeagues = 10;
-        private const int MaxNrTeams = 10;
 
         private RateLimitedRequester requester;
 
@@ -456,73 +451,6 @@ namespace RiotSharp
             await Task.WhenAll(tasks);
             return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
-    
-        public Dictionary<string, List<League>> GetLeagues(Region region, List<string> teamIds)
-        {
-            var dict = new Dictionary<string, List<League>>();
-            foreach (var grp in MakeGroups(teamIds, MaxNrLeagues))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(LeagueRootUrl, region.ToString()) +
-                        string.Format(LeagueByTeamUrl, Util.BuildNamesString(grp)) + LeagueEntryUrl,
-                    region);
-                var subDict = JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
-        }
-    
-        public async Task<Dictionary<string, List<League>>> GetLeaguesAsync(Region region, List<string> teamIds)
-        {
-            var tasks = MakeGroups(teamIds, MaxNrLeagues).Select(
-                   grp => requester.CreateGetRequestAsync(
-                       string.Format(LeagueRootUrl, region.ToString()) +
-                       string.Format(LeagueByTeamUrl, Util.BuildNamesString(grp)) + LeagueEntryUrl, region
-                       ).ContinueWith(
-                           json => JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json.Result)
-                       )
-                   ).ToList();
-
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        }
-     
-        public Dictionary<string, List<League>> GetEntireLeagues(Region region, List<string> teamIds)
-        {
-            var dict = new Dictionary<string, List<League>>();
-            foreach (var grp in MakeGroups(teamIds, MaxNrEntireLeagues))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(LeagueRootUrl,
-                        region.ToString()) + string.Format(LeagueByTeamUrl, Util.BuildNamesString(grp)),
-                    region);
-                var subDict = JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json);
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
-        }
-  
-        public async Task<Dictionary<string, List<League>>> GetEntireLeaguesAsync(Region region,
-            List<string> teamIds)
-        {
-            var tasks = MakeGroups(teamIds, MaxNrEntireLeagues).Select(
-                   grp => requester.CreateGetRequestAsync(
-                       string.Format(LeagueRootUrl, region.ToString()) +
-                       string.Format(LeagueByTeamUrl, Util.BuildNamesString(grp)), region
-                       ).ContinueWith(
-                           json => JsonConvert.DeserializeObject<Dictionary<string, List<League>>>(json.Result)
-                       )
-                   ).ToList();
-
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        }
         
         public League GetChallengerLeague(Region region, string queue)
         {
@@ -558,72 +486,6 @@ namespace RiotSharp
                 region,
                 new List<string> { string.Format("type={0}", queue) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
-        }
- 
-        public Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<long> summonerIds)
-        {
-            var dict = new Dictionary<long, List<TeamEndpoint.Team>>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrTeams))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(TeamRootUrl,
-                        region.ToString()) + string.Format(TeamBySummonerURL, Util.BuildIdsString(grp)),
-                    region);
-                var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json);
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
-        }
-  
-        public async Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsAsync(Region region,
-            List<long> summonerIds)
-        {
-            var tasks = MakeGroups(summonerIds, MaxNrTeams).Select(
-                   grp => requester.CreateGetRequestAsync(
-                       string.Format(TeamRootUrl, region.ToString()) +
-                       string.Format(TeamBySummonerURL, Util.BuildIdsString(grp)), region
-                       ).ContinueWith(
-                           json => JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json.Result)
-                       )
-                   ).ToList();
-
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        }
-      
-        public Dictionary<string, TeamEndpoint.Team> GetTeams(Region region, List<string> teamIds)
-        {
-            var dict = new Dictionary<string, TeamEndpoint.Team>();
-            foreach (var grp in MakeGroups(teamIds, MaxNrTeams))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(TeamRootUrl, region.ToString()) + string.Format(IdUrl, Util.BuildNamesString(grp)),
-                    region);
-                var subDict = JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json);
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
-        }
-     
-        public async Task<Dictionary<string, TeamEndpoint.Team>> GetTeamsAsync(Region region, List<string> teamIds)
-        {
-            var tasks = MakeGroups(teamIds, MaxNrTeams).Select(
-                   grp => requester.CreateGetRequestAsync(
-                       string.Format(TeamRootUrl, region.ToString()) +
-                       string.Format(IdUrl, Util.BuildNamesString(grp)), region
-                       ).ContinueWith(
-                           json => JsonConvert.DeserializeObject<Dictionary<string, TeamEndpoint.Team>>(json.Result)
-                       )
-                   ).ToList();
-
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
   
         public MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)

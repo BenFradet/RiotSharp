@@ -222,38 +222,6 @@ namespace RiotSharp
         Task<Dictionary<long, List<League>>> GetEntireLeaguesAsync(Region region, List<long> summonerIds);
 
         /// <summary>
-        /// Retrieves the league entries for the specified teams, you can submit more than 10 team ids.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids, not limited to 10.</param>
-        /// <returns>A map of list of leagues indexed by the team id.</returns>
-        Dictionary<string, List<League>> GetLeagues(Region region, List<string> teamIds);
-
-        /// <summary>
-        /// Retrieves the league entries for the specified teams asynchronously, you can submit more than 10 team ids.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids, not limited to 10.</param>
-        /// <returns>A map of list of league entries indexed by the team id.</returns>
-        Task<Dictionary<string, List<League>>> GetLeaguesAsync(Region region, List<string> teamIds);
-
-        /// <summary>
-        /// Retrieves the entire leagues for the specified teams, you can submit more than 10 team ids.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids, not limited to 10.</param>
-        /// <returns>A map of list of entire leagues indexed by the team id.</returns>
-        Dictionary<string, List<League>> GetEntireLeagues(Region region, List<string> teamIds);
-
-        /// <summary>
-        /// Retrieves the entire leagues for the specified teams asynchronously, you can submit more than 10 team ids.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of teams.</param>
-        /// <param name="teamIds">The team ids, not limited to 10.</param>
-        /// <returns>A map of list of entire leagues indexed by the team id.</returns>
-        Task<Dictionary<string, List<League>>> GetEntireLeaguesAsync(Region region, List<string> teamIds);
-
-        /// <summary>
         /// Get the challenger league for a particular queue.
         /// </summary>
         /// <param name="region">Region in which you wish to look for a challenger league.</param>
@@ -284,38 +252,6 @@ namespace RiotSharp
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
         /// <returns>A league which contains all the masters for this specific region and queue.</returns>
         Task<League> GetMasterLeagueAsync(Region region, string queue);
-
-        /// <summary>
-        /// Get the teams for the specified ids synchronously, you can submit more than 10 summoner ids.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="summonerIds">List of summoner ids, not limited to 10.</param>
-        /// <returns>A map of teams indexed by summoner id.</returns>
-        Dictionary<long, List<TeamEndpoint.Team>> GetTeams(Region region, List<long> summonerIds);
-
-        /// <summary>
-        /// Get the teams for the specified ids asynchronously, you can submit more than 10 summoner ids.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="summonerIds">List of summoner ids, not limited to 10.</param>
-        /// <returns>A map of teams indexed by summoner id.</returns>
-        Task<Dictionary<long, List<TeamEndpoint.Team>>> GetTeamsAsync(Region region, List<long> summonerIds);
-
-        /// <summary>
-        /// Get the teams for the specified ids synchronously, you can submit more than 10 team ids.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="teamIds">List of the team ids, not limited to 10.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        Dictionary<string, TeamEndpoint.Team> GetTeams(Region region, List<string> teamIds);
-
-        /// <summary>
-        /// Get the teams for the specified ids asynchronously, you can submit more than 10 team ids.
-        /// </summary>
-        /// <param name="region">Region in which the teams are located.</param>
-        /// <param name="teamIds">List of the team ids, not limited to 10.</param>
-        /// <returns>A map of teams indexed by their id.</returns>
-        Task<Dictionary<string, TeamEndpoint.Team>> GetTeamsAsync(Region region, List<string> teamIds);
 
         /// <summary>
         /// Get match information about a specific match synchronously.

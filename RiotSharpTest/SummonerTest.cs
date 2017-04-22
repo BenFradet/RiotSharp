@@ -198,25 +198,5 @@ namespace RiotSharpTest
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);
         }
-
-        [TestMethod]
-        [TestCategory("Summoner")]
-        public void GetTeams_Test()
-        {
-            var teams = summoner.GetTeams();
-
-            Assert.IsNotNull(teams);
-            Assert.IsTrue(teams.Count() > 0);
-        }
-
-        [TestMethod]
-        [TestCategory("Summoner"), TestCategory("Async")]
-        public void GetTeamsAsync_Test()
-        {
-            var teams = summoner.GetTeamsAsync();
-
-            Assert.IsNotNull(teams.Result);
-            Assert.IsTrue(teams.Result.Count() > 0);
-        }
     }
 }
