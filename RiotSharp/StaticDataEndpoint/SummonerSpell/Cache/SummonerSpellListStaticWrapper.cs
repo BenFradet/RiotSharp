@@ -1,4 +1,6 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿using RiotSharp.Misc;
+
+namespace RiotSharp.StaticDataEndpoint.SummonerSpell.Cache
 {
     class SummonerSpellListStaticWrapper
     {

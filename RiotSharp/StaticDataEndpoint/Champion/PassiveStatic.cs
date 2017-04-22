@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Champion
 {
     /// <summary>
     /// Class representing a champion's passive (Static API).

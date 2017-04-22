@@ -5,6 +5,7 @@ using RiotSharp.StatsEndpoint;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.Misc;
 
 namespace RiotSharp.SummonerEndpoint
 {

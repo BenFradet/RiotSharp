@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using RiotSharp.GameEndpoint.Enums;
+using RiotSharp.Misc;
+using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.GameEndpoint
 {

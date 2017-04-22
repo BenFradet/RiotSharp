@@ -1,8 +1,8 @@
-﻿using RiotSharp.MatchEndpoint.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RiotSharp.MatchEndpoint.Enums;
 
-namespace RiotSharp
+namespace RiotSharp.Misc
 {
     static class Util
     {

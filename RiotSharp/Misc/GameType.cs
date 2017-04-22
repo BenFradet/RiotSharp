@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Misc.Converters;
 
-namespace RiotSharp
+namespace RiotSharp.Misc
 {
     /// <summary>
     /// Type of the game.

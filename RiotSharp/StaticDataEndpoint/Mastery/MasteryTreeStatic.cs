@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Mastery
 {
     /// <summary>
     /// Mastery tree.
