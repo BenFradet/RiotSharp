@@ -40,7 +40,7 @@ namespace RiotSharp
         private const string LeagueEntryUrl = "/entry";
 
         private const string TeamRootUrl = "/api/lol/{0}/v2.4/team";
-        private const string TeamBySummonerURL = "/by-summoner/{0}";
+        private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
         private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
@@ -567,7 +567,7 @@ namespace RiotSharp
             {
                 var json = requester.CreateGetRequest(
                     string.Format(TeamRootUrl,
-                        region.ToString()) + string.Format(TeamBySummonerURL, Util.BuildIdsString(grp)),
+                        region.ToString()) + string.Format(TeamBySummonerUrl, Util.BuildIdsString(grp)),
                     region);
                 var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json);
                 foreach (var child in subDict)
@@ -584,7 +584,7 @@ namespace RiotSharp
             var tasks = MakeGroups(summonerIds, MaxNrTeams).Select(
                    grp => requester.CreateGetRequestAsync(
                        string.Format(TeamRootUrl, region.ToString()) +
-                       string.Format(TeamBySummonerURL, Util.BuildIdsString(grp)), region
+                       string.Format(TeamBySummonerUrl, Util.BuildIdsString(grp)), region
                        ).ContinueWith(
                            json => JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json.Result)
                        )
