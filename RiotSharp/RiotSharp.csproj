@@ -78,7 +78,6 @@
     <Compile Include="CurrentGameEndpoint\Rune.cs" />
     <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
-    <Compile Include="Http\Interfaces\IRequesterBase.cs" />
     <Compile Include="ICache.cs" />
     <Compile Include="Http\Interfaces\IRateLimitedRequester.cs" />
     <Compile Include="Http\Interfaces\IRequester.cs" />

@@ -24,6 +24,12 @@ namespace RiotSharp.Http
 
         #region Protected Methods
 
+        /// <summary>
+        /// Send a get request synchronously.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected HttpResponseMessage Get(HttpRequestMessage request)
         {
             var response = httpClient.GetAsync(request.RequestUri).Result;
@@ -34,6 +40,12 @@ namespace RiotSharp.Http
             return response;
         }
 
+        /// <summary>
+        /// Send a get request asynchronously.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> GetAsync(HttpRequestMessage request)
         {
             var response = await httpClient.GetAsync(request.RequestUri);
@@ -44,6 +56,13 @@ namespace RiotSharp.Http
             return response;
         }
 
+
+        /// <summary>
+        /// Send a put request synchronously.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected HttpResponseMessage Put(HttpRequestMessage request)
         {
             var response = httpClient.PutAsync(request.RequestUri, request.Content).Result;
@@ -54,6 +73,12 @@ namespace RiotSharp.Http
             return response;
         }
 
+        /// <summary>
+        /// Send a put request asynchronously.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
         {
             var response = await httpClient.PutAsync(request.RequestUri, request.Content);
@@ -64,6 +89,12 @@ namespace RiotSharp.Http
             return response;
         }
 
+        /// <summary>
+        /// Send a post request synchronously.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected HttpResponseMessage Post(HttpRequestMessage request)
         {
             var response = httpClient.PostAsync(request.RequestUri, request.Content).Result;
@@ -74,6 +105,12 @@ namespace RiotSharp.Http
             return response;
         }
 
+        /// <summary>
+        /// Send a post request asynchronously.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> PostAsync(HttpRequestMessage request)
         {
             var response = await httpClient.PostAsync(request.RequestUri, request.Content);
