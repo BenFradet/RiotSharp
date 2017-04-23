@@ -4,7 +4,6 @@ using RiotSharp.MatchEndpoint;
 using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint;
 using RiotSharp.TournamentEndpoint.Enums;
-using System;
 
 namespace RiotSharp
 {
@@ -13,8 +12,6 @@ namespace RiotSharp
     /// </summary>
     public interface ITournamentRiotApi
     {
-        #region (Current) Version 3
-
         /// <summary>
         ///     Creates a tournament provider and returns its ID.
         /// </summary>
@@ -145,10 +142,6 @@ namespace RiotSharp
         Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
 
-        #endregion
-
-        #region Get Tournament Matches (based on Match endpoint)
-
         /// <summary>
         ///     Retrieve match by match ID and tournament code.
         /// </summary>
@@ -184,7 +177,5 @@ namespace RiotSharp
         /// <param name="tournamentCode">The tournament code of the match.</param>
         /// <returns>The match id of the match played with the tournament code entered.</returns>
         Task<long> GetTournamentMatchIdAsync(Region region, string tournamentCode);
-
-        #endregion
     }
 }

@@ -71,7 +71,7 @@ namespace RiotSharp
             return instance;
         }
 
-        #region (Current) Version 3
+        #region Public Methods
       
         public int CreateProvider(Region region, string url)
         {
@@ -144,8 +144,16 @@ namespace RiotSharp
                 { "metadata", metadata }
             };
             var json = requester.CreatePostRequest(TournamentRootUrl + CreateCodesUrl, Region.global,
-                JsonConvert.SerializeObject(body, null, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
-                new List<string> { string.Format("tournamentId={0}", tournamentId), string.Format("count={0}", count) });
+                JsonConvert.SerializeObject(body, null, 
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    }),
+                    new List<string>
+                    {
+                        string.Format("tournamentId={0}", tournamentId),
+                        string.Format("count={0}", count)
+                    });
 
             var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
 
@@ -168,12 +176,16 @@ namespace RiotSharp
                 { "metadata", metadata }
             };
             var json = await requester.CreatePostRequestAsync(TournamentRootUrl + CreateCodesUrl, Region.global,
-                JsonConvert.SerializeObject(body, null, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
-                new List<string>
-                {
-                    string.Format("tournamentId={0}", tournamentId),
-                    string.Format("count={0}", count)
-                });
+                JsonConvert.SerializeObject(body, null, 
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    }),
+                    new List<string>
+                    {
+                        string.Format("tournamentId={0}", tournamentId),
+                        string.Format("count={0}", count)
+                    });
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
         }    
