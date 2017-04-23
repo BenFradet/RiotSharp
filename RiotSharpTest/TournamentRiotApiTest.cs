@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.MatchEndpoint.Enums;
-using RiotSharp.TournamentEndpoint;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
+using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharpTest
@@ -170,7 +169,7 @@ namespace RiotSharpTest
             try
             {
                 // Act 
-                var tournamentCodes = api.CreateTournamentCodesAsync(0, 1001, 5, TournamentSpectatorType.All,
+                var tournamentCodes = api.CreateTournamentCodesAsync(0, 1001, 5, TournamentSpectatorType.All, 
                     TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
             }
             catch (AggregateException e)
