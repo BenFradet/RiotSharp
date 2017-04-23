@@ -93,53 +93,5 @@ namespace RiotSharp.TournamentEndpoint
         /// </summary>
         [JsonProperty("tournamentId")]
         public int TournamentId { get; set; }
-
-        /// <summary>
-        ///     Update the pick type, map, spectator type, or allowed summoners for a code.
-        /// </summary>
-        /// <param name="allowedSummonerIds">Comma separated list of summoner Ids.</param>
-        /// <param name="spectatorType">The spectator type.</param>
-        /// <param name="pickType">The pick type.</param>
-        /// <param name="mapType">The map type.</param>
-        public bool Update(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
-            TournamentPickType? pickType, TournamentMapType? mapType)
-        {
-            return TournamentRiotApi.GetInstance()
-                .UpdateTournamentCode(Code, allowedSummonerIds, spectatorType, pickType, mapType);
-        }
-
-        /// <summary>
-        ///     Update the pick type, map, spectator type, or allowed summoners for a code asynchronously.
-        /// </summary>
-        /// <param name="allowedSummonerIds">Comma separated list of summoner Ids.</param>
-        /// <param name="spectatorType">The spectator type.</param>
-        /// <param name="pickType">The pick type.</param>
-        /// <param name="mapType">The map type.</param>
-        public async Task<bool> UpdateAsync(List<long> allowedSummonerIds, TournamentSpectatorType? spectatorType,
-            TournamentPickType? pickType, TournamentMapType? mapType)
-        {
-            return await TournamentRiotApi.GetInstance()
-                .UpdateTournamentCodeAsync(Code, allowedSummonerIds, spectatorType, pickType, mapType);
-        }
-
-        /// <summary>
-        ///     Returns the tournament code object associated with a tournament code string.
-        /// </summary>
-        /// <param name="tournamentCode">The tournament code.</param>
-        /// <returns>the tournament code object associated with a tournament code string.</returns>
-        public static TournamentCodeDetail Get(string tournamentCode)
-        {
-            return TournamentRiotApi.GetInstance().GetTournamentCodeDetails(tournamentCode);
-        }
-
-        /// <summary>
-        ///     Returns the tournament code object associated with a tournament code string asynchronously.
-        /// </summary>
-        /// <param name="tournamentCode">The tournament code.</param>
-        /// <returns>the tournament code object associated with a tournament code string.</returns>
-        public static async Task<TournamentCodeDetail> GetAsync(string tournamentCode)
-        {
-            return await TournamentRiotApi.GetInstance().GetTournamentCodeDetailsAsync(tournamentCode);
-        }
     }
 }
