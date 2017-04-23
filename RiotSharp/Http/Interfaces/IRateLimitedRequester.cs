@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Http.Interfaces
 {
-    interface IRateLimitedRequester
+    public interface IRateLimitedRequester
     {
         /// <summary>
         /// The number of allowed calls per 10 seconds

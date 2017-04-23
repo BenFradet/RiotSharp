@@ -96,8 +96,17 @@ namespace RiotSharp
 
         private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {
+            if (apiKey == null)
+                throw new ArgumentNullException(nameof(apiKey));
+            if (string.IsNullOrWhiteSpace(apiKey))
+                throw new ArgumentException("Invalid api key.", nameof(apiKey));
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
             requester = Requesters.RiotApiRequester;
+        }
+
+        public RiotApi(IRateLimitedRequester rateLimitedRequester)
+        {
+            requester = rateLimitedRequester ?? throw new ArgumentNullException(nameof(rateLimitedRequester));
         }
 
         public Summoner GetSummoner(Region region, long summonerId)
