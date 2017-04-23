@@ -153,6 +153,8 @@ namespace RiotSharp.Http
                     throw new RiotSharpException("404, Resource not found", statusCode);
                 case HttpStatusCode.Forbidden:
                     throw new RiotSharpException("403, Forbidden", statusCode);
+                case (HttpStatusCode)429:
+                    throw new RiotSharpException("429, Rate Limit Exceeded", statusCode);
                 default:
                     throw new RiotSharpException("Unexpeced failure", statusCode);
             }
