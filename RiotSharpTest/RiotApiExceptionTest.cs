@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
-using System;
-using System.Configuration;
-using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {
@@ -16,7 +13,7 @@ namespace RiotSharpTest
         [ExpectedException(typeof(RiotSharpException))]
         public void GetSummoner_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetSummoner(RiotApiExceptionTestBase.region, RiotApiExceptionTestBase.summoner1Id);
+            faultyApi.GetSummoner(RiotApiExceptionTestBase.summoner1and2Region, RiotApiExceptionTestBase.summoner1Id);
         }
 
         [TestMethod]
@@ -24,7 +21,7 @@ namespace RiotSharpTest
         [ExpectedException(typeof(RiotSharpException))]
         public void GetChampions_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetChampions(RiotApiExceptionTestBase.region);
+            faultyApi.GetChampions(RiotApiExceptionTestBase.summoner1and2Region);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharpTest
 {
-    class SummonerTestBase : CommonTestBase
+    public class SummonerTestBase : CommonTestBase
     {
     }
 }
