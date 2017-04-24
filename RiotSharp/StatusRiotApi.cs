@@ -10,11 +10,11 @@ namespace RiotSharp
     {
         #region Private Fields
         
-        private const string StatusRootUrl = "/shards";
+        private const string StatusRootUrl = "/lol/status/v3/shard-data";
 
-        private const string RegionUrl = "/{0}";
+        private const string RegionSubdomain = "{0}.";
 
-        private const string RootDomain = "status.leagueoflegends.com";
+        private const string RootDomain = "api.riotgames.com";
 
         private Requester requester;
 
@@ -25,41 +25,38 @@ namespace RiotSharp
         /// <summary>
         /// Get the instance of StatusRiotApi.
         /// </summary>
+        /// <param name="apiKey">The api key.</param>
         /// <returns>The instance of StatusRiotApi.</returns>
-        public static StatusRiotApi GetInstance()
+        public static StatusRiotApi GetInstance(string apiKey)
         {
-            return instance ?? (instance = new StatusRiotApi());
+            if (instance == null ||
+                Requesters.StatusApiRequester == null ||
+                apiKey != Requesters.StatusApiRequester.ApiKey)
+            {
+                instance = new StatusRiotApi(apiKey);
+            }
+            return instance;
         }
 
-        private StatusRiotApi()
+        private StatusRiotApi(string apiKey)
         {
-            Requesters.StatusApiRequester = new Requester();
+            Requesters.StatusApiRequester = new Requester(apiKey);
             requester = Requesters.StatusApiRequester;
         }
-       
-        public List<Shard> GetShards()
+
+        public ShardStatus GetShardStatus(Platform platform)
         {
-            var json = requester.CreateGetRequest(StatusRootUrl, RootDomain, null, false);
-            return JsonConvert.DeserializeObject<List<Shard>>(json);
-        }
-      
-        public async Task<List<Shard>> GetShardsAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(StatusRootUrl, RootDomain, null, false);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Shard>>(json));
-        }
-      
-        public ShardStatus GetShardStatus(Region region)
-        {
-            var json = requester.CreateGetRequest(StatusRootUrl + string.Format(RegionUrl, region.ToString()),
-                RootDomain, null, false);
+            var json = requester.CreateGetRequest(StatusRootUrl,
+                string.Format(RegionSubdomain, platform.ToString()) + RootDomain, null, true);
+
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
-        public async Task<ShardStatus> GetShardStatusAsync(Region region)
+        public async Task<ShardStatus> GetShardStatusAsync(Platform platform)
         {
-            var json = await requester.CreateGetRequestAsync(StatusRootUrl + string.Format(RegionUrl, region.ToString()),
-                RootDomain, null, false);
+            var json = await requester.CreateGetRequestAsync(StatusRootUrl,
+                string.Format(RegionSubdomain, platform.ToString()) + RootDomain, null, true);
+
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
     }
