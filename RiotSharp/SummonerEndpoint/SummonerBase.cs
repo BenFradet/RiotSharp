@@ -5,6 +5,7 @@ using RiotSharp.StatsEndpoint;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.Misc;
 
 namespace RiotSharp.SummonerEndpoint
 {
@@ -27,9 +28,6 @@ namespace RiotSharp.SummonerEndpoint
         private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
         private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
         private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
-
-        private const string TeamRootUrl = "/api/lol/{0}/v2.4/team";
-        private const string TeamBySummonerUrl = "/by-summoner/{0}";
 
         private const string IdUrl = "/{0}";
 
@@ -302,31 +300,6 @@ namespace RiotSharp.SummonerEndpoint
                 new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
-        }
-
-        /// <summary>
-        /// Get team information for this summoner synchronously.
-        /// </summary>
-        /// <returns>List of teams.</returns>
-        public List<TeamEndpoint.Team> GetTeams()
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(TeamRootUrl, Region) + string.Format(TeamBySummonerUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json)[Id];
-        }
-
-        /// <summary>
-        /// Get team information for this summoner asynchronously.
-        /// </summary>
-        /// <returns>List of teams.</returns>
-        public async Task<List<TeamEndpoint.Team>> GetTeamsAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(TeamRootUrl, Region) + string.Format(TeamBySummonerUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, List<TeamEndpoint.Team>>>(json)))[Id];
         }
     }
 }

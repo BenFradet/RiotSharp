@@ -1,4 +1,6 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿using RiotSharp.Misc;
+
+namespace RiotSharp.StaticDataEndpoint.Rune.Cache
 {
     class RuneStaticWrapper
     {

@@ -2,6 +2,7 @@
 using RiotSharp;
 using System;
 using System.Configuration;
+using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {
