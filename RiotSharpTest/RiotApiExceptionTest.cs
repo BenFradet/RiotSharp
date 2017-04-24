@@ -8,18 +8,14 @@ namespace RiotSharpTest
     [TestClass]
     public class RiotApiExceptionTest
     {
-        private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        private static string faultyApiKey = ConfigurationManager.AppSettings["FaultyApiKey"];
-        private static RiotApi faultyApi = RiotApi.GetInstance(faultyApiKey);
-        private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
-        private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
+        private static RiotApi faultyApi = RiotApi.GetInstance(RiotApiExceptionTestBase.faultyApiKey);
 
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
         public void GetSummoner_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetSummoner(region, id);
+            faultyApi.GetSummoner(RiotApiExceptionTestBase.region, RiotApiExceptionTestBase.summoner1Id);
         }
 
         [TestMethod]
@@ -27,7 +23,7 @@ namespace RiotSharpTest
         [ExpectedException(typeof(RiotSharpException))]
         public void GetChampions_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetChampions(region);
+            faultyApi.GetChampions(RiotApiExceptionTestBase.region);
         }
     }
 }
