@@ -4,6 +4,9 @@ using RiotSharp.ChampionMasteryEndpoint;
 using RiotSharp.CurrentGameEndpoint;
 using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
@@ -66,7 +69,7 @@ namespace RiotSharp
         private const int MaxNrLeagues = 10;
         private const int MaxNrEntireLeagues = 10;
 
-        private RateLimitedRequester requester;
+        private IRateLimitedRequester requester;
 
         private static RiotApi instance;
 
@@ -93,8 +96,17 @@ namespace RiotSharp
 
         private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
         {
+            if (apiKey == null)
+                throw new ArgumentNullException(nameof(apiKey));
+            if (string.IsNullOrWhiteSpace(apiKey))
+                throw new ArgumentException("Invalid api key.", nameof(apiKey));
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
             requester = Requesters.RiotApiRequester;
+        }
+
+        public RiotApi(IRateLimitedRequester rateLimitedRequester)
+        {
+            requester = rateLimitedRequester ?? throw new ArgumentNullException(nameof(rateLimitedRequester));
         }
 
         public Summoner GetSummoner(Region region, long summonerId)

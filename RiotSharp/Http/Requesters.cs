@@ -1,4 +1,4 @@
-﻿namespace RiotSharp
+﻿namespace RiotSharp.Http
 {
     internal static class Requesters
     {

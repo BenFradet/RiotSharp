@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.StaticDataEndpoint;
 using System;
 using System.Collections.Generic;
@@ -67,7 +70,7 @@ namespace RiotSharp
 
         private const string RootDomain = "global.api.pvp.net";
 
-        private Requester requester;
+        private IRequester requester;
 
         private Cache cache;
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);

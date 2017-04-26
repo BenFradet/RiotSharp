@@ -5,7 +5,7 @@ using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint;
 using RiotSharp.TournamentEndpoint.Enums;
 
-namespace RiotSharp
+namespace RiotSharp.Interfaces
 {
     /// <summary>
     /// Entry point for the tournament API.

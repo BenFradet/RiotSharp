@@ -13,7 +13,7 @@ using System;
 using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 
-namespace RiotSharp
+namespace RiotSharp.Interfaces
 {
     /// <summary>
     /// Entry point for the API.

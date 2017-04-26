@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RiotSharp
+namespace RiotSharp.Http
 {
     /// <summary>
     /// A rate limiter for a single region.
