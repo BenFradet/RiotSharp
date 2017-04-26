@@ -6,11 +6,6 @@ namespace RiotSharp.Http.Interfaces
     interface IRequester
     {
         /// <summary>
-        /// The api key. Required to for all requests.
-        /// </summary>
-        string ApiKey { get; set; }
-
-        /// <summary>
         /// Create a get request and send it to the server.
         /// </summary>
         /// <param name="relativeUrl"></param>
