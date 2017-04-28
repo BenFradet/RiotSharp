@@ -392,7 +392,8 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMatchList_ChampionIds_Test()
         {
-            var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id, new List<long> { RiotApiTestBase.championId }).Matches;
+            var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id, 
+                new List<long> { RiotApiTestBase.championId }).Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -407,7 +408,8 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetMatchList_RankedQueues_Test()
         {
-            var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id, null, new List<string> { RiotApiTestBase.queue }).Matches;
+            var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id, null,
+                new List<string> { RiotApiTestBase.queue }).Matches;
 
             Assert.IsNotNull(matches);
             Assert.IsTrue(matches.Count() > 0);
@@ -709,7 +711,8 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetAllChampionsMasteryEntriesAsync_Test()
         {
-            var allChampionsMastery = api.GetChampionMasteriesAsync(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id).Result;
+            var allChampionsMastery = api.GetChampionMasteriesAsync(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id).Result;
 
             Assert.IsNotNull(allChampionsMastery);
             Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
@@ -720,7 +723,8 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetTotalChampionMasteryScore_Test()
         {
-            var totalChampionMasteryScore = api.GetTotalChampionMasteryScore(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id);
+            var totalChampionMasteryScore = api.GetTotalChampionMasteryScore(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id);
 
             Assert.IsTrue(totalChampionMasteryScore > -1);
         }
@@ -729,7 +733,8 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTotalChampionMasteryScoreAsync_Test()
         {
-            var totalChampionMasteryScore = api.GetTotalChampionMasteryScoreAsync(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id).Result;
+            var totalChampionMasteryScore = api.GetTotalChampionMasteryScoreAsync(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id).Result;
 
             Assert.IsTrue(totalChampionMasteryScore > -1);
         }
@@ -738,12 +743,14 @@ namespace RiotSharpTest
         [TestCategory("RiotApi")]
         public void GetTopChampionsMasteryEntries_Test()
         {
-            var threeTopChampions = api.GetTopChampionsMasteries(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id);
+            var threeTopChampions = api.GetTopChampionsMasteries(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id);
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(threeTopChampions.Count == 3);
 
-            var sixTopChampions = api.GetTopChampionsMasteries(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id, 6);
+            var sixTopChampions = api.GetTopChampionsMasteries(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id, 6);
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);
@@ -753,12 +760,14 @@ namespace RiotSharpTest
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetTopChampionsMasteryEntriesAsync_Test()
         {
-            var threeTopChampions = api.GetTopChampionsMasteriesAsync(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id).Result;
+            var threeTopChampions = api.GetTopChampionsMasteriesAsync(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id).Result;
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(threeTopChampions.Count == 3);
 
-            var sixTopChampions = api.GetTopChampionsMasteriesAsync(RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id, 6).Result;
+            var sixTopChampions = api.GetTopChampionsMasteriesAsync(RiotApiTestBase.summoner1Platform, 
+                RiotApiTestBase.summoner1Id, 6).Result;
 
             Assert.IsNotNull(threeTopChampions);
             Assert.IsTrue(sixTopChampions.Count == 6);

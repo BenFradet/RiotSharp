@@ -16,16 +16,17 @@ namespace RiotSharpTest
         public void CreateProvider_CreateTournament_CreateTournamentCode_UpdateTournamentCode_Test()
         {
             var providerId = api.CreateProvider(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentUrl);
-            Assert.AreNotEqual(0, TournamentRiotApiTestBase.summoner1Id);
             var tournamentId = api.CreateTournament(providerId, TournamentRiotApiTestBase.tournamentName);
             Assert.AreNotEqual(0, tournamentId);
-            var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType);
+            var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, 
+                TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType);
             Assert.AreEqual(2, tournamentCodes.Count);
 
             var tournamentCode = tournamentCodes[0];
             var tournamentCodeDetails = api.GetTournamentCodeDetails(tournamentCode);
             var success = api.UpdateTournamentCode(tournamentCode, pickType: TournamentPickType.AllRandom,
                 mapType: TournamentMapType.HowlingAbyss);
+
             Assert.IsTrue(success);
             var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetails(tournamentCode);
             Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
@@ -54,16 +55,17 @@ namespace RiotSharpTest
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
         {
             var providerId = api.CreateProviderAsync(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentUrl).Result;
-            Assert.AreNotEqual(0, TournamentRiotApiTestBase.summoner1Id);
             var tournamentId = api.CreateTournamentAsync(providerId, TournamentRiotApiTestBase.tournamentName).Result;
             Assert.AreNotEqual(0, tournamentId);
-            var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType).Result;
+            var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, 
+                TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType).Result;
             Assert.AreEqual(2, tournamentCodes.Count);
 
             var tournamentCode = tournamentCodes[0];
             var tournamentCodeDetails = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
             var success = api.UpdateTournamentCodeAsync(tournamentCode, pickType: TournamentPickType.AllRandom,
                 mapType: TournamentMapType.HowlingAbyss).Result;
+
             Assert.IsTrue(success);
             var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
             Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
