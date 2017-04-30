@@ -55,7 +55,8 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
         {
-            var providerId = api.CreateProviderAsync(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentUrl).Result;
+            var providerId = api.CreateProviderAsync(TournamentRiotApiTestBase.tournamentRegion, 
+                TournamentRiotApiTestBase.tournamentUrl).Result;
             var tournamentId = api.CreateTournamentAsync(providerId, TournamentRiotApiTestBase.tournamentName).Result;
             Assert.AreNotEqual(0, tournamentId);
             var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, 
@@ -77,7 +78,8 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void GetTournamentMatchIdAsync_Test()
         {
-            var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentCode).Result;
+            var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion, 
+                TournamentRiotApiTestBase.tournamentCode).Result;
             Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
         }
 
