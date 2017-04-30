@@ -16,7 +16,8 @@ namespace RiotSharpTest
         public static string staticMasteryName = ConfigurationManager.AppSettings["staticMasteryName"];
         public static int staticRuneId = int.Parse(ConfigurationManager.AppSettings["staticRuneId"]);
         public static string staticRuneName = ConfigurationManager.AppSettings["staticRuneName"];
-        public static SummonerSpell staticSummonerSpell = (SummonerSpell)Enum.Parse(typeof(SummonerSpell), ConfigurationManager.AppSettings["StaticSummonerSpellName"]);
+        public static SummonerSpell staticSummonerSpell = (SummonerSpell)Enum.Parse(typeof(SummonerSpell), 
+            ConfigurationManager.AppSettings["StaticSummonerSpellName"]);
         public static string staticSummonerSpellName = ConfigurationManager.AppSettings["staticSummonerSpellName"];
     }
 }

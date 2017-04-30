@@ -253,7 +253,8 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetSummonerSpell_Test()
         {
-            var spell = api.GetSummonerSpell(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
+            var spell = api.GetSummonerSpell(StaticRiotApiTestBase.region, 
+                StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
             Assert.AreEqual(spell.Name, StaticRiotApiTestBase.staticSummonerSpellName);
         }
@@ -262,7 +263,8 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetSummonerSpellAsync_Test()
         {
-            var spell = api.GetSummonerSpellAsync(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
+            var spell = api.GetSummonerSpellAsync(StaticRiotApiTestBase.region, 
+                StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
             Assert.AreEqual(spell.Result.Name, StaticRiotApiTestBase.staticSummonerSpellName);
         }
