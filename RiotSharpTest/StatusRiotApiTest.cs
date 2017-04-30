@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using System.Linq;
-using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {
@@ -9,7 +8,6 @@ namespace RiotSharpTest
     public class StatusRiotApiTest
     {
         private static StatusRiotApi api = StatusRiotApi.GetInstance();
-        private static Region region = Region.euw;
 
         [TestMethod]
         [TestCategory("StatusRiotApi")]
@@ -35,20 +33,20 @@ namespace RiotSharpTest
         [TestCategory("StatusRiotApi")]
         public void GetShardStatus_Test()
         {
-            var shardStatus = api.GetShardStatus(region);
+            var shardStatus = api.GetShardStatus(StatusRiotApiTestBase.region);
 
             Assert.IsNotNull(shardStatus);
-            Assert.AreEqual(region.ToString(), shardStatus.Slug.ToString());
+            Assert.AreEqual(StatusRiotApiTestBase.region.ToString(), shardStatus.Slug.ToString());
         }
 
         [TestMethod]
         [TestCategory("StatusRiotApi"), TestCategory("Async")]
         public void GetShardStatusAsync_Test()
         {
-            var shardStatus = api.GetShardStatusAsync(region);
+            var shardStatus = api.GetShardStatusAsync(StatusRiotApiTestBase.region);
 
             Assert.IsNotNull(shardStatus.Result);
-            Assert.AreEqual(region.ToString(), shardStatus.Result.Slug.ToString());
+            Assert.AreEqual(StatusRiotApiTestBase.region.ToString(), shardStatus.Result.Slug.ToString());
         }
     }
 }

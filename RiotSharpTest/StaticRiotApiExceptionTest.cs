@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.StaticDataEndpoint;
-using System.Configuration;
 using RiotSharp.Misc;
 
 namespace RiotSharpTest
@@ -9,8 +8,7 @@ namespace RiotSharpTest
     [TestClass]
     public class StaticRiotApiExceptionTest
     {
-        private static string faultyApiKey = ConfigurationManager.AppSettings["FaultyApiKey"];
-        private static StaticRiotApi faultyStaticApi = StaticRiotApi.GetInstance(faultyApiKey);
+        private static StaticRiotApi faultyStaticApi = StaticRiotApi.GetInstance(StaticRiotApiExceptionTestBase.faultyApiKey);
 
         [TestMethod]
         [TestCategory("Exception")]
