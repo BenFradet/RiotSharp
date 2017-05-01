@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Http.Interfaces
 {
-    interface IRequester
+    public interface IRequester
     {
         /// <summary>
         /// Create a get request and send it to the server.

@@ -11,11 +11,10 @@ namespace RiotSharp.Http
     /// <summary>
     /// A requester without a rate limiter.
     /// </summary>
-    class Requester : RequesterBase, IRequester
+    public class Requester : RequesterBase, IRequester
     {
-        internal Requester(string apiKey = "")
+        public Requester(string apiKey) : base(apiKey)
         {
-            ApiKey = apiKey;
         }
 
         #region Public Methods

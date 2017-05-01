@@ -10,14 +10,13 @@ namespace RiotSharp.Http
     /// <summary>
     /// A requester with a rate limiter
     /// </summary>
-    internal class RateLimitedRequester : RequesterBase, IRateLimitedRequester
+    public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }
 
-        internal RateLimitedRequester(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
+        public RateLimitedRequester(string apiKey, int rateLimitPer10s, int rateLimitPer10m) : base(apiKey)
         {
-            ApiKey = apiKey;
             RateLimitPer10S = rateLimitPer10s;
             RateLimitPer10M = rateLimitPer10m;
         }

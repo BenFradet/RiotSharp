@@ -5,7 +5,7 @@ namespace RiotSharp
     /// <summary>
     /// Interface for caching data in-memory.
     /// </summary>
-    interface ICache
+    public interface ICache
     {
         /// <summary>
         /// Add a (key, value) pair to the cache with a relative expiry time (e.g. 2 mins).
