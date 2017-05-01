@@ -5,6 +5,7 @@ using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Linq;
 using RiotSharp.StaticDataEndpoint.Champion;
+using RiotSharp.StaticDataEndpoint.Item;
 
 namespace RiotSharpTest
 {
@@ -305,6 +306,28 @@ namespace RiotSharpTest
             var realm = api.GetRealmAsync(StaticRiotApiTestBase.region);
 
             Assert.IsNotNull(realm.Result);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetItems_WithRequestDelegate_OutputChanges()
+        {
+            // Arange
+            var defaultItems = api.GetItems(CommonTestBase.summoner1and2Region);
+            var defaultItem = defaultItems.Items.SingleOrDefault(x => x.Key == 2053);
+
+            // Act
+            api.RegisterRequestDelegate(result => 
+            {
+                var itemList = (ItemListStatic)result;
+                itemList.Items.Remove(2053);
+            });
+
+            // Assert 
+            var itemListStatic = api.GetItems(CommonTestBase.summoner1and2Region);
+            var removedItem = itemListStatic.Items.SingleOrDefault(x => x.Key == 2053);
+            Assert.IsNull(removedItem.Value);
+            Assert.IsNotNull(defaultItem);
         }
     }
 }

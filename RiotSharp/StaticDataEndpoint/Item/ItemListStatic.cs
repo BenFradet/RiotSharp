@@ -6,7 +6,7 @@ namespace RiotSharp.StaticDataEndpoint.Item
     /// <summary>
     /// Class representing a list of items (Static API).
     /// </summary>
-    public class ItemListStatic
+    public class ItemListStatic : RequestResult
     {
         internal ItemListStatic() { }
 

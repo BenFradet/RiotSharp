@@ -71,6 +71,8 @@ namespace RiotSharp
         private const string RootDomain = "global.api.pvp.net";
 
         private IRequester requester;
+        private List<Action<RequestResult>> delegates = new List<Action<RequestResult>>();
+
 
         private Cache cache;
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);
@@ -93,6 +95,15 @@ namespace RiotSharp
                 instance = new StaticRiotApi(apiKey);
             }
             return instance;
+        }
+
+        /// <summary>
+        /// Registers a new request delegate. Request delegates get called only directly after the requester. Cached data remains untouched.
+        /// </summary>
+        /// <param name="requestDelegate"></param>
+        public void RegisterRequestDelegate(Action<RequestResult> requestDelegate) 
+        {
+            delegates.Add(requestDelegate);
         }
 
         private StaticRiotApi(string apiKey)
@@ -119,6 +130,7 @@ namespace RiotSharp
                     });
                 var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
                 wrapper = new ChampionListStaticWrapper(champs, language, championData);
+                HandleRequestDelegates(wrapper.ChampionListStatic);
                 cache.Add(ChampionsCacheKey, wrapper, DefaultSlidingExpiry);
             }
             return wrapper.ChampionListStatic;
@@ -234,8 +246,9 @@ namespace RiotSharp
                     });
                 var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
                 wrapper = new ItemListStaticWrapper(items, language, itemData);
+                HandleRequestDelegates(wrapper.ItemListStatic);
                 cache.Add(ItemsCacheKey, wrapper, DefaultSlidingExpiry);
-            }
+            }           
             return wrapper.ItemListStatic;
         }
   
@@ -887,6 +900,15 @@ namespace RiotSharp
             cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
 
             return version;
+        }
+
+        private void HandleRequestDelegates<TEntity>(TEntity entities) where TEntity : class
+        {
+            var tDelegates = delegates.OfType<Action<TEntity>>();
+            foreach(var tDelegate in tDelegates)
+            {
+                tDelegate(entities);
+            }
         }
     }
 }

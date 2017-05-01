@@ -162,6 +162,7 @@
     <Compile Include="Http\RateLimiter.cs" />
     <Compile Include="Http\RequesterBase.cs" />
     <Compile Include="Http\Requesters.cs" />
+    <Compile Include="RequestResult.cs" />
     <Compile Include="RiotSharpException.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Item\Cache\ItemListStaticWrapper.cs" />

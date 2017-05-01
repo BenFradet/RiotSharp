@@ -8,7 +8,7 @@ namespace RiotSharp.StaticDataEndpoint.Champion
     /// <summary>
     /// Class representing a champion (Static API).
     /// </summary>
-    public class ChampionStatic
+    public class ChampionStatic : RequestResult
     {
         internal ChampionStatic() { }
 
