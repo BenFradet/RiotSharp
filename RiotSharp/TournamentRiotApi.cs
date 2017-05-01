@@ -41,6 +41,11 @@ namespace RiotSharp
             requester = Requesters.TournamentApiRequester;
         }
 
+        public TournamentRiotApi(IRateLimitedRequester rateLimitedRequester)
+        {
+            requester = rateLimitedRequester ?? throw new ArgumentNullException(nameof(rateLimitedRequester));
+        }
+
         /// <summary>
         ///     Get the instance of RiotApi.
         /// </summary>
