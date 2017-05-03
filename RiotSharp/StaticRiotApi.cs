@@ -72,13 +72,13 @@ namespace RiotSharp
 
         private IRequester requester;
 
-        private Cache cache;
+        private ICache cache;
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);
 
         private static StaticRiotApi instance;
 
-        #endregion
-
+        #endregion      
+      
         /// <summary>
         /// Get the instance of StaticRiotApi.
         /// </summary>
@@ -101,7 +101,15 @@ namespace RiotSharp
             requester = Requesters.StaticApiRequester;
             cache = new Cache();
         }
-     
+
+        public StaticRiotApi(IRequester requester, ICache cache)
+        {
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
+        }
+
+        #region Public Methods
+
         public ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.basic,
             Language language = Language.en_US)
         {
@@ -888,5 +896,7 @@ namespace RiotSharp
 
             return version;
         }
+
+        #endregion
     }
 }

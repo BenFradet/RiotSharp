@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -6,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Http
 {
-    abstract class RequesterBase
+    public abstract class RequesterBase
     {
         protected string rootDomain;
         private readonly HttpClient httpClient;
 
         public string ApiKey { get; set; }
 
-        protected RequesterBase(string apiKey = "")
+        protected RequesterBase(string apiKey)
         {
+            if (string.IsNullOrWhiteSpace(apiKey))
+                throw new ArgumentNullException(nameof(apiKey));
             ApiKey = apiKey;
             httpClient = new HttpClient();
         }

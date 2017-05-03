@@ -6,6 +6,7 @@ using RiotSharp.StatusEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
+using System;
 
 namespace RiotSharp
 {
@@ -29,17 +30,24 @@ namespace RiotSharp
         /// Get the instance of StatusRiotApi.
         /// </summary>
         /// <returns>The instance of StatusRiotApi.</returns>
-        public static StatusRiotApi GetInstance()
+        public static StatusRiotApi GetInstance(string apiKey)
         {
-            return instance ?? (instance = new StatusRiotApi());
+            return instance ?? (instance = new StatusRiotApi(apiKey));
         }
 
-        private StatusRiotApi()
+        private StatusRiotApi(string apiKey)
         {
-            Requesters.StatusApiRequester = new Requester();
+            Requesters.StatusApiRequester = new Requester(apiKey);
             requester = Requesters.StatusApiRequester;
         }
-       
+
+        public StatusRiotApi(IRequester requester)
+        {
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+        }
+
+        #region Public Methods      
+
         public List<Shard> GetShards()
         {
             var json = requester.CreateGetRequest(StatusRootUrl, RootDomain, null, false);
@@ -65,5 +73,7 @@ namespace RiotSharp
                 RootDomain, null, false);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
+
+        #endregion
     }
 }

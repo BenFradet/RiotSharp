@@ -9,7 +9,7 @@ namespace RiotSharpTest
     [TestClass]
     public class TournamentRiotApiTest
     {
-        private static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(TournamentRiotApiTestBase.apiKey);
+        private static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(TournamentRiotApiTestBase.tournamentApiKey);
 
         [TestMethod]
         [TestCategory("TournamentRiotApi")]

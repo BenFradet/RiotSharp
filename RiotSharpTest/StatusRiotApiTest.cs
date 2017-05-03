@@ -7,7 +7,7 @@ namespace RiotSharpTest
     [TestClass]
     public class StatusRiotApiTest
     {
-        private static StatusRiotApi api = StatusRiotApi.GetInstance();
+        private static StatusRiotApi api = StatusRiotApi.GetInstance(CommonTestBase.apiKey);
 
         [TestMethod]
         [TestCategory("StatusRiotApi")]

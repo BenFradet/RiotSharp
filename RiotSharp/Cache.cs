@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace RiotSharp
 {
-    internal class Cache : ICache
+    public class Cache : ICache
     {
         private IDictionary<object, CacheItem> cache = new Dictionary<object, CacheItem>();
         private IDictionary<object, SlidingDetails> slidingTimes = new Dictionary<object, SlidingDetails>();
