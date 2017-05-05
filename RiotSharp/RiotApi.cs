@@ -503,7 +503,9 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
-                new List<string> { string.Format("includeTimeline={0}", includeTimeline) });
+                includeTimeline
+                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline) }
+                    : null);
             return JsonConvert.DeserializeObject<MatchDetail>(json);
         }
      
@@ -512,7 +514,9 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
-                new List<string> { string.Format("includeTimeline={0}", includeTimeline) });
+                includeTimeline
+                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline) }
+                    : null);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MatchDetail>(json));
         }
