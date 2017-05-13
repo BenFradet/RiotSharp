@@ -32,7 +32,9 @@ namespace RiotSharp
         /// <returns>The instance of StatusRiotApi.</returns>
         public static StatusRiotApi GetInstance(string apiKey)
         {
-            return instance ?? (instance = new StatusRiotApi(apiKey));
+            if (instance == null)
+                instance = new StatusRiotApi(apiKey);
+            return instance;
         }
 
         private StatusRiotApi(string apiKey)
@@ -43,7 +45,9 @@ namespace RiotSharp
 
         public StatusRiotApi(IRequester requester)
         {
-            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+            if (requester == null)
+                throw new ArgumentNullException(nameof(requester));
+            this.requester = requester;
         }
 
         #region Public Methods      

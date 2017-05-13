@@ -105,7 +105,9 @@ namespace RiotSharp
 
         public RiotApi(IRateLimitedRequester rateLimitedRequester)
         {
-            requester = rateLimitedRequester ?? throw new ArgumentNullException(nameof(rateLimitedRequester));
+            if (rateLimitedRequester == null)
+                throw new ArgumentNullException(nameof(rateLimitedRequester));
+            requester = rateLimitedRequester;
         }
 
         #region Summoner-V3
