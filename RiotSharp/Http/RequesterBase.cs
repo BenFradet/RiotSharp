@@ -10,6 +10,7 @@ namespace RiotSharp.Http
     public abstract class RequesterBase
     {
         protected string rootDomain;
+        protected const string platformDomain = ".api.riotgames.com";
         private readonly HttpClient httpClient;
 
         public string ApiKey { get; set; }

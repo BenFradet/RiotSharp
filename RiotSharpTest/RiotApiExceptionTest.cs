@@ -13,7 +13,7 @@ namespace RiotSharpTest
         [ExpectedException(typeof(RiotSharpException))]
         public void GetSummoner_ShouldThrowRiotSharpException_Test()
         {
-            faultyApi.GetSummoner(RiotApiExceptionTestBase.summoner1and2Region, RiotApiExceptionTestBase.summoner1Id);
+            faultyApi.GetSummonerBySummonerId(RiotApiExceptionTestBase.summoner1and2Region, RiotApiExceptionTestBase.summoner1Id);
         }
 
         [TestMethod]

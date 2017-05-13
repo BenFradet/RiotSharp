@@ -57,6 +57,11 @@ namespace RiotSharp.SummonerEndpoint
         public long Id { get; set; }
 
         /// <summary>
+        /// Account ID
+        /// </summary>
+        public long AccountId { get; set; }
+
+        /// <summary>
         /// Summoner name.
         /// </summary>
         [JsonProperty("name")]

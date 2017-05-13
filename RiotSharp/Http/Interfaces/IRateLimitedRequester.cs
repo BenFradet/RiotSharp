@@ -28,7 +28,7 @@ namespace RiotSharp.Http.Interfaces
         /// Contains the Http error code and error message.
         /// </exception>
         string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
-            bool useHttps = true);
+            bool useHttps = true, bool usePlatforms = false);
 
         /// <summary>
         ///  Create a get request and send it asynchronously to the server.
@@ -42,8 +42,8 @@ namespace RiotSharp.Http.Interfaces
         /// Thrown if an Http error occurs. 
         /// Contains the Http error code and error message.
         /// </exception>
-        Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
-            List<string> addedArguments = null, bool useHttps = true);
+        Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> addedArguments = null, 
+            bool useHttps = true, bool usePlatforms = false);
 
         /// <summary>
         /// Create a post request and send it synchronously to the server.
