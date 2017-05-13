@@ -124,9 +124,8 @@ namespace RiotSharp
         public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
             var json = await requester.CreateGetRequestAsync(
-                 string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region, usePlatforms: true);
-            var obj = (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Summoner>(json)));
+                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region, usePlatforms: true);
+            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
                 obj.Region = region;
@@ -150,8 +149,7 @@ namespace RiotSharp
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region, usePlatforms: true);
-            var obj = (await Task.Factory.StartNew(() =>
-              JsonConvert.DeserializeObject<Summoner>(json)));
+            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
                 obj.Region = region;
@@ -175,8 +173,7 @@ namespace RiotSharp
         {
             var json = await requester.CreateGetRequestAsync(
                 string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region, usePlatforms: true);
-            var obj = (await Task.Factory.StartNew(() =>
-              JsonConvert.DeserializeObject<Summoner>(json)));
+            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
                 obj.Region = region;
