@@ -10,7 +10,7 @@ namespace RiotSharpTest
     {
 
         private static RiotApi api = RiotApi.GetInstance(SummonerTestBase.apiKey);
-        private static Summoner summoner = api.GetSummoner(SummonerTestBase.summoner1and2Region, SummonerTestBase.summoner1Id);
+        private static Summoner summoner = api.GetSummonerBySummonerId(SummonerTestBase.summoner1and2Region, SummonerTestBase.summoner1Id);
 
         [TestMethod]
         [TestCategory("Summoner")]

@@ -28,7 +28,7 @@ namespace RiotSharpExample
 
             Console.WriteLine(string.Join(", ", languages));
 
-            var summ = api.GetSummoner(region, name);
+            var summ = api.GetSummonerByName(region, name);
 
             var match1 = api.GetMatch(region, gameId);
 

@@ -15,119 +15,61 @@ namespace RiotSharpTest
         private static DateTime beginTime = new DateTime(2015, 01, 01);
         private static DateTime endTime { get { return DateTime.Now; } }
 
+        #region Summoner-V3 Tests
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetSummoner_ById_Test()
+        public void GetSummonerBySummonerId_ExistingId_ReturnsSummoner()
         {
-            var summoner = api.GetSummoner(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
+            var summoner = api.GetSummonerBySummonerId(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
 
             Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerAsync_ById_Test()
+        public void GetSummonerBySummonerIdAsync_ExistingId_ReturnsSummoner()
         {
-            var summoner = api.GetSummonerAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
+            var summoner = api.GetSummonerBySummonerIdAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
 
             Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetSummoners_ById_Test()
+        public void GetSummonerByAccountId_ExistingAccountId_ReturnsSummoner()
         {
-            var summoners = api.GetSummoners(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+            var summoner = api.GetSummonerByAccountId(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1AccountId);
 
-            Assert.IsNotNull(summoners);
-            Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), summoners.Count);
+            Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonersAsync_ById_Test()
+        public void GetSummonerByAccountIdAsync_ExistingAccountId_ReturnsSummoner()
         {
-            var summoners = api.GetSummonersAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+            var summoner = api.GetSummonerByAccountIdAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1AccountId);
 
-            Assert.IsNotNull(summoners.Result);
-            Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), summoners.Result.Count);
+            Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
         }
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetSummoner_ByName_Test()
+        public void GetSummonerByName_ExistingName_ReturnsSummoner()
         {
-            var summoner = api.GetSummoner(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Name);
+            var summoner = api.GetSummonerByName(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Name);
 
             Assert.AreEqual(summoner.Id, RiotApiTestBase.summoner1Id);
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerAsync_ByName_Test()
+        public void GetSummonerByNameAsync_ExistingName_ReturnsSummoner()
         {
-            var summoner = api.GetSummonerAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Name);
+            var summoner = api.GetSummonerByNameAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Name);
 
             Assert.AreEqual(summoner.Result.Id, RiotApiTestBase.summoner1Id);
         }
-
-        [TestMethod]
-        [TestCategory("RiotApi")]
-        public void GetSummoners_ByName_Test()
-        {
-            var summoners = api.GetSummoners(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerNames);
-
-            Assert.IsNotNull(summoners);
-            Assert.AreEqual(RiotApiTestBase.summonerNames.Distinct().Count(), summoners.Count);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonersAsync_ByName_Test()
-        {
-            var summoners = api.GetSummonersAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerNames);
-
-            Assert.IsNotNull(summoners.Result);
-            Assert.AreEqual(RiotApiTestBase.summonerNames.Distinct().Count(), summoners.Result.Count);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi")]
-        public void GetSummonerName_Test()
-        {
-            var summoner = api.GetSummonerName(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
-
-            Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerNameAsync_Test()
-        {
-            var summoner = api.GetSummonerNameAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
-
-            Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi")]
-        public void GetSummonersNames_Test()
-        {
-            var summoners = api.GetSummonerNames(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
-
-            Assert.IsNotNull(summoners);
-            Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), summoners.Count);
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonersNamesAsync_Test()
-        {
-            var summoners = api.GetSummonerNamesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
-
-            Assert.IsNotNull(summoners.Result);
-            Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), summoners.Result.Count);
-        }
+        #endregion
 
         [TestMethod]
         [TestCategory("RiotApi")]

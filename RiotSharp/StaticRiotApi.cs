@@ -104,8 +104,12 @@ namespace RiotSharp
 
         public StaticRiotApi(IRequester requester, ICache cache)
         {
-            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
-            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            if (requester == null)
+                 throw new ArgumentNullException(nameof(requester));
+            if (cache == null)
+                throw new ArgumentNullException(nameof(cache));
+            this.requester = requester;
+            this.cache = cache;
         }
 
         #region Public Methods
