@@ -4,6 +4,9 @@ using RiotSharp.ChampionMasteryEndpoint;
 using RiotSharp.CurrentGameEndpoint;
 using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StatsEndpoint;
@@ -22,8 +25,11 @@ namespace RiotSharp
     {
         #region Private Fields
      
-        private const string SummonerRootUrl = "/api/lol/{0}/v1.4/summoner";
-        private const string ByNameUrl = "/by-name/{0}";
+        private const string SummonerRootUrl = "/lol/summoner/v3/summoners";
+        private const string SummonerByAccountIdUrl = "/by-account/{0}";
+        private const string SummonerByNameUrl = "/by-name/{0}";
+        private const string SummonerBySummonerIdUrl = "/{0}";
+
         private const string NamesUrl = "/{0}/name";
         private const string MasteriesUrl = "/{0}/masteries";
         private const string RunesUrl = "/{0}/runes";
@@ -66,7 +72,7 @@ namespace RiotSharp
         private const int MaxNrLeagues = 10;
         private const int MaxNrEntireLeagues = 10;
 
-        private RateLimitedRequester requester;
+        private IRateLimitedRequester requester;
 
         private static RiotApi instance;
 
@@ -97,11 +103,19 @@ namespace RiotSharp
             requester = Requesters.RiotApiRequester;
         }
 
-        public Summoner GetSummoner(Region region, long summonerId)
+        public RiotApi(IRateLimitedRequester rateLimitedRequester)
+        {
+            if (rateLimitedRequester == null)
+                throw new ArgumentNullException(nameof(rateLimitedRequester));
+            requester = rateLimitedRequester;
+        }
+
+        #region Summoner-V3
+        public Summoner GetSummonerByAccountId(Region region, long accountId)
         {
             var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
-            var obj = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.FirstOrDefault();
+                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region, usePlatforms: true);
+            var obj = JsonConvert.DeserializeObject<Summoner>(json);
             if (obj != null)
             {
                 obj.Region = region;
@@ -109,12 +123,35 @@ namespace RiotSharp
             return obj;
         }
 
-        public async Task<Summoner> GetSummonerAsync(Region region, long summonerId)
+        public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(IdUrl, summonerId), region);
-            var obj = (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json))).Values.FirstOrDefault();
+                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region, usePlatforms: true);
+            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
+            if (obj != null)
+            {
+                obj.Region = region;
+            }
+            return obj;
+        }
+
+        public Summoner GetSummonerBySummonerId(Region region, long summonerId)
+        {
+            var json = requester.CreateGetRequest(
+                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region, usePlatforms: true);
+            var obj = JsonConvert.DeserializeObject<Summoner>(json);
+            if (obj != null)
+            {
+                obj.Region = region;
+            }
+            return obj;
+        }
+
+        public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
+        {
+            var json = await requester.CreateGetRequestAsync(
+                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region, usePlatforms: true);
+            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
                 obj.Region = region;
@@ -122,53 +159,11 @@ namespace RiotSharp
             return obj;
         }
        
-        public List<Summoner> GetSummoners(Region region, List<long> summonerIds)
-        {
-            var list = new List<Summoner>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrSummoners))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl,
-                        region.ToString()) + string.Format(IdUrl, Util.BuildIdsString(grp)),
-                    region);
-                var subList = JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json).Values.ToList();
-                list.AddRange(subList);
-            }
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
-        }
-      
-        public async Task<List<Summoner>> GetSummonersAsync(Region region, List<long> summonerIds)
-        {
-            var tasks = MakeGroups(summonerIds, MaxNrSummoners).Select(
-                grp => requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(IdUrl, Util.BuildIdsString(grp)), region
-                    ).ContinueWith(
-                        json => JsonConvert.DeserializeObject<Dictionary<long, Summoner>>(json.Result)
-                    )
-                ).ToList();
-
-            await Task.WhenAll(tasks);
-            var list = tasks.SelectMany(task => task.Result.Values).ToList();
-
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
-        }
-       
-        public Summoner GetSummoner(Region region, string summonerName)
+        public Summoner GetSummonerByName(Region region, string summonerName)
         {
             var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)),
-                region);
-            var obj = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.FirstOrDefault();
+                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region, usePlatforms: true);
+            var obj = JsonConvert.DeserializeObject<Summoner>(json);
             if (obj != null)
             {
                 obj.Region = region;
@@ -176,117 +171,19 @@ namespace RiotSharp
             return obj;
         }
       
-        public async Task<Summoner> GetSummonerAsync(Region region, string summonerName)
+        public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Uri.EscapeDataString(summonerName)),
-                region);
-            var obj = (await Task.Factory.StartNew(() =>
-                    JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json))).Values.FirstOrDefault();
+                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region, usePlatforms: true);
+            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
                 obj.Region = region;
             }
             return obj;
         }
-       
-        public List<Summoner> GetSummoners(Region region, List<string> summonerNames)
-        {
-            var list = new List<Summoner>();
-            foreach (var grp in MakeGroups(summonerNames, MaxNrSummoners))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl,
-                        region.ToString()) + string.Format(ByNameUrl, Util.BuildNamesString(grp)),
-                    region);
-                var subList = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json).Values.ToList();
-                list.AddRange(subList);
-            }
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
-        }
-       
-        public async Task<List<Summoner>> GetSummonersAsync(Region region, List<string> summonerNames)
-        {
-            var tasks = MakeGroups(summonerNames, MaxNrSummoners).Select(
-                grp => requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(ByNameUrl, Util.BuildNamesString(grp)), region
-                    ).ContinueWith(
-                        json => JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(json.Result)
-                    )
-                ).ToList();
+        #endregion
 
-            await Task.WhenAll(tasks);
-            var list = tasks.SelectMany(task => task.Result.Values).ToList();
-
-            foreach (var summ in list)
-            {
-                summ.Region = region;
-            }
-            return list;
-        }
-       
-        public SummonerBase GetSummonerName(Region region, long summonerId)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
-            var child = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            return new SummonerBase(child.Keys.FirstOrDefault(), child.Values.FirstOrDefault(), requester, region);
-        }
-       
-        public async Task<SummonerBase> GetSummonerNameAsync(Region region, long summonerId)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl, region.ToString()) + string.Format(NamesUrl, summonerId), region);
-            var child = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            return new SummonerBase(child.Keys.FirstOrDefault(), child.Values.FirstOrDefault(), requester, region);
-        }
-       
-        public List<SummonerBase> GetSummonerNames(Region region, List<long> summonerIds)
-        {
-            var list = new List<SummonerBase>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrSummoners))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl,
-                        region.ToString()) + string.Format(NamesUrl, Util.BuildIdsString(grp)),
-                    region);
-                var children = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-                foreach (var child in children)
-                {
-                    list.Add(new SummonerBase(child.Key, child.Value, requester, region));
-                }
-
-            }
-            return list;
-        }
-      
-        public async Task<List<SummonerBase>> GetSummonerNamesAsync(Region region, List<long> summonerIds)
-        {
-            var tasks = MakeGroups(summonerIds, MaxNrSummoners).Select(
-                grp => requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(NamesUrl, Util.BuildIdsString(grp)), region
-                    ).ContinueWith(
-                        json => JsonConvert.DeserializeObject<Dictionary<string, string>>(json.Result)
-                    )
-                ).ToList();
-
-            await Task.WhenAll(tasks);
-
-            var list = new List<SummonerBase>();
-            foreach (var child in tasks.SelectMany(task => task.Result))
-            {
-                list.Add(new SummonerBase(child.Key, child.Value, requester, region));
-            }
-            return list;
-        }
-     
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
             var json = requester.CreateGetRequest(string.Format(ChampionRootUrl, region.ToString()), region,
@@ -495,7 +392,9 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
-                new List<string> { string.Format("includeTimeline={0}", includeTimeline) });
+                includeTimeline
+                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline) }
+                    : null);
             return JsonConvert.DeserializeObject<MatchDetail>(json);
         }
      
@@ -504,7 +403,9 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
-                new List<string> { string.Format("includeTimeline={0}", includeTimeline) });
+                includeTimeline
+                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline) }
+                    : null);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MatchDetail>(json));
         }

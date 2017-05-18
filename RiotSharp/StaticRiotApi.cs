@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.StaticDataEndpoint;
 using System;
 using System.Collections.Generic;
@@ -67,15 +70,15 @@ namespace RiotSharp
 
         private const string RootDomain = "global.api.pvp.net";
 
-        private Requester requester;
+        private IRequester requester;
 
-        private Cache cache;
+        private ICache cache;
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);
 
         private static StaticRiotApi instance;
 
-        #endregion
-
+        #endregion      
+      
         /// <summary>
         /// Get the instance of StaticRiotApi.
         /// </summary>
@@ -98,7 +101,19 @@ namespace RiotSharp
             requester = Requesters.StaticApiRequester;
             cache = new Cache();
         }
-     
+
+        public StaticRiotApi(IRequester requester, ICache cache)
+        {
+            if (requester == null)
+                 throw new ArgumentNullException(nameof(requester));
+            if (cache == null)
+                throw new ArgumentNullException(nameof(cache));
+            this.requester = requester;
+            this.cache = cache;
+        }
+
+        #region Public Methods
+
         public ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.basic,
             Language language = Language.en_US)
         {
@@ -885,5 +900,7 @@ namespace RiotSharp
 
             return version;
         }
+
+        #endregion
     }
 }

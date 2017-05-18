@@ -1,46 +1,65 @@
-﻿using System.Collections.Generic;
+﻿using RiotSharp.Http.Interfaces;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
+using System;
 
-namespace RiotSharp
+namespace RiotSharp.Http
 {
-    internal class RateLimitedRequester : Requester
+    /// <summary>
+    /// A requester with a rate limiter
+    /// </summary>
+    public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }
 
-        internal RateLimitedRequester(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
+        public RateLimitedRequester(string apiKey, int rateLimitPer10s, int rateLimitPer10m) : base(apiKey)
         {
-            ApiKey = apiKey;
             RateLimitPer10S = rateLimitPer10s;
             RateLimitPer10M = rateLimitPer10m;
         }
 
         private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
 
+        #region Public Methods
+
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
-            bool useHttps = true)
+            bool useHttps = true, bool usePlatforms = false)
         {
-            rootDomain = region + ".api.pvp.net";
+            if (usePlatforms)
+                rootDomain = GetPlatform(region) + platformDomain;
+            else
+                rootDomain = region + ".api.pvp.net";
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            
+
             GetRateLimiter(region).HandleRateLimit();
 
-            return GetResult(request);
+            using (var response = Get(request))
+            {
+                return GetResponseContent(response);
+            }              
         }
 
-
-        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
-            List<string> addedArguments = null, bool useHttps = true)
+        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> addedArguments = null, 
+            bool useHttps = true, bool usePlatforms = false)
         {
-            rootDomain = region + ".api.pvp.net";
+            if (usePlatforms)
+                rootDomain = GetPlatform(region) + platformDomain;
+            else
+                rootDomain = region + ".api.pvp.net";
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            return await GetResultAsync(request);
+            using (var response = await GetAsync(request))
+            {
+                return await GetResponseContentAsync(response);
+            }
         }
 
         public string CreatePostRequest(string relativeUrl, Region region, string body,
@@ -52,7 +71,10 @@ namespace RiotSharp
 
             GetRateLimiter(region).HandleRateLimit();
 
-            return Post(request);
+            using (var response = Post(request))
+            {
+                return GetResponseContent(response);
+            }     
         }
 
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
@@ -64,7 +86,10 @@ namespace RiotSharp
 
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            return await PostAsync(request);
+            using (var response = await PostAsync(request))
+            {
+                return await GetResponseContentAsync(response);
+            }
         }
 
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
@@ -76,8 +101,10 @@ namespace RiotSharp
 
             GetRateLimiter(region).HandleRateLimit();
 
-            var response = Put(request);
-            return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            using (var response = Put(request))
+            {
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            }              
         }
 
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
@@ -89,9 +116,13 @@ namespace RiotSharp
 
             await GetRateLimiter(region).HandleRateLimitAsync();
 
-            var response = await PutAsync(request);
-            return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            using (var response = await PutAsync(request))
+            {
+                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
+            }                
         }
+
+        #endregion
 
         /// <summary>
         /// Returns the respective region's RateLimiter, creating it if needed.
@@ -103,6 +134,39 @@ namespace RiotSharp
             if (!rateLimiters.ContainsKey(region))
                 rateLimiters[region] = new RateLimiter(RateLimitPer10S, RateLimitPer10M);
             return rateLimiters[region]; 
+        }
+
+        private string GetPlatform(Region region)
+        {
+            switch(region)
+            {
+                case Region.br:
+                    return "br1";
+                case Region.eune:
+                    return "eun1";
+                case Region.euw:
+                    return "euw1";
+                case Region.jp:
+                    return "jp1";
+                case Region.kr:
+                    return "kr";
+                case Region.lan:
+                    return "la1";
+                case Region.las:
+                    return "la2";
+                case Region.na:
+                    return "na1";
+                case Region.oce:
+                    return "oc1";
+                case Region.tr:
+                    return "tr1";
+                case Region.ru:
+                    return "ru";
+                case Region.global:
+                    return "global";
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

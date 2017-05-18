@@ -79,10 +79,12 @@
     <Compile Include="FeaturedGamesEndpoint\FeaturedGames.cs" />
     <Compile Include="GameEndpoint\Game.cs" />
     <Compile Include="ICache.cs" />
-    <Compile Include="IRiotApi.cs" />
-    <Compile Include="IStaticRiotApi.cs" />
-    <Compile Include="IStatusRiotApi.cs" />
-    <Compile Include="ITournamentRiotApi.cs" />
+    <Compile Include="Http\Interfaces\IRateLimitedRequester.cs" />
+    <Compile Include="Http\Interfaces\IRequester.cs" />
+    <Compile Include="Interfaces\IRiotApi.cs" />
+    <Compile Include="Interfaces\IStaticRiotApi.cs" />
+    <Compile Include="Interfaces\IStatusRiotApi.cs" />
+    <Compile Include="Interfaces\ITournamentRiotApi.cs" />
     <Compile Include="MatchEndpoint\Enums\Converters\MonsterSubTypeConverter.cs" />
     <Compile Include="MatchEndpoint\Enums\MonsterSubType.cs" />
     <Compile Include="MatchListEndPoint\MatchList.cs" />
@@ -157,8 +159,9 @@
     <Compile Include="Misc\Converters\TimeSpanConverterFromMS.cs" />
     <Compile Include="Misc\Converters\TimeSpanConverterFromS.cs" />
     <Compile Include="Cache.cs" />
-    <Compile Include="RateLimiter.cs" />
-    <Compile Include="Requesters.cs" />
+    <Compile Include="Http\RateLimiter.cs" />
+    <Compile Include="Http\RequesterBase.cs" />
+    <Compile Include="Http\Requesters.cs" />
     <Compile Include="RiotSharpException.cs" />
     <Compile Include="StaticDataEndpoint\Champion\Cache\ChampionStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Item\Cache\ItemListStaticWrapper.cs" />
@@ -195,7 +198,7 @@
     <Compile Include="StaticDataEndpoint\Champion\SkinStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionSpellStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionStatsStatic.cs" />
-    <Compile Include="Requester.cs" />
+    <Compile Include="Http\Requester.cs" />
     <Compile Include="StaticDataEndpoint\BasicDataStatic.cs" />
     <Compile Include="StaticDataEndpoint\Item\GoldStatic.cs" />
     <Compile Include="StaticDataEndpoint\Item\GroupStatic.cs" />
@@ -241,7 +244,7 @@
     <Compile Include="SummonerEndpoint\SummonerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Misc\Region.cs" />
-    <Compile Include="RateLimitedRequester.cs" />
+    <Compile Include="Http\RateLimitedRequester.cs" />
     <Compile Include="RiotApi.cs" />
     <Compile Include="SummonerEndpoint\SummonerBaseList.cs" />
     <Compile Include="TeamEndpoint\MatchHistorySummary.cs" />

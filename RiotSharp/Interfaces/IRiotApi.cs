@@ -13,44 +13,45 @@ using System;
 using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 
-namespace RiotSharp
+namespace RiotSharp.Interfaces
 {
     /// <summary>
     /// Entry point for the API.
     /// </summary>
     public interface IRiotApi
     {
+        #region Summoner-V3
         /// <summary>
-        /// Get a summoner by id synchronously.
+        /// Get a summoner by summoner id synchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        Summoner GetSummoner(Region region, long summonerId);
+        Summoner GetSummonerBySummonerId(Region region, long summonerId);
 
         /// <summary>
-        /// Get a summoner by id asynchronously.
+        /// Get a summoner by summoner id asynchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerId">Id of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        Task<Summoner> GetSummonerAsync(Region region, long summonerId);
+        Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId);
 
         /// <summary>
-        /// Get summoners by ids synchronously, you can submit more than 40 summoner ids.
+        /// Get a summoner by account id asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerIds">List of ids of the summoners you're looking for, not limited to 40.</param>
-        /// <returns>A list of summoners.</returns>
-        List<Summoner> GetSummoners(Region region, List<long> summonerIds);
+        /// <param name="region">Region in which you wish to look for a summoner.</param>
+        /// <param name="accountId">Account id of the summoner you're looking for.</param>
+        /// <returns>A summoner.</returns>
+        Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId);
 
         /// <summary>
-        /// Get summoners by ids asynchronously, you can submit more than 40 summoner ids.
+        /// Get a summoner by account id synchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerIds">List of ids of the summoners you're looking for, not limited to 40.</param>
-        /// <returns>A list of summoners.</returns>
-        Task<List<Summoner>> GetSummonersAsync(Region region, List<long> summonerIds);
+        /// <param name="region">Region in which you wish to look for a summoner.</param>
+        /// <param name="accountId">Account id of the summoner you're looking for.</param>
+        /// <returns>A summoner.</returns>
+        Summoner GetSummonerByAccountId(Region region, long accountId);
 
         /// <summary>
         /// Get a summoner by name synchronously.
@@ -58,7 +59,7 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerName">Name of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        Summoner GetSummoner(Region region, string summonerName);
+        Summoner GetSummonerByName(Region region, string summonerName);
 
         /// <summary>
         /// Get a summoner by name asynchronously.
@@ -66,55 +67,8 @@ namespace RiotSharp
         /// <param name="region">Region in which you wish to look for a summoner.</param>
         /// <param name="summonerName">Name of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
-        Task<Summoner> GetSummonerAsync(Region region, string summonerName);
-
-        /// <summary>
-        /// Get summoners by names synchronously, you can submit more than 40 summoner names.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerNames">List of names of the summoners you're looking for, not limited to 40.</param>
-        /// <returns>A list of summoners.</returns>
-        List<Summoner> GetSummoners(Region region, List<string> summonerNames);
-
-        /// <summary>
-        /// Get summoners by names asynchronously, you can submit more than 40 summoner names.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerNames">List of names of the summoners you're looking for, not limited to 40.</param>
-        /// <returns>A list of summoners.</returns>
-        Task<List<Summoner>> GetSummonersAsync(Region region, List<string> summonerNames);
-
-        /// <summary>
-        /// Get a summoner's name and id synchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerId">Id of the summoner you're looking for.</param>
-        /// <returns>A summoner (id and name).</returns>
-        SummonerBase GetSummonerName(Region region, long summonerId);
-
-        /// <summary>
-        /// Get a summoner's name and id asynchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerId">Id of the summoner you're looking for.</param>
-        /// <returns>A summoner (id and name).</returns>
-        Task<SummonerBase> GetSummonerNameAsync(Region region, long summonerId);
-
-        /// <summary>
-        /// Get a list of summoner's names and ids synchronously, you can submit more than 40 summoner ids.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerIds">List of ids of the summoners you're looking for, not limited to 40.</param>
-        /// <returns>A list of ids and names of summoners.</returns>
-        List<SummonerBase> GetSummonerNames(Region region, List<long> summonerIds);
-
-        /// <summary>
-        /// Get a list of summoner's names and ids asynchronously, you can submit more than 40 summoner ids.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for summoners.</param>
-        /// <param name="summonerIds">List of ids of the summoners you're looking for, not limited to 40.</param>
-        /// <returns>A list of ids and names of summoners.</returns>
-        Task<List<SummonerBase>> GetSummonerNamesAsync(Region region, List<long> summonerIds);
+        Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName);
+        #endregion
 
         /// <summary>
         /// Get the list of champions by region synchronously.

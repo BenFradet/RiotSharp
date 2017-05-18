@@ -1,25 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
-using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
-using System;
-using System.Configuration;
 using System.Linq;
-using RiotSharp.MatchListEndpoint;
-using RiotSharp.Misc;
 
 namespace RiotSharpTest
 {
     [TestClass]
     public class SummonerTest
     {
-        private static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
-        private static int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
-        private static int championId = int.Parse(ConfigurationManager.AppSettings["ChampionId"]);
-        private static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
-        private static RiotApi api = RiotApi.GetInstance(apiKey);
-        private static Summoner summoner = api.GetSummoner(region, id);
-        private static string queue = Queue.RankedSolo5x5;
+
+        private static RiotApi api = RiotApi.GetInstance(SummonerTestBase.apiKey);
+        private static Summoner summoner = api.GetSummonerBySummonerId(SummonerTestBase.summoner1and2Region, SummonerTestBase.summoner1Id);
 
         [TestMethod]
         [TestCategory("Summoner")]
@@ -125,7 +116,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetStatsSummaries_Test()
         {
-            var stats = summoner.GetStatsSummaries(Season.Season3);
+            var stats = summoner.GetStatsSummaries(SummonerTestBase.summoner1Season);
 
             Assert.IsNotNull(stats);
             Assert.IsTrue(stats.Count() > 0);
@@ -135,7 +126,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsSummariesAsync_Test()
         {
-            var stats = summoner.GetStatsSummariesAsync(Season.Season3);
+            var stats = summoner.GetStatsSummariesAsync(SummonerTestBase.summoner1Season);
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);
@@ -165,7 +156,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner")]
         public void GetStatsRanked_Test()
         {
-            var stats = summoner.GetStatsRanked(Season.Season2015);
+            var stats = summoner.GetStatsRanked(SummonerTestBase.summoner1Season);
 
             Assert.IsNotNull(stats);
             Assert.IsTrue(stats.Count() > 0);
@@ -175,7 +166,7 @@ namespace RiotSharpTest
         [TestCategory("Summoner"), TestCategory("Async")]
         public void GetStatsRankedAsync_Test()
         {
-            var stats = summoner.GetStatsRankedAsync(Season.Season2015);
+            var stats = summoner.GetStatsRankedAsync(SummonerTestBase.summoner1Season);
 
             Assert.IsNotNull(stats.Result);
             Assert.IsTrue(stats.Result.Count() > 0);

@@ -1,8 +1,12 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.StatusEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
+using System;
 
 namespace RiotSharp
 {
@@ -16,7 +20,7 @@ namespace RiotSharp
 
         private const string RootDomain = "api.riotgames.com";
 
-        private Requester requester;
+        private IRequester requester;
 
         private static StatusRiotApi instance;
 
@@ -29,12 +33,8 @@ namespace RiotSharp
         /// <returns>The instance of StatusRiotApi.</returns>
         public static StatusRiotApi GetInstance(string apiKey)
         {
-            if (instance == null ||
-                Requesters.StatusApiRequester == null ||
-                apiKey != Requesters.StatusApiRequester.ApiKey)
-            {
+            if (instance == null)
                 instance = new StatusRiotApi(apiKey);
-            }
             return instance;
         }
 
@@ -44,11 +44,19 @@ namespace RiotSharp
             requester = Requesters.StatusApiRequester;
         }
 
-        public ShardStatus GetShardStatus(Platform platform)
+        public StatusRiotApi(IRequester requester)
         {
-            var json = requester.CreateGetRequest(StatusRootUrl,
-                string.Format(RegionSubdomain, platform.ToString()) + RootDomain, null, true);
+            if (requester == null)
+                throw new ArgumentNullException(nameof(requester));
+            this.requester = requester;
+        }
 
+        #region Public Methods      
+
+        public ShardStatus GetShardStatus(Region region)
+        {
+            var json = requester.CreateGetRequest(StatusRootUrl + string.Format(RegionUrl, region.ToString()),
+                RootDomain, null, false);
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
@@ -59,5 +67,7 @@ namespace RiotSharp
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
+
+        #endregion
     }
 }
