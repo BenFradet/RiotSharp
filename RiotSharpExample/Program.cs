@@ -21,6 +21,7 @@ namespace RiotSharpExample
             string name2 = ConfigurationManager.AppSettings["Summoner2Name"];
             int gameId = int.Parse(ConfigurationManager.AppSettings["GameId"]);
             Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["Region"]);
+            Platform platform = (Platform)Enum.Parse(typeof(Platform), ConfigurationManager.AppSettings["Platform"]);
 
             var mastery = staticApi.GetMastery(Region.euw, 6111, MasteryData.all);
 
@@ -34,9 +35,7 @@ namespace RiotSharpExample
 
             Console.WriteLine(match1.MapType);
 
-            var shards = statusApi.GetShards();
-
-            var shardStatus = statusApi.GetShardStatus(region);
+            var shardStatus = statusApi.GetShardStatus(platform);
 
             var statSummaries = api.GetStatsSummaries(region, id);
 

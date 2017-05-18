@@ -3,7 +3,6 @@ using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using RiotSharp.StatusEndpoint;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 using System;
@@ -53,10 +52,11 @@ namespace RiotSharp
 
         #region Public Methods      
 
-        public ShardStatus GetShardStatus(Region region)
+        public ShardStatus GetShardStatus(Platform platform)
         {
-            var json = requester.CreateGetRequest(StatusRootUrl + string.Format(RegionUrl, region.ToString()),
-                RootDomain, null, false);
+            var json = requester.CreateGetRequest(StatusRootUrl,
+                string.Format(RegionSubdomain, platform.ToString()) + RootDomain, null, true);
+
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
