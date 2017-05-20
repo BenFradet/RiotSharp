@@ -55,7 +55,7 @@ namespace RiotSharp
         public ShardStatus GetShardStatus(Platform platform)
         {
             var json = requester.CreateGetRequest(StatusRootUrl,
-                string.Format(RegionSubdomain, platform.ToString()) + RootDomain, null, true);
+                string.Format(PlatformSubdomain, platform.ToString()) + RootDomain, null, true);
 
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
@@ -63,7 +63,7 @@ namespace RiotSharp
         public async Task<ShardStatus> GetShardStatusAsync(Platform platform)
         {
             var json = await requester.CreateGetRequestAsync(StatusRootUrl,
-                string.Format(RegionSubdomain, platform.ToString()) + RootDomain, null, true);
+                string.Format(PlatformSubdomain, platform.ToString()) + RootDomain, null, true);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }
