@@ -15,6 +15,8 @@ skip_tags: true
 # Operating system (build VM template)
 os: Windows Server 2012
 
+image: Visual Studio 2015
+
 # clone directory
 clone_folder: c:\projects\RiotSharp
 
