@@ -15,7 +15,7 @@ namespace RiotSharp
         
         private const string StatusRootUrl = "/lol/status/v3/shard-data";
 
-        private const string RegionSubdomain = "{0}.";
+        private const string PlatformSubdomain = "{0}.";
 
         private const string RootDomain = "api.riotgames.com";
 
