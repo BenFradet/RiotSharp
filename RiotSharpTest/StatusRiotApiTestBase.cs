@@ -6,6 +6,7 @@ namespace RiotSharpTest
 {
     public class StatusRiotApiTestBase : CommonTestBase
     {
-        public static Region region = (Region)Enum.Parse(typeof(Region), ConfigurationManager.AppSettings["StatusRegion"]);
+        public static Platform platform = (Platform)Enum.Parse(typeof(Platform), 
+            ConfigurationManager.AppSettings["StatusPlatform"]);
     }
 }
