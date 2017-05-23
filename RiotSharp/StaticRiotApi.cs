@@ -42,7 +42,7 @@ namespace RiotSharp
         private const string ItemsCacheKey = "items";
         private const string ItemByIdCacheKey = "item";
 
-        private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
+        private const string LanguageStringsUrl = "language-strings";
         private const string LanguageStringsCacheKey = "language-strings";
 
         private const string LanguagesRootUrl = "/api/lol/static-data/{0}/v1.2/languages";
@@ -336,6 +336,7 @@ namespace RiotSharp
         }
         #endregion
 
+        #region Language Strings       
         public LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "")
         {
@@ -345,7 +346,7 @@ namespace RiotSharp
                 return wrapper.LanguageStringsStatic;
             }
 
-            var json = requester.CreateGetRequest(string.Format(LanguageStringsRootUrl, region.ToString()), RootDomain,
+            var json = requester.CreateGetRequest(StaticDataRootUrl + LanguageStringsUrl, region,
                 new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
@@ -367,8 +368,8 @@ namespace RiotSharp
                 return wrapper.LanguageStringsStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync(string.Format(LanguageStringsRootUrl, region.ToString()),
-                RootDomain, new List<string> {
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + LanguageStringsUrl, region,
+                new List<string> {
                     string.Format("locale={0}", language.ToString()),
                     string.Format("version={0}", version)
                 });
@@ -380,7 +381,8 @@ namespace RiotSharp
 
             return languageStrings;
         }
-      
+        #endregion
+
         public List<Language> GetLanguages(Region region)
         {
             var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
