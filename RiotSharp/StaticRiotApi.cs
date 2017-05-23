@@ -29,11 +29,13 @@ namespace RiotSharp
 {
     public class StaticRiotApi : IStaticRiotApi
     {
-        #region Private Fields
-        
-        private const string ChampionRootUrl = "/api/lol/static-data/{0}/v1.2/champion";
+        #region Private Fields     
+        private const string StaticDataRootUrl = "/lol/static-data/v3/";
+
+        private const string ChampionsUrl = "champions";
+        private const string ChampionByIdUrl = "champions/{0}";
         private const string ChampionsCacheKey = "champions";
-        private const string ChampionCacheKey = "champion";
+        private const string ChampionByIdCacheKey = "champion";
 
         private const string ItemRootUrl = "/api/lol/static-data/{0}/v1.2/item";
         private const string ItemsCacheKey = "items";
@@ -76,7 +78,6 @@ namespace RiotSharp
         private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);
 
         private static StaticRiotApi instance;
-
         #endregion      
       
         /// <summary>
@@ -112,17 +113,14 @@ namespace RiotSharp
             this.cache = cache;
         }
 
-        #region Public Methods
-
+        #region Champions
         public ChampionListStatic GetChampions(Region region, ChampionData championData = ChampionData.basic,
             Language language = Language.en_US)
         {
             var wrapper = cache.Get<string, ChampionListStaticWrapper>(ChampionsCacheKey);
             if (wrapper == null || language != wrapper.Language || championData != wrapper.ChampionData)
             {
-                var json = requester.CreateGetRequest(
-                    string.Format(ChampionRootUrl, region.ToString()),
-                    RootDomain,
+                var json = requester.CreateGetRequest(StaticDataRootUrl + ChampionsUrl, region,
                     new List<string> {
                         string.Format("locale={0}", language.ToString()),
                         championData == ChampionData.basic ?
@@ -144,9 +142,7 @@ namespace RiotSharp
             {
                 return wrapper.ChampionListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(ChampionRootUrl, region.ToString()),
-                RootDomain,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ChampionsUrl, region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -164,7 +160,7 @@ namespace RiotSharp
         public ChampionStatic GetChampion(Region region, int championId,
             ChampionData championData = ChampionData.basic, Language language = Language.en_US)
         {
-            var wrapper = cache.Get<string, ChampionStaticWrapper>(ChampionCacheKey + championId);
+            var wrapper = cache.Get<string, ChampionStaticWrapper>(ChampionByIdCacheKey + championId);
             if (wrapper != null && wrapper.Language == language && wrapper.ChampionData == championData)
             {
                 return wrapper.ChampionStatic;
@@ -179,9 +175,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateGetRequest(
-                        string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                        RootDomain,
+                    var json = requester.CreateGetRequest(StaticDataRootUrl + string.Format(ChampionByIdUrl, championId), region,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -190,7 +184,7 @@ namespace RiotSharp
                             string.Format("champData={0}", championData.ToString())
                         });
                     var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
-                    cache.Add(ChampionCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
+                    cache.Add(ChampionByIdCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
                         DefaultSlidingExpiry);
                     return champ;
                 }
@@ -200,7 +194,7 @@ namespace RiotSharp
         public async Task<ChampionStatic> GetChampionAsync(Region region, int championId,
             ChampionData championData = ChampionData.basic, Language language = Language.en_US)
         {
-            var wrapper = cache.Get<string, ChampionStaticWrapper>(ChampionCacheKey + championId);
+            var wrapper = cache.Get<string, ChampionStaticWrapper>(ChampionByIdCacheKey + championId);
             if (wrapper != null && wrapper.Language == language && wrapper.ChampionData == championData)
             {
                 return wrapper.ChampionStatic;
@@ -211,9 +205,7 @@ namespace RiotSharp
             {
                 return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
             }
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                RootDomain,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + string.Format(ChampionByIdUrl, championId), region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -223,11 +215,13 @@ namespace RiotSharp
                 });
             var champ = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionStatic>(json));
-            cache.Add(ChampionCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
+            cache.Add(ChampionByIdCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
                 DefaultSlidingExpiry);
             return champ;
         }
-     
+        #endregion
+
+
         public ItemListStatic GetItems(Region region, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
@@ -900,7 +894,5 @@ namespace RiotSharp
 
             return version;
         }
-
-        #endregion
     }
 }
