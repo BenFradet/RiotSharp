@@ -30,7 +30,7 @@ namespace RiotSharp.Http
             bool useHttps = true, bool usePlatforms = false)
         {
             if (usePlatforms)
-                rootDomain = GetPlatform(region) + platformDomain;
+                rootDomain = GetPlatformDomain(region);
             else
                 rootDomain = region + ".api.pvp.net";
 
@@ -48,7 +48,7 @@ namespace RiotSharp.Http
             bool useHttps = true, bool usePlatforms = false)
         {
             if (usePlatforms)
-                rootDomain = GetPlatform(region) + platformDomain;
+                rootDomain = GetPlatformDomain(region);
             else
                 rootDomain = region + ".api.pvp.net";
 
@@ -134,39 +134,6 @@ namespace RiotSharp.Http
             if (!rateLimiters.ContainsKey(region))
                 rateLimiters[region] = new RateLimiter(RateLimitPer10S, RateLimitPer10M);
             return rateLimiters[region]; 
-        }
-
-        private string GetPlatform(Region region)
-        {
-            switch(region)
-            {
-                case Region.br:
-                    return "br1";
-                case Region.eune:
-                    return "eun1";
-                case Region.euw:
-                    return "euw1";
-                case Region.jp:
-                    return "jp1";
-                case Region.kr:
-                    return "kr";
-                case Region.lan:
-                    return "la1";
-                case Region.las:
-                    return "la2";
-                case Region.na:
-                    return "na1";
-                case Region.oce:
-                    return "oc1";
-                case Region.tr:
-                    return "tr1";
-                case Region.ru:
-                    return "ru";
-                case Region.global:
-                    return "global";
-                default:
-                    throw new NotImplementedException();
-            }
         }
     }
 }

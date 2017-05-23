@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RiotSharp.Misc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -186,6 +187,44 @@ namespace RiotSharp.Http
                 }
             }
             return await result;
+        }
+
+        protected string GetPlatformDomain(Region region)
+        {
+            return GetPlatform(region) + platformDomain;
+        }
+
+        private string GetPlatform(Region region)
+        {
+            switch (region)
+            {
+                case Region.br:
+                    return "br1";
+                case Region.eune:
+                    return "eun1";
+                case Region.euw:
+                    return "euw1";
+                case Region.jp:
+                    return "jp1";
+                case Region.kr:
+                    return "kr";
+                case Region.lan:
+                    return "la1";
+                case Region.las:
+                    return "la2";
+                case Region.na:
+                    return "na1";
+                case Region.oce:
+                    return "oc1";
+                case Region.tr:
+                    return "tr1";
+                case Region.ru:
+                    return "ru";
+                case Region.global:
+                    return "global";
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
         #endregion

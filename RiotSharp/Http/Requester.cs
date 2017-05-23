@@ -1,4 +1,5 @@
 ﻿using RiotSharp.Http.Interfaces;
+using RiotSharp.Misc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +20,20 @@ namespace RiotSharp.Http
 
         #region Public Methods
         
-        public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+        public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            this.rootDomain = rootDomain;
+            rootDomain = GetPlatformDomain(region);
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             var result = string.Empty;
             var response = GetAsync(request).Result;
             return GetResponseContent(response);
         }
 
-        public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
+        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            this.rootDomain = rootDomain;
+            rootDomain = GetPlatformDomain(region);
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             var response = GetAsync(request).Result;
             return await GetResponseContentAsync(response);
