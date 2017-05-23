@@ -18,8 +18,7 @@ namespace RiotSharp.Http
         {
         }
 
-        #region Public Methods
-        
+        #region Public Methods        
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
@@ -37,8 +36,26 @@ namespace RiotSharp.Http
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             var response = GetAsync(request).Result;
             return await GetResponseContentAsync(response);
-        }           
+        }
 
-        #endregion    
+        public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
+            bool useHttps = true)
+        {
+            this.rootDomain = rootDomain;
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
+            var result = string.Empty;
+            var response = GetAsync(request).Result;
+            return GetResponseContent(response);
+        }
+
+        public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
+            List<string> addedArguments = null, bool useHttps = true)
+        {
+            this.rootDomain = rootDomain;
+            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
+            var response = GetAsync(request).Result;
+            return await GetResponseContentAsync(response);
+        }
+        #endregion
     }
 }
