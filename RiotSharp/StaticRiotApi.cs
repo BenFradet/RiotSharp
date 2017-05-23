@@ -37,9 +37,10 @@ namespace RiotSharp
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
 
-        private const string ItemRootUrl = "/api/lol/static-data/{0}/v1.2/item";
+        private const string ItemsUrl = "items";
+        private const string ItemByIdUrl = "items/{0}";
         private const string ItemsCacheKey = "items";
-        private const string ItemCacheKey = "item";
+        private const string ItemByIdCacheKey = "item";
 
         private const string LanguageStringsRootUrl = "/api/lol/static-data/{0}/v1.2/language-strings";
         private const string LanguageStringsCacheKey = "language-strings";
@@ -221,16 +222,14 @@ namespace RiotSharp
         }
         #endregion
 
-
+        #region Items
         public ItemListStatic GetItems(Region region, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
             var wrapper = cache.Get<string, ItemListStaticWrapper>(ItemsCacheKey);
             if (wrapper == null || language != wrapper.Language || itemData != wrapper.ItemData)
             {
-                var json = requester.CreateGetRequest(
-                    string.Format(ItemRootUrl, region.ToString()),
-                    RootDomain,
+                var json = requester.CreateGetRequest(StaticDataRootUrl + ItemsUrl, region,
                     new List<string>
                     {
                         string.Format("locale={0}", language.ToString()),
@@ -253,9 +252,7 @@ namespace RiotSharp
             {
                 return wrapper.ItemListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(ItemRootUrl, region.ToString()),
-                RootDomain,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ItemsUrl, region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -273,7 +270,7 @@ namespace RiotSharp
         public ItemStatic GetItem(Region region, int itemId, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
-            var wrapper = cache.Get<string, ItemStaticWrapper>(ItemCacheKey + itemId);
+            var wrapper = cache.Get<string, ItemStaticWrapper>(ItemByIdCacheKey + itemId);
             if (wrapper != null && wrapper.Language == language && wrapper.ItemData == itemData)
             {
                 return wrapper.ItemStatic;
@@ -294,9 +291,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateGetRequest(
-                        string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
-                        RootDomain,
+                    var json = requester.CreateGetRequest(StaticDataRootUrl + string.Format(ItemByIdUrl, itemId), region,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -305,7 +300,7 @@ namespace RiotSharp
                             string.Format("itemData={0}", itemData.ToString())
                         });
                     var item = JsonConvert.DeserializeObject<ItemStatic>(json);
-                    cache.Add(ItemCacheKey + itemId, new ItemStaticWrapper(item, language, itemData),
+                    cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData),
                         DefaultSlidingExpiry);
                     return item;
                 }
@@ -315,7 +310,7 @@ namespace RiotSharp
         public async Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.basic,
             Language language = Language.en_US)
         {
-            var wrapper = cache.Get<string, ItemStaticWrapper>(ItemCacheKey + itemId);
+            var wrapper = cache.Get<string, ItemStaticWrapper>(ItemByIdCacheKey + itemId);
             if (wrapper != null && wrapper.Language == language && wrapper.ItemData == itemData)
             {
                 return wrapper.ItemStatic;
@@ -326,9 +321,7 @@ namespace RiotSharp
                 return listWrapper.ItemListStatic.Items.ContainsKey(itemId) ?
                     listWrapper.ItemListStatic.Items[itemId] : null;
             }
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(ItemRootUrl, region.ToString()) + string.Format(IdUrl, itemId),
-                RootDomain,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + string.Format(ItemByIdUrl, itemId), region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -338,10 +331,11 @@ namespace RiotSharp
                 });
             var item = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ItemStatic>(json));
-            cache.Add(ItemCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), DefaultSlidingExpiry);
+            cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), DefaultSlidingExpiry);
             return item;
         }
-   
+        #endregion
+
         public LanguageStringsStatic GetLanguageStrings(Region region, Language language = Language.en_US,
             string version = "")
         {
