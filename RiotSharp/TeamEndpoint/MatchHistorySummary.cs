@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.TeamEndpoint
 {
@@ -39,7 +40,7 @@ namespace RiotSharp.TeamEndpoint
         /// Game mode.
         /// </summary>
         [JsonProperty("gameMode")]
-        public GameMode GameMode { get; set; }
+        public string GameMode { get; set; }
 
         /// <summary>
         /// Boolean specifying if the match was invalid.

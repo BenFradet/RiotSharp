@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using RiotSharp.StaticDataEndpoint.Champion.Enums;
 using RiotSharp.StaticDataEndpoint.Champion.Enums.Converters;
-using System.Collections.Generic;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Champion
 {
     /// <summary>
     /// Class representing a champion (Static API).

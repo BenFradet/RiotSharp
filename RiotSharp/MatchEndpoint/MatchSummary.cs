@@ -2,6 +2,8 @@
 using RiotSharp.MatchEndpoint.Enums;
 using System;
 using System.Collections.Generic;
+using RiotSharp.Misc;
+using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -43,7 +45,7 @@ namespace RiotSharp.MatchEndpoint
         /// Match mode.
         /// </summary>
         [JsonProperty("matchMode")]
-        public GameMode MatchMode { get; set; }
+        public string MatchMode { get; set; }
 
         [JsonProperty("matchType")]
         public GameType MatchType { get; set; }

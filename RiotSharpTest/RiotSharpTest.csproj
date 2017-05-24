@@ -60,16 +60,27 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CacheTestBase.cs" />
+    <Compile Include="CommonTestBase.cs" />
+    <Compile Include="Misc\CultureInfoExtensionsTest.cs" />
     <Compile Include="RateLimiterTest.cs" />
+    <Compile Include="RateLimiterTestBase.cs" />
+    <Compile Include="RiotApiExceptionTestBase.cs" />
     <Compile Include="RiotApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiotApiTestBase.cs" />
     <Compile Include="StaticRiotApiExceptionTest.cs" />
+    <Compile Include="StaticRiotApiExceptionTestBase.cs" />
     <Compile Include="StaticRiotApiTest.cs" />
+    <Compile Include="StaticRiotApiTestBase.cs" />
+    <Compile Include="StatusRiotApiTestBase.cs" />
     <Compile Include="StatusRiotApiTest.cs" />
     <Compile Include="SummonerTest.cs" />
     <Compile Include="RiotApiExceptionTest.cs" />
     <Compile Include="CacheTest.cs" />
+    <Compile Include="SummonerTestBase.cs" />
     <Compile Include="TournamentRiotApiTest.cs" />
+    <Compile Include="TournamentRiotApiTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RiotSharp\RiotSharp.csproj">

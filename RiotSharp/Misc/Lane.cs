@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using RiotSharp.MatchEndpoint.Enums.Converters;
+using RiotSharp.Misc.Converters;
 
-namespace RiotSharp
+namespace RiotSharp.Misc
 {
     /// <summary>
     /// Participant's lane (Match API).

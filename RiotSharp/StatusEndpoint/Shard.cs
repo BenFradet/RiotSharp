@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using RiotSharp.Misc;
 
 namespace RiotSharp.StatusEndpoint
 {
@@ -38,6 +39,6 @@ namespace RiotSharp.StatusEndpoint
         /// Slug.
         /// </summary>
         [JsonProperty("slug")]
-        public Slug Slug { get; set; }
+        public string Slug { get; set; }
     }
 }

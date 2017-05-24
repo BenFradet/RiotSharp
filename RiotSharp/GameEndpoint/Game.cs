@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using RiotSharp.GameEndpoint.Enums;
+using RiotSharp.Misc;
+using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.GameEndpoint
 {
@@ -42,7 +44,7 @@ namespace RiotSharp.GameEndpoint
         /// Game mode.
         /// </summary>
         [JsonProperty("gameMode")]
-        public GameMode GameMode { get; set; }
+        public string GameMode { get; set; }
 
         /// <summary>
         /// Game type.

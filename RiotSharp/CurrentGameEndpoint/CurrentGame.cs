@@ -2,6 +2,8 @@
 using RiotSharp.CurrentGameEndpoint.Enums;
 using System;
 using System.Collections.Generic;
+using RiotSharp.Misc;
+using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.CurrentGameEndpoint
 {
@@ -34,7 +36,7 @@ namespace RiotSharp.CurrentGameEndpoint
         /// Game mode.
         /// </summary>
         [JsonProperty("gameMode")]
-        public GameMode GameMode { get; set; }
+        public string GameMode { get; set; }
 
         /// <summary>
         /// The queue type

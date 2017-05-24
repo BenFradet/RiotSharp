@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.StaticDataEndpoint
+namespace RiotSharp.StaticDataEndpoint.Champion
 {
     /// <summary>
     /// Recommended items in a block (starting, essential, offensive, etc) for a champion (Static API).

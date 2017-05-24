@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.StaticDataEndpoint
+﻿namespace RiotSharp.StaticDataEndpoint.SummonerSpell
 {
     /// <summary>
     /// Enum representing the different summon spells.

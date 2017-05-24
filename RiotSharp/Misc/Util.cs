@@ -1,8 +1,8 @@
-﻿using RiotSharp.MatchEndpoint.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RiotSharp.MatchEndpoint.Enums;
 
-namespace RiotSharp
+namespace RiotSharp.Misc
 {
     static class Util
     {
@@ -48,14 +48,14 @@ namespace RiotSharp
             return concatenatedNames + Uri.EscapeDataString(names[names.Count - 1]);
         }
 
-        public static string BuildQueuesString(List<Queue> queues)
+        public static string BuildQueuesString(List<string> queues)
         {
             string concatenatedQueues = string.Empty;
             for (int i = 0; i < queues.Count - 1; i++)
             {
-                concatenatedQueues += queues[i].ToCustomString() + ",";
+                concatenatedQueues += queues[i] + ",";
             }
-            return concatenatedQueues + queues[queues.Count - 1].ToCustomString();
+            return concatenatedQueues + queues[queues.Count - 1];
         }
         public static string BuildSeasonString(List<Season> seasons)
         {
