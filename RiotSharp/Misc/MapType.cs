@@ -4,7 +4,7 @@ using RiotSharp.Misc.Converters;
 namespace RiotSharp.Misc
 {
     /// <summary>
-    /// Mode of the game (Game API).
+    /// Map of the game. Populate the mapId field
     /// </summary>
     [JsonConverter(typeof(MapTypeConverter))]
     public enum MapType
@@ -48,5 +48,10 @@ namespace RiotSharp.Misc
         /// Howling Abyss ARAM Map
         /// </summary>
         HowlingAbyss = 12,
+
+        /// <summary>
+        /// Darkstar Map
+        /// </summary>
+        CosmicRuins = 16
     }
 }
