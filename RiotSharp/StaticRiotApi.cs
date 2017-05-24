@@ -51,9 +51,10 @@ namespace RiotSharp
         private const string MapsUrl = "maps";
         private const string MapsCacheKey = "maps";
 
-        private const string MasteryRootUrl = "/api/lol/static-data/{0}/v1.2/mastery";
+        private const string MasteriesUrl = "masteries";
+        private const string MasterbyIdUrl = "masteries/{0}";
         private const string MasteriesCacheKey = "masteries";
-        private const string MasteryCacheKey = "mastery";
+        private const string MasteryByIdCacheKey = "mastery";
 
         private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
         private const string RealmCacheKey = "realm";
@@ -462,15 +463,14 @@ namespace RiotSharp
         }
         #endregion
 
+        #region Masteries
         public MasteryListStatic GetMasteries(Region region, MasteryData masteryData = MasteryData.basic,
             Language language = Language.en_US)
         {
             var wrapper = cache.Get<string, MasteryListStaticWrapper>(MasteriesCacheKey);
             if (wrapper == null || language != wrapper.Language || masteryData != wrapper.MasteryData)
             {
-                var json = requester.CreateGetRequest(
-                    string.Format(MasteryRootUrl, region.ToString()),
-                    RootDomain,
+                var json = requester.CreateGetRequest(StaticDataRootUrl + MasteriesUrl, region,
                     new List<string>
                     {
                         string.Format("locale={0}", language.ToString()),
@@ -493,9 +493,7 @@ namespace RiotSharp
             {
                 return wrapper.MasteryListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(MasteryRootUrl, region.ToString()),
-                RootDomain,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + MasteriesUrl, region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -513,7 +511,7 @@ namespace RiotSharp
         public MasteryStatic GetMastery(Region region, int masteryId, MasteryData masteryData = MasteryData.basic,
             Language language = Language.en_US)
         {
-            var wrapper = cache.Get<string, MasteryStaticWrapper>(MasteryCacheKey + masteryId);
+            var wrapper = cache.Get<string, MasteryStaticWrapper>(MasteryByIdCacheKey + masteryId);
             if (wrapper != null && wrapper.Language == language && wrapper.MasteryData == masteryData)
             {
                 return wrapper.MasteryStatic;
@@ -534,9 +532,7 @@ namespace RiotSharp
                 }
                 else
                 {
-                    var json = requester.CreateGetRequest(
-                        string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId),
-                        RootDomain,
+                    var json = requester.CreateGetRequest(StaticDataRootUrl + string.Format(MasterbyIdUrl, masteryId), region,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -545,7 +541,7 @@ namespace RiotSharp
                             string.Format("masteryData={0}", masteryData.ToString())
                         });
                     var mastery = JsonConvert.DeserializeObject<MasteryStatic>(json);
-                    cache.Add(MasteryCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
+                    cache.Add(MasteryByIdCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
                         DefaultSlidingExpiry);
                     return mastery;
                 }
@@ -555,7 +551,7 @@ namespace RiotSharp
         public async Task<MasteryStatic> GetMasteryAsync(Region region, int masteryId,
             MasteryData masteryData = MasteryData.basic, Language language = Language.en_US)
         {
-            var wrapper = cache.Get<string, MasteryStaticWrapper>(MasteryCacheKey + masteryId);
+            var wrapper = cache.Get<string, MasteryStaticWrapper>(MasteryByIdCacheKey + masteryId);
             if (wrapper != null && wrapper.Language == language && wrapper.MasteryData == masteryData)
             {
                 return wrapper.MasteryStatic;
@@ -565,9 +561,7 @@ namespace RiotSharp
             {
                 return listWrapper.MasteryListStatic.Masteries.ContainsKey(masteryId) ? listWrapper.MasteryListStatic.Masteries[masteryId] : null;
             }
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(MasteryRootUrl, region.ToString()) + string.Format(IdUrl, masteryId.ToString()),
-                RootDomain,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + string.Format(MasterbyIdUrl, masteryId), region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -577,11 +571,12 @@ namespace RiotSharp
                 });
             var mastery = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MasteryStatic>(json));
-            cache.Add(MasteryCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
+            cache.Add(MasteryByIdCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
                 DefaultSlidingExpiry);
             return mastery;
         }
-    
+        #endregion
+
         public RealmStatic GetRealm(Region region)
         {
             var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
