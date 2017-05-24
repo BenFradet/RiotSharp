@@ -56,8 +56,8 @@ namespace RiotSharp
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryByIdCacheKey = "mastery";
 
-        private const string RealmRootUrl = "/api/lol/static-data/{0}/v1.2/realm";
-        private const string RealmCacheKey = "realm";
+        private const string RealmsRootUrl = "realms";
+        private const string RealmsCacheKey = "realms";
 
         private const string RuneRootUrl = "/api/lol/static-data/{0}/v1.2/rune";
         private const string RunesCacheKey = "runes";
@@ -577,38 +577,40 @@ namespace RiotSharp
         }
         #endregion
 
+        #region Realms
         public RealmStatic GetRealm(Region region)
         {
-            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
+            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmsCacheKey);
             if (wrapper != null)
             {
                 return wrapper.RealmStatic;
             }
 
-            var json = requester.CreateGetRequest(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            var json = requester.CreateGetRequest(StaticDataRootUrl + RealmsRootUrl, region);
             var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
 
-            cache.Add(RealmCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
 
             return realm;
         }
     
         public async Task<RealmStatic> GetRealmAsync(Region region)
         {
-            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmCacheKey);
+            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmsCacheKey);
             if (wrapper != null)
             {
                 return wrapper.RealmStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync(string.Format(RealmRootUrl, region.ToString()), RootDomain);
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + RealmsRootUrl, region);
             var realm = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RealmStatic>(json));
 
-            cache.Add(RealmCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
 
             return realm;
         }
-    
+        #endregion
+
         public RuneListStatic GetRunes(Region region, RuneData runeData = RuneData.basic
             , Language language = Language.en_US)
         {
