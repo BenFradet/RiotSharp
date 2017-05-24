@@ -10,6 +10,7 @@ using RiotSharp.StaticDataEndpoint.Mastery;
 using RiotSharp.StaticDataEndpoint.Realm;
 using RiotSharp.StaticDataEndpoint.Rune;
 using RiotSharp.StaticDataEndpoint.SummonerSpell;
+using RiotSharp.StaticDataEndpoint.ProfileIcons;
 
 namespace RiotSharp.Interfaces
 {
@@ -199,6 +200,22 @@ namespace RiotSharp.Interfaces
             MasteryData masteryData = MasteryData.basic, Language language = Language.en_US);
 
         /// <summary>
+        /// Get a list of profile icons synchronously
+        /// </summary>
+        /// <param name="region"></param>
+        /// <param name="language"></param>
+        /// <returns></returns>
+        ProfileIconListStatic GetProfileIcons(Region region, Language language = Language.en_US);
+
+        /// <summary>
+        /// Get a list of profile icons asynchronously
+        /// </summary>
+        /// <param name="region"></param>
+        /// <param name="language"></param>
+        /// <returns></returns>
+        Task<ProfileIconListStatic> GetProfileIconsAsync(Region region, Language language = Language.en_US);
+
+        /// <summary>
         /// Retrieve realm data synchronously.
         /// </summary>
         /// <param name="region">Region corresponding to data to retrieve.</param>
@@ -282,7 +299,7 @@ namespace RiotSharp.Interfaces
         /// <param name="summonerSpellData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A summoner spell.</returns>
-        SummonerSpellStatic GetSummonerSpell(Region region, SummonerSpell summonerSpell,
+        SummonerSpellStatic GetSummonerSpell(Region region, int summonerSpellId,
             SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US);
 
         /// <summary>
@@ -293,7 +310,7 @@ namespace RiotSharp.Interfaces
         /// <param name="summonerSpellData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A summoner spell.</returns>
-        Task<SummonerSpellStatic> GetSummonerSpellAsync(Region region, SummonerSpell summonerSpell,
+        Task<SummonerSpellStatic> GetSummonerSpellAsync(Region region, int summonerSpellId,
             SummonerSpellData summonerSpellData = SummonerSpellData.basic, Language language = Language.en_US);
 
         /// <summary>

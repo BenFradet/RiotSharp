@@ -13,6 +13,7 @@ namespace RiotSharpTest
     {
         private static StaticRiotApi api = StaticRiotApi.GetInstance(StaticRiotApiTestBase.apiKey);
 
+        #region Champions Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetChampion_Test()
@@ -60,7 +61,9 @@ namespace RiotSharpTest
             string json = JsonConvert.SerializeObject(champ);
             champ = JsonConvert.DeserializeObject<List<ChampionStatic>>(json);
         }
+        #endregion
 
+        #region Items Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetItems_Test()
@@ -98,7 +101,9 @@ namespace RiotSharpTest
 
             Assert.AreEqual(item.Result.Name, StaticRiotApiTestBase.staticItemName);
         }
+        #endregion
 
+        #region Language Strings Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetLanguageStrings_Test()
@@ -116,7 +121,9 @@ namespace RiotSharpTest
 
             Assert.IsTrue(strings.Result.Data.Count > 0);
         }
+        #endregion
 
+        #region Languages Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetLanguages_Test()
@@ -134,7 +141,9 @@ namespace RiotSharpTest
 
             Assert.IsTrue(langs.Result.Count > 0);
         }
+        #endregion
 
+        #region Maps Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetMaps_Test()
@@ -152,6 +161,7 @@ namespace RiotSharpTest
 
             Assert.IsTrue(maps.Result.Count > 0);
         }
+        #endregion
 
         [TestMethod]
         [TestCategory("StaticRiotApi")]
@@ -190,6 +200,28 @@ namespace RiotSharpTest
 
             Assert.AreEqual(mastery.Result.Name, StaticRiotApiTestBase.staticMasteryName);
         }
+
+        #region Profile Icons Tests
+        [TestMethod]
+        [TestCategory("StaticRiotApi")]
+        public void GetProfileIcons_Test()
+        {
+            var profileIcons = api.GetChampions(StaticRiotApiTestBase.region, ChampionData.all);
+
+            Assert.IsNotNull(profileIcons.Champions);
+            Assert.IsTrue(profileIcons.Champions.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetProfileIconsAsync_Test()
+        {
+            var profileIcons = api.GetChampionsAsync(StaticRiotApiTestBase.region, ChampionData.all);
+
+            Assert.IsNotNull(profileIcons.Result.Champions);
+            Assert.IsTrue(profileIcons.Result.Champions.Count > 0);
+        }
+        #endregion
 
         [TestMethod]
         [TestCategory("StaticRiotApi")]
@@ -254,7 +286,7 @@ namespace RiotSharpTest
         public void GetSummonerSpell_Test()
         {
             var spell = api.GetSummonerSpell(StaticRiotApiTestBase.region, 
-                StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
+                (int) StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
             Assert.AreEqual(spell.Name, StaticRiotApiTestBase.staticSummonerSpellName);
         }
@@ -264,7 +296,7 @@ namespace RiotSharpTest
         public void GetSummonerSpellAsync_Test()
         {
             var spell = api.GetSummonerSpellAsync(StaticRiotApiTestBase.region, 
-                StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
+                (int) StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
             Assert.AreEqual(spell.Result.Name, StaticRiotApiTestBase.staticSummonerSpellName);
         }
