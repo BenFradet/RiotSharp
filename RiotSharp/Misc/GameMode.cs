@@ -59,5 +59,10 @@
         /// Assassinate game mode.
         /// </summary>
         public const string Assassinate = "ASSASSINATE";
+
+        /// <summary>
+        /// Darkstar game mode.
+        /// </summary>
+        public const string Darkstar = "DARKSTAR";
     }
 }
