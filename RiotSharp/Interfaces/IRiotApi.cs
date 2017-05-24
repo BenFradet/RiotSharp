@@ -4,7 +4,6 @@ using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
-using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
 using RiotSharp.ChampionMasteryEndpoint;
 using System.Collections.Generic;
@@ -261,78 +260,6 @@ namespace RiotSharp.Interfaces
         Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null,
             List<string> rankedQueues = null, List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,
             DateTime? endTime = null, int? beginIndex = null, int? endIndex = null);
-
-        /// <summary>
-        /// Get player stats by summoner ID synchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId);
-
-        /// <summary>
-        /// Get player stats by summoner ID asynchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId);
-
-        /// <summary>
-        /// Get player stats by summoner ID synchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
-        /// <param name="season">If specified, stats for the given season are returned.
-        /// Otherwise, stats for the current season are returned.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, Season season);
-
-        /// <summary>
-        /// Get player stats by summoner ID asynchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve player stats.</param>
-        /// <param name="season">If specified, stats for the given season are returned.
-        /// Otherwise, stats for the current season are returned.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId, Season season);
-
-        /// <summary>
-        /// Get ranked stats by summoner ID synchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
-        /// <returns>A list of champion stats.</returns>
-        List<ChampionStats> GetStatsRanked(Region region, long summonerId);
-
-        /// <summary>
-        /// Get ranked stats by summoner ID asynchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
-        /// <returns>A list of champion stats.</returns>
-        Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId);
-
-        /// <summary>
-        /// Get ranked stats by summoner ID synchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
-        /// <param name="season">If specified, stats for the given season are returned.
-        /// Otherwise, stats for the current season are returned.</param>
-        /// <returns>A list of champion stats.</returns>
-        List<ChampionStats> GetStatsRanked(Region region, long summonerId, Season season);
-
-        /// <summary>
-        /// Get ranked stats by summoner ID asynchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve ranked stats.</param>
-        /// <param name="season">If specified, stats for the given season are returned.
-        /// Otherwise, stats for the current season are returned.</param>
-        /// <returns>A list of champion stats.</returns>
-        Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId, Season season);
 
         /// <summary>
         /// Get the 10 most recent games by summoner ID synchronously.

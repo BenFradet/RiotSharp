@@ -216,16 +216,8 @@
     <Compile Include="StaticDataEndpoint\SummonerSpell\SummonerSpellStatic.cs" />
     <Compile Include="StaticDataEndpoint\SpellVarStatic.cs" />
     <Compile Include="StaticRiotApi.cs" />
-    <Compile Include="StatsEndpoint\AggregatedStat.cs" />
-    <Compile Include="StatsEndpoint\ChampionStat.cs" />
-    <Compile Include="StatsEndpoint\ChampionStats.cs" />
     <Compile Include="LeagueEndpoint\Enums\Converters\CharArrayConverter.cs" />
-    <Compile Include="StatsEndpoint\PlayerStatsSummary.cs" />
-    <Compile Include="StatsEndpoint\PlayerStatsSummaryList.cs" />
-    <Compile Include="StatsEndpoint\Enums\PlayerStatsSummaryType.cs" />
-    <Compile Include="StatsEndpoint\Enums\Converters\PlayerStatsSummaryTypeConverter.cs" />
     <Compile Include="GameEndpoint\Player.cs" />
-    <Compile Include="StatsEndpoint\RankedStats.cs" />
     <Compile Include="StatusEndpoint\Incident.cs" />
     <Compile Include="StatusEndpoint\Message.cs" />
     <Compile Include="StatusEndpoint\Service.cs" />
@@ -236,7 +228,6 @@
     <Compile Include="SummonerEndpoint\Mastery.cs" />
     <Compile Include="SummonerEndpoint\MasteryPage.cs" />
     <Compile Include="SummonerEndpoint\MasteryPages.cs" />
-    <Compile Include="StatsEndpoint\Season.cs" />
     <Compile Include="SummonerEndpoint\RunePage.cs" />
     <Compile Include="SummonerEndpoint\RunePages.cs" />
     <Compile Include="SummonerEndpoint\RuneSlot.cs" />
@@ -269,7 +260,6 @@
     <Folder Include="GameEndpoint\Deprecated\" />
     <Folder Include="LeagueEndpoint\Deprecated\" />
     <Folder Include="MatchEndpoint\Deprecated\" />
-    <Folder Include="StatsEndpoint\Deprecated\" />
     <Folder Include="SummonerEndpoint\Deprecated\" />
     <Folder Include="TeamEndpoint\Deprecated\" />
   </ItemGroup>
