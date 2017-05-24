@@ -3,7 +3,6 @@ using RiotSharp.GameEndpoint;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.LeagueEndpoint;
-using RiotSharp.StatsEndpoint;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,10 +25,6 @@ namespace RiotSharp.SummonerEndpoint
         private const string LeagueRootUrl = "/api/lol/{0}/v2.5/league";
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueBySummonerEntryUrl = "/entry";
-
-        private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
-        private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
-        private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
         private const string IdUrl = "/{0}";
 
@@ -193,120 +188,6 @@ namespace RiotSharp.SummonerEndpoint
                 Region);
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json)))[Id];
-        }
-
-        /// <summary>
-        /// Get player stats summaries for this summoner synchronously, for the current season.
-        /// One summary is returned per queue type.
-        /// </summary>
-        /// <returns>A list of player stats summaries.</returns>
-        public List<PlayerStatsSummary> GetStatsSummaries()
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
-        }
-
-        /// <summary>
-        /// Get player stats summaries for this summoner synchronously. One summary is returned per queue type.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        public List<PlayerStatsSummary> GetStatsSummaries(Season season)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
-                Region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
-        }
-
-        /// <summary>
-        /// Get player stats summaries for this summoner asynchronously, for the current season.
-        /// One summary is returned per queue type.
-        /// </summary>
-        /// <returns>A list of player stats summaries.</returns>
-        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json))).PlayerStatSummaries;
-        }
-
-        /// <summary>
-        /// Get player stats summaries for this summoner asynchronously. One summary is returned per queue type.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of player stats summaries.</returns>
-        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Season season)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsSummaryUrl, Id),
-                Region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json))).PlayerStatSummaries;
-        }
-
-        /// <summary>
-        /// Get ranked stats for this summoner synchronously, for the current season.
-        /// Includes statistics for Twisted Treeline and Summoner's Rift.
-        /// </summary>
-        /// <returns>A list of champions stats.</returns>
-        public List<ChampionStats> GetStatsRanked()
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
-        }
-
-        /// <summary>
-        /// Get ranked stats for this summoner synchronously.
-        /// Includes statistics for Twisted Treeline and Summoner's Rift.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of champions stats.</returns>
-        public List<ChampionStats> GetStatsRanked(Season season)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
-                Region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
-        }
-
-        /// <summary>
-        /// Get ranked stats for this summoner asynchronously, for the current season.
-        /// Includes statistics for Twisted Treeline and Summoner's Rift.
-        /// </summary>
-        /// <returns>A list of champions stats.</returns>
-        public async Task<List<ChampionStats>> GetStatsRankedAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
-        }
-
-        /// <summary>
-        /// Get ranked stats for this summoner asynchronously.
-        /// Includes statistics for Twisted Treeline and Summoner's Rift.
-        /// </summary>
-        /// <param name="season">Season for which you want the stats.</param>
-        /// <returns>A list of champions stats.</returns>
-        public async Task<List<ChampionStats>> GetStatsRankedAsync(Season season)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, Region) + string.Format(StatsRankedUrl, Id),
-                Region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
         }
     }
 }

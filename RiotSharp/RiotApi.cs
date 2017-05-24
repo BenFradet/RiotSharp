@@ -9,7 +9,6 @@ using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
-using RiotSharp.StatsEndpoint;
 using RiotSharp.SummonerEndpoint;
 using System;
 using System.Collections.Generic;
@@ -45,10 +44,6 @@ namespace RiotSharp
 
         private const string LeagueBySummonerUrl = "/by-summoner/{0}";
         private const string LeagueEntryUrl = "/entry";
-        
-        private const string StatsRootUrl = "/api/lol/{0}/v1.3/stats";
-        private const string StatsSummaryUrl = "/by-summoner/{0}/summary";
-        private const string StatsRankedUrl = "/by-summoner/{0}/ranked";
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchListRootUrl = "/api/lol/{0}/v2.2/matchlist/by-summoner";
@@ -483,81 +478,7 @@ namespace RiotSharp
                 addedArguments);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
         }
-    
-        public List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
-                region);
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
-        }
-     
-        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
-                region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json))).PlayerStatSummaries;
-        }
-     
-        public List<PlayerStatsSummary> GetStatsSummaries(Region region, long summonerId, Season season)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
-                region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json).PlayerStatSummaries;
-        }
-     
-        public async Task<List<PlayerStatsSummary>> GetStatsSummariesAsync(Region region, long summonerId,
-            Season season)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, region) + string.Format(StatsSummaryUrl, summonerId),
-                region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<PlayerStatsSummaryList>(json))).PlayerStatSummaries;
-        }
-    
-        public List<ChampionStats> GetStatsRanked(Region region, long summonerId)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
-                region);
-            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
-        }
-      
-        public async Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
-                region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
-        }
-       
-        public List<ChampionStats> GetStatsRanked(Region region, long summonerId, Season season)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
-                region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return JsonConvert.DeserializeObject<RankedStats>(json).ChampionStats;
-        }
-      
-        public async Task<List<ChampionStats>> GetStatsRankedAsync(Region region, long summonerId,
-            Season season)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(StatsRootUrl, region) + string.Format(StatsRankedUrl, summonerId),
-                region,
-                new List<string> { string.Format("season={0}", season.ToString().ToUpper()) });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RankedStats>(json))).ChampionStats;
-        }
-     
+
         public List<Game> GetRecentGames(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
