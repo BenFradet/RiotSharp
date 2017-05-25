@@ -54,7 +54,7 @@ namespace RiotSharp
         private const string MapsCacheKey = "maps";
 
         private const string MasteriesUrl = "masteries";
-        private const string MasterByIdUrl = "masteries/{0}";
+        private const string MasteryByIdUrl = "masteries/{0}";
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryByIdCacheKey = "mastery";
 
@@ -544,7 +544,7 @@ namespace RiotSharp
                 else
                 {
                     var json = requester.CreateGetRequest(
-                        StaticDataRootUrl + string.Format(MasterByIdUrl, masteryId), region,
+                        StaticDataRootUrl + string.Format(MasteryByIdUrl, masteryId), region,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -575,7 +575,7 @@ namespace RiotSharp
                     ? listWrapper.MasteryListStatic.Masteries[masteryId] : null;
             }
             var json = await requester.CreateGetRequestAsync(
-                StaticDataRootUrl + string.Format(MasterByIdUrl, masteryId), region,
+                StaticDataRootUrl + string.Format(MasteryByIdUrl, masteryId), region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
