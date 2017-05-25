@@ -24,7 +24,6 @@ namespace RiotSharp.Http
         {
             rootDomain = GetPlatformDomain(region);
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var result = string.Empty;
             var response = GetAsync(request).Result;
             return GetResponseContent(response);
         }
