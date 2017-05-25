@@ -206,20 +206,20 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetProfileIcons_Test()
         {
-            var profileIcons = api.GetChampions(StaticRiotApiTestBase.region, ChampionData.all);
+            var profileIcons = api.GetProfileIcons(StaticRiotApiTestBase.region);
 
-            Assert.IsNotNull(profileIcons.Champions);
-            Assert.IsTrue(profileIcons.Champions.Count > 0);
+            Assert.IsNotNull(profileIcons.ProfileIcons);
+            Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
         }
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetProfileIconsAsync_Test()
         {
-            var profileIcons = api.GetChampionsAsync(StaticRiotApiTestBase.region, ChampionData.all);
+            var profileIcons = api.GetProfileIconsAsync(StaticRiotApiTestBase.region).Result;
 
-            Assert.IsNotNull(profileIcons.Result.Champions);
-            Assert.IsTrue(profileIcons.Result.Champions.Count > 0);
+            Assert.IsNotNull(profileIcons.ProfileIcons);
+            Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
         }
         #endregion
 
