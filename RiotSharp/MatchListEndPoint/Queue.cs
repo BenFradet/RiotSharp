@@ -4,17 +4,17 @@
     {
 
         /// <summary>
-        /// Solo queue 5 vs 5.
+        /// Solo queue 5 vs 5
         /// </summary>
         public const string RankedSolo5x5 = "RANKED_SOLO_5x5";
 
         /// <summary>
-        /// Team 3 vs 3.
+        /// Team 3 vs 3
         /// </summary>
         public const string RankedTeam3x3 = "RANKED_TEAM_3x3";
 
         /// <summary>
-        /// Team 5 vs 5.
+        /// Team 5 vs 5
         /// </summary>
         public const string RankedTeam5x5 = "RANKED_TEAM_5x5";
 
@@ -29,12 +29,12 @@
         public const string TeamBuilderDraftUnranked5x5 = "TEAM_BUILDER_DRAFT_UNRANKED_5x5";
 
         /// <summary>
-        /// New Summoner's Rift ranked games.
+        /// New Summoner's Rift ranked games
         /// </summary>
         public const string RankedFlexSR = "RANKED_FLEX_SR";
 
         /// <summary>
-        /// New Twisted Treeline ranked games.
+        /// New Twisted Treeline ranked games
         /// </summary>
         public const string RankedFlexTT = "RANKED_FLEX_TT";
 
@@ -52,5 +52,10 @@
         /// Ranked Premade 5v5 games
         /// </summary>
         public const string RankedPremade5x5 = "RANKED_PREMADE_5x5";
+
+        /// <summary>
+        /// Darkstar games
+        /// </summary>
+        public const string Darkstar = "DARKSTAR_3x3";
     }
 }
