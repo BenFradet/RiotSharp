@@ -54,7 +54,7 @@ namespace RiotSharp
         private const string MapsCacheKey = "maps";
 
         private const string MasteriesUrl = "masteries";
-        private const string MasterbyIdUrl = "masteries/{0}";
+        private const string MasterByIdUrl = "masteries/{0}";
         private const string MasteriesCacheKey = "masteries";
         private const string MasteryByIdCacheKey = "mastery";
 
@@ -74,8 +74,8 @@ namespace RiotSharp
         private const string SummonerSpellByIdUrl = "summoner-spells/{0}";
         private const string SummonerSpellByIdCacheKey = "summoner-spell";
 
-        private const string VersionUrl = "versions";
-        private const string VersionCacheKey = "versions";
+        private const string VersionsUrl = "versions";
+        private const string VersionsCacheKey = "versions";
 
         private const string IdUrl = "/{0}";
 
@@ -544,7 +544,7 @@ namespace RiotSharp
                 else
                 {
                     var json = requester.CreateGetRequest(
-                        StaticDataRootUrl + string.Format(MasterbyIdUrl, masteryId), region,
+                        StaticDataRootUrl + string.Format(MasterByIdUrl, masteryId), region,
                         new List<string>
                         {
                             string.Format("locale={0}", language.ToString()),
@@ -575,7 +575,7 @@ namespace RiotSharp
                     ? listWrapper.MasteryListStatic.Masteries[masteryId] : null;
             }
             var json = await requester.CreateGetRequestAsync(
-                StaticDataRootUrl + string.Format(MasterbyIdUrl, masteryId), region,
+                StaticDataRootUrl + string.Format(MasterByIdUrl, masteryId), region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
@@ -901,33 +901,33 @@ namespace RiotSharp
         #region Versions
         public List<string> GetVersions(Region region)
         {
-            var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
+            var wrapper = cache.Get<string, List<string>>(VersionsCacheKey);
             if (wrapper != null)
             {
                 return wrapper;
             }
 
-            var json = requester.CreateGetRequest(StaticDataRootUrl + VersionUrl, region);
+            var json = requester.CreateGetRequest(StaticDataRootUrl + VersionsUrl, region);
             var version = JsonConvert.DeserializeObject<List<string>>(json);
 
-            cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
+            cache.Add(VersionsCacheKey, version, DefaultSlidingExpiry);
 
             return version;
         }
       
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
-            var wrapper = cache.Get<string, List<string>>(VersionCacheKey);
+            var wrapper = cache.Get<string, List<string>>(VersionsCacheKey);
             if (wrapper != null)
             {
                 return wrapper;
             }
 
             var json =
-                await requester.CreateGetRequestAsync(StaticDataRootUrl + VersionUrl, region);
+                await requester.CreateGetRequestAsync(StaticDataRootUrl + VersionsUrl, region);
             var version = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
 
-            cache.Add(VersionCacheKey, version, DefaultSlidingExpiry);
+            cache.Add(VersionsCacheKey, version, DefaultSlidingExpiry);
 
             return version;
         }
