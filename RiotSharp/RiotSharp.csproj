@@ -176,6 +176,9 @@
     <Compile Include="StaticDataEndpoint\Mastery\Cache\MasteryStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\MasteryTreeItemStatic.cs" />
     <Compile Include="StaticDataEndpoint\Mastery\MasteryTreeListStatic.cs" />
+    <Compile Include="StaticDataEndpoint\ProfileIcons\Cache\ProfileIconsStaticWrapper.cs" />
+    <Compile Include="StaticDataEndpoint\ProfileIcons\ProfileIconListStatic.cs" />
+    <Compile Include="StaticDataEndpoint\ProfileIcons\ProfileIconStatic.cs" />
     <Compile Include="StaticDataEndpoint\Realm\RealmStatic.cs" />
     <Compile Include="StaticDataEndpoint\Realm\Cache\RealmStaticWrapper.cs" />
     <Compile Include="StaticDataEndpoint\Rune\Cache\RuneListStaticWrapper.cs" />

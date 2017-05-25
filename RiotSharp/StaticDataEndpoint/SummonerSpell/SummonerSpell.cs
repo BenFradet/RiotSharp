@@ -70,34 +70,4 @@
         /// </summary>
         Teleport = 12
     }
-
-    static class SummonerSpellExtension
-    {
-        public static string ToCustomString(this SummonerSpell spell)
-        {
-            string transformedString;
-            switch (spell)
-            {
-                case (SummonerSpell.Cleanse):
-                    transformedString = "Boost";
-                    break;
-                case (SummonerSpell.Ignite):
-                    transformedString = "Dot";
-                    break;
-                case(SummonerSpell.Ghost):
-                    transformedString = "Haste";
-                    break;
-                case(SummonerSpell.Clarity):
-                    transformedString = "Mana";
-                    break;
-                case (SummonerSpell.Garrison):
-                    transformedString = "OdinGarrison";
-                    break;
-                default:
-                    transformedString = spell.ToString();
-                    break;
-            }
-            return "Summoner" + transformedString;
-        }
-    }
 }
