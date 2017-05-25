@@ -571,9 +571,11 @@ namespace RiotSharp
             var listWrapper = cache.Get<string, MasteryListStaticWrapper>(MasteriesCacheKey);
             if (listWrapper != null && listWrapper.Language == language && listWrapper.MasteryData == masteryData)
             {
-                return listWrapper.MasteryListStatic.Masteries.ContainsKey(masteryId) ? listWrapper.MasteryListStatic.Masteries[masteryId] : null;
+                return listWrapper.MasteryListStatic.Masteries.ContainsKey(masteryId)
+                    ? listWrapper.MasteryListStatic.Masteries[masteryId] : null;
             }
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + string.Format(MasterbyIdUrl, masteryId), region,
+            var json = await requester.CreateGetRequestAsync(
+                StaticDataRootUrl + string.Format(MasterbyIdUrl, masteryId), region,
                 new List<string>
                 {
                     string.Format("locale={0}", language.ToString()),
