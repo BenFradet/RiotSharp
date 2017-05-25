@@ -202,17 +202,17 @@ namespace RiotSharp.Interfaces
         /// <summary>
         /// Get a list of profile icons synchronously
         /// </summary>
-        /// <param name="region"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <param name="language">>Language of the data to be retrieved.</param>
+        /// <returns>A ProfileIconListStatic object containing all runes.</returns>
         ProfileIconListStatic GetProfileIcons(Region region, Language language = Language.en_US);
 
         /// <summary>
         /// Get a list of profile icons asynchronously
         /// </summary>
-        /// <param name="region"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
+        /// <param name="region">Region corresponding to data to retrieve.</param>
+        /// <param name="language">>Language of the data to be retrieved.</param>
+        /// <returns>A ProfileIconListStatic object containing all runes.</returns>
         Task<ProfileIconListStatic> GetProfileIconsAsync(Region region, Language language = Language.en_US);
 
         /// <summary>
