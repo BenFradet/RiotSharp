@@ -5,6 +5,8 @@
 
 C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
+Documentation can be found [here](http://benfradet.github.io/RiotSharp/api/index.html).
+
 ## Features
 
 - No need to worry about the 10 requests per 10s or the 500 requests per 10m rate limits, they are already implemented in the wrapper
@@ -72,7 +74,7 @@ foreach (var stat in varusRanked.Stats)
 }
 ```
 
-You can find a list of all the available operations in [IRiotApi](RiotSharp/IRiotApi.cs).
+You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
 
 ### Tournament API
 
@@ -119,7 +121,7 @@ tournament.CreateTournamentCode(teamSize, allowedSummonerIds,
 
 or, alternatively, if you do not wish to create a separate Tournament object, you can call the `CreateTournamentCode` method directly from the API as shown previously.
 
-You can find a list of all the available operations in [ITournamentRiotApi](RiotSharp/ITournamentRiotApi.cs).
+You can find a list of all the available operations in [TournamentRiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.TournamentRiotApi.html).
 
 ### Static API
 
@@ -141,7 +143,7 @@ foreach (var champion in champions)
 }
 ```
 
-You can find a list of all the available operations in [IStaticRiotApi](RiotSharp/IStaticRiotApi.cs).
+You can find a list of all the available operations in [StaticRiotApi in the Documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.StaticRiotApi.html).
 
 ### Status API
 
@@ -160,7 +162,7 @@ foreach (var service in shardStatuses.Services)
 }
 ```
 
-You can find a list of all the available operations in [IStatusRiotApi](RiotSharp/IStatusRiotApi.cs).
+You can find a list of all the available operations in [StatusRiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.StatusRiotApi.html).
 
 
 For a full description check the [RiotSharpExample](RiotSharpExample) or [RiotSharpTest](RiotSharpTest) projects.
