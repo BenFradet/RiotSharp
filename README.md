@@ -5,7 +5,7 @@
 
 C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
-Documentation can be found [here]([Documentation](http://benfradet.github.io/RiotSharp/api/index.html)).
+Documentation can be found [here](http://benfradet.github.io/RiotSharp/api/index.html).
 
 ## Features
 
