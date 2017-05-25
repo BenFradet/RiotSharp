@@ -74,7 +74,7 @@ foreach (var stat in varusRanked.Stats)
 }
 ```
 
-You can find a list of all the available operations in [TournamentApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
+You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
 
 ### Tournament API
 
