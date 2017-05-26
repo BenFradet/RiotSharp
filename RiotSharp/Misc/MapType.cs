@@ -47,5 +47,10 @@ namespace RiotSharp
         /// Howling Abyss ARAM Map
         /// </summary>
         HowlingAbyss = 12,
+
+        /// <summary>
+        /// Darkstar Map
+        /// </summary>
+        CosmicRuins = 16
     }
 }

@@ -56,7 +56,12 @@ namespace RiotSharp
         /// <summary>
         /// Ranked Premade 5v5 games
         /// </summary>
-        RankedPremade5x5
+        RankedPremade5x5,
+
+        /// <summary>
+        /// Darkstar games
+        /// </summary>
+        Darkstar
     }
     
     static class QueueExtension
@@ -81,6 +86,8 @@ namespace RiotSharp
                     return "RANKED_FLEX_TT";
                 case Queue.TeamBuilderRankedSolo:
                     return "TEAM_BUILDER_RANKED_SOLO";
+                case Queue.Darkstar:
+                    return "DARKSTAR_3x3";
                 default:
                     return string.Empty;
             }

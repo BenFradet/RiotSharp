@@ -42,6 +42,8 @@ namespace RiotSharp
                     return GameMode.Siege;
                 case "ASSASSINATE":
                     return GameMode.Assassinate;
+                case "DARKSTAR":
+                    return GameMode.Darkstar;
                 default:
                     return null;
             }
@@ -86,6 +88,9 @@ namespace RiotSharp
                 case GameMode.Assassinate:
                     result = "ASSASSINATE";
                     break;
+                case GameMode.Darkstar:
+                    result = "DARKSTAR";
+                    break
                 default:
                     result = string.Empty;
                     break;

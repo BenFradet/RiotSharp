@@ -62,6 +62,11 @@ namespace RiotSharp
         /// <summary>
         /// Assassinate game mode.
         /// </summary>
-        Assassinate
+        Assassinate,
+
+        /// <summary>
+        /// Darkstar game mode.
+        /// </summary>
+        Darkstar
     }
 }

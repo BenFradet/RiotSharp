@@ -217,6 +217,11 @@ namespace RiotSharp.CurrentGameEndpoint.Enums
         /// <summary>
         /// Ranked Flex Summoner's Rift games.
         /// </summary>
-        RankedFlexSR = 440
+        RankedFlexSR = 440,
+
+        /// <summary>
+        /// Darkstar games.
+        /// </summary>
+        Darkstar = 610
     }
 }
