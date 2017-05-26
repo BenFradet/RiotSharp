@@ -90,7 +90,7 @@ namespace RiotSharp
                     break;
                 case GameMode.Darkstar:
                     result = "DARKSTAR";
-                    break
+                    break;
                 default:
                     result = string.Empty;
                     break;
