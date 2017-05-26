@@ -62,7 +62,7 @@ namespace RiotSharp
         /// Darkstar games
         /// </summary>
         Darkstar
-}
+    }
     
     static class QueueExtension
     {
