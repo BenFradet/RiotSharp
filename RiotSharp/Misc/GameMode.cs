@@ -68,5 +68,5 @@ namespace RiotSharp
         /// Darkstar game mode.
         /// </summary>
         Darkstar
-}
+    }
 }
