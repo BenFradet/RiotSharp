@@ -388,7 +388,7 @@ namespace RiotSharp
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
                 includeTimeline
-                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline) }
+                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline.ToString().ToLower() ) }
                     : null);
             return JsonConvert.DeserializeObject<MatchDetail>(json);
         }

@@ -281,7 +281,6 @@ namespace RiotSharpTest
             Assert.IsNull(game.Timeline);
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatch_WithTimeline_Test()
