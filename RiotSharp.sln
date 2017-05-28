@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp", "RiotSharp\RiotSharp.csproj", "{3815E113-140C-4EE7-B0B9-7797C9352311}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E359C2
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.AspNetCore", "RiotSharp.AspNetCore\RiotSharp.AspNetCore.csproj", "{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
