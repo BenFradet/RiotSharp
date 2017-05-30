@@ -183,11 +183,12 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var masteries = api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var fetchCount = Math.Min(10, RiotApiTestBase.summonerIds.Count());
+                var masteries = api.GetMasteryPages(RiotApiTestBase.summonersRegion,
+                    RiotApiTestBase.summonerIds.Take(fetchCount).ToList());
 
                 Assert.IsNotNull(masteries);
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
-                    masteries.Count);
+                Assert.AreEqual(fetchCount, masteries.Count);
             });
         }
 
@@ -198,11 +199,12 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var masteries = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var fetchCount = Math.Min(10, RiotApiTestBase.summonerIds.Count());
+                var masteries = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion,
+                    RiotApiTestBase.summonerIds.Take(fetchCount).ToList());
 
                 Assert.IsNotNull(masteries.Result);
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
-                    masteries.Result.Count);
+                Assert.AreEqual(fetchCount, masteries.Result.Count);
             });
         }
 
