@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using RiotSharp.Misc;
+using RiotSharp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net;
 
 namespace RiotSharpTest
 {
@@ -18,6 +21,43 @@ namespace RiotSharpTest
 
         public static long summoner2Id = long.Parse(ConfigurationManager.AppSettings["Summoner2Id"]);
         public static long summoner2AccountId = long.Parse(ConfigurationManager.AppSettings["Summoner2AccountId"]);
-        public static string summoner2Name = ConfigurationManager.AppSettings["Summoner2Name"];               
+        public static string summoner2Name = ConfigurationManager.AppSettings["Summoner2Name"];
+
+        /// <summary>
+        /// Ignores the test if the server responds with 429 or 500
+        /// </summary>
+        /// <param name="action"></param>
+        protected void EnsureCredibility(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (RiotSharpException exception)
+            {
+                if (exception.HttpStatusCode == HttpStatusCode.InternalServerError)
+                    Assert.Inconclusive("Server responded with Error 500.");
+                else if (exception.HttpStatusCode == (HttpStatusCode)429)
+                    Assert.Inconclusive("Rate limit exceeded.");
+                else
+                    throw exception;
+            }
+            // Catches exception thrown by async methods
+            catch (AggregateException exception)
+            {
+                if(exception.InnerException.GetType() == typeof(RiotSharpException))
+                {
+                    var riotSharpException = (RiotSharpException)exception.InnerException;
+                    if (riotSharpException.HttpStatusCode == HttpStatusCode.InternalServerError)
+                        Assert.Inconclusive("Server responded with Error 500.");
+                    else if (riotSharpException.HttpStatusCode == (HttpStatusCode)429)
+                        Assert.Inconclusive("Rate limit exceeded.");
+                    else
+                        throw exception;
+                }
+                else
+                    throw exception;
+            }
+        }
     }
 }

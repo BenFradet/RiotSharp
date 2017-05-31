@@ -79,6 +79,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]

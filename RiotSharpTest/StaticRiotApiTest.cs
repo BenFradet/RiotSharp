@@ -9,7 +9,7 @@ using RiotSharp.StaticDataEndpoint.Champion;
 namespace RiotSharpTest
 {
     [TestClass]
-    public class StaticRiotApiTest
+    public class StaticRiotApiTest : CommonTestBase
     {
         private static StaticRiotApi api = StaticRiotApi.GetInstance(StaticRiotApiTestBase.apiKey);
 
@@ -128,18 +128,23 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetLanguages_Test()
         {
-            var langs = api.GetLanguages(StaticRiotApiTestBase.region);
+            EnsureCredibility(() => {
+                var langs = api.GetLanguages(StaticRiotApiTestBase.region);
 
-            Assert.IsTrue(langs.Count > 0);
+                Assert.IsTrue(langs.Count > 0);
+            });          
         }
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetLanguagesAsync_Test()
         {
-            var langs = api.GetLanguagesAsync(StaticRiotApiTestBase.region);
+            EnsureCredibility(() =>
+            {
+                var langs = api.GetLanguagesAsync(StaticRiotApiTestBase.region);
 
-            Assert.IsTrue(langs.Result.Count > 0);
+                Assert.IsTrue(langs.Result.Count > 0);
+            });
         }
         #endregion
 
@@ -305,20 +310,26 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetVersions_Test()
         {
-            var versions = api.GetVersions(StaticRiotApiTestBase.region);
+            EnsureCredibility(() =>
+            {
+                var versions = api.GetVersions(StaticRiotApiTestBase.region);
 
-            Assert.IsNotNull(versions);
-            Assert.IsTrue(versions.Count() > 0);
+                Assert.IsNotNull(versions);
+                Assert.IsTrue(versions.Count() > 0);
+            });
         }
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetVersionsAsync_Test()
         {
-            var versions = api.GetVersionsAsync(StaticRiotApiTestBase.region);
+            EnsureCredibility(() =>
+            {
+                var versions = api.GetVersionsAsync(StaticRiotApiTestBase.region);
 
-            Assert.IsNotNull(versions.Result);
-            Assert.IsTrue(versions.Result.Count() > 0);
+                Assert.IsNotNull(versions.Result);
+                Assert.IsTrue(versions.Result.Count() > 0);
+            });
         }
 
         [TestMethod]

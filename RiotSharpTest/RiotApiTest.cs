@@ -133,6 +133,7 @@ namespace RiotSharpTest
             Assert.AreEqual(champion.Result.Id, 12);
         }
 
+        [Ignore] //Depricated and being in #411
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMasteryPages_Test()
@@ -143,6 +144,7 @@ namespace RiotSharpTest
             Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), masteries.Count);
         }
 
+        [Ignore] //Depricated and being in #411
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMasteryPagesAsync_Test()
