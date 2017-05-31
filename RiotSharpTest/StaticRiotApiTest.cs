@@ -18,7 +18,8 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetChampion_Test()
         {
-            EnsureCredibility(() => {
+            EnsureCredibility(() => 
+            {
                 var champ = api.GetChampion(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
                 Assert.AreEqual(champ.Name, StaticRiotApiTestBase.staticChampionName);
@@ -160,7 +161,8 @@ namespace RiotSharpTest
         [TestCategory("StaticRiotApi")]
         public void GetLanguages_Test()
         {
-            EnsureCredibility(() => {
+            EnsureCredibility(() => 
+            {
                 var langs = api.GetLanguages(StaticRiotApiTestBase.region);
 
                 Assert.IsTrue(langs.Count > 0);
