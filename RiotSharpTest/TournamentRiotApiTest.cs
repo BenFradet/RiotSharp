@@ -7,7 +7,7 @@ using RiotSharp.TournamentEndpoint.Enums;
 namespace RiotSharpTest
 {
     [TestClass]
-    public class TournamentRiotApiTest
+    public class TournamentRiotApiTest : CommonTestBase
     {
         private static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(TournamentRiotApiTestBase.tournamentApiKey);
 
@@ -15,22 +15,25 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi")]
         public void CreateProvider_CreateTournament_CreateTournamentCode_UpdateTournamentCode_Test()
         {
-            var providerId = api.CreateProvider(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentUrl);
-            var tournamentId = api.CreateTournament(providerId, TournamentRiotApiTestBase.tournamentName);
-            Assert.AreNotEqual(0, tournamentId);
-            var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, 
-                TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType);
-            Assert.AreEqual(2, tournamentCodes.Count);
+            EnsureCredibility(() =>
+            {
+                var providerId = api.CreateProvider(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentUrl);
+                var tournamentId = api.CreateTournament(providerId, TournamentRiotApiTestBase.tournamentName);
+                Assert.AreNotEqual(0, tournamentId);
+                var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType,
+                    TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType);
+                Assert.AreEqual(2, tournamentCodes.Count);
 
-            var tournamentCode = tournamentCodes[0];
-            var tournamentCodeDetails = api.GetTournamentCodeDetails(tournamentCode);
-            var success = api.UpdateTournamentCode(tournamentCode, pickType: TournamentPickType.AllRandom,
-                mapType: TournamentMapType.HowlingAbyss);
+                var tournamentCode = tournamentCodes[0];
+                var tournamentCodeDetails = api.GetTournamentCodeDetails(tournamentCode);
+                var success = api.UpdateTournamentCode(tournamentCode, pickType: TournamentPickType.AllRandom,
+                    mapType: TournamentMapType.HowlingAbyss);
 
-            Assert.IsTrue(success);
-            var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetails(tournamentCode);
-            Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
-            Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
+                Assert.IsTrue(success);
+                var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetails(tournamentCode);
+                Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
+                Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
+            }); 
         }
 
         [Ignore] // Cannot use constant tournament code
@@ -38,8 +41,11 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi")]
         public void GetTournamentMatchId_Test()
         {
-            var id = api.GetTournamentMatchId(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentCode);
-            Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
+            EnsureCredibility(() =>
+            {
+                var id = api.GetTournamentMatchId(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentCode);
+                Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
+            });
         }
 
         [Ignore] // Cannot use constant tournament match id
@@ -47,10 +53,13 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi")]
         public void GetTournamentMatch_Test()
         {
-            var details = api.GetTournamentMatch(TournamentRiotApiTestBase.tournamentRegion, 
+            EnsureCredibility(() =>
+            {
+                var details = api.GetTournamentMatch(TournamentRiotApiTestBase.tournamentRegion,
                 TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false);
-            Assert.AreEqual(Season.PreSeason2016, details.Season);
-            Assert.AreEqual("5.24.0.256", details.MatchVersion);
+                Assert.AreEqual(Season.PreSeason2016, details.Season);
+                Assert.AreEqual("5.24.0.256", details.MatchVersion);
+            });
         }
 
         [Ignore] // Cannot use constant tournament id
@@ -58,23 +67,26 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
         {
-            var providerId = api.CreateProviderAsync(TournamentRiotApiTestBase.tournamentRegion, 
+            EnsureCredibility(() =>
+            {
+                var providerId = api.CreateProviderAsync(TournamentRiotApiTestBase.tournamentRegion,
                 TournamentRiotApiTestBase.tournamentUrl).Result;
-            var tournamentId = api.CreateTournamentAsync(providerId, TournamentRiotApiTestBase.tournamentName).Result;
-            Assert.AreNotEqual(0, tournamentId);
-            var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType, 
-                TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType).Result;
-            Assert.AreEqual(2, tournamentCodes.Count);
+                var tournamentId = api.CreateTournamentAsync(providerId, TournamentRiotApiTestBase.tournamentName).Result;
+                Assert.AreNotEqual(0, tournamentId);
+                var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType,
+                    TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType).Result;
+                Assert.AreEqual(2, tournamentCodes.Count);
 
-            var tournamentCode = tournamentCodes[0];
-            var tournamentCodeDetails = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
-            var success = api.UpdateTournamentCodeAsync(tournamentCode, pickType: TournamentPickType.AllRandom,
-                mapType: TournamentMapType.HowlingAbyss).Result;
+                var tournamentCode = tournamentCodes[0];
+                var tournamentCodeDetails = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
+                var success = api.UpdateTournamentCodeAsync(tournamentCode, pickType: TournamentPickType.AllRandom,
+                    mapType: TournamentMapType.HowlingAbyss).Result;
 
-            Assert.IsTrue(success);
-            var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
-            Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
-            Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
+                Assert.IsTrue(success);
+                var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
+                Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
+                Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
+            });
         }
 
         [Ignore] // Cannot use constant tournament code
@@ -82,9 +94,12 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void GetTournamentMatchIdAsync_Test()
         {
-            var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion, 
+            EnsureCredibility(() =>
+            {
+                var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion,
                 TournamentRiotApiTestBase.tournamentCode).Result;
-            Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
+                Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
+            });
         }
 
         [Ignore] // Cannot use constant tournament match id
@@ -92,10 +107,13 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void GetTournamentMatchAsync_Test()
         {
-            var details = api.GetTournamentMatchAsync(TournamentRiotApiTestBase.tournamentRegion, 
+            EnsureCredibility(() =>
+            {
+                var details = api.GetTournamentMatchAsync(TournamentRiotApiTestBase.tournamentRegion,
                 TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false).Result;
-            Assert.AreEqual(Season.PreSeason2016, details.Season);
-            Assert.AreEqual("5.24.0.256", details.MatchVersion);
+                Assert.AreEqual(Season.PreSeason2016, details.Season);
+                Assert.AreEqual("5.24.0.256", details.MatchVersion);
+            });
         }
 
         #region CreateTournamentCodes
@@ -104,114 +122,132 @@ namespace RiotSharpTest
         [TestCategory("TournamentRiotApi")]
         public void CreateTournamentCodes_InvalidTeamSize_ThrowsArgumentException()
         {
-            try
+            EnsureCredibility(() =>
             {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodes(0, 1, 0, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
-            }
-            catch (ArgumentException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(ArgumentException));
-                Assert.AreEqual("teamSize", e.ParamName);
-            }
+                try
+                {
+                    // Act 
+                    var tournamentCodes = api.CreateTournamentCodes(0, 1, 0, TournamentSpectatorType.All,
+                        TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
+                }
+                catch (ArgumentException e)
+                {
+                    // Assert
+                    Assert.IsInstanceOfType(e, typeof(ArgumentException));
+                    Assert.AreEqual("teamSize", e.ParamName);
+                }
+            });
         }
          
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateTournamentCodesAsync_InvalidTeamSize_ThrowsArgumentException()
         {
-            try
+            EnsureCredibility(() =>
             {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodesAsync(0, 1, 0, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
-            }
-            catch(AggregateException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(AggregateException));
-                Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
-                var argumentException = (ArgumentException)e.InnerException;
-                Assert.AreEqual("teamSize", argumentException.ParamName);
-            }
+                try
+                {
+                    // Act 
+                    var tournamentCodes = api.CreateTournamentCodesAsync(0, 1, 0, TournamentSpectatorType.All,
+                        TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
+                }
+                catch (AggregateException e)
+                {
+                    // Assert
+                    Assert.IsInstanceOfType(e, typeof(AggregateException));
+                    Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
+                    var argumentException = (ArgumentException)e.InnerException;
+                    Assert.AreEqual("teamSize", argumentException.ParamName);
+                }
+            });
         }
 
         [TestMethod]
         [TestCategory("TournamentRiotApi")]
         public void CreateTournamentCodes_CountGreaterThan1000_ThrowsArgumentException()
         {
-            try
+            EnsureCredibility(() =>
             {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodes(0, 1001, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
-            }
-            catch (ArgumentException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(ArgumentException));
-                Assert.AreEqual("count", e.ParamName);
-            }
+                try
+                {
+                    // Act 
+                    var tournamentCodes = api.CreateTournamentCodes(0, 1001, 5, TournamentSpectatorType.All,
+                        TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
+                }
+                catch (ArgumentException e)
+                {
+                    // Assert
+                    Assert.IsInstanceOfType(e, typeof(ArgumentException));
+                    Assert.AreEqual("count", e.ParamName);
+                }
+            });
         }
 
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateTournamentCodesAsync_CountGreaterThan1000_ThrowsArgumentException()
         {
-            try
+            EnsureCredibility(() =>
             {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodesAsync(0, 1001, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
-            }
-            catch (AggregateException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(AggregateException));
-                Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
-                var argumentException = (ArgumentException)e.InnerException;
-                Assert.AreEqual("count", argumentException.ParamName);
-            }
+                try
+                {
+                    // Act 
+                    var tournamentCodes = api.CreateTournamentCodesAsync(0, 1001, 5, TournamentSpectatorType.All,
+                        TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
+                }
+                catch (AggregateException e)
+                {
+                    // Assert
+                    Assert.IsInstanceOfType(e, typeof(AggregateException));
+                    Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
+                    var argumentException = (ArgumentException)e.InnerException;
+                    Assert.AreEqual("count", argumentException.ParamName);
+                }
+            });
         }
 
         [TestMethod]
         [TestCategory("TournamentRiotApi")]
         public void CreateTournamentCodes_CountLessThan1_ThrowsArgumentException()
         {
-            try
+            EnsureCredibility(() =>
             {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodes(0, 0, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
-            }
-            catch (ArgumentException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(ArgumentException));
-                Assert.AreEqual("count", e.ParamName);
-            }
+                try
+                {
+                    // Act 
+                    var tournamentCodes = api.CreateTournamentCodes(0, 0, 5, TournamentSpectatorType.All,
+                        TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift);
+                }
+                catch (ArgumentException e)
+                {
+                    // Assert
+                    Assert.IsInstanceOfType(e, typeof(ArgumentException));
+                    Assert.AreEqual("count", e.ParamName);
+                }
+            });
         }
 
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateTournamentCodesAsync_CountLessThan1_ThrowsArgumentException()
         {
-            try
+            EnsureCredibility(() =>
             {
-                // Act 
-                var tournamentCodes = api.CreateTournamentCodesAsync(0, 0, 5, TournamentSpectatorType.All, 
-                    TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
-            }
-            catch (AggregateException e)
-            {
-                // Assert
-                Assert.IsInstanceOfType(e, typeof(AggregateException));
-                Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
-                var argumentException = (ArgumentException)e.InnerException;
-                Assert.AreEqual("count", argumentException.ParamName);
-            }
+                try
+                {
+                    // Act 
+                    var tournamentCodes = api.CreateTournamentCodesAsync(0, 0, 5, TournamentSpectatorType.All,
+                        TournamentPickType.TournamentDraft, TournamentMapType.SummonersRift).Result;
+                }
+                catch (AggregateException e)
+                {
+                    // Assert
+                    Assert.IsInstanceOfType(e, typeof(AggregateException));
+                    Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentException));
+                    var argumentException = (ArgumentException)e.InnerException;
+                    Assert.AreEqual("count", argumentException.ParamName);
+                }
+            });
         }
 
         #endregion
