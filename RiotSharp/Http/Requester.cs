@@ -24,7 +24,7 @@ namespace RiotSharp.Http
         {
             rootDomain = GetPlatformDomain(region);
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var response = GetAsync(request).Result;
+            var response = Get(request);
             return GetResponseContent(response);
         }
 
@@ -43,7 +43,7 @@ namespace RiotSharp.Http
             this.rootDomain = rootDomain;
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             var result = string.Empty;
-            var response = GetAsync(request).Result;
+            var response = Get(request);
             return GetResponseContent(response);
         }
 
