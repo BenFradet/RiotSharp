@@ -179,7 +179,7 @@ namespace RiotSharpTest
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetMasteryPage_Summoner_HasMasteryPages()
+        public void GetMasteryPages_Summoner_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
@@ -193,7 +193,7 @@ namespace RiotSharpTest
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasteryPageAsync_Summoner_HasMasteryPages()
+        public void GetMasteryPagesAsync_Summoner_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
