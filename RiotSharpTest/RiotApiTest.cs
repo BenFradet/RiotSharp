@@ -179,32 +179,28 @@ namespace RiotSharpTest
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetMasteryPages_Test()
+        public void GetMasteryPage_Summoner_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
-                var fetchCount = Math.Min(10, RiotApiTestBase.summonerIds.Count());
-                var masteries = api.GetMasteryPages(RiotApiTestBase.summonersRegion,
-                    RiotApiTestBase.summonerIds.Take(fetchCount).ToList());
+                var pages = api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(masteries);
-                Assert.AreEqual(fetchCount, masteries.Count);
+                Assert.IsNotNull(pages);
+                Assert.AreEqual(20, pages.Count);
             });
         }
 
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasteryPagesAsync_Test()
+        public void GetMasteryPageAsync_Summoner_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
-                var fetchCount = Math.Min(10, RiotApiTestBase.summonerIds.Count());
-                var masteries = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion,
-                    RiotApiTestBase.summonerIds.Take(fetchCount).ToList());
+                var pages = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(masteries.Result);
-                Assert.AreEqual(fetchCount, masteries.Result.Count);
+                Assert.IsNotNull(pages);
+                Assert.AreEqual(20, pages.Result.Count);
             });
         }
 

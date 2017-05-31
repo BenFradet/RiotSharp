@@ -211,33 +211,21 @@ namespace RiotSharp
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
         }
  
-        public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<long> summonerIds)
+        public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
         {
-            var dict = new Dictionary<long, List<MasteryPage>>();
-            foreach (var summonerId in summonerIds)
-            {
-                var json = requester.CreateGetRequest(string.Format(MasteriesUrl, summonerId), region,
-                    usePlatforms: true);
-                var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
-                dict.Add(summonerId, masteries.Pages);
-            }
-            return dict;
+            var json = requester.CreateGetRequest(string.Format(MasteriesUrl, summonerId), region,
+                usePlatforms: true);
+
+            var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
+            return masteries.Pages;
         }
  
-        public async Task<Dictionary<long, List<MasteryPage>>> GetMasteryPagesAsync(Region region,
-            List<long> summonerIds)
+        public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
         {
-            var tasks = summonerIds.Select(
-                summonerId => requester.CreateGetRequestAsync(
-                    string.Format(MasteriesUrl, summonerId), region, usePlatforms: true
-                    ).ContinueWith(
-                        json => JsonConvert.DeserializeObject<MasteryPages>(json.Result)
-                    )
-                ).ToList();
+            var json = await requester.CreateGetRequestAsync(string.Format(MasteriesUrl, summonerId), region, 
+                usePlatforms: true);
 
-            await Task.WhenAll(tasks);
-            return tasks.Select(task => task.Result)
-                .ToDictionary(masteries => masteries.SummonerId, masteries => masteries.Pages);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MasteryPages>(json).Pages);
         }
   
         public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<long> summonerIds)
