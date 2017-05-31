@@ -31,6 +31,8 @@ namespace RiotSharp
 
         private const string NamesUrl = "/{0}/name";
         private const string MasteriesUrl = "/{0}/masteries";
+
+        private const string RunesRootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string RunesUrl = "/{0}/runes";
 
         private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
@@ -251,7 +253,7 @@ namespace RiotSharp
             foreach (var grp in MakeGroups(summonerIds, MaxNrRunePages))
             {
                 var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl,
+                    string.Format(RunesRootUrl,
                         region.ToString()) + string.Format(RunesUrl, Util.BuildIdsString(grp)),
                     region);
                 var subDict = ConstructRuneDict(JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json));
@@ -267,7 +269,7 @@ namespace RiotSharp
         {
             var tasks = MakeGroups(summonerIds, MaxNrRunePages).Select(
                 grp => requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl, region.ToString()) +
+                    string.Format(RunesRootUrl, region.ToString()) +
                     string.Format(RunesUrl, Util.BuildIdsString(grp)), region
                     ).ContinueWith(
                         json => ConstructRuneDict(
