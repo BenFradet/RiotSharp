@@ -35,12 +35,7 @@ namespace RiotSharpTest
             }
             catch (RiotSharpException exception)
             {
-                if (exception.HttpStatusCode == HttpStatusCode.InternalServerError)
-                    Assert.Inconclusive("Server responded with Error 500.");
-                else if (exception.HttpStatusCode == (HttpStatusCode)429)
-                    Assert.Inconclusive("Rate limit exceeded.");
-                else
-                    throw exception;
+                HandleRiotSharpException(exception);
             }
             // Catches exception thrown by async methods
             catch (AggregateException exception)
@@ -48,16 +43,21 @@ namespace RiotSharpTest
                 if(exception.InnerException.GetType() == typeof(RiotSharpException))
                 {
                     var riotSharpException = (RiotSharpException)exception.InnerException;
-                    if (riotSharpException.HttpStatusCode == HttpStatusCode.InternalServerError)
-                        Assert.Inconclusive("Server responded with Error 500.");
-                    else if (riotSharpException.HttpStatusCode == (HttpStatusCode)429)
-                        Assert.Inconclusive("Rate limit exceeded.");
-                    else
-                        throw exception;
+                    HandleRiotSharpException(riotSharpException);
                 }
                 else
                     throw exception;
             }
+        }
+
+        private void HandleRiotSharpException(RiotSharpException exception)
+        {
+            if(exception.HttpStatusCode == HttpStatusCode.InternalServerError)
+                Assert.Inconclusive("Server responded with Error 500.");
+            else if(exception.HttpStatusCode == (HttpStatusCode)429)
+                Assert.Inconclusive("Rate limit exceeded.");
+            else
+                throw exception;
         }
     }
 }
