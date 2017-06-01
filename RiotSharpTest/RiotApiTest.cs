@@ -635,7 +635,7 @@ namespace RiotSharpTest
                 int endIndex = 32;
 
                 var matches = api.GetMatchListAsync(RiotApiTestBase.summoner1and2Region,
-                    RiotApiTestBase.summoner1Id, null, null, null, beginIndex, endIndex).Result.Matches;
+                    RiotApiTestBase.summoner1Id, null, null, null, null, null, beginIndex, endIndex).Result.Matches;
 
                 Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() <= endIndex - beginIndex);
