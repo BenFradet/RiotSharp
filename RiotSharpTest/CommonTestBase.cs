@@ -63,9 +63,11 @@ namespace RiotSharpTest
         private void HandleRiotSharpException(RiotSharpException exception)
         {
             if (exception.HttpStatusCode == HttpStatusCode.InternalServerError)
-                Assert.Inconclusive("Server responded with Error 500.");
+                Assert.Inconclusive("Internal server error (500).");
             else if (exception.HttpStatusCode == (HttpStatusCode)429)
-                Assert.Inconclusive("Rate limit exceeded.");
+                Assert.Inconclusive("Rate limit exceeded (429).");
+            else if (exception.HttpStatusCode == HttpStatusCode.ServiceUnavailable)
+                Assert.Inconclusive("Service is unavailable (503).");
             else
                 throw exception;
         }
