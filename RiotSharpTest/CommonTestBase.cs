@@ -15,6 +15,7 @@ namespace RiotSharpTest
         public static Region summoner1and2Region = (Region)Enum.Parse(typeof(Region),
             ConfigurationManager.AppSettings["Summoner1and2Region"]);
 
+        public static long invalidSummonerId = -1;
         public static long summoner1Id = long.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
         public static long summoner1AccountId = long.Parse(ConfigurationManager.AppSettings["Summoner1AccountId"]);
         public static string summoner1Name = ConfigurationManager.AppSettings["Summoner1Name"];

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.MatchEndpoint.Enums;
 
@@ -192,6 +193,21 @@ namespace RiotSharpTest
 
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMasteryPages_InvalidSummonerId_ThrowsResouceNotFound()
+        {
+            try
+            {
+                api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                Assert.Fail();
+            }
+            catch (RiotSharpException e)
+            {
+                Assert.AreEqual(e.HttpStatusCode, HttpStatusCode.NotFound);
+            }
+        }
+
+        [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMasteryPagesAsync_ExistingSummonerId_HasMasteryPages()
         {
@@ -202,6 +218,21 @@ namespace RiotSharpTest
                 Assert.IsNotNull(pages.Result);
                 Assert.IsTrue(pages.Result.Count >= 1 && pages.Result.Count <= 20);
             });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public async Task GetMasteryPagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
+        {
+            try
+            {
+                await api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                Assert.Fail();
+            }
+            catch (RiotSharpException e)
+            {
+                Assert.AreEqual(e.HttpStatusCode, HttpStatusCode.NotFound);
+            }
         }
 
         [TestMethod]
