@@ -179,28 +179,28 @@ namespace RiotSharpTest
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetMasteryPages_Summoner_HasMasteryPages()
+        public void GetMasteryPages_ExistingSummonerId_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
                 var pages = api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
                 Assert.IsNotNull(pages);
-                Assert.AreEqual(20, pages.Count);
+                Assert.IsTrue(pages.Count >= 1 && pages.Count <= 20);
             });
         }
 
         [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasteryPagesAsync_Summoner_HasMasteryPages()
+        public void GetMasteryPagesAsync_ExistingSummonerId_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
                 var pages = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(pages);
-                Assert.AreEqual(20, pages.Result.Count);
+                Assert.IsNotNull(pages.Result);
+                Assert.IsTrue(pages.Result.Count >= 1 && pages.Result.Count <= 20);
             });
         }
 
