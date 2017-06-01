@@ -40,19 +40,24 @@ namespace RiotSharpTest
             // Catches exception thrown by async methods
             catch (AggregateException exception)
             {
-                if (exception.InnerException != null)
-                {
-                    if (exception.InnerException.GetType() == typeof(RiotSharpException))
-                    {
-                        var riotSharpException = (RiotSharpException)exception.InnerException;
-                        HandleRiotSharpException(riotSharpException);
-                    }
-                    else
-                        throw exception;
-                }
-                else
-                    throw exception;
+                HandleAggregateException(exception);
+                throw exception;
             }
+        }
+
+        private void HandleAggregateException(AggregateException exception)
+        {
+            if (exception.InnerException != null)
+            {
+                if (exception.InnerException.GetType() == typeof(RiotSharpException))
+                    HandleRiotSharpException((RiotSharpException)exception.InnerException);
+                else if (exception.InnerException.GetType() == typeof(AggregateException))
+                    HandleAggregateException((AggregateException)exception.InnerException);
+                else
+                    return; // Go back to root to throw root exception
+            }
+            else
+                throw exception;
         }
 
         private void HandleRiotSharpException(RiotSharpException exception)
