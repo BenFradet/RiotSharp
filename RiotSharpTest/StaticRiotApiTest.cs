@@ -5,13 +5,21 @@ using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Linq;
 using RiotSharp.StaticDataEndpoint.Champion;
+using RiotSharp.Http;
 
 namespace RiotSharpTest
 {
     [TestClass]
     public class StaticRiotApiTest : CommonTestBase
     {
-        private static StaticRiotApi api = StaticRiotApi.GetInstance(StaticRiotApiTestBase.apiKey);
+        private StaticRiotApi api; 
+        private static Requester requester = new Requester(StaticRiotApiTestBase.apiKey);
+
+        public StaticRiotApiTest()
+        {
+            var cache = new Cache();
+            api = new StaticRiotApi(requester, cache);
+        }
 
         #region Champions Tests
         [TestMethod]
