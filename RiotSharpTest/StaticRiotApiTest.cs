@@ -383,7 +383,7 @@ namespace RiotSharpTest
             EnsureCredibility(() =>
             {
                 var spell = api.GetSummonerSpell(StaticRiotApiTestBase.region,
-                (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
+                    (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
                 Assert.AreEqual(spell.Name, StaticRiotApiTestBase.staticSummonerSpellName);
             });
@@ -396,7 +396,7 @@ namespace RiotSharpTest
             EnsureCredibility(() =>
             {
                 var spell = api.GetSummonerSpellAsync(StaticRiotApiTestBase.region,
-                (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
+                    (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
                 Assert.AreEqual(spell.Result.Name, StaticRiotApiTestBase.staticSummonerSpellName);
             });
