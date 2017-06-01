@@ -28,7 +28,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() => 
             {
-                var champ = api.GetChampion(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticChampionId, ChampionData.all);
+                var champ = api.GetChampion(StaticRiotApiTestBase.region, 
+                    StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
                 Assert.AreEqual(champ.Name, StaticRiotApiTestBase.staticChampionName);
             });
@@ -40,7 +41,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var champ = api.GetChampionAsync(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticChampionId, ChampionData.all);
+                var champ = api.GetChampionAsync(StaticRiotApiTestBase.region, 
+                    StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
                 Assert.AreEqual(champ.Result.Name, StaticRiotApiTestBase.staticChampionName);
             });
@@ -131,7 +133,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var item = api.GetItemAsync(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticItemId, ItemData.all);
+                var item = api.GetItemAsync(StaticRiotApiTestBase.region, 
+                    StaticRiotApiTestBase.staticItemId, ItemData.all);
 
                 Assert.AreEqual(item.Result.Name, StaticRiotApiTestBase.staticItemName);
             });
@@ -248,7 +251,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var mastery = api.GetMastery(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
+                var mastery = api.GetMastery(StaticRiotApiTestBase.region, 
+                    StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
 
                 Assert.AreEqual(mastery.Name, StaticRiotApiTestBase.staticMasteryName);
             });
@@ -260,7 +264,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var mastery = api.GetMasteryAsync(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
+                var mastery = api.GetMasteryAsync(StaticRiotApiTestBase.region, 
+                    StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
 
                 Assert.AreEqual(mastery.Result.Name, StaticRiotApiTestBase.staticMasteryName);
             });
@@ -338,7 +343,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var rune = api.GetRuneAsync(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticRuneId, RuneData.all);
+                var rune = api.GetRuneAsync(StaticRiotApiTestBase.region, 
+                    StaticRiotApiTestBase.staticRuneId, RuneData.all);
 
                 Assert.AreEqual(rune.Result.Name, StaticRiotApiTestBase.staticRuneName);
             });
