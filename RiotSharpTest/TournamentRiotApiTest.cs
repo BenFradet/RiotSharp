@@ -17,10 +17,12 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var providerId = api.CreateProvider(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentUrl);
+                var providerId = api.CreateProvider(TournamentRiotApiTestBase.tournamentRegion, 
+                    TournamentRiotApiTestBase.tournamentUrl);
                 var tournamentId = api.CreateTournament(providerId, TournamentRiotApiTestBase.tournamentName);
                 Assert.AreNotEqual(0, tournamentId);
-                var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType,
+                var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, 
+                    TournamentRiotApiTestBase.tournamentSpectatorType,
                     TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType);
                 Assert.AreEqual(2, tournamentCodes.Count);
 
@@ -43,7 +45,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var id = api.GetTournamentMatchId(TournamentRiotApiTestBase.tournamentRegion, TournamentRiotApiTestBase.tournamentCode);
+                var id = api.GetTournamentMatchId(TournamentRiotApiTestBase.tournamentRegion, 
+                    TournamentRiotApiTestBase.tournamentCode);
                 Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
             });
         }
@@ -73,7 +76,8 @@ namespace RiotSharpTest
                 TournamentRiotApiTestBase.tournamentUrl).Result;
                 var tournamentId = api.CreateTournamentAsync(providerId, TournamentRiotApiTestBase.tournamentName).Result;
                 Assert.AreNotEqual(0, tournamentId);
-                var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, TournamentRiotApiTestBase.tournamentSpectatorType,
+                var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, 
+                    TournamentRiotApiTestBase.tournamentSpectatorType,
                     TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType).Result;
                 Assert.AreEqual(2, tournamentCodes.Count);
 
