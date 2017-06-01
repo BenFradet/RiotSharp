@@ -23,7 +23,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var summoner = api.GetSummonerBySummonerId(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
+                var summoner = api.GetSummonerBySummonerId(RiotApiTestBase.summoner1and2Region, 
+                    RiotApiTestBase.summoner1Id);
 
                 Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
             });
@@ -35,7 +36,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var summoner = api.GetSummonerBySummonerIdAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
+                var summoner = api.GetSummonerBySummonerIdAsync(RiotApiTestBase.summoner1and2Region, 
+                    RiotApiTestBase.summoner1Id);
 
                 Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
             });
@@ -47,7 +49,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var summoner = api.GetSummonerByAccountId(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1AccountId);
+                var summoner = api.GetSummonerByAccountId(RiotApiTestBase.summoner1and2Region, 
+                    RiotApiTestBase.summoner1AccountId);
 
                 Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
             });
@@ -59,7 +62,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var summoner = api.GetSummonerByAccountIdAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1AccountId);
+                var summoner = api.GetSummonerByAccountIdAsync(RiotApiTestBase.summoner1and2Region, 
+                    RiotApiTestBase.summoner1AccountId);
 
                 Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
             });
@@ -71,7 +75,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var summoner = api.GetSummonerByName(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Name);
+                var summoner = api.GetSummonerByName(RiotApiTestBase.summoner1and2Region, 
+                    RiotApiTestBase.summoner1Name);
 
                 Assert.AreEqual(summoner.Id, RiotApiTestBase.summoner1Id);
             });
@@ -83,7 +88,8 @@ namespace RiotSharpTest
         {
             EnsureCredibility(() =>
             {
-                var summoner = api.GetSummonerByNameAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Name);
+                var summoner = api.GetSummonerByNameAsync(RiotApiTestBase.summoner1and2Region, 
+                    RiotApiTestBase.summoner1Name);
 
                 Assert.AreEqual(summoner.Result.Id, RiotApiTestBase.summoner1Id);
             });
