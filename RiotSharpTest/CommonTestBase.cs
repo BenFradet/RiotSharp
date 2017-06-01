@@ -57,7 +57,7 @@ namespace RiotSharpTest
                     return; // Go back to root to throw root exception
             }
             else
-                throw exception;
+                return;
         }
 
         private void HandleRiotSharpException(RiotSharpException exception)
