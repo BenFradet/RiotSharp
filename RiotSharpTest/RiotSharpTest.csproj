@@ -76,7 +76,6 @@
     <Compile Include="StaticRiotApiTestBase.cs" />
     <Compile Include="StatusRiotApiTestBase.cs" />
     <Compile Include="StatusRiotApiTest.cs" />
-    <Compile Include="SummonerTest.cs" />
     <Compile Include="RiotApiExceptionTest.cs" />
     <Compile Include="CacheTest.cs" />
     <Compile Include="SummonerTestBase.cs" />

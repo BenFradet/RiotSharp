@@ -67,6 +67,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Sends 30 requests, expects each block of 10 requests to unblock after 10 second intervals.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter")]
         [Timeout(1000 * 10 * 3)]
@@ -79,6 +80,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]
