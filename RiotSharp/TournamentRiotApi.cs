@@ -44,6 +44,13 @@ namespace RiotSharp
             SetTournamentRootUrl(useStub);
         }
 
+        /// <summary>
+        /// Default constructor for dependency injection
+        /// </summary>
+        /// <param name="useStub">
+        /// If true, the tournament stub will be used for requests. 
+        /// Useful for testing purposes.
+        /// </param>
         public TournamentRiotApi(IRateLimitedRequester rateLimitedRequester, bool useStub = false)
         {
             if (rateLimitedRequester == null)
@@ -53,13 +60,18 @@ namespace RiotSharp
         }
 
         /// <summary>
-        ///     Get the instance of RiotApi.
+        /// Get the instance of RiotApi.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
         /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
+        /// <param name="useStub">
+        /// If true, the tournament stub will be used for requests. 
+        /// Useful for testing purposes.
+        /// </param>
         /// <returns>The instance of RiotApi.</returns>
-        public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
+        public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500,
+            bool useStub = false)
         {
             if (instance == null ||
                 Requesters.TournamentApiRequester == null ||
