@@ -46,14 +46,19 @@ namespace RiotSharpTest
             }
         }
 
-        private void HandleAggregateException(AggregateException exception)
+        protected void HandleAggregateException(AggregateException exception, Action<RiotSharpException> riotSharpExceptionHandler = null)
         {
             if (exception.InnerException != null)
             {
                 if (exception.InnerException.GetType() == typeof(RiotSharpException))
-                    HandleRiotSharpException((RiotSharpException)exception.InnerException);
+                {
+                    if (riotSharpExceptionHandler == null)
+                        HandleRiotSharpException((RiotSharpException)exception.InnerException);
+                    else
+                        riotSharpExceptionHandler((RiotSharpException)exception.InnerException);
+                }
                 else if (exception.InnerException.GetType() == typeof(AggregateException))
-                    HandleAggregateException((AggregateException)exception.InnerException);
+                    HandleAggregateException((AggregateException)exception.InnerException, riotSharpExceptionHandler);
                 else
                     return; // Go back to root to throw root exception
             }

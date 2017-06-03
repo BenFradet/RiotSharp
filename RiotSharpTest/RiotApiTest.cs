@@ -177,7 +177,6 @@ namespace RiotSharpTest
             });
         }
 
-        [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMasteryPages_ExistingSummonerId_HasMasteryPages()
@@ -191,7 +190,6 @@ namespace RiotSharpTest
             });
         }
 
-        [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMasteryPages_InvalidSummonerId_ThrowsResouceNotFound()
@@ -222,16 +220,20 @@ namespace RiotSharpTest
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public async Task GetMasteryPagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
+        public void GetMasteryPagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
         {
             try
             {
-                await api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                var task = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                task.Wait();
                 Assert.Fail();
             }
-            catch (RiotSharpException e)
+            catch (AggregateException exception)
             {
-                Assert.AreEqual(e.HttpStatusCode, HttpStatusCode.NotFound);
+                HandleAggregateException(exception, (riotException) =>
+                {
+                    Assert.AreEqual(riotException.HttpStatusCode, HttpStatusCode.NotFound);  
+                });
             }
         }
 
