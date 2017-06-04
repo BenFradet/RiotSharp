@@ -11,12 +11,6 @@ namespace RiotSharp.StaticDataEndpoint.Rune
         internal RuneListStatic() { }
 
         /// <summary>
-        /// Basic data (empty object so far).
-        /// </summary>
-        [JsonProperty("basic")]
-        public BasicDataStatic BasicData { get; set; }
-
-        /// <summary>
         /// Map of runes indexed by their id.
         /// </summary>
         [JsonProperty("data")]

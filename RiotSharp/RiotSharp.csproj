@@ -203,7 +203,6 @@
     <Compile Include="StaticDataEndpoint\Champion\ChampionSpellStatic.cs" />
     <Compile Include="StaticDataEndpoint\Champion\ChampionStatsStatic.cs" />
     <Compile Include="Http\Requester.cs" />
-    <Compile Include="StaticDataEndpoint\BasicDataStatic.cs" />
     <Compile Include="StaticDataEndpoint\Item\GoldStatic.cs" />
     <Compile Include="StaticDataEndpoint\Item\GroupStatic.cs" />
     <Compile Include="StaticDataEndpoint\Item\ItemListStatic.cs" />

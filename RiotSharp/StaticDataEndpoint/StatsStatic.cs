@@ -75,100 +75,100 @@ namespace RiotSharp.StaticDataEndpoint
 
         public double PercentSpellVampMod { get; set; }
 
-        [JsonProperty("rFlatArmorModPerLevel")]
-        public double RFlatArmorModPerLevel { get; set; }
+        [JsonProperty("FlatArmorModPerLevel")]
+        public double FlatArmorModPerLevel { get; set; }
 
-        [JsonProperty("rFlatArmorPenetrationMod")]
-        public double RFlatArmorPenetrationMod { get; set; }
+        [JsonProperty("FlatArmorPenetrationMod")]
+        public double FlatArmorPenetrationMod { get; set; }
 
-        [JsonProperty("rFlatArmorPenetrationModPerLevel")]
-        public double RFlatArmorPenetrationModPerLevel { get; set; }
+        [JsonProperty("FlatArmorPenetrationModPerLevel")]
+        public double FlatArmorPenetrationModPerLevel { get; set; }
 
-        [JsonProperty("rFlatCritChanceModPerLevel")]
-        public double RFlatCritChanceModPerLevel { get; set; }
+        [JsonProperty("FlatCritChanceModPerLevel")]
+        public double FlatCritChanceModPerLevel { get; set; }
 
-        [JsonProperty("rFlatCritDamageModPerLevel")]
-        public double RFlatCritDamageModPerLevel { get; set; }
+        [JsonProperty("FlatCritDamageModPerLevel")]
+        public double FlatCritDamageModPerLevel { get; set; }
 
-        [JsonProperty("rFlatDodgeMod")]
-        public double RFlatDodgeMod { get; set; }
+        [JsonProperty("FlatDodgeMod")]
+        public double FlatDodgeMod { get; set; }
 
-        [JsonProperty("rFlatDodgeModPerLevel")]
-        public double RFlatDodgeModPerLevel { get; set; }
+        [JsonProperty("FlatDodgeModPerLevel")]
+        public double FlatDodgeModPerLevel { get; set; }
 
-        [JsonProperty("rFlatEnergyRegenModPerLevel")]
-        public double RFlatEnergyRegenModPerLevel { get; set; }
+        [JsonProperty("FlatEnergyRegenModPerLevel")]
+        public double FlatEnergyRegenModPerLevel { get; set; }
 
-        [JsonProperty("rFlatEnergyModPerLevel")]
-        public double RFlatEnergyModPerLevel { get; set; }
+        [JsonProperty("FlatEnergyModPerLevel")]
+        public double FlatEnergyModPerLevel { get; set; }
 
-        [JsonProperty("rFlatGoldPer10Mod")]
-        public double RFlatGoldPer10Mod { get; set; }
+        [JsonProperty("FlatGoldPer10Mod")]
+        public double FlatGoldPer10Mod { get; set; }
 
-        [JsonProperty("rFlatHPModPerLevel")]
-        public double RFlatHPModPerLevel { get; set; }
+        [JsonProperty("FlatHPModPerLevel")]
+        public double FlatHPModPerLevel { get; set; }
 
-        [JsonProperty("rFlatHPRegenModPerLevel")]
-        public double RFlatHPRegenModPerLevel { get; set; }
+        [JsonProperty("FlatHPRegenModPerLevel")]
+        public double FlatHPRegenModPerLevel { get; set; }
 
-        [JsonProperty("rFlatMPModPerLevel")]
-        public double RFlatMPModPerLevel { get; set; }
+        [JsonProperty("FlatMPModPerLevel")]
+        public double FlatMPModPerLevel { get; set; }
 
-        [JsonProperty("rFlatMPRegenModPerLevel")]
-        public double RFlatMPRegenModPerLevel { get; set; }
+        [JsonProperty("FlatMPRegenModPerLevel")]
+        public double FlatMPRegenModPerLevel { get; set; }
 
-        [JsonProperty("rFlatMagicDamageModPerLevel")]
-        public double RFlatMagicDamageModPerLevel { get; set; }
+        [JsonProperty("FlatMagicDamageModPerLevel")]
+        public double FlatMagicDamageModPerLevel { get; set; }
 
-        [JsonProperty("rFlatMagicPenetrationMod")]
-        public double RFlatMagicPenetrationMod { get; set; }
+        [JsonProperty("FlatMagicPenetrationMod")]
+        public double FlatMagicPenetrationMod { get; set; }
 
-        [JsonProperty("rFlatMagicPenetrationModPerLevel")]
-        public double RFlatMagicPenetrationModPerLevel { get; set; }
+        [JsonProperty("FlatMagicPenetrationModPerLevel")]
+        public double FlatMagicPenetrationModPerLevel { get; set; }
 
-        [JsonProperty("rFlatMovementSpeedModPerLevel")]
-        public double RFlatMovementSpeedModPerLevel { get; set; }
+        [JsonProperty("FlatMovementSpeedModPerLevel")]
+        public double FlatMovementSpeedModPerLevel { get; set; }
 
-        [JsonProperty("rFlatPhysicalDamageModPerLevel")]
-        public double RFlatPhysicalDamageModPerLevel { get; set; }
+        [JsonProperty("FlatPhysicalDamageModPerLevel")]
+        public double FlatPhysicalDamageModPerLevel { get; set; }
 
-        [JsonProperty("rFlatSpellBlockModPerLevel")]
-        public double RFlatSpellBlockModPerLevel { get; set; }
+        [JsonProperty("FlatSpellBlockModPerLevel")]
+        public double FlatSpellBlockModPerLevel { get; set; }
 
-        [JsonProperty("rFlatTimeDeadMod")]
-        public double RFlatTimeDeadMod { get; set; }
+        [JsonProperty("FlatTimeDeadMod")]
+        public double FlatTimeDeadMod { get; set; }
 
-        [JsonProperty("rFlatTimeDeadModPerLevel")]
-        public double RFlatTimeDeadModPerLevel { get; set; }
+        [JsonProperty("FlatTimeDeadModPerLevel")]
+        public double FlatTimeDeadModPerLevel { get; set; }
 
-        [JsonProperty("rPercentArmorPenetrationMod")]
-        public double RPercentArmorPenetrationMod { get; set; }
+        [JsonProperty("PercentArmorPenetrationMod")]
+        public double PercentArmorPenetrationMod { get; set; }
 
-        [JsonProperty("rPercentArmorPenetrationModPerLevel")]
-        public double RPercentArmorPenetrationModPerLevel { get; set; }
+        [JsonProperty("PercentArmorPenetrationModPerLevel")]
+        public double PercentArmorPenetrationModPerLevel { get; set; }
 
-        [JsonProperty("rPercentAttackSpeedModPerLevel")]
-        public double RPercentAttackSpeedModPerLevel { get; set; }
+        [JsonProperty("PercentAttackSpeedModPerLevel")]
+        public double PercentAttackSpeedModPerLevel { get; set; }
 
-        [JsonProperty("rPercentCooldownMod")]
-        public double RPercentCooldownMod { get; set; }
+        [JsonProperty("PercentCooldownMod")]
+        public double PercentCooldownMod { get; set; }
 
-        [JsonProperty("rPercentCooldownModPerLevel")]
-        public double RPercentCooldownModPerLevel { get; set; }
+        [JsonProperty("PercentCooldownModPerLevel")]
+        public double PercentCooldownModPerLevel { get; set; }
 
-        [JsonProperty("rPercentMagicPenetrationMod")]
-        public double RPercentMagicPenetrationMod { get; set; }
+        [JsonProperty("PercentMagicPenetrationMod")]
+        public double PercentMagicPenetrationMod { get; set; }
 
-        [JsonProperty("rPercentMagicPenetrationModPerLevel")]
-        public double RPercentMagicPenetrationModPerLevel { get; set; }
+        [JsonProperty("PercentMagicPenetrationModPerLevel")]
+        public double PercentMagicPenetrationModPerLevel { get; set; }
 
-        [JsonProperty("rPercentMovementSpeedModPerLevel")]
-        public double RPercentMovementSpeedModPerLevel { get; set; }
+        [JsonProperty("PercentMovementSpeedModPerLevel")]
+        public double PercentMovementSpeedModPerLevel { get; set; }
 
-        [JsonProperty("rPercentTimeDeadMod")]
-        public double RPercentTimeDeadMod { get; set; }
+        [JsonProperty("PercentTimeDeadMod")]
+        public double PercentTimeDeadMod { get; set; }
 
-        [JsonProperty("rPercentTimeDeadModPerLevel")]
-        public double RPercentTimeDeadModPerLevel { get; set; }
+        [JsonProperty("PercentTimeDeadModPerLevel")]
+        public double PercentTimeDeadModPerLevel { get; set; }
     }
 }
