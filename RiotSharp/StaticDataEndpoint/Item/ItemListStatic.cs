@@ -9,13 +9,6 @@ namespace RiotSharp.StaticDataEndpoint.Item
     public class ItemListStatic
     {
         internal ItemListStatic() { }
-
-        /// <summary>
-        /// Basic data about the items retrieved.
-        /// </summary>
-        [JsonProperty("basic")]
-        public BasicDataStatic BasicData { get; set; }
-
         /// <summary>
         /// Map of items indexed by their id.
         /// </summary>
