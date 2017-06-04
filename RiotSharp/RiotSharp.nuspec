@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <licenseUrl>https://github.com/BenFradet/RiotSharp</licenseUrl>
     <projectUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</projectUrl>
-    <iconUrl>https://github.com/BenFradet/RiotSharp/blob/develop/logo.png?raw=true</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Migrated to V3.</releaseNotes>
