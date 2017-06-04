@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Migrated to V3.</releaseNotes>
+    <releaseNotes>$releaseNotes$</releaseNotes>
     <tags>riot-games riot-games-api league-of-legends</tags>
   </metadata>
 </package>
