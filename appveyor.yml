@@ -105,13 +105,101 @@
   
   
   #---------------------------------#
-  #  develop branch configuration   #
+  #      default configuration      #
   #---------------------------------#
-- branches:
-    only:
-      - develop
-
+- 
   # version format
+  version: 3.0.0-build{build}
+  
+  # Do not build on tags (GitHub only)
+  skip_tags: true
+  
+  #---------------------------------#
+  #    environment configuration    #
+  #---------------------------------#
+  # Operating system (build VM template)
+  os: Visual Studio 2017
+  
+  # clone directory
+  clone_folder: c:\projects\RiotSharp
+  
+  # environment variables
+  environment:
+    TOURNAMENT_API_KEY:
+      secure: bsM+fl6l6wPOa4WruqOrwUiTiakBlrRVCeC5c+P7dAKsmkgSv+xQu0sXy93wB/YO
+    API_KEY:
+      secure: GGfqrjvrelLGtdQg6lMRoZ9apyyV1SXp+s/G/wVm6LdKpQzIVVksdOYV5jaNqRCu
+  
+  # build cache to preserve files/folders between builds
+  cache:
+    - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+  
+  # enable patching of AssemblyInfo.* files
+  assembly_info:
+    patch: true
+    file: AssemblyInfo.*
+    assembly_version: "{version}"
+    assembly_file_version: "{version}"
+    assembly_informational_version: "{version}"
+  
+  #---------------------------------#
+  #       build configuration       #
+  #---------------------------------#
+  # build platform, i.e. x86, x64, Any CPU. This setting is optional.
+  platform: Any CPU
+  
+  # build Configuration, i.e. Debug, Release, etc.
+  configuration: Release
+  
+  build:
+    parallel: false                 # disable MSBuild parallel builds
+    project: RiotSharp.sln          # path to Visual Studio solution or project
+  
+    # MSBuild verbosity level
+    verbosity: minimal
+  
+  
+  # scripts to run before build
+  before_build:
+    - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "TOURNAMENT_API_KEY", $Env:TOURNAMENT_API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
+    - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "API_KEY", $Env:API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
+    - ps: nuget.exe restore c:\projects\RiotSharp\RiotSharp.sln
+  
+  #---------------------------------#
+  #       tests configuration       #
+  #---------------------------------#
+  
+  test:
+    assemblies:
+      - RiotSharpTest.dll
+  
+  # code coverage
+  after_test:
+    - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:""c:\projects\RiotSharp\RiotSharpTest\bin\Release\RiotSharpTest.dll" -filter:"+[RiotSharp]*  -[RiotSharp]RiotSharp.*Endpoint.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\RiotSharp_coverage.xml
+    - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+    - pip install codecov
+    - codecov -f "RiotSharp_coverage.xml"
+  
+  #---------------------------------#
+  #         notifications           #
+  #---------------------------------#
+  
+  notifications:
+  
+    # Email
+    - provider: Email
+      to:
+        - benjamin.fradet@gmail.com
+      on_build_failure: true
+      on_build_success: false
+      on_build_status_changed: false
+    - provider: Webhook
+      url: https://webhooks.gitter.im/e/2668b239e8ba3b25f3ff
+      on_build_failure: true
+      on_build_success: false
+      on_build_status_changed: false
+-
+# version format
   version: 3.0.0-build{build}
   
   # Do not build on tags (GitHub only)
