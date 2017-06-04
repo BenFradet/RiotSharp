@@ -6,8 +6,8 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/BenFradet/RiotSharp</licenseUrl>
-    <projectUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</projectUrl>
+    <projectUrl>https://github.com/BenFradet/RiotSharp</projectUrl>
+    <licenseUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</licenseUrl>
     <iconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
