@@ -9,13 +9,13 @@
   # version format
   version: 3.0.0
 
- # Do not build on tags (GitHub only)
+  # Do not build on tags (GitHub only)
   skip_tags: true
 
- #---------------------------------#
- #    environment configuration    #
- #---------------------------------#
- # Operating system (build VM template)
+  #---------------------------------#
+  #    environment configuration    #
+  #---------------------------------#
+  # Operating system (build VM template)
   os: Visual Studio 2017
 
   # clone directory
@@ -24,7 +24,7 @@
   # environment variables
   environment:
     TOURNAMENT_API_KEY:
-    secure: bsM+fl6l6wPOa4WruqOrwUiTiakBlrRVCeC5c+P7dAKsmkgSv+xQu0sXy93wB/YO
+      secure: bsM+fl6l6wPOa4WruqOrwUiTiakBlrRVCeC5c+P7dAKsmkgSv+xQu0sXy93wB/YO
     API_KEY:
       secure: GGfqrjvrelLGtdQg6lMRoZ9apyyV1SXp+s/G/wVm6LdKpQzIVVksdOYV5jaNqRCu
 
@@ -80,7 +80,7 @@
   deploy:
     provider: NuGet
     api_key:
-      secure: m49OJ7+Jdt9an3jPcTukHA==
+      secure: NUGET_API_KEY
     skip_symbols: true
     artifact: RiotSharp.nupkg/
   
@@ -88,8 +88,7 @@
   #---------------------------------#
   #         notifications           #
   #---------------------------------#
-  notifications:
-  
+  notifications:  
     # Email
     - provider: Email
       to:
@@ -153,10 +152,8 @@
   
   build:
     parallel: false                 # disable MSBuild parallel builds
-    project: RiotSharp.sln          # path to Visual Studio solution or project
-  
-    # MSBuild verbosity level
-    verbosity: minimal
+    project: RiotSharp.sln          # path to Visual Studio solution or project  
+    verbosity: minimal              # MSBuild verbosity level
   
   
   # scripts to run before build
@@ -184,8 +181,7 @@
   #         notifications           #
   #---------------------------------#
   
-  notifications:
-  
+  notifications:  
     # Email
     - provider: Email
       to:
@@ -199,7 +195,7 @@
       on_build_success: false
       on_build_status_changed: false
 -
-# version format
+  # version format
   version: 3.0.0-build{build}
   
   # Do not build on tags (GitHub only)
@@ -244,10 +240,8 @@
   
   build:
     parallel: false                 # disable MSBuild parallel builds
-    project: RiotSharp.sln          # path to Visual Studio solution or project
-  
-    # MSBuild verbosity level
-    verbosity: minimal
+    project: RiotSharp.sln          # path to Visual Studio solution or project   
+    verbosity: minimal              # MSBuild verbosity level
   
   
   # scripts to run before build
@@ -275,8 +269,7 @@
   #         notifications           #
   #---------------------------------#
   
-  notifications:
-  
+  notifications: 
     # Email
     - provider: Email
       to:
