@@ -76,7 +76,6 @@
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "RiotSharp_coverage.xml"
-    - cmd: nuget.exe pack RiotSharp.csproj -Properties releaseNotes="INSERT_RELEASE_NOTES_HERE"
 
   
   deploy:
@@ -178,7 +177,6 @@
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "RiotSharp_coverage.xml"
-    - cmd: nuget.exe pack RiotSharp.csproj -Properties id=RiotSharp.Build
 
   deploy:
     provider: NuGet
