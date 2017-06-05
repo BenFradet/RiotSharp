@@ -52,9 +52,8 @@
   build:
     parallel: false                 # disable MSBuild parallel builds
     project: RiotSharp.sln          # path to Visual Studio solution or project
-  
-    # MSBuild verbosity level
-    verbosity: minimal
+    publish_nuget: true             # package projects with .nuspec files and push to artifacts
+    level verbosity: minimal        # MSBuild verbosity
   
   
   # scripts to run before build
@@ -153,7 +152,8 @@
   
   build:
     parallel: false                 # disable MSBuild parallel builds
-    project: RiotSharp.sln          # path to Visual Studio solution or project  
+    project: RiotSharp.sln          # path to Visual Studio solution or project
+    publish_nuget: true             # package projects with .nuspec files and push to artifacts
     verbosity: minimal              # MSBuild verbosity level
   
   
