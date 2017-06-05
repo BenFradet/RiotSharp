@@ -196,8 +196,11 @@ namespace RiotSharpTest
         {
             try
             {
-                api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
-                Assert.Fail();
+                EnsureCredibility(() =>
+                {
+                    api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                    Assert.Fail();
+                });
             }
             catch (RiotSharpException e)
             {
@@ -224,16 +227,16 @@ namespace RiotSharpTest
         {
             try
             {
-                var task = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
-                task.Wait();
-                Assert.Fail();
-            }
-            catch (AggregateException exception)
-            {
-                HandleAggregateException(exception, (riotException) =>
+                EnsureCredibility(() =>
                 {
-                    Assert.AreEqual(riotException.HttpStatusCode, HttpStatusCode.NotFound);  
+                    var task = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                    task.Wait();
+                    Assert.Fail();
                 });
+            }
+            catch (RiotSharpException exception)
+            {
+                Assert.AreEqual(exception.HttpStatusCode, HttpStatusCode.NotFound);  
             }
         }
 
