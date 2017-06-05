@@ -13,5 +13,6 @@
     <description>$description$</description>
     <releaseNotes>$releaseNotes$</releaseNotes>
     <tags>riot-games riot-games-api league-of-legends</tags>
+    <minClientVersion>2.8</minClientVersion>	
   </metadata>
 </package>
