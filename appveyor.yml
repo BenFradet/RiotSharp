@@ -76,13 +76,15 @@
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "RiotSharp_coverage.xml"
+    - cmd: nuget.exe pack RiotSharp.csproj -Properties releaseNotes="INSERT_RELEASE_NOTES_HERE"
+
   
   deploy:
     provider: NuGet
     api_key:
       secure: NUGET_API_KEY
     skip_symbols: true
-    artifact: RiotSharp.nupkg/
+    artifact: RiotSharp.nupkg
   
   
   #---------------------------------#
@@ -176,6 +178,14 @@
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "RiotSharp_coverage.xml"
+    - cmd: nuget.exe pack RiotSharp.csproj -Properties id=RiotSharp.Build
+
+  deploy:
+    provider: NuGet
+    api_key:
+      secure: NUGET_API_KEY
+    skip_symbols: true
+    artifact: RiotSharp.nupkg
   
   #---------------------------------#
   #         notifications           #
