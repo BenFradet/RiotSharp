@@ -53,7 +53,7 @@
     parallel: false                 # disable MSBuild parallel builds
     project: RiotSharp.sln          # path to Visual Studio solution or project
     publish_nuget: true             # package projects with .nuspec files and push to artifacts
-    level verbosity: minimal        # MSBuild verbosity
+    verbosity: minimal              # MSBuild verbosity level
   
   
   # scripts to run before build
@@ -76,6 +76,13 @@
     - pip install codecov
     - codecov -f "RiotSharp_coverage.xml"
 
+  #---------------------------------#
+  #      artifacts configuration    #
+  #---------------------------------#
+
+  artifacts:
+    # pushing all *.nupkg files in build directory recursively
+    - path: '**\*.nupkg'
   
   deploy:
     provider: NuGet
@@ -178,6 +185,14 @@
     - pip install codecov
     - codecov -f "RiotSharp_coverage.xml"
 
+  #---------------------------------#
+  #      artifacts configuration    #
+  #---------------------------------#
+
+  artifacts:
+    # pushing all *.nupkg files in build directory recursively
+    - path: '**\*.nupkg'
+  
   deploy:
     provider: NuGet
     api_key:
