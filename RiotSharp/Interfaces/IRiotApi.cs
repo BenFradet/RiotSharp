@@ -102,24 +102,20 @@ namespace RiotSharp.Interfaces
         Task<Champion> GetChampionAsync(Region region, int championId);
 
         /// <summary>
-        /// Get mastery pages for a list of summoner ids synchronously, you can submit more than 40 summoner ids.
+        /// Get mastery pages for a summoner id synchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
-        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries, not
-        /// limited to 40.</param>
-        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
-        /// </returns>
-        Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<long> summonerIds);
+        /// <param name="summonerId">A summoner id for which you wish to retrieve the masteries.</param>
+        /// <returns>A list of mastery pages for the summoner.</returns>
+        List<MasteryPage> GetMasteryPages(Region region, long summonerId);
 
         /// <summary>
-        /// Get mastery pages for a list of summoner ids asynchronously, you can submit more than 40 summoner ids.
+        /// Get mastery pages for a summoner id asynchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
-        /// <param name="summonerIds">A list of summoners' ids for which you wish to retrieve the masteries, not
-        /// limited to 40.</param>
-        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of mastery pages.
-        /// </returns>
-        Task<Dictionary<long, List<MasteryPage>>> GetMasteryPagesAsync(Region region, List<long> summonerIds);
+        /// <param name="summonerId">A summoner id for which you wish to retrieve the masteries.</param>
+        /// <returns>A list of mastery pages for the summoner.</returns>
+        Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId);
 
         /// <summary>
         /// Get rune pages for a list of summoner ids synchronously, you can submit more than 40 summoner ids.

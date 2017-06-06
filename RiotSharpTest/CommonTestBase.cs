@@ -15,6 +15,7 @@ namespace RiotSharpTest
         public static Region summoner1and2Region = (Region)Enum.Parse(typeof(Region),
             ConfigurationManager.AppSettings["Summoner1and2Region"]);
 
+        public static long invalidSummonerId = -1;
         public static long summoner1Id = long.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);
         public static long summoner1AccountId = long.Parse(ConfigurationManager.AppSettings["Summoner1AccountId"]);
         public static string summoner1Name = ConfigurationManager.AppSettings["Summoner1Name"];
@@ -45,14 +46,19 @@ namespace RiotSharpTest
             }
         }
 
-        private void HandleAggregateException(AggregateException exception)
+        protected void HandleAggregateException(AggregateException exception, Action<RiotSharpException> riotSharpExceptionHandler = null)
         {
             if (exception.InnerException != null)
             {
                 if (exception.InnerException.GetType() == typeof(RiotSharpException))
-                    HandleRiotSharpException((RiotSharpException)exception.InnerException);
+                {
+                    if (riotSharpExceptionHandler == null)
+                        HandleRiotSharpException((RiotSharpException)exception.InnerException);
+                    else
+                        riotSharpExceptionHandler((RiotSharpException)exception.InnerException);
+                }
                 else if (exception.InnerException.GetType() == typeof(AggregateException))
-                    HandleAggregateException((AggregateException)exception.InnerException);
+                    HandleAggregateException((AggregateException)exception.InnerException, riotSharpExceptionHandler);
                 else
                     return; // Go back to root to throw root exception
             }

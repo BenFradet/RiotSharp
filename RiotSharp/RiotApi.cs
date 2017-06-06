@@ -30,7 +30,7 @@ namespace RiotSharp
         private const string SummonerBySummonerIdUrl = "/{0}";
 
         private const string NamesUrl = "/{0}/name";
-        private const string MasteriesUrl = "/{0}/masteries";
+        private const string MasteriesUrl = "/lol/platform/v3/masteries/by-summoner/{0}";
 
         private const string RunesRootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string RunesUrl = "/{0}/runes";
@@ -211,40 +211,21 @@ namespace RiotSharp
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
         }
  
-        public Dictionary<long, List<MasteryPage>> GetMasteryPages(Region region, List<long> summonerIds)
+        public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
         {
-            var dict = new Dictionary<long, List<MasteryPage>>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrMasteryPages))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl,
-                        region.ToString()) + string.Format(MasteriesUrl, Util.BuildIdsString(grp)),
-                    region);
-                var subDict =
-                    ConstructMasteryDict(JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json));
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
+            var json = requester.CreateGetRequest(string.Format(MasteriesUrl, summonerId), region,
+                usePlatforms: true);
+
+            var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
+            return masteries.Pages;
         }
  
-        public async Task<Dictionary<long, List<MasteryPage>>> GetMasteryPagesAsync(Region region,
-            List<long> summonerIds)
+        public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
         {
-            var tasks = MakeGroups(summonerIds, MaxNrMasteryPages).Select(
-                grp => requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl, region.ToString()) +
-                    string.Format(MasteriesUrl, Util.BuildIdsString(grp)), region
-                    ).ContinueWith(
-                        json => ConstructMasteryDict(
-                            JsonConvert.DeserializeObject<Dictionary<string, MasteryPages>>(json.Result))
-                    )
-                ).ToList();
+            var json = await requester.CreateGetRequestAsync(string.Format(MasteriesUrl, summonerId), region, 
+                usePlatforms: true);
 
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MasteryPages>(json).Pages);
         }
   
         public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<long> summonerIds)

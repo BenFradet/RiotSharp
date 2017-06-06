@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.MatchEndpoint.Enums;
 
@@ -176,34 +177,67 @@ namespace RiotSharpTest
             });
         }
 
-        [Ignore] //Depricated and being refactored in #411
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetMasteryPages_Test()
+        public void GetMasteryPages_ExistingSummonerId_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
-                var masteries = api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var pages = api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(masteries);
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
-                    masteries.Count);
+                Assert.IsNotNull(pages);
+                Assert.IsTrue(pages.Count >= 1 && pages.Count <= 20);
             });
         }
 
-        [Ignore] //Depricated and being refactored in #411
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetMasteryPages_InvalidSummonerId_ThrowsResouceNotFound()
+        {
+            try
+            {
+                EnsureCredibility(() =>
+                {
+                    api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                    Assert.Fail();
+                });
+            }
+            catch (RiotSharpException e)
+            {
+                Assert.AreEqual(e.HttpStatusCode, HttpStatusCode.NotFound);
+            }
+        }
+
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasteryPagesAsync_Test()
+        public void GetMasteryPagesAsync_ExistingSummonerId_HasMasteryPages()
         {
             EnsureCredibility(() =>
             {
-                var masteries = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var pages = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(masteries.Result);
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
-                    masteries.Result.Count);
+                Assert.IsNotNull(pages.Result);
+                Assert.IsTrue(pages.Result.Count >= 1 && pages.Result.Count <= 20);
             });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMasteryPagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
+        {
+            try
+            {
+                EnsureCredibility(() =>
+                {
+                    var task = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                    task.Wait();
+                    Assert.Fail();
+                });
+            }
+            catch (RiotSharpException exception)
+            {
+                Assert.AreEqual(exception.HttpStatusCode, HttpStatusCode.NotFound);  
+            }
         }
 
         [TestMethod]
