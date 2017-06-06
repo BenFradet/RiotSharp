@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E359C2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.AspNetCore", "RiotSharp.AspNetCore\RiotSharp.AspNetCore.csproj", "{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp", "RiotSharp2\RiotSharp.csproj", "{54D67ED8-70DA-4A78-B0AC-7C1BC89233E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotSharp", "RiotSharp\RiotSharp.csproj", "{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +36,10 @@ Global
 		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3701FA9B-3D58-4266-A3E8-4BA1167BF3D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54D67ED8-70DA-4A78-B0AC-7C1BC89233E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54D67ED8-70DA-4A78-B0AC-7C1BC89233E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54D67ED8-70DA-4A78-B0AC-7C1BC89233E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54D67ED8-70DA-4A78-B0AC-7C1BC89233E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
