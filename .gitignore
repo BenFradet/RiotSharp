@@ -4,5 +4,5 @@ packages/
 TestResults/
 *.suo
 *.nupkg
-/.vs/
+.vs/
 project.lock.json
