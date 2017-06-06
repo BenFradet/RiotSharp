@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("RiotSharp.Test2")]
 namespace RiotSharp.Http
 {
     /// <summary>
