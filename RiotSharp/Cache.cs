@@ -266,8 +266,7 @@ namespace RiotSharp
 
         private void StartObserving<K>(K key, TimeSpan timeSpan)
         {
-            Observable.Timer(timeSpan)
-                .Subscribe(x => TryPurgeItem(key));
+            Observable.Timer(timeSpan).Subscribe(x => TryPurgeItem(key));
         }
 
         private void TryPurgeItem<K>(K key)

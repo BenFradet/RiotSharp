@@ -4,3 +4,7 @@ packages/
 TestResults/
 *.suo
 *.nupkg
+/.vs/config
+/.vs/config/applicationhost.config
+/.vs/config
+/.vs/config/applicationhost.config
