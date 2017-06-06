@@ -83,12 +83,6 @@
     <Compile Include="TournamentRiotApiTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RiotSharp\RiotSharp.csproj">
-      <Project>{3815e113-140c-4ee7-b0b9-7797c9352311}</Project>
-      <Name>RiotSharp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

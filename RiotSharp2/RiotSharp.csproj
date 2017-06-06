@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ChampionEndpoint\Deprecated\" />
+    <Folder Include="GameEndpoint\Deprecated\" />
+    <Folder Include="LeagueEndpoint\Deprecated\" />
+    <Folder Include="MatchEndpoint\Deprecated\" />
+    <Folder Include="SummonerEndpoint\Deprecated\" />
+    <Folder Include="TeamEndpoint\Deprecated\" />
+  </ItemGroup>
+
+</Project>

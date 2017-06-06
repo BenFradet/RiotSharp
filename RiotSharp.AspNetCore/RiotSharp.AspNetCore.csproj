@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RiotSharp\RiotSharp.csproj" />
+    <ProjectReference Include="..\RiotSharp\RiotSharp3.csproj" />
   </ItemGroup>
 
 </Project>
