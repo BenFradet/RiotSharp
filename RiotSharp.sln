@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharpExample", "RiotSharpExample\RiotSharpExample.csproj", "{22B1700C-4B99-4504-B4E8-24B9EEEBCF72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharpTest", "RiotSharpTest\RiotSharpTest.csproj", "{2A150AA0-91AE-4CAC-9524-C67161D6E480}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E359C2A1-C147-4221-B9A1-C86DBD8B94EF}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -30,10 +28,6 @@ Global
 		{22B1700C-4B99-4504-B4E8-24B9EEEBCF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22B1700C-4B99-4504-B4E8-24B9EEEBCF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22B1700C-4B99-4504-B4E8-24B9EEEBCF72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A150AA0-91AE-4CAC-9524-C67161D6E480}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E685FD5-ADF3-4924-805D-0F8FDF12DB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
