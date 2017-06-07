@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net45;net46</TargetFrameworks>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <PackageId>RiotSharp</PackageId>
     <PackageVersion>3.0.0</PackageVersion>
     <Authors>BenFradet</Authors>
@@ -13,6 +13,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</PackageIconUrl>
     <Copyright>Copyright (c) Benjamin Fradet 2013-2017</Copyright>
     <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
+    <Version>3.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,16 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
-    <PackageReference Include="OpenCover" Version="4.6.519" />
     <PackageReference Include="System.Reactive.Linq" Version="3.1.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   
 </Project>

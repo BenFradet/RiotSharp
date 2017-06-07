@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net45;net46</TargetFrameworks>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <PackageId>RiotSharp.AspNetCore</PackageId>
+    <Version>1.0.0</Version>
     <PackageVersion>1.0.0</PackageVersion>
     <Authors>BenFradet</Authors>
     <Description>Dependency injection setup methods for RiotSharp</Description>
