@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <PackageId>RiotSharp.AspNetCore</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>BenFradet</Authors>
+    <Description>Dependency injection setup methods for RiotSharp</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <Copyright>Copyright (c) Benjamin Fradet 2013-2017</Copyright>
+    <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

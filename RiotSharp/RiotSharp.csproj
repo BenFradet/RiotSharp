@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <PackageId>RiotSharp</PackageId>
+    <PackageVersion>3.0.0</PackageVersion>
+    <Authors>BenFradet</Authors>
+    <Description>C# Wrapper for the Riot Games API</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Migrated to v3</PackageReleaseNotes>
+    <Copyright>Copyright (c) Benjamin Fradet 2013-2017</Copyright>
+    <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
