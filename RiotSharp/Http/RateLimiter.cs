@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("RiotSharp.Test2")]
+[assembly: InternalsVisibleTo("RiotSharp.Test")]
 namespace RiotSharp.Http
 {
     /// <summary>
