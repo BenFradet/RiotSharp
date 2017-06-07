@@ -2,7 +2,7 @@
 using RiotSharp.StaticDataEndpoint.SummonerSpell;
 using System;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     public class StaticRiotApiTestBase : CommonTestBase
     {

@@ -4,7 +4,7 @@ using RiotSharp.MatchEndpoint.Enums;
 using System;
 using RiotSharp.TournamentEndpoint.Enums;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class TournamentRiotApiTest : CommonTestBase

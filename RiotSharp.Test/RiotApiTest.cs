@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.MatchEndpoint.Enums;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class RiotApiTest : CommonTestBase

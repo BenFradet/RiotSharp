@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 using RiotSharp.Http;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class RateLimiterTest

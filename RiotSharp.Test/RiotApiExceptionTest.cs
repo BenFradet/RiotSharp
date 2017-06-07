@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class RiotApiExceptionTest

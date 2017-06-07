@@ -7,7 +7,7 @@ using System.Linq;
 using RiotSharp.StaticDataEndpoint.Champion;
 using RiotSharp.Http;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class StaticRiotApiTest : CommonTestBase

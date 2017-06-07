@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using Microsoft.Extensions.Configuration;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     public class CommonTestBase
     {
