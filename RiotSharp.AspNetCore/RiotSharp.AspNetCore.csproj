@@ -8,6 +8,9 @@
     <Description>Dependency injection setup methods for RiotSharp</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/BenFradet/RiotSharp</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</PackageIconUrl>
     <Copyright>Copyright (c) Benjamin Fradet 2013-2017</Copyright>
     <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
   </PropertyGroup>
