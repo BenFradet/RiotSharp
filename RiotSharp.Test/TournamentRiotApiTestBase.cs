@@ -1,28 +1,20 @@
 ﻿using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint.Enums;
 using System;
-using System.Configuration;
 
 namespace RiotSharpTest
 {
     public class TournamentRiotApiTestBase : CommonTestBase
     {
-        public static string tournamentApiKey = ConfigurationManager.AppSettings["TournamentApiKey"];
-        public static Region tournamentRegion = (Region)Enum.Parse(typeof(Region), 
-            ConfigurationManager.AppSettings["TournamentRegion"]);
-        public static string tournamentCode = ConfigurationManager.AppSettings["TounamentCode"];
-        public static long tournamentMatchId = long.Parse(ConfigurationManager.AppSettings["TournamentMatchId"]);
-        public static int tournamentId = int.Parse(ConfigurationManager.AppSettings["TournamentId"]);
-        public static string tournamentName = ConfigurationManager.AppSettings["TournamentMatchName"];
-        public static string tournamentUrl = ConfigurationManager.AppSettings["TournamentUrl"];
+        public static string tournamentApiKey = Configuration["TournamentApiKey"];
+        public static Region tournamentRegion = (Region)Enum.Parse(typeof(Region), "euw");
+        public static string tournamentName = "RiotSharpTestTournament";
+        public static string tournamentUrl = "http://example.com";
         public static TournamentSpectatorType tournamentSpectatorType = 
-            (TournamentSpectatorType)Enum.Parse(typeof(TournamentSpectatorType), 
-            ConfigurationManager.AppSettings["TournamentSpectatorType"]);
+            (TournamentSpectatorType)Enum.Parse(typeof(TournamentSpectatorType), "All");
         public static TournamentPickType tournamentPickType = 
-            (TournamentPickType)Enum.Parse(typeof(TournamentPickType), 
-            ConfigurationManager.AppSettings["TournamentPickType"]);
+            (TournamentPickType)Enum.Parse(typeof(TournamentPickType), "TournamentDraft");
         public static TournamentMapType tournamentMapType = 
-            (TournamentMapType)Enum.Parse(typeof(TournamentMapType), 
-            ConfigurationManager.AppSettings["TournamentMapType"]);
+            (TournamentMapType)Enum.Parse(typeof(TournamentMapType), "SummonersRift");
     }
 }
