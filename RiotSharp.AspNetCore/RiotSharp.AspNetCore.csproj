@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <PackageId>RiotSharp.AspNetCore</PackageId>
-    <Version>1.0.0</Version>
-    <PackageVersion>1.0.0</PackageVersion>
+    <Version>0.1.0</Version>
+    <PackageVersion>0.1.0</PackageVersion>
     <Authors>BenFradet</Authors>
     <Description>Dependency injection setup methods for RiotSharp</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
