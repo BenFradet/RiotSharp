@@ -58,10 +58,10 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                //var details = api.GetTournamentMatch(TournamentRiotApiTestBase.tournamentRegion,
-                //TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false);
-                //Assert.AreEqual(Season.PreSeason2016, details.Season);
-                //Assert.AreEqual("5.24.0.256", details.MatchVersion);
+                var details = api.GetTournamentMatch(TournamentRiotApiTestBase.tournamentRegion,
+                TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false);
+                Assert.AreEqual(Season.PreSeason2016, details.Season);
+                Assert.AreEqual("5.24.0.256", details.MatchVersion);
             });
         }
 
@@ -100,9 +100,9 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                //var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion,
-                //TournamentRiotApiTestBase.tournamentCode).Result;
-                //Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
+                var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion,
+                TournamentRiotApiTestBase.tournamentCode).Result;
+                Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
             });
         }
 
@@ -113,10 +113,10 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                //var details = api.GetTournamentMatchAsync(TournamentRiotApiTestBase.tournamentRegion,
-                //TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false).Result;
-                //Assert.AreEqual(Season.PreSeason2016, details.Season);
-                //Assert.AreEqual("5.24.0.256", details.MatchVersion);
+                var details = api.GetTournamentMatchAsync(TournamentRiotApiTestBase.tournamentRegion,
+                TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false).Result;
+                Assert.AreEqual(Season.PreSeason2016, details.Season);
+                Assert.AreEqual("5.24.0.256", details.MatchVersion);
             });
         }
 
