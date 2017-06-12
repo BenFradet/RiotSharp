@@ -1,8 +1,10 @@
 ﻿namespace RiotSharp.AspNetCore
 {
-    public class ApiKey
+    public class ApiKeyOptions
     {
-        public string Key { get; set; }
+        internal ApiKeyOptions() { }
+
+        public string ApiKey { get; set; }
         public int RateLimitPer10S { get; set; }
         public int RateLimitPer10M { get; set; }
     }

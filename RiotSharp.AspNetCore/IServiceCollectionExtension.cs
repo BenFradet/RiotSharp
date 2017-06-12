@@ -18,29 +18,29 @@ namespace RiotSharp.AspNetCore
             var riotSharpOptions = new RiotSharpOptions();
             options(riotSharpOptions);
 
-            if (riotSharpOptions.TournamentApiKey.Key == null && riotSharpOptions.ApiKey.Key == null)
+            if (riotSharpOptions.TournamentApi.ApiKey == null && riotSharpOptions.RiotApi.ApiKey == null)
                 throw new ArgumentNullException("No api key provided.", innerException: null);
 
-            if (riotSharpOptions.ApiKey.Key != null)
+            if (riotSharpOptions.RiotApi.ApiKey != null)
             {
-                var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.ApiKey.Key,
-                    riotSharpOptions.ApiKey.RateLimitPer10S, riotSharpOptions.ApiKey.RateLimitPer10M);
+                var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey,
+                    riotSharpOptions.RiotApi.RateLimitPer10S, riotSharpOptions.RiotApi.RateLimitPer10M);
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
                     new TournamentRiotApi(rateLimitedRequester));
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider => new RiotApi(rateLimitedRequester));
 
-                var requester = new Requester(riotSharpOptions.ApiKey.Key);
+                var requester = new Requester(riotSharpOptions.RiotApi.ApiKey);
                 serviceCollection.AddSingleton<ICache, Cache>();
                 serviceCollection.AddSingleton<IStaticRiotApi>(serviceProvider => 
                     new StaticRiotApi(requester, serviceProvider.GetRequiredService<ICache>())); 
             }
 
-            if (riotSharpOptions.TournamentApiKey.Key != null)
+            if (riotSharpOptions.TournamentApi.ApiKey != null)
             {
-                var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.TournamentApiKey.Key, 
-                    riotSharpOptions.TournamentApiKey.RateLimitPer10S, riotSharpOptions.TournamentApiKey.RateLimitPer10M);
+                var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.TournamentApi.ApiKey, 
+                    riotSharpOptions.TournamentApi.RateLimitPer10S, riotSharpOptions.TournamentApi.RateLimitPer10M);
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
-                    new TournamentRiotApi(rateLimitedRequester));
+                    new TournamentRiotApi(rateLimitedRequester, riotSharpOptions.TournamentApi.UseStub));
             }
             
             return serviceCollection;
