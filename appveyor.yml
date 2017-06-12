@@ -69,7 +69,7 @@ test:
     - RiotSharp.Test.dll
 
 test_script:
-  - cmd: dotnet test
+  - cmd: dotnet test c:\projects\RiotSharp\RiotSharp.Test\RiotSharp.Test.csproj
 
 # code coverage
 after_test:
