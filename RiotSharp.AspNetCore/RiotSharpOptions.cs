@@ -4,15 +4,15 @@
     {
         public RiotSharpOptions()
         {
-            ApiKey = new ApiKey();
-            ApiKey.RateLimitPer10S = 10;
-            ApiKey.RateLimitPer10M = 500;
-            TournamentApiKey = new ApiKey();
-            TournamentApiKey.RateLimitPer10S = 10;
-            TournamentApiKey.RateLimitPer10M = 500;
+            RiotApi = new ApiKeyOptions();
+            RiotApi.RateLimitPer10S = 10;
+            RiotApi.RateLimitPer10M = 500;
+            TournamentApi = new TournamentApiKeyOptions();
+            TournamentApi.RateLimitPer10S = 10;
+            TournamentApi.RateLimitPer10M = 500;
         }
 
-        public ApiKey ApiKey { get; set; }
-        public ApiKey TournamentApiKey { get; set; }       
+        public ApiKeyOptions RiotApi { get; set; }
+        public TournamentApiKeyOptions TournamentApi { get; set; }       
     }
 }
