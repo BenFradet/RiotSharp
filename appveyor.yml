@@ -57,8 +57,7 @@ build:
 
 # scripts to run before build
 before_build:
-  - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "TOURNAMENT_API_KEY", $Env:TOURNAMENT_API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
-  - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "API_KEY", $Env:API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
+  - ps: Get-Content c:\projects\RiotSharp\RiotSharp.Test\appsettings.json | ConvertFrom-Json | % {$_.ApiKey=$Env:API_KEY; $_.TournamentApiKey=$Env:TOURNAMENT_API_KEY; $_} | ConvertTo-Json | Set-Content c:\projects\RiotSharp\RiotSharp.Test\appsettings.json
   - ps: nuget.exe restore c:\projects\RiotSharp\RiotSharp.sln
 
 #---------------------------------#
