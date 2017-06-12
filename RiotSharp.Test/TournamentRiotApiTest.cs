@@ -7,9 +7,8 @@ using RiotSharp.TournamentEndpoint.Enums;
 namespace RiotSharp.Test
 {
     [TestClass]
-    public class TournamentRiotApiTest : CommonTestBase
+    public class TournamentRiotApiTest : TournamentRiotApiTestBase
     {
-        private static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(TournamentRiotApiTestBase.tournamentApiKey);
 
         [TestMethod]
         [TestCategory("TournamentRiotApi")]
@@ -17,13 +16,12 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var providerId = api.CreateProvider(TournamentRiotApiTestBase.tournamentRegion, 
-                    TournamentRiotApiTestBase.tournamentUrl);
-                var tournamentId = api.CreateTournament(providerId, TournamentRiotApiTestBase.tournamentName);
+                var providerId =  api.CreateProvider(tournamentRegion, tournamentUrl);
+                var tournamentId = api.CreateTournament(providerId, tournamentName);
                 Assert.AreNotEqual(0, tournamentId);
                 var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, 
-                    TournamentRiotApiTestBase.tournamentSpectatorType,
-                    TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType);
+                    tournamentSpectatorType,
+                    tournamentPickType, tournamentMapType);
                 Assert.AreEqual(2, tournamentCodes.Count);
 
                 var tournamentCode = tournamentCodes[0];
@@ -38,34 +36,7 @@ namespace RiotSharp.Test
             }); 
         }
 
-        [Ignore] // Cannot use constant tournament code
-        [TestMethod]
-        [TestCategory("TournamentRiotApi")]
-        public void GetTournamentMatchId_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                //var id = api.GetTournamentMatchId(TournamentRiotApiTestBase.tournamentRegion, 
-                //    TournamentRiotApiTestBase.tournamentCode);
-                //Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
-            });
-        }
-
-        [Ignore] // Cannot use constant tournament match id
-        [TestMethod]
-        [TestCategory("TournamentRiotApi")]
-        public void GetTournamentMatch_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var details = api.GetTournamentMatch(TournamentRiotApiTestBase.tournamentRegion,
-                TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false);
-                Assert.AreEqual(Season.PreSeason2016, details.Season);
-                Assert.AreEqual("5.24.0.256", details.MatchVersion);
-            });
-        }
-
-        [Ignore] // Cannot use constant tournament id
+        // Cannot use constant tournament id
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
@@ -90,33 +61,6 @@ namespace RiotSharp.Test
                 var tournamentCodeDetailsUpdated = api.GetTournamentCodeDetailsAsync(tournamentCode).Result;
                 Assert.AreNotEqual(tournamentCodeDetails.PickType, tournamentCodeDetailsUpdated.PickType);
                 Assert.AreNotEqual(tournamentCodeDetails.Map, tournamentCodeDetailsUpdated.Map);
-            });
-        }
-
-        [Ignore] // Cannot use constant tournament code
-        [TestMethod]
-        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void GetTournamentMatchIdAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var id = api.GetTournamentMatchIdAsync(TournamentRiotApiTestBase.tournamentRegion,
-                TournamentRiotApiTestBase.tournamentCode).Result;
-                Assert.AreEqual(TournamentRiotApiTestBase.tournamentMatchId, id);
-            });
-        }
-
-        [Ignore] // Cannot use constant tournament match id
-        [TestMethod]
-        [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void GetTournamentMatchAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var details = api.GetTournamentMatchAsync(TournamentRiotApiTestBase.tournamentRegion,
-                TournamentRiotApiTestBase.tournamentMatchId, TournamentRiotApiTestBase.tournamentCode, false).Result;
-                Assert.AreEqual(Season.PreSeason2016, details.Season);
-                Assert.AreEqual("5.24.0.256", details.MatchVersion);
             });
         }
 

@@ -9,9 +9,9 @@ namespace RiotSharp.Test
 {
     public class CommonTestBase
     {
-        protected static IConfigurationRoot Configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        protected static IConfigurationRoot configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
-        public static string apiKey = Configuration["ApiKey"];
+        public static string apiKey = configuration["ApiKey"];
         public static string faultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
 
         public static Region summoner1and2Region = (Region)Enum.Parse(typeof(Region), "na");
