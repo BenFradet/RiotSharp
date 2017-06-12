@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/BenFradet/RiotSharp</projectUrl>
+    <licenseUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>$releaseNotes$</releaseNotes>
+    <tags>riot-games riot-games-api league-of-legends</tags>
+    <minClientVersion>2.8</minClientVersion>	
+  </metadata>
+</package>

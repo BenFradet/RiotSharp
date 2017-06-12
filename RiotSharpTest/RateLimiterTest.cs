@@ -32,6 +32,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Sends a single request, expected to unblock immediately.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter")]
         public void SingleRequest()
@@ -40,6 +41,7 @@ namespace RiotSharpTest
             AssertDelayed(TimeSpan.Zero);
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         public async Task SingleRequestAsync()
@@ -51,6 +53,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Basic check of the SetRetryAfter.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter")]
         public void RetryAfterBasic()
@@ -101,6 +104,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Sends 10 requests, waits 10 seconds, sends another 10 requests. Expects requests to unblock immediately.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter")]
         [Timeout(1000 * 10 * 2)]
@@ -120,6 +124,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 2)]
@@ -151,6 +156,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Sends 10 requests, waits 20 seconds, sends another 10 requests. Expects requests to unblock immediately.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter")]
         [Timeout(1000 * 10 * 3)]
@@ -170,6 +176,7 @@ namespace RiotSharpTest
             }
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]
@@ -201,6 +208,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Sends 5 requests. Waits 5 seconds. Sends 10 More requests.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 2)]
@@ -223,6 +231,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Same as above, but does the delay within the task.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 2)]
@@ -256,6 +265,7 @@ namespace RiotSharpTest
         /// <summary>
         /// Sends 15 requests. Waits 10 seconds. Expects 10 requests each to be delayed by 0, 10, and 20 seconds.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]
