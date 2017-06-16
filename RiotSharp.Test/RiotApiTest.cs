@@ -395,6 +395,7 @@ namespace RiotSharp.Test
             });
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatch_WithoutTimeline_Test()
@@ -423,6 +424,7 @@ namespace RiotSharp.Test
             });
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchAsync_WithoutTimeline_Test()
