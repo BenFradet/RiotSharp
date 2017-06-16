@@ -3,7 +3,7 @@ using RiotSharp;
 using RiotSharp.Misc;
 
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class StatusRiotApiTest : CommonTestBase

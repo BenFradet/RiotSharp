@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.MatchEndpoint.Enums;
 
-namespace RiotSharpTest
+namespace RiotSharp.Test
 {
     [TestClass]
     public class RiotApiTest : CommonTestBase
@@ -395,6 +395,7 @@ namespace RiotSharpTest
             });
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetMatch_WithoutTimeline_Test()
@@ -423,6 +424,7 @@ namespace RiotSharpTest
             });
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchAsync_WithoutTimeline_Test()

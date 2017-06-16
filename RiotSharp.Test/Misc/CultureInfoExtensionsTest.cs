@@ -4,7 +4,7 @@ using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Misc;
 
-namespace RiotSharpTest.Misc
+namespace RiotSharp.Test.Misc
 {
     [TestClass]
     public class CultureInfoExtensionsTest

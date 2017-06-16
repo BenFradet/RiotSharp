@@ -57,8 +57,7 @@ build:
 
 # scripts to run before build
 before_build:
-  - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "TOURNAMENT_API_KEY", $Env:TOURNAMENT_API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
-  - ps: (Get-Content c:\projects\RiotSharp\RiotSharpTest\App.config) | Foreach-Object {$_ -replace "API_KEY", $Env:API_KEY} | Set-Content c:\projects\RiotSharp\RiotSharpTest\App.config
+  - ps: Get-Content c:\projects\RiotSharp\RiotSharp.Test\appsettings.json | ConvertFrom-Json | % {$_.ApiKey=$Env:API_KEY; $_.TournamentApiKey=$Env:TOURNAMENT_API_KEY; $_} | ConvertTo-Json | Set-Content c:\projects\RiotSharp\RiotSharp.Test\appsettings.json
   - ps: nuget.exe restore c:\projects\RiotSharp\RiotSharp.sln
 
 #---------------------------------#
@@ -67,11 +66,14 @@ before_build:
 
 test:
   assemblies:
-    - RiotSharpTest.dll
+    - RiotSharp.Test.dll
+
+test_script:
+  - cmd: dotnet test c:\projects\RiotSharp\RiotSharp.Test\RiotSharp.Test.csproj
 
 # code coverage
 after_test:
-  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:""c:\projects\RiotSharp\RiotSharpTest\bin\Release\RiotSharpTest.dll" -filter:"+[RiotSharp]*  -[RiotSharp]RiotSharp.*Endpoint.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\RiotSharp_coverage.xml
+  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:""c:\projects\RiotSharp\RiotSharp.Test\bin\Release\netcoreapp1.1\RiotSharp.Test.dll" -filter:"+[RiotSharp]*  -[RiotSharp]RiotSharp.*Endpoint.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\RiotSharp_coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "RiotSharp_coverage.xml"
