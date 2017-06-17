@@ -76,6 +76,8 @@ namespace RiotSharp.GameEndpoint.Enums.Converters
                     return GameSubType.Siege;
                 case "SR_6x6":
                     return GameSubType.SR6x6;
+                case "DARKSTAR":
+                    return GameSubType.Darkstar;
                 default:
                     return null;
             }
@@ -170,6 +172,9 @@ namespace RiotSharp.GameEndpoint.Enums.Converters
                     break;
                 case GameSubType.RankedFlexTT:
                     result = "RANKED_FLEX_TT";
+                    break;
+                case GameSubType.Darkstar:
+                    result = "DARKSTAR";
                     break;
                 default:
                     result = "";

@@ -145,8 +145,13 @@ namespace RiotSharp.GameEndpoint.Enums
         Siege,
 
         /// <summary>
-        /// Summoner's Rift 6x6 Hexakill games
+        /// Summoner's Rift 6x6 Hexakill games.
         /// </summary>
-        SR6x6
+        SR6x6,
+
+        /// <summary>
+        /// Dark Star games.
+        /// </summary>
+        Darkstar
     }
 }
