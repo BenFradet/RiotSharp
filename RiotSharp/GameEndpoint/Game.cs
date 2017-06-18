@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using RiotSharp.GameEndpoint.Enums;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 
@@ -98,7 +97,7 @@ namespace RiotSharp.GameEndpoint
         /// Game sub-type.
         /// </summary>
         [JsonProperty("subType")]
-        public GameSubType GameSubType { get; set; }
+        public string GameSubType { get; set; }
 
         /// <summary>
         /// Team ID associated with game.
