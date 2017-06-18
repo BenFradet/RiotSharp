@@ -107,6 +107,7 @@ namespace RiotSharp
             requester = rateLimitedRequester;
         }
 
+#pragma warning disable CS1591
         #region Summoner-V3
         public Summoner GetSummonerByAccountId(Region region, long accountId)
         {
@@ -615,5 +616,6 @@ namespace RiotSharp
                 .Select(x => x.Select(v => v.Value).ToList())
                 .ToList();
         }
+#pragma warning restore
     }
 }
