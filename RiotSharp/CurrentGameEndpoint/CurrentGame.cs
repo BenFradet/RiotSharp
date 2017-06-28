@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RiotSharp.CurrentGameEndpoint.Enums;
 using System;
 using System.Collections.Generic;
 using RiotSharp.Misc;
@@ -42,7 +41,7 @@ namespace RiotSharp.CurrentGameEndpoint
         /// The queue type
         /// </summary>
         [JsonProperty("gameQueueConfigId")]
-        public GameQueueType GameQueueType { get; set; }
+        public string GameQueueType { get; set; }
 
         /// <summary>
         /// The game start time
