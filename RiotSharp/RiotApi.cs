@@ -35,7 +35,7 @@ namespace RiotSharp
         private const string RunesRootUrl = "/api/lol/{0}/v1.4/summoner";
         private const string RunesUrl = "/{0}/runes";
 
-        private const string ChampionRootUrl = "/api/lol/{0}/v1.2/champion";
+        private const string ChampionRootUrl = "/lol/platform/v3/champions";
 
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
@@ -184,15 +184,15 @@ namespace RiotSharp
 
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
-            var json = requester.CreateGetRequest(string.Format(ChampionRootUrl, region.ToString()), region,
-                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
+            var json = requester.CreateGetRequest(ChampionRootUrl, region,
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") }, usePlatforms: true);
             return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
        
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
-            var json = await requester.CreateGetRequestAsync(string.Format(ChampionRootUrl, region.ToString()), region,
-                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
+            var json = await requester.CreateGetRequestAsync(ChampionRootUrl, region,
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") }, usePlatforms: true);
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
         }
@@ -200,15 +200,15 @@ namespace RiotSharp
         public Champion GetChampion(Region region, int championId)
         {
             var json = requester.CreateGetRequest(
-                string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId), region);
+                ChampionRootUrl + string.Format(IdUrl, championId), region, usePlatforms: true);
             return JsonConvert.DeserializeObject<Champion>(json);
         }
  
         public async Task<Champion> GetChampionAsync(Region region, int championId)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(ChampionRootUrl, region.ToString()) + string.Format(IdUrl, championId),
-                region);
+                ChampionRootUrl + string.Format(IdUrl, championId),
+                region, usePlatforms: true);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
         }
  
