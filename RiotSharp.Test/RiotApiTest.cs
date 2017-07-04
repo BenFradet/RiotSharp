@@ -124,7 +124,6 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        //[Ignore]
         [TestCategory("RiotApi")]
         public void GetChampions_FreeToPlay_Test()
         {
@@ -138,7 +137,6 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        //[Ignore]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetChampionsAsync_FreeToPlay_Test()
         {
