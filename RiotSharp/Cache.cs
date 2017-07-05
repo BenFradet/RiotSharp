@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Threading;
 
 namespace RiotSharp
@@ -266,7 +265,12 @@ namespace RiotSharp
 
         private void StartObserving<K>(K key, TimeSpan timeSpan)
         {
-            Observable.Timer(timeSpan).Subscribe(x => TryPurgeItem(key));
+            Timer timer = null;
+            timer = new Timer(x =>
+            {
+                TryPurgeItem(key);
+                timer?.Dispose();
+            }, key, timeSpan, TimeSpan.Zero);
         }
 
         private void TryPurgeItem<K>(K key)
