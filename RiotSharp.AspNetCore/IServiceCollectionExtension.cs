@@ -40,8 +40,7 @@ namespace RiotSharp.AspNetCore
                     serviceCollection.AddSingleton<ICache, MemoryCache>();
                 }
                 else
-                    serviceCollection.AddSingleton<ICache, Cache>();
-               
+                    serviceCollection.AddSingleton<ICache, Cache>();            
 
                 serviceCollection.AddSingleton<IStaticRiotApi>(serviceProvider => 
                     new StaticRiotApi(requester, serviceProvider.GetRequiredService<ICache>())); 
