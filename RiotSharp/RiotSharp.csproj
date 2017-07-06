@@ -29,7 +29,6 @@
     <PackageReference Include="OpenCover" Version="4.6.519">
       <ExcludeAssets>all</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Reactive.Linq" Version="3.1.1" />
   </ItemGroup>
   
 </Project>
