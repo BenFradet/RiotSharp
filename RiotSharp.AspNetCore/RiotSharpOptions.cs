@@ -12,6 +12,7 @@
             TournamentApi.RateLimitPer10M = 500;
         }
 
+        public bool UseMemoryCache { get; set; }
         public ApiKeyOptions RiotApi { get; set; }
         public TournamentApiKeyOptions TournamentApi { get; set; }       
     }

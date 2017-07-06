@@ -15,6 +15,9 @@ namespace RiotSharp.AspNetCore
         /// <returns></returns>
         public static IServiceCollection AddRiotSharp(this IServiceCollection serviceCollection, Action<RiotSharpOptions> options)
         {
+            if (serviceCollection == null)
+                throw new ArgumentNullException(nameof(serviceCollection));
+
             var riotSharpOptions = new RiotSharpOptions();
             options(riotSharpOptions);
 
@@ -30,7 +33,16 @@ namespace RiotSharp.AspNetCore
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider => new RiotApi(rateLimitedRequester));
 
                 var requester = new Requester(riotSharpOptions.RiotApi.ApiKey);
-                serviceCollection.AddSingleton<ICache, Cache>();
+
+                if(riotSharpOptions.UseMemoryCache)
+                {
+                    serviceCollection.AddMemoryCache();
+                    serviceCollection.AddSingleton<ICache, MemoryCache>();
+                }
+                else
+                    serviceCollection.AddSingleton<ICache, Cache>();
+               
+
                 serviceCollection.AddSingleton<IStaticRiotApi>(serviceProvider => 
                     new StaticRiotApi(requester, serviceProvider.GetRequiredService<ICache>())); 
             }
@@ -42,6 +54,7 @@ namespace RiotSharp.AspNetCore
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
                     new TournamentRiotApi(rateLimitedRequester, riotSharpOptions.TournamentApi.UseStub));
             }
+
             
             return serviceCollection;
         }
