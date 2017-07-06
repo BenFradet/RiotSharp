@@ -17,7 +17,6 @@ namespace RiotSharp
         private readonly object sync = new object();
 
         #region ICache interface
-
         /// <summary>
         /// Add a (key, value) pair to the cache with a relative expiry time (e.g. 2 mins).
         /// </summary>
@@ -118,13 +117,14 @@ namespace RiotSharp
                 }
             }
         }
+        #endregion
 
         /// <summary>
         /// Enumerator for the keys of a specific type.
         /// </summary>
         /// <typeparam name="K">Type of the key.</typeparam>
         /// <returns>Enumerator for the keys of a specific type.</returns>
-        public IEnumerable<K> Keys<K>()
+        internal IEnumerable<K> Keys<K>()
         {
             if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
@@ -147,7 +147,7 @@ namespace RiotSharp
         /// Enumerator for all keys.
         /// </summary>
         /// <returns>Enumerator for all keys.</returns>
-        public IEnumerable<object> Keys()
+        internal IEnumerable<object> Keys()
         {
             if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
@@ -171,7 +171,7 @@ namespace RiotSharp
         /// </summary>
         /// <typeparam name="V">Type of the value which has to be a reference type.</typeparam>
         /// <returns>Enumerator for the values of a specific type.</returns>
-        public IEnumerable<V> Values<V>() where V : class
+        internal IEnumerable<V> Values<V>() where V : class
         {
             if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
@@ -197,7 +197,7 @@ namespace RiotSharp
         /// Enumerator for all values.
         /// </summary>
         /// <returns>Enumerator for all values.</returns>
-        public IEnumerable<object> Values()
+        internal IEnumerable<object> Values()
         {
             if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
@@ -220,7 +220,7 @@ namespace RiotSharp
         /// Total amount of (key, value) pairs in the cache.
         /// </summary>
         /// <returns>Total amount of (key, value) pairs in the cache.</returns>
-        public int Count()
+        internal int Count()
         {
             if (Monitor.TryEnter(sync, DefaultMonitorWait))
             {
@@ -238,8 +238,6 @@ namespace RiotSharp
                 return -1;
             }
         }
-
-        #endregion
 
         private void Add<K, V>(K key, V value, TimeSpan timeSpan, bool isSliding) where V : class
         {

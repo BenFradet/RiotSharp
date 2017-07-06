@@ -49,37 +49,5 @@ namespace RiotSharp
         /// Clear the cache.
         /// </summary>
         void Clear();
-
-        /// <summary>
-        /// Enumerator for the keys of a specific type.
-        /// </summary>
-        /// <typeparam name="K">Type of the key.</typeparam>
-        /// <returns>Enumerator for the keys of a specific type.</returns>
-        IEnumerable<K> Keys<K>();
-
-        /// <summary>
-        /// Enumerator for all keys.
-        /// </summary>
-        /// <returns>Enumerator for all keys.</returns>
-        IEnumerable<object> Keys();
-
-        /// <summary>
-        /// Enumerator for the values of a specific type.
-        /// </summary>
-        /// <typeparam name="V">Type of the value which has to be a reference type.</typeparam>
-        /// <returns>Enumerator for the values of a specific type.</returns>
-        IEnumerable<V> Values<V>() where V : class;
-
-        /// <summary>
-        /// Enumerator for all values.
-        /// </summary>
-        /// <returns>Enumerator for all values.</returns>
-        IEnumerable<object> Values();
-
-        /// <summary>
-        /// Total amount of (key, value) pairs in the cache.
-        /// </summary>
-        /// <returns>Total amount of (key, value) pairs in the cache.</returns>
-        int Count();
     }
 }
