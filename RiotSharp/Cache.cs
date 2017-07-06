@@ -270,7 +270,7 @@ namespace RiotSharp
             {
                 TryPurgeItem(key);
                 timer?.Dispose();
-            }, key, timeSpan, TimeSpan.Zero);
+            }, key, timeSpan, TimeSpan.FromMilliseconds(-1));
         }
 
         private void TryPurgeItem<K>(K key)
