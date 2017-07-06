@@ -12,6 +12,7 @@ namespace RiotSharp.AspNetCore
         private IMemoryCache memoryCache;
         private List<object> usedKeys;
 
+#pragma warning disable CS1591
         public MemoryCache(IMemoryCache memoryCache)
         {
             this.memoryCache = memoryCache;
@@ -49,5 +50,6 @@ namespace RiotSharp.AspNetCore
         {
             memoryCache.Remove(key);
         }
+#pragma warning restore
     }
 }

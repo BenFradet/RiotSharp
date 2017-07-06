@@ -53,7 +53,6 @@ namespace RiotSharp.AspNetCore
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
                     new TournamentRiotApi(rateLimitedRequester, riotSharpOptions.TournamentApi.UseStub));
             }
-
             
             return serviceCollection;
         }
