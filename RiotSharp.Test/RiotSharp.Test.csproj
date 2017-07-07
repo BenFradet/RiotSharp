@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RiotSharp.AspNetCore\RiotSharp.AspNetCore.csproj" />
     <ProjectReference Include="..\RiotSharp\RiotSharp.csproj" />
   </ItemGroup>
 
