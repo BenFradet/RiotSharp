@@ -13,7 +13,7 @@ namespace RiotSharp.Test
     [TestClass]
     public class RiotApiTest : CommonTestBase
     {
-        private static RiotApi api = RiotApi.GetInstance(RiotApiTestBase.apiKey);
+        private static RiotApi api = RiotApi.GetDevelopmentInstance(RiotApiTestBase.apiKey);
         private static DateTime beginTime = new DateTime(2015, 01, 01);
         private static DateTime endTime { get { return DateTime.Now; } }
 

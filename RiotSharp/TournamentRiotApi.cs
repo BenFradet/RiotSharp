@@ -37,9 +37,9 @@ namespace RiotSharp
 
         #endregion
 
-        private TournamentRiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m, bool useStub = false)
+        private TournamentRiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
-            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
+            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             requester = Requesters.TournamentApiRequester;
             SetTournamentRootUrl(useStub);
         }
@@ -60,26 +60,26 @@ namespace RiotSharp
         }
 
         /// <summary>
-        /// Get the instance of RiotApi.
+        /// Get the instance of TournamentRiotApi.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
-        /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
-        /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
+        /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
+        /// is the number of requests allowed per that time span. Use null for no limits (default).</param>
         /// <param name="useStub">
         /// If true, the tournament stub will be used for requests. 
         /// Useful for testing purposes.
         /// </param>
         /// <returns>The instance of RiotApi.</returns>
-        public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500,
-            bool useStub = false)
+        public static TournamentRiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits = null, bool useStub = false)
         {
+            if (rateLimits == null)
+                rateLimits = new Dictionary<TimeSpan, int>();
             if (instance == null ||
                 Requesters.TournamentApiRequester == null ||
                 apiKey != Requesters.TournamentApiRequester.ApiKey ||
-                rateLimitPer10s != Requesters.TournamentApiRequester.RateLimitPer10S ||
-                rateLimitPer10m != Requesters.TournamentApiRequester.RateLimitPer10M)
+                !rateLimits.Equals(Requesters.TournamentApiRequester.RateLimits))
             {
-                instance = new TournamentRiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
+                instance = new TournamentRiotApi(apiKey, rateLimits);
             }
             return instance;
         }
@@ -91,7 +91,7 @@ namespace RiotSharp
             {
                 throw new NotSupportedException(
                     "Can't get instance of TournamentRiotApi. " +
-                    "Use the overloaded method GetInstance(apikey, rateLimitPer10s, rateLimitPer10m) " +
+                    "Use the overloaded method GetInstance(apikey, rateLimits) " +
                     "anywhere in your code before calling any tournament API method.");
             }
             return instance;
