@@ -1,4 +1,7 @@
-﻿namespace RiotSharp.AspNetCore
+﻿using System;
+using System.Collections.Generic;
+
+namespace RiotSharp.AspNetCore
 {
     /// <summary>
     /// Options for dependency injection
@@ -9,6 +12,11 @@
         public RiotSharpOptions()
         {
             RiotApi = new ApiKeyOptions();
+            RiotApi.RateLimits = new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(1)] = 20,
+                [TimeSpan.FromMinutes(2)] = 100
+            };
             TournamentApi = new TournamentApiKeyOptions();
         }
 
