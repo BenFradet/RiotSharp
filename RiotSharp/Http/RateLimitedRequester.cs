@@ -39,7 +39,7 @@ namespace RiotSharp.Http
             using (var response = Get(request))
             {
                 return GetResponseContent(response);
-            }              
+            }
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> addedArguments = null, 

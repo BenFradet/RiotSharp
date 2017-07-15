@@ -63,14 +63,35 @@ namespace RiotSharp
         /// Get the instance of TournamentRiotApi.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
+        /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
+        /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
+        /// <param name="useStub">
+        /// If true, the tournament stub will be used for requests. 
+        /// Useful for testing purposes.
+        /// </param>
+        /// <returns>The instance of TournamentRiotApi.</returns>
+        public static TournamentRiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500,
+            bool useStub = false)
+        {
+            return GetInstance(apiKey, new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(10)] = rateLimitPer10s,
+                [TimeSpan.FromMinutes(10)] = rateLimitPer10m
+            }, useStub);
+        }
+
+        /// <summary>
+        /// Get the instance of TournamentRiotApi.
+        /// </summary>
+        /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
         /// is the number of requests allowed per that time span. Use null for no limits (default).</param>
         /// <param name="useStub">
         /// If true, the tournament stub will be used for requests. 
         /// Useful for testing purposes.
         /// </param>
-        /// <returns>The instance of RiotApi.</returns>
-        public static TournamentRiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits = null, bool useStub = false)
+        /// <returns>The instance of TournamentRiotApi.</returns>
+        public static TournamentRiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
             if (rateLimits == null)
                 rateLimits = new Dictionary<TimeSpan, int>();

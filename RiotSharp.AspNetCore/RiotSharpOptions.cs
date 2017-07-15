@@ -18,6 +18,11 @@ namespace RiotSharp.AspNetCore
                 [TimeSpan.FromMinutes(2)] = 100
             };
             TournamentApi = new TournamentApiKeyOptions();
+            TournamentApi.RateLimits = new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(10)] = 10,
+                [TimeSpan.FromMinutes(10)] = 500
+            };
         }
 
         public bool UseMemoryCache { get; set; }
