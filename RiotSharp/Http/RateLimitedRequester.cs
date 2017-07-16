@@ -13,13 +13,11 @@ namespace RiotSharp.Http
     /// </summary>
     public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
-        public int RateLimitPer10S { get; set; }
-        public int RateLimitPer10M { get; set; }
+        public readonly IDictionary<TimeSpan, int> RateLimits;
 
-        public RateLimitedRequester(string apiKey, int rateLimitPer10s, int rateLimitPer10m) : base(apiKey)
+        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits) : base(apiKey)
         {
-            RateLimitPer10S = rateLimitPer10s;
-            RateLimitPer10M = rateLimitPer10m;
+            RateLimits = rateLimits;
         }
 
         private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
@@ -41,7 +39,7 @@ namespace RiotSharp.Http
             using (var response = Get(request))
             {
                 return GetResponseContent(response);
-            }              
+            }
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> addedArguments = null, 
@@ -132,7 +130,7 @@ namespace RiotSharp.Http
         private RateLimiter GetRateLimiter(Region region)
         {
             if (!rateLimiters.ContainsKey(region))
-                rateLimiters[region] = new RateLimiter(RateLimitPer10S, RateLimitPer10M);
+                rateLimiters[region] = new RateLimiter(RateLimits);
             return rateLimiters[region]; 
         }
     }

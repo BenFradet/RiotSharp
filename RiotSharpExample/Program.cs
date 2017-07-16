@@ -12,7 +12,7 @@ namespace RiotSharpExample
     {
         static void Main(string[] args)
         {
-            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);
+            var api = RiotApi.GetDevelopmentInstance(ConfigurationManager.AppSettings["ApiKey"]);
             var staticApi = StaticRiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);
             var statusApi = StatusRiotApi.GetInstance(ConfigurationManager.AppSettings["ApiKey"]);
             int id = int.Parse(ConfigurationManager.AppSettings["Summoner1Id"]);

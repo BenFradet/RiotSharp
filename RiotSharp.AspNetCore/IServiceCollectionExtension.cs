@@ -27,7 +27,7 @@ namespace RiotSharp.AspNetCore
             if (riotSharpOptions.RiotApi.ApiKey != null)
             {
                 var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey,
-                    riotSharpOptions.RiotApi.RateLimitPer10S, riotSharpOptions.RiotApi.RateLimitPer10M);
+                    riotSharpOptions.RiotApi.RateLimits);
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
                     new TournamentRiotApi(rateLimitedRequester));
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider => new RiotApi(rateLimitedRequester));
@@ -49,7 +49,7 @@ namespace RiotSharp.AspNetCore
             if (riotSharpOptions.TournamentApi.ApiKey != null)
             {
                 var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.TournamentApi.ApiKey, 
-                    riotSharpOptions.TournamentApi.RateLimitPer10S, riotSharpOptions.TournamentApi.RateLimitPer10M);
+                    riotSharpOptions.TournamentApi.RateLimits);
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
                     new TournamentRiotApi(rateLimitedRequester, riotSharpOptions.TournamentApi.UseStub));
             }

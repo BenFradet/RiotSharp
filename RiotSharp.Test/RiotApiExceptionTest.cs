@@ -6,7 +6,7 @@ namespace RiotSharp.Test
     [TestClass]
     public class RiotApiExceptionTest
     {
-        private static RiotApi faultyApi = RiotApi.GetInstance(RiotApiExceptionTestBase.faultyApiKey);
+        private static RiotApi faultyApi = RiotApi.GetDevelopmentInstance(RiotApiExceptionTestBase.faultyApiKey);
 
         [TestMethod]
         [TestCategory("Exception")]

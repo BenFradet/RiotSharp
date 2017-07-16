@@ -69,11 +69,27 @@ namespace RiotSharp
         private const int MaxNrLeagues = 10;
         private const int MaxNrEntireLeagues = 10;
 
-        private IRateLimitedRequester requester;
+        private readonly IRateLimitedRequester requester;
 
         private static RiotApi instance;
 
         #endregion
+
+        /// <summary>
+        /// Gets the instance of RiotApi, with development rate limits by default.
+        /// </summary>
+        /// <param name="apiKey">The api key.</param>
+        /// <param name="rateLimitPer1s">The 1 second rate limit for your api key. 20 by default.</param>
+        /// <param name="rateLimitPer2m">The 2 minute rate limit for your api key. 100 by default.</param>
+        /// <returns>The instance of RiotApi.</returns>
+        public static RiotApi GetDevelopmentInstance(string apiKey, int rateLimitPer1s = 20, int rateLimitPer2m = 100)
+        {
+            return GetInstance(apiKey, new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(1)] = rateLimitPer1s,
+                [TimeSpan.FromMinutes(2)] = rateLimitPer2m
+            });
+        }
      
         /// <summary>
         /// Get the instance of RiotApi.
@@ -82,21 +98,36 @@ namespace RiotSharp
         /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
         /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
         /// <returns>The instance of RiotApi.</returns>
-        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s = 10, int rateLimitPer10m = 500)
+        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
+        {
+            return GetInstance(apiKey, new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromMinutes(10)] = rateLimitPer10m,
+                [TimeSpan.FromSeconds(10)] = rateLimitPer10s
+            });
+        }
+
+        /// <summary>
+        /// Gets the instance of RiotApi, allowing custom rate limits.
+        /// </summary>
+        /// <param name="apiKey">The api key.</param>
+        /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
+        /// is the number of requests allowed per that time span.</param>
+        /// <returns>The instance of RiotApi.</returns>
+        public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits)
         {
             if (instance == null || Requesters.RiotApiRequester == null ||
                 apiKey != Requesters.RiotApiRequester.ApiKey ||
-                rateLimitPer10s != Requesters.RiotApiRequester.RateLimitPer10S ||
-                rateLimitPer10m != Requesters.RiotApiRequester.RateLimitPer10M)
+                !rateLimits.Equals(Requesters.RiotApiRequester.RateLimits))
             {
-                instance = new RiotApi(apiKey, rateLimitPer10s, rateLimitPer10m);
+                instance = new RiotApi(apiKey, rateLimits);
             }
             return instance;
         }
 
-        private RiotApi(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
+        private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits)
         {
-            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimitPer10s, rateLimitPer10m);
+            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             requester = Requesters.RiotApiRequester;
         }
 

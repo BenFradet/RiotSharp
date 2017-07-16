@@ -1,4 +1,7 @@
-﻿namespace RiotSharp.AspNetCore
+﻿using System;
+using System.Collections.Generic;
+
+namespace RiotSharp.AspNetCore
 {
     /// <summary>
     /// Options for dependency injection
@@ -9,16 +12,22 @@
         public RiotSharpOptions()
         {
             RiotApi = new ApiKeyOptions();
-            RiotApi.RateLimitPer10S = 10;
-            RiotApi.RateLimitPer10M = 500;
+            RiotApi.RateLimits = new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(1)] = 20,
+                [TimeSpan.FromMinutes(2)] = 100
+            };
             TournamentApi = new TournamentApiKeyOptions();
-            TournamentApi.RateLimitPer10S = 10;
-            TournamentApi.RateLimitPer10M = 500;
+            TournamentApi.RateLimits = new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(10)] = 10,
+                [TimeSpan.FromMinutes(10)] = 500
+            };
         }
 
         public bool UseMemoryCache { get; set; }
         public ApiKeyOptions RiotApi { get; set; }
-        public TournamentApiKeyOptions TournamentApi { get; set; }       
+        public TournamentApiKeyOptions TournamentApi { get; set; }
     }
 #pragma warning restore
 }

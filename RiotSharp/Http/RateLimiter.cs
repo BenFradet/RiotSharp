@@ -1,45 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("RiotSharp.Test")]
 namespace RiotSharp.Http
 {
-    /// <summary>
-    /// A rate limiter for a single region.
-    /// </summary>
     internal class RateLimiter
     {
-        private static readonly TimeSpan TenSeconds = TimeSpan.FromSeconds(10);
-        private static readonly TimeSpan TenMinutes = TimeSpan.FromMinutes(10);
+        /// <summary>Semaphore to prevent multiple requests from interferering with each other's rate limit
+        /// calculations.</summary>
+        private readonly SemaphoreSlim accessSemaphore = new SemaphoreSlim(1);
 
-        private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
+        /// <summary>Time to retry when 429 Retry-After headers are set.</summary>
+        private DateTime? retryAfter;
 
-        private readonly int rateLimitPer10Seconds;
-        private readonly int rateLimitPer10Minutes;
+        /// <summary>Key is rate limit interval, value is the maximum requests allowed in that interval.</summary>
+        private readonly IDictionary<TimeSpan, int> rateLimits;
 
-        private DateTime firstRequestInLast10Seconds = DateTime.MinValue;
-        private DateTime firstRequestInLast10Minutes = DateTime.MinValue;
+        /// <summary>Key is rate limit interval, value is time the inteval started.</summary>
+        private readonly IDictionary<TimeSpan, DateTime> rateLimitStarts = new Dictionary<TimeSpan, DateTime>();
 
-        private int requestsInLast10Seconds = 0;
-        private int requestsInLast10Minutes = 0;
+        /// <summary>Key is rate limit interval, value is the current request count.</summary>
+        private readonly IDictionary<TimeSpan, int> rateLimitCounts = new Dictionary<TimeSpan, int>();
 
-        /// <summary>Stores the retryAfter time if a request returns 429.</summary>
-        private DateTime retryAfter = DateTime.MinValue;
-
-        public RateLimiter(int rateLimitPer10Seconds, int rateLimitPer10Minutes)
+        public RateLimiter(IDictionary<TimeSpan, int> rateLimits)
         {
-            this.rateLimitPer10Seconds = rateLimitPer10Seconds;
-            this.rateLimitPer10Minutes = rateLimitPer10Minutes;
+            this.rateLimits = rateLimits;
         }
 
         /// <summary>
-        /// Blocks until a request can be made without violating rate limit rules.
+        /// Sets the retry after delay when a request returns 429.
+        /// Note that this won't affect a (single) request that has already called HandleRateLimitAsync and is
+        /// currently waiting.
         /// </summary>
+        /// <param name="delay">Time to delay.</param>
+        public void SetRetryAfter(TimeSpan delay)
+        {
+            retryAfter = DateTime.Now + delay;
+        }
+
+        /// <summary>Blocks until a request can be made without violating rate limit rules. Release must be called
+        /// after the request completes.</summary>
         public void HandleRateLimit()
         {
-            semaphore.Wait();
+            accessSemaphore.Wait();
             try
             {
                 Task.Delay(GetDelay()).Wait();
@@ -47,17 +53,15 @@ namespace RiotSharp.Http
             }
             finally
             {
-                semaphore.Release();
+                accessSemaphore.Release();
             }
         }
 
-        /// <summary>
-        /// Creates a task that blocks until a request can be made without violating rate limit rules. 
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>Creates a task that blocks until a request can be made without violating rate limit rules. Release
+        /// must be called after the task completes.</summary>
         public async Task HandleRateLimitAsync()
         {
-            await semaphore.WaitAsync();
+            await accessSemaphore.WaitAsync();
             try
             {
                 await Task.Delay(GetDelay());
@@ -65,49 +69,44 @@ namespace RiotSharp.Http
             }
             finally
             {
-                semaphore.Release();
+                accessSemaphore.Release();
             }
         }
 
         /// <summary>
-        /// Sets the retry after delay when a request returns 429.
-        /// 
-        /// Note that this won't affect a (single) request that has already called HandleRateLimitAsync and is currently waiting.
-        /// </summary>
-        /// <param name="delay"></param>
-        public void SetRetryAfter(TimeSpan delay)
-        {
-            retryAfter = DateTime.Now + delay;
-        }
-
-        /// <summary>
-        /// Gets the delay required. Should only be called when semaphore is currently owned. Non-destructive.
+        /// Gets the delay required. Should only be called when accessSemaphore is currently owned. Non-destructive.
         /// </summary>
         /// <returns></returns>
         private TimeSpan GetDelay()
         {
             var now = DateTime.Now;
-            
-            // check if we are at the rate limit, find the longest delay
+
+            // Check if we are at the rate limit, find the longest delay.
             var delay = TimeSpan.Zero;
-            // 10 minutes
-            if (requestsInLast10Minutes >= rateLimitPer10Minutes)
-            {
-                var newDelay = firstRequestInLast10Minutes + TenMinutes - now;
-                if (newDelay > delay)
-                    delay = newDelay;
-            }
-            // 10 seconds
-            if (requestsInLast10Seconds >= rateLimitPer10Seconds)
-            {
-                var newDelay = firstRequestInLast10Seconds + TenSeconds - now;
-                if (newDelay > delay)
-                    delay = newDelay;
-            }
-            // retryAfter delay
+            
+            // RetryAfter delay.
             var retryDelay = retryAfter - now;
             if (retryDelay > delay)
-                delay = retryDelay;
+                delay = (TimeSpan) retryDelay;
+
+            // Rate limits.
+            foreach (var rateLimitCount in rateLimitCounts)
+            {
+                // For each rate limit count.
+                var timeSpan = rateLimitCount.Key;
+                var count = rateLimitCount.Value;
+                var limit = rateLimits[timeSpan];
+
+                // If request count is a limit, update the delay to match.
+                if (count >= limit)
+                {
+                    // Start should exist if count exists.
+                    var start = rateLimitStarts[timeSpan];
+                    var newDelay = start + timeSpan - now;
+                    if (newDelay > delay)
+                        delay = newDelay;
+                }
+            }
 
             return delay;
         }
@@ -119,21 +118,28 @@ namespace RiotSharp.Http
         {
             var now = DateTime.Now;
 
-            // reset if rate limit timespan is over
-            if (firstRequestInLast10Minutes < now - TenMinutes)
+            foreach (var rateLimit in rateLimits)
             {
-                firstRequestInLast10Minutes = now;
-                requestsInLast10Minutes = 0;
-            }
-            if (firstRequestInLast10Seconds < now - TenSeconds)
-            {
-                firstRequestInLast10Seconds = now;
-                requestsInLast10Seconds = 0;
-            }
+                var timeSpan = rateLimit.Key;
 
-            // increment the request counters
-            requestsInLast10Minutes++;
-            requestsInLast10Seconds++;
+                int count;
+                DateTime start = DateTime.MinValue;
+                rateLimitStarts.TryGetValue(timeSpan, out start);
+
+                // If the rate limit hasn't been initialized (no start value) or the time span has ended.
+                if (start == DateTime.MinValue || start <= now - timeSpan)
+                {
+                    rateLimitStarts[timeSpan] = now;
+                    count = 0;
+                }
+                else
+                {
+                    // Rate limit must've been initialized and is current.
+                    count = rateLimitCounts[timeSpan];
+                }
+
+                rateLimitCounts[timeSpan] = count + 1;
+            }
         }
     }
 }

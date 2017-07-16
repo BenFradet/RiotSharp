@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace RiotSharp.Test
         /// Slightly more than the percentage extra delay tests tend to take.
         /// </summary>
         public const double ErrorFactor = 1.003;
-        public static readonly TimeSpan ErrorDelay = TimeSpan.FromMilliseconds(20);
+        public static readonly TimeSpan ErrorDelay = TimeSpan.FromMilliseconds(100);
         public const int Limit = 10;
 
         internal RateLimiter RateLimiter;
@@ -25,7 +26,10 @@ namespace RiotSharp.Test
         [TestInitialize]
         public void Initialize()
         {
-            RateLimiter = new RateLimiter(Limit, int.MaxValue);
+            RateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(10)] = Limit
+            });
             Stopwatch.Restart();
         }
 
