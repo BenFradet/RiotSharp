@@ -31,7 +31,7 @@ namespace RiotSharp.Test
                 var champ = api.GetChampion(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
-                Assert.AreEqual(champ.Name, StaticRiotApiTestBase.staticChampionName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticChampionName, champ.Name);
             });
         }
 
@@ -44,7 +44,7 @@ namespace RiotSharp.Test
                 var champ = api.GetChampionAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
-                Assert.AreEqual(champ.Result.Name, StaticRiotApiTestBase.staticChampionName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticChampionName, champ.Result.Name);
             });
         }
 
@@ -56,7 +56,6 @@ namespace RiotSharp.Test
             {
                 var champs = api.GetChampions(StaticRiotApiTestBase.region, ChampionData.all);
 
-                Assert.IsNotNull(champs.Champions);
                 Assert.IsTrue(champs.Champions.Count > 0);
             });
         }
@@ -69,7 +68,6 @@ namespace RiotSharp.Test
             {
                 var champs = api.GetChampionsAsync(StaticRiotApiTestBase.region, ChampionData.all);
 
-                Assert.IsNotNull(champs.Result.Champions);
                 Assert.IsTrue(champs.Result.Champions.Count > 0);
             });
         }
@@ -97,7 +95,6 @@ namespace RiotSharp.Test
             {
                 var items = api.GetItems(StaticRiotApiTestBase.region, ItemData.all);
 
-                Assert.IsNotNull(items.Items);
                 Assert.IsTrue(items.Items.Count > 0);
             });
         }
@@ -110,7 +107,6 @@ namespace RiotSharp.Test
             {
                 var items = api.GetItemsAsync(StaticRiotApiTestBase.region, ItemData.all);
 
-                Assert.IsNotNull(items.Result.Items);
                 Assert.IsTrue(items.Result.Items.Count > 0);
             });
         }
@@ -123,7 +119,7 @@ namespace RiotSharp.Test
             {
                 var item = api.GetItem(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticItemId, ItemData.all);
 
-                Assert.AreEqual(item.Name, StaticRiotApiTestBase.staticItemName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticItemName, item.Name);
             });
         }
 
@@ -136,7 +132,7 @@ namespace RiotSharp.Test
                 var item = api.GetItemAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticItemId, ItemData.all);
 
-                Assert.AreEqual(item.Result.Name, StaticRiotApiTestBase.staticItemName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticItemName, item.Result.Name);
             });
         }
         #endregion
@@ -227,7 +223,6 @@ namespace RiotSharp.Test
             {
                 var masteries = api.GetMasteries(StaticRiotApiTestBase.region, MasteryData.all);
 
-                Assert.IsNotNull(masteries.Masteries);
                 Assert.IsTrue(masteries.Masteries.Count > 0);
             });
         }
@@ -240,7 +235,6 @@ namespace RiotSharp.Test
             {
                 var masteries = api.GetMasteriesAsync(StaticRiotApiTestBase.region, MasteryData.all);
 
-                Assert.IsNotNull(masteries.Result.Masteries);
                 Assert.IsTrue(masteries.Result.Masteries.Count > 0);
             });
         }
@@ -254,7 +248,7 @@ namespace RiotSharp.Test
                 var mastery = api.GetMastery(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
 
-                Assert.AreEqual(mastery.Name, StaticRiotApiTestBase.staticMasteryName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticMasteryName, mastery.Name);
             });
         }
 
@@ -267,7 +261,7 @@ namespace RiotSharp.Test
                 var mastery = api.GetMasteryAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
 
-                Assert.AreEqual(mastery.Result.Name, StaticRiotApiTestBase.staticMasteryName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticMasteryName, mastery.Result.Name);
             });
         }
 
@@ -280,7 +274,6 @@ namespace RiotSharp.Test
             {
                 var profileIcons = api.GetProfileIcons(StaticRiotApiTestBase.region);
 
-                Assert.IsNotNull(profileIcons.ProfileIcons);
                 Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
             });
         }
@@ -293,7 +286,6 @@ namespace RiotSharp.Test
             {
                 var profileIcons = api.GetProfileIconsAsync(StaticRiotApiTestBase.region).Result;
 
-                Assert.IsNotNull(profileIcons.ProfileIcons);
                 Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
             });
         }
@@ -307,7 +299,6 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunes(StaticRiotApiTestBase.region, RuneData.all);
 
-                Assert.IsNotNull(runes);
                 Assert.IsTrue(runes.Runes.Count > 0);
             });
         }
@@ -320,7 +311,6 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunesAsync(StaticRiotApiTestBase.region, RuneData.all);
 
-                Assert.IsNotNull(runes.Result);
                 Assert.IsTrue(runes.Result.Runes.Count > 0);
             });
         }
@@ -333,7 +323,7 @@ namespace RiotSharp.Test
             {
                 var rune = api.GetRune(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticRuneId, RuneData.all);
 
-                Assert.AreEqual(rune.Name, StaticRiotApiTestBase.staticRuneName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticRuneName, rune.Name);
             });
         }
 
@@ -346,7 +336,7 @@ namespace RiotSharp.Test
                 var rune = api.GetRuneAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticRuneId, RuneData.all);
 
-                Assert.AreEqual(rune.Result.Name, StaticRiotApiTestBase.staticRuneName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticRuneName, rune.Result.Name);
             });
         }
 
@@ -358,7 +348,6 @@ namespace RiotSharp.Test
             {
                 var spells = api.GetSummonerSpells(StaticRiotApiTestBase.region, SummonerSpellData.all);
 
-                Assert.IsNotNull(spells.SummonerSpells);
                 Assert.IsTrue(spells.SummonerSpells.Count > 0);
             });
         }
@@ -371,7 +360,6 @@ namespace RiotSharp.Test
             {
                 var spells = api.GetSummonerSpellsAsync(StaticRiotApiTestBase.region, SummonerSpellData.all);
 
-                Assert.IsNotNull(spells.Result.SummonerSpells);
                 Assert.IsTrue(spells.Result.SummonerSpells.Count > 0);
             });
         }
@@ -385,7 +373,7 @@ namespace RiotSharp.Test
                 var spell = api.GetSummonerSpell(StaticRiotApiTestBase.region,
                     (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
-                Assert.AreEqual(spell.Name, StaticRiotApiTestBase.staticSummonerSpellName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticSummonerSpellName, spell.Name);
             });
         }
 
@@ -398,7 +386,7 @@ namespace RiotSharp.Test
                 var spell = api.GetSummonerSpellAsync(StaticRiotApiTestBase.region,
                     (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
-                Assert.AreEqual(spell.Result.Name, StaticRiotApiTestBase.staticSummonerSpellName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticSummonerSpellName, spell.Result.Name);
             });
         }
 
@@ -410,7 +398,6 @@ namespace RiotSharp.Test
             {
                 var versions = api.GetVersions(StaticRiotApiTestBase.region);
 
-                Assert.IsNotNull(versions);
                 Assert.IsTrue(versions.Count() > 0);
             });
         }
@@ -423,7 +410,6 @@ namespace RiotSharp.Test
             {
                 var versions = api.GetVersionsAsync(StaticRiotApiTestBase.region);
 
-                Assert.IsNotNull(versions.Result);
                 Assert.IsTrue(versions.Result.Count() > 0);
             });
         }
