@@ -18,9 +18,8 @@ namespace RiotSharp.Test
             {
                 var shardStatus = api.GetShardStatus(StatusRiotApiTestBase.platform);
 
-                Assert.IsNotNull(shardStatus);
                 Assert.AreEqual(StatusRiotApiTestBase.platform.ToString().ToLower(),
-                    shardStatus.RegionTag.ToString());
+                    shardStatus.RegionTag);
             });
         }
 
@@ -32,9 +31,8 @@ namespace RiotSharp.Test
             {
                 var shardStatus = api.GetShardStatusAsync(StatusRiotApiTestBase.platform);
 
-                Assert.IsNotNull(shardStatus.Result);
                 Assert.AreEqual(StatusRiotApiTestBase.platform.ToString().ToLower(),
-                    shardStatus.Result.RegionTag.ToString());
+                    shardStatus.Result.RegionTag);
             });
         }
     }

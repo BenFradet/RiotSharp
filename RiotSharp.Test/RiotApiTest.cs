@@ -105,7 +105,6 @@ namespace RiotSharp.Test
             {
                 var champions = api.GetChampions(RiotApiTestBase.summoner1and2Region);
 
-                Assert.IsNotNull(champions);
                 Assert.IsTrue(champions.Count() > 0);
             });
         }
@@ -118,7 +117,6 @@ namespace RiotSharp.Test
             {
                 var champions = api.GetChampionsAsync(RiotApiTestBase.summoner1and2Region);
 
-                Assert.IsNotNull(champions.Result);
                 Assert.IsTrue(champions.Result.Count() > 0);
             });
         }
@@ -131,7 +129,6 @@ namespace RiotSharp.Test
             {
                 var champions = api.GetChampions(RiotApiTestBase.summoner1and2Region, true);
 
-                Assert.IsNotNull(champions);
                 Assert.IsTrue(champions.Count() > 0);
             });
         }
@@ -144,7 +141,6 @@ namespace RiotSharp.Test
             {
                 var champions = api.GetChampionsAsync(RiotApiTestBase.summoner1and2Region, true);
 
-                Assert.IsNotNull(champions.Result);
                 Assert.IsTrue(champions.Result.Count() > 0);
             });
         }
@@ -157,7 +153,6 @@ namespace RiotSharp.Test
             {
                 var champion = api.GetChampion(RiotApiTestBase.summoner1and2Region, 12);
 
-                Assert.IsNotNull(champion);
                 Assert.AreEqual(champion.Id, 12);
             });
         }
@@ -170,7 +165,6 @@ namespace RiotSharp.Test
             {
                 var champion = api.GetChampionAsync(RiotApiTestBase.summoner1and2Region, 12);
 
-                Assert.IsNotNull(champion.Result);
                 Assert.AreEqual(champion.Result.Id, 12);
             });
         }
@@ -183,7 +177,6 @@ namespace RiotSharp.Test
             {
                 var pages = api.GetMasteryPages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(pages);
                 Assert.IsTrue(pages.Count >= 1 && pages.Count <= 20);
             });
         }
@@ -214,7 +207,6 @@ namespace RiotSharp.Test
             {
                 var pages = api.GetMasteryPagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(pages.Result);
                 Assert.IsTrue(pages.Result.Count >= 1 && pages.Result.Count <= 20);
             });
         }
@@ -246,7 +238,6 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunePages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
 
-                Assert.IsNotNull(runes);
                 Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), runes.Count);
             });
         }
@@ -259,7 +250,6 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunePagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
 
-                Assert.IsNotNull(runes.Result);
                 Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
                     runes.Result.Count);
             });
@@ -273,7 +263,6 @@ namespace RiotSharp.Test
             {
                 var leagues = api.GetLeagues(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
 
-                Assert.IsNotNull(leagues);
                 Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), leagues.Count);
             });
         }
@@ -286,7 +275,6 @@ namespace RiotSharp.Test
             {
                 var leagues = api.GetLeaguesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
 
-                Assert.IsNotNull(leagues);
                 Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
                     leagues.Result.Count);
             });
@@ -322,7 +310,6 @@ namespace RiotSharp.Test
             {
                 var leagues = api.GetEntireLeagues(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
 
-                Assert.IsNotNull(leagues);
                 Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), leagues.Count);
             });
         }
@@ -335,7 +322,6 @@ namespace RiotSharp.Test
             {
                 var leagues = api.GetEntireLeaguesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
 
-                Assert.IsNotNull(leagues.Result);
                 Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(),
                     leagues.Result.Count);
             });
@@ -349,7 +335,6 @@ namespace RiotSharp.Test
             {
                 var league = api.GetChallengerLeague(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.queue);
 
-                Assert.IsNotNull(league.Entries);
                 Assert.IsTrue(league.Entries.Count > 0);
             });
         }
@@ -362,7 +347,6 @@ namespace RiotSharp.Test
             {
                 var league = api.GetChallengerLeagueAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.queue);
 
-                Assert.IsNotNull(league.Result.Entries);
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
         }
@@ -375,7 +359,6 @@ namespace RiotSharp.Test
             {
                 var league = api.GetMasterLeague(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.queue);
 
-                Assert.IsNotNull(league.Entries);
                 Assert.IsTrue(league.Entries.Count > 0);
             });
         }
@@ -388,7 +371,6 @@ namespace RiotSharp.Test
             {
                 var league = api.GetMasterLeagueAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.queue);
 
-                Assert.IsNotNull(league.Result.Entries);
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
         }
@@ -402,7 +384,6 @@ namespace RiotSharp.Test
             {
                 var game = api.GetMatch(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.gameId);
 
-                Assert.IsNotNull(game);
                 Assert.IsTrue(game.MatchId == RiotApiTestBase.gameId);
                 Assert.IsNull(game.Timeline);
             });
@@ -416,7 +397,6 @@ namespace RiotSharp.Test
             {
                 var game = api.GetMatch(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.gameId, true);
 
-                Assert.IsNotNull(game);
                 Assert.IsTrue(game.MatchId == RiotApiTestBase.gameId);
                 Assert.IsNotNull(game.Timeline);
             });
@@ -431,7 +411,6 @@ namespace RiotSharp.Test
             {
                 var game = api.GetMatchAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.gameId);
 
-                Assert.IsNotNull(game.Result);
                 Assert.IsTrue(game.Result.MatchId == RiotApiTestBase.gameId);
                 Assert.IsNull(game.Result.Timeline);
             });
@@ -446,7 +425,6 @@ namespace RiotSharp.Test
             {
                 var game = api.GetMatchAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.gameId, true);
 
-                Assert.IsNotNull(game.Result);
                 Assert.IsTrue(game.Result.MatchId == RiotApiTestBase.gameId);
                 Assert.IsNotNull(game.Result.Timeline);
             });
@@ -462,7 +440,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id).Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
             });
         }
@@ -477,7 +454,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id, new List<long> { RiotApiTestBase.championId }).Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -497,7 +473,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id, null, new List<string> { RiotApiTestBase.queue }).Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -516,7 +491,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id, null, null, new List<Season> { RiotApiTestBase.season }).Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -535,7 +509,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region,
                     RiotApiTestBase.summoner1Id, null, null, null, beginTime, endTime).Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -558,7 +531,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchList(RiotApiTestBase.summoner1and2Region,
                     RiotApiTestBase.summoner1Id, null, null, null, null, null, beginIndex, endIndex).Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() <= endIndex - beginIndex);
             });
         }
@@ -573,7 +545,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchListAsync(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id).Result.Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
             });
         }
@@ -588,7 +559,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchListAsync(RiotApiTestBase.summoner1and2Region,
                     RiotApiTestBase.summoner1Id, new List<long> { RiotApiTestBase.championId }).Result.Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -609,7 +579,6 @@ namespace RiotSharp.Test
                     RiotApiTestBase.summoner1Id, null, 
                     new List<string> { RiotApiTestBase.queue }).Result.Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -629,7 +598,6 @@ namespace RiotSharp.Test
                     RiotApiTestBase.summoner1Id, null, null, 
                     new List<Season> { RiotApiTestBase.season }).Result.Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -648,7 +616,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchListAsync(RiotApiTestBase.summoner1and2Region,
                     RiotApiTestBase.summoner1Id, null, null, null, beginTime, endTime).Result.Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() > 0);
                 foreach (var match in matches)
                 {
@@ -671,7 +638,6 @@ namespace RiotSharp.Test
                 var matches = api.GetMatchListAsync(RiotApiTestBase.summoner1and2Region,
                     RiotApiTestBase.summoner1Id, null, null, null, null, null, beginIndex, endIndex).Result.Matches;
 
-                Assert.IsNotNull(matches);
                 Assert.IsTrue(matches.Count() <= endIndex - beginIndex);
             });
         }
@@ -685,7 +651,6 @@ namespace RiotSharp.Test
             {
                 var games = api.GetRecentGames(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(games);
                 Assert.IsTrue(games.Count() > 0);
             });
         }
@@ -698,7 +663,6 @@ namespace RiotSharp.Test
             {
                 var games = api.GetRecentGamesAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(games.Result);
                 Assert.IsTrue(games.Result.Count() > 0);
             });
         }
@@ -736,7 +700,6 @@ namespace RiotSharp.Test
                 var championMastery = api.GetChampionMastery(RiotApiTestBase.summoner1Platform,
                     RiotApiTestBase.summoner1Id, RiotApiTestBase.summoner1MasteryChampionId);
 
-                Assert.IsNotNull(championMastery);
                 Assert.AreEqual(RiotApiTestBase.summoner1Id, championMastery.PlayerId);
                 Assert.AreEqual(RiotApiTestBase.summoner1MasteryChampionId, championMastery.ChampionId);
                 Assert.AreEqual(RiotApiTestBase.summoner1MasteryChampionLevel, championMastery.ChampionLevel);
@@ -753,7 +716,6 @@ namespace RiotSharp.Test
                 var championMastery = api.GetChampionMasteryAsync(RiotApiTestBase.summoner1Platform,
                     RiotApiTestBase.summoner1Id, RiotApiTestBase.summoner1MasteryChampionId).Result;
 
-                Assert.IsNotNull(championMastery);
                 Assert.AreEqual(RiotApiTestBase.summoner1Id, championMastery.PlayerId);
                 Assert.AreEqual(RiotApiTestBase.summoner1MasteryChampionId, 
                     championMastery.ChampionId);
@@ -771,7 +733,6 @@ namespace RiotSharp.Test
                 var allChampionsMastery = api.GetChampionMasteries(
                     RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(allChampionsMastery);
                 Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
                     championMastery.ChampionId == RiotApiTestBase.summoner1MasteryChampionId));
             });
@@ -786,7 +747,6 @@ namespace RiotSharp.Test
                 var allChampionsMastery = api.GetChampionMasteriesAsync(
                     RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id).Result;
 
-                Assert.IsNotNull(allChampionsMastery);
                 Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
                     championMastery.ChampionId == RiotApiTestBase.summoner1MasteryChampionId));
             });
@@ -827,13 +787,11 @@ namespace RiotSharp.Test
                 var threeTopChampions = api.GetTopChampionsMasteries(
                     RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id);
 
-                Assert.IsNotNull(threeTopChampions);
                 Assert.IsTrue(threeTopChampions.Count == 3);
 
                 var sixTopChampions = api.GetTopChampionsMasteries(
                     RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id, 6);
 
-                Assert.IsNotNull(threeTopChampions);
                 Assert.IsTrue(sixTopChampions.Count == 6);
             });
         }
@@ -847,13 +805,11 @@ namespace RiotSharp.Test
                 var threeTopChampions = api.GetTopChampionsMasteriesAsync(
                     RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id).Result;
 
-                Assert.IsNotNull(threeTopChampions);
                 Assert.IsTrue(threeTopChampions.Count == 3);
 
                 var sixTopChampions = api.GetTopChampionsMasteriesAsync(
                     RiotApiTestBase.summoner1Platform, RiotApiTestBase.summoner1Id, 6).Result;
 
-                Assert.IsNotNull(threeTopChampions);
                 Assert.IsTrue(sixTopChampions.Count == 6);
             });
         }

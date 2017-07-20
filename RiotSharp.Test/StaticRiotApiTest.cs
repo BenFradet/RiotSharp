@@ -56,7 +56,6 @@ namespace RiotSharp.Test
             {
                 var champs = api.GetChampions(StaticRiotApiTestBase.region, ChampionData.all);
 
-                Assert.IsNotNull(champs.Champions);
                 Assert.IsTrue(champs.Champions.Count > 0);
             });
         }
@@ -69,7 +68,6 @@ namespace RiotSharp.Test
             {
                 var champs = api.GetChampionsAsync(StaticRiotApiTestBase.region, ChampionData.all);
 
-                Assert.IsNotNull(champs.Result.Champions);
                 Assert.IsTrue(champs.Result.Champions.Count > 0);
             });
         }
@@ -97,7 +95,6 @@ namespace RiotSharp.Test
             {
                 var items = api.GetItems(StaticRiotApiTestBase.region, ItemData.all);
 
-                Assert.IsNotNull(items.Items);
                 Assert.IsTrue(items.Items.Count > 0);
             });
         }
@@ -110,7 +107,6 @@ namespace RiotSharp.Test
             {
                 var items = api.GetItemsAsync(StaticRiotApiTestBase.region, ItemData.all);
 
-                Assert.IsNotNull(items.Result.Items);
                 Assert.IsTrue(items.Result.Items.Count > 0);
             });
         }
@@ -227,7 +223,6 @@ namespace RiotSharp.Test
             {
                 var masteries = api.GetMasteries(StaticRiotApiTestBase.region, MasteryData.all);
 
-                Assert.IsNotNull(masteries.Masteries);
                 Assert.IsTrue(masteries.Masteries.Count > 0);
             });
         }
@@ -240,7 +235,6 @@ namespace RiotSharp.Test
             {
                 var masteries = api.GetMasteriesAsync(StaticRiotApiTestBase.region, MasteryData.all);
 
-                Assert.IsNotNull(masteries.Result.Masteries);
                 Assert.IsTrue(masteries.Result.Masteries.Count > 0);
             });
         }
@@ -280,7 +274,6 @@ namespace RiotSharp.Test
             {
                 var profileIcons = api.GetProfileIcons(StaticRiotApiTestBase.region);
 
-                Assert.IsNotNull(profileIcons.ProfileIcons);
                 Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
             });
         }
@@ -293,7 +286,6 @@ namespace RiotSharp.Test
             {
                 var profileIcons = api.GetProfileIconsAsync(StaticRiotApiTestBase.region).Result;
 
-                Assert.IsNotNull(profileIcons.ProfileIcons);
                 Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
             });
         }
@@ -307,7 +299,6 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunes(StaticRiotApiTestBase.region, RuneData.all);
 
-                Assert.IsNotNull(runes);
                 Assert.IsTrue(runes.Runes.Count > 0);
             });
         }
@@ -320,7 +311,6 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunesAsync(StaticRiotApiTestBase.region, RuneData.all);
 
-                Assert.IsNotNull(runes.Result);
                 Assert.IsTrue(runes.Result.Runes.Count > 0);
             });
         }
@@ -358,7 +348,6 @@ namespace RiotSharp.Test
             {
                 var spells = api.GetSummonerSpells(StaticRiotApiTestBase.region, SummonerSpellData.all);
 
-                Assert.IsNotNull(spells.SummonerSpells);
                 Assert.IsTrue(spells.SummonerSpells.Count > 0);
             });
         }
@@ -371,7 +360,6 @@ namespace RiotSharp.Test
             {
                 var spells = api.GetSummonerSpellsAsync(StaticRiotApiTestBase.region, SummonerSpellData.all);
 
-                Assert.IsNotNull(spells.Result.SummonerSpells);
                 Assert.IsTrue(spells.Result.SummonerSpells.Count > 0);
             });
         }
@@ -410,7 +398,6 @@ namespace RiotSharp.Test
             {
                 var versions = api.GetVersions(StaticRiotApiTestBase.region);
 
-                Assert.IsNotNull(versions);
                 Assert.IsTrue(versions.Count() > 0);
             });
         }
@@ -423,7 +410,6 @@ namespace RiotSharp.Test
             {
                 var versions = api.GetVersionsAsync(StaticRiotApiTestBase.region);
 
-                Assert.IsNotNull(versions.Result);
                 Assert.IsTrue(versions.Result.Count() > 0);
             });
         }
