@@ -27,7 +27,7 @@ namespace RiotSharp.Test
                 var summoner = api.GetSummonerBySummonerId(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id);
 
-                Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
+                Assert.AreEqual(RiotApiTestBase.summoner1Name, summoner.Name);
             });
         }
 
@@ -40,7 +40,7 @@ namespace RiotSharp.Test
                 var summoner = api.GetSummonerBySummonerIdAsync(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Id);
 
-                Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
+                Assert.AreEqual(RiotApiTestBase.summoner1Name, summoner.Result.Name);
             });
         }
 
@@ -53,7 +53,7 @@ namespace RiotSharp.Test
                 var summoner = api.GetSummonerByAccountId(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1AccountId);
 
-                Assert.AreEqual(summoner.Name, RiotApiTestBase.summoner1Name);
+                Assert.AreEqual(RiotApiTestBase.summoner1Name, summoner.Name);
             });
         }
 
@@ -66,7 +66,7 @@ namespace RiotSharp.Test
                 var summoner = api.GetSummonerByAccountIdAsync(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1AccountId);
 
-                Assert.AreEqual(summoner.Result.Name, RiotApiTestBase.summoner1Name);
+                Assert.AreEqual(RiotApiTestBase.summoner1Name, summoner.Result.Name);
             });
         }
 
@@ -79,7 +79,7 @@ namespace RiotSharp.Test
                 var summoner = api.GetSummonerByName(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Name);
 
-                Assert.AreEqual(summoner.Id, RiotApiTestBase.summoner1Id);
+                Assert.AreEqual(RiotApiTestBase.summoner1Id, summoner.Id);
             });
         }
 
@@ -92,7 +92,7 @@ namespace RiotSharp.Test
                 var summoner = api.GetSummonerByNameAsync(RiotApiTestBase.summoner1and2Region, 
                     RiotApiTestBase.summoner1Name);
 
-                Assert.AreEqual(summoner.Result.Id, RiotApiTestBase.summoner1Id);
+                Assert.AreEqual(RiotApiTestBase.summoner1Id, summoner.Result.Id);
             });
         }
         #endregion
@@ -153,7 +153,7 @@ namespace RiotSharp.Test
             {
                 var champion = api.GetChampion(RiotApiTestBase.summoner1and2Region, 12);
 
-                Assert.AreEqual(champion.Id, 12);
+                Assert.AreEqual(12, champion.Id);
             });
         }
 
@@ -165,7 +165,7 @@ namespace RiotSharp.Test
             {
                 var champion = api.GetChampionAsync(RiotApiTestBase.summoner1and2Region, 12);
 
-                Assert.AreEqual(champion.Result.Id, 12);
+                Assert.AreEqual(12, champion.Result.Id);
             });
         }
 
@@ -195,7 +195,7 @@ namespace RiotSharp.Test
             }
             catch (RiotSharpException e)
             {
-                Assert.AreEqual(e.HttpStatusCode, HttpStatusCode.NotFound);
+                Assert.AreEqual(HttpStatusCode.NotFound, e.HttpStatusCode);
             }
         }
 
@@ -226,7 +226,7 @@ namespace RiotSharp.Test
             }
             catch (RiotSharpException exception)
             {
-                Assert.AreEqual(exception.HttpStatusCode, HttpStatusCode.NotFound);  
+                Assert.AreEqual(HttpStatusCode.NotFound, exception.HttpStatusCode);  
             }
         }
 

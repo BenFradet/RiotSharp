@@ -31,7 +31,7 @@ namespace RiotSharp.Test
                 var champ = api.GetChampion(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
-                Assert.AreEqual(champ.Name, StaticRiotApiTestBase.staticChampionName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticChampionName, champ.Name);
             });
         }
 
@@ -44,7 +44,7 @@ namespace RiotSharp.Test
                 var champ = api.GetChampionAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticChampionId, ChampionData.all);
 
-                Assert.AreEqual(champ.Result.Name, StaticRiotApiTestBase.staticChampionName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticChampionName, champ.Result.Name);
             });
         }
 
@@ -119,7 +119,7 @@ namespace RiotSharp.Test
             {
                 var item = api.GetItem(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticItemId, ItemData.all);
 
-                Assert.AreEqual(item.Name, StaticRiotApiTestBase.staticItemName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticItemName, item.Name);
             });
         }
 
@@ -132,7 +132,7 @@ namespace RiotSharp.Test
                 var item = api.GetItemAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticItemId, ItemData.all);
 
-                Assert.AreEqual(item.Result.Name, StaticRiotApiTestBase.staticItemName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticItemName, item.Result.Name);
             });
         }
         #endregion
@@ -248,7 +248,7 @@ namespace RiotSharp.Test
                 var mastery = api.GetMastery(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
 
-                Assert.AreEqual(mastery.Name, StaticRiotApiTestBase.staticMasteryName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticMasteryName, mastery.Name);
             });
         }
 
@@ -261,7 +261,7 @@ namespace RiotSharp.Test
                 var mastery = api.GetMasteryAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticMasteryId, MasteryData.all);
 
-                Assert.AreEqual(mastery.Result.Name, StaticRiotApiTestBase.staticMasteryName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticMasteryName, mastery.Result.Name);
             });
         }
 
@@ -323,7 +323,7 @@ namespace RiotSharp.Test
             {
                 var rune = api.GetRune(StaticRiotApiTestBase.region, StaticRiotApiTestBase.staticRuneId, RuneData.all);
 
-                Assert.AreEqual(rune.Name, StaticRiotApiTestBase.staticRuneName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticRuneName, rune.Name);
             });
         }
 
@@ -336,7 +336,7 @@ namespace RiotSharp.Test
                 var rune = api.GetRuneAsync(StaticRiotApiTestBase.region, 
                     StaticRiotApiTestBase.staticRuneId, RuneData.all);
 
-                Assert.AreEqual(rune.Result.Name, StaticRiotApiTestBase.staticRuneName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticRuneName, rune.Result.Name);
             });
         }
 
@@ -373,7 +373,7 @@ namespace RiotSharp.Test
                 var spell = api.GetSummonerSpell(StaticRiotApiTestBase.region,
                     (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
-                Assert.AreEqual(spell.Name, StaticRiotApiTestBase.staticSummonerSpellName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticSummonerSpellName, spell.Name);
             });
         }
 
@@ -386,7 +386,7 @@ namespace RiotSharp.Test
                 var spell = api.GetSummonerSpellAsync(StaticRiotApiTestBase.region,
                     (int)StaticRiotApiTestBase.staticSummonerSpell, SummonerSpellData.all);
 
-                Assert.AreEqual(spell.Result.Name, StaticRiotApiTestBase.staticSummonerSpellName);
+                Assert.AreEqual(StaticRiotApiTestBase.staticSummonerSpellName, spell.Result.Name);
             });
         }
 
