@@ -586,7 +586,7 @@ namespace RiotSharp
 
             var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
-        }    
+        }
 
         public int GetTotalChampionMasteryScore(Region region, long summonerId)
         {
@@ -595,7 +595,7 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
             return JsonConvert.DeserializeObject<int>(json);
         }
-      
+
         public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId)
         {
             var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
