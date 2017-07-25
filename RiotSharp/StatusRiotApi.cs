@@ -52,18 +52,16 @@ namespace RiotSharp
 
         #region Public Methods      
 
-        public ShardStatus GetShardStatus(Platform platform)
+        public ShardStatus GetShardStatus(Region region)
         {
-            var json = requester.CreateGetRequest(StatusRootUrl,
-                string.Format(PlatformSubdomain, platform.ToString()) + RootDomain, null, true);
+            var json = requester.CreateGetRequest(StatusRootUrl, region, null, true);
 
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
-        public async Task<ShardStatus> GetShardStatusAsync(Platform platform)
+        public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
-            var json = await requester.CreateGetRequestAsync(StatusRootUrl,
-                string.Format(PlatformSubdomain, platform.ToString()) + RootDomain, null, true);
+            var json = await requester.CreateGetRequestAsync(StatusRootUrl, region, null, true);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
         }

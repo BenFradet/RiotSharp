@@ -19,7 +19,7 @@ namespace RiotSharp.Interfaces
     /// </summary>
     public interface IRiotApi
     {
-        #region Summoner-V3
+        #region Summoner
         /// <summary>
         /// Get a summoner by summoner id synchronously.
         /// </summary>
@@ -69,6 +69,7 @@ namespace RiotSharp.Interfaces
         Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName);
         #endregion
 
+        #region Champion
         /// <summary>
         /// Get the list of champions by region synchronously.
         /// </summary>
@@ -100,7 +101,9 @@ namespace RiotSharp.Interfaces
         /// <param name="championId">Id of the champion you're looking for.</param>
         /// <returns>A champion.</returns>
         Task<Champion> GetChampionAsync(Region region, int championId);
+        #endregion
 
+        #region Masteries
         /// <summary>
         /// Get mastery pages for a summoner id synchronously.
         /// </summary>
@@ -116,7 +119,9 @@ namespace RiotSharp.Interfaces
         /// <param name="summonerId">A summoner id for which you wish to retrieve the masteries.</param>
         /// <returns>A list of mastery pages for the summoner.</returns>
         Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId);
+        #endregion
 
+        #region Runes
         /// <summary>
         /// Get rune pages for a list of summoner ids synchronously, you can submit more than 40 summoner ids.
         /// </summary>
@@ -136,7 +141,9 @@ namespace RiotSharp.Interfaces
         /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
         /// </returns>
         Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<long> summonerIds);
+        #endregion
 
+        #region League
         /// <summary>
         /// Retrieves the league entries for the specified summoners, you can submit more than 10 summoner ids.
         /// </summary>
@@ -202,7 +209,9 @@ namespace RiotSharp.Interfaces
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
         /// <returns>A league which contains all the masters for this specific region and queue.</returns>
         Task<League> GetMasterLeagueAsync(Region region, string queue);
+        #endregion
 
+        #region Match
         /// <summary>
         /// Get match information about a specific match synchronously.
         /// </summary>
@@ -272,7 +281,9 @@ namespace RiotSharp.Interfaces
         /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
         /// <returns>A list of the 10 most recent games.</returns>
         Task<List<Game>> GetRecentGamesAsync(Region region, long summonerId);
+        #endregion
 
+        #region Spectator
         /// <summary>
         /// Gets the current game by summoner ID synchronously.
         /// </summary>
@@ -302,77 +313,60 @@ namespace RiotSharp.Interfaces
         /// <param name="region">Region where to retrieve the data.</param>
         /// <returns>Featured games for the region.</returns>
         Task<FeaturedGames> GetFeaturedGamesAsync(Region region);
+        #endregion
 
+        #region Champion Mastery
         /// <summary>
         /// Gets a champion mastery by summoner ID synchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <param name="championId">ID of the champion for which to retrieve mastery.</param>
         /// <returns>Champion mastery for summoner ID and champion ID.</returns>
-        ChampionMastery GetChampionMastery(Platform platform, long summonerId, int championId);
+        ChampionMastery GetChampionMastery(Region region, long summonerId, long championId);
 
         /// <summary>
         /// Gets a champion mastery by summoner ID asynchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <param name="championId">ID of the champion for which to retrieve mastery.</param>
         /// <returns>Champion mastery for summoner ID and champion ID.</returns>
-        Task<ChampionMastery> GetChampionMasteryAsync(Platform platform, long summonerId, int championId);
+        Task<ChampionMastery> GetChampionMasteryAsync(Region region, long summonerId, long championId);
 
         /// <summary>
-        /// Gets all champions mastery by summoner ID synchronously.
+        /// Get all champion mastery entries sorted by number of champion points descending synchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <returns>All champions mastery entries for the specified summoner ID.</returns>
-        List<ChampionMastery> GetChampionMasteries(Platform platform, long summonerId);
+        List<ChampionMastery> GetChampionMasteries(Region region, long summonerId);
 
         /// <summary>
-        /// Gets all champions mastery by summoner ID asynchronously.
+        /// Get all champion mastery entries sorted by number of champion points descending asynchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <returns>All champions mastery entries for the specified summoner ID.</returns>
-        Task<List<ChampionMastery>> GetChampionMasteriesAsync(Platform platform, long summonerId);
+        Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, long summonerId);
 
         /// <summary>
         /// Get a player's total champion mastery score,
         /// which is the sum of individual champion mastery levels, by summoner ID synchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <returns>Total champion mastery score for summoner ID.</returns>
-        int GetTotalChampionMasteryScore(Platform platform, long summonerId);
+        int GetTotalChampionMasteryScore(Region region, long summonerId);
 
         /// <summary>
         /// Get a player's total champion mastery score,
         /// which is the sum of individual champion mastery levels, by summoner ID asynchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <returns>Total champion mastery score for summoner ID.</returns>
-        Task<int> GetTotalChampionMasteryScoreAsync(Platform platform, long summonerId);
-
-        /// <summary>
-        /// Gets specified number of top champion mastery entries,
-        /// sorted by number of champion points descending, by summoner ID synchronously.
-        /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
-        /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
-        /// <returns>A list of the top champion mastery entries for the specified summoner ID.</returns>
-        List<ChampionMastery> GetTopChampionsMasteries(Platform platform, long summonerId, int count);
-
-        /// <summary>
-        /// Gets specified number of top champion mastery entries,
-        /// sorted by number of champion points descending, by summoner ID asynchronously.
-        /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
-        /// <param name="count">Number of entries to retrieve, defaults to 3.</param>
-        /// <returns>A list of the top champion mastery entries for the specified summoner ID.</returns>
-        Task<List<ChampionMastery>> GetTopChampionsMasteriesAsync(Platform platform, long summonerId, int count);
+        Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId);
+        #endregion
     }
 }

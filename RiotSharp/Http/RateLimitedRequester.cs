@@ -25,12 +25,9 @@ namespace RiotSharp.Http
         #region Public Methods
 
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
-            bool useHttps = true, bool usePlatforms = false)
+            bool useHttps = true)
         {
-            if (usePlatforms)
-                rootDomain = GetPlatformDomain(region);
-            else
-                rootDomain = region + ".api.riotgames.com";
+            rootDomain = GetPlatformDomain(region);
 
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
 
@@ -43,12 +40,9 @@ namespace RiotSharp.Http
         }
 
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> addedArguments = null, 
-            bool useHttps = true, bool usePlatforms = false)
+            bool useHttps = true)
         {
-            if (usePlatforms)
-                rootDomain = GetPlatformDomain(region);
-            else
-                rootDomain = region + ".api.riotgames.com";
+            rootDomain = GetPlatformDomain(region);
 
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             
@@ -63,7 +57,8 @@ namespace RiotSharp.Http
         public string CreatePostRequest(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.riotgames.com";
+            rootDomain = GetPlatformDomain(region);
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
@@ -78,7 +73,8 @@ namespace RiotSharp.Http
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.riotgames.com";
+            rootDomain = GetPlatformDomain(region);
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
@@ -93,7 +89,8 @@ namespace RiotSharp.Http
         public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            rootDomain = region + ".api.riotgames.com";
+            rootDomain = GetPlatformDomain(region);
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
@@ -108,7 +105,8 @@ namespace RiotSharp.Http
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = region + ".api.riotgames.com";
+            rootDomain = GetPlatformDomain(region);
+
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
