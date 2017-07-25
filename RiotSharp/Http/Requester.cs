@@ -36,25 +36,6 @@ namespace RiotSharp.Http
             var response = await GetAsync(request);
             return await GetResponseContentAsync(response);
         }
-
-        public string CreateGetRequest(string relativeUrl, string rootDomain, List<string> addedArguments = null,
-            bool useHttps = true)
-        {
-            this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var result = string.Empty;
-            var response = Get(request);
-            return GetResponseContent(response);
-        }
-
-        public async Task<string> CreateGetRequestAsync(string relativeUrl, string rootDomain,
-            List<string> addedArguments = null, bool useHttps = true)
-        {
-            this.rootDomain = rootDomain;
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var response = await GetAsync(request);
-            return await GetResponseContentAsync(response);
-        }
         #endregion
     }
 }

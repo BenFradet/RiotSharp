@@ -16,7 +16,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var shardStatus = api.GetShardStatus(StatusRiotApiTestBase.platform);
+                var shardStatus = api.GetShardStatus(StatusRiotApiTestBase.summoner1and2Region);
 
                 Assert.AreEqual(StatusRiotApiTestBase.platform.ToString().ToLower(),
                     shardStatus.RegionTag);
@@ -29,7 +29,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var shardStatus = api.GetShardStatusAsync(StatusRiotApiTestBase.platform);
+                var shardStatus = api.GetShardStatusAsync(StatusRiotApiTestBase.summoner1and2Region);
 
                 Assert.AreEqual(StatusRiotApiTestBase.platform.ToString().ToLower(),
                     shardStatus.Result.RegionTag);
