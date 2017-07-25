@@ -147,7 +147,7 @@ namespace RiotSharp
         public Summoner GetSummonerByAccountId(Region region, long accountId)
         {
             var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region, usePlatforms: true);
+                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
             var obj = JsonConvert.DeserializeObject<Summoner>(json);
             if (obj != null)
             {
@@ -159,7 +159,7 @@ namespace RiotSharp
         public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region, usePlatforms: true);
+                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
             var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
@@ -171,7 +171,7 @@ namespace RiotSharp
         public Summoner GetSummonerBySummonerId(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region, usePlatforms: true);
+                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
             var obj = JsonConvert.DeserializeObject<Summoner>(json);
             if (obj != null)
             {
@@ -183,7 +183,7 @@ namespace RiotSharp
         public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region, usePlatforms: true);
+                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
             var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
@@ -195,7 +195,7 @@ namespace RiotSharp
         public Summoner GetSummonerByName(Region region, string summonerName)
         {
             var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region, usePlatforms: true);
+                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
             var obj = JsonConvert.DeserializeObject<Summoner>(json);
             if (obj != null)
             {
@@ -207,7 +207,7 @@ namespace RiotSharp
         public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region, usePlatforms: true);
+                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
             var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
             if (obj != null)
             {
@@ -221,14 +221,14 @@ namespace RiotSharp
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
             var json = requester.CreateGetRequest(ChampionsUrl, region,
-                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") }, usePlatforms: true);
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
             return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
        
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
             var json = await requester.CreateGetRequestAsync(ChampionsUrl, region,
-                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") }, usePlatforms: true);
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
         }
@@ -236,15 +236,13 @@ namespace RiotSharp
         public Champion GetChampion(Region region, int championId)
         {
             var json = requester.CreateGetRequest(
-                ChampionsUrl + string.Format(IdUrl, championId), region, usePlatforms: true);
+                ChampionsUrl + string.Format(IdUrl, championId), region);
             return JsonConvert.DeserializeObject<Champion>(json);
         }
  
         public async Task<Champion> GetChampionAsync(Region region, int championId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                ChampionsUrl + string.Format(IdUrl, championId),
-                region, usePlatforms: true);
+            var json = await requester.CreateGetRequestAsync(ChampionsUrl + string.Format(IdUrl, championId), region);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
         }
         #endregion
@@ -252,8 +250,7 @@ namespace RiotSharp
         #region Masteries
         public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(string.Format(MasteriesUrl, summonerId), region,
-                usePlatforms: true);
+            var json = requester.CreateGetRequest(string.Format(MasteriesUrl, summonerId), region);
 
             var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
             return masteries.Pages;
@@ -261,8 +258,7 @@ namespace RiotSharp
  
         public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(string.Format(MasteriesUrl, summonerId), region, 
-                usePlatforms: true);
+            var json = await requester.CreateGetRequestAsync(string.Format(MasteriesUrl, summonerId), region);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MasteryPages>(json).Pages);
         }
@@ -564,7 +560,7 @@ namespace RiotSharp
         {
             var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
 
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region, usePlatforms: true);
+            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
             return JsonConvert.DeserializeObject<ChampionMastery>(json);
         }
 
@@ -572,8 +568,7 @@ namespace RiotSharp
         {
             var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
 
-            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl,
-                region, usePlatforms: true);
+            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ChampionMastery>(json)));
         }
 
@@ -581,7 +576,7 @@ namespace RiotSharp
         {
             var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
 
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region, usePlatforms: true);
+            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
             return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
         }
        
@@ -589,8 +584,7 @@ namespace RiotSharp
         {
             var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
 
-            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, 
-                region, usePlatforms: true);
+            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
         }    
 
@@ -598,7 +592,7 @@ namespace RiotSharp
         {
             var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
 
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region, usePlatforms: true);
+            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
             return JsonConvert.DeserializeObject<int>(json);
         }
       
@@ -606,7 +600,7 @@ namespace RiotSharp
         {
             var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
 
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region, usePlatforms: true);
+            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json)));
         }
         #endregion
