@@ -83,8 +83,6 @@ namespace RiotSharp
         private const string IdUrl = "/{0}";
         private const string TagsParameter = "tags={0}";
 
-        private const string RootDomain = "global.api.pvp.net";
-
         private IRequester requester;
 
         private ICache cache;
