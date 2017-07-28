@@ -221,8 +221,8 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which the match took place.</param>
         /// <param name="matchId">The match ID to be retrieved.</param>
-        /// <param name="includeTimeline">Whether or not to include timeline information.</param>
-        /// <returns>A match detail object containing information about the match.</returns>
+        /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
+        /// <returns>A match object containing information about the match.</returns>
         Match GetMatch(Region region, long matchId, long? accountId = null);
 
         /// <summary>
@@ -230,18 +230,17 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which the match took place.</param>
         /// <param name="matchId">The match ID to be retrieved.</param>
-        /// <param name="includeTimeline">Whether or not to include timeline information.</param>
-        /// <returns>A match detail object containing information about the match.</returns>
+        /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
+        /// <returns>A match object containing information about the match.</returns>
         Task<Match> GetMatchAsync(Region region, long matchId, long? accountId = null);
 
         /// <summary>
         /// Get the list of matches of a specific summoner synchronously.
         /// </summary>
         /// <param name="region">Region in which the summoner is.</param>
-        /// <param name="summonerId">Summoner ID for which you want to retrieve the match list.</param>
+        /// <param name="accountId">Account ID for which you want to retrieve the match list.</param>
         /// <param name="championIds">List of champion IDS to use for fetching games.</param>
-        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
-        ///  will be ignored.</param>
+        /// <param name="queues">List of queue types to use for fetching games.</param>
         /// <param name="seasons">List of seasons for which to filter the match list by.</param>
         /// <param name="beginTime">The earliest date you wish to get matches from.</param>
         /// <param name="endTime">The latest date you wish to get matches from.</param>
@@ -261,10 +260,9 @@ namespace RiotSharp.Interfaces
         /// Get the list of matches of a specific summoner asynchronously.
         /// </summary>
         /// <param name="region">Region in which the summoner is.</param>
-        /// <param name="summonerId">Summoner ID for which you want to retrieve the match list.</param>
+        /// <param name="accountId">Account ID for which you want to retrieve the match list.</param>
         /// <param name="championIds">List of champion IDS to use for fetching games.</param>
-        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
-        ///  will be ignored.</param>
+        /// <param name="queues">List of queue types to use for fetching games.</param>
         /// <param name="seasons">List of seasons for which to filter the match list by.</param>
         /// <param name="beginTime">The earliest date you wish to get matches from.</param>
         /// <param name="endTime">The latest date you wish to get matches from.</param>
