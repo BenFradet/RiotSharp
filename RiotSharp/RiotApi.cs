@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 using RiotSharp.SpectatorEndpoint;
@@ -45,8 +44,16 @@ namespace RiotSharp
         private const string LeagueBySummonerUrl = "/leagues/by-summoner/{0}";
         private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
 
-        private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
-        private const string MatchListRootUrl = "/api/lol/{0}/v2.2/matchlist/by-summoner";
+        private const string MatchRootUrl = "/lol/match/v3/matches";
+        private const string MatchListRootUrl = "/lol/match/v3/matchlists";
+        private const string TimelinesRootUrl = "/lol/match/v3/timelines";
+        private const string MatchIdsByTournamentCodeUrl = "/by-tournament-code/{0}/ids";
+        private const string MatchByIdUrl = "/{0}";
+        private const string MatchByIdAndTournamentCodeUrl = "/{0}/by-tournament-code/{1}";
+        private const string MatchListByAccountIdUrl = "/by-account/{0}";
+        private const string MatchListByAccountIdRecentUrl = "/by-account/{0}/recent";
+        private const string TimelineByMatchIdUrl = "/by-match/{0}";
+
 
         private const string SpectatorRootUrl = "/lol/spectator/v3";
         private const string CurrentGameUrl = "/active-games/by-summoner/{0}";
@@ -334,105 +341,73 @@ namespace RiotSharp
                 region);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
         }
-
-        public MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
-                region,
-                includeTimeline
-                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline.ToString().ToLower()) }
-                    : null);
-            return JsonConvert.DeserializeObject<MatchDetail>(json);
-        }
         #endregion
 
         #region Match
-        public async Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false)
+        public List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
-                region,
-                includeTimeline
-                    ? new List<string> {string.Format("includeTimeline={0}", includeTimeline)}
-                    : null);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MatchDetail>(json));
+            var json = requester.CreateGetRequest(MatchRootUrl +
+                string.Format(MatchIdsByTournamentCodeUrl, tournamentCode), region);
+
+            return JsonConvert.DeserializeObject<List<long>>(json);
         }
 
-        public MatchList GetMatchList(Region region, long summonerId,
-            List<long> championIds = null, List<string> rankedQueues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null,
-            int? beginIndex = null, int? endIndex = null)
+        public async Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode)
         {
-            var addedArguments = new List<string>
-            {
-                string.Format("beginIndex={0}", beginIndex),
-                string.Format("endIndex={0}", endIndex),
-            };
-            if (beginTime != null)
-            {
-                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
-            }
-            if (endTime != null)
-            {
-                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
-            }
-            if (championIds != null)
-            {
-                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
-            }
-            if (rankedQueues != null)
-            {
-                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
-            }
-            if (seasons != null)
-            {
-                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
-            }
+            var json = await requester.CreateGetRequestAsync(MatchRootUrl +
+                string.Format(MatchIdsByTournamentCodeUrl, tournamentCode), region);
 
-            var json = requester.CreateGetRequest(
-                string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
-                region,
-                addedArguments);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json));
+        }
+
+        public Match GetMatch(Region region, long matchId, long? accountId = null)
+        {
+            var json = requester.CreateGetRequest(MatchRootUrl +
+                string.Format(MatchByIdUrl, matchId), region, accountId.HasValue ?
+                    new List<string> { string.Format("forAccountId={0}", accountId) } : null);
+            return JsonConvert.DeserializeObject<Match>(json);
+        }
+
+        public async Task<Match> GetMatchAsync(Region region, long matchId, long? accountId = null)
+        {
+            var json = requester.CreateGetRequest(MatchRootUrl +
+               string.Format(MatchByIdUrl, matchId), region, accountId.HasValue ?
+                   new List<string> { string.Format("forAccountId={0}", accountId) } : null);
+            return await Task.Factory.StartNew(() =>
+                JsonConvert.DeserializeObject<Match>(json));
+        }
+    
+        public MatchList GetMatchList(Region region, long accountId,
+            List<int> championIds = null, 
+            List<int> queues = null,
+            List<MatchEndpoint.Enums.Season> seasons = null, 
+            DateTime? beginTime = null, 
+            DateTime? endTime = null,
+            long? beginIndex = null, 
+            long? endIndex = null)
+        {
+            var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
+                endTime, beginIndex, endIndex);
+
+            var json = requester.CreateGetRequest(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
+                region, addedArguments);
             return JsonConvert.DeserializeObject<MatchList>(json);
         }
-
-        public async Task<MatchList> GetMatchListAsync(Region region, long summonerId,
-            List<long> championIds = null, List<string> rankedQueues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,
-            DateTime? endTime = null, int? beginIndex = null, int? endIndex = null)
+      
+        public async Task<MatchList> GetMatchListAsync(Region region, long accountId,
+            List<int> championIds = null,
+            List<int> queues = null,
+            List<MatchEndpoint.Enums.Season> seasons = null,
+            DateTime? beginTime = null,
+            DateTime? endTime = null,
+            long? beginIndex = null,
+            long? endIndex = null)
         {
-            var addedArguments = new List<string>
-            {
-                string.Format("beginIndex={0}", beginIndex),
-                string.Format("endIndex={0}", endIndex),
-            };
-            if (beginTime != null)
-            {
-                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
-            }
-            if (endTime != null)
-            {
-                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
-            }
-            if (championIds != null)
-            {
-                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
-            }
-            if (rankedQueues != null)
-            {
-                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
-            }
-            if (seasons != null)
-            {
-                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
-            }
+            var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
+                endTime, beginIndex, endIndex);
 
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
-                region,
-                addedArguments);
+            var json = requester.CreateGetRequest(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
+                region, addedArguments);
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
         }
 
@@ -559,6 +534,56 @@ namespace RiotSharp
                 .GroupBy(x => x.Index / chunkSize)
                 .Select(x => x.Select(v => v.Value).ToList())
                 .ToList();
+        }
+        
+        private List<string> CreateArgumentsListForMatchListRequest(
+            List<int> championIds = null,
+            List<int> queues = null,
+            List<MatchEndpoint.Enums.Season> seasons = null,
+            DateTime? beginTime = null,
+            DateTime? endTime = null,
+            long? beginIndex = null,
+            long? endIndex = null)
+        {
+            var addedArguments = new List<string>();
+            if (beginIndex != null)
+            {
+                addedArguments.Add($"beginIndex={beginIndex}");
+            }
+            if (endIndex != null)
+            {
+                addedArguments.Add($"endIndex={endIndex}");
+            }
+            if (beginTime != null)
+            {
+                addedArguments.Add($"beginTime={beginTime.Value.ToLong()}");
+            }
+            if (endTime != null)
+            {
+                addedArguments.Add($"endTime={endTime.Value.ToLong()}");
+            }
+            if (championIds != null)
+            {
+                foreach (var championId in championIds)
+                {
+                    addedArguments.Add($"champion={championId}");
+                }
+            }
+            if (queues != null)
+            {
+                foreach (var queue in queues)
+                {
+                    addedArguments.Add($"queue={queue}");
+                }
+            }
+            if (seasons != null)
+            {
+                foreach (var season in seasons)
+                {
+                    addedArguments.Add($"season={(int)season}");
+                }
+            }
+            return addedArguments;
         }
         #endregion
 
