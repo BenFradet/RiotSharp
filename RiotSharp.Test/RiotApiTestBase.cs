@@ -19,6 +19,10 @@ namespace RiotSharp.Test
             "clg imaqtpie69", "Anivia Kid", "Butler Delta", "Contractz", "LL Stylish" };
         public static Region summonersRegion = (Region)Enum.Parse(typeof(Region), "na");
         public static string queue = "RANKED_SOLO_5x5";
+        /// <summary>
+        /// Normal 5v5 Draft Pick games
+        /// </summary>
+        public static int queueId = 14;
         public static RiotSharp.MatchEndpoint.Enums.Season season = 
             (RiotSharp.MatchEndpoint.Enums.Season)Enum.Parse(typeof(RiotSharp.MatchEndpoint.Enums.Season), "Season2015");
     }

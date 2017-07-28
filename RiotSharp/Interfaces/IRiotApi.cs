@@ -9,7 +9,6 @@ using RiotSharp.ChampionMasteryEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
-using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Interfaces
@@ -212,6 +211,11 @@ namespace RiotSharp.Interfaces
         #endregion
 
         #region Match
+
+        List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode);
+
+        Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode);
+
         /// <summary>
         /// Get match information about a specific match synchronously.
         /// </summary>
@@ -219,7 +223,7 @@ namespace RiotSharp.Interfaces
         /// <param name="matchId">The match ID to be retrieved.</param>
         /// <param name="includeTimeline">Whether or not to include timeline information.</param>
         /// <returns>A match detail object containing information about the match.</returns>
-        MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false);
+        Match GetMatch(Region region, long matchId, long? accountId = null);
 
         /// <summary>
         /// Get match information about a specific match asynchronously.
@@ -228,7 +232,7 @@ namespace RiotSharp.Interfaces
         /// <param name="matchId">The match ID to be retrieved.</param>
         /// <param name="includeTimeline">Whether or not to include timeline information.</param>
         /// <returns>A match detail object containing information about the match.</returns>
-        Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false);
+        Task<Match> GetMatchAsync(Region region, long matchId, long? accountId = null);
 
         /// <summary>
         /// Get the list of matches of a specific summoner synchronously.
@@ -244,9 +248,14 @@ namespace RiotSharp.Interfaces
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
-        MatchList GetMatchList(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null,
-            int? beginIndex = null, int? endIndex = null);
+        MatchList GetMatchList(Region region, long accountId,
+           List<int> championIds = null,
+           List<int> queues = null,
+           List<MatchEndpoint.Enums.Season> seasons = null,
+           DateTime? beginTime = null,
+           DateTime? endTime = null,
+           long? beginIndex = null,
+           long? endIndex = null);
 
         /// <summary>
         /// Get the list of matches of a specific summoner asynchronously.
@@ -262,9 +271,14 @@ namespace RiotSharp.Interfaces
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
-        Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null,
-            List<string> rankedQueues = null, List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,
-            DateTime? endTime = null, int? beginIndex = null, int? endIndex = null);
+        Task<MatchList> GetMatchListAsync(Region region, long accountId,
+            List<int> championIds = null,
+            List<int> queues = null,
+            List<MatchEndpoint.Enums.Season> seasons = null,
+            DateTime? beginTime = null,
+            DateTime? endTime = null,
+            long? beginIndex = null,
+            long? endIndex = null);
 
         /// <summary>
         /// Get the 10 most recent games by summoner ID synchronously.
