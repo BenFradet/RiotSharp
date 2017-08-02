@@ -86,7 +86,7 @@ namespace RiotSharp
         private IRequester requester;
 
         private ICache cache;
-        private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(0, 30, 0);
+        private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(1, 0, 0);
 
         private static StaticRiotApi instance;
         #endregion      
