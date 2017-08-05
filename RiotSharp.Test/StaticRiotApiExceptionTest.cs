@@ -15,7 +15,7 @@ namespace RiotSharp.Test
         [ExpectedException(typeof(RiotSharpException))]
         public void GetStatic_ShouldThrowRiotSharpException_Test()
         {
-            faultyStaticApi.GetChampion(Region.euw, 1, ChampionData.all);
+            faultyStaticApi.GetChampion(Region.euw, 1, ChampionData.All);
         }
     }
 }
