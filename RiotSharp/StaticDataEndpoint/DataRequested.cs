@@ -8,22 +8,22 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, key, name, and title
         /// </summary>
-        basic,
+        Basic,
 
-        all,
-        image,
-        skins,
-        lore,
-        blurb,
-        allytips,
-        enemytips,
-        tags,
-        partype,
-        info,
-        stats,
-        spells,
-        passive,
-        recommended
+        All,
+        Image,
+        Skins,
+        Lore,
+        Blurb,
+        Allytips,
+        Enemytips,
+        Tags,
+        Partype,
+        Info,
+        Stats,
+        Spells,
+        Passive,
+        Recommended
     }
 
     /// <summary>
@@ -34,16 +34,16 @@
         /// <summary>
         /// The default. Resolves to type, version, basic, data, id, name, plaintext, group, and description
         /// </summary>
-        basic,
+        Basic,
 
-        all,
-        description,
-        colloq,
-        into,
-        image,
-        gold,
-        tags,
-        stats
+        All,
+        Description,
+        Colloq,
+        Into,
+        Image,
+        Gold,
+        Tags,
+        Stats
     }
 
     /// <summary>
@@ -54,12 +54,12 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, name, and description
         /// </summary>
-        basic,
+        Basic,
 
-        all,
-        ranks,
-        prereq,
-        image
+        All,
+        Ranks,
+        Prereq,
+        Image
     }
 
     /// <summary>
@@ -70,14 +70,14 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, name, rune, and description
         /// </summary>
-        basic,
+        Basic,
 
-        all,
-        image,
-        stats,
-        tags,
-        colloq,
-        plaintext
+        All,
+        Image,
+        Stats,
+        Tags,
+        Colloq,
+        Plaintext
     }
 
     /// <summary>
@@ -88,24 +88,24 @@
         /// <summary>
         /// The default. Resolves to type, version, data, id, key, name, description, and summonerLevel
         /// </summary>
-        basic,
+        Basic,
 
-        all,
-        key,
-        image,
-        tooltip,
-        resource,
-        maxrank,
-        modes,
-        costType,
-        cost,
-        costBurn,
-        range,
-        rangeBurn,
-        effect,
-        effectBurn,
-        cooldown,
-        cooldownBurn,
-        vars
+        All,
+        Key,
+        Image,
+        Tooltip,
+        Resource,
+        Maxrank,
+        Modes,
+        CostType,
+        Cost,
+        CostBurn,
+        Range,
+        RangeBurn,
+        Effect,
+        EffectBurn,
+        Cooldown,
+        CooldownBurn,
+        Vars
     }
 }
