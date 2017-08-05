@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RiotSharp.StaticDataEndpoint.Champion;
 using RiotSharp.Http;
+using System;
 
 namespace RiotSharp.Test
 {
@@ -13,13 +14,41 @@ namespace RiotSharp.Test
     public class StaticRiotApiTest : CommonTestBase
     {
         private StaticRiotApi api; 
-        private static Requester requester = new Requester(StaticRiotApiTestBase.apiKey);
+        private static RateLimitedRequester requester = new RateLimitedRequester(apiKey, new Dictionary<TimeSpan, int>
+            {
+                { new TimeSpan(1, 0, 0), 10 }
+            });
 
         public StaticRiotApiTest()
         {
             var cache = new Cache();
             api = new StaticRiotApi(requester, cache);
         }
+
+        #region Constructor Tests
+        [TestMethod]
+        public void StaticRiotApiTest_SetSlidingExpirationTime_Test()
+        {
+            // Arrange
+            var timeSpan = new TimeSpan(5, 34, 23);
+
+            // Act 
+            var staticRiotApi = new StaticRiotApi(requester, new Cache(), timeSpan);
+
+            // Assert
+            Assert.AreEqual(timeSpan, staticRiotApi.SlidingExpirationTime);
+        }
+
+        [TestMethod]
+        public void StaticRiotApiTest_NoSlidingExpirationTimeProvided_Test()
+        {
+            // Act 
+            var staticRiotApi = new StaticRiotApi(requester, new Cache());
+
+            // Assert
+            Assert.AreEqual(new TimeSpan(1, 0, 0), staticRiotApi.SlidingExpirationTime);
+        }
+        #endregion
 
         #region Champions Tests
         [TestMethod]
@@ -215,6 +244,7 @@ namespace RiotSharp.Test
         }
         #endregion
 
+        #region Masteries
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetMasteries_Test()
@@ -264,6 +294,7 @@ namespace RiotSharp.Test
                 Assert.AreEqual(StaticRiotApiTestBase.staticMasteryName, mastery.Result.Name);
             });
         }
+        #endregion
 
         #region Profile Icons Tests
         [TestMethod]
@@ -291,6 +322,7 @@ namespace RiotSharp.Test
         }
         #endregion
 
+        #region Runes
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetRunes_Test()
@@ -339,7 +371,9 @@ namespace RiotSharp.Test
                 Assert.AreEqual(StaticRiotApiTestBase.staticRuneName, rune.Result.Name);
             });
         }
+        #endregion
 
+        #region Summoner Spells Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetSummonerSpells_Test()
@@ -389,7 +423,9 @@ namespace RiotSharp.Test
                 Assert.AreEqual(StaticRiotApiTestBase.staticSummonerSpellName, spell.Result.Name);
             });
         }
+        #endregion
 
+        #region Versions Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetVersions_Test()
@@ -413,7 +449,9 @@ namespace RiotSharp.Test
                 Assert.IsTrue(versions.Result.Count() > 0);
             });
         }
+        #endregion
 
+        #region Realms Tests
         [TestMethod]
         [TestCategory("StaticRiotApi")]
         public void GetRealm_Test()
@@ -437,5 +475,6 @@ namespace RiotSharp.Test
                 Assert.IsNotNull(realm.Result);
             });
         }
+        #endregion
     }
 }

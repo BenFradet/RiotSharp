@@ -83,10 +83,11 @@ namespace RiotSharp
         private const string IdUrl = "/{0}";
         private const string TagsParameter = "tags={0}";
 
-        private IRequester requester;
+        private IRateLimitedRequester requester;
 
         private ICache cache;
-        private readonly TimeSpan DefaultSlidingExpiry = new TimeSpan(1, 0, 0);
+        public readonly TimeSpan DefaultSlidingExpirationTime = new TimeSpan(1, 0, 0);
+        internal TimeSpan SlidingExpirationTime;
 
         private static StaticRiotApi instance;
         #endregion      
@@ -96,37 +97,54 @@ namespace RiotSharp
         /// </summary>
         /// <param name="apiKey">The api key.</param>
         /// <returns>The instance of StaticRiotApi.</returns>
-        public static StaticRiotApi GetInstance(string apiKey)
+        public static StaticRiotApi GetInstance(string apiKey, bool useCache = true, 
+            TimeSpan? slidingExpirationTime = null)
         {
             if (instance == null || 
                 Requesters.StaticApiRequester == null ||
                 apiKey != Requesters.StaticApiRequester.ApiKey)
             {
-                instance = new StaticRiotApi(apiKey);
+                instance = new StaticRiotApi(apiKey, useCache, slidingExpirationTime);
             }
             return instance;
         }
 
-        private StaticRiotApi(string apiKey)
+        private StaticRiotApi(string apiKey, bool useCache = true, TimeSpan? slidingExpirationTime = null)
         {
-            Requesters.StaticApiRequester = new Requester(apiKey);
+            Requesters.StaticApiRequester = new RateLimitedRequester(apiKey, new Dictionary<TimeSpan, int>
+            {
+                { new TimeSpan(1, 0, 0), 10 }
+            });
             requester = Requesters.StaticApiRequester;
-            cache = new Cache();
+            if (useCache)
+                cache = new Cache();
+            else
+                cache = new PassThroughCache();
+
+            if (slidingExpirationTime == null)
+                SlidingExpirationTime = DefaultSlidingExpirationTime;
+            else
+                SlidingExpirationTime = slidingExpirationTime.Value;
         }
 
         /// <summary>
-        /// Default dependency injection
+        /// Default dependency injection constructor
         /// </summary>
         /// <param name="requester"></param>
         /// <param name="cache"></param>
-        public StaticRiotApi(IRequester requester, ICache cache)
+        public StaticRiotApi(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
         {
             if (requester == null)
-                 throw new ArgumentNullException(nameof(requester));
+                throw new ArgumentNullException(nameof(requester));
             if (cache == null)
                 throw new ArgumentNullException(nameof(cache));
             this.requester = requester;
             this.cache = cache;
+
+            if (slidingExpirationTime == null)
+                SlidingExpirationTime = DefaultSlidingExpirationTime;
+            else
+                SlidingExpirationTime = slidingExpirationTime.Value;
         }
 
         #pragma warning disable CS1691
@@ -146,7 +164,7 @@ namespace RiotSharp
                     });
                 var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
                 wrapper = new ChampionListStaticWrapper(champs, language, championData);
-                cache.Add(ChampionsCacheKey, wrapper, DefaultSlidingExpiry);
+                cache.Add(ChampionsCacheKey, wrapper, SlidingExpirationTime);
             }
             return wrapper.ChampionListStatic;
         }
@@ -170,7 +188,7 @@ namespace RiotSharp
             var champs = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionListStatic>(json));
             wrapper = new ChampionListStaticWrapper(champs, language, championData);
-            cache.Add(ChampionsCacheKey, wrapper, DefaultSlidingExpiry);
+            cache.Add(ChampionsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ChampionListStatic;
         }
      
@@ -203,7 +221,7 @@ namespace RiotSharp
                         });
                     var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
                     cache.Add(ChampionByIdCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
-                        DefaultSlidingExpiry);
+                        SlidingExpirationTime);
                     return champ;
                 }
             }
@@ -235,7 +253,7 @@ namespace RiotSharp
             var champ = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionStatic>(json));
             cache.Add(ChampionByIdCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
-                DefaultSlidingExpiry);
+                SlidingExpirationTime);
             return champ;
         }
         #endregion
@@ -257,7 +275,7 @@ namespace RiotSharp
                     });
                 var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
                 wrapper = new ItemListStaticWrapper(items, language, itemData);
-                cache.Add(ItemsCacheKey, wrapper, DefaultSlidingExpiry);
+                cache.Add(ItemsCacheKey, wrapper, SlidingExpirationTime);
             }
             return wrapper.ItemListStatic;
         }
@@ -281,7 +299,7 @@ namespace RiotSharp
             var items = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ItemListStatic>(json));
             wrapper = new ItemListStaticWrapper(items, language, itemData);
-            cache.Add(ItemsCacheKey, wrapper, DefaultSlidingExpiry);
+            cache.Add(ItemsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ItemListStatic;
         }
     
@@ -320,7 +338,7 @@ namespace RiotSharp
                         });
                     var item = JsonConvert.DeserializeObject<ItemStatic>(json);
                     cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData),
-                        DefaultSlidingExpiry);
+                        SlidingExpirationTime);
                     return item;
                 }
             }
@@ -351,7 +369,7 @@ namespace RiotSharp
                 });
             var item = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ItemStatic>(json));
-            cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), DefaultSlidingExpiry);
+            cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), SlidingExpirationTime);
             return item;
         }
         #endregion
@@ -374,7 +392,7 @@ namespace RiotSharp
             var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
 
             cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
-                language, version), DefaultSlidingExpiry);
+                language, version), SlidingExpirationTime);
 
             return languageStrings;
         }
@@ -397,7 +415,7 @@ namespace RiotSharp
                 => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
 
             cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
-                language, version), DefaultSlidingExpiry);
+                language, version), SlidingExpirationTime);
 
             return languageStrings;
         }
@@ -415,7 +433,7 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(StaticDataRootUrl + LanguagesUrl, region);
             var languages = JsonConvert.DeserializeObject<List<Language>>(json);
 
-            cache.Add(LanguagesCacheKey, languages, DefaultSlidingExpiry);
+            cache.Add(LanguagesCacheKey, languages, SlidingExpirationTime);
 
             return languages;
         }
@@ -432,7 +450,7 @@ namespace RiotSharp
             var languages = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<List<Language>>(json));
 
-            cache.Add(LanguagesCacheKey, languages, DefaultSlidingExpiry);
+            cache.Add(LanguagesCacheKey, languages, SlidingExpirationTime);
 
             return languages;
         }
@@ -454,7 +472,7 @@ namespace RiotSharp
                 });
             var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
 
-            cache.Add(MapsCacheKey, new MapsStaticWrapper(maps, language, version), DefaultSlidingExpiry);
+            cache.Add(MapsCacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);
 
             return maps.Data.Values.ToList();
         }
@@ -476,7 +494,7 @@ namespace RiotSharp
             var maps = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MapsStatic>(json));
 
-            cache.Add(MapsCacheKey, new MapsStaticWrapper(maps, language, version), DefaultSlidingExpiry);
+            cache.Add(MapsCacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);
 
             return maps.Data.Values.ToList();
         }
@@ -499,7 +517,7 @@ namespace RiotSharp
                     });
                 var masteries = JsonConvert.DeserializeObject<MasteryListStatic>(json);
                 wrapper = new MasteryListStaticWrapper(masteries, language, masteryData);
-                cache.Add(MasteriesCacheKey, wrapper, DefaultSlidingExpiry);
+                cache.Add(MasteriesCacheKey, wrapper, SlidingExpirationTime);
             }
             return wrapper.MasteryListStatic;
         }
@@ -523,7 +541,7 @@ namespace RiotSharp
             var masteries = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MasteryListStatic>(json));
             wrapper = new MasteryListStaticWrapper(masteries, language, masteryData);
-            cache.Add(MasteriesCacheKey, wrapper, DefaultSlidingExpiry);
+            cache.Add(MasteriesCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.MasteryListStatic;
         }
       
@@ -561,7 +579,7 @@ namespace RiotSharp
                         });
                     var mastery = JsonConvert.DeserializeObject<MasteryStatic>(json);
                     cache.Add(MasteryByIdCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
-                        DefaultSlidingExpiry);
+                        SlidingExpirationTime);
                     return mastery;
                 }
             }
@@ -592,7 +610,7 @@ namespace RiotSharp
             var mastery = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MasteryStatic>(json));
             cache.Add(MasteryByIdCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
-                DefaultSlidingExpiry);
+                SlidingExpirationTime);
             return mastery;
         }
         #endregion
@@ -609,7 +627,7 @@ namespace RiotSharp
                     });
                 var profileIcons = JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
                 wrapper = new ProfileIconsStaticWrapper(profileIcons, language);
-                cache.Add(ProfileIconsCacheKey, wrapper, DefaultSlidingExpiry);
+                cache.Add(ProfileIconsCacheKey, wrapper, SlidingExpirationTime);
             }
             return wrapper.ProfileIconListStatic;
         }
@@ -628,7 +646,7 @@ namespace RiotSharp
                 });
             var profileIcons = JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
             wrapper = new ProfileIconsStaticWrapper(profileIcons, language);
-            cache.Add(ProfileIconsCacheKey, wrapper, DefaultSlidingExpiry);
+            cache.Add(ProfileIconsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ProfileIconListStatic;
         }
         #endregion
@@ -645,7 +663,7 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(StaticDataRootUrl + RealmsUrl, region);
             var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
 
-            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);
 
             return realm;
         }
@@ -661,7 +679,7 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + RealmsUrl, region);
             var realm = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RealmStatic>(json));
 
-            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), DefaultSlidingExpiry);
+            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);
 
             return realm;
         }
@@ -684,7 +702,7 @@ namespace RiotSharp
                     });
                 var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
                 wrapper = new RuneListStaticWrapper(runes, language, runeData);
-                cache.Add(RunesCacheKey, wrapper, DefaultSlidingExpiry);
+                cache.Add(RunesCacheKey, wrapper, SlidingExpirationTime);
             }
             return wrapper.RuneListStatic;
         }
@@ -708,7 +726,7 @@ namespace RiotSharp
             var runes = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<RuneListStatic>(json));
             wrapper = new RuneListStaticWrapper(runes, language, runeData);
-            cache.Add(RunesCacheKey, wrapper, DefaultSlidingExpiry);
+            cache.Add(RunesCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.RuneListStatic;
         }
      
@@ -747,7 +765,7 @@ namespace RiotSharp
                         });
                     var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
                     cache.Add(RuneByIdCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData),
-                        DefaultSlidingExpiry);
+                        SlidingExpirationTime);
                     return rune;
                 }
             }
@@ -778,7 +796,7 @@ namespace RiotSharp
                 });
             var rune = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<RuneStatic>(json));
-            cache.Add(RuneByIdCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData), DefaultSlidingExpiry);
+            cache.Add(RuneByIdCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData), SlidingExpirationTime);
             return rune;
         }
         #endregion
@@ -800,7 +818,7 @@ namespace RiotSharp
                     });
                 var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
                 wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
-                cache.Add(SummonerSpellsCacheKey, wrapper, DefaultSlidingExpiry);
+                cache.Add(SummonerSpellsCacheKey, wrapper, SlidingExpirationTime);
             }
             return wrapper.SummonerSpellListStatic;
         }
@@ -824,7 +842,7 @@ namespace RiotSharp
             var spells = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<SummonerSpellListStatic>(json));
             wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
-            cache.Add(SummonerSpellsCacheKey, wrapper, DefaultSlidingExpiry);
+            cache.Add(SummonerSpellsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.SummonerSpellListStatic;
         }
     
@@ -865,7 +883,7 @@ namespace RiotSharp
                         });
                     var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json);
                     cache.Add(SummonerSpellByIdCacheKey + summonerSpellId,
-                        new SummonerSpellStaticWrapper(spell, language, summonerSpellData), DefaultSlidingExpiry);
+                        new SummonerSpellStaticWrapper(spell, language, summonerSpellData), SlidingExpirationTime);
                     return spell;
                 }
             }
@@ -899,7 +917,7 @@ namespace RiotSharp
             var spell = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<SummonerSpellStatic>(json));
             cache.Add(SummonerSpellByIdCacheKey + summonerSpellId,
-                new SummonerSpellStaticWrapper(spell, language, summonerSpellData), DefaultSlidingExpiry);
+                new SummonerSpellStaticWrapper(spell, language, summonerSpellData), SlidingExpirationTime);
             return spell;
         }
         #endregion
@@ -916,7 +934,7 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(StaticDataRootUrl + VersionsUrl, region);
             var version = JsonConvert.DeserializeObject<List<string>>(json);
 
-            cache.Add(VersionsCacheKey, version, DefaultSlidingExpiry);
+            cache.Add(VersionsCacheKey, version, SlidingExpirationTime);
 
             return version;
         }
@@ -933,7 +951,7 @@ namespace RiotSharp
                 await requester.CreateGetRequestAsync(StaticDataRootUrl + VersionsUrl, region);
             var version = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
 
-            cache.Add(VersionsCacheKey, version, DefaultSlidingExpiry);
+            cache.Add(VersionsCacheKey, version, SlidingExpirationTime);
 
             return version;
         }
