@@ -16,6 +16,7 @@ namespace RiotSharp.AspNetCore
         public MemoryCache(IMemoryCache memoryCache)
         {
             this.memoryCache = memoryCache;
+            usedKeys = new List<object>();
         }
 
         public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class

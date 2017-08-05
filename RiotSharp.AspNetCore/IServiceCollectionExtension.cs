@@ -2,6 +2,7 @@
 using RiotSharp.Http;
 using RiotSharp.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace RiotSharp.AspNetCore
 {
@@ -24,6 +25,9 @@ namespace RiotSharp.AspNetCore
             if (riotSharpOptions.TournamentApi.ApiKey == null && riotSharpOptions.RiotApi.ApiKey == null)
                 throw new ArgumentNullException("No api key provided.", innerException: null);
 
+            if (riotSharpOptions.UseCache && riotSharpOptions.UseMemoryCache)
+                throw new ArgumentException("Only one cache implementation can be enabled at once.");
+
             if (riotSharpOptions.RiotApi.ApiKey != null)
             {
                 var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey,
@@ -32,18 +36,23 @@ namespace RiotSharp.AspNetCore
                     new TournamentRiotApi(rateLimitedRequester));
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider => new RiotApi(rateLimitedRequester));
 
-                var requester = new Requester(riotSharpOptions.RiotApi.ApiKey);
+                var staticApiRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey, new Dictionary<TimeSpan, int>
+                {
+                    { new TimeSpan(1, 0, 0), 10 }
+                });
 
-                if(riotSharpOptions.UseMemoryCache)
+                if (riotSharpOptions.RiotApi.UseMemoryCache)
                 {
                     serviceCollection.AddMemoryCache();
                     serviceCollection.AddSingleton<ICache, MemoryCache>();
                 }
+                else if (riotSharpOptions.RiotApi.UseCache)
+                    serviceCollection.AddSingleton<ICache, Cache>();
                 else
-                    serviceCollection.AddSingleton<ICache, Cache>();            
+                    serviceCollection.AddSingleton<ICache, PassThroughCache>();
 
                 serviceCollection.AddSingleton<IStaticRiotApi>(serviceProvider => 
-                    new StaticRiotApi(requester, serviceProvider.GetRequiredService<ICache>())); 
+                    new StaticRiotApi(staticApiRequester, serviceProvider.GetRequiredService<ICache>(), riotSharpOptions.RiotApi.SlidingExpirationTime)); 
             }
 
             if (riotSharpOptions.TournamentApi.ApiKey != null)

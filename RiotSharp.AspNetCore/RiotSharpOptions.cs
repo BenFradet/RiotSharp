@@ -24,8 +24,7 @@ namespace RiotSharp.AspNetCore
                 [TimeSpan.FromMinutes(10)] = 500
             };
         }
-
-        public bool UseMemoryCache { get; set; }
+        
         public ApiKeyOptions RiotApi { get; set; }
         public TournamentApiKeyOptions TournamentApi { get; set; }
     }
