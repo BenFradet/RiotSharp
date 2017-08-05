@@ -25,9 +25,6 @@ namespace RiotSharp.AspNetCore
             if (riotSharpOptions.TournamentApi.ApiKey == null && riotSharpOptions.RiotApi.ApiKey == null)
                 throw new ArgumentNullException("No api key provided.", innerException: null);
 
-            if (riotSharpOptions.UseCache && riotSharpOptions.UseMemoryCache)
-                throw new ArgumentException("Only one cache implementation can be enabled at once.");
-
             if (riotSharpOptions.RiotApi.ApiKey != null)
             {
                 var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey,
