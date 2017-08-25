@@ -47,7 +47,7 @@ To get a summoner:
 ```c#
 try
 {
-  var summoner = api.GetSummoner(Region.euw, "StopOFlop");
+  var summoner = api.GetSummonerByName(RiotSharp.Misc.Region.euw, "StopOFlop");
 }
 catch (RiotSharpException ex)
 {
@@ -74,6 +74,12 @@ foreach (var stat in varusRanked.Stats)
 }
 ```
 
+To get the top champion masteries (by points) for this summoner:
+```c#
+try
+{
+  List<ChampionMastery> championMasteries = riotApi.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id)
+}
 You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
 
 ### Tournament API
