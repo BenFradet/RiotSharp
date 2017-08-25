@@ -55,25 +55,6 @@ catch (RiotSharpException ex)
 }
 ```
 
-**(DEPRECATED)** To get the stats in ranked for a specific champion for this summoner:
-```c#
-try
-{
-  var varusRanked = summoner.GetStatsRanked(Season.Season3)
-    .Where((s) => s.Name != null && s.Name.Equals("Varus"))
-    .FirstOrDefault();
-}
-catch (RiotSharpException ex)
-{
-  // Handle the exception however you want.
-}
-
-foreach (var stat in varusRanked.Stats)
-{
-  Console.WriteLine(stat.Name + "  " + stat.Value);
-}
-```
-
 You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
 
 ### Tournament API
