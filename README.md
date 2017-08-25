@@ -145,11 +145,10 @@ foreach (var champion in champions)
 
 Additionally, you can use the combination of regular api and static api to retrieve champion masteries 
 (ordered descending by points) for the summoner:
-To get all champion masteries (Order descending by points) for this summoner:
 ```c#
 try
 {
-	var championMasteries =  api.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id);
+    var championMasteries =  api.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id);
 }
 catch (RiotSharpException ex)
 {
