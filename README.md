@@ -55,7 +55,7 @@ catch (RiotSharpException ex)
 }
 ```
 
-(DEPRECATED) To get the stats in ranked for a specific champion for this summoner:
+**(DEPRECATED)** To get the stats in ranked for a specific champion for this summoner:
 ```c#
 try
 {
