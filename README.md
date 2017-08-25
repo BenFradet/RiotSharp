@@ -34,7 +34,7 @@ In order to use the api you need an api key which you can get [here](https://dev
 
 Entry point to the api if you do not own a production API key:
 ```c#
-var api = RiotApi.GetInstance("YOUR_API_KEY");
+var api = RiotApi.GetDevelopmentInstance("YOUR_API_KEY");
 ```
 
 If you do own a production API key you can specify your own rate limits:
@@ -47,30 +47,11 @@ To get a summoner:
 ```c#
 try
 {
-  var summoner = api.GetSummoner(Region.euw, "StopOFlop");
+  var summoner = api.GetSummonerByName(Region.euw, "StopOFlop");
 }
 catch (RiotSharpException ex)
 {
   // Handle the exception however you want.
-}
-```
-
-To get the stats in ranked for a specific champion for this summoner:
-```c#
-try
-{
-  var varusRanked = summoner.GetStatsRanked(Season.Season3)
-    .Where((s) => s.Name != null && s.Name.Equals("Varus"))
-    .FirstOrDefault();
-}
-catch (RiotSharpException ex)
-{
-  // Handle the exception however you want.
-}
-
-foreach (var stat in varusRanked.Stats)
-{
-  Console.WriteLine(stat.Name + "  " + stat.Value);
 }
 ```
 
@@ -140,6 +121,28 @@ foreach (var champion in champions)
 {
     Console.WriteLine(champ.Name);
     Console.WriteLine(champ.Lore);
+}
+```
+
+Additionally, you can use the regular api and static api to, for example, retrieve champion masteries for the summoner:
+```c#
+try
+{
+    var championMasteries =  api.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id);
+}
+catch (RiotSharpException ex)
+{
+  // Handle the exception however you want.
+}
+
+foreach (var championMastery in championMasteries)
+{
+    var id = championMastery.ChampionId;
+    var name = staticApi.GetChampion(RiotSharp.Misc.Region.euw, id).Name;
+    var level = championMastery.ChampionLevel;
+    var points = championMastery.ChampionPoints;
+
+    Console.WriteLine($" •  **Level {level} {name}** {points} Points");
 }
 ```
 
