@@ -47,7 +47,7 @@ To get a summoner:
 ```c#
 try
 {
-  var summoner = api.GetSummonerByName(RiotSharp.Misc.Region.euw, "StopOFlop");
+  var summoner = api.GetSummonerByName(Region.euw, "StopOFlop");
 }
 catch (RiotSharpException ex)
 {
@@ -55,7 +55,7 @@ catch (RiotSharpException ex)
 }
 ```
 
-To get the stats in ranked for a specific champion for this summoner:
+(DEPRECATED) To get the stats in ranked for a specific champion for this summoner:
 ```c#
 try
 {
@@ -74,12 +74,6 @@ foreach (var stat in varusRanked.Stats)
 }
 ```
 
-To get the top champion masteries (by points) for this summoner:
-```c#
-try
-{
-  List<ChampionMastery> championMasteries = riotApi.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id)
-}
 You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
 
 ### Tournament API
@@ -146,6 +140,30 @@ foreach (var champion in champions)
 {
     Console.WriteLine(champ.Name);
     Console.WriteLine(champ.Lore);
+}
+```
+
+Additionally, you can use the combination of regular api and static api to retrieve champion masteries 
+(ordered descending by points) for the summoner:
+To get all champion masteries (Order descending by points) for this summoner:
+```c#
+try
+{
+	var championMasteries =  api.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id);
+}
+catch (RiotSharpException ex)
+{
+  // Handle the exception however you want.
+}
+
+foreach (var championMastery in championMasteries)
+{
+    var id = championMastery.ChampionId;
+    var name = staticApi.GetChampion(RiotSharp.Misc.Region.euw, id).Name;
+    var level = championMastery.ChampionLevel;
+    var points = championMastery.ChampionPoints;
+
+    Console.WriteLine($" •  **Level {level} {name}** {points} Points");
 }
 ```
 
