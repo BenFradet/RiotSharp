@@ -34,7 +34,7 @@ In order to use the api you need an api key which you can get [here](https://dev
 
 Entry point to the api if you do not own a production API key:
 ```c#
-var api = RiotApi.GetInstance("YOUR_API_KEY");
+var api = RiotApi.GetDevelopmentInstance("YOUR_API_KEY");
 ```
 
 If you do own a production API key you can specify your own rate limits:
@@ -143,8 +143,7 @@ foreach (var champion in champions)
 }
 ```
 
-Additionally, you can use the combination of regular api and static api to retrieve champion masteries 
-(ordered descending by points) for the summoner:
+Additionally, you can use the regular api and static api to, for example, retrieve champion masteries for the summoner:
 ```c#
 try
 {
