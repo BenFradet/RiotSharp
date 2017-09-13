@@ -40,12 +40,13 @@ namespace RiotSharp
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
 
-        private const string LeagueRootUrl = "/api/lol/{0}/v2.5/league";
+        private const string LeagueRootUrl = "/lol/league/v3";
         private const string LeagueChallengerUrl = "/challenger";
         private const string LeagueMasterUrl = "/master";
 
-        private const string LeagueBySummonerUrl = "/by-summoner/{0}";
-        private const string LeagueEntryUrl = "/entry";
+        private const string LeagueBySummonerUrl = "/leagues/by-summoner/{0}";
+        private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
+        //private const string LeagueEntryUrl = "/entry"; <- I think that this is now useless but not sure.
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchListRootUrl = "/api/lol/{0}/v2.2/matchlist/by-summoner";
@@ -65,7 +66,7 @@ namespace RiotSharp
         private const int MaxNrSummoners = 40;
         private const int MaxNrMasteryPages = 40;
         private const int MaxNrLeagues = 10;
-        private const int MaxNrEntireLeagues = 10;
+        private const int MaxNrLeaguePositions = 10;
 
         private readonly IRateLimitedRequester requester;
 
@@ -279,73 +280,52 @@ namespace RiotSharp
         #endregion
 
         #region League
-        public Dictionary<long, List<League>> GetLeagues(Region region, List<long> summonerIds)
+        public List<League> GetLeagues(Region region, long summonerIds)
         {
-            var dict = new Dictionary<long, List<League>>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrLeagues))
-            {
                 var json = requester.CreateGetRequest(
                     string.Format(LeagueRootUrl, region.ToString()) +
-                        string.Format(LeagueBySummonerUrl, Util.BuildIdsString(grp)) + LeagueEntryUrl,
+                        string.Format(LeagueBySummonerUrl, summonerIds),
                     region);
-                var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
+                var list = JsonConvert.DeserializeObject<List<League>>(json);
+            return list;
         }
  
-        public async Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<long> summonerIds)
+        public async Task<List<League>> GetLeaguesAsync(Region region, long summonerId)
         {
-            var tasks = MakeGroups(summonerIds, MaxNrLeagues).Select(
-                grp => requester.CreateGetRequestAsync(
+            var json = await requester.CreateGetRequestAsync(
                     string.Format(LeagueRootUrl, region.ToString()) +
-                    string.Format(LeagueBySummonerUrl, Util.BuildIdsString(grp)) + LeagueEntryUrl, region
+                    string.Format(LeagueBySummonerUrl, summonerId), region
                     ).ContinueWith(
-                        json => JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json.Result)
-                    )
-                ).ToList();
+                        jsonConversion => JsonConvert.DeserializeObject<List<League>>(jsonConversion.Result)
+                    );
 
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            
+            return json;
         }
     
-        public Dictionary<long, List<League>> GetEntireLeagues(Region region, List<long> summonerIds)
+        public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
         {
-            var dict = new Dictionary<long, List<League>>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrEntireLeagues))
-            {
                 var json = requester.CreateGetRequest(
                     string.Format(LeagueRootUrl,
-                        region.ToString()) + string.Format(LeagueBySummonerUrl, Util.BuildIdsString(grp)),
+                        region.ToString()) + string.Format(LeaguePositionBySummonerUrl, summonerId),
                     region);
-                var subDict = JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json);
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
-        }
-    
-        public async Task<Dictionary<long, List<League>>> GetEntireLeaguesAsync(Region region,
-            List<long> summonerIds)
-        {
-            var tasks = MakeGroups(summonerIds, MaxNrEntireLeagues).Select(
-                   grp => requester.CreateGetRequestAsync(
-                       string.Format(LeagueRootUrl, region.ToString()) +
-                       string.Format(LeagueBySummonerUrl, Util.BuildIdsString(grp)), region
-                       ).ContinueWith(
-                           json => JsonConvert.DeserializeObject<Dictionary<long, List<League>>>(json.Result)
-                       )
-                   ).ToList();
+                var list = JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
 
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return list;
         }
-        
+
+        public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
+        {
+            var json = await requester.CreateGetRequestAsync(
+                string.Format(LeagueRootUrl, region.ToString()) +
+                string.Format(LeaguePositionBySummonerUrl, summonerId), region
+            ).ContinueWith(
+                jsonConversion => JsonConvert.DeserializeObject<List<LeaguePosition>>(jsonConversion.Result)
+            );
+
+            return json;
+        }
+
         public League GetChallengerLeague(Region region, string queue)
         {
             var json = requester.CreateGetRequest(

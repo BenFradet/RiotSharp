@@ -5,38 +5,60 @@ namespace RiotSharp.LeagueEndpoint
     /// <summary>
     /// Team or summoner in a league (League API).
     /// </summary>
-    public class LeagueEntry
+    public class LeaguePosition
     {
-        internal LeagueEntry() { }
+        internal LeaguePosition() { }
 
+        /// <summary>
+        /// The name of the league of the participant.
+        /// Only when it's called from the GetLeaguePositions()
+        /// </summary>
+        [JsonProperty("leagueName")]
+        public string LeagueName { get; set; }
+
+        /// <summary>
+        /// The queue type of the league.
+        /// Only for the GetLeaguePositions() -> don't exist when it's an entry from a League
+        /// as there is already the Queue property in this case.
+        /// </summary>
+        [JsonProperty("queueType")]
+        public string QueueType { get; set; }
+        
         /// <summary>
         /// The league division of the participant.
         /// </summary>
-        [JsonProperty("division")]
+        [JsonProperty("rank")]
         public string Division { get; set; }
+
+        ///<summary>
+        /// The league tier of the participant.
+        /// Only when it's called from the GetLeaguePositions()
+        /// </summary>
+        [JsonProperty("tier")]
+        public string Tier { get; set; }
 
         /// <summary>
         /// Specifies if the participant is fresh blood.
         /// </summary>
-        [JsonProperty("isFreshBlood")]
+        [JsonProperty("freshBlood")]
         public bool IsFreshBlood { get; set; }
 
         /// <summary>
         /// Specifies if the participant is on a hot streak.
         /// </summary>
-        [JsonProperty("isHotStreak")]
+        [JsonProperty("hotStreak")]
         public bool IsHotStreak { get; set; }
 
         /// <summary>
         /// Specifies if the participant is inactive.
         /// </summary>
-        [JsonProperty("isInactive")]
+        [JsonProperty("inactive")]
         public bool IsInactive { get; set; }
 
         /// <summary>
         /// Specifies if the participant is a veteran.
         /// </summary>
-        [JsonProperty("isVeteran")]
+        [JsonProperty("veteran")]
         public bool IsVeteran { get; set; }
 
         /// <summary>
