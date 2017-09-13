@@ -4,7 +4,7 @@ using RiotSharp.LeagueEndpoint.Enums.Converters;
 namespace RiotSharp.LeagueEndpoint
 {
     /// <summary>
-    /// LeagueEntry has entered a MiniSeries (League API).
+    /// LeaguePosition has entered a MiniSeries (League API).
     /// </summary>
     public class MiniSeries
     {
