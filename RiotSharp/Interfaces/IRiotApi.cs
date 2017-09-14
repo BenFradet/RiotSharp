@@ -143,35 +143,33 @@ namespace RiotSharp.Interfaces
 
         #region League
         /// <summary>
-        /// Retrieves the league entries for the specified summoners, you can submit more than 10 summoner ids.
+        /// Retrieves the leagues for the specified summoner.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="region">Region in which you wish to look for the leagues of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
         List<League> GetLeagues(Region region, long summonerId);
 
         /// <summary>
-        /// Retrieves the league entries for the specified summoners asynchronously, you can submit more than 10
-        /// summoner ids.
+        /// Retrieves the leagues for the specified summoners asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="region">Region in which you wish to look for the leagues of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
         /// <returns>A map of list of league entries indexed by the summoner id.</returns>
         Task<List<League>> GetLeaguesAsync(Region region, long summonerId);
 
         /// <summary>
-        /// Retrieves the entire leagues for the specified summoners, you can submit more than 10 summoner ids.
+        /// Retrieves the league position for the specified summoner.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="region">Region in which you wish to look for the league positions of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
         List<LeaguePosition> GetLeaguePositions(Region region, long summonerId);
 
         /// <summary>
-        /// Retrieves the entire leagues for the specified summoners asynchronously, you can submit more than 10
-        /// summoner ids.
+        /// Retrieves the league positions for the specified summoner asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
+        /// <param name="region">Region in which you wish to look for the league positions of summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
         /// <returns>A map of list of leagues indexed by the summoner id.</returns>
         Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId);
