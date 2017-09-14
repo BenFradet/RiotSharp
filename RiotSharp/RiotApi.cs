@@ -280,11 +280,10 @@ namespace RiotSharp
         #endregion
 
         #region League
-        public List<League> GetLeagues(Region region, long summonerIds)
+        public List<League> GetLeagues(Region region, long summonerId)
         {
-                var json = requester.CreateGetRequest(
-                    string.Format(LeagueRootUrl, region.ToString()) +
-                        string.Format(LeagueBySummonerUrl, summonerIds),
+                var json = requester.CreateGetRequest(LeagueRootUrl +
+                        string.Format(LeagueBySummonerUrl, summonerId),
                     region);
                 var list = JsonConvert.DeserializeObject<List<League>>(json);
             return list;
@@ -292,8 +291,7 @@ namespace RiotSharp
  
         public async Task<List<League>> GetLeaguesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                    string.Format(LeagueRootUrl, region.ToString()) +
+            var json = await requester.CreateGetRequestAsync(LeagueRootUrl +
                     string.Format(LeagueBySummonerUrl, summonerId), region
                     ).ContinueWith(
                         jsonConversion => JsonConvert.DeserializeObject<List<League>>(jsonConversion.Result)
@@ -305,9 +303,8 @@ namespace RiotSharp
     
         public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
         {
-                var json = requester.CreateGetRequest(
-                    string.Format(LeagueRootUrl,
-                        region.ToString()) + string.Format(LeaguePositionBySummonerUrl, summonerId),
+                var json = requester.CreateGetRequest(LeagueRootUrl + 
+                    string.Format(LeaguePositionBySummonerUrl, summonerId),
                     region);
                 var list = JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
 
@@ -316,8 +313,7 @@ namespace RiotSharp
 
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(LeagueRootUrl, region.ToString()) +
+            var json = await requester.CreateGetRequestAsync(LeagueRootUrl +
                 string.Format(LeaguePositionBySummonerUrl, summonerId), region
             ).ContinueWith(
                 jsonConversion => JsonConvert.DeserializeObject<List<LeaguePosition>>(jsonConversion.Result)
@@ -329,7 +325,7 @@ namespace RiotSharp
         public League GetChallengerLeague(Region region, string queue)
         {
             var json = requester.CreateGetRequest(
-                string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
+                LeagueRootUrl + LeagueChallengerUrl,
                 region,
                 new List<string> { string.Format("type={0}", queue) });
             return JsonConvert.DeserializeObject<League>(json);
@@ -338,7 +334,7 @@ namespace RiotSharp
         public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(LeagueRootUrl, region.ToString()) + LeagueChallengerUrl,
+                LeagueRootUrl + LeagueChallengerUrl,
                 region,
                 new List<string> { string.Format("type={0}", queue) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
@@ -347,7 +343,7 @@ namespace RiotSharp
         public League GetMasterLeague(Region region, string queue)
         {
             var json = requester.CreateGetRequest(
-                string.Format(LeagueRootUrl, region.ToString()) + LeagueMasterUrl,
+                LeagueRootUrl + LeagueMasterUrl,
                 region,
                 new List<string> { string.Format("type={0}", queue) });
             return JsonConvert.DeserializeObject<League>(json);
@@ -356,7 +352,7 @@ namespace RiotSharp
         public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
             var json = await requester.CreateGetRequestAsync(
-                string.Format(LeagueRootUrl, region.ToString()) + LeagueMasterUrl,
+                LeagueRootUrl + LeagueMasterUrl,
                 region,
                 new List<string> { string.Format("type={0}", queue) });
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
