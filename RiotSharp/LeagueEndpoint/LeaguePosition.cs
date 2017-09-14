@@ -7,7 +7,9 @@ namespace RiotSharp.LeagueEndpoint
     /// </summary>
     public class LeaguePosition
     {
-        internal LeaguePosition() { }
+        internal LeaguePosition()
+        {
+        }
 
         /// <summary>
         /// The name of the league of the participant.
@@ -23,12 +25,12 @@ namespace RiotSharp.LeagueEndpoint
         /// </summary>
         [JsonProperty("queueType")]
         public string QueueType { get; set; }
-        
+
         /// <summary>
-        /// The league division of the participant.
+        /// The rank of the participant in a league.
         /// </summary>
         [JsonProperty("rank")]
-        public string Division { get; set; }
+        public string Rank { get; set; }
 
         ///<summary>
         /// The league tier of the participant.
@@ -41,25 +43,25 @@ namespace RiotSharp.LeagueEndpoint
         /// Specifies if the participant is fresh blood.
         /// </summary>
         [JsonProperty("freshBlood")]
-        public bool IsFreshBlood { get; set; }
+        public bool FreshBlood { get; set; }
 
         /// <summary>
         /// Specifies if the participant is on a hot streak.
         /// </summary>
         [JsonProperty("hotStreak")]
-        public bool IsHotStreak { get; set; }
+        public bool HotStreak { get; set; }
 
         /// <summary>
         /// Specifies if the participant is inactive.
         /// </summary>
         [JsonProperty("inactive")]
-        public bool IsInactive { get; set; }
+        public bool Inactive { get; set; }
 
         /// <summary>
         /// Specifies if the participant is a veteran.
         /// </summary>
         [JsonProperty("veteran")]
-        public bool IsVeteran { get; set; }
+        public bool Veteran { get; set; }
 
         /// <summary>
         /// The league points of the participant.
