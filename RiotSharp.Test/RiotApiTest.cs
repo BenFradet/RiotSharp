@@ -304,9 +304,9 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var leagues = api.GetLeagues(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var leagues = api.GetLeagues(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds.FirstOrDefault());
 
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), leagues.Count);
+                Assert.IsTrue(leagues.Count > 0);
             });
         }
 
@@ -316,10 +316,9 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var leagues = api.GetLeaguesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var leagues = api.GetLeaguesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds.FirstOrDefault());
 
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
-                    leagues.Result.Count);
+                Assert.IsTrue(leagues.Result.Count > 0);
             });
         }
 
@@ -331,8 +330,7 @@ namespace RiotSharp.Test
             {
                 try
                 {
-                    api.GetLeagues(Region.na, 
-                        new List<long>(1) { RiotApiTestBase.unrankedSummonerId });
+                    api.GetLeagues(Region.na, RiotApiTestBase.unrankedSummonerId);
                 }
                 catch (RiotSharpException e)
                 {
@@ -347,26 +345,25 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetEntireLeagues_BySummoner_Test()
+        public void GetLeaguePositions_BySummoner_Test()
         {
             EnsureCredibility(() =>
             {
-                var leagues = api.GetEntireLeagues(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var leagues = api.GetLeaguePositions(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds.FirstOrDefault());
 
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), leagues.Count);
+                Assert.IsTrue(leagues.Count > 0);
             });
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetEntireLeaguesAsync_BySummoner_Test()
+        public void GetLeaguePositionsAsync_BySummoner_Test()
         {
             EnsureCredibility(() =>
             {
-                var leagues = api.GetEntireLeaguesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var leagues = api.GetLeaguePositionsAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds.FirstOrDefault());
 
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(),
-                    leagues.Result.Count);
+                Assert.IsTrue(leagues.Result.Count > 0);
             });
         }
 
