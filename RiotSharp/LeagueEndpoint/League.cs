@@ -24,15 +24,6 @@ namespace RiotSharp.LeagueEndpoint
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        /*/// <summary>
-        /// Specifies the relevant participant that is a member of this league (i.e., a requested summoner ID,
-        /// a requested team ID, or the ID of a team to which one of the requested summoners belongs).
-        /// Only present when full league is requested so that participant's entry can be identified.
-        /// Not present when individual entry is requested.
-        /// </summary>
-        [JsonProperty("participantId")]
-        public string ParticipantId { get; set; }*/  //I think this is no more Relevant, but i'm pretty unsure so just putting it into comments.
-
         /// <summary>
         /// League queue (eg: RankedSolo5x5).
         /// </summary>
