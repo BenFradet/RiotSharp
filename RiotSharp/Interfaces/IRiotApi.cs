@@ -147,7 +147,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the leagues of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
+        /// <returns>A list of leagues.</returns>
         List<League> GetLeagues(Region region, long summonerId);
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the leagues of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
+        /// <returns>A list of leagues.</returns>
         Task<List<League>> GetLeaguesAsync(Region region, long summonerId);
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the league positions of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
+        /// <returns>Position of the summoner in the leagues.</returns>
         List<LeaguePosition> GetLeaguePositions(Region region, long summonerId);
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the league positions of summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
+        /// <returns>Position of the summoner in the leagues.</returns>
         Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId);
 
         /// <summary>
