@@ -44,11 +44,8 @@ namespace RiotSharp
         private const string LeagueRootUrl = "/lol/league/v3";
         private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
         private const string LeagueMasterUrl = "/masterleagues/by-queue/{0}";
-
         private const string LeagueBySummonerUrl = "/leagues/by-summoner/{0}";
-
         private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
-        //private const string LeagueEntryUrl = "/entry"; <- I think that this is now useless but not sure.
 
         private const string MatchRootUrl = "/api/lol/{0}/v2.2/match";
         private const string MatchListRootUrl = "/api/lol/{0}/v2.2/matchlist/by-summoner";
