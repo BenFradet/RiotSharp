@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.SpectatorEndpoint.CurrentGame
+namespace RiotSharp.CurrentGameEndpoint
 {
     /// <summary>
     /// Class representing a Rune in the API.

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace RiotSharp.SpectatorEndpoint.CurrentGame
+namespace RiotSharp.CurrentGameEndpoint
 {
     /// <summary>
     /// Class representing a Participant in the API.

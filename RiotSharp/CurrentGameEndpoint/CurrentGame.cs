@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 
-namespace RiotSharp.SpectatorEndpoint.CurrentGame
+namespace RiotSharp.CurrentGameEndpoint
 {
     /// <summary>
     /// Class representing a CurrentGame in the API.

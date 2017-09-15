@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using RiotSharp.CurrentGameEndpoint;
+using System.Collections.Generic;
 
-namespace RiotSharp.SpectatorEndpoint
+namespace RiotSharp.FeaturedGamesEndpoint
 {
     /// <summary>
     /// Class representing Featured Games in the API.

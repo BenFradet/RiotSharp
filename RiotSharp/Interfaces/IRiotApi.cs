@@ -1,4 +1,6 @@
 ﻿using RiotSharp.ChampionEndpoint;
+using RiotSharp.CurrentGameEndpoint;
+using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
@@ -10,7 +12,6 @@ using System.Threading.Tasks;
 using System;
 using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
-using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp.Interfaces
 {
