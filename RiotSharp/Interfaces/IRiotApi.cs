@@ -5,6 +5,7 @@ using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.SummonerEndpoint;
+using RiotSharp.RunesEndpoint;
 using RiotSharp.ChampionMasteryEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -123,24 +124,22 @@ namespace RiotSharp.Interfaces
 
         #region Runes
         /// <summary>
-        /// Get rune pages for a list of summoner ids synchronously, you can submit more than 40 summoner ids.
+        /// Get rune pages for a summoner id synchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
-        /// <param name="summonerIds">A list of summoner ids for which you wish to retrieve the masteries, not limited
-        /// to 40.</param>
-        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
+        /// <param name="region">Region in which you wish to look for rune pages for a summoner.</param>
+        /// <param name="summonerId">A summoner id for which you wish to retrieve the runes.</param>
+        /// <returns>A list of RunePage objects for the given summoner.
         /// </returns>
-        Dictionary<long, List<RunePage>> GetRunePages(Region region, List<long> summonerIds);
+        List<RunePage> GetRunePages(Region region, long summonerId);
 
         /// <summary>
-        /// Get rune pages for a list of summoner ids asynchronously, you can submit more than 40 summoner ids.
+        /// Get rune pages for a summoner id asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
-        /// <param name="summonerIds">A list of summoner ids for which you wish to retrieve the masteries, not limited
-        /// to 40.</param>
-        /// <returns>A dictionary where the keys are the summoners' ids and the values are lists of rune pages.
+        /// <param name="region">Region in which you wish to look for rune pages for a summoner</param>
+        /// <param name="summonerIds">A summoner id for which you wish to retrieve the runes.</param>
+        /// <returns>A list of RunePage objects for the given summoner.
         /// </returns>
-        Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<long> summonerIds);
+        Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId);
         #endregion
 
         #region League

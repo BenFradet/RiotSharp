@@ -9,6 +9,7 @@ using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
+using RiotSharp.RunesEndpoint;
 using RiotSharp.SummonerEndpoint;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,7 @@ namespace RiotSharp
 
         private const string NamesUrl = "/{0}/name";
         private const string MasteriesUrl = "/lol/platform/v3/masteries/by-summoner/{0}";
-
-        private const string RunesRootUrl = "/api/lol/{0}/v1.4/summoner";
-        private const string RunesUrl = "/{0}/runes";
+        private const string RunesUrl = "/lol/platform/v3/runes/by-summoner/{0}";
 
         private const string ChampionsUrl = "/lol/platform/v3/champions";
 
@@ -265,38 +264,19 @@ namespace RiotSharp
         #endregion
 
         #region Runes
-        public Dictionary<long, List<RunePage>> GetRunePages(Region region, List<long> summonerIds)
+        public List<RunePage> GetRunePages(Region region, long summonerId)
         {
-            var dict = new Dictionary<long, List<RunePage>>();
-            foreach (var grp in MakeGroups(summonerIds, MaxNrRunePages))
-            {
-                var json = requester.CreateGetRequest(
-                    string.Format(RunesRootUrl,
-                        region.ToString()) + string.Format(RunesUrl, Util.BuildIdsString(grp)),
-                    region);
-                var subDict = ConstructRuneDict(JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json));
-                foreach (var child in subDict)
-                {
-                    dict.Add(child.Key, child.Value);
-                }
-            }
-            return dict;
+            var json = requester.CreateGetRequest(string.Format(RunesUrl, summonerId), region);
+
+            var runes = JsonConvert.DeserializeObject<RunePages>(json);
+            return runes.Pages;
         }
    
-        public async Task<Dictionary<long, List<RunePage>>> GetRunePagesAsync(Region region, List<long> summonerIds)
+        public async Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId)
         {
-            var tasks = MakeGroups(summonerIds, MaxNrRunePages).Select(
-                grp => requester.CreateGetRequestAsync(
-                    string.Format(RunesRootUrl, region.ToString()) +
-                    string.Format(RunesUrl, Util.BuildIdsString(grp)), region
-                    ).ContinueWith(
-                        json => ConstructRuneDict(
-                            JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json.Result))
-                    )
-                ).ToList();
+            var json = await requester.CreateGetRequestAsync(string.Format(RunesUrl, summonerId), region);
 
-            await Task.WhenAll(tasks);
-            return tasks.SelectMany(task => task.Result).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RunePages>(json).Pages);
         }
         #endregion
 

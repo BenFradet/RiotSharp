@@ -3,6 +3,7 @@ using RiotSharp.GameEndpoint;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.LeagueEndpoint;
+using RiotSharp.RunesEndpoint;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
