@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.CurrentGameEndpoint
+namespace RiotSharp.SpectatorEndpoint
 {
     /// <summary>
     /// Class representing a BannedChampion in the API.
