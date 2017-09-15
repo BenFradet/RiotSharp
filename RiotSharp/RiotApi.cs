@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.ChampionEndpoint;
 using RiotSharp.ChampionMasteryEndpoint;
-using RiotSharp.CurrentGameEndpoint;
-using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
@@ -18,6 +16,7 @@ using System.Threading.Tasks;
 using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
+using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp
 {
