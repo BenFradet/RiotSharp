@@ -6,7 +6,7 @@ namespace RiotSharp.RunesEndpoint
     class RunePages
     {
         /// <summary>
-        /// List of RunePages;
+        /// List of RunePages.
         /// </summary>
         [JsonProperty("pages")]
         public List<RunePage> Pages { get; set; }

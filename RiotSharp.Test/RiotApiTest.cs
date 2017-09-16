@@ -243,7 +243,7 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunePages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsTrue(runes.Count >= 2 && runes.Count <= 20);
+                Assert.IsTrue(runes.Count >= 0 && runes.Count <= 20);
             });
         }
 
@@ -273,7 +273,7 @@ namespace RiotSharp.Test
             {
                 var runes = api.GetRunePagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.IsTrue(runes.Result.Count >= 2 && runes.Result.Count <= 20);
+                Assert.IsTrue(runes.Result.Count >= 0 && runes.Result.Count <= 20);
             });
         }
 
