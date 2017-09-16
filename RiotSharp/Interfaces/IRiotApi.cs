@@ -153,7 +153,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the leagues of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A list of leagues.</returns>
+        /// <returns>A list of <see cref="League" />.</returns>
         List<League> GetLeagues(Region region, long summonerId);
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the leagues of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A list of leagues.</returns>
+        /// <returns>A list of <see cref="League" />.</returns>
         Task<List<League>> GetLeaguesAsync(Region region, long summonerId);
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the league positions of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>Position of the summoner in the leagues.</returns>
+        /// <returns><see cref="LeaguePosition" /> of the summoner in the leagues.</returns>
         List<LeaguePosition> GetLeaguePositions(Region region, long summonerId);
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for the league positions of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
-        /// <returns>Position of the summoner in the leagues.</returns>
+        /// <returns><see cref="LeaguePosition" /> of the summoner in the leagues.</returns>
         Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId);
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for a challenger league.</param>
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
-        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the challengers for this specific region and queue.</returns>
         League GetChallengerLeague(Region region, string queue);
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for a challenger league.</param>
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
-        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the challengers for this specific region and queue.</returns>
         Task<League> GetChallengerLeagueAsync(Region region, string queue);
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for a master league.</param>
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
-        /// <returns>A league which contains all the masters for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the masters for this specific region and queue.</returns>
         League GetMasterLeague(Region region, string queue);
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which you wish to look for a master league.</param>
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
-        /// <returns>A league which contains all the masters for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the masters for this specific region and queue.</returns>
         Task<League> GetMasterLeagueAsync(Region region, string queue);
 
         #endregion
