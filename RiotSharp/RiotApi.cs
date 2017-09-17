@@ -64,7 +64,6 @@ namespace RiotSharp
         // Used in call which have a maximum number of items you can retrieve in a single call
         private const int MaxNrSummoners = 40;
         private const int MaxNrMasteryPages = 40;
-        private const int MaxNrRunePages = 40;
         private const int MaxNrLeagues = 10;
         private const int MaxNrEntireLeagues = 10;
 
