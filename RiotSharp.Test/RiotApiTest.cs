@@ -237,27 +237,63 @@ namespace RiotSharp.Test
         #region Runes Tests
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetRunePages_Test()
+        public void GetRunePages_ExistingSummonerId_HasRunePages()
         {
             EnsureCredibility(() =>
             {
-                var runes = api.GetRunePages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
+                var runes = api.GetRunePages(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
 
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), runes.Count);
+                Assert.IsTrue(runes.Count >= 0 && runes.Count <= 20);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetRunePages_InvalidSummonerId_ThrowsResouceNotFound()
+        {
+            try
+            {
+                EnsureCredibility(() =>
+                {
+                    api.GetRunePages(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                    Assert.Fail();
+                });
+            }
+            catch (RiotSharpException e)
+            {
+                Assert.AreEqual(HttpStatusCode.NotFound, e.HttpStatusCode);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetRunePagesAsync_ExistingSummonerId_HasRunePages()
+        {
+            EnsureCredibility(() =>
+            {
+                var runes = api.GetRunePagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summoner1Id);
+
+                Assert.IsTrue(runes.Result.Count >= 0 && runes.Result.Count <= 20);
             });
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetRunePagesAsync_Test()
+        public void GetRunePagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
         {
-            EnsureCredibility(() =>
+            try
             {
-                var runes = api.GetRunePagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.summonerIds);
-
-                Assert.AreEqual(RiotApiTestBase.summonerIds.Distinct().Count(), 
-                    runes.Result.Count);
-            });
+                EnsureCredibility(() =>
+                {
+                    var task = api.GetRunePagesAsync(RiotApiTestBase.summonersRegion, RiotApiTestBase.invalidSummonerId);
+                    task.Wait();
+                    Assert.Fail();
+                });
+            }
+            catch (RiotSharpException e)
+            {
+                Assert.AreEqual(HttpStatusCode.NotFound, e.HttpStatusCode);
+            }
         }
         #endregion
 
