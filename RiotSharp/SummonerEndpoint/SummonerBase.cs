@@ -4,7 +4,6 @@ using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.LeagueEndpoint;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 
@@ -15,9 +14,6 @@ namespace RiotSharp.SummonerEndpoint
     /// </summary>
     public class SummonerBase
     {
-        private const string RootUrl = "/api/lol/{0}/v1.4/summoner";
-        private const string MasteriesUrl = "/{0}/masteries";
-        private const string RunesUrl = "/{0}/runes";
 
         private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
         private const string RecentGamesUrl = "/by-summoner/{0}/recent";
@@ -61,56 +57,6 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Get rune pages for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of rune pages.</returns>
-        public List<RunePage> GetRunePages()
-        {
-            var json =
-                requester.CreateGetRequest(string.Format(RootUrl, Region) + string.Format(RunesUrl, Id), Region);
-            return JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json).Values.FirstOrDefault().Pages;
-        }
-
-        /// <summary>
-        /// Get rune pages for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of rune pages.</returns>
-        public async Task<List<RunePage>> GetRunePagesAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(RootUrl, Region) + string.Format(RunesUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<string, RunePages>>(json))).Values.FirstOrDefault().Pages;
-        }
-
-        /// <summary>
-        /// Get mastery pages for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of mastery pages.</returns>
-        public List<MasteryPage> GetMasteryPages()
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(RootUrl, Region) + string.Format(MasteriesUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<Dictionary<long, MasteryPages>>(json)
-                .Values.FirstOrDefault().Pages;
-        }
-
-        /// <summary>
-        /// Get mastery pages for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of mastery pages.</returns>
-        public async Task<List<MasteryPage>> GetMasteryPagesAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(RootUrl, Region) + string.Format(MasteriesUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Dictionary<long, MasteryPages>>(json))).Values.FirstOrDefault().Pages;
-        }
 
         /// <summary>
         /// Get the 10 most recent games for this summoner synchronously.
