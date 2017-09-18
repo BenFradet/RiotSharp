@@ -290,7 +290,7 @@ namespace RiotSharp
                 region);
             return JsonConvert.DeserializeObject<List<League>>(json);
         }
-        
+
         public async Task<List<League>> GetLeaguesAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
@@ -434,6 +434,7 @@ namespace RiotSharp
             var json = requester.CreateGetRequest(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
             return JsonConvert.DeserializeObject<CurrentGame>(json);
         }
+
         public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
