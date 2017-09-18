@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.CurrentGameEndpoint
+namespace RiotSharp.SpectatorEndpoint
 {
     /// <summary>
     /// Class representing an Observer in the API.

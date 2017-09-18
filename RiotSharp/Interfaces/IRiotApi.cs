@@ -1,6 +1,4 @@
 ﻿using RiotSharp.ChampionEndpoint;
-using RiotSharp.CurrentGameEndpoint;
-using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
@@ -12,6 +10,7 @@ using System.Threading.Tasks;
 using System;
 using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
+using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp.Interfaces
 {
@@ -242,7 +241,8 @@ namespace RiotSharp.Interfaces
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
         MatchList GetMatchList(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null, int? beginIndex = null, int? endIndex = null);
+            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null, 
+            int? beginIndex = null, int? endIndex = null);
 
         /// <summary>
         /// Get the list of matches of a specific summoner asynchronously.
@@ -259,7 +259,8 @@ namespace RiotSharp.Interfaces
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
         Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null, 
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,  DateTime? endTime = null, int? beginIndex = null, int? endIndex = null);
+            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,  DateTime? endTime = null, 
+            int? beginIndex = null, int? endIndex = null);
 
         /// <summary>
         /// Get the 10 most recent games by summoner ID synchronously.
@@ -282,18 +283,18 @@ namespace RiotSharp.Interfaces
         /// <summary>
         /// Gets the current game by summoner ID synchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
         /// <returns>Current game of the summoner.</returns>
-        CurrentGame GetCurrentGame(Platform platform, long summonerId);
+        CurrentGame GetCurrentGame(Region region, long summonerId);
 
         /// <summary>
         /// Gets the current game by summoner ID asynchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
         /// <returns>Current game of the summoner.</returns>
-        Task<CurrentGame> GetCurrentGameAsync(Platform platform, long summonerId);
+        Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId);
 
         /// <summary>
         /// Gets the featured games by region synchronously.
