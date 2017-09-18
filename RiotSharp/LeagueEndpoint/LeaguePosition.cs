@@ -5,39 +5,63 @@ namespace RiotSharp.LeagueEndpoint
     /// <summary>
     /// Team or summoner in a league (League API).
     /// </summary>
-    public class LeagueEntry
+    public class LeaguePosition
     {
-        internal LeagueEntry() { }
+        internal LeaguePosition()
+        {
+        }
 
         /// <summary>
-        /// The league division of the participant.
+        /// The name of the league of the participant.
+        /// Only when it's called from the GetLeaguePositions()
         /// </summary>
-        [JsonProperty("division")]
-        public string Division { get; set; }
+        [JsonProperty("leagueName")]
+        public string LeagueName { get; set; }
+
+        /// <summary>
+        /// The queue type of the league.
+        /// Only for the GetLeaguePositions() -> don't exist when it's an entry from a League
+        /// as there is already the Queue property in this case.
+        /// </summary>
+        [JsonProperty("queueType")]
+        public string QueueType { get; set; }
+
+        /// <summary>
+        /// The rank of the participant in a league.
+        /// </summary>
+        [JsonProperty("rank")]
+        public string Rank { get; set; }
+
+        ///<summary>
+        /// The league tier of the participant.
+        /// Only when it's called from the GetLeaguePositions()
+        /// </summary>
+        [JsonProperty("tier")]
+        public string Tier { get; set; }
 
         /// <summary>
         /// Specifies if the participant is fresh blood.
         /// </summary>
-        [JsonProperty("isFreshBlood")]
-        public bool IsFreshBlood { get; set; }
+        [JsonProperty("freshBlood")]
+        public bool FreshBlood { get; set; }
 
         /// <summary>
         /// Specifies if the participant is on a hot streak.
         /// </summary>
-        [JsonProperty("isHotStreak")]
-        public bool IsHotStreak { get; set; }
+        [JsonProperty("hotStreak")]
+        public bool HotStreak { get; set; }
 
         /// <summary>
         /// Specifies if the participant is inactive.
         /// </summary>
-        [JsonProperty("isInactive")]
-        public bool IsInactive { get; set; }
+        [JsonProperty("inactive")]
+        public bool Inactive { get; set; }
 
         /// <summary>
         /// Specifies if the participant is a veteran.
         /// </summary>
-        [JsonProperty("isVeteran")]
-        public bool IsVeteran { get; set; }
+        [JsonProperty("veteran")]
+        public bool Veteran { get; set; }
 
         /// <summary>
         /// The league points of the participant.

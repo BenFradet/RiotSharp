@@ -143,69 +143,67 @@ namespace RiotSharp.Interfaces
 
         #region League
         /// <summary>
-        /// Retrieves the league entries for the specified summoners, you can submit more than 10 summoner ids.
+        /// Retrieves the leagues for the specified summoner.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids, not limited to 10.</param>
-        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        Dictionary<long, List<League>> GetLeagues(Region region, List<long> summonerIds);
+        /// <param name="region"><see cref="Region"/> in which you wish to look for the leagues of the summoner.</param>
+        /// <param name="summonerId">The summoner id.</param>
+        /// <returns>A list of <see cref="League" />.</returns>
+        List<League> GetLeagues(Region region, long summonerId);
 
         /// <summary>
-        /// Retrieves the league entries for the specified summoners asynchronously, you can submit more than 10
-        /// summoner ids.
+        /// Retrieves the leagues for the specified summoner asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids, not limited to 10.</param>
-        /// <returns>A map of list of league entries indexed by the summoner id.</returns>
-        Task<Dictionary<long, List<League>>> GetLeaguesAsync(Region region, List<long> summonerIds);
+        /// <param name="region"><see cref="Region"/> in which you wish to look for the leagues of the summoner.</param>
+        /// <param name="summonerId">The summoner id.</param>
+        /// <returns>A list of <see cref="League" />.</returns>
+        Task<List<League>> GetLeaguesAsync(Region region, long summonerId);
 
         /// <summary>
-        /// Retrieves the entire leagues for the specified summoners, you can submit more than 10 summoner ids.
+        /// Retrieves the league position for the specified summoner.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids, not limited to 10.</param>
-        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
-        Dictionary<long, List<League>> GetEntireLeagues(Region region, List<long> summonerIds);
+        /// <param name="region"><see cref="Region"/> in which you wish to look for the league positions of the summoner.</param>
+        /// <param name="summonerId">The summoner id.</param>
+        /// <returns><see cref="LeaguePosition" /> of the summoner in the leagues.</returns>
+        List<LeaguePosition> GetLeaguePositions(Region region, long summonerId);
 
         /// <summary>
-        /// Retrieves the entire leagues for the specified summoners asynchronously, you can submit more than 10
-        /// summoner ids.
+        /// Retrieves the league positions for the specified summoner asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for the leagues of summoners.</param>
-        /// <param name="summonerIds">The summoner ids, not limited to 10.</param>
-        /// <returns>A map of list of leagues indexed by the summoner id.</returns>
-        Task<Dictionary<long, List<League>>> GetEntireLeaguesAsync(Region region, List<long> summonerIds);
+        /// <param name="region"><see cref="Region"/> in which you wish to look for the league positions of the summoner.</param>
+        /// <param name="summonerId">The summoner id.</param>
+        /// <returns><see cref="LeaguePosition" /> of the summoner in the leagues.</returns>
+        Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId);
 
         /// <summary>
         /// Get the challenger league for a particular queue.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for a challenger league.</param>
+        /// <param name="region"><see cref="Region"/> in which you wish to look for a challenger league.</param>
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
-        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the challengers for this specific region and queue.</returns>
         League GetChallengerLeague(Region region, string queue);
 
         /// <summary>
         /// Get the challenger league for a particular queue asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for a challenger league.</param>
+        /// <param name="region"><see cref="Region"/> in which you wish to look for a challenger league.</param>
         /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
-        /// <returns>A league which contains all the challengers for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the challengers for this specific region and queue.</returns>
         Task<League> GetChallengerLeagueAsync(Region region, string queue);
 
         /// <summary>
         /// Get the master league for a particular queue.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for a master league.</param>
+        /// <param name="region"><see cref="Region"/> in which you wish to look for a master league.</param>
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
-        /// <returns>A league which contains all the masters for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the masters for this specific region and queue.</returns>
         League GetMasterLeague(Region region, string queue);
 
         /// <summary>
         /// Get the master league for a particular queue asynchronously.
         /// </summary>
-        /// <param name="region">Region in which you wish to look for a master league.</param>
+        /// <param name="region"><see cref="Region"/> in which you wish to look for a master league.</param>
         /// <param name="queue">Queue in which you wish to look for a master league.</param>
-        /// <returns>A league which contains all the masters for this specific region and queue.</returns>
+        /// <returns>A <see cref="League" /> which contains all the masters for this specific region and queue.</returns>
         Task<League> GetMasterLeagueAsync(Region region, string queue);
         #endregion
 
@@ -243,7 +241,7 @@ namespace RiotSharp.Interfaces
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
         MatchList GetMatchList(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null,
+            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null, 
             int? beginIndex = null, int? endIndex = null);
 
         /// <summary>
@@ -260,9 +258,9 @@ namespace RiotSharp.Interfaces
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
-        Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null,
-            List<string> rankedQueues = null, List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,
-            DateTime? endTime = null, int? beginIndex = null, int? endIndex = null);
+        Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null, 
+            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,  DateTime? endTime = null, 
+            int? beginIndex = null, int? endIndex = null);
 
         /// <summary>
         /// Get the 10 most recent games by summoner ID synchronously.
