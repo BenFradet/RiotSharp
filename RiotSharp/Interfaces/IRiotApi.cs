@@ -1,6 +1,4 @@
 ﻿using RiotSharp.ChampionEndpoint;
-using RiotSharp.CurrentGameEndpoint;
-using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
@@ -11,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using RiotSharp.Misc;
+using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp.Interfaces
 {
@@ -294,18 +293,18 @@ namespace RiotSharp.Interfaces
         /// <summary>
         /// Gets the current game by summoner ID synchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
         /// <returns>Current game of the summoner.</returns>
-        CurrentGame GetCurrentGame(Platform platform, long summonerId);
+        CurrentGame GetCurrentGame(Region region, long summonerId);
 
         /// <summary>
         /// Gets the current game by summoner ID asynchronously.
         /// </summary>
-        /// <param name="platform">Region where to retrieve the data.</param>
+        /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve current game.</param>
         /// <returns>Current game of the summoner.</returns>
-        Task<CurrentGame> GetCurrentGameAsync(Platform platform, long summonerId);
+        Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId);
 
         /// <summary>
         /// Gets the featured games by region synchronously.

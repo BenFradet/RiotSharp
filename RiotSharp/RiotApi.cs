@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.ChampionEndpoint;
 using RiotSharp.ChampionMasteryEndpoint;
-using RiotSharp.CurrentGameEndpoint;
-using RiotSharp.FeaturedGamesEndpoint;
 using RiotSharp.GameEndpoint;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
@@ -17,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
+using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp
 {
@@ -56,9 +55,9 @@ namespace RiotSharp
         private const string TimelineByMatchIdUrl = "/by-match/{0}";
 
 
-        private const string CurrentGameRootUrl = "/observer-mode/rest/consumer/getSpectatorGameInfo/{0}";
-
-        private const string FeaturedGamesRootUrl = "/observer-mode/rest/featured";
+        private const string SpectatorRootUrl = "/lol/spectator/v3";
+        private const string CurrentGameUrl = "/active-games/by-summoner/{0}";
+        private const string FeaturedGamesUrl = "/featured-games";
 
         private const string IdUrl = "/{0}";
 
@@ -291,7 +290,7 @@ namespace RiotSharp
                 region);
             return JsonConvert.DeserializeObject<List<League>>(json);
         }
-
+        
         public async Task<List<League>> GetLeaguesAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
@@ -299,7 +298,7 @@ namespace RiotSharp
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<League>>(json));
         }
-
+        
         public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
@@ -308,7 +307,7 @@ namespace RiotSharp
 
             return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
         }
-
+        
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
             var json = await requester.CreateGetRequestAsync(
@@ -430,35 +429,26 @@ namespace RiotSharp
         #endregion
 
         #region Spectator
-        public CurrentGame GetCurrentGame(Platform platform, long summonerId)
+        public CurrentGame GetCurrentGame(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(CurrentGameRootUrl, platform.ToString()) + string.Format(IdUrl, summonerId),
-                platform.ConvertToRegion());
+            var json = requester.CreateGetRequest(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
             return JsonConvert.DeserializeObject<CurrentGame>(json);
         }
-
-        public async Task<CurrentGame> GetCurrentGameAsync(Platform platform, long summonerId)
+        public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(CurrentGameRootUrl, platform.ToString()) + string.Format(IdUrl, summonerId),
-                platform.ConvertToRegion());
+            var json = await requester.CreateGetRequestAsync(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<CurrentGame>(json)));
         }
 
         public FeaturedGames GetFeaturedGames(Region region)
         {
-            var json = requester.CreateGetRequest(
-                FeaturedGamesRootUrl,
-                region);
+            var json = requester.CreateGetRequest(SpectatorRootUrl + FeaturedGamesUrl, region);
             return JsonConvert.DeserializeObject<FeaturedGames>(json);
         }
 
         public async Task<FeaturedGames> GetFeaturedGamesAsync(Region region)
         {
-            var json = await requester.CreateGetRequestAsync(
-                FeaturedGamesRootUrl,
-                region);
+            var json = await requester.CreateGetRequestAsync(SpectatorRootUrl + FeaturedGamesUrl, region);
             return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FeaturedGames>(json)));
         }
         #endregion
