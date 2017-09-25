@@ -6,15 +6,15 @@ namespace RiotSharp.MatchEndpoint
     /// <summary>
     /// Class representing a team in a match (Match API).
     /// </summary>
-    public class Team
+    public class TeamStats
     {
-        internal Team() { }
+        internal TeamStats() { }
 
         /// <summary>
         /// If game was draft mode, contains banned champion data, otherwise null.
         /// </summary>
         [JsonProperty("bans")]
-        public List<BannedChampion> Bans { get; set; }
+        public List<TeamBan> Bans { get; set; }
 
         /// <summary>
         /// Number of times the team killed baron.
@@ -59,6 +59,12 @@ namespace RiotSharp.MatchEndpoint
         public bool FirstInhibitor { get; set; }
 
         /// <summary>
+        /// Flag indicating whether or not the team killed the first rift herald.
+        /// </summary>
+        [JsonProperty("firstRiftHerald")]
+        public bool FirstRiftHerald { get; set; }
+
+        /// <summary>
         /// Flag indicating whether or not the team destroyed the first tower.
         /// </summary>
         [JsonProperty("firstTower")]
@@ -69,6 +75,11 @@ namespace RiotSharp.MatchEndpoint
         /// </summary>
         [JsonProperty("inhibitorKills")]
         public int InhibitorKills { get; set; }
+
+        /// <summary>
+        /// Number of rift heralds killed.
+        /// </summary>
+        public int RiftHeraldKills { get; set; }
 
         /// <summary>
         /// Team ID.
@@ -83,7 +94,7 @@ namespace RiotSharp.MatchEndpoint
         public int TowerKills { get; set; }
 
         /// <summary>
-        /// Number of times the team killed vilemaw.
+        /// Number of times the team killed vilemaw (Twisted Treeline epic monster).
         /// </summary>
         [JsonProperty("vilemawKills")]
         public int VilemawKills { get; set; }
@@ -91,7 +102,7 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Flag indicating whether or not the team won.
         /// </summary>
-        [JsonProperty("winner")]
-        public bool Winner { get; set; }
+        [JsonProperty("win")]
+        public string Win { get; set; }
     }
 }

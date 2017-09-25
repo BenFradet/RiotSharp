@@ -8,7 +8,6 @@ using RiotSharp.ChampionMasteryEndpoint;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
-using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
 using RiotSharp.SpectatorEndpoint;
 
@@ -135,7 +134,7 @@ namespace RiotSharp.Interfaces
         /// Get rune pages for a summoner id asynchronously.
         /// </summary>
         /// <param name="region"><see cref="Region"/> in which you wish to look for rune pages for a summoner</param>
-        /// <param name="summonerIds">The summoner id for which you wish to retrieve rune pages.</param>
+        /// <param name="summonerId">The summoner id for which you wish to retrieve rune pages.</param>
         /// <returns>A list of <see cref="RunePage"/> for the given summoner.
         /// </returns>
         Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId);
@@ -208,75 +207,86 @@ namespace RiotSharp.Interfaces
         #endregion
 
         #region Match
+        List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode);
+
+        Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode);
         /// <summary>
         /// Get match information about a specific match synchronously.
         /// </summary>
         /// <param name="region">Region in which the match took place.</param>
         /// <param name="matchId">The match ID to be retrieved.</param>
-        /// <param name="includeTimeline">Whether or not to include timeline information.</param>
-        /// <returns>A match detail object containing information about the match.</returns>
-        MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false);
+        /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
+        /// <returns>A match object containing information about the match.</returns>
+        Match GetMatch(Region region, long matchId, long? accountId = null);
 
         /// <summary>
         /// Get match information about a specific match asynchronously.
         /// </summary>
         /// <param name="region">Region in which the match took place.</param>
         /// <param name="matchId">The match ID to be retrieved.</param>
-        /// <param name="includeTimeline">Whether or not to include timeline information.</param>
-        /// <returns>A match detail object containing information about the match.</returns>
-        Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false);
+        /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
+        /// <returns>A match object containing information about the match.</returns>
+        Task<Match> GetMatchAsync(Region region, long matchId, long? accountId = null);
 
         /// <summary>
         /// Get the list of matches of a specific summoner synchronously.
         /// </summary>
         /// <param name="region">Region in which the summoner is.</param>
-        /// <param name="summonerId">Summoner ID for which you want to retrieve the match list.</param>
+        /// <param name="accountId">Account ID for which you want to retrieve the match list.</param>
         /// <param name="championIds">List of champion IDS to use for fetching games.</param>
-        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
-        ///  will be ignored.</param>
+        /// <param name="queues">List of queue types to use for fetching games.</param>
         /// <param name="seasons">List of seasons for which to filter the match list by.</param>
         /// <param name="beginTime">The earliest date you wish to get matches from.</param>
         /// <param name="endTime">The latest date you wish to get matches from.</param>
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
-        MatchList GetMatchList(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null, DateTime? endTime = null, 
-            int? beginIndex = null, int? endIndex = null);
+        MatchList GetMatchList(Region region, long accountId,
+           List<int> championIds = null,
+           List<int> queues = null,
+           List<MatchEndpoint.Enums.Season> seasons = null,
+           DateTime? beginTime = null,
+           DateTime? endTime = null,
+           long? beginIndex = null,
+           long? endIndex = null);
 
         /// <summary>
         /// Get the list of matches of a specific summoner asynchronously.
         /// </summary>
         /// <param name="region">Region in which the summoner is.</param>
-        /// <param name="summonerId">Summoner ID for which you want to retrieve the match list.</param>
+        /// <param name="accountId">Account ID for which you want to retrieve the match list.</param>
         /// <param name="championIds">List of champion IDS to use for fetching games.</param>
-        /// <param name="rankedQueues">List of ranked queue types to use for fetching games. Non-ranked queue types
-        ///  will be ignored.</param>
+        /// <param name="queues">List of queue types to use for fetching games.</param>
         /// <param name="seasons">List of seasons for which to filter the match list by.</param>
         /// <param name="beginTime">The earliest date you wish to get matches from.</param>
         /// <param name="endTime">The latest date you wish to get matches from.</param>
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
-        Task<MatchList> GetMatchListAsync(Region region, long summonerId, List<long> championIds = null, List<string> rankedQueues = null, 
-            List<MatchEndpoint.Enums.Season> seasons = null, DateTime? beginTime = null,  DateTime? endTime = null, 
-            int? beginIndex = null, int? endIndex = null);
+        Task<MatchList> GetMatchListAsync(Region region, long accountId,
+            List<int> championIds = null,
+            List<int> queues = null,
+            List<MatchEndpoint.Enums.Season> seasons = null,
+            DateTime? beginTime = null,
+            DateTime? endTime = null,
+            long? beginIndex = null,
+            long? endIndex = null);
 
         /// <summary>
-        /// Get the 10 most recent games by summoner ID synchronously.
+        /// Get the 10 most recent matches by summoner ID synchronously.
         /// </summary>
         /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
-        /// <returns>A list of the 10 most recent games.</returns>
-        List<Game> GetRecentGames(Region region, long summonerId);
+        /// <param name="summonerId">ID of the summoner for which to retrieve recent matches.</param>
+        /// <returns>A list of the 10 most recent matches.</returns>
+        List<MatchReference> GetRecentMatches(Region region, long summonerId);
 
         /// <summary>
-        /// Get the 10 most recent games by summoner ID asynchronously.
+        /// Get the 10 most recent matches by summoner ID asynchronously.
         /// </summary>
         /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
-        /// <returns>A list of the 10 most recent games.</returns>
-        Task<List<Game>> GetRecentGamesAsync(Region region, long summonerId);
+        /// <param name="summonerId">ID of the summoner for which to retrieve recent matches.</param>
+        /// <returns>A list of the 10 most recent matches.</returns>
+        Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId);
         #endregion
 
         #region Spectator

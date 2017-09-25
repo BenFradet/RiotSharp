@@ -12,52 +12,52 @@ namespace RiotSharp.MatchEndpoint.Enums
         /// <summary>
         /// Pre season 3.
         /// </summary>
-        PreSeason3,
+        PreSeason3 = 0,
 
         /// <summary>
         /// Season 3.
         /// </summary>
-        Season3,
+        Season3 = 1,
 
         /// <summary>
         /// Pre season 2014.
         /// </summary>
-        PreSeason2014,
+        PreSeason2014 = 2,
 
         /// <summary>
         /// Season 2014.
         /// </summary>
-        Season2014,
+        Season2014 = 3,
 
         /// <summary>
         /// Pre season 2015.
         /// </summary>
-        PreSeason2015,
+        PreSeason2015 = 4,
 
         /// <summary>
         /// Season 2015.
         /// </summary>
-        Season2015,
+        Season2015 = 5,
 
         /// <summary>
         /// Pre season 2016.
         /// </summary>
-        PreSeason2016,
+        PreSeason2016 = 6,
 
         /// <summary>
         /// Season 2016.
         /// </summary>
-        Season2016,
+        Season2016 = 7,
 
         /// <summary>
         /// Pre season 2017.
         /// </summary>
-        PreSeason2017,
+        PreSeason2017 = 8,
 
         /// <summary>
         /// Season 2017.
         /// </summary>
-        Season2017
+        Season2017 = 9
     }
 
     static class SeasonExtension

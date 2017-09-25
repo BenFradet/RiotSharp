@@ -47,16 +47,7 @@ namespace RiotSharp.Misc
             }
             return concatenatedNames + Uri.EscapeDataString(names[names.Count - 1]);
         }
-
-        public static string BuildQueuesString(List<string> queues)
-        {
-            string concatenatedQueues = string.Empty;
-            for (int i = 0; i < queues.Count - 1; i++)
-            {
-                concatenatedQueues += queues[i] + ",";
-            }
-            return concatenatedQueues + queues[queues.Count - 1];
-        }
+       
         public static string BuildSeasonString(List<Season> seasons)
         {
             string concatenatedQueues = string.Empty;
