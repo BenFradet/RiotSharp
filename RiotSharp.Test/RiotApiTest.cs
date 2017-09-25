@@ -691,11 +691,11 @@ namespace RiotSharp.Test
         #region Spectator Tests
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetRecentGames_Test()
+        public void GetRecentMatches_Test()
         {
             EnsureCredibility(() =>
             {
-                var games = api.GetRecentGames(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
+                var games = api.GetRecentMatches(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1AccountId);
 
                 Assert.IsTrue(games.Count() > 0);
             });
@@ -703,11 +703,11 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetRecentGamesAsync_Test()
+        public void GetRecentMatchesAsync_Test()
         {
             EnsureCredibility(() =>
             {
-                var games = api.GetRecentGamesAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1Id);
+                var games = api.GetRecentMatchesAsync(RiotApiTestBase.summoner1and2Region, RiotApiTestBase.summoner1AccountId);
 
                 Assert.IsTrue(games.Result.Count() > 0);
             });
