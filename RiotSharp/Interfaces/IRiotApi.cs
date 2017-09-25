@@ -275,20 +275,20 @@ namespace RiotSharp.Interfaces
             long? endIndex = null);
 
         /// <summary>
-        /// Get the 10 most recent games by summoner ID synchronously.
+        /// Get the 10 most recent matches by summoner ID synchronously.
         /// </summary>
         /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
-        /// <returns>A list of the 10 most recent games.</returns>
-        List<Game> GetRecentGames(Region region, long summonerId);
+        /// <param name="summonerId">ID of the summoner for which to retrieve recent matches.</param>
+        /// <returns>A list of the 10 most recent matches.</returns>
+        List<MatchReference> GetRecentMatches(Region region, long summonerId);
 
         /// <summary>
-        /// Get the 10 most recent games by summoner ID asynchronously.
+        /// Get the 10 most recent matches by summoner ID asynchronously.
         /// </summary>
         /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve recent games.</param>
-        /// <returns>A list of the 10 most recent games.</returns>
-        Task<List<Game>> GetRecentGamesAsync(Region region, long summonerId);
+        /// <param name="summonerId">ID of the summoner for which to retrieve recent matches.</param>
+        /// <returns>A list of the 10 most recent matches.</returns>
+        Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId);
         #endregion
 
         #region Spectator
