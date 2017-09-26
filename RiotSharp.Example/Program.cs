@@ -37,7 +37,7 @@ namespace RiotSharpExample
 
             var shardStatus = statusApi.GetShardStatus(region);
 
-            var games = api.GetRecentGames(region, id);
+            var games = api.GetRecentMatches(region, id);
 
             Console.WriteLine("Done! Press Enter to exit.");
             Console.ReadLine();
