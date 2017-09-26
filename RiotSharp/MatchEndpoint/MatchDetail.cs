@@ -14,7 +14,7 @@ namespace RiotSharp.MatchEndpoint
         /// Team information.
         /// </summary>
         [JsonProperty("teams")]
-        public List<Team> Teams { get; set; }
+        public List<TeamStats> Teams { get; set; }
 
         /// <summary>
         /// Match timeline data. Not included by default.
