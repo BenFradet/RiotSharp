@@ -590,6 +590,5 @@ namespace RiotSharp
         #endregion
 
 #pragma warning restore
-        }
     }
 }
