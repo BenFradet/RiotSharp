@@ -79,6 +79,7 @@ namespace RiotSharp.MatchEndpoint
         /// <summary>
         /// Number of rift heralds killed.
         /// </summary>
+        [JsonProperty("riftHeraldKills")]
         public int RiftHeraldKills { get; set; }
 
         /// <summary>
