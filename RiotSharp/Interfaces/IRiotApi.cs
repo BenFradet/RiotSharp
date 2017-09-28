@@ -207,9 +207,20 @@ namespace RiotSharp.Interfaces
         #endregion
 
         #region Match
-
+        /// <summary>
+        /// Get the matches' ID of the specified tournament synchronously.
+        /// </summary>
+        /// <param name="region">Region in which the tournament took place.</param>
+        /// <param name="tournamentCode">The tournament ID to be retrieved.</param>
+        /// <returns>A list containing the matches' ID.</returns>
         List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode);
 
+        /// <summary>
+        /// Get the matches' ID of the specified tournament asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which the tournament took place.</param>
+        /// <param name="tournamentCode">The tournament ID to be retrieved.</param>
+        /// <returns>A list containing the matches' ID.</returns>
         Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode);
 
         /// <summary>

@@ -30,6 +30,7 @@ namespace RiotSharp.MatchEndpoint
         /// The ID of the platform on which the game is being played
         /// </summary>
         [JsonProperty("platformId")]
+        [JsonConverter(typeof(PlatformConverter))]
         public Platform Platform { get; set; }
 
         /// <summary>

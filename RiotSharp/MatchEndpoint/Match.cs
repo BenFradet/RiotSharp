@@ -42,7 +42,7 @@ namespace RiotSharp.MatchEndpoint
         public List<Participant> Participants { get; set; } 
 
         [JsonProperty("gameDuration")]
-        [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))] // Correct?
+        [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
         public TimeSpan GameDuration { get; set; }
 
         [JsonProperty("gameCreation")]
