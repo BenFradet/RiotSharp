@@ -31,7 +31,7 @@ namespace RiotSharp.MatchEndpoint
         /// </summary>
         [JsonProperty("platformId")]
         [JsonConverter(typeof(PlatformConverter))]
-        public Platform Platform { get; set; }
+        public Platform PlatformID { get; set; }
 
         /// <summary>
         /// Match queue type.
