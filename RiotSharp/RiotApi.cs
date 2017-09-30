@@ -214,17 +214,15 @@ namespace RiotSharp
         #region Champion
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
-            var freeToPlayString = freeToPlay ? "true" : "false";
             var json = requester.CreateGetRequest(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlayString}" });
+                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
             return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
 
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
-            var freeToPlayString = freeToPlay ? "true" : "false";
             var json = await requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlay}" });
+                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
         }
@@ -356,7 +354,7 @@ namespace RiotSharp
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
                 includeTimeline
-                    ? new List<string> {$"includeTimeline={includeTimeline}"}
+                    ? new List<string> {$"includeTimeline={includeTimeline.ToString().ToLower()}"}
                     : null);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MatchDetail>(json));
