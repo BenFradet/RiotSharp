@@ -214,7 +214,7 @@ namespace RiotSharp
                         StaticDataRootUrl + string.Format(ChampionByIdUrl, championId), region,
                         new List<string>
                         {
-                            $"locale={ language.ToString()}",
+                            $"locale={language.toString()}",
                             championData == ChampionData.Basic ?
                             string.Empty :
                             string.Format(TagsParameter, championData.ToString().ToLower())
@@ -245,7 +245,7 @@ namespace RiotSharp
                 StaticDataRootUrl + string.Format(ChampionByIdUrl, championId), region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     championData == ChampionData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, championData.ToString().ToLower())
@@ -268,7 +268,7 @@ namespace RiotSharp
                 var json = requester.CreateGetRequest(StaticDataRootUrl + ItemsUrl, region,
                     new List<string>
                     {
-                        $"locale={ language.ToString()}",
+                        $"locale={language.toString()}",
                         itemData == ItemData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, itemData.ToString().ToLower())
@@ -291,7 +291,7 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ItemsUrl, region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     itemData == ItemData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, itemData.ToString().ToLower())
@@ -331,7 +331,7 @@ namespace RiotSharp
                         StaticDataRootUrl + string.Format(ItemByIdUrl, itemId), region,
                         new List<string>
                         {
-                            $"locale={ language.ToString()}",
+                            $"locale={language.toString()}",
                             itemData == ItemData.Basic ?
                             string.Empty :
                             string.Format(TagsParameter, itemData.ToString().ToLower())
@@ -362,7 +362,7 @@ namespace RiotSharp
                 StaticDataRootUrl + string.Format(ItemByIdUrl, itemId), region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     itemData == ItemData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, itemData.ToString().ToLower())
@@ -386,7 +386,7 @@ namespace RiotSharp
 
             var json = requester.CreateGetRequest(StaticDataRootUrl + LanguageStringsUrl, region,
                 new List<string> {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     $"version={version}"
                 });
             var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
@@ -408,7 +408,7 @@ namespace RiotSharp
 
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + LanguageStringsUrl, region,
                 new List<string> {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     $"version={version}"
                 });
             var languageStrings = await Task.Factory.StartNew(() 
@@ -467,7 +467,7 @@ namespace RiotSharp
 
             var json = requester.CreateGetRequest(StaticDataRootUrl + MapsUrl, region,
                 new List<string> {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     $"version={version}"
                 });
             var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
@@ -488,7 +488,7 @@ namespace RiotSharp
 
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + MapsUrl, region,
                 new List<string> {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     $"version={version}"
                 });
             var maps = await Task.Factory.StartNew(() =>
@@ -510,7 +510,7 @@ namespace RiotSharp
                 var json = requester.CreateGetRequest(StaticDataRootUrl + MasteriesUrl, region,
                     new List<string>
                     {
-                        $"locale={ language.ToString()}",
+                        $"locale={language.toString()}",
                         masteryData == MasteryData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, masteryData.ToString().ToLower())
@@ -533,7 +533,7 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + MasteriesUrl, region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     masteryData == MasteryData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, masteryData.ToString().ToLower())
@@ -573,7 +573,7 @@ namespace RiotSharp
                         StaticDataRootUrl + string.Format(MasteryByIdUrl, masteryId), region,
                         new List<string>
                         {
-                            $"locale={ language.ToString()}",
+                            $"locale={language.toString()}",
                             masteryData == MasteryData.Basic ?
                             string.Empty : string.Format(TagsParameter, masteryData.ToString().ToLower())
                         });
@@ -603,7 +603,7 @@ namespace RiotSharp
                 StaticDataRootUrl + string.Format(MasteryByIdUrl, masteryId), region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     masteryData == MasteryData.Basic ?
                         string.Empty : string.Format(TagsParameter, masteryData.ToString().ToLower())
                 });
@@ -695,7 +695,7 @@ namespace RiotSharp
                 var json = requester.CreateGetRequest(StaticDataRootUrl + RunesUrl, region,
                     new List<string>
                     {
-                        $"locale={ language.ToString()}",
+                        $"locale={language.toString()}",
                         runeData == RuneData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, runeData.ToString().ToLower())
@@ -718,7 +718,7 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + RunesUrl, region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     runeData == RuneData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, runeData.ToString().ToLower())
@@ -758,7 +758,7 @@ namespace RiotSharp
                         StaticDataRootUrl + string.Format(RuneByIdUrl, runeId), region,
                         new List<string>
                         {
-                            $"locale={ language.ToString()}",
+                            $"locale={language.toString()}",
                             runeData == RuneData.Basic ?
                             string.Empty :
                             string.Format(TagsParameter, runeData.ToString().ToLower())
@@ -789,7 +789,7 @@ namespace RiotSharp
                 StaticDataRootUrl + string.Format(RuneByIdUrl, runeId), region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     runeData == RuneData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, runeData.ToString().ToLower())
@@ -811,7 +811,7 @@ namespace RiotSharp
                 var json = requester.CreateGetRequest(StaticDataRootUrl + SummonerSpellsUrl, region,
                     new List<string>
                     {
-                        $"locale={ language.ToString()}",
+                        $"locale={language.toString()}",
                         summonerSpellData == SummonerSpellData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
@@ -834,7 +834,7 @@ namespace RiotSharp
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + SummonerSpellsUrl, region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     summonerSpellData == SummonerSpellData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
@@ -876,7 +876,7 @@ namespace RiotSharp
                         StaticDataRootUrl + string.Format(SummonerSpellByIdUrl, summonerSpellId), region,
                         new List<string>
                         {
-                            $"locale={ language.ToString()}",
+                            $"locale={language.toString()}",
                             summonerSpellData == SummonerSpellData.Basic ?
                             string.Empty :
                             string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
@@ -909,7 +909,7 @@ namespace RiotSharp
                 StaticDataRootUrl + string.Format(SummonerSpellByIdUrl, summonerSpellId), region,
                 new List<string>
                 {
-                    $"locale={ language.ToString()}",
+                    $"locale={language.toString()}",
                     summonerSpellData == SummonerSpellData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
