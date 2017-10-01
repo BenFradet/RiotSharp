@@ -215,14 +215,14 @@ namespace RiotSharp
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
             var json = requester.CreateGetRequest(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
             return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
 
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
             var json = await requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
+                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
         }
@@ -341,7 +341,7 @@ namespace RiotSharp
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
                 includeTimeline
-                    ? new List<string> { $"includeTimeline={includeTimeline.ToString().ToLower()}" }
+                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline.ToString().ToLower()) }
                     : null);
             return JsonConvert.DeserializeObject<MatchDetail>(json);
         }
@@ -354,7 +354,7 @@ namespace RiotSharp
                 string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
                 region,
                 includeTimeline
-                    ? new List<string> {$"includeTimeline={includeTimeline.ToString().ToLower()}"}
+                    ? new List<string> {string.Format("includeTimeline={0}", includeTimeline)}
                     : null);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<MatchDetail>(json));
@@ -367,28 +367,28 @@ namespace RiotSharp
         {
             var addedArguments = new List<string>
             {
-                $"beginIndex={beginIndex}",
-                $"endIndex={endIndex}"
+                string.Format("beginIndex={0}", beginIndex),
+                string.Format("endIndex={0}", endIndex),
             };
             if (beginTime != null)
             {
-                addedArguments.Add($"beginTime={beginTime.Value.ToLong()}");
+                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
             }
             if (endTime != null)
             {
-                addedArguments.Add($"endTime={endTime.Value.ToLong()}");
+                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
             }
             if (championIds != null)
             {
-                addedArguments.Add($"championIds={Util.BuildIdsString(championIds)}");
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
             }
             if (rankedQueues != null)
             {
-                addedArguments.Add($"rankedQueues={Util.BuildQueuesString(rankedQueues)}");
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
             }
             if (seasons != null)
             {
-                addedArguments.Add($"seasons={Util.BuildSeasonString(seasons)}");
+                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
             }
 
             var json = requester.CreateGetRequest(
@@ -405,28 +405,28 @@ namespace RiotSharp
         {
             var addedArguments = new List<string>
             {
-                $"beginIndex={beginIndex}",
-                $"endIndex={endIndex}"
+                string.Format("beginIndex={0}", beginIndex),
+                string.Format("endIndex={0}", endIndex),
             };
             if (beginTime != null)
             {
-                addedArguments.Add($"beginTime={beginTime.Value.ToLong()}");
+                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
             }
             if (endTime != null)
             {
-                addedArguments.Add($"endTime={endTime.Value.ToLong()}");
+                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
             }
             if (championIds != null)
             {
-                addedArguments.Add($"championIds={Util.BuildIdsString(championIds)}");
+                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
             }
             if (rankedQueues != null)
             {
-                addedArguments.Add($"rankedQueues={Util.BuildQueuesString(rankedQueues)}");
+                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
             }
             if (seasons != null)
             {
-                addedArguments.Add($"seasons={Util.BuildSeasonString(seasons)}");
+                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
             }
 
             var json = await requester.CreateGetRequestAsync(
