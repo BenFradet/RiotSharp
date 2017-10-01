@@ -295,9 +295,9 @@ namespace RiotSharp.Test
         {
             var actual = Stopwatch.Elapsed;
             Assert.IsTrue(expected < actual,
-                $"{i} too soon. Expected: {expected}. Actual: {actual}.");
+                string.Format("{0} too soon. Expected: {1}. Actual: {2}.", i, expected, actual));
             Assert.IsTrue(actual < TimeSpan.FromTicks((int) (expected.Ticks * ErrorFactor + ErrorDelay.Ticks)),
-                $"{i} too late. Expected: {expected}. Actual: {actual}.");
+                string.Format("{0} too late. Expected: {1}. Actual: {2}.", i, expected, actual));
         }
     }
 }
