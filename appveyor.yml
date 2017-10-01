@@ -23,7 +23,7 @@ environment:
   TOURNAMENT_API_KEY:
     secure: bsM+fl6l6wPOa4WruqOrwUiTiakBlrRVCeC5c+P7dAKsmkgSv+xQu0sXy93wB/YO
   API_KEY:
-    secure: GGfqrjvrelLGtdQg6lMRoZ9apyyV1SXp+s/G/wVm6LdKpQzIVVksdOYV5jaNqRCu
+    secure: Gos0Y96AWTasuvntMvqLP9tUmpxRTclT3+dqSBiYLCaHkoiSoYdsXktYxf1tZ5Dn
 
 # build cache to preserve files/folders between builds
 cache:
