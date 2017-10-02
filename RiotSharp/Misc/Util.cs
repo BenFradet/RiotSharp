@@ -26,7 +26,6 @@ namespace RiotSharp.Misc
             return string.Join(",", ids);
         }
 
-
         public static string BuildIdsString(List<long> ids)
         {
             return string.Join(",", ids);
