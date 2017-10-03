@@ -134,12 +134,8 @@ namespace RiotSharp
         /// <param name="cache"></param>
         public StaticRiotApi(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
         {
-            if (requester == null)
-                throw new ArgumentNullException(nameof(requester));
-            if (cache == null)
-                throw new ArgumentNullException(nameof(cache));
-            this.requester = requester;
-            this.cache = cache;
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
 
             if (slidingExpirationTime == null)
                 SlidingExpirationTime = DefaultSlidingExpirationTime;
