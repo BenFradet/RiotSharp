@@ -12,6 +12,7 @@ using RiotSharp.SummonerEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using RiotSharp.MatchListEndpoint;
 using RiotSharp.Misc;
@@ -63,7 +64,7 @@ namespace RiotSharp
         private const int MaxNrSummoners = 40;
         private const int MaxNrMasteryPages = 40;
 
-        private readonly IRateLimitedRequester requester;
+        private readonly IRequester requester;
 
         private static RiotApi instance;
         #endregion
@@ -109,30 +110,39 @@ namespace RiotSharp
         /// <returns>The instance of RiotApi.</returns>
         public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits)
         {
+            /* todo is this logic required?
             if (instance == null || Requesters.RiotApiRequester == null ||
                 apiKey != Requesters.RiotApiRequester.ApiKey ||
                 !rateLimits.Equals(Requesters.RiotApiRequester.RateLimits))
             {
                 instance = new RiotApi(apiKey, rateLimits);
-            }
-            return instance;
+            } */
+            return instance ?? (instance = new RiotApi(apiKey, rateLimits));
         }
 
         private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits)
         {
-            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
-            requester = Requesters.RiotApiRequester;
+            var serializer = new RequestContentSerializer();
+            var deserializer = new ResponseDeserializer();
+            var requestCreator = new RequestCreator(apiKey, serializer);
+            var httpClient = new HttpClient();
+            var failedRequestHandler = new FailedRequestHandler();
+            var client = new RequestClient(httpClient, failedRequestHandler);
+            var basicRequester = new Requester(client, requestCreator, deserializer);
+            var rateLimitProvider = new RateLimitProvider(rateLimits);
+
+            requester = new RateLimitedRequester(basicRequester, rateLimitProvider);
+
+            Requesters.RiotApiRequester = (RateLimitedRequester) requester;
         }
 
         /// <summary>
         /// Dependency injection constructor
         /// </summary>
-        /// <param name="rateLimitedRequester"></param>
-        public RiotApi(IRateLimitedRequester rateLimitedRequester)
+        /// <param name="requester"></param>
+        public RiotApi(IRequester requester)
         {
-            if (rateLimitedRequester == null)
-                throw new ArgumentNullException(nameof(rateLimitedRequester));
-            requester = rateLimitedRequester;
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
 #pragma warning disable CS1591
@@ -140,224 +150,176 @@ namespace RiotSharp
         #region Summoner
         public Summoner GetSummonerByAccountId(Region region, long accountId)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-            var obj = JsonConvert.DeserializeObject<Summoner>(json);
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            var url = string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId);
+            var summoner = requester.Get<Summoner>(url, region);
+            return SummonerWithRegion(summoner, region);
         }
 
         public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            var url = string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId);
+            var summoner = await requester.GetAsync<Summoner>(url, region);
+            return SummonerWithRegion(summoner, region);
         }
 
         public Summoner GetSummonerBySummonerId(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-            var obj = JsonConvert.DeserializeObject<Summoner>(json);
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            var url = string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId);
+            var summoner = requester.Get<Summoner>(url, region);
+            return SummonerWithRegion(summoner, region);
         }
 
         public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            var url = string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId);
+            var summoner = await requester.GetAsync<Summoner>(url, region);
+            return SummonerWithRegion(summoner, region);
         }
 
         public Summoner GetSummonerByName(Region region, string summonerName)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-            var obj = JsonConvert.DeserializeObject<Summoner>(json);
-            if (obj != null)
-            {
-                obj.Region = region;
-            }
-            return obj;
+            var url = string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName);
+            var summoner = requester.Get<Summoner>(url, region);
+            return SummonerWithRegion(summoner, region);
         }
 
         public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-            if (obj != null)
+            var url = string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName);
+            var summoner = await requester.GetAsync<Summoner>(url, region);
+            return SummonerWithRegion(summoner, region);
+        }
+
+        public Summoner SummonerWithRegion(Summoner summoner, Region region)
+        {
+            if (summoner != null)
             {
-                obj.Region = region;
+                summoner.Region = region;
             }
-            return obj;
+            return summoner;
         }
         #endregion
 
         #region Champion
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
-            var json = requester.CreateGetRequest(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
-            return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
+            var url = PlatformRootUrl + ChampionsUrl;
+            var arguments = new List<string>{$"freeToPlay={freeToPlay.ToString().ToLower()}" };
+            return requester.Get<ChampionList>(url, region, arguments).Champions;
         }
 
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { string.Format("freeToPlay={0}", freeToPlay ? "true" : "false") });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
+            var url = PlatformRootUrl + ChampionsUrl;
+            var arguments = new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" };
+            return (await requester.GetAsync<ChampionList>(url, region, arguments)).Champions;
         }
 
         public Champion GetChampion(Region region, int championId)
         {
-            var json = requester.CreateGetRequest(
-                PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId), region);
-            return JsonConvert.DeserializeObject<Champion>(json);
+            var url = PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId);
+            return requester.Get<Champion>(url, region);
         }
 
         public async Task<Champion> GetChampionAsync(Region region, int championId)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId), region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
+            var url = PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId);
+            return await requester.GetAsync<Champion>(url, region);
+
         }
         #endregion
 
         #region Masteries
         public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(PlatformRootUrl + string.Format(MasteriesUrl, summonerId), region);
-
-            var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
-            return masteries.Pages;
+            var url = PlatformRootUrl + string.Format(MasteriesUrl, summonerId);
+            return requester.Get<MasteryPages>(url, region).Pages;
         }
 
         public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(MasteriesUrl, summonerId), region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MasteryPages>(json).Pages);
+            var url = PlatformRootUrl + string.Format(MasteriesUrl, summonerId);
+            return (await requester.GetAsync<MasteryPages>(url, region)).Pages;
         }
         #endregion
 
         #region Runes
         public List<RunePage> GetRunePages(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(PlatformRootUrl + string.Format(RunesUrl, summonerId), region);
-
-            var runes = JsonConvert.DeserializeObject<RunePages>(json);
-            return runes.Pages;
+            var url = PlatformRootUrl + string.Format(RunesUrl, summonerId);
+            return requester.Get<RunePages>(url, region).Pages;
         }
 
         public async Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(RunesUrl, summonerId),
-                region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RunePages>(json).Pages);
+            var url = PlatformRootUrl + string.Format(RunesUrl, summonerId);
+            return (await requester.GetAsync<RunePages>(url, region)).Pages;
         }
         #endregion
 
         #region League
         public List<League> GetLeagues(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueBySummonerUrl, summonerId),
-                region);
-            return JsonConvert.DeserializeObject<List<League>>(json);
+            var url = LeagueRootUrl + string.Format(LeagueBySummonerUrl, summonerId);
+            return requester.Get<List<League>>(url, region);
         }
 
         public async Task<List<League>> GetLeaguesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeagueBySummonerUrl, summonerId), region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<League>>(json));
+            var url = LeagueRootUrl + string.Format(LeagueBySummonerUrl, summonerId);
+            return await requester.GetAsync<List<League>>(url, region);
         }
-        
+
         public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId),
-                region);
-
-            return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
+            var url = LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId);
+            return requester.Get<List<LeaguePosition>>(url, region);
         }
-        
+
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId), region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeaguePosition>>(json));
+            var url = LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId);
+            return await requester.GetAsync<List<LeaguePosition>>(url, region);
         }
 
         public League GetChallengerLeague(Region region, string queue)
         {
-            var json = requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue), region);
-            return JsonConvert.DeserializeObject<League>(json);
+            var url = LeagueRootUrl + string.Format(LeagueChallengerUrl, queue);
+            return requester.Get<League>(url, region);
         }
 
         public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
-            var json = await requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
+            var url = LeagueRootUrl + string.Format(LeagueChallengerUrl, queue);
+            return await requester.GetAsync<League>(url, region);
         }
 
         public League GetMasterLeague(Region region, string queue)
         {
-            var json = requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueMasterUrl, queue), region);
-            return JsonConvert.DeserializeObject<League>(json);
+            var url = LeagueRootUrl + string.Format(LeagueMasterUrl, queue);
+            return requester.Get<League>(url, region);
         }
 
         public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
-            var json = await requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
-        }
-
-        public MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
-                region,
-                includeTimeline
-                    ? new List<string> { string.Format("includeTimeline={0}", includeTimeline.ToString().ToLower()) }
-                    : null);
-            return JsonConvert.DeserializeObject<MatchDetail>(json);
+            var url = LeagueRootUrl + string.Format(LeagueMasterUrl, queue);
+            return await requester.GetAsync<League>(url, region);
         }
         #endregion
 
         #region Match
+        public MatchDetail GetMatch(Region region, long matchId, bool includeTimeline = false)
+        {
+            var url = string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId);
+            var arguments = includeTimeline ? new List<string> { "includeTimeline=false" } : new List<string>();
+            return requester.Get<MatchDetail>(url, region, arguments);
+        }
+
         public async Task<MatchDetail> GetMatchAsync(Region region, long matchId, bool includeTimeline = false)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId),
-                region,
-                includeTimeline
-                    ? new List<string> {string.Format("includeTimeline={0}", includeTimeline)}
-                    : null);
-            return await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MatchDetail>(json));
+            var url = string.Format(MatchRootUrl, region.ToString()) + string.Format(IdUrl, matchId);
+            var arguments = includeTimeline ? new List<string> { "includeTimeline=false" } : new List<string>();
+            return await requester.GetAsync<MatchDetail>(url, region, arguments);
         }
 
         public MatchList GetMatchList(Region region, long summonerId,
@@ -367,35 +329,32 @@ namespace RiotSharp
         {
             var addedArguments = new List<string>
             {
-                string.Format("beginIndex={0}", beginIndex),
-                string.Format("endIndex={0}", endIndex),
+                $"beginIndex={beginIndex}",
+                $"endIndex={endIndex}",
             };
             if (beginTime != null)
             {
-                addedArguments.Add(string.Format("beginTime={0}", beginTime.Value.ToLong()));
+                addedArguments.Add($"beginTime={beginTime.Value.ToLong()}");
             }
             if (endTime != null)
             {
-                addedArguments.Add(string.Format("endTime={0}", endTime.Value.ToLong()));
+                addedArguments.Add($"endTime={endTime.Value.ToLong()}");
             }
             if (championIds != null)
             {
-                addedArguments.Add(string.Format("championIds={0}", Util.BuildIdsString(championIds)));
+                addedArguments.Add($"championIds={Util.BuildIdsString(championIds)}");
             }
             if (rankedQueues != null)
             {
-                addedArguments.Add(string.Format("rankedQueues={0}", Util.BuildQueuesString(rankedQueues)));
+                addedArguments.Add($"rankedQueues={Util.BuildQueuesString(rankedQueues)}");
             }
             if (seasons != null)
             {
-                addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
+                addedArguments.Add($"seasons={Util.BuildSeasonString(seasons)}");
             }
 
-            var json = requester.CreateGetRequest(
-                string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
-                region,
-                addedArguments);
-            return JsonConvert.DeserializeObject<MatchList>(json);
+            var url = string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId);
+            return requester.Get<MatchList>(url, region, addedArguments);
         }
 
         public async Task<MatchList> GetMatchListAsync(Region region, long summonerId,
@@ -429,104 +388,86 @@ namespace RiotSharp
                 addedArguments.Add(string.Format("seasons={0}", Util.BuildSeasonString(seasons)));
             }
 
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId),
-                region,
-                addedArguments);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
+            var url = string.Format(MatchListRootUrl, region.ToString()) + string.Format(IdUrl, summonerId);
+
+            return await requester.GetAsync<MatchList>(url, region, addedArguments);
         }
 
         public List<Game> GetRecentGames(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(GameRootUrl, region) + string.Format(RecentGamesUrl, summonerId),
-                region);
-            return JsonConvert.DeserializeObject<RecentGames>(json).Games;
+            var url = string.Format(GameRootUrl, region) + string.Format(RecentGamesUrl, summonerId);
+            return requester.Get<RecentGames>(url, region).Games;
         }
 
         public async Task<List<Game>> GetRecentGamesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(GameRootUrl, region) + string.Format(RecentGamesUrl, summonerId),
-                region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RecentGames>(json))).Games;
+            var url = string.Format(GameRootUrl, region) + string.Format(RecentGamesUrl, summonerId);
+            return (await requester.GetAsync<RecentGames>(url, region)).Games;
         }
         #endregion
 
         #region Spectator
         public CurrentGame GetCurrentGame(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
-            return JsonConvert.DeserializeObject<CurrentGame>(json);
+            var url = SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId);
+            return requester.Get<CurrentGame>(url, region);
         }
-        
+
         public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<CurrentGame>(json)));
+            var url = SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId);
+            return await requester.GetAsync<CurrentGame>(url, region);
         }
 
         public FeaturedGames GetFeaturedGames(Region region)
         {
-            var json = requester.CreateGetRequest(SpectatorRootUrl + FeaturedGamesUrl, region);
-            return JsonConvert.DeserializeObject<FeaturedGames>(json);
+            var url = SpectatorRootUrl + FeaturedGamesUrl;
+            return requester.Get<FeaturedGames>(url, region);
         }
 
         public async Task<FeaturedGames> GetFeaturedGamesAsync(Region region)
         {
-            var json = await requester.CreateGetRequestAsync(SpectatorRootUrl + FeaturedGamesUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FeaturedGames>(json)));
+            var url = SpectatorRootUrl + FeaturedGamesUrl;
+            return await requester.GetAsync<FeaturedGames>(url, region);
         }
         #endregion
 
         #region Champion Mastery
         public ChampionMastery GetChampionMastery(Region region, long summonerId, long championId)
         {
-            var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<ChampionMastery>(json);
+            var url = ChampionMasteryRootUrl + string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
+            return requester.Get<ChampionMastery>(url, region);
         }
 
         public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, long summonerId, long championId)
         {
-            var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
-
-            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ChampionMastery>(json)));
+            var url = ChampionMasteryRootUrl + string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
+            return await requester.GetAsync<ChampionMastery>(url, region);
         }
 
         public List<ChampionMastery> GetChampionMasteries(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
+            var url = ChampionMasteryRootUrl + string.Format(ChampionMasteriesBySummonerUrl, summonerId);
+            return requester.Get<List<ChampionMastery>>(url, region);
 
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
         }
 
         public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
-
-            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
+            var url = ChampionMasteryRootUrl + string.Format(ChampionMasteriesBySummonerUrl, summonerId);
+            return await requester.GetAsync<List<ChampionMastery>>(url, region);
         }
 
         public int GetTotalChampionMasteryScore(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<int>(json);
+            var url = ChampionMasteryRootUrl + string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
+            return requester.Get<int>(url, region);
         }
 
         public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json)));
+            var url = ChampionMasteryRootUrl + string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
+            return await requester.GetAsync<int>(url, region);
         }
         #endregion
 
