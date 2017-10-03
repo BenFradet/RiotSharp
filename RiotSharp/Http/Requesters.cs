@@ -3,7 +3,7 @@
     internal static class Requesters
     {
         public static RateLimitedRequester StaticApiRequester;
-        public static RequesterAlt StatusApiRequesterAlt;
+        public static Requester StatusApiRequester;
         public static RateLimitedRequester RiotApiRequester;
         public static RateLimitedRequester TournamentApiRequester;
     }
