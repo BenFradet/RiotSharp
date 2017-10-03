@@ -8,7 +8,7 @@ namespace RiotSharp.Test
     [TestClass]
     public class StatusRiotApiTest : CommonTestBase
     {
-        private static StatusRiotApi api = StatusRiotApi.GetInstance(CommonTestBase.apiKey);
+        private static StatusRiotApi api = StatusRiotApi.GetInstance(apiKey);
 
         [TestMethod]
         [TestCategory("StatusRiotApi")]
@@ -16,7 +16,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var shardStatus = api.GetShardStatus(StatusRiotApiTestBase.summoner1and2Region);
+                var shardStatus = api.GetShardStatus(summoner1and2Region);
 
                 Assert.AreEqual(StatusRiotApiTestBase.platform.ToString().ToLower(),
                     shardStatus.RegionTag);
@@ -29,7 +29,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var shardStatus = api.GetShardStatusAsync(StatusRiotApiTestBase.summoner1and2Region);
+                var shardStatus = api.GetShardStatusAsync(summoner1and2Region);
 
                 Assert.AreEqual(StatusRiotApiTestBase.platform.ToString().ToLower(),
                     shardStatus.Result.RegionTag);
