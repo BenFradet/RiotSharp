@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 [assembly: InternalsVisibleTo("RiotSharp.Test")]
 namespace RiotSharp.Http
 {
-    internal class RateLimiter
+    public class RateLimiter
     {
         /// <summary>Semaphore to prevent multiple requests from interferering with each other's rate limit
         /// calculations.</summary>
