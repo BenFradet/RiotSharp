@@ -10,13 +10,30 @@ using System.Net.Http;
 
 namespace RiotSharp
 {
-    public class StatusRiotApi : IStatusRiotApi
+    public partial class StatusRiotApi : IStatusRiotApi
     {
-
         private const string StatusRootUrl = "/lol/status/v3/shard-data";
 
         private readonly IRequesterAlt requester;
 
+        public StatusRiotApi(IRequesterAlt requester)
+        {
+            this.requester = requester;
+        }
+
+        public ShardStatus GetShardStatus(Region region)
+        {
+            return requester.Get<ShardStatus>(StatusRootUrl, region);
+        }
+
+        public async Task<ShardStatus> GetShardStatusAsync(Region region)
+        {
+            return await requester.GetAsync<ShardStatus>(StatusRootUrl, region);
+        }
+    }
+
+    public partial class StatusRiotApi
+    {
         private static StatusRiotApi instance;
 
         /// <summary>
@@ -38,21 +55,5 @@ namespace RiotSharp
             requester = new RequesterAlt(client, requestCreator, deserializer);
             Requesters.StatusApiRequesterAlt = (RequesterAlt) requester;
         }
-
-        public StatusRiotApi(IRequesterAlt requester)
-        {
-            this.requester = requester;
-        }
-
-        public ShardStatus GetShardStatus(Region region)
-        {
-            return requester.Get<ShardStatus>(StatusRootUrl, region);
-        }
-
-        public async Task<ShardStatus> GetShardStatusAsync(Region region)
-        {
-            return await requester.GetAsync<ShardStatus>(StatusRootUrl, region);
-        }
-
     }
 }
