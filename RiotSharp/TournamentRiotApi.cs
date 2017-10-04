@@ -4,6 +4,7 @@ using RiotSharp.TournamentEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 using RiotSharp.TournamentEndpoint.Enums;
@@ -31,17 +32,29 @@ namespace RiotSharp
         private const string GetMatchDetailUrl = "/for-tournament/{0}";
 
         private static TournamentRiotApi instance;
+        private static string instanceApiKey;
+        private static IDictionary<TimeSpan, int> instanceRateLimits;
 
-        private readonly IRateLimitedRequester requester;
+        private readonly IRequester requester;
         private string tournamentRootUrl;
 
         #endregion
 
         private TournamentRiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
-            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, rateLimits);
-            requester = Requesters.TournamentApiRequester;
             SetTournamentRootUrl(useStub);
+
+            var serializer = new RequestContentSerializer();
+            var deserializer = new ResponseDeserializer();
+            var requestCreator = new RequestCreator(apiKey, serializer);
+            var httpClient = new HttpClient();
+            var failedRequestHandler = new FailedRequestHandler();
+            var client = new RequestClient(httpClient, failedRequestHandler);
+            var basicRequester = new Requester(client, requestCreator, deserializer);
+            var rateLimitProvider = new RateLimitProvider(rateLimits);
+
+            requester = new RateLimitedRequester(basicRequester, rateLimitProvider);
+            Requesters.TournamentApiRequester = (RateLimitedRequester)requester;
         }
 
         /// <summary>
@@ -51,7 +64,7 @@ namespace RiotSharp
         /// If true, the tournament stub will be used for requests. 
         /// Useful for testing purposes.
         /// </param>
-        public TournamentRiotApi(IRateLimitedRequester rateLimitedRequester, bool useStub = false)
+        public TournamentRiotApi(IRequester rateLimitedRequester, bool useStub = false)
         {
             if (rateLimitedRequester == null)
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
@@ -97,9 +110,11 @@ namespace RiotSharp
                 rateLimits = new Dictionary<TimeSpan, int>();
             if (instance == null ||
                 Requesters.TournamentApiRequester == null ||
-                apiKey != Requesters.TournamentApiRequester.ApiKey ||
-                !rateLimits.Equals(Requesters.TournamentApiRequester.RateLimits))
+                apiKey != instanceApiKey ||
+                !rateLimits.Equals(instanceRateLimits))
             {
+                instanceApiKey = apiKey;
+                instanceRateLimits = rateLimits;
                 instance = new TournamentRiotApi(apiKey, rateLimits);
             }
             return instance;
@@ -127,10 +142,8 @@ namespace RiotSharp
                 { "url", url },
                 { "region", region.ToString().ToUpper() }
             };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateProviderUrl, Region.global,
-                JsonConvert.SerializeObject(body));
-
-            return int.Parse(json);
+            var relativeUrl = tournamentRootUrl + CreateProviderUrl;
+            return requester.Post<int>(relativeUrl, Region.global, body);
         }
 
         public async Task<int> CreateProviderAsync(Region region, string url)
@@ -140,12 +153,8 @@ namespace RiotSharp
                 { "url", url },
                 { "region", region.ToString().ToUpper() }
             };
-            var json =
-                await
-                    requester.CreatePostRequestAsync(tournamentRootUrl + CreateProviderUrl, Region.global,
-                        JsonConvert.SerializeObject(body));
-
-            return int.Parse(json);
+            var relativeUrl = tournamentRootUrl + CreateProviderUrl;
+            return await requester.PostAsync<int>(relativeUrl, Region.global, body);
         }  
 
         public int CreateTournament(int providerId, string name)
@@ -155,24 +164,19 @@ namespace RiotSharp
                 { "name", name },
                 { "providerId", providerId }
             };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateTournamentUrl, Region.global,
-                JsonConvert.SerializeObject(body));
-
-            return int.Parse(json);
+            var relativeUrl = tournamentRootUrl + CreateTournamentUrl;
+            return requester.Post<int>(relativeUrl, Region.global, body);
         }
 
         public async Task<int> CreateTournamentAsync(int providerId, string name)
         {
-            var body = new Dictionary<string, object> {
+            var body = new Dictionary<string, object>
+            {
                 { "name", name },
                 { "providerId", providerId }
             };
-            var json =
-                await
-                    requester.CreatePostRequestAsync(tournamentRootUrl + CreateTournamentUrl, Region.global,
-                        JsonConvert.SerializeObject(body));
-
-            return int.Parse(json);
+            var relativeUrl = tournamentRootUrl + CreateTournamentUrl;
+            return await requester.PostAsync<int>(relativeUrl, Region.global, body);
         }
 
         public List<string> CreateTournamentCodes(int tournamentId, int count, int teamSize, TournamentSpectatorType spectatorType, 
@@ -190,21 +194,15 @@ namespace RiotSharp
                 { "mapType", mapType },
                 { "metadata", metadata }
             };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateCodesUrl, Region.global,
-                JsonConvert.SerializeObject(body, null, 
-                    new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore
-                    }),
-                    new List<string>
-                    {
-                        string.Format("tournamentId={0}", tournamentId),
-                        string.Format("count={0}", count)
-                    });
 
-            var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
+            var arguments = new List<string>
+            {
+                $"tournamentId={tournamentId}",
+                $"count={count}"
+            };
 
-            return tournamentCodes;
+            var url = tournamentRootUrl + CreateCodesUrl;
+            return requester.Post<List<string>>(url, Region.global, body, arguments);
         }
    
         public async Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int count, int teamSize,
@@ -222,79 +220,55 @@ namespace RiotSharp
                 { "mapType", mapType },
                 { "metadata", metadata }
             };
-            var json = await requester.CreatePostRequestAsync(tournamentRootUrl + CreateCodesUrl, Region.global,
-                JsonConvert.SerializeObject(body, null, 
-                    new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore
-                    }),
-                    new List<string>
-                    {
-                        string.Format("tournamentId={0}", tournamentId),
-                        string.Format("count={0}", count)
-                    });
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
+            var arguments = new List<string>
+            {
+                $"tournamentId={tournamentId}",
+                $"count={count}"
+            };
+
+            var url = tournamentRootUrl + CreateCodesUrl;
+            return await requester.PostAsync<List<string>>(url, Region.global, body, arguments);
         }    
 
         public TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode)
         {
-            var json = requester.CreateGetRequest(tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode),
-                Region.global);
-            var tournamentCodeDetails = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
-
-            return tournamentCodeDetails;
+            var url = tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode);
+            return requester.Get<TournamentCodeDetail>(url, Region.global);
         }
 
         public async Task<TournamentCodeDetail> GetTournamentCodeDetailsAsync(string tournamentCode)
         {
-            var json =
-                await
-                    requester.CreateGetRequestAsync(tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode),
-                        Region.global);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TournamentCodeDetail>(json));
+            var url = tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode);
+            return await requester.GetAsync<TournamentCodeDetail>(url, Region.global);
         }
-        
+
         public List<TournamentLobbyEvent> GetTournamentLobbyEvents(string tournamentCode)
         {
-            var json = requester.CreateGetRequest(tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
-                Region.global);
-            var lobbyEventsDTO = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
-
-            return lobbyEventsDTO["eventList"];
+            var url = tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode);
+            return requester.Get<Dictionary<string, List<TournamentLobbyEvent>>>(url, Region.global)["eventList"];
         }
 
         public async Task<List<TournamentLobbyEvent>> GetTournamentLobbyEventsAsync(string tournamentCode)
         {
-            var json =
-                await
-                    requester.CreateGetRequestAsync(tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
-                        Region.global);
-
-            return
-                await
-                    Task.Factory.StartNew(() =>
-                        JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json)["eventList"]
-                    );
+            var url = tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode);
+            return (await requester.GetAsync<Dictionary<string, List<TournamentLobbyEvent>>>(url, Region.global))["eventList"];
         }
       
         public bool UpdateTournamentCode(string tournamentCode, List<long> allowedParticipantIds = null,
             TournamentSpectatorType? spectatorType = null, TournamentPickType? pickType = null, TournamentMapType? mapType= null)
         {
+            var url = tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode);
             var body = BuildTournamentUpdateBody(allowedParticipantIds, spectatorType, pickType, mapType);
-
-            return requester.CreatePutRequest(tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global,
-                JsonConvert.SerializeObject(body));
+            return requester.Put(url, Region.global, body);
         }
 
         public async Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedParticipantIds = null,
             TournamentSpectatorType? spectatorType = null, TournamentPickType? pickType = null, TournamentMapType? mapType = null)
         {
+            var url = tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode);
             var body = BuildTournamentUpdateBody(allowedParticipantIds, spectatorType, pickType, mapType);
-
-            return await requester.CreatePutRequestAsync(tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode),
-                Region.global, JsonConvert.SerializeObject(body));
+            return await requester.PutAsync(url, Region.global, body);
         }
 
         #endregion
@@ -303,55 +277,37 @@ namespace RiotSharp
 
         public MatchDetail GetTournamentMatch(Region region, long matchId, string tournamentCode, bool includeTimeline)
         {
-            var json =
-                requester.CreateGetRequest(
-                    string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
-                    new List<string>
-                    {
-                        string.Format("tournamentCode={0}", tournamentCode),
-                        string.Format("includeTimeline={0}", includeTimeline)
-                    });
-
-            var matchDetail = JsonConvert.DeserializeObject<MatchDetail>(json);
-
-            return matchDetail;
+            var url = string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId);
+            var arguments = new List<string>
+            {
+                $"tournamentCode={tournamentCode}",
+                $"includeTimeline={includeTimeline}"
+            };
+            return requester.Get<MatchDetail>(url, region, arguments);
         }
 
         public async Task<MatchDetail> GetTournamentMatchAsync(Region region, long matchId, string tournamentCode,
             bool includeTimeline)
         {
-            var json =
-                await
-                    requester.CreateGetRequestAsync(
-                        string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
-                        new List<string>
-                        {
-                            string.Format("tournamentCode={0}", tournamentCode),
-                            string.Format("includeTimeline={0}", includeTimeline)
-                        });
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchDetail>(json));
+            var url = string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId);
+            var arguments = new List<string>
+            {
+                $"tournamentCode={tournamentCode}",
+                $"includeTimeline={includeTimeline}"
+            };
+            return await requester.GetAsync<MatchDetail>(url, region, arguments);
         }
 
         public long GetTournamentMatchId(Region region, string tournamentCode)
         {
-            var json =
-                requester.CreateGetRequest(
-                    string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
-
-            var matchIds = JsonConvert.DeserializeObject<List<long>>(json);
-
-            return matchIds.FirstOrDefault();
+            var url = string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode);
+            return requester.Get<List<long>>(url, region).FirstOrDefault();
         }
 
         public async Task<long> GetTournamentMatchIdAsync(Region region, string tournamentCode)
         {
-            var json =
-                await
-                    requester.CreateGetRequestAsync(
-                        string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json).FirstOrDefault());
+            var url = string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode);
+            return (await requester.GetAsync<List<long>>(url, region)).FirstOrDefault();
         }
 
         #endregion
@@ -359,10 +315,7 @@ namespace RiotSharp
         #region Private Helpers
         private void SetTournamentRootUrl(bool useStub)
         {
-            if (useStub)
-                tournamentRootUrl = TournamentStubUrl;
-            else
-                tournamentRootUrl = TournamentUrl;
+            tournamentRootUrl = useStub ? TournamentStubUrl : TournamentUrl;
         }
 
         private Dictionary<string, object> BuildTournamentUpdateBody(List<long> allowedSummonerIds,
