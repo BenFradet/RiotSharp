@@ -13,7 +13,7 @@ namespace RiotSharp.Http
         public async Task<T> DeserializeToAsync<T>(HttpResponseMessage message)
         {
             var json = await message.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(json);
+            return await Task.Run(() => JsonConvert.DeserializeObject<T>(json));
         }
 
         public T DeserializeTo<T>(HttpResponseMessage message)
