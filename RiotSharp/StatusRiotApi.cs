@@ -14,9 +14,9 @@ namespace RiotSharp
     {
         private const string StatusRootUrl = "/lol/status/v3/shard-data";
 
-        private readonly IRequesterAlt requester;
+        private readonly IRequester requester;
 
-        public StatusRiotApi(IRequesterAlt requester)
+        public StatusRiotApi(IRequester requester)
         {
             this.requester = requester;
         }
@@ -48,12 +48,17 @@ namespace RiotSharp
 
         private StatusRiotApi(string apiKey)
         {
-            var client = new RequestClient(new HttpClient(), new FailedRequestHandler());
-            var requestCreator = new RequestCreator(apiKey);
+            var serializer = new RequestContentSerializer();
             var deserializer = new ResponseDeserializer();
+            var requestCreator = new RequestCreator(apiKey, serializer);
 
-            requester = new RequesterAlt(client, requestCreator, deserializer);
-            Requesters.StatusApiRequesterAlt = (RequesterAlt) requester;
+            var httpClient = new HttpClient();
+            var failedRequestHandler = new FailedRequestHandler();
+
+            var client = new RequestClient(httpClient, failedRequestHandler);
+
+            requester = new Requester(client, requestCreator, deserializer);
+            Requesters.StatusApiRequester = (Requester) requester;
         }
     }
 }
