@@ -7,6 +7,7 @@ using System.Linq;
 using RiotSharp.StaticDataEndpoint.Champion;
 using RiotSharp.Http;
 using System;
+using RiotSharp.Http.Interfaces;
 
 namespace RiotSharp.Test
 {
@@ -14,10 +15,7 @@ namespace RiotSharp.Test
     public class StaticRiotApiTest : CommonTestBase
     {
         private StaticRiotApi api; 
-        private static RateLimitedRequester requester = new RateLimitedRequester(apiKey, new Dictionary<TimeSpan, int>
-            {
-                { new TimeSpan(1, 0, 0), 10 }
-            });
+        private static IRateLimitedRequester requester = RateLimitedRequesterTestDoubles.Real(apiKey);
 
         public StaticRiotApiTest()
         {

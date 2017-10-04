@@ -1,41 +1,88 @@
-﻿using RiotSharp.Http.Interfaces;
-using RiotSharp.Misc;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Http
 {
     /// <summary>
-    /// A requester without a rate limiter.
+    /// An alternative requester without a rate limiter.
     /// </summary>
-    public class Requester : RequesterBase, IRequester
+    public class Requester : IRequester
     {
-        public Requester(string apiKey) : base(apiKey)
+        private readonly IRequestClient client;
+        private readonly IRequestCreator requestCreator;
+        private readonly IResponseDeserializer responseDeserializer;
+
+        private static List<string> NoArguments() => new List<string>();
+
+        public Requester(IRequestClient client, IRequestCreator requestCreator, IResponseDeserializer responseDeserializer)
         {
+            this.client = client;
+            this.requestCreator = requestCreator;
+            this.responseDeserializer = responseDeserializer;
         }
 
-        #region Public Methods        
-        public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
+        public T Get<T>(
+            string relativeUrl,
+            Region region,
+            List<string> addedArguments = null,
             bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var response = Get(request);
-            return GetResponseContent(response);
+            var arguments = addedArguments ?? NoArguments();
+            var request = requestCreator.CreateGetRequest(region, relativeUrl, arguments, useHttps);
+            var response = client.Get(request);
+            return responseDeserializer.DeserializeTo<T>(response);
         }
 
-        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
+        public async Task<T> GetAsync<T>(
+            string relativeUrl,
+            Region region,
+            List<string> addedArguments = null,
+            bool useHttps = true)
+        {
+            var arguments = addedArguments ?? NoArguments();
+            var request = requestCreator.CreateGetRequest(region, relativeUrl, arguments, useHttps);
+            var response = await client.GetAsync(request);
+            return await responseDeserializer.DeserializeToAsync<T>(response);
+        }
+
+        public T Post<T>(string relativeUrl, Region region, object body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var response = await GetAsync(request);
-            return await GetResponseContentAsync(response);
+            var arguments = addedArguments ?? NoArguments();
+            var request = requestCreator.CreatePostRequest(region, relativeUrl, body, arguments, useHttps);
+            var response = client.Post(request);
+            return responseDeserializer.DeserializeTo<T>(response);
         }
-        #endregion
+
+        public async Task<T> PostAsync<T>(string relativeUrl, Region region, object body,
+            List<string> addedArguments = null, bool useHttps = true)
+        {
+            var arguments = addedArguments ?? NoArguments();
+            var request = requestCreator.CreatePostRequest(region, relativeUrl, body, arguments, useHttps);
+            var response = await client.PostAsync(request);
+            return await responseDeserializer.DeserializeToAsync<T>(response);
+        }
+
+        public bool Put(string relativeUrl, Region region, object body,
+            List<string> addedArguments = null, bool useHttps = true)
+        {
+            var arguments = addedArguments ?? NoArguments();
+            var request = requestCreator.CreatePostRequest(region, relativeUrl, body, arguments, useHttps);
+            var response = client.Post(request);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> PutAsync(string relativeUrl, Region region, object body,
+            List<string> addedArguments = null, bool useHttps = true)
+        {
+            var arguments = addedArguments ?? NoArguments();
+            var request = requestCreator.CreatePutRequest(region, relativeUrl, body, arguments, useHttps);
+            var response = await client.PostAsync(request);
+            return response.IsSuccessStatusCode;
+        }
     }
 }

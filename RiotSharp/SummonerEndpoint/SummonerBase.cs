@@ -20,7 +20,7 @@ namespace RiotSharp.SummonerEndpoint
 
         private const string IdUrl = "/{0}";
 
-        private IRateLimitedRequester requester;
+        private readonly IRequester requester;
         public Region Region { get; set; }
 
         internal SummonerBase()
@@ -29,7 +29,7 @@ namespace RiotSharp.SummonerEndpoint
         }
 
         //summoner base not default constructor
-        internal SummonerBase(string id, string name, IRateLimitedRequester requester, Region region)
+        internal SummonerBase(string id, string name, IRequester requester, Region region)
         {
             this.requester = requester;
             Region = region;
@@ -60,10 +60,8 @@ namespace RiotSharp.SummonerEndpoint
         /// <returns>A list of the 10 most recent games.</returns>
         public List<Game> GetRecentGames()
         {
-            var json = requester.CreateGetRequest(
-                string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<RecentGames>(json).Games;
+            var url = string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id);
+            return requester.Get<RecentGames>(url, Region).Games;
         }
 
         /// <summary>
@@ -72,11 +70,8 @@ namespace RiotSharp.SummonerEndpoint
         /// <returns>A list of the 10 most recent games.</returns>
         public async Task<List<Game>> GetRecentGamesAsync()
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RecentGames>(json))).Games;
+            var url = string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id);
+            return (await requester.GetAsync<RecentGames>(url, Region)).Games;
         }
     }
 }

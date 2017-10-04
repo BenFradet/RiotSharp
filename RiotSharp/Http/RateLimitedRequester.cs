@@ -1,135 +1,65 @@
-﻿using RiotSharp.Http.Interfaces;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
-using System;
 
 namespace RiotSharp.Http
 {
-    /// <summary>
-    /// A requester with a rate limiter
-    /// </summary>
-    public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
+    public class RateLimitedRequester : IRateLimitedRequester
     {
-        public readonly IDictionary<TimeSpan, int> RateLimits;
 
-        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits) : base(apiKey)
+        private readonly IRequester requester;
+        private readonly IRateLimitProvider limitProvider;
+
+        public RateLimitedRequester(IRequester requester, IRateLimitProvider limitProvider)
         {
-            RateLimits = rateLimits;
+            this.requester = requester;
+            this.limitProvider = limitProvider;
         }
 
-        private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
-
-        #region Public Methods
-
-        public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
+        public T Get<T>(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-
-            GetRateLimiter(region).HandleRateLimit();
-
-            using (var response = Get(request))
-            {
-                return GetResponseContent(response);
-            }
+            limitProvider.GetLimiter(region).HandleRateLimit();
+            return requester.Get<T>(relativeUrl, region, addedArguments, useHttps);
         }
 
-        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> addedArguments = null, 
+        public async Task<T> GetAsync<T>(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            
-            await GetRateLimiter(region).HandleRateLimitAsync();
-
-            using (var response = await GetAsync(request))
-            {
-                return await GetResponseContentAsync(response);
-            }
+            await limitProvider.GetLimiter(region).HandleRateLimitAsync();
+            return await requester.GetAsync<T>(relativeUrl, region, addedArguments, useHttps);
         }
 
-        public string CreatePostRequest(string relativeUrl, Region region, string body,
+        public T Post<T>(string relativeUrl, Region region, object body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            GetRateLimiter(region).HandleRateLimit();
-
-            using (var response = Post(request))
-            {
-                return GetResponseContent(response);
-            }     
+            limitProvider.GetLimiter(region).HandleRateLimit();
+            return requester.Post<T>(relativeUrl, region, body, addedArguments, useHttps);
         }
 
-        public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
+        public async Task<T> PostAsync<T>(string relativeUrl, Region region, object body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            await GetRateLimiter(region).HandleRateLimitAsync();
-
-            using (var response = await PostAsync(request))
-            {
-                return await GetResponseContentAsync(response);
-            }
+            limitProvider.GetLimiter(region).HandleRateLimit();
+            return await requester.PostAsync<T>(relativeUrl, region, body, addedArguments, useHttps);
         }
 
-        public bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
-            bool useHttps = true)
-        {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            GetRateLimiter(region).HandleRateLimit();
-
-            using (var response = Put(request))
-            {
-                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
-            }              
-        }
-
-        public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
+        public bool Put(string relativeUrl, Region region, object body,
             List<string> addedArguments = null, bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            await GetRateLimiter(region).HandleRateLimitAsync();
-
-            using (var response = await PutAsync(request))
-            {
-                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
-            }                
+            limitProvider.GetLimiter(region).HandleRateLimit();
+            return requester.Put(relativeUrl, region, body, addedArguments, useHttps);
         }
 
-        #endregion
-
-        /// <summary>
-        /// Returns the respective region's RateLimiter, creating it if needed.
-        /// </summary>
-        /// <param name="region"></param>
-        /// <returns></returns>
-        private RateLimiter GetRateLimiter(Region region)
+        public async Task<bool> PutAsync(string relativeUrl, Region region, object body,
+            List<string> addedArguments = null, bool useHttps = true)
         {
-            if (!rateLimiters.ContainsKey(region))
-                rateLimiters[region] = new RateLimiter(RateLimits);
-            return rateLimiters[region]; 
+            limitProvider.GetLimiter(region).HandleRateLimit();
+            return await requester.PutAsync(relativeUrl, region, body, addedArguments, useHttps);
         }
     }
 }
