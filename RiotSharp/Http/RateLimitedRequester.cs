@@ -8,7 +8,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Http
 {
-    public class RateLimitedRequester : IRequester
+    public class RateLimitedRequester : IRateLimitedRequester
     {
 
         private readonly IRequester requester;
@@ -61,6 +61,5 @@ namespace RiotSharp.Http
             limitProvider.GetLimiter(region).HandleRateLimit();
             return await requester.PutAsync(relativeUrl, region, body, addedArguments, useHttps);
         }
-        
     }
 }
