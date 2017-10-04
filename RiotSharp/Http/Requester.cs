@@ -18,8 +18,7 @@ namespace RiotSharp.Http
 
         private static List<string> NoArguments() => new List<string>();
 
-        public Requester(IRequestClient client, IRequestCreator requestCreator,
-            IResponseDeserializer responseDeserializer)
+        public Requester(IRequestClient client, IRequestCreator requestCreator, IResponseDeserializer responseDeserializer)
         {
             this.client = client;
             this.requestCreator = requestCreator;
@@ -85,40 +84,5 @@ namespace RiotSharp.Http
             var response = await client.PostAsync(request);
             return response.IsSuccessStatusCode;
         }
-
-
-        /*
-        public string CreatePostRequest(string relativeUrl, Region region, string body,
-            List<string> addedArguments = null, bool useHttps = true)
-        {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            GetRateLimiter(region).HandleRateLimit();
-
-            using (var response = Post(request))
-            {
-                return GetResponseContent(response);
-            }
-        }
-
-        public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
-            List<string> addedArguments = null, bool useHttps = true)
-        {
-            rootDomain = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            await GetRateLimiter(region).HandleRateLimitAsync();
-
-            using (var response = await PostAsync(request))
-            {
-                return await GetResponseContentAsync(response);
-            }
-
-        }*/
     }
 }
