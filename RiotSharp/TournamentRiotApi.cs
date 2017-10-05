@@ -198,8 +198,8 @@ namespace RiotSharp
                     }),
                     new List<string>
                     {
-                        string.Format("tournamentId={0}", tournamentId),
-                        string.Format("count={0}", count)
+                        $"tournamentId={tournamentId}",
+                        $"count={count}"
                     });
 
             var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
@@ -230,8 +230,8 @@ namespace RiotSharp
                     }),
                     new List<string>
                     {
-                        string.Format("tournamentId={0}", tournamentId),
-                        string.Format("count={0}", count)
+                        $"tournamentId={tournamentId}",
+                        $"count={count}"
                     });
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
@@ -308,8 +308,8 @@ namespace RiotSharp
                     string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
                     new List<string>
                     {
-                        string.Format("tournamentCode={0}", tournamentCode),
-                        string.Format("includeTimeline={0}", includeTimeline)
+                        $"tournamentCode={tournamentCode}",
+                        $"includeTimeline={includeTimeline}"
                     });
 
             var matchDetail = JsonConvert.DeserializeObject<MatchDetail>(json);
@@ -326,8 +326,8 @@ namespace RiotSharp
                         string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
                         new List<string>
                         {
-                            string.Format("tournamentCode={0}", tournamentCode),
-                            string.Format("includeTimeline={0}", includeTimeline)
+                            $"tournamentCode={tournamentCode}",
+                            $"includeTimeline={includeTimeline}"
                         });
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchDetail>(json));
