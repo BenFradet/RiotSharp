@@ -101,7 +101,7 @@ namespace RiotSharp.MatchEndpoint
         public int VilemawKills { get; set; }
 
         /// <summary>
-        /// Flag indicating whether or not the team won.
+        /// A string indicating whether or not the team won.
         /// </summary>
         [JsonProperty("win")]
         public string Win { get; set; }
