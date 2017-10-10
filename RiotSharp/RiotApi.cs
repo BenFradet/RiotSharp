@@ -220,14 +220,14 @@ namespace RiotSharp
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
             var json = requester.CreateGetRequest(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> {string.Format("freeToPlay={0}", freeToPlay ? "true" : "false")});
+                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
             return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
 
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
             var json = await requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> {string.Format("freeToPlay={0}", freeToPlay ? "true" : "false")});
+                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
             return (await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
         }

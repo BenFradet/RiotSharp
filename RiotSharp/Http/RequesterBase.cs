@@ -128,9 +128,8 @@ namespace RiotSharp.Http
         {
             var scheme = useHttps ? "https" : "http";
             var url = addedArguments == null ?
-                string.Format("{0}://{1}{2}?api_key={3}", scheme, rootDomain, relativeUrl, ApiKey) :
-                string.Format("{0}://{1}{2}?{3}api_key={4}",
-                    scheme, rootDomain, relativeUrl, BuildArgumentsString(addedArguments), ApiKey);
+                $"{scheme}://{rootDomain}{relativeUrl}?api_key={ApiKey}" :
+                $"{scheme}://{rootDomain}{relativeUrl}?{BuildArgumentsString(addedArguments)}api_key={ApiKey}";
 
             return new HttpRequestMessage(httpMethod, url);
         }
