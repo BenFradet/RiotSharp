@@ -20,6 +20,11 @@ namespace RiotSharp.Http
             RateLimits = rateLimits;
         }
 
+        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, IRiotApiClient apiClient) : base(apiKey, apiClient)
+        {
+            RateLimits = rateLimits;
+        }
+
         private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
 
         #region Public Methods

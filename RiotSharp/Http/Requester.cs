@@ -18,6 +18,10 @@ namespace RiotSharp.Http
         {
         }
 
+        public Requester(string apiKey, IRiotApiClient apiClient) : base(apiKey, apiClient)
+        {
+        }
+
         #region Public Methods        
         public string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
             bool useHttps = true)
