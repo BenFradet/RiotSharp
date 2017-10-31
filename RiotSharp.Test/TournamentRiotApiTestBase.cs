@@ -7,10 +7,10 @@ namespace RiotSharp.Test
 {
     public class TournamentRiotApiTestBase : CommonTestBase
     {    
-        public static string tournamentApiKey = configuration["TournamentApiKey"];
-        public static Region tournamentRegion = (Region)Enum.Parse(typeof(Region), "euw");
-        public static string tournamentName = "RiotSharp.TestTournament";
-        public static string tournamentUrl = "http://example.com";
+        public static string TournamentApiKey = Configuration["TournamentApiKey"];
+        public static Region TournamentRegion = (Region)Enum.Parse(typeof(Region), "euw");
+        public static string TournamentName = "RiotSharp.TestTournament";
+        public static string TournamentUrl = "http://example.com";
 
         public static TournamentSpectatorType tournamentSpectatorType = 
             (TournamentSpectatorType)Enum.Parse(typeof(TournamentSpectatorType), "All");
@@ -19,10 +19,10 @@ namespace RiotSharp.Test
         public static TournamentMapType tournamentMapType = 
             (TournamentMapType)Enum.Parse(typeof(TournamentMapType), "SummonersRift");
 
-        protected static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(tournamentApiKey, useStub: true);
+        protected static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(TournamentApiKey, useStub: true);
 
-        public static int providerId = api.CreateProvider(Region.na, tournamentUrl);
-        public static int tournamentId = api.CreateTournament(providerId, tournamentName);
-        public static string tournamentCode = api.CreateTournamentCodes(tournamentId, 1, 5, tournamentSpectatorType, tournamentPickType, tournamentMapType).First();
+        public static int ProviderId = api.CreateProvider(Region.na, TournamentUrl);
+        public static int TournamentId = api.CreateTournament(ProviderId, TournamentName);
+        public static string TournamentCode = api.CreateTournamentCodes(TournamentId, 1, 5, tournamentSpectatorType, tournamentPickType, tournamentMapType).First();
     }
 }
