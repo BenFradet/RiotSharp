@@ -361,7 +361,7 @@ namespace RiotSharp
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json));
         }
 
-        public Match GetMatch(Region region, long matchId, long? accountId = null)
+        public Match GetMatch(Region region, long matchId)
         {
             var json = requester.CreateGetRequest(MatchRootUrl +
                                                   string.Format(MatchByIdUrl, matchId), region,
@@ -369,7 +369,7 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<Match>(json);
         }
 
-        public async Task<Match> GetMatchAsync(Region region, long matchId, long? accountId = null)
+        public async Task<Match> GetMatchAsync(Region region, long matchId)
         {
             var json = requester.CreateGetRequest(MatchRootUrl +
                                                   string.Format(MatchByIdUrl, matchId), region,
