@@ -230,7 +230,7 @@ namespace RiotSharp.Interfaces
         /// <param name="matchId">The match ID to be retrieved.</param>
         /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
         /// <returns>A match object containing information about the match.</returns>
-        Match GetMatch(Region region, long matchId, long? accountId = null);
+        Match GetMatch(Region region, long matchId);
 
         /// <summary>
         /// Get match information about a specific match asynchronously.
@@ -239,7 +239,7 @@ namespace RiotSharp.Interfaces
         /// <param name="matchId">The match ID to be retrieved.</param>
         /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
         /// <returns>A match object containing information about the match.</returns>
-        Task<Match> GetMatchAsync(Region region, long matchId, long? accountId = null);
+        Task<Match> GetMatchAsync(Region region, long matchId);
 
         /// <summary>
         /// Get the list of matches of a specific summoner synchronously.
