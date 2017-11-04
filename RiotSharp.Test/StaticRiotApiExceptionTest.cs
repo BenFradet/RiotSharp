@@ -8,14 +8,14 @@ namespace RiotSharp.Test
     [TestClass]
     public class StaticRiotApiExceptionTest
     {
-        private static StaticRiotApi faultyStaticApi = StaticRiotApi.GetInstance(StaticRiotApiExceptionTestBase.faultyApiKey);
+        private static readonly StaticRiotApi FaultyStaticApi = StaticRiotApi.GetInstance(CommonTestBase.FaultyApiKey);
 
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
         public void GetStatic_ShouldThrowRiotSharpException_Test()
         {
-            faultyStaticApi.GetChampion(Region.euw, 1, ChampionData.All);
+            FaultyStaticApi.GetChampion(Region.euw, 1);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace RiotSharp.Test
 {
     public class StatusRiotApiTestBase : CommonTestBase
     {
-        public static Platform platform = (Platform)Enum.Parse(typeof(Platform), "NA1");
+        public static Platform Platform = (Platform)Enum.Parse(typeof(Platform), "NA1");
     }
 }

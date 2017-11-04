@@ -9,21 +9,21 @@ namespace RiotSharp.Test
 {
     public class CommonTestBase
     {
-        protected static IConfigurationRoot configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        protected static IConfigurationRoot Configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
-        public static string apiKey = configuration["ApiKey"];
-        public static string faultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
+        public static string ApiKey = Configuration["ApiKey"];
+        public static string FaultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
 
-        public static Region summoner1and2Region = (Region)Enum.Parse(typeof(Region), "na");
+        public static Region Summoner1And2Region = (Region)Enum.Parse(typeof(Region), "na");
 
-        public static long invalidSummonerId = -1;
-        public static long summoner1Id = 73074921;
-        public static long summoner1AccountId = 231816919;
-        public static string summoner1Name = "toothlessG";
+        public static long InvalidSummonerId = -1;
+        public static long Summoner1Id = 73074921;
+        public static long Summoner1AccountId = 231816919;
+        public static string Summoner1Name = "toothlessG";
 
-        public static long summoner2Id = 31815991;
-        public static long summoner2AccountId = 46532395;
-        public static string summoner2Name = "BabyBarf";
+        public static long Summoner2Id = 31815991;
+        public static long Summoner2AccountId = 46532395;
+        public static string Summoner2Name = "BabyBarf";
 
         /// <summary>
         /// Ignores the test if the server responds with 429 or 500

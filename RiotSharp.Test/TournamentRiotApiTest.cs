@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
-using RiotSharp.MatchEndpoint.Enums;
-using System;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.TournamentEndpoint.Enums;
 
 namespace RiotSharp.Test
@@ -16,8 +14,8 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var providerId =  api.CreateProvider(tournamentRegion, tournamentUrl);
-                var tournamentId = api.CreateTournament(providerId, tournamentName);
+                var providerId =  api.CreateProvider(TournamentRegion, TournamentUrl);
+                var tournamentId = api.CreateTournament(providerId, TournamentName);
                 Assert.AreNotEqual(0, tournamentId);
                 var tournamentCodes = api.CreateTournamentCodes(tournamentId, 2, 5, 
                     tournamentSpectatorType,
@@ -43,13 +41,12 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var providerId = api.CreateProviderAsync(TournamentRiotApiTestBase.tournamentRegion,
-                TournamentRiotApiTestBase.tournamentUrl).Result;
-                var tournamentId = api.CreateTournamentAsync(providerId, TournamentRiotApiTestBase.tournamentName).Result;
+                var providerId = api.CreateProviderAsync(TournamentRegion, TournamentUrl).Result;
+                var tournamentId = api.CreateTournamentAsync(providerId, TournamentName).Result;
                 Assert.AreNotEqual(0, tournamentId);
                 var tournamentCodes = api.CreateTournamentCodesAsync(tournamentId, 2, 5, 
-                    TournamentRiotApiTestBase.tournamentSpectatorType,
-                    TournamentRiotApiTestBase.tournamentPickType, TournamentRiotApiTestBase.tournamentMapType).Result;
+                    tournamentSpectatorType,
+                    tournamentPickType, tournamentMapType).Result;
                 Assert.AreEqual(2, tournamentCodes.Count);
 
                 var tournamentCode = tournamentCodes[0];

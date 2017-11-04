@@ -10,13 +10,7 @@ namespace RiotSharp.Test
     [TestClass]
     public class CacheTest
     {
-
-        private TestContext testContextInstance;
-        public TestContext TestContext
-        {
-            get { return testContextInstance; }
-            set { testContextInstance = value; }
-        }
+        public TestContext TestContext { get; set; }
 
         [TestMethod]
         [TestCategory("Cache")]
