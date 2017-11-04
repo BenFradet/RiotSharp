@@ -364,16 +364,14 @@ namespace RiotSharp
         public Match GetMatch(Region region, long matchId)
         {
             var json = requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchByIdUrl, matchId), region,
-                accountId.HasValue ? new List<string> {string.Format("forAccountId={0}", accountId)} : null);
+                                                  string.Format(MatchByIdUrl, matchId), region);
             return JsonConvert.DeserializeObject<Match>(json);
         }
 
         public async Task<Match> GetMatchAsync(Region region, long matchId)
         {
             var json = requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchByIdUrl, matchId), region,
-                accountId.HasValue ? new List<string> {string.Format("forAccountId={0}", accountId)} : null);
+                                                  string.Format(MatchByIdUrl, matchId), region);
             return await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Match>(json));
         }
