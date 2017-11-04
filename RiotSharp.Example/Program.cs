@@ -33,11 +33,11 @@ namespace RiotSharpExample
 
             var match1 = api.GetMatch(region, gameId);
 
-            Console.WriteLine(match1.MapType);
+            Console.WriteLine(match1.MapId);
 
             var shardStatus = statusApi.GetShardStatus(region);
 
-            var games = api.GetRecentGames(region, id);
+            var games = api.GetRecentMatches(region, id);
 
             Console.WriteLine("Done! Press Enter to exit.");
             Console.ReadLine();

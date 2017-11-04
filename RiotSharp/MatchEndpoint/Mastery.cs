@@ -13,12 +13,12 @@ namespace RiotSharp.MatchEndpoint
         /// Mastery ID.
         /// </summary>
         [JsonProperty("masteryId")]
-        public long MasteryId { get; set; }
+        public int MasteryId { get; set; }
 
         /// <summary>
         /// Mastery rank.
         /// </summary>
         [JsonProperty("rank")]
-        public long Rank { get; set; }
+        public int Rank { get; set; }
     }
 }

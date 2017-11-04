@@ -4,7 +4,7 @@ using RiotSharp.MatchEndpoint.Enums;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 
-namespace RiotSharp.MatchListEndpoint
+namespace RiotSharp.MatchEndpoint
 {
     public class MatchReference
     {
@@ -23,14 +23,15 @@ namespace RiotSharp.MatchListEndpoint
         /// <summary>
         /// The match ID relating to the match.
         /// </summary>
-        [JsonProperty("matchId")]
-        public long MatchID { get; set; }
+        [JsonProperty("gameId")]
+        public long GameId { get; set; }
 
         /// <summary>
         /// The ID of the platform on which the game is being played
         /// </summary>
         [JsonProperty("platformId")]
-        public string PlatformID { get; set; }
+        [JsonConverter(typeof(PlatformConverter))]
+        public Platform PlatformID { get; set; }
 
         /// <summary>
         /// Match queue type.
@@ -62,6 +63,5 @@ namespace RiotSharp.MatchListEndpoint
         [JsonProperty("timestamp")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
         public DateTime Timestamp { get; set; }
-
     }
 }

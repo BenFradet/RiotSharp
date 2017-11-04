@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RiotSharp.Misc;
 
 namespace RiotSharp.MatchEndpoint
 {
@@ -8,6 +9,18 @@ namespace RiotSharp.MatchEndpoint
     public class Player
     {
         internal Player() { }
+
+        /// <summary>
+        /// Current platform ID.
+        /// </summary>
+        [JsonProperty("currentPlatformId")]
+        public Platform CurrentPlatformId { get; set; }
+
+        /// <summary>
+        /// Platform ID.
+        /// </summary>
+        [JsonProperty("platformId")]
+        public Platform PlatformId { get; set; }
 
         /// <summary>
         /// Match history URI.
@@ -20,6 +33,18 @@ namespace RiotSharp.MatchEndpoint
         /// </summary>
         [JsonProperty("profileIcon")]
         public int ProfileIcon { get; set; }
+
+        /// <summary>
+        /// Current account ID.
+        /// </summary>
+        [JsonProperty("currentAccountId")]
+        public long CurrentAccountId { get; set; }
+
+        /// <summary>
+        /// Account ID.
+        /// </summary>
+        [JsonProperty("accountId")]
+        public long AccountId { get; set; }
 
         /// <summary>
         /// Summoner ID.

@@ -35,12 +35,12 @@ namespace RiotSharp.Misc
         {
             return string.Join(",", names.Select(Uri.EscapeDataString));
         }
-
+      
         public static string BuildQueuesString(List<string> queues)
         {
             return string.Join(",", queues);
         }
-
+      
         public static string BuildSeasonString(List<Season> seasons)
         {
             return string.Join(",", seasons.Select(s => s.ToCustomString()));
