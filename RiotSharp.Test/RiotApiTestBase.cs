@@ -17,13 +17,11 @@ namespace RiotSharp.Test
            55629820, 32932398, 56539172 };
         public static List<string> SummonerNames = new List<string> { "Imaqtpie", "C9 Ray", "C9 Gun", "C9 Winter", "Fox Brandini", "P1 Shady",
             "clg imaqtpie69", "Anivia Kid", "Butler Delta", "Contractz", "LL Stylish" };
-        public static Region summonersRegion = (Region)Enum.Parse(typeof(Region), "na");
-        public static string queue = "RANKED_SOLO_5x5";
-        /// <summary>
-        /// Normal 5v5 Draft Pick games
-        /// </summary>
-        public static int queueId = 14;
-        public static RiotSharp.MatchEndpoint.Enums.Season season = 
+        public static Region SummonersRegion = (Region)Enum.Parse(typeof(Region), "na");
+        public static string Queue = "RANKED_SOLO_5x5";
+        // Normal 5v5 Draft Pick games
+        public static int QueueId = 14;
+        public static RiotSharp.MatchEndpoint.Enums.Season Season = 
             (RiotSharp.MatchEndpoint.Enums.Season)Enum.Parse(typeof(RiotSharp.MatchEndpoint.Enums.Season), "Season2015");
     }
 }
