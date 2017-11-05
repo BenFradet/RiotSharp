@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotSharp", "RiotSharp\Riot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotSharp.AspNetCore", "RiotSharp.AspNetCore\RiotSharp.AspNetCore.csproj", "{B4768473-9B66-419F-8CD1-15EAB4F71A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.Example", "RiotSharp.Example\RiotSharp.Example.csproj", "{22B1700C-4B99-4504-B4E8-24B9EEEBCF72}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotSharp.Test", "RiotSharp.Test\RiotSharp.Test.csproj", "{97CE2F8F-50FC-45FC-B043-C0F8B64E24B6}"
 EndProject
 Global
