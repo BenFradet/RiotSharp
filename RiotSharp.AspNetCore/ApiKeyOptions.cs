@@ -11,7 +11,7 @@ namespace RiotSharp.AspNetCore
         public IDictionary<TimeSpan, int> RateLimits { get; set; }
 
         /// <summary>
-        /// Enable or disable default caching for the static data endpint
+        /// Enable or disable default RiotSharp's internal caching for the static data endpint
         /// </summary>
         public bool UseCache { get; set; }
 
