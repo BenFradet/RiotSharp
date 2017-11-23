@@ -12,12 +12,12 @@ namespace RiotSharp.AspNetCore
     /// </summary>
     public class HybridCache : ICache
     {
-        private ICache distributedCache;
-        private ICache memoryCache;
+        private IDistributedCache distributedCache;
+        private IMemoryCache memoryCache;
         private List<object> usedKeys;
 
 #pragma warning disable CS1591
-        public HybridCache(ICache memoryCache, ICache distributedCache)
+        public HybridCache(IMemoryCache memoryCache, IDistributedCache distributedCache)
         {
             this.memoryCache = memoryCache;
             this.distributedCache = distributedCache;
@@ -27,15 +27,15 @@ namespace RiotSharp.AspNetCore
         public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
         {
             usedKeys.Add(key);
-            memoryCache.Add(key, value, slidingExpiry);
-            distributedCache.Add(key, value, slidingExpiry);
+            memoryCache.Set(key, value, slidingExpiry);
+            distributedCache.SetJson(key.ToString(), value, slidingExpiry);
         }
 
         public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
         {
             usedKeys.Add(key);
-            memoryCache.Add(key, value, absoluteExpiry);
-            distributedCache.Add(key, value, absoluteExpiry);
+            memoryCache.Set(key, value, absoluteExpiry);
+            distributedCache.SetJson(key.ToString(), value, absoluteExpiry);
         }
 
         public void Clear()
@@ -50,11 +50,11 @@ namespace RiotSharp.AspNetCore
 
         public V Get<K, V>(K key) where V : class
         {
-            var value = memoryCache.Get<K, V>(key);
-            if (value == null)
-                return distributedCache.Get<K, V>(key);
+            V output = null;
+            if (memoryCache.TryGetValue(key, out output))
+                return output;
             else
-                return value;
+                return distributedCache.GetJson<V>(key.ToString());
         }
 
         public void Remove<K>(K key)

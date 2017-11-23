@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RiotSharp.AspNetCore
 {
@@ -24,21 +22,13 @@ namespace RiotSharp.AspNetCore
         public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
         {
             usedKeys.Add(key);
-            var serializedValue = JsonConvert.SerializeObject(value);
-            distributed.SetString(key.ToString(), serializedValue, new DistributedCacheEntryOptions
-            {
-                SlidingExpiration = slidingExpiry
-            });
+            distributed.SetJson(key.ToString(), value, slidingExpiry);
         }
 
         public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
         {
             usedKeys.Add(key);
-            var serializedValue = JsonConvert.SerializeObject(value);
-            distributed.SetString(key.ToString(), serializedValue, new DistributedCacheEntryOptions
-            {
-                AbsoluteExpiration = absoluteExpiry
-            });
+            distributed.SetJson(key.ToString(), value, absoluteExpiry);
         }
 
         public void Clear()
@@ -52,8 +42,7 @@ namespace RiotSharp.AspNetCore
 
         public V Get<K, V>(K key) where V : class
         {
-            var unserializedValue = distributed.GetString(key.ToString());           
-            return JsonConvert.DeserializeObject<V>(unserializedValue);
+            return distributed.GetJson<V>(key.ToString());
         }
 
         public void Remove<K>(K key)
