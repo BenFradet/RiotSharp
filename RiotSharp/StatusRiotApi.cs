@@ -39,7 +39,7 @@ namespace RiotSharp
 
         private StatusRiotApi(string apiKey)
         {
-            Requesters.StatusApiRequester = new Requester(apiKey);
+            Requesters.StatusApiRequester = new RiotSharp.Http.Requester(apiKey);
             requester = Requesters.StatusApiRequester;
         }
 

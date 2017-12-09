@@ -64,5 +64,6 @@
         /// Darkstar game mode.
         /// </summary>
         public const string Darkstar = "DARKSTAR";
+
     }
 }
