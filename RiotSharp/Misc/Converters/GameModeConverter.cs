@@ -2,8 +2,9 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
+using RiotSharp.Misc;
 
-namespace RiotSharp
+namespace RiotSharp.Test
 {
     class GameModeConverter : JsonConverter
     {
@@ -51,7 +52,7 @@ namespace RiotSharp
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var mode = (GameMode)value;
+            /*GameMode mode = (GameMode)value;
             string result;
             switch (mode)
             {
@@ -95,7 +96,7 @@ namespace RiotSharp
                     result = string.Empty;
                     break;
             }
-            serializer.Serialize(writer, result);
+            serializer.Serialize(writer, result);*/
         }
     }
 }
