@@ -69,7 +69,6 @@ namespace RiotSharp
         private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
         private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
-
         // Used in call which have a maximum number of items you can retrieve in a single call
         private const int MaxNrSummoners = 40;
 
@@ -164,7 +163,7 @@ namespace RiotSharp
                 {
                     obj.Region = region;
                 }
-                cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl );
+                cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
