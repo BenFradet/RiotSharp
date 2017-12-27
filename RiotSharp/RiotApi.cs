@@ -63,6 +63,12 @@ namespace RiotSharp
         private const string ChampionMasteryBySummonerUrl = "/champion-masteries/by-summoner/{0}/by-champion/{1}";
         private const string ChampionMasteryTotalScoreBySummonerUrl = "/scores/by-summoner/{0}";
 
+        private const string MatchCache = "match-{0}_{1}";
+        private const string SummonerCache = "summoner-{0}_{1}";
+
+        private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
+        private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
+
         // Used in call which have a maximum number of items you can retrieve in a single call
         private const int MaxNrSummoners = 40;
 
@@ -71,6 +77,8 @@ namespace RiotSharp
         private readonly IRateLimitedRequester requester;
 
         private static RiotApi instance;
+
+        private ICache cache;
         #endregion
 
         /// <summary>
@@ -80,13 +88,13 @@ namespace RiotSharp
         /// <param name="rateLimitPer1s">The 1 second rate limit for your api key. 20 by default.</param>
         /// <param name="rateLimitPer2m">The 2 minute rate limit for your api key. 100 by default.</param>
         /// <returns>The instance of RiotApi.</returns>
-        public static RiotApi GetDevelopmentInstance(string apiKey, int rateLimitPer1s = 20, int rateLimitPer2m = 100)
+        public static RiotApi GetDevelopmentInstance(string apiKey, int rateLimitPer1s = 20, int rateLimitPer2m = 100, ICache cache = null)
         {
             return GetInstance(apiKey, new Dictionary<TimeSpan, int>
             {
                 [TimeSpan.FromSeconds(1)] = rateLimitPer1s,
                 [TimeSpan.FromMinutes(2)] = rateLimitPer2m
-            });
+            }, cache ?? new PassThroughCache());
         }
 
         /// <summary>
@@ -96,13 +104,13 @@ namespace RiotSharp
         /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
         /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
         /// <returns>The instance of RiotApi.</returns>
-        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s, int rateLimitPer10m)
+        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s, int rateLimitPer10m, ICache cache = null)
         {
             return GetInstance(apiKey, new Dictionary<TimeSpan, int>
             {
                 [TimeSpan.FromMinutes(10)] = rateLimitPer10m,
                 [TimeSpan.FromSeconds(10)] = rateLimitPer10s
-            });
+            }, cache ?? new PassThroughCache());
         }
 
         /// <summary>
@@ -112,7 +120,7 @@ namespace RiotSharp
         /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
         /// is the number of requests allowed per that time span.</param>
         /// <returns>The instance of RiotApi.</returns>
-        public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits)
+        public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
             if (instance == null || Requesters.RiotApiRequester == null ||
                 apiKey != Requesters.RiotApiRequester.ApiKey ||
@@ -145,74 +153,110 @@ namespace RiotSharp
         #region Summoner
         public Summoner GetSummonerByAccountId(Region region, long accountId)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-            var obj = JsonConvert.DeserializeObject<Summoner>(json);
-            if (obj != null)
+            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
+            if (wrapper == null)
             {
-                obj.Region = region;
+                var json = requester.CreateGetRequest(
+                    string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
+                var obj = JsonConvert.DeserializeObject<Summoner>(json);
+                if (obj != null)
+                {
+                    obj.Region = region;
+                }
+                cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
+                return obj;
             }
-            return obj;
+            return wrapper;
         }
 
         public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-            if (obj != null)
+            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
+            if (wrapper == null)
             {
-                obj.Region = region;
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
+                var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
+                if (obj != null)
+                {
+                    obj.Region = region;
+                }
+                cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
+                return obj;
             }
-            return obj;
+            return wrapper;
         }
 
         public Summoner GetSummonerBySummonerId(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-            var obj = JsonConvert.DeserializeObject<Summoner>(json);
-            if (obj != null)
+            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
+            if (wrapper == null)
             {
-                obj.Region = region;
+                var json = requester.CreateGetRequest(
+                    string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
+                var obj = JsonConvert.DeserializeObject<Summoner>(json);
+                if (obj != null)
+                {
+                    obj.Region = region;
+                }
+                cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
+                return obj;
             }
-            return obj;
+            return wrapper;
         }
 
         public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-            if (obj != null)
+            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
+            if (wrapper == null)
             {
-                obj.Region = region;
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
+                var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
+                if (obj != null)
+                {
+                    obj.Region = region;
+                }
+                cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
+                return obj;
             }
-            return obj;
+            return wrapper;
         }
 
         public Summoner GetSummonerByName(Region region, string summonerName)
         {
-            var json = requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-            var obj = JsonConvert.DeserializeObject<Summoner>(json);
-            if (obj != null)
+            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
+            if (wrapper == null)
             {
-                obj.Region = region;
+                var json = requester.CreateGetRequest(
+                    string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
+                var obj = JsonConvert.DeserializeObject<Summoner>(json);
+                if (obj != null)
+                {
+                    obj.Region = region;
+                }
+                cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
+                return obj;
             }
-            return obj;
+            return wrapper;
         }
 
         public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
         {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-            var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-            if (obj != null)
+            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
+            if (wrapper == null)
             {
-                obj.Region = region;
+                var json = await requester.CreateGetRequestAsync(
+                    string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
+                var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
+                if (obj != null)
+                {
+                    obj.Region = region;
+                }
+                cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
+                return obj;
             }
-            return obj;
+            return wrapper;
         }
         #endregion
 
@@ -363,17 +407,25 @@ namespace RiotSharp
 
         public Match GetMatch(Region region, long matchId)
         {
+            var wrapper = cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
+            if (wrapper != null) return wrapper;
             var json = requester.CreateGetRequest(MatchRootUrl +
                                                   string.Format(MatchByIdUrl, matchId), region);
-            return JsonConvert.DeserializeObject<Match>(json);
+            var match = JsonConvert.DeserializeObject<Match>(json);
+            cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
+            return match;
         }
 
         public async Task<Match> GetMatchAsync(Region region, long matchId)
         {
+            var wrapper = cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
+            if (wrapper != null) return wrapper;
             var json = requester.CreateGetRequest(MatchRootUrl +
                                                   string.Format(MatchByIdUrl, matchId), region);
-            return await Task.Factory.StartNew(() =>
+            var match = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Match>(json));
+            cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
+            return match;
         }
 
         public MatchList GetMatchList(Region region, long accountId,
