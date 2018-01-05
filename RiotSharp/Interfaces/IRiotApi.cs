@@ -142,22 +142,6 @@ namespace RiotSharp.Interfaces
 
         #region League
         /// <summary>
-        /// Retrieves the leagues for the specified summoner.
-        /// </summary>
-        /// <param name="region"><see cref="Region"/> in which you wish to look for the leagues of the summoner.</param>
-        /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A list of <see cref="League" />.</returns>
-        List<League> GetLeagues(Region region, long summonerId);
-
-        /// <summary>
-        /// Retrieves the leagues for the specified summoner asynchronously.
-        /// </summary>
-        /// <param name="region"><see cref="Region"/> in which you wish to look for the leagues of the summoner.</param>
-        /// <param name="summonerId">The summoner id.</param>
-        /// <returns>A list of <see cref="League" />.</returns>
-        Task<List<League>> GetLeaguesAsync(Region region, long summonerId);
-
-        /// <summary>
         /// Retrieves the league position for the specified summoner.
         /// </summary>
         /// <param name="region"><see cref="Region"/> in which you wish to look for the league positions of the summoner.</param>

@@ -328,21 +328,6 @@ namespace RiotSharp
         #endregion
 
         #region League
-        public List<League> GetLeagues(Region region, long summonerId)
-        {
-            var json = requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueBySummonerUrl, summonerId),
-                region);
-            return JsonConvert.DeserializeObject<List<League>>(json);
-        }
-
-        public async Task<List<League>> GetLeaguesAsync(Region region, long summonerId)
-        {
-            var json = await requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeagueBySummonerUrl, summonerId), region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<League>>(json));
-        }
-
         public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
         {
             var json = requester.CreateGetRequest(
