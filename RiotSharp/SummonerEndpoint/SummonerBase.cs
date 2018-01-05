@@ -14,24 +14,12 @@ namespace RiotSharp.SummonerEndpoint
     /// </summary>
     public class SummonerBase
     {
-
-        private const string GameRootUrl = "/api/lol/{0}/v1.3/game";
-        private const string RecentGamesUrl = "/by-summoner/{0}/recent";
-
-        private const string IdUrl = "/{0}";
-
-        private IRateLimitedRequester requester;
         public Region Region { get; set; }
 
-        internal SummonerBase()
-        {
-            requester = Requesters.RiotApiRequester;
-        }
+        internal SummonerBase() { }
 
-        //summoner base not default constructor
-        internal SummonerBase(string id, string name, IRateLimitedRequester requester, Region region)
+        internal SummonerBase(string id, string name, Region region)
         {
-            this.requester = requester;
             Region = region;
             Name = name;
             Id = long.Parse(id);
@@ -53,30 +41,5 @@ namespace RiotSharp.SummonerEndpoint
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Get the 10 most recent games for this summoner synchronously.
-        /// </summary>
-        /// <returns>A list of the 10 most recent games.</returns>
-        public List<Game> GetRecentGames()
-        {
-            var json = requester.CreateGetRequest(
-                string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id),
-                Region);
-            return JsonConvert.DeserializeObject<RecentGames>(json).Games;
-        }
-
-        /// <summary>
-        /// Get the 10 most recent games for this summoner asynchronously.
-        /// </summary>
-        /// <returns>A list of the 10 most recent games.</returns>
-        public async Task<List<Game>> GetRecentGamesAsync()
-        {
-            var json = await requester.CreateGetRequestAsync(
-                string.Format(GameRootUrl, Region) + string.Format(RecentGamesUrl, Id),
-                Region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RecentGames>(json))).Games;
-        }
     }
 }
