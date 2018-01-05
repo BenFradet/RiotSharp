@@ -9,8 +9,6 @@ namespace RiotSharp.SummonerEndpoint
     /// </summary>
     public class Summoner : SummonerBase
     {
-        internal Summoner() { }
-
         /// <summary>
         /// ID of the summoner icon associated with the summoner.
         /// </summary>
