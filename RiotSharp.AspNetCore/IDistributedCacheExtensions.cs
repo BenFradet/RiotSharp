@@ -30,5 +30,4 @@ namespace RiotSharp.AspNetCore
             return JsonConvert.DeserializeObject<T>(unserializedValue);
         }
     }
-}
-        
+}   
