@@ -221,6 +221,12 @@ namespace RiotSharp.Http
                     return "ru";
                 case Region.global:
                     return "global";
+                case Region.Americas:
+                    return "americas";
+                case Region.Europe:
+                    return "europe";
+                case Region.Asia:
+                    return "asia";
                 default:
                     throw new NotImplementedException();
             }

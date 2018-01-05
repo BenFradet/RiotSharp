@@ -127,7 +127,7 @@ namespace RiotSharp
                 { "url", url },
                 { "region", region.ToString().ToUpper() }
             };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateProviderUrl, Region.global,
+            var json = requester.CreatePostRequest(tournamentRootUrl + CreateProviderUrl, Region.Americas,
                 JsonConvert.SerializeObject(body));
 
             return int.Parse(json);
@@ -142,7 +142,7 @@ namespace RiotSharp
             };
             var json =
                 await
-                    requester.CreatePostRequestAsync(tournamentRootUrl + CreateProviderUrl, Region.global,
+                    requester.CreatePostRequestAsync(tournamentRootUrl + CreateProviderUrl, Region.Americas,
                         JsonConvert.SerializeObject(body));
 
             return int.Parse(json);
@@ -155,7 +155,7 @@ namespace RiotSharp
                 { "name", name },
                 { "providerId", providerId }
             };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateTournamentUrl, Region.global,
+            var json = requester.CreatePostRequest(tournamentRootUrl + CreateTournamentUrl, Region.Americas,
                 JsonConvert.SerializeObject(body));
 
             return int.Parse(json);
@@ -169,7 +169,7 @@ namespace RiotSharp
             };
             var json =
                 await
-                    requester.CreatePostRequestAsync(tournamentRootUrl + CreateTournamentUrl, Region.global,
+                    requester.CreatePostRequestAsync(tournamentRootUrl + CreateTournamentUrl, Region.Americas,
                         JsonConvert.SerializeObject(body));
 
             return int.Parse(json);
@@ -190,7 +190,7 @@ namespace RiotSharp
                 { "mapType", mapType },
                 { "metadata", metadata }
             };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateCodesUrl, Region.global,
+            var json = requester.CreatePostRequest(tournamentRootUrl + CreateCodesUrl, Region.Americas,
                 JsonConvert.SerializeObject(body, null, 
                     new JsonSerializerSettings
                     {
@@ -222,7 +222,7 @@ namespace RiotSharp
                 { "mapType", mapType },
                 { "metadata", metadata }
             };
-            var json = await requester.CreatePostRequestAsync(tournamentRootUrl + CreateCodesUrl, Region.global,
+            var json = await requester.CreatePostRequestAsync(tournamentRootUrl + CreateCodesUrl, Region.Americas,
                 JsonConvert.SerializeObject(body, null, 
                     new JsonSerializerSettings
                     {
@@ -240,7 +240,7 @@ namespace RiotSharp
         public TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode)
         {
             var json = requester.CreateGetRequest(tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode),
-                Region.global);
+                Region.Americas);
             var tournamentCodeDetails = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
 
             return tournamentCodeDetails;
@@ -251,7 +251,7 @@ namespace RiotSharp
             var json =
                 await
                     requester.CreateGetRequestAsync(tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode),
-                        Region.global);
+                        Region.Americas);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TournamentCodeDetail>(json));
         }
@@ -259,7 +259,7 @@ namespace RiotSharp
         public List<TournamentLobbyEvent> GetTournamentLobbyEvents(string tournamentCode)
         {
             var json = requester.CreateGetRequest(tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
-                Region.global);
+                Region.Americas);
             var lobbyEventsDTO = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
 
             return lobbyEventsDTO["eventList"];
@@ -270,7 +270,7 @@ namespace RiotSharp
             var json =
                 await
                     requester.CreateGetRequestAsync(tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
-                        Region.global);
+                        Region.Americas);
 
             return
                 await
@@ -284,7 +284,7 @@ namespace RiotSharp
         {
             var body = BuildTournamentUpdateBody(allowedParticipantIds, spectatorType, pickType, mapType);
 
-            return requester.CreatePutRequest(tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.global,
+            return requester.CreatePutRequest(tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.Americas,
                 JsonConvert.SerializeObject(body));
         }
 
@@ -294,7 +294,7 @@ namespace RiotSharp
             var body = BuildTournamentUpdateBody(allowedParticipantIds, spectatorType, pickType, mapType);
 
             return await requester.CreatePutRequestAsync(tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode),
-                Region.global, JsonConvert.SerializeObject(body));
+                Region.Americas, JsonConvert.SerializeObject(body));
         }
 
         #endregion
