@@ -168,7 +168,7 @@ foreach (var service in shardStatuses.Services)
 You can find a list of all the available operations in [StatusRiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.StatusRiotApi.html).
 
 
-For a full description check the [RiotSharpExample](RiotSharpExample) or [RiotSharpTest](RiotSharpTest) projects.
+For a full description check the [RiotSharpTest](RiotSharpTest) project.
 
 ## Contribution
 

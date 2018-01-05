@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: 2.6.0.{build}
+version: 3.0.1.{build}
 
 # Do not build on tags (GitHub only)
 skip_tags: true
@@ -28,14 +28,6 @@ environment:
 # build cache to preserve files/folders between builds
 cache:
   - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
-
-# enable patching of AssemblyInfo.* files
-assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
 
 #---------------------------------#
 #       build configuration       #

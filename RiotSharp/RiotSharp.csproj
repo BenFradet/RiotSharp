@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <PackageId>RiotSharp</PackageId>
-    <PackageVersion>3.0.0</PackageVersion>
+    <PackageVersion>3.0.1</PackageVersion>
     <Authors>BenFradet</Authors>
     <Description>C# Wrapper for the Riot Games API</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Migrated to v3</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrated back to dotnet standard 1.3</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/BenFradet/RiotSharp</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</PackageIconUrl>
     <Copyright>Copyright (c) Benjamin Fradet 2013-2017</Copyright>
     <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
