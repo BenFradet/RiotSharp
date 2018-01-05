@@ -298,51 +298,6 @@ namespace RiotSharp.Test
         #region League Tests
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetLeagues_BySummoner_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var leagues = Api.GetLeagues(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
-
-                Assert.IsTrue(leagues.Count > 0);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeaguesAsync_BySummoner_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var leagues = Api.GetLeaguesAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
-
-                Assert.IsTrue(leagues.Result.Count > 0);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi")]
-        public void GetLeagues_ByUnrankedSummoner_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                try
-                {
-                    Api.GetLeagues(Region.na, RiotApiTestBase.UnrankedSummonerId);
-                }
-                catch (RiotSharpException e)
-                {
-                    // API gives 404 when valid summoner is unranked.
-                    if (e.HttpStatusCode == HttpStatusCode.NotFound)
-                        Assert.IsTrue(true);
-                    else
-                        throw e;
-                }
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi")]
         public void GetLeaguePositions_BySummoner_Test()
         {
             EnsureCredibility(() =>
