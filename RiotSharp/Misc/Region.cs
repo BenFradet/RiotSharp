@@ -67,6 +67,19 @@ namespace RiotSharp.Misc
         /// <summary>
         /// Global.
         /// </summary>
-        global
+        global,
+
+        /// <summary>
+        /// Regional proxy for services only deployed in North America. For example the tournament and tournament stub services.
+        /// </summary>
+        Americas,
+        /// <summary>
+        /// Regional proxy for services only deployed in Europe.
+        /// </summary>
+        Europe,
+        /// <summary>
+        /// Regional proxy for services only deployed in Asia.
+        /// </summary>
+        Asia       
     }
 }
