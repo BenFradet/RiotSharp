@@ -40,17 +40,17 @@ namespace RiotSharp
             return data == null || DateTime.Now > data.CreatedAt.AddMinutes(data.TtlMinutes);
         }
 
-        public override void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
             Store(key, value, (long) slidingExpiry.TotalMinutes);
         }
 
-        public override void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
             Store(key, value, (long) (absoluteExpiry - DateTime.Now).TotalMinutes);
         }
 
-        public override void Clear()
+        public void Clear()
         {
             DirectoryInfo di = new DirectoryInfo(_directory);
 
@@ -64,14 +64,14 @@ namespace RiotSharp
             }
         }
 
-        public override TV Get<TK, TV>(TK key) where TV : class
+        public TV Get<TK, TV>(TK key) where TV : class
         {
             var data = Load<CacheData<TV>>(key.ToString());
 
             return IsExpired(data) ? null : data.Data;
         }
 
-        public override void Remove<TK>(TK key)
+        public void Remove<TK>(TK key)
         {
             var path = GetPath(key.ToString());
             File.Delete(path);
