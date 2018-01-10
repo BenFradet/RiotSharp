@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using RiotSharp;
-using RiotSharp.StaticDataEndpoint;
 using System.Collections.Generic;
 using System.Linq;
-using RiotSharp.StaticDataEndpoint.Champion;
 using RiotSharp.Http;
 using System;
+using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharp.Endpoints.StaticDataEndpoint.Champion;
 
 namespace RiotSharp.Test
 {

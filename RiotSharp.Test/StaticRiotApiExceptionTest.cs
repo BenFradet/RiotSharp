@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
-using RiotSharp.StaticDataEndpoint;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Test

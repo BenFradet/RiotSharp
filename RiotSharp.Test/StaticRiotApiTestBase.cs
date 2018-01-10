@@ -1,6 +1,6 @@
 ﻿using RiotSharp.Misc;
-using RiotSharp.StaticDataEndpoint.SummonerSpell;
 using System;
+using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
 
 namespace RiotSharp.Test
 {

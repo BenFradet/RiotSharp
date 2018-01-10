@@ -1,16 +1,16 @@
-﻿using RiotSharp.StaticDataEndpoint;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharp.Endpoints.StaticDataEndpoint.Champion;
+using RiotSharp.Endpoints.StaticDataEndpoint.Item;
+using RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings;
+using RiotSharp.Endpoints.StaticDataEndpoint.Map;
+using RiotSharp.Endpoints.StaticDataEndpoint.Mastery;
+using RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons;
+using RiotSharp.Endpoints.StaticDataEndpoint.Realm;
+using RiotSharp.Endpoints.StaticDataEndpoint.Rune;
+using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
 using RiotSharp.Misc;
-using RiotSharp.StaticDataEndpoint.Champion;
-using RiotSharp.StaticDataEndpoint.Item;
-using RiotSharp.StaticDataEndpoint.LanguageStrings;
-using RiotSharp.StaticDataEndpoint.Map;
-using RiotSharp.StaticDataEndpoint.Mastery;
-using RiotSharp.StaticDataEndpoint.Realm;
-using RiotSharp.StaticDataEndpoint.Rune;
-using RiotSharp.StaticDataEndpoint.SummonerSpell;
-using RiotSharp.StaticDataEndpoint.ProfileIcons;
 
 namespace RiotSharp.Interfaces
 {

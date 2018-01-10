@@ -1,15 +1,15 @@
-﻿using RiotSharp.ChampionEndpoint;
-using RiotSharp.GameEndpoint;
-using RiotSharp.LeagueEndpoint;
-using RiotSharp.MatchEndpoint;
-using RiotSharp.SummonerEndpoint;
-using RiotSharp.RunesEndpoint;
-using RiotSharp.ChampionMasteryEndpoint;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using RiotSharp.Endpoints.ChampionEndpoint;
+using RiotSharp.Endpoints.ChampionMasteryEndpoint;
+using RiotSharp.Endpoints.LeagueEndpoint;
+using RiotSharp.Endpoints.MatchEndpoint;
+using RiotSharp.Endpoints.MatchEndpoint.Enums;
+using RiotSharp.Endpoints.RunesEndpoint;
+using RiotSharp.Endpoints.SpectatorEndpoint;
+using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Misc;
-using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp.Interfaces
 {
@@ -134,7 +134,7 @@ namespace RiotSharp.Interfaces
         /// Get rune pages for a summoner id asynchronously.
         /// </summary>
         /// <param name="region"><see cref="Region"/> in which you wish to look for rune pages for a summoner</param>
-        /// <param name="summonerIds">The summoner id for which you wish to retrieve rune pages.</param>
+        /// <param name="summonerId">The summoner id for which you wish to retrieve rune pages.</param>
         /// <returns>A list of <see cref="RunePage"/> for the given summoner.
         /// </returns>
         Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId);
@@ -212,7 +212,6 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which the match took place.</param>
         /// <param name="matchId">The match ID to be retrieved.</param>
-        /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
         /// <returns>A match object containing information about the match.</returns>
         Match GetMatch(Region region, long matchId);
 
@@ -221,7 +220,6 @@ namespace RiotSharp.Interfaces
         /// </summary>
         /// <param name="region">Region in which the match took place.</param>
         /// <param name="matchId">The match ID to be retrieved.</param>
-        /// <param name="accountId">If provided, used to identify the participant to be unobfuscated.</param>
         /// <returns>A match object containing information about the match.</returns>
         Task<Match> GetMatchAsync(Region region, long matchId);
 
@@ -241,7 +239,7 @@ namespace RiotSharp.Interfaces
         MatchList GetMatchList(Region region, long accountId,
            List<int> championIds = null,
            List<int> queues = null,
-           List<MatchEndpoint.Enums.Season> seasons = null,
+           List<Season> seasons = null,
            DateTime? beginTime = null,
            DateTime? endTime = null,
            long? beginIndex = null,
@@ -263,7 +261,7 @@ namespace RiotSharp.Interfaces
         Task<MatchList> GetMatchListAsync(Region region, long accountId,
             List<int> championIds = null,
             List<int> queues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null,
+            List<Season> seasons = null,
             DateTime? beginTime = null,
             DateTime? endTime = null,
             long? beginIndex = null,

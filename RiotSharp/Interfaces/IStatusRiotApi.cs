@@ -1,6 +1,5 @@
-﻿using RiotSharp.StatusEndpoint;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using RiotSharp.Endpoints.StatusEndpoint;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Interfaces

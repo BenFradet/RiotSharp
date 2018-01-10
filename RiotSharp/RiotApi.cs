@@ -1,21 +1,20 @@
-﻿using Newtonsoft.Json;
-using RiotSharp.ChampionEndpoint;
-using RiotSharp.ChampionMasteryEndpoint;
-using RiotSharp.GameEndpoint;
-using RiotSharp.Http;
+﻿using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
-using RiotSharp.LeagueEndpoint;
-using RiotSharp.MatchEndpoint;
-using RiotSharp.RunesEndpoint;
-using RiotSharp.SummonerEndpoint;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.Endpoints;
+using RiotSharp.Endpoints.ChampionEndpoint;
+using RiotSharp.Endpoints.ChampionMasteryEndpoint;
+using RiotSharp.Endpoints.Interfaces;
+using RiotSharp.Endpoints.LeagueEndpoint;
+using RiotSharp.Endpoints.MatchEndpoint;
+using RiotSharp.Endpoints.MatchEndpoint.Enums;
+using RiotSharp.Endpoints.RunesEndpoint;
+using RiotSharp.Endpoints.SpectatorEndpoint;
+using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Misc;
-using RiotSharp.Misc.Converters;
-using RiotSharp.SpectatorEndpoint;
 
 namespace RiotSharp
 {
@@ -25,43 +24,6 @@ namespace RiotSharp
     public class RiotApi : IRiotApi
     {
         #region Private Fields
-        private const string SummonerRootUrl = "/lol/summoner/v3/summoners";
-        private const string SummonerByAccountIdUrl = "/by-account/{0}";
-        private const string SummonerByNameUrl = "/by-name/{0}";
-        private const string SummonerBySummonerIdUrl = "/{0}";
-
-        private const string PlatformRootUrl = "/lol/platform/v3";
-        private const string MasteriesUrl = "/masteries/by-summoner/{0}";
-        private const string RunesUrl = "/runes/by-summoner/{0}";
-        private const string ChampionsUrl = "/champions";
-
-        private const string LeagueRootUrl = "/lol/league/v3";
-        private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
-        private const string LeagueMasterUrl = "/masterleagues/by-queue/{0}";
-        private const string LeagueBySummonerUrl = "/leagues/by-summoner/{0}";
-        private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
-
-        private const string MatchRootUrl = "/lol/match/v3/matches";
-        private const string MatchListRootUrl = "/lol/match/v3/matchlists";
-        private const string TimelinesRootUrl = "/lol/match/v3/timelines";
-        private const string MatchIdsByTournamentCodeUrl = "/by-tournament-code/{0}/ids";
-        private const string MatchByIdUrl = "/{0}";
-        private const string MatchByIdAndTournamentCodeUrl = "/{0}/by-tournament-code/{1}";
-        private const string MatchListByAccountIdUrl = "/by-account/{0}";
-        private const string MatchListByAccountIdRecentUrl = "/by-account/{0}/recent";
-        private const string TimelineByMatchIdUrl = "/by-match/{0}";
-
-
-        private const string SpectatorRootUrl = "/lol/spectator/v3";
-        private const string CurrentGameUrl = "/active-games/by-summoner/{0}";
-        private const string FeaturedGamesUrl = "/featured-games";
-
-        private const string IdUrl = "/{0}";
-
-        private const string ChampionMasteryRootUrl = "/lol/champion-mastery/v3";
-        private const string ChampionMasteriesBySummonerUrl = "/champion-masteries/by-summoner/{0}";
-        private const string ChampionMasteryBySummonerUrl = "/champion-masteries/by-summoner/{0}/by-champion/{1}";
-        private const string ChampionMasteryTotalScoreBySummonerUrl = "/scores/by-summoner/{0}";
 
         private const string MatchCache = "match-{0}_{1}";
         private const string SummonerCache = "summoner-{0}_{1}";
@@ -69,16 +31,26 @@ namespace RiotSharp
         private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
         private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
-        // Used in call which have a maximum number of items you can retrieve in a single call
-        private const int MaxNrSummoners = 40;
+        private static RiotApi _instance;
 
-        private const int MaxNrMasteryPages = 40;
+        private ICache _cache;
 
-        private readonly IRateLimitedRequester requester;
+        public ISummonerEndpoint Summoner { get; }
 
-        private static RiotApi instance;
+        public IChampionEndpoint Champion { get; }
 
-        private ICache cache;
+        public IMasteriesEndpoint Masteries { get; }
+
+        public IRunesEndpoint Runes { get; }
+
+        public ILeagueEndpoint League { get; }
+
+        public IMatchEndpoint Match { get; }
+
+        public ISpectatorEndpoint Spectator { get; }
+
+        public IChampionMasteryEndpoint ChampionMastery { get; }
+
         #endregion
 
         /// <summary>
@@ -122,19 +94,27 @@ namespace RiotSharp
         /// <returns>The instance of RiotApi.</returns>
         public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
-            if (instance == null || Requesters.RiotApiRequester == null ||
+            if (_instance == null || Requesters.RiotApiRequester == null ||
                 apiKey != Requesters.RiotApiRequester.ApiKey ||
                 !rateLimits.Equals(Requesters.RiotApiRequester.RateLimits))
             {
-                instance = new RiotApi(apiKey, rateLimits);
+                _instance = new RiotApi(apiKey, rateLimits);
             }
-            return instance;
+            return _instance;
         }
 
         private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits)
         {
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
-            requester = Requesters.RiotApiRequester;
+            var requester = Requesters.RiotApiRequester;
+            Summoner = new SummonerEndpointImp(requester);
+            Champion = new ChampionEndpointImp(requester);
+            Masteries = new MasteriesEndpointImp(requester);
+            Runes = new RunesEndpointImp(requester);
+            League = new LeagueEndpointImp(requester);
+            Match = new MatchEndpointImp(requester);
+            Spectator = new SpectatorEndpointImp(requester);
+            ChampionMastery = new ChampionMasteryEndpointImp(requester);
         }
 
         /// <summary>
@@ -144,8 +124,18 @@ namespace RiotSharp
         public RiotApi(IRateLimitedRequester rateLimitedRequester)
         {
             if (rateLimitedRequester == null)
+            {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
-            requester = rateLimitedRequester;
+            }
+           Summoner = new SummonerEndpointImp(rateLimitedRequester);
+           Champion = new ChampionEndpointImp(rateLimitedRequester);
+           Masteries = new MasteriesEndpointImp(rateLimitedRequester);
+           Runes = new RunesEndpointImp(rateLimitedRequester);
+           League = new LeagueEndpointImp(rateLimitedRequester);
+           Match = new MatchEndpointImp(rateLimitedRequester);
+           Spectator = new SpectatorEndpointImp(rateLimitedRequester);
+           ChampionMastery = new ChampionMasteryEndpointImp(rateLimitedRequester);
+            
         }
 
 #pragma warning disable CS1591
@@ -153,17 +143,11 @@ namespace RiotSharp
         #region Summoner
         public Summoner GetSummonerByAccountId(Region region, long accountId)
         {
-            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
+            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
             if (wrapper == null)
             {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-                var obj = JsonConvert.DeserializeObject<Summoner>(json);
-                if (obj != null)
-                {
-                    obj.Region = region;
-                }
-                cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
+                var obj = Summoner.GetSummonerByAccountId(region, accountId);
+                _cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
@@ -171,17 +155,11 @@ namespace RiotSharp
 
         public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
-            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
+            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
             if (wrapper == null)
             {
-                var json = await requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-                var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-                if (obj != null)
-                {
-                    obj.Region = region;
-                }
-                cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
+                var obj = await Summoner.GetSummonerByAccountIdAsync(region, accountId);
+                _cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
@@ -189,17 +167,11 @@ namespace RiotSharp
 
         public Summoner GetSummonerBySummonerId(Region region, long summonerId)
         {
-            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
+            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
             if (wrapper == null)
             {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-                var obj = JsonConvert.DeserializeObject<Summoner>(json);
-                if (obj != null)
-                {
-                    obj.Region = region;
-                }
-                cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
+                var obj = Summoner.GetSummonerBySummonerId(region, summonerId);
+                _cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
@@ -207,17 +179,11 @@ namespace RiotSharp
 
         public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
         {
-            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
+            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
             if (wrapper == null)
             {
-                var json = await requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-                var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-                if (obj != null)
-                {
-                    obj.Region = region;
-                }
-                cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
+                var obj = await Summoner.GetSummonerBySummonerIdAsync(region, summonerId);
+                _cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
@@ -225,17 +191,11 @@ namespace RiotSharp
 
         public Summoner GetSummonerByName(Region region, string summonerName)
         {
-            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
+            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
             if (wrapper == null)
             {
-                var json = requester.CreateGetRequest(
-                    string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-                var obj = JsonConvert.DeserializeObject<Summoner>(json);
-                if (obj != null)
-                {
-                    obj.Region = region;
-                }
-                cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
+                var obj = Summoner.GetSummonerByName(region, summonerName);
+                _cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
@@ -243,17 +203,11 @@ namespace RiotSharp
 
         public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
         {
-            var wrapper = cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
+            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
             if (wrapper == null)
             {
-                var json = await requester.CreateGetRequestAsync(
-                    string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-                var obj = (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(json)));
-                if (obj != null)
-                {
-                    obj.Region = region;
-                }
-                cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
+                var obj = await Summoner.GetSummonerByNameAsync(region, summonerName);
+                _cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
                 return obj;
             }
             return wrapper;
@@ -263,364 +217,198 @@ namespace RiotSharp
         #region Champion
         public List<Champion> GetChampions(Region region, bool freeToPlay = false)
         {
-            var json = requester.CreateGetRequest(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
-            return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
+            return Champion.GetChampions(region, freeToPlay);
         }
 
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
+            return await Champion.GetChampionsAsync(region, freeToPlay);
         }
 
         public Champion GetChampion(Region region, int championId)
         {
-            var json = requester.CreateGetRequest(
-                PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId), region);
-            return JsonConvert.DeserializeObject<Champion>(json);
+            return Champion.GetChampion(region, championId);
         }
 
         public async Task<Champion> GetChampionAsync(Region region, int championId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId), region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
+            return await Champion.GetChampionAsync(region, championId);
         }
         #endregion
 
         #region Masteries
         public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(PlatformRootUrl + string.Format(MasteriesUrl, summonerId), region);
-
-            var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
-            return masteries.Pages;
+            return Masteries.GetMasteryPages(region, summonerId);
         }
 
         public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(MasteriesUrl, summonerId),
-                region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MasteryPages>(json).Pages);
+            return await Masteries.GetMasteryPagesAsync(region, summonerId);
         }
         #endregion
 
         #region Runes
         public List<RunePage> GetRunePages(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(PlatformRootUrl + string.Format(RunesUrl, summonerId), region);
-
-            var runes = JsonConvert.DeserializeObject<RunePages>(json);
-            return runes.Pages;
+            return Runes.GetRunePages(region, summonerId);
         }
 
         public async Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(RunesUrl, summonerId),
-                region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RunePages>(json).Pages);
+            return await Runes.GetRunePagesAsync(region, summonerId);
         }
         #endregion
 
         #region League
         public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId),
-                region);
-
-            return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
+            return League.GetLeaguePositions(region, summonerId);
         }
 
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId), region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeaguePosition>>(json));
+            return await League.GetLeaguePositionsAsync(region, summonerId);
         }
 
         public League GetChallengerLeague(Region region, string queue)
         {
-            var json = requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue), region);
-            return JsonConvert.DeserializeObject<League>(json);
+            return League.GetChallengerLeague(region, queue);
         }
 
         public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
-            var json = await requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
+            return await League.GetChallengerLeagueAsync(region, queue);
         }
 
         public League GetMasterLeague(Region region, string queue)
         {
-            var json = requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueMasterUrl, queue), region);
-            return JsonConvert.DeserializeObject<League>(json);
+            return League.GetMasterLeague(region, queue);
         }
 
         public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
-            var json = await requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
+            return await League.GetMasterLeagueAsync(region, queue);
         }
         #endregion
 
         #region Match
         public List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode)
         {
-            var json = requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchIdsByTournamentCodeUrl, tournamentCode), region);
-
-            return JsonConvert.DeserializeObject<List<long>>(json);
+            return Match.GetMatchIdsByTournamentCode(region, tournamentCode);
         }
 
         public async Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode)
         {
-            var json = await requester.CreateGetRequestAsync(MatchRootUrl +
-                                                             string.Format(MatchIdsByTournamentCodeUrl, tournamentCode),
-                region);
-
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json));
+            return await Match.GetMatchIdsByTournamentCodeAsync(region, tournamentCode);
         }
 
         public Match GetMatch(Region region, long matchId)
         {
-            var wrapper = cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
+            var wrapper = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
             if (wrapper != null) return wrapper;
-            var json = requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchByIdUrl, matchId), region);
-            var match = JsonConvert.DeserializeObject<Match>(json);
-            cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
+            var match = Match.GetMatch(region, matchId);
+            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
             return match;
         }
 
         public async Task<Match> GetMatchAsync(Region region, long matchId)
         {
-            var wrapper = cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
+            var wrapper = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
             if (wrapper != null) return wrapper;
-            var json = requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchByIdUrl, matchId), region);
-            var match = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Match>(json));
-            cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
+            var match = await Match.GetMatchAsync(region, matchId);
+            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
             return match;
         }
 
         public MatchList GetMatchList(Region region, long accountId,
             List<int> championIds = null,
             List<int> queues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null,
+            List<Season> seasons = null,
             DateTime? beginTime = null,
             DateTime? endTime = null,
             long? beginIndex = null,
             long? endIndex = null)
         {
-            var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
-                endTime, beginIndex, endIndex);
-
-            var json = requester.CreateGetRequest(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
-                region, addedArguments);
-            return JsonConvert.DeserializeObject<MatchList>(json);
+            return Match.GetMatchList(region, accountId, championIds, queues, seasons, beginTime, endTime, beginIndex,
+                endIndex);
         }
 
         public async Task<MatchList> GetMatchListAsync(Region region, long accountId,
             List<int> championIds = null,
             List<int> queues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null,
+            List<Season> seasons = null,
             DateTime? beginTime = null,
             DateTime? endTime = null,
             long? beginIndex = null,
             long? endIndex = null)
         {
-            var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
-                endTime, beginIndex, endIndex);
-
-            var json = requester.CreateGetRequest(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
-                region, addedArguments);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
+            return await Match.GetMatchListAsync(region, accountId, championIds, queues, seasons, beginTime, endTime, beginIndex,
+                endIndex);
         }
 
-        public List<MatchReference> GetRecentMatches(Region region, long accountId)
+        public List<MatchReference> GetRecentMatches(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(
-                MatchListRootUrl + string.Format(MatchListByAccountIdRecentUrl, accountId),
-                region);
-            return JsonConvert.DeserializeObject<MatchList>(json).Matches;
+            return Match.GetRecentMatches(region, summonerId);
         }
 
-        public async Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long accountId)
+        public async Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                MatchListRootUrl + string.Format(MatchListByAccountIdRecentUrl, accountId),
-                region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MatchList>(json))).Matches;
+            return await Match.GetRecentMatchesAsync(region, summonerId);
         }
         #endregion
 
         #region Spectator
         public CurrentGame GetCurrentGame(Region region, long summonerId)
         {
-            var json = requester.CreateGetRequest(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
-            return JsonConvert.DeserializeObject<CurrentGame>(json);
+            return Spectator.GetCurrentGame(region, summonerId);
         }
         
         public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
         {
-            var json = await requester.CreateGetRequestAsync(
-                SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<CurrentGame>(json)));
+            return await Spectator.GetCurrentGameAsync(region, summonerId);
         }
 
         public FeaturedGames GetFeaturedGames(Region region)
         {
-            var json = requester.CreateGetRequest(SpectatorRootUrl + FeaturedGamesUrl, region);
-            return JsonConvert.DeserializeObject<FeaturedGames>(json);
+            return Spectator.GetFeaturedGames(region);
         }
 
         public async Task<FeaturedGames> GetFeaturedGamesAsync(Region region)
         {
-            var json = await requester.CreateGetRequestAsync(SpectatorRootUrl + FeaturedGamesUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FeaturedGames>(json)));
+            return await Spectator.GetFeaturedGamesAsync(region);
         }
         #endregion
 
         #region Champion Mastery
         public ChampionMastery GetChampionMastery(Region region, long summonerId, long championId)
         {
-            var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<ChampionMastery>(json);
+            return ChampionMastery.GetChampionMastery(region, summonerId, championId);
         }
 
         public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, long summonerId, long championId)
         {
-            var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
-
-            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ChampionMastery>(json)));
+            return await ChampionMastery.GetChampionMasteryAsync(region, summonerId, championId);
         }
 
         public List<ChampionMastery> GetChampionMasteries(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
+            return ChampionMastery.GetChampionMasteries(region, summonerId);
         }
 
         public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
-
-            var json = await requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
+            return await ChampionMastery.GetChampionMasteriesAsync(region, summonerId);
         }
 
         public int GetTotalChampionMasteryScore(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<int>(json);
+            return ChampionMastery.GetTotalChampionMasteryScore(region, summonerId);
         }
 
         public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId)
         {
-            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
-
-            var json = requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json)));
-        }
-        #endregion
-
-        #region Helpers
-        private Dictionary<long, List<MasteryPage>> ConstructMasteryDict(Dictionary<string, MasteryPages> dict)
-        {
-            var returnDict = new Dictionary<long, List<MasteryPage>>();
-            foreach (var masteryPage in dict.Values)
-            {
-                returnDict.Add(masteryPage.SummonerId, masteryPage.Pages);
-            }
-            return returnDict;
-        }
-
-        private Dictionary<long, List<RunePage>> ConstructRuneDict(Dictionary<string, RunePages> dict)
-        {
-            var returnDict = new Dictionary<long, List<RunePage>>();
-            foreach (var runePage in dict.Values)
-            {
-                returnDict.Add(runePage.SummonerId, runePage.Pages);
-            }
-            return returnDict;
-        }
-
-        private List<List<T>> MakeGroups<T>(List<T> toSplit, int chunkSize)
-        {
-            return toSplit
-                .Distinct()
-                .Select((x, i) => new {Index = i, Value = x})
-                .GroupBy(x => x.Index / chunkSize)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .ToList();
-        }
-        
-        private List<string> CreateArgumentsListForMatchListRequest(
-            List<int> championIds = null,
-            List<int> queues = null,
-            List<MatchEndpoint.Enums.Season> seasons = null,
-            DateTime? beginTime = null,
-            DateTime? endTime = null,
-            long? beginIndex = null,
-            long? endIndex = null)
-        {
-            var addedArguments = new List<string>();
-            if (beginIndex != null)
-            {
-                addedArguments.Add($"beginIndex={beginIndex}");
-            }
-            if (endIndex != null)
-            {
-                addedArguments.Add($"endIndex={endIndex}");
-            }
-            if (beginTime != null)
-            {
-                addedArguments.Add($"beginTime={beginTime.Value.ToLong()}");
-            }
-            if (endTime != null)
-            {
-                addedArguments.Add($"endTime={endTime.Value.ToLong()}");
-            }
-            if (championIds != null)
-            {
-                foreach (var championId in championIds)
-                {
-                    addedArguments.Add($"champion={championId}");
-                }
-            }
-            if (queues != null)
-            {
-                foreach (var queue in queues)
-                {
-                    addedArguments.Add($"queue={queue}");
-                }
-            }
-            if (seasons != null)
-            {
-                foreach (var season in seasons)
-                {
-                    addedArguments.Add($"season={(int) season}");
-                }
-            }
-            return addedArguments;
+            return await ChampionMastery.GetTotalChampionMasteryScoreAsync(region, summonerId);
         }
         #endregion
 

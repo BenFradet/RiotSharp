@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp.MatchEndpoint.Enums;
-using RiotSharp.Misc;
+using RiotSharp.Endpoints.MatchEndpoint.Enums;
 
 namespace RiotSharp.Test
 {
