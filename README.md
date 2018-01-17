@@ -27,6 +27,13 @@ or
 
 2. Build the RiotSharp project and add the library to your own application.
 
+### Build your own latest NuGet package
+You can build your own NuGet package of the latest version with the following command:
+`msbuild /t:pack /p:Configuration=Release`
+
+Execute it from the Visual Studio developer command prompt from inside the RiotSharp project folder. 
+Then copy the `Riotsharp.*.nupkg` file from the `bin` folder into your local NuGet feed. [Create local NuGet feed](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui#package-sources)
+
 ## Usage
 
 ### Main API
