@@ -5,6 +5,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces
 {
+    /// <summary>
+    /// The League Endpoint.
+    /// </summary>
     public interface ILeagueEndpoint
     {
         /// <summary>

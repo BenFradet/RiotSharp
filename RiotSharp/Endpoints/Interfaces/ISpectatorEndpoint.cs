@@ -4,6 +4,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces
 {
+    /// <summary>
+    /// The Spectator Endpoint.
+    /// </summary>
     public interface ISpectatorEndpoint
     {
         /// <summary>

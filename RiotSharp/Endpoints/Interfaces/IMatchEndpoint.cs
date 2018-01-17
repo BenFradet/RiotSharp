@@ -7,6 +7,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces
 {
+    /// <summary>
+    /// The Match Endpoint.
+    /// </summary>
     public interface IMatchEndpoint
     {
         /// <summary>

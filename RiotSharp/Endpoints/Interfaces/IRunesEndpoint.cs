@@ -5,6 +5,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces
 {
+    /// <summary>
+    /// The Runes Endpoint.
+    /// </summary>
     public interface IRunesEndpoint
     {
         /// <summary>

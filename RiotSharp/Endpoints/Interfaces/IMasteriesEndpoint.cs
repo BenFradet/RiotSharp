@@ -5,6 +5,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces
 {
+    /// <summary>
+    /// The Masteries Endpoint.
+    /// </summary>
     public interface IMasteriesEndpoint
     {
         /// <summary>

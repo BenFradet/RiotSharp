@@ -4,6 +4,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces
 {
+    /// <summary>
+    /// The Summoner Endpoint.
+    /// </summary>
     public interface ISummonerEndpoint
     {
         /// <summary>

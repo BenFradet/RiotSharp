@@ -9,6 +9,7 @@ using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Endpoints.LeagueEndpoint;
+using RiotSharp.Endpoints.MasteriesEndpoint;
 using RiotSharp.Endpoints.MatchEndpoint;
 using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Endpoints.RunesEndpoint;
@@ -107,14 +108,14 @@ namespace RiotSharp
         {
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             var requester = Requesters.RiotApiRequester;
-            Summoner = new SummonerEndpointImp(requester);
-            Champion = new ChampionEndpointImp(requester);
-            Masteries = new MasteriesEndpointImp(requester);
-            Runes = new RunesEndpointImp(requester);
-            League = new LeagueEndpointImp(requester);
-            Match = new MatchEndpointImp(requester);
-            Spectator = new SpectatorEndpointImp(requester);
-            ChampionMastery = new ChampionMasteryEndpointImp(requester);
+            Summoner = new SummonerEndpoint(requester);
+            Champion = new ChampionEndpoint(requester);
+            Masteries = new MasteriesEndpoint(requester);
+            Runes = new RunesEndpoint(requester);
+            League = new LeagueEndpoint(requester);
+            Match = new MatchEndpoint(requester);
+            Spectator = new SpectatorEndpoint(requester);
+            ChampionMastery = new ChampionMasteryEndpoint(requester);
         }
 
         /// <summary>
@@ -127,14 +128,14 @@ namespace RiotSharp
             {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
             }
-           Summoner = new SummonerEndpointImp(rateLimitedRequester);
-           Champion = new ChampionEndpointImp(rateLimitedRequester);
-           Masteries = new MasteriesEndpointImp(rateLimitedRequester);
-           Runes = new RunesEndpointImp(rateLimitedRequester);
-           League = new LeagueEndpointImp(rateLimitedRequester);
-           Match = new MatchEndpointImp(rateLimitedRequester);
-           Spectator = new SpectatorEndpointImp(rateLimitedRequester);
-           ChampionMastery = new ChampionMasteryEndpointImp(rateLimitedRequester);
+           Summoner = new SummonerEndpoint(rateLimitedRequester);
+           Champion = new ChampionEndpoint(rateLimitedRequester);
+           Masteries = new MasteriesEndpoint(rateLimitedRequester);
+           Runes = new RunesEndpoint(rateLimitedRequester);
+           League = new LeagueEndpoint(rateLimitedRequester);
+           Match = new MatchEndpoint(rateLimitedRequester);
+           Spectator = new SpectatorEndpoint(rateLimitedRequester);
+           ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             
         }
 
