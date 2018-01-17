@@ -21,7 +21,7 @@ namespace RiotSharp.Test
         [ExpectedException(typeof(RiotSharpException))]
         public void GetChampions_ShouldThrowRiotSharpException_Test()
         {
-            FaultyApi.GetChampions(CommonTestBase.Summoner1And2Region);
+            FaultyApi.Champion.GetChampions(CommonTestBase.Summoner1And2Region);
         }
     }
 }
