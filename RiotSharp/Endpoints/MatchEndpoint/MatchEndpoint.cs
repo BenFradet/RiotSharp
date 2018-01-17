@@ -9,7 +9,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
-    class MatchEndpointImp : IMatchEndpoint
+    class MatchEndpoint : IMatchEndpoint
     {
         private const string MatchRootUrl = "/lol/match/v3/matches";
         private const string MatchListRootUrl = "/lol/match/v3/matchlists";
@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
-        public MatchEndpointImp(IRateLimitedRequester requester)
+        public MatchEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

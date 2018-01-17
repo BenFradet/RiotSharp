@@ -7,7 +7,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.ChampionEndpoint
 {
-    public class ChampionEndpointImp : IChampionEndpoint
+    public class ChampionEndpoint : IChampionEndpoint
     {
         private const string PlatformRootUrl = "/lol/platform/v3";
         private const string ChampionsUrl = "/champions";
@@ -15,7 +15,7 @@ namespace RiotSharp.Endpoints.ChampionEndpoint
 
         private readonly IRateLimitedRequester _requester;
         
-        public ChampionEndpointImp(IRateLimitedRequester requester)
+        public ChampionEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

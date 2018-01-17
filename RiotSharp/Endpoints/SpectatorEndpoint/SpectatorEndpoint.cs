@@ -6,7 +6,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.SpectatorEndpoint
 {
-    public class SpectatorEndpointImp : ISpectatorEndpoint
+    public class SpectatorEndpoint : ISpectatorEndpoint
     {
         private const string SpectatorRootUrl = "/lol/spectator/v3";
         private const string CurrentGameUrl = "/active-games/by-summoner/{0}";
@@ -14,7 +14,7 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
-        public SpectatorEndpointImp(IRateLimitedRequester requester)
+        public SpectatorEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

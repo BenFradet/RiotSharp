@@ -6,16 +6,16 @@ using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
 
-namespace RiotSharp.Endpoints
+namespace RiotSharp.Endpoints.MasteriesEndpoint
 {
-    public class MasteriesEndpointImp : IMasteriesEndpoint
+    public class MasteriesEndpoint : IMasteriesEndpoint
     {
         private const string PlatformRootUrl = "/lol/platform/v3";
         private const string MasteriesUrl = "/masteries/by-summoner/{0}";
 
         private readonly IRateLimitedRequester _requester;
 
-        public MasteriesEndpointImp(IRateLimitedRequester requester)
+        public MasteriesEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

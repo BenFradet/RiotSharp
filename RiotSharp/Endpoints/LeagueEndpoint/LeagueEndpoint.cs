@@ -7,7 +7,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.LeagueEndpoint
 {
-    public class LeagueEndpointImp : ILeagueEndpoint
+    public class LeagueEndpoint : ILeagueEndpoint
     {
         private const string LeagueRootUrl = "/lol/league/v3";
         private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
@@ -16,7 +16,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
-        public LeagueEndpointImp(IRateLimitedRequester requester)
+        public LeagueEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

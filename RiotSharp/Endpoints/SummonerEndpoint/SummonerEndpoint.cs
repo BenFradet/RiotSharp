@@ -6,7 +6,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.SummonerEndpoint
 {
-    public class SummonerEndpointImp : ISummonerEndpoint
+    public class SummonerEndpoint : ISummonerEndpoint
     {
         private const string SummonerRootUrl = "/lol/summoner/v3/summoners";
         private const string SummonerByAccountIdUrl = "/by-account/{0}";
@@ -15,7 +15,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
-        public SummonerEndpointImp(IRateLimitedRequester requester)
+        public SummonerEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

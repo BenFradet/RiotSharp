@@ -7,14 +7,14 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.RunesEndpoint
 {
-    class RunesEndpointImp : IRunesEndpoint
+    class RunesEndpoint : IRunesEndpoint
     {
         private const string PlatformRootUrl = "/lol/platform/v3";
         private const string RunesUrl = "/runes/by-summoner/{0}";
 
         private readonly IRateLimitedRequester _requester;
 
-        public RunesEndpointImp(IRateLimitedRequester requester)
+        public RunesEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }

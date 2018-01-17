@@ -7,7 +7,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
 {
-    class ChampionMasteryEndpointImp : IChampionMasteryEndpoint
+    class ChampionMasteryEndpoint : IChampionMasteryEndpoint
     {
         private const string ChampionMasteryRootUrl = "/lol/champion-mastery/v3";
         private const string ChampionMasteriesBySummonerUrl = "/champion-masteries/by-summoner/{0}";
@@ -16,7 +16,7 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
-        public ChampionMasteryEndpointImp(IRateLimitedRequester requester)
+        public ChampionMasteryEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }
