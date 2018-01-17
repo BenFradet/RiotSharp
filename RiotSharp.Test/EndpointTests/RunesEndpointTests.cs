@@ -6,6 +6,7 @@ using Moq;
 using Newtonsoft.Json;
 using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.Misc;
 
 
@@ -16,7 +17,7 @@ namespace RiotSharp.Test.EndpointTests
     {
         private Mock<IRateLimitedRequester> _requester;
         private RunePages _response;
-        private RiotApi _riotApi;
+        private IRiotApi _riotApi;
 
         [TestInitialize]
         public void Initialize()
@@ -66,7 +67,7 @@ namespace RiotSharp.Test.EndpointTests
         {
             _requester.Setup(moq => moq.CreateGetRequest(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).Throws(new RiotSharpException("Not found", HttpStatusCode.NotFound));
-            var runes = _riotApi.GetRunePages(Region.Asia, -1);
+            var runes = _riotApi.Runes.GetRunePages(Region.Asia, -1);
         }
 
         [TestMethod]
@@ -84,7 +85,7 @@ namespace RiotSharp.Test.EndpointTests
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).Throws(new RiotSharpException("Not found", HttpStatusCode.NotFound));
-            var runes = await _riotApi.GetRunePagesAsync(Region.Asia, -1);
+            var runes = await _riotApi.Runes.GetRunePagesAsync(Region.Asia, -1);
         }
     }
 }

@@ -7,6 +7,7 @@ using Moq;
 using Newtonsoft.Json;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Test.EndpointTests
@@ -17,7 +18,7 @@ namespace RiotSharp.Test.EndpointTests
         private Mock<IRateLimitedRequester> _requester;
         private CurrentGame _currentGameResponse;
         private FeaturedGames _featuredGamesResponse;
-        private RiotApi _riotApi;
+        private IRiotApi _riotApi;
 
         [TestInitialize]
         public void Initialize()

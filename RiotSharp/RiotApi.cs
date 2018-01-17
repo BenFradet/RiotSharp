@@ -4,7 +4,6 @@ using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RiotSharp.Endpoints;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.Interfaces;
@@ -215,84 +214,6 @@ namespace RiotSharp
         }
         #endregion
 
-        #region Champion
-        public List<Champion> GetChampions(Region region, bool freeToPlay = false)
-        {
-            return Champion.GetChampions(region, freeToPlay);
-        }
-
-        public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
-        {
-            return await Champion.GetChampionsAsync(region, freeToPlay);
-        }
-
-        public Champion GetChampion(Region region, int championId)
-        {
-            return Champion.GetChampion(region, championId);
-        }
-
-        public async Task<Champion> GetChampionAsync(Region region, int championId)
-        {
-            return await Champion.GetChampionAsync(region, championId);
-        }
-        #endregion
-
-        #region Masteries
-        public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
-        {
-            return Masteries.GetMasteryPages(region, summonerId);
-        }
-
-        public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
-        {
-            return await Masteries.GetMasteryPagesAsync(region, summonerId);
-        }
-        #endregion
-
-        #region Runes
-        public List<RunePage> GetRunePages(Region region, long summonerId)
-        {
-            return Runes.GetRunePages(region, summonerId);
-        }
-
-        public async Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId)
-        {
-            return await Runes.GetRunePagesAsync(region, summonerId);
-        }
-        #endregion
-
-        #region League
-        public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
-        {
-            return League.GetLeaguePositions(region, summonerId);
-        }
-
-        public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
-        {
-            return await League.GetLeaguePositionsAsync(region, summonerId);
-        }
-
-        public League GetChallengerLeague(Region region, string queue)
-        {
-            return League.GetChallengerLeague(region, queue);
-        }
-
-        public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
-        {
-            return await League.GetChallengerLeagueAsync(region, queue);
-        }
-
-        public League GetMasterLeague(Region region, string queue)
-        {
-            return League.GetMasterLeague(region, queue);
-        }
-
-        public async Task<League> GetMasterLeagueAsync(Region region, string queue)
-        {
-            return await League.GetMasterLeagueAsync(region, queue);
-        }
-        #endregion
-
         #region Match
         public List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode)
         {
@@ -356,60 +277,6 @@ namespace RiotSharp
         public async Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId)
         {
             return await Match.GetRecentMatchesAsync(region, summonerId);
-        }
-        #endregion
-
-        #region Spectator
-        public CurrentGame GetCurrentGame(Region region, long summonerId)
-        {
-            return Spectator.GetCurrentGame(region, summonerId);
-        }
-        
-        public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
-        {
-            return await Spectator.GetCurrentGameAsync(region, summonerId);
-        }
-
-        public FeaturedGames GetFeaturedGames(Region region)
-        {
-            return Spectator.GetFeaturedGames(region);
-        }
-
-        public async Task<FeaturedGames> GetFeaturedGamesAsync(Region region)
-        {
-            return await Spectator.GetFeaturedGamesAsync(region);
-        }
-        #endregion
-
-        #region Champion Mastery
-        public ChampionMastery GetChampionMastery(Region region, long summonerId, long championId)
-        {
-            return ChampionMastery.GetChampionMastery(region, summonerId, championId);
-        }
-
-        public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, long summonerId, long championId)
-        {
-            return await ChampionMastery.GetChampionMasteryAsync(region, summonerId, championId);
-        }
-
-        public List<ChampionMastery> GetChampionMasteries(Region region, long summonerId)
-        {
-            return ChampionMastery.GetChampionMasteries(region, summonerId);
-        }
-
-        public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, long summonerId)
-        {
-            return await ChampionMastery.GetChampionMasteriesAsync(region, summonerId);
-        }
-
-        public int GetTotalChampionMasteryScore(Region region, long summonerId)
-        {
-            return ChampionMastery.GetTotalChampionMasteryScore(region, summonerId);
-        }
-
-        public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId)
-        {
-            return await ChampionMastery.GetTotalChampionMasteryScoreAsync(region, summonerId);
         }
         #endregion
 
