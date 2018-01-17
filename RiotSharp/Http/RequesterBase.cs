@@ -50,7 +50,7 @@ namespace RiotSharp.Http
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> GetAsync(HttpRequestMessage request)
         {
-            var response = await httpClient.GetAsync(request.RequestUri);
+            var response = await httpClient.GetAsync(request.RequestUri, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -83,7 +83,7 @@ namespace RiotSharp.Http
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
         {
-            var response = await httpClient.PutAsync(request.RequestUri, request.Content);
+            var response = await httpClient.PutAsync(request.RequestUri, request.Content).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -115,7 +115,7 @@ namespace RiotSharp.Http
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> PostAsync(HttpRequestMessage request)
         {
-            var response = await httpClient.PostAsync(request.RequestUri, request.Content);
+            var response = await httpClient.PostAsync(request.RequestUri, request.Content).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -175,17 +175,13 @@ namespace RiotSharp.Http
             return result;
         }
 
-        protected async Task<string> GetResponseContentAsync(HttpResponseMessage response)
+        protected Task<string> GetResponseContentAsync(HttpResponseMessage response)
         {
-            Task<string> result = null;
             using (response)
+            using (var content = response.Content)
             {
-                using (var content = response.Content)
-                {
-                    result = content.ReadAsStringAsync();
-                }
+                return content.ReadAsStringAsync();
             }
-            return await result;
         }
 
         protected string GetPlatformDomain(Region region)
