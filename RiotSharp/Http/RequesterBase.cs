@@ -175,12 +175,12 @@ namespace RiotSharp.Http
             return result;
         }
 
-        protected Task<string> GetResponseContentAsync(HttpResponseMessage response)
+        protected async Task<string> GetResponseContentAsync(HttpResponseMessage response)
         {
             using (response)
             using (var content = response.Content)
             {
-                return content.ReadAsStringAsync();
+                return await content.ReadAsStringAsync().ConfigureAwait(false);
             }
         }
 
