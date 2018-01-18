@@ -33,9 +33,9 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId), region);
+                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId), region).ConfigureAwait(false);
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<LeaguePosition>>(json));
+            return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
         }
 
         public League GetChallengerLeague(Region region, string queue)
@@ -47,8 +47,8 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
+                region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<League>(json);
         }
 
         public League GetMasterLeague(Region region, string queue)
@@ -60,8 +60,8 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),
-                region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<League>(json));
+                region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<League>(json);
         }
     }
 }

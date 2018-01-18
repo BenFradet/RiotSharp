@@ -30,9 +30,9 @@ namespace RiotSharp.Endpoints.RunesEndpoint
         public async Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(RunesUrl, summonerId),
-                region);
+                region).ConfigureAwait(false);
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RunePages>(json).Pages);
+            return JsonConvert.DeserializeObject<RunePages>(json).Pages;
         }
     }
 }

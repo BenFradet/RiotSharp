@@ -51,8 +51,8 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
                 return summonerInCache;
             }
             var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-            var summoner = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(jsonResponse));
+                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region).ConfigureAwait(false);
+            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
             if (summoner != null)
             {
                 summoner.Region = region;
@@ -69,8 +69,8 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
                 return summonerInCache;
             }
             var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-            var summoner = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(jsonResponse));
+                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region).ConfigureAwait(false);
+            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
             if (summoner != null)
             {
                 summoner.Region = region;
@@ -123,8 +123,8 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
                 return summonerInCache;
             }
             var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-            var summoner = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Summoner>(jsonResponse));
+                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region).ConfigureAwait(false);
+            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
             if (summoner != null)
             {
                 summoner.Region = region;

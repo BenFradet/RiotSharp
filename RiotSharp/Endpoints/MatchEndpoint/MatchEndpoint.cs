@@ -44,9 +44,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         {
             var json = await _requester.CreateGetRequestAsync(MatchRootUrl +
                                                              string.Format(MatchIdsByTournamentCodeUrl, tournamentCode),
-                region);
+                region).ConfigureAwait(false);
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<long>>(json));
+            return JsonConvert.DeserializeObject<List<long>>(json);
         }
 
         public Match GetMatch(Region region, long matchId)
@@ -70,10 +70,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             {
                 return matchInCache;
             }
-            var json = _requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchByIdUrl, matchId), region);
-            var match = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<Match>(json));
+            var json = await _requester.CreateGetRequestAsync(MatchRootUrl +
+                                                  string.Format(MatchByIdUrl, matchId), region).ConfigureAwait(false);
+            var match = JsonConvert.DeserializeObject<Match>(json);
             _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
             return match;
         }
@@ -95,9 +94,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
                 endTime, beginIndex, endIndex);
 
-            var json = _requester.CreateGetRequest(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
-                region, addedArguments);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchList>(json));
+            var json = await _requester.CreateGetRequestAsync(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
+                region, addedArguments).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<MatchList>(json);
         }
 
         public List<MatchReference> GetRecentMatches(Region region, long summonerId)
@@ -112,9 +111,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         {
             var json = await _requester.CreateGetRequestAsync(
                 MatchListRootUrl + string.Format(MatchListByAccountIdRecentUrl, summonerId),
-                region);
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MatchList>(json))).Matches;
+                region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<MatchList>(json).Matches;
         }
 
         #region Helper

@@ -30,9 +30,8 @@ namespace RiotSharp.Endpoints.ChampionEndpoint
         public async Task<List<Champion>> GetChampionsAsync(Region region, bool freeToPlay = false)
         {
             var json = await _requester.CreateGetRequestAsync(PlatformRootUrl + ChampionsUrl, region,
-                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" });
-            return (await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ChampionList>(json))).Champions;
+                new List<string> { $"freeToPlay={freeToPlay.ToString().ToLower()}" }).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ChampionList>(json).Champions;
         }
 
         public Champion GetChampion(Region region, int championId)
@@ -45,8 +44,8 @@ namespace RiotSharp.Endpoints.ChampionEndpoint
         public async Task<Champion> GetChampionAsync(Region region, int championId)
         {
             var json = await _requester.CreateGetRequestAsync(
-                PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId), region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Champion>(json));
+                PlatformRootUrl + ChampionsUrl + string.Format(IdUrl, championId), region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<Champion>(json);
         }
     }
 }
