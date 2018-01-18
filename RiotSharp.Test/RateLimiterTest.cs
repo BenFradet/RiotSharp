@@ -32,55 +32,12 @@ namespace RiotSharp.Test
             Stopwatch.Restart();
         }
 
-        /// <summary>
-        /// Sends a single request, expected to unblock immediately.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("RateLimiter")]
-        public void SingleRequest()
-        {
-            RateLimiter.HandleRateLimit();
-            AssertDelayed(TimeSpan.Zero);
-        }
-
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
         public async Task SingleRequestAsync()
         {
             await RateLimiter.HandleRateLimitAsync();
             AssertDelayed(TimeSpan.Zero);
-        }
-
-        /// <summary>
-        /// Basic check of the SetRetryAfter.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("RateLimiter")]
-        public void RetryAfterBasic()
-        {
-            RateLimiter.HandleRateLimit();
-            AssertDelayed(TimeSpan.Zero);
-
-            var delay = TimeSpan.FromSeconds(5);
-            RateLimiter.SetRetryAfter(delay);
-            RateLimiter.HandleRateLimit();
-            AssertDelayed(delay);
-        }
-
-        /// <summary>
-        /// Sends 30 requests, expects each block of 10 requests to unblock after 10 second intervals.
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("RateLimiter")]
-        [Timeout(1000 * 10 * 3)]
-        public void ManyRequests()
-        {
-            for (var i = 0; i < Limit * 3; i++)
-            {
-                RateLimiter.HandleRateLimit();
-                AssertDelayed(TimeSpan.FromTicks(i / Limit * TenSeconds.Ticks));
-            }
         }
 
         [Ignore]
@@ -98,28 +55,6 @@ namespace RiotSharp.Test
             foreach (var task in tasks)
             {
                 Assert.IsNull(task.Exception);
-            }
-        }
-
-        /// <summary>
-        /// Sends 10 requests, waits 10 seconds, sends another 10 requests. Expects requests to unblock immediately.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("RateLimiter")]
-        [Timeout(1000 * 10 * 2)]
-        public void DelayedRequests()
-        {
-            for (var i = 0; i < Limit; i++)
-            {
-                RateLimiter.HandleRateLimit();
-                AssertDelayed(TimeSpan.Zero);
-            }
-            var delay = TenSeconds;
-            Task.Delay(delay).Wait();
-            for (var i = 0; i < Limit; i++)
-            {
-                RateLimiter.HandleRateLimit();
-                AssertDelayed(delay);
             }
         }
 
@@ -148,28 +83,6 @@ namespace RiotSharp.Test
             foreach (var task in tasks)
             {
                 Assert.IsNull(task.Exception);
-            }
-        }
-
-        /// <summary>
-        /// Sends 10 requests, waits 20 seconds, sends another 10 requests. Expects requests to unblock immediately.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("RateLimiter")]
-        [Timeout(1000 * 10 * 3)]
-        public void AlternatingRequests()
-        {
-            for (var i = 0; i < Limit; i++)
-            {
-                RateLimiter.HandleRateLimit();
-                AssertDelayed(TimeSpan.Zero);
-            }
-            var delay = TimeSpan.FromTicks(TenSeconds.Ticks * 2);
-            Task.Delay(delay).Wait();
-            for (var i = 0; i < Limit; i++)
-            {
-                RateLimiter.HandleRateLimit();
-                AssertDelayed(delay);
             }
         }
 

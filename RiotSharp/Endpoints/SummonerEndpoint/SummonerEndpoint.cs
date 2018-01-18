@@ -25,24 +25,6 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
             _cache = cache;
         }
 
-        public Summoner GetSummonerBySummonerId(Region region, long summonerId)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
-            if (summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-            var jsonResponse = _requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region);
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-            if (summoner != null)
-            {
-                summoner.Region = region;
-            }
-            _cache.Add(string.Format(SummonerCache, region, summonerId), summoner, SummonerTtl);
-            return summoner;
-        }
-
         public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
         {
             var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
@@ -76,42 +58,6 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
                 summoner.Region = region;
             }
             _cache.Add(string.Format(SummonerCache, region, accountId), summoner, SummonerTtl);
-            return summoner;
-        }
-
-        public Summoner GetSummonerByAccountId(Region region, long accountId)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
-            if (summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-            var jsonResponse = _requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByAccountIdUrl, accountId), region);
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-            if (summoner != null)
-            {
-                summoner.Region = region;
-            }
-            _cache.Add(string.Format(SummonerCache, region, accountId), summoner, SummonerTtl);
-            return summoner;
-        }
-
-        public Summoner GetSummonerByName(Region region, string summonerName)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
-            if (summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-            var jsonResponse = _requester.CreateGetRequest(
-                string.Format(SummonerRootUrl + SummonerByNameUrl, summonerName), region);
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-            if (summoner != null)
-            {
-                summoner.Region = region;
-            }
-            _cache.Add(string.Format(SummonerCache, region, summonerName), summoner, SummonerTtl);
             return summoner;
         }
 

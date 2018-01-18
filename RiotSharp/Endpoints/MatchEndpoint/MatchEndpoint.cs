@@ -32,14 +32,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             _cache = cache;
         }
 
-        public List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode)
-        {
-            var json = _requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchIdsByTournamentCodeUrl, tournamentCode), region);
-
-            return JsonConvert.DeserializeObject<List<long>>(json);
-        }
-
         public async Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode)
         {
             var json = await _requester.CreateGetRequestAsync(MatchRootUrl +
@@ -47,20 +39,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
                 region).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<List<long>>(json);
-        }
-
-        public Match GetMatch(Region region, long matchId)
-        {
-            var matchInCache = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
-            if (matchInCache != null)
-            {
-                return matchInCache;
-            }
-            var jsonResponse = _requester.CreateGetRequest(MatchRootUrl +
-                                                  string.Format(MatchByIdUrl, matchId), region);
-            var match = JsonConvert.DeserializeObject<Match>(jsonResponse);
-            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
-            return match;
         }
 
         public async Task<Match> GetMatchAsync(Region region, long matchId)
@@ -77,17 +55,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             return match;
         }
 
-        public MatchList GetMatchList(Region region, long accountId, List<int> championIds = null, List<int> queues = null, List<Season> seasons = null,
-            DateTime? beginTime = null, DateTime? endTime = null, long? beginIndex = null, long? endIndex = null)
-        {
-            var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
-                endTime, beginIndex, endIndex);
-
-            var json = _requester.CreateGetRequest(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
-                region, addedArguments);
-            return JsonConvert.DeserializeObject<MatchList>(json);
-        }
-
         public async Task<MatchList> GetMatchListAsync(Region region, long accountId, List<int> championIds = null, List<int> queues = null, List<Season> seasons = null,
             DateTime? beginTime = null, DateTime? endTime = null, long? beginIndex = null, long? endIndex = null)
         {
@@ -97,14 +64,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             var json = await _requester.CreateGetRequestAsync(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
                 region, addedArguments).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<MatchList>(json);
-        }
-
-        public List<MatchReference> GetRecentMatches(Region region, long summonerId)
-        {
-            var json = _requester.CreateGetRequest(
-                MatchListRootUrl + string.Format(MatchListByAccountIdRecentUrl, summonerId),
-                region);
-            return JsonConvert.DeserializeObject<MatchList>(json).Matches;
         }
 
         public async Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId)

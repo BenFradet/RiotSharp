@@ -41,22 +41,6 @@ namespace RiotSharp.Http
             retryAfter = DateTime.Now + delay;
         }
 
-        /// <summary>Blocks until a request can be made without violating rate limit rules. Release must be called
-        /// after the request completes.</summary>
-        public void HandleRateLimit()
-        {
-            accessSemaphore.Wait();
-            try
-            {
-                Task.Delay(GetDelay()).Wait();
-                UpdateDelay();
-            }
-            finally
-            {
-                accessSemaphore.Release();
-            }
-        }
-
         /// <summary>Creates a task that blocks until a request can be made without violating rate limit rules. Release
         /// must be called after the task completes.</summary>
         public async Task HandleRateLimitAsync()

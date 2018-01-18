@@ -21,15 +21,6 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
             _requester = requester;
         }
 
-        public List<LeaguePosition> GetLeaguePositions(Region region, long summonerId)
-        {
-            var json = _requester.CreateGetRequest(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId),
-                region);
-
-            return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
-        }
-
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(
@@ -38,22 +29,10 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
             return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
         }
 
-        public League GetChallengerLeague(Region region, string queue)
-        {
-            var json = _requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue), region);
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
         public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue),
                 region).ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
-        public League GetMasterLeague(Region region, string queue)
-        {
-            var json = _requester.CreateGetRequest(LeagueRootUrl + string.Format(LeagueMasterUrl, queue), region);
             return JsonConvert.DeserializeObject<League>(json);
         }
 

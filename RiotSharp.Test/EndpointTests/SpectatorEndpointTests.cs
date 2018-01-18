@@ -49,30 +49,12 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public void GetCurrentGame_Test()
-        {
-            _requester.Setup(moq => moq.CreateGetRequest(It.IsAny<string>(), It.IsAny<Region>(),
-                It.IsAny<List<string>>(), It.IsAny<bool>())).Returns(JsonConvert.SerializeObject(_currentGameResponse));
-            var currentGame = _riotApi.Spectator.GetCurrentGame(Region.Europe, 1);
-            Assert.AreEqual(1, currentGame.GameId);
-        }
-
-        [TestMethod]
         public async Task GetCurrentGameAsync_Test()
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(JsonConvert.SerializeObject(_currentGameResponse));
             var currentGame = await _riotApi.Spectator.GetCurrentGameAsync(Region.Europe, 1);
             Assert.AreEqual(1, currentGame.GameId);
-        }
-
-        [TestMethod]
-        public void GetFeaturedGames_Test()
-        {
-            _requester.Setup(moq => moq.CreateGetRequest(It.IsAny<string>(), It.IsAny<Region>(),
-                It.IsAny<List<string>>(), It.IsAny<bool>())).Returns(JsonConvert.SerializeObject(_featuredGamesResponse));
-            var featuredGames = _riotApi.Spectator.GetFeaturedGames(Region.Europe);
-            Assert.AreEqual(1, featuredGames.GameList.First().GameId);
         }
 
         [TestMethod]

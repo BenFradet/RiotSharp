@@ -19,23 +19,11 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
             _requester = requester;
         }
 
-        public CurrentGame GetCurrentGame(Region region, long summonerId)
-        {
-            var json = _requester.CreateGetRequest(SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region);
-            return JsonConvert.DeserializeObject<CurrentGame>(json);
-        }
-
         public async Task<CurrentGame> GetCurrentGameAsync(Region region, long summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(
                 SpectatorRootUrl + string.Format(CurrentGameUrl, summonerId), region).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<CurrentGame>(json);
-        }
-
-        public FeaturedGames GetFeaturedGames(Region region)
-        {
-            var json = _requester.CreateGetRequest(SpectatorRootUrl + FeaturedGamesUrl, region);
-            return JsonConvert.DeserializeObject<FeaturedGames>(json);
         }
 
         public async Task<FeaturedGames> GetFeaturedGamesAsync(Region region)
