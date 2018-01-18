@@ -99,12 +99,12 @@ namespace RiotSharp
         {
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             var requester = Requesters.RiotApiRequester;
-            Summoner = new SummonerEndpoint(requester,_cache);
+            Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);
             Masteries = new MasteriesEndpoint(requester);
             Runes = new RunesEndpoint(requester);
             League = new LeagueEndpoint(requester);
-            Match = new MatchEndpoint(requester,_cache);
+            Match = new MatchEndpoint(requester, _cache);
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
         }
@@ -124,7 +124,7 @@ namespace RiotSharp
            Masteries = new MasteriesEndpoint(rateLimitedRequester);
            Runes = new RunesEndpoint(rateLimitedRequester);
            League = new LeagueEndpoint(rateLimitedRequester);
-           Match = new MatchEndpoint(rateLimitedRequester,_cache);
+           Match = new MatchEndpoint(rateLimitedRequester, _cache);
            Spectator = new SpectatorEndpoint(rateLimitedRequester);
            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             
