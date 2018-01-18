@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
 
 namespace RiotSharp.Test
 {
@@ -13,7 +12,7 @@ namespace RiotSharp.Test
         [ExpectedException(typeof(RiotSharpException))]
         public void GetSummoner_ShouldThrowRiotSharpException_Test()
         {
-            FaultyApi.GetSummonerBySummonerId(CommonTestBase.Summoner1And2Region, CommonTestBase.Summoner1Id);
+            FaultyApi.Summoner.GetSummonerBySummonerId(CommonTestBase.Summoner1And2Region, CommonTestBase.Summoner1Id);
         }
 
         [TestMethod]

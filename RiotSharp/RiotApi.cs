@@ -3,14 +3,12 @@ using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Endpoints.LeagueEndpoint;
 using RiotSharp.Endpoints.MasteriesEndpoint;
 using RiotSharp.Endpoints.MatchEndpoint;
-using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
@@ -24,12 +22,6 @@ namespace RiotSharp
     public class RiotApi : IRiotApi
     {
         #region Private Fields
-
-        private const string MatchCache = "match-{0}_{1}";
-        private const string SummonerCache = "summoner-{0}_{1}";
-
-        private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
-        private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
         private static RiotApi _instance;
 
@@ -107,12 +99,12 @@ namespace RiotSharp
         {
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             var requester = Requesters.RiotApiRequester;
-            Summoner = new SummonerEndpoint(requester);
+            Summoner = new SummonerEndpoint(requester,_cache);
             Champion = new ChampionEndpoint(requester);
             Masteries = new MasteriesEndpoint(requester);
             Runes = new RunesEndpoint(requester);
             League = new LeagueEndpoint(requester);
-            Match = new MatchEndpoint(requester);
+            Match = new MatchEndpoint(requester,_cache);
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
         }
@@ -127,159 +119,15 @@ namespace RiotSharp
             {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
             }
-           Summoner = new SummonerEndpoint(rateLimitedRequester);
+           Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
            Champion = new ChampionEndpoint(rateLimitedRequester);
            Masteries = new MasteriesEndpoint(rateLimitedRequester);
            Runes = new RunesEndpoint(rateLimitedRequester);
            League = new LeagueEndpoint(rateLimitedRequester);
-           Match = new MatchEndpoint(rateLimitedRequester);
+           Match = new MatchEndpoint(rateLimitedRequester,_cache);
            Spectator = new SpectatorEndpoint(rateLimitedRequester);
            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             
         }
-
-#pragma warning disable CS1591
-
-        #region Summoner
-        public Summoner GetSummonerByAccountId(Region region, long accountId)
-        {
-            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
-            if (wrapper == null)
-            {
-                var obj = Summoner.GetSummonerByAccountId(region, accountId);
-                _cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
-                return obj;
-            }
-            return wrapper;
-        }
-
-        public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
-        {
-            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
-            if (wrapper == null)
-            {
-                var obj = await Summoner.GetSummonerByAccountIdAsync(region, accountId);
-                _cache.Add(string.Format(SummonerCache, region, accountId), obj, SummonerTtl);
-                return obj;
-            }
-            return wrapper;
-        }
-
-        public Summoner GetSummonerBySummonerId(Region region, long summonerId)
-        {
-            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
-            if (wrapper == null)
-            {
-                var obj = Summoner.GetSummonerBySummonerId(region, summonerId);
-                _cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
-                return obj;
-            }
-            return wrapper;
-        }
-
-        public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
-        {
-            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
-            if (wrapper == null)
-            {
-                var obj = await Summoner.GetSummonerBySummonerIdAsync(region, summonerId);
-                _cache.Add(string.Format(SummonerCache, region, summonerId), obj, SummonerTtl);
-                return obj;
-            }
-            return wrapper;
-        }
-
-        public Summoner GetSummonerByName(Region region, string summonerName)
-        {
-            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
-            if (wrapper == null)
-            {
-                var obj = Summoner.GetSummonerByName(region, summonerName);
-                _cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
-                return obj;
-            }
-            return wrapper;
-        }
-
-        public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
-        {
-            var wrapper = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));
-            if (wrapper == null)
-            {
-                var obj = await Summoner.GetSummonerByNameAsync(region, summonerName);
-                _cache.Add(string.Format(SummonerCache, region, summonerName), obj, SummonerTtl);
-                return obj;
-            }
-            return wrapper;
-        }
-        #endregion
-
-        #region Match
-        public List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode)
-        {
-            return Match.GetMatchIdsByTournamentCode(region, tournamentCode);
-        }
-
-        public async Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode)
-        {
-            return await Match.GetMatchIdsByTournamentCodeAsync(region, tournamentCode);
-        }
-
-        public Match GetMatch(Region region, long matchId)
-        {
-            var wrapper = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
-            if (wrapper != null) return wrapper;
-            var match = Match.GetMatch(region, matchId);
-            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
-            return match;
-        }
-
-        public async Task<Match> GetMatchAsync(Region region, long matchId)
-        {
-            var wrapper = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
-            if (wrapper != null) return wrapper;
-            var match = await Match.GetMatchAsync(region, matchId);
-            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
-            return match;
-        }
-
-        public MatchList GetMatchList(Region region, long accountId,
-            List<int> championIds = null,
-            List<int> queues = null,
-            List<Season> seasons = null,
-            DateTime? beginTime = null,
-            DateTime? endTime = null,
-            long? beginIndex = null,
-            long? endIndex = null)
-        {
-            return Match.GetMatchList(region, accountId, championIds, queues, seasons, beginTime, endTime, beginIndex,
-                endIndex);
-        }
-
-        public async Task<MatchList> GetMatchListAsync(Region region, long accountId,
-            List<int> championIds = null,
-            List<int> queues = null,
-            List<Season> seasons = null,
-            DateTime? beginTime = null,
-            DateTime? endTime = null,
-            long? beginIndex = null,
-            long? endIndex = null)
-        {
-            return await Match.GetMatchListAsync(region, accountId, championIds, queues, seasons, beginTime, endTime, beginIndex,
-                endIndex);
-        }
-
-        public List<MatchReference> GetRecentMatches(Region region, long summonerId)
-        {
-            return Match.GetRecentMatches(region, summonerId);
-        }
-
-        public async Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId)
-        {
-            return await Match.GetRecentMatchesAsync(region, summonerId);
-        }
-        #endregion
-
-#pragma warning restore
     }
 }

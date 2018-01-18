@@ -21,7 +21,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.GetSummonerBySummonerId(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerBySummonerId(Summoner1And2Region, 
                     Summoner1Id);
 
                 Assert.AreEqual(Summoner1Name, summoner.Name);
@@ -34,7 +34,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.GetSummonerBySummonerIdAsync(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerBySummonerIdAsync(Summoner1And2Region, 
                     Summoner1Id);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -47,7 +47,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.GetSummonerByAccountId(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerByAccountId(Summoner1And2Region, 
                     Summoner1AccountId);
 
                 Assert.AreEqual(Summoner1Name, summoner.Name);
@@ -60,7 +60,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.GetSummonerByAccountIdAsync(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerByAccountIdAsync(Summoner1And2Region, 
                     Summoner1AccountId);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -73,7 +73,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.GetSummonerByName(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerByName(Summoner1And2Region, 
                     Summoner1Name);
 
                 Assert.AreEqual(Summoner1Id, summoner.Id);
@@ -86,7 +86,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.GetSummonerByNameAsync(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerByNameAsync(Summoner1And2Region, 
                     Summoner1Name);
 
                 Assert.AreEqual(Summoner1Id, summoner.Result.Id);
@@ -375,7 +375,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var match = Api.GetMatch(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId);
+                var match = Api.Match.GetMatch(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId);
 
                 Assert.AreEqual(RiotApiTestBase.GameId, match.GameId);
                 Assert.IsNotNull(match.ParticipantIdentities);
@@ -390,7 +390,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var match = Api.GetMatchAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId).Result;
+                var match = Api.Match.GetMatchAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId).Result;
 
                 Assert.AreEqual(RiotApiTestBase.GameId, match.GameId);
                 Assert.IsNotNull(match.ParticipantIdentities);
@@ -405,7 +405,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchList(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Summoner1AccountId).Matches;
+                var matches = Api.Match.GetMatchList(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Summoner1AccountId).Matches;
 
                 Assert.IsTrue(matches.Any());
             });
@@ -418,7 +418,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchList(RiotApiTestBase.SummonersRegion, 
+                var matches = Api.Match.GetMatchList(RiotApiTestBase.SummonersRegion, 
                     RiotApiTestBase.Summoner1AccountId, new List<int> { RiotApiTestBase.ChampionId }).Matches;
 
                 Assert.IsTrue(matches.Any());
@@ -437,7 +437,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchList(RiotApiTestBase.SummonersRegion, 
+                var matches = Api.Match.GetMatchList(RiotApiTestBase.SummonersRegion, 
                     RiotApiTestBase.Summoner1AccountId, null, new List<int> { RiotApiTestBase.QueueId }).Matches;
 
                 foreach (var match in matches)
@@ -454,7 +454,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchList(RiotApiTestBase.SummonersRegion, 
+                var matches = Api.Match.GetMatchList(RiotApiTestBase.SummonersRegion, 
                     RiotApiTestBase.Summoner1AccountId, null, null, new List<Season> { RiotApiTestBase.Season }).Matches;
 
                 foreach (var match in matches)
@@ -471,7 +471,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchList(RiotApiTestBase.SummonersRegion,
+                var matches = Api.Match.GetMatchList(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId, null, null, null, BeginTime, EndTime).Matches;
 
                 Assert.IsTrue(matches.Any());
@@ -493,7 +493,7 @@ namespace RiotSharp.Test
                 const int beginIndex = 0;
                 const int endIndex = 32;
                 
-                var matches = Api.GetMatchList(RiotApiTestBase.SummonersRegion,
+                var matches = Api.Match.GetMatchList(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId, null, null, null, null, null, beginIndex, endIndex).Matches;
 
                 Assert.IsTrue(matches.Count <= endIndex - beginIndex);
@@ -507,7 +507,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchListAsync(RiotApiTestBase.SummonersRegion, 
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion, 
                     RiotApiTestBase.Summoner1AccountId).Result.Matches;
 
                 Assert.IsTrue(matches.Any());
@@ -521,7 +521,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId, new List<int> { RiotApiTestBase.ChampionId }).Result.Matches;
 
                 foreach (var match in matches)
@@ -539,7 +539,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId, null, 
                     new List<int> { RiotApiTestBase.QueueId }).Result.Matches;
 
@@ -557,7 +557,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchListAsync(RiotApiTestBase.SummonersRegion, 
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion, 
                     RiotApiTestBase.Summoner1AccountId, null, null, 
                     new List<Season> { RiotApiTestBase.Season }).Result.Matches;
 
@@ -577,7 +577,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId, null, null, null, BeginTime, EndTime).Result.Matches;
 
                 foreach (var match in matches)
@@ -598,7 +598,7 @@ namespace RiotSharp.Test
                 const int beginIndex = 0;
                 const int endIndex = 32;
 
-                var matches = Api.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId, null, null, null, null, null, beginIndex, endIndex).Result.Matches;
 
                 Assert.IsTrue(matches.Count <= endIndex - beginIndex);
@@ -613,7 +613,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var games = Api.GetRecentMatches(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Summoner1AccountId);
+                var games = Api.Match.GetRecentMatches(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Summoner1AccountId);
 
                 Assert.IsTrue(games.Count > 0);
             });
@@ -625,7 +625,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var games = Api.GetRecentMatchesAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Summoner1AccountId);
+                var games = Api.Match.GetRecentMatchesAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Summoner1AccountId);
 
                 Assert.IsTrue(games.Result.Any());
             });

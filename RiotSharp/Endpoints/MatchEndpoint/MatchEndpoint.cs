@@ -20,12 +20,16 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         private const string MatchListByAccountIdUrl = "/by-account/{0}";
         private const string MatchListByAccountIdRecentUrl = "/by-account/{0}/recent";
         private const string TimelineByMatchIdUrl = "/by-match/{0}";
+        private const string MatchCache = "match-{0}_{1}";
+        private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
         private readonly IRateLimitedRequester _requester;
+        private ICache _cache;
 
-        public MatchEndpoint(IRateLimitedRequester requester)
+        public MatchEndpoint(IRateLimitedRequester requester, ICache cache)
         {
             _requester = requester;
+            _cache = cache;
         }
 
         public List<long> GetMatchIdsByTournamentCode(Region region, string tournamentCode)
@@ -47,17 +51,31 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 
         public Match GetMatch(Region region, long matchId)
         {
-            var json = _requester.CreateGetRequest(MatchRootUrl +
+            var matchInCache = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
+            if (matchInCache != null)
+            {
+                return matchInCache;
+            }
+            var jsonResponse = _requester.CreateGetRequest(MatchRootUrl +
                                                   string.Format(MatchByIdUrl, matchId), region);
-            return JsonConvert.DeserializeObject<Match>(json);
+            var match = JsonConvert.DeserializeObject<Match>(jsonResponse);
+            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
+            return match;
         }
 
         public async Task<Match> GetMatchAsync(Region region, long matchId)
         {
+            var matchInCache = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
+            if (matchInCache != null)
+            {
+                return matchInCache;
+            }
             var json = _requester.CreateGetRequest(MatchRootUrl +
                                                   string.Format(MatchByIdUrl, matchId), region);
-            return await Task.Factory.StartNew(() =>
+            var match = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<Match>(json));
+            _cache.Add(string.Format(MatchCache, region, matchId), match, MatchTtl);
+            return match;
         }
 
         public MatchList GetMatchList(Region region, long accountId, List<int> championIds = null, List<int> queues = null, List<Season> seasons = null,
