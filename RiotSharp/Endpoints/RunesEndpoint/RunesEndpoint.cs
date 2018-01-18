@@ -1,0 +1,38 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using RiotSharp.Endpoints.Interfaces;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Misc;
+
+namespace RiotSharp.Endpoints.RunesEndpoint
+{
+    class RunesEndpoint : IRunesEndpoint
+    {
+        private const string PlatformRootUrl = "/lol/platform/v3";
+        private const string RunesUrl = "/runes/by-summoner/{0}";
+
+        private readonly IRateLimitedRequester _requester;
+
+        public RunesEndpoint(IRateLimitedRequester requester)
+        {
+            _requester = requester;
+        }
+
+        public List<RunePage> GetRunePages(Region region, long summonerId)
+        {
+            var json = _requester.CreateGetRequest(PlatformRootUrl + string.Format(RunesUrl, summonerId), region);
+
+            var runes = JsonConvert.DeserializeObject<RunePages>(json);
+            return runes.Pages;
+        }
+
+        public async Task<List<RunePage>> GetRunePagesAsync(Region region, long summonerId)
+        {
+            var json = await _requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(RunesUrl, summonerId),
+                region);
+
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RunePages>(json).Pages);
+        }
+    }
+}

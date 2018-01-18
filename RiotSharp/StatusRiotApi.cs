@@ -2,10 +2,10 @@
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
-using RiotSharp.StatusEndpoint;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 using System;
+using RiotSharp.Endpoints.StatusEndpoint;
 
 namespace RiotSharp
 {

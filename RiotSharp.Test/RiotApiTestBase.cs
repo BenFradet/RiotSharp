@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RiotSharp.MatchEndpoint.Enums;
+using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Test
@@ -21,7 +21,7 @@ namespace RiotSharp.Test
         public static string Queue = "RANKED_SOLO_5x5";
         // Normal 5v5 Draft Pick games
         public static int QueueId = 14;
-        public static RiotSharp.MatchEndpoint.Enums.Season Season = 
-            (RiotSharp.MatchEndpoint.Enums.Season)Enum.Parse(typeof(RiotSharp.MatchEndpoint.Enums.Season), "Season2015");
+        public static Season Season = 
+            (Season)Enum.Parse(typeof(Season), "Season2015");
     }
 }

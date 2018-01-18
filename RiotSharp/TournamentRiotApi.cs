@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using RiotSharp.MatchEndpoint;
-using RiotSharp.TournamentEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.Endpoints.MatchEndpoint;
+using RiotSharp.Endpoints.TournamentEndpoint;
+using RiotSharp.Endpoints.TournamentEndpoint.Enums;
 using RiotSharp.Misc;
-using RiotSharp.TournamentEndpoint.Enums;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Http;
 using RiotSharp.Interfaces;

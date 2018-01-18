@@ -1,7 +1,7 @@
 ﻿using RiotSharp.Misc;
-using RiotSharp.TournamentEndpoint.Enums;
 using System;
 using System.Linq;
+using RiotSharp.Endpoints.TournamentEndpoint.Enums;
 
 namespace RiotSharp.Test
 {
