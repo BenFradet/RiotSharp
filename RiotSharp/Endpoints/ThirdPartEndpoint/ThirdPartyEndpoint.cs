@@ -19,15 +19,17 @@ namespace RiotSharp.Endpoints.ThirdPartEndpoint
 
         public string GetThirdPartyCodeBySummonerId(Region region, long summonerId)
         {
-            return _requester.CreateGetRequest(ThirdPartyRootUrl + 
-                string.Format(ThirdPartyBySummonerUrl, summonerId),
-                region);
+            var response =  _requester
+                .CreateGetRequest(ThirdPartyRootUrl + string.Format(ThirdPartyBySummonerUrl, summonerId), region);
+            return response.Substring(1, response.Length - 2);
         }
 
         public async Task<string> GetThirdPartyCodeBySummonerIdAsync(Region region, long summonerId)
         {
-            return await _requester.CreateGetRequestAsync(
-                string.Format(ThirdPartyRootUrl + ThirdPartyBySummonerUrl, summonerId),region).ConfigureAwait(false);
+            var response = await _requester
+                .CreateGetRequestAsync(string.Format(ThirdPartyRootUrl + ThirdPartyBySummonerUrl, summonerId), region)
+                .ConfigureAwait(false);
+            return response.Substring(1, response.Length - 2);
         }
     }
 }

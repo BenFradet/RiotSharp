@@ -13,14 +13,13 @@ namespace RiotSharp.Test.EndpointTests
     public class ThirdPartyEndpointTests
     {
         private Mock<IRateLimitedRequester> _requester;
-        private string _response;
+        private const string response = "someReponse";
         private IRiotApi _riotApi;
 
         [TestInitialize]
         public void Initialize()
         {
             _requester = new Mock<IRateLimitedRequester>();
-            _response = "someReponse";
             _riotApi = new RiotApi(_requester.Object);
         }
 
@@ -28,7 +27,7 @@ namespace RiotSharp.Test.EndpointTests
         public void GetThirdPartyCode_Test()
         {
             _requester.Setup(moq => moq.CreateGetRequest(It.IsAny<string>(), It.IsAny<Region>(),
-                It.IsAny<List<string>>(), It.IsAny<bool>())).Returns(_response);
+                It.IsAny<List<string>>(), It.IsAny<bool>())).Returns(response);
             var code = _riotApi.ThirdParty.GetThirdPartyCodeBySummonerId(Region.na,1);
             Assert.AreEqual("someReponse", code);
         }
@@ -37,7 +36,7 @@ namespace RiotSharp.Test.EndpointTests
         public async Task GetThirdPartyCodeAsync_Test()
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
-                It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(_response);
+                It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(response);
             var code = await _riotApi.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Region.na, 1);
             Assert.AreEqual("someReponse", code);
         }

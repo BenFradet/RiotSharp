@@ -389,7 +389,7 @@ namespace RiotSharp.Test
         }
         #endregion
 
-        #region Thrid Party Tests
+        #region Third Party Tests
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetThirdPartyCode_Test()

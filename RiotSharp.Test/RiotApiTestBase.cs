@@ -23,6 +23,6 @@ namespace RiotSharp.Test
         public static int QueueId = 14;
         public static Season Season = 
             (Season)Enum.Parse(typeof(Season), "Season2015");
-        public static readonly string ThirdPartyCode = "\"AD irelia (AS)\"";
+        public static readonly string ThirdPartyCode = "AD irelia (AS)";
     }
 }
