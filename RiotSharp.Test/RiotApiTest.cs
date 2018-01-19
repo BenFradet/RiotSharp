@@ -390,7 +390,6 @@ namespace RiotSharp.Test
         #endregion
 
         #region Thrid Party Tests
-
         [TestMethod]
         [TestCategory("RiotApi")]
         public void GetThirdPartyCode_Test()
@@ -416,7 +415,6 @@ namespace RiotSharp.Test
                 Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
             });
         }
-
         #endregion
     }
 }

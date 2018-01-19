@@ -17,7 +17,6 @@ namespace RiotSharp.Endpoints.ThirdPartEndpoint
             _requester = requester;
         }
 
-
         public string GetThirdPartyCodeBySummonerId(Region region, long summonerId)
         {
             return _requester.CreateGetRequest(ThirdPartyRootUrl + 
@@ -28,7 +27,7 @@ namespace RiotSharp.Endpoints.ThirdPartEndpoint
         public async Task<string> GetThirdPartyCodeBySummonerIdAsync(Region region, long summonerId)
         {
             return await _requester.CreateGetRequestAsync(
-                string.Format(ThirdPartyRootUrl + ThirdPartyBySummonerUrl, summonerId),region);
+                string.Format(ThirdPartyRootUrl + ThirdPartyBySummonerUrl, summonerId),region).ConfigureAwait(false);
         }
     }
 }
