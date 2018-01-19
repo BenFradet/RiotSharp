@@ -46,11 +46,11 @@ namespace RiotSharp.Http
 
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
             
-            await GetRateLimiter(region).HandleRateLimitAsync();
+            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
 
-            using (var response = await GetAsync(request))
+            using (var response = await GetAsync(request).ConfigureAwait(false))
             {
-                return await GetResponseContentAsync(response);
+                return await GetResponseContentAsync(response).ConfigureAwait(false);
             }
         }
 
@@ -78,11 +78,11 @@ namespace RiotSharp.Http
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            await GetRateLimiter(region).HandleRateLimitAsync();
+            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
 
-            using (var response = await PostAsync(request))
+            using (var response = await PostAsync(request).ConfigureAwait(false))
             {
-                return await GetResponseContentAsync(response);
+                return await GetResponseContentAsync(response).ConfigureAwait(false);
             }
         }
 
@@ -110,9 +110,9 @@ namespace RiotSharp.Http
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            await GetRateLimiter(region).HandleRateLimitAsync();
+            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
 
-            using (var response = await PutAsync(request))
+            using (var response = await PutAsync(request).ConfigureAwait(false))
             {
                 return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
             }                

@@ -180,9 +180,8 @@ namespace RiotSharp
                     championData == ChampionData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, championData.ToString().ToLower())
-                });
-            var champs = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ChampionListStatic>(json));
+                }).ConfigureAwait(false);
+            var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
             wrapper = new ChampionListStaticWrapper(champs, language, championData);
             cache.Add(ChampionsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ChampionListStatic;
@@ -245,9 +244,8 @@ namespace RiotSharp
                     championData == ChampionData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, championData.ToString().ToLower())
-                });
-            var champ = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ChampionStatic>(json));
+                }).ConfigureAwait(false);
+            var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
             cache.Add(ChampionByIdCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
                 SlidingExpirationTime);
             return champ;
@@ -291,9 +289,8 @@ namespace RiotSharp
                     itemData == ItemData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, itemData.ToString().ToLower())
-                });
-            var items = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ItemListStatic>(json));
+                }).ConfigureAwait(false);
+            var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
             wrapper = new ItemListStaticWrapper(items, language, itemData);
             cache.Add(ItemsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ItemListStatic;
@@ -362,9 +359,8 @@ namespace RiotSharp
                     itemData == ItemData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, itemData.ToString().ToLower())
-                });
-            var item = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<ItemStatic>(json));
+                }).ConfigureAwait(false);
+            var item = JsonConvert.DeserializeObject<ItemStatic>(json);
             cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), SlidingExpirationTime);
             return item;
         }
@@ -406,9 +402,8 @@ namespace RiotSharp
                 new List<string> {
                     $"locale={language}",
                     $"version={version}"
-                });
-            var languageStrings = await Task.Factory.StartNew(() 
-                => JsonConvert.DeserializeObject<LanguageStringsStatic>(json));
+                }).ConfigureAwait(false);
+            var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
 
             cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
                 language, version), SlidingExpirationTime);
@@ -442,9 +437,8 @@ namespace RiotSharp
                 return wrapper;
             }
 
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + LanguagesUrl, region);
-            var languages = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<List<Language>>(json));
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + LanguagesUrl, region).ConfigureAwait(false);
+            var languages = JsonConvert.DeserializeObject<List<Language>>(json);
 
             cache.Add(LanguagesCacheKey, languages, SlidingExpirationTime);
 
@@ -486,9 +480,8 @@ namespace RiotSharp
                 new List<string> {
                     $"locale={language}",
                     $"version={version}"
-                });
-            var maps = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MapsStatic>(json));
+                }).ConfigureAwait(false);
+            var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
 
             cache.Add(MapsCacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);
 
@@ -533,9 +526,8 @@ namespace RiotSharp
                     masteryData == MasteryData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, masteryData.ToString().ToLower())
-                });
-            var masteries = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MasteryListStatic>(json));
+                }).ConfigureAwait(false);
+            var masteries = JsonConvert.DeserializeObject<MasteryListStatic>(json);
             wrapper = new MasteryListStaticWrapper(masteries, language, masteryData);
             cache.Add(MasteriesCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.MasteryListStatic;
@@ -602,9 +594,8 @@ namespace RiotSharp
                     $"locale={language}",
                     masteryData == MasteryData.Basic ?
                         string.Empty : string.Format(TagsParameter, masteryData.ToString().ToLower())
-                });
-            var mastery = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<MasteryStatic>(json));
+                }).ConfigureAwait(false);
+            var mastery = JsonConvert.DeserializeObject<MasteryStatic>(json);
             cache.Add(MasteryByIdCacheKey + masteryId, new MasteryStaticWrapper(mastery, language, masteryData),
                 SlidingExpirationTime);
             return mastery;
@@ -639,7 +630,7 @@ namespace RiotSharp
                 new List<string>
                 {
                     $"locale={language}",
-                });
+                }).ConfigureAwait(false);
             var profileIcons = JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
             wrapper = new ProfileIconsStaticWrapper(profileIcons, language);
             cache.Add(ProfileIconsCacheKey, wrapper, SlidingExpirationTime);
@@ -672,8 +663,8 @@ namespace RiotSharp
                 return wrapper.RealmStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + RealmsUrl, region);
-            var realm = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RealmStatic>(json));
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + RealmsUrl, region).ConfigureAwait(false);
+            var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
 
             cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);
 
@@ -718,9 +709,8 @@ namespace RiotSharp
                     runeData == RuneData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, runeData.ToString().ToLower())
-                });
-            var runes = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RuneListStatic>(json));
+                }).ConfigureAwait(false);
+            var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
             wrapper = new RuneListStaticWrapper(runes, language, runeData);
             cache.Add(RunesCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.RuneListStatic;
@@ -789,9 +779,8 @@ namespace RiotSharp
                     runeData == RuneData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, runeData.ToString().ToLower())
-                });
-            var rune = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<RuneStatic>(json));
+                }).ConfigureAwait(false);
+            var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
             cache.Add(RuneByIdCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData), SlidingExpirationTime);
             return rune;
         }
@@ -834,9 +823,8 @@ namespace RiotSharp
                     summonerSpellData == SummonerSpellData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
-                });
-            var spells = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<SummonerSpellListStatic>(json));
+                }).ConfigureAwait(false);
+            var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
             wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
             cache.Add(SummonerSpellsCacheKey, wrapper, SlidingExpirationTime);
             return wrapper.SummonerSpellListStatic;
@@ -909,9 +897,8 @@ namespace RiotSharp
                     summonerSpellData == SummonerSpellData.Basic ?
                         string.Empty :
                         string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
-                });
-            var spell = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<SummonerSpellStatic>(json));
+                }).ConfigureAwait(false);
+            var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json);
             cache.Add(SummonerSpellByIdCacheKey + summonerSpellId,
                 new SummonerSpellStaticWrapper(spell, language, summonerSpellData), SlidingExpirationTime);
             return spell;
@@ -944,8 +931,8 @@ namespace RiotSharp
             }
 
             var json =
-                await requester.CreateGetRequestAsync(StaticDataRootUrl + VersionsUrl, region);
-            var version = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<string>>(json));
+                await requester.CreateGetRequestAsync(StaticDataRootUrl + VersionsUrl, region).ConfigureAwait(false);
+            var version = JsonConvert.DeserializeObject<List<string>>(json);
 
             cache.Add(VersionsCacheKey, version, SlidingExpirationTime);
 

@@ -61,9 +61,9 @@ namespace RiotSharp
 
         public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
-            var json = await requester.CreateGetRequestAsync(StatusRootUrl, region, null, true);
+            var json = await requester.CreateGetRequestAsync(StatusRootUrl, region, null, true).ConfigureAwait(false);
 
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ShardStatus>(json));
+            return JsonConvert.DeserializeObject<ShardStatus>(json);
         }
 
         #endregion

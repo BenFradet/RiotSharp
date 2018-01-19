@@ -33,8 +33,8 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
         {
             var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
 
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ChampionMastery>(json));
+            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ChampionMastery>(json);
         }
 
         public List<ChampionMastery> GetChampionMasteries(Region region, long summonerId)
@@ -49,8 +49,8 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
         {
             var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
 
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region);
-            return (await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<ChampionMastery>>(json)));
+            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
         }
 
         public int GetTotalChampionMasteryScore(Region region, long summonerId)
@@ -65,8 +65,8 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
         {
             var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
 
-            var json = _requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<int>(json));
+            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<int>(json);
         }
     }
 }

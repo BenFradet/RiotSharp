@@ -33,8 +33,8 @@ namespace RiotSharp.Http
         {
             rootDomain = GetPlatformDomain(region);
             var request = PrepareRequest(relativeUrl, addedArguments, useHttps, HttpMethod.Get);
-            var response = await GetAsync(request);
-            return await GetResponseContentAsync(response);
+            var response = await GetAsync(request).ConfigureAwait(false);
+            return await GetResponseContentAsync(response).ConfigureAwait(false);
         }
         #endregion
     }

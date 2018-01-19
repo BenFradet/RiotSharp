@@ -61,10 +61,10 @@ namespace RiotSharp.Http
         /// must be called after the task completes.</summary>
         public async Task HandleRateLimitAsync()
         {
-            await accessSemaphore.WaitAsync();
+            await accessSemaphore.WaitAsync().ConfigureAwait(false);
             try
             {
-                await Task.Delay(GetDelay());
+                await Task.Delay(GetDelay()).ConfigureAwait(false);
                 UpdateDelay();
             }
             finally
