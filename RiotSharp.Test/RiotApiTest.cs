@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Endpoints.MatchEndpoint.Enums;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Test
 {
@@ -386,6 +387,36 @@ namespace RiotSharp.Test
                 Assert.IsTrue(totalChampionMasteryScore > -1);
             });
         }
+        #endregion
+
+        #region Thrid Party Tests
+
+        [TestMethod]
+        [TestCategory("RiotApi")]
+        public void GetThirdPartyCode_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var code = Api.ThirdParty.GetThirdPartyCodeBySummonerId(Summoner1And2Region,
+                    Summoner1Id);
+
+                Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetThirdPartyCodeAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner1And2Region,
+                    Summoner1Id);
+
+                Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
+            });
+        }
+
         #endregion
     }
 }
