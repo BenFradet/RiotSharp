@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using RiotSharp.Endpoints.Interfaces.Static;
+using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -50,9 +53,11 @@ namespace RiotSharp.AspNetCore
                 else
                     serviceCollection.AddSingleton<ICache, PassThroughCache>();
 
-                serviceCollection.AddSingleton<IStaticRiotApi>(serviceProvider => 
-                    new StaticRiotApi(staticApiRequester, serviceProvider.GetRequiredService<ICache>(), 
-                        riotSharpOptions.RiotApi.SlidingExpirationTime)); 
+                serviceCollection.AddSingleton<IStaticEndpointProvider>(serviceProvider =>
+                    new StaticEndpointProvider(staticApiRequester, serviceProvider.GetRequiredService<ICache>()));
+
+                serviceCollection.AddSingleton<IStaticDataEndpoint>(serviceProvider => 
+                    new StaticDataEndpoint(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
             }
 
             if (riotSharpOptions.TournamentApi.ApiKey != null)

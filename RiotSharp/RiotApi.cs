@@ -14,6 +14,8 @@ using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Endpoints.ThirdPartEndpoint;
+using RiotSharp.Endpoints.Interfaces.Static;
+using RiotSharp.Endpoints.StaticDataEndpoint;
 
 namespace RiotSharp
 {
@@ -45,6 +47,8 @@ namespace RiotSharp
         public IChampionMasteryEndpoint ChampionMastery { get; }
 
         public IThirdPartEndpoint ThirdParty { get; }
+
+        public IStaticDataEndpoint Static { get; }
 
         #endregion
 
@@ -111,6 +115,7 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
+            Static = StaticDataEndpoint.GetInstance(apiKey, true);
         }
 
         /// <summary>
@@ -132,6 +137,7 @@ namespace RiotSharp
            Spectator = new SpectatorEndpoint(rateLimitedRequester);
            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
            ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+           Static = new StaticDataEndpoint(rateLimitedRequester, _cache);
         }
     }
 }
