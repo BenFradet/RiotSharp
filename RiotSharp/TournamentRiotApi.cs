@@ -119,19 +119,6 @@ namespace RiotSharp
         }
 
         #region Public Methods
-      
-        public int CreateProvider(Region region, string url)
-        {
-            var body = new Dictionary<string, object>
-            {
-                { "url", url },
-                { "region", region.ToString().ToUpper() }
-            };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateProviderUrl, Region.Americas,
-                JsonConvert.SerializeObject(body));
-
-            return int.Parse(json);
-        }
 
         public async Task<int> CreateProviderAsync(Region region, string url)
         {
@@ -144,19 +131,6 @@ namespace RiotSharp
                 await
                     requester.CreatePostRequestAsync(tournamentRootUrl + CreateProviderUrl, Region.Americas,
                         JsonConvert.SerializeObject(body)).ConfigureAwait(false);
-
-            return int.Parse(json);
-        }  
-
-        public int CreateTournament(int providerId, string name)
-        {
-            var body = new Dictionary<string, object>
-            {
-                { "name", name },
-                { "providerId", providerId }
-            };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateTournamentUrl, Region.Americas,
-                JsonConvert.SerializeObject(body));
 
             return int.Parse(json);
         }
@@ -175,38 +149,6 @@ namespace RiotSharp
             return int.Parse(json);
         }
 
-        public List<string> CreateTournamentCodes(int tournamentId, int count, int teamSize, TournamentSpectatorType spectatorType, 
-            TournamentPickType pickType, TournamentMapType mapType, List<long> allowedParticipantIds = null,
-            string metadata = "")
-        {
-            ValidateTeamSize(teamSize);
-            ValidateTournamentCodeCount(count);
-            var body = new Dictionary<string, object>
-            {
-                { "teamSize", teamSize },
-                { "allowedSummonerIds", allowedParticipantIds },
-                { "spectatorType", spectatorType },
-                { "pickType", pickType },
-                { "mapType", mapType },
-                { "metadata", metadata }
-            };
-            var json = requester.CreatePostRequest(tournamentRootUrl + CreateCodesUrl, Region.Americas,
-                JsonConvert.SerializeObject(body, null, 
-                    new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore
-                    }),
-                    new List<string>
-                    {
-                        $"tournamentId={tournamentId}",
-                        $"count={count}"
-                    });
-
-            var tournamentCodes = JsonConvert.DeserializeObject<List<string>>(json);
-
-            return tournamentCodes;
-        }
-   
         public async Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int count, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, 
             TournamentMapType mapType, List<long> allowedParticipantIds = null,  string metadata = null)
@@ -235,15 +177,6 @@ namespace RiotSharp
                     }).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<List<string>>(json);
-        }    
-
-        public TournamentCodeDetail GetTournamentCodeDetails(string tournamentCode)
-        {
-            var json = requester.CreateGetRequest(tournamentRootUrl + string.Format(GetCodesUrl, tournamentCode),
-                Region.Americas);
-            var tournamentCodeDetails = JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
-
-            return tournamentCodeDetails;
         }
 
         public async Task<TournamentCodeDetail> GetTournamentCodeDetailsAsync(string tournamentCode)
@@ -255,15 +188,6 @@ namespace RiotSharp
 
             return JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
         }
-        
-        public List<TournamentLobbyEvent> GetTournamentLobbyEvents(string tournamentCode)
-        {
-            var json = requester.CreateGetRequest(tournamentRootUrl + string.Format(LobbyEventUrl, tournamentCode),
-                Region.Americas);
-            var lobbyEventsDTO = JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json);
-
-            return lobbyEventsDTO["eventList"];
-        }
 
         public async Task<List<TournamentLobbyEvent>> GetTournamentLobbyEventsAsync(string tournamentCode)
         {
@@ -273,15 +197,6 @@ namespace RiotSharp
                         Region.Americas).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json)["eventList"];
-        }
-      
-        public bool UpdateTournamentCode(string tournamentCode, List<long> allowedParticipantIds = null,
-            TournamentSpectatorType? spectatorType = null, TournamentPickType? pickType = null, TournamentMapType? mapType= null)
-        {
-            var body = BuildTournamentUpdateBody(allowedParticipantIds, spectatorType, pickType, mapType);
-
-            return requester.CreatePutRequest(tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode), Region.Americas,
-                JsonConvert.SerializeObject(body));
         }
 
         public Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedParticipantIds = null,
@@ -297,22 +212,6 @@ namespace RiotSharp
 
         #region Get Tournament Matches (based on Match endpoint)
 
-        public MatchDetail GetTournamentMatch(Region region, long matchId, string tournamentCode, bool includeTimeline)
-        {
-            var json =
-                requester.CreateGetRequest(
-                    string.Format(MatchRootUrl, region) + string.Format(GetMatchDetailUrl, matchId), region,
-                    new List<string>
-                    {
-                        $"tournamentCode={tournamentCode}",
-                        $"includeTimeline={includeTimeline}"
-                    });
-
-            var matchDetail = JsonConvert.DeserializeObject<MatchDetail>(json);
-
-            return matchDetail;
-        }
-
         public async Task<MatchDetail> GetTournamentMatchAsync(Region region, long matchId, string tournamentCode,
             bool includeTimeline)
         {
@@ -327,17 +226,6 @@ namespace RiotSharp
                         }).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<MatchDetail>(json);
-        }
-
-        public long GetTournamentMatchId(Region region, string tournamentCode)
-        {
-            var json =
-                requester.CreateGetRequest(
-                    string.Format(MatchRootUrl, region) + string.Format(GetMatchIdUrl, tournamentCode), region);
-
-            var matchIds = JsonConvert.DeserializeObject<List<long>>(json);
-
-            return matchIds.FirstOrDefault();
         }
 
         public async Task<long> GetTournamentMatchIdAsync(Region region, string tournamentCode)

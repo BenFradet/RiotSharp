@@ -11,14 +11,6 @@ namespace RiotSharp.Endpoints.Interfaces
     public interface IMasteriesEndpoint
     {
         /// <summary>
-        /// Get mastery pages for a summoner id synchronously.
-        /// </summary>
-        /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>
-        /// <param name="summonerId">A summoner id for which you wish to retrieve the masteries.</param>
-        /// <returns>A list of mastery pages for the summoner.</returns>
-        List<MasteryPage> GetMasteryPages(Region region, long summonerId);
-
-        /// <summary>
         /// Get mastery pages for a summoner id asynchronously.
         /// </summary>
         /// <param name="region">Region in which you wish to look for mastery pages for a list of summoners.</param>

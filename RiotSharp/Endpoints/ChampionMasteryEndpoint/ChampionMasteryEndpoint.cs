@@ -21,14 +21,6 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
             _requester = requester;
         }
 
-        public ChampionMastery GetChampionMastery(Region region, long summonerId, long championId)
-        {
-            var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
-
-            var json = _requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<ChampionMastery>(json);
-        }
-
         public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, long summonerId, long championId)
         {
             var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
@@ -37,28 +29,12 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
             return JsonConvert.DeserializeObject<ChampionMastery>(json);
         }
 
-        public List<ChampionMastery> GetChampionMasteries(Region region, long summonerId)
-        {
-            var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
-
-            var json = _requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
-        }
-
         public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, long summonerId)
         {
             var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
 
             var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
-        }
-
-        public int GetTotalChampionMasteryScore(Region region, long summonerId)
-        {
-            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
-
-            var json = _requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region);
-            return JsonConvert.DeserializeObject<int>(json);
         }
 
         public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId)

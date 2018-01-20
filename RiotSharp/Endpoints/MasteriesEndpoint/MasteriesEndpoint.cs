@@ -20,14 +20,6 @@ namespace RiotSharp.Endpoints.MasteriesEndpoint
             _requester = requester;
         }
 
-        public List<MasteryPage> GetMasteryPages(Region region, long summonerId)
-        {
-            var json = _requester.CreateGetRequest(PlatformRootUrl + string.Format(MasteriesUrl, summonerId), region);
-
-            var masteries = JsonConvert.DeserializeObject<MasteryPages>(json);
-            return masteries.Pages;
-        }
-
         public async Task<List<MasteryPage>> GetMasteryPagesAsync(Region region, long summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(PlatformRootUrl + string.Format(MasteriesUrl, summonerId),

@@ -11,19 +11,6 @@ namespace RiotSharp.Test
         private static readonly StatusRiotApi Api = StatusRiotApi.GetInstance(ApiKey);
 
         [TestMethod]
-        [TestCategory("StatusRiotApi")]
-        public void GetShardStatus_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var shardStatus = Api.GetShardStatus(Summoner1And2Region);
-
-                Assert.AreEqual(StatusRiotApiTestBase.Platform.ToString().ToLower(),
-                    shardStatus.RegionTag);
-            });
-        }
-
-        [TestMethod]
         [TestCategory("StatusRiotApi"), TestCategory("Async")]
         public void GetShardStatusAsync_Test()
         {

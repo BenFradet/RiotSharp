@@ -53,24 +53,6 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public void GetRunePages_ExistingSummonerId_HasRunePages()
-        {
-            _requester.Setup(moq => moq.CreateGetRequest(It.IsAny<string>(), It.IsAny<Region>(),
-                It.IsAny<List<string>>(), It.IsAny <bool>())).Returns(JsonConvert.SerializeObject(_response));
-            var runes = _riotApi.Runes.GetRunePages(Region.Asia, 1);
-            Assert.IsTrue(runes.Count >= 0 && runes.Count <= 20);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(RiotSharpException))]
-        public void GetRunePages_InvalidSummonerId_ThrowsResouceNotFound()
-        {
-            _requester.Setup(moq => moq.CreateGetRequest(It.IsAny<string>(), It.IsAny<Region>(),
-                It.IsAny<List<string>>(), It.IsAny<bool>())).Throws(new RiotSharpException("Not found", HttpStatusCode.NotFound));
-            var runes = _riotApi.Runes.GetRunePages(Region.Asia, -1);
-        }
-
-        [TestMethod]
         public async Task GetRunePagesAsync_ExistingSummonerId_HasRunePages()
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),

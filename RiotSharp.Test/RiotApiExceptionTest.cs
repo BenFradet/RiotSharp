@@ -12,7 +12,7 @@ namespace RiotSharp.Test
         [ExpectedException(typeof(RiotSharpException))]
         public void GetSummoner_ShouldThrowRiotSharpException_Test()
         {
-            FaultyApi.Summoner.GetSummonerBySummonerId(CommonTestBase.Summoner1And2Region, CommonTestBase.Summoner1Id);
+            FaultyApi.Summoner.GetSummonerBySummonerIdAsync(CommonTestBase.Summoner1And2Region, CommonTestBase.Summoner1Id).GetAwaiter().GetResult();
         }
 
         [TestMethod]
@@ -20,7 +20,7 @@ namespace RiotSharp.Test
         [ExpectedException(typeof(RiotSharpException))]
         public void GetChampions_ShouldThrowRiotSharpException_Test()
         {
-            FaultyApi.Champion.GetChampions(CommonTestBase.Summoner1And2Region);
+            FaultyApi.Champion.GetChampionsAsync(CommonTestBase.Summoner1And2Region).GetAwaiter().GetResult();
         }
     }
 }

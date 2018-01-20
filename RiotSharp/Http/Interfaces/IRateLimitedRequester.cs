@@ -6,20 +6,6 @@ namespace RiotSharp.Http.Interfaces
 {
     public interface IRateLimitedRequester
     {
-        /// <summary>
-        /// Create a get request and send it synchronously to the server.
-        /// </summary>
-        /// <param name="relativeUrl"></param>
-        /// <param name="region"></param>
-        /// <param name="addedArguments"></param>
-        /// <param name="useHttps"></param>
-        /// <returns>The content of the response.</returns>
-        /// <exception cref="RiotSharpException">
-        /// Thrown if an Http error occurs. 
-        /// Contains the Http error code and error message.
-        /// </exception>
-        string CreateGetRequest(string relativeUrl, Region region, List<string> addedArguments = null,
-            bool useHttps = true);
 
         /// <summary>
         ///  Create a get request and send it asynchronously to the server.
@@ -37,22 +23,6 @@ namespace RiotSharp.Http.Interfaces
             bool useHttps = true);
 
         /// <summary>
-        /// Create a post request and send it synchronously to the server.
-        /// </summary>
-        /// <param name="relativeUrl"></param>
-        /// <param name="region"></param>
-        /// <param name="body"></param>
-        /// <param name="addedArguments"></param>
-        /// <param name="useHttps"></param>
-        /// <returns>The content of the response.</returns>
-        /// <exception cref="RiotSharpException">
-        /// Thrown if an Http error occurs. 
-        /// Contains the Http error code and error message.
-        /// </exception>
-        string CreatePostRequest(string relativeUrl, Region region, string body,
-            List<string> addedArguments = null, bool useHttps = true);
-
-        /// <summary>
         /// Create a post request and send it asynchronously to the server.
         /// </summary>
         /// <param name="relativeUrl"></param>
@@ -67,22 +37,6 @@ namespace RiotSharp.Http.Interfaces
         /// </exception>
         Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> addedArguments = null, bool useHttps = true);
-
-        /// <summary>
-        /// Create a put request and send it synchronously to the server.
-        /// </summary>
-        /// <param name="relativeUrl"></param>
-        /// <param name="region"></param>
-        /// <param name="body"></param>
-        /// <param name="addedArguments"></param>
-        /// <param name="useHttps"></param>
-        /// <returns>The content of the response.</returns>
-        /// <exception cref="RiotSharpException">
-        /// Thrown if an Http error occurs. 
-        /// Contains the Http error code and error message.
-        /// </exception>
-        bool CreatePutRequest(string relativeUrl, Region region, string body, List<string> addedArguments = null,
-            bool useHttps = true);
 
         /// <summary>
         /// Create a post request and send it asynchronously to the server.
