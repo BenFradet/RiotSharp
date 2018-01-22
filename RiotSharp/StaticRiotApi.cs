@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RiotSharp.Caching;
 using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Endpoints.StaticDataEndpoint.Champion;
 using RiotSharp.Endpoints.StaticDataEndpoint.Champion.Cache;

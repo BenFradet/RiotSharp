@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using RiotSharp.Caching;
 
 namespace RiotSharp.AspNetCore
 {

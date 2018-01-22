@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace RiotSharp
+namespace RiotSharp.Caching
 {
     public class FileCache : ICache
     {

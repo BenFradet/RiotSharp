@@ -3,6 +3,7 @@ using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
+using RiotSharp.Caching;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.Interfaces;
@@ -13,7 +14,6 @@ using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Endpoints.ThirdPartEndpoint;
-using RiotSharp.Misc;
 
 namespace RiotSharp
 {

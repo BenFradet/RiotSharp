@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using RiotSharp.Caching;
 
 namespace RiotSharp.Test
 {

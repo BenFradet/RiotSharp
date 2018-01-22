@@ -1,6 +1,6 @@
 using System;
 
-namespace RiotSharp
+namespace RiotSharp.Caching
 {
 
     /// <summary>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;
+using RiotSharp.Caching;
 
 namespace RiotSharp.AspNetCore
 {

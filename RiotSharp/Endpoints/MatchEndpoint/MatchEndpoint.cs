@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Http.Interfaces;
