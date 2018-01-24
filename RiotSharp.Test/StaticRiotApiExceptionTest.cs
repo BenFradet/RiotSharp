@@ -7,7 +7,7 @@ namespace RiotSharp.Test
     [TestClass]
     public class StaticRiotApiExceptionTest
     {
-        private static readonly StaticDataEndpoint FaultyStaticApi = StaticDataEndpoint.GetInstance(CommonTestBase.FaultyApiKey);
+        private static readonly StaticDataEndpoints FaultyStaticApi = StaticDataEndpoints.GetInstance(CommonTestBase.FaultyApiKey);
 
         [TestMethod]
         [TestCategory("Exception")]

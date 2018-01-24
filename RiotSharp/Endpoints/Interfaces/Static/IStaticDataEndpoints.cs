@@ -1,8 +1,6 @@
-﻿using RiotSharp.Endpoints.Interfaces.Static;
-
-namespace RiotSharp.Endpoints.Interfaces.Static
+﻿namespace RiotSharp.Endpoints.Interfaces.Static
 {
-    public interface IStaticDataEndpoint
+    public interface IStaticDataEndpoints
     {
         IStaticChampionEndpoint Champion { get; }
         IStaticItemEndpoint Item { get; }

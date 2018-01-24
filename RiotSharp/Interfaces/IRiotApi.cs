@@ -58,6 +58,6 @@ namespace RiotSharp.Interfaces
         IThirdPartEndpoint ThirdParty { get; }
         /// The Static Data Endpoint.
         /// </summary>
-        IStaticDataEndpoint Static { get; }
+        IStaticDataEndpoints Static { get; }
     }
 }

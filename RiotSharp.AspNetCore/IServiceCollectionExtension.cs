@@ -56,8 +56,8 @@ namespace RiotSharp.AspNetCore
                 serviceCollection.AddSingleton<IStaticEndpointProvider>(serviceProvider =>
                     new StaticEndpointProvider(staticApiRequester, serviceProvider.GetRequiredService<ICache>()));
 
-                serviceCollection.AddSingleton<IStaticDataEndpoint>(serviceProvider => 
-                    new StaticDataEndpoint(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
+                serviceCollection.AddSingleton<IStaticDataEndpoints>(serviceProvider => 
+                    new StaticDataEndpoints(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
             }
 
             if (riotSharpOptions.TournamentApi.ApiKey != null)

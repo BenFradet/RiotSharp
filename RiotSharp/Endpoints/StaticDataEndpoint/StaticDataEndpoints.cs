@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint
 {
-    public class StaticDataEndpoint : IStaticDataEndpoint
+    public class StaticDataEndpoints : IStaticDataEndpoints
     {
-        private static StaticDataEndpoint instance;
+        private static StaticDataEndpoints instance;
 
         public IStaticChampionEndpoint Champion { get; private set; }
         public IStaticItemEndpoint Item { get; private set; }
@@ -23,22 +23,22 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         public IStaticVersionEndpoint Version { get; private set; }
 
         /// <summary>
-        /// Get the instance of StaticDataEndpoint.
+        /// Get the instance of StaticDataEndpoints which contains all the static Endpoints as Properties.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
         /// <returns>The instance of StaticDataEndpoint.</returns>
-        public static StaticDataEndpoint GetInstance(string apiKey, bool useCache = true)
+        public static StaticDataEndpoints GetInstance(string apiKey, bool useCache = true)
         {
             if (instance == null ||
                 Requesters.StaticApiRequester == null ||
                 apiKey != Requesters.StaticApiRequester.ApiKey)
             {
-                instance = new StaticDataEndpoint(apiKey, useCache);
+                instance = new StaticDataEndpoints(apiKey, useCache);
             }
             return instance;
         }
 
-        private StaticDataEndpoint(string apiKey, bool useCache = true)
+        private StaticDataEndpoints(string apiKey, bool useCache = true)
         {
             Requesters.StaticApiRequester = new RateLimitedRequester(apiKey, new Dictionary<TimeSpan, int>
             {
@@ -58,7 +58,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// Default dependency injection constructor
         /// </summary>
         /// <param name="staticEndpointProvider">provider that provides configured static-endpoints</param>
-        public StaticDataEndpoint(IStaticEndpointProvider staticEndpointProvider)
+        public StaticDataEndpoints(IStaticEndpointProvider staticEndpointProvider)
         {
             InitializeEndpoints(staticEndpointProvider);
         }
@@ -68,7 +68,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// </summary>
         /// <param name="requester"></param>
         /// <param name="cache"></param>
-        public StaticDataEndpoint(IRateLimitedRequester requester, ICache cache)
+        public StaticDataEndpoints(IRateLimitedRequester requester, ICache cache)
         {
             if (requester == null)
             {

@@ -4,13 +4,15 @@ using System.Linq;
 using RiotSharp.Http;
 using System;
 using RiotSharp.Caching;
+using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharp.Endpoints.Interfaces.Static;
 
 namespace RiotSharp.Test
 {
     [TestClass]
     public class StaticRiotApiTest : CommonTestBase
     {
-        private readonly StaticDataEndpoint _api;
+        private readonly IStaticDataEndpoints _api;
         private static readonly RateLimitedRequester Requester = new RateLimitedRequester(ApiKey, new Dictionary<TimeSpan, int>
             {
                 { new TimeSpan(1, 0, 0), 10 }
@@ -19,7 +21,7 @@ namespace RiotSharp.Test
         public StaticRiotApiTest()
         {
             var cache = new Cache();
-            _api = StaticDataEndpoint.GetInstance(Requester.ApiKey, true);
+            _api = StaticDataEndpoints.GetInstance(Requester.ApiKey, true);
         }
 
 
