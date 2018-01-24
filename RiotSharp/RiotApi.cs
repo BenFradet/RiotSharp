@@ -12,6 +12,7 @@ using RiotSharp.Endpoints.MatchEndpoint;
 using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
+using RiotSharp.Endpoints.ThirdPartEndpoint;
 using RiotSharp.Misc;
 
 namespace RiotSharp
@@ -42,6 +43,8 @@ namespace RiotSharp
         public ISpectatorEndpoint Spectator { get; }
 
         public IChampionMasteryEndpoint ChampionMastery { get; }
+
+        public IThirdPartEndpoint ThirdParty { get; }
 
         #endregion
 
@@ -107,6 +110,7 @@ namespace RiotSharp
             Match = new MatchEndpoint(requester, _cache);
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
+            ThirdParty = new ThirdPartyEndpoint(requester);
         }
 
         /// <summary>
@@ -127,7 +131,7 @@ namespace RiotSharp
            Match = new MatchEndpoint(rateLimitedRequester, _cache);
            Spectator = new SpectatorEndpoint(rateLimitedRequester);
            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
-            
+           ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
         }
     }
 }

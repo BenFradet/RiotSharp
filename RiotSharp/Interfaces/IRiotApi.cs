@@ -51,5 +51,9 @@ namespace RiotSharp.Interfaces
         /// The Champion Mastery Endpoint.
         /// </summary>
         IChampionMasteryEndpoint ChampionMastery { get; }
+        /// <summary>
+        /// The Third Party Endpoint.
+        /// </summary>
+        IThirdPartEndpoint ThirdParty { get; }
     }
 }
