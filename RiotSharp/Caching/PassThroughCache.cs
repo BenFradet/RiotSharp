@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace RiotSharp
+namespace RiotSharp.Caching
 {
     /// <summary>
     /// Implementation of ICache for disabling cache

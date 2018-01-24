@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace RiotSharp
+namespace RiotSharp.Caching
 {
     public class Cache : ICache
     {

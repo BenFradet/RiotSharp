@@ -3,6 +3,7 @@ using RiotSharp.Http;
 using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
+using RiotSharp.Caching;
 
 namespace RiotSharp.AspNetCore
 {

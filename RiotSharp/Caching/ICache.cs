@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-namespace RiotSharp
+
+namespace RiotSharp.Caching
 {
     /// <summary>
     /// Interface for caching data in-memory.

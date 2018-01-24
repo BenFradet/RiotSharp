@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
