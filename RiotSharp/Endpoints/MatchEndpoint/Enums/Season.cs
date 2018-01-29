@@ -67,7 +67,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
         /// <summary>
         /// Season 2018.
         /// </summary>
-        Season2017 = 11,
+        Season2018 = 11
     }
 
     static class SeasonExtension
