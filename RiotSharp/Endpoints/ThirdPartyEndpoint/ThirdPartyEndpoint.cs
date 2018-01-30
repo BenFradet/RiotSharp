@@ -3,9 +3,9 @@ using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
 
-namespace RiotSharp.Endpoints.ThirdPartEndpoint
+namespace RiotSharp.Endpoints.ThirdPartyEndpoint
 {
-    public class ThirdPartyEndpoint : IThirdPartEndpoint
+    public class ThirdPartyEndpoint : IThirdPartyEndpoint
     {
         private const string ThirdPartyRootUrl = "/lol/platform/v3/third-party-code";
         private const string ThirdPartyBySummonerUrl = "/by-summoner/{0}";

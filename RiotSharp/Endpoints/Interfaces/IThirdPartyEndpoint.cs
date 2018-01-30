@@ -6,7 +6,7 @@ namespace RiotSharp.Endpoints.Interfaces
     /// <summary>
     /// The Third Party Endpoint.
     /// </summary>
-    public interface IThirdPartEndpoint
+    public interface IThirdPartyEndpoint
     {
         /// <summary>
         /// Get a thrid party code by summoner id asynchronously.

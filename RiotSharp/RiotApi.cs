@@ -13,7 +13,7 @@ using RiotSharp.Endpoints.MatchEndpoint;
 using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
-using RiotSharp.Endpoints.ThirdPartEndpoint;
+using RiotSharp.Endpoints.ThirdPartyEndpoint;
 
 namespace RiotSharp
 {
@@ -44,7 +44,7 @@ namespace RiotSharp
 
         public IChampionMasteryEndpoint ChampionMastery { get; }
 
-        public IThirdPartEndpoint ThirdParty { get; }
+        public IThirdPartyEndpoint ThirdParty { get; }
 
         #endregion
 
