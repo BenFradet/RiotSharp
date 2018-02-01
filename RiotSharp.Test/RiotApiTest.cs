@@ -396,8 +396,8 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var code = Api.ThirdParty.GetThirdPartyCodeBySummonerId(Summoner1And2Region,
-                    Summoner1Id);
+                var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner1And2Region,
+                    Summoner1Id).Result;
 
                 Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code);
             });
