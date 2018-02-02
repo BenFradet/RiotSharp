@@ -3,9 +3,9 @@ using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
 
-namespace RiotSharp.Endpoints.ThirdPartEndpoint
+namespace RiotSharp.Endpoints.ThirdPartyEndpoint
 {
-    public class ThirdPartyEndpoint : IThirdPartEndpoint
+    public class ThirdPartyEndpoint : IThirdPartyEndpoint
     {
         private const string ThirdPartyRootUrl = "/lol/platform/v3/third-party-code";
         private const string ThirdPartyBySummonerUrl = "/by-summoner/{0}";
@@ -15,13 +15,6 @@ namespace RiotSharp.Endpoints.ThirdPartEndpoint
         public ThirdPartyEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
-        }
-
-        public string GetThirdPartyCodeBySummonerId(Region region, long summonerId)
-        {
-            var response =  _requester
-                .CreateGetRequest(ThirdPartyRootUrl + string.Format(ThirdPartyBySummonerUrl, summonerId), region);
-            return response.Substring(1, response.Length - 2);
         }
 
         public async Task<string> GetThirdPartyCodeBySummonerIdAsync(Region region, long summonerId)
