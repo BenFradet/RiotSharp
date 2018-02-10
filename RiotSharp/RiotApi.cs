@@ -93,13 +93,14 @@ namespace RiotSharp
                 apiKey != Requesters.RiotApiRequester.ApiKey ||
                 !rateLimits.Equals(Requesters.RiotApiRequester.RateLimits))
             {
-                _instance = new RiotApi(apiKey, rateLimits);
+                _instance = new RiotApi(apiKey, rateLimits, cache);
             }
             return _instance;
         }
 
-        private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits)
+        private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
+            _cache = cache;
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             var requester = Requesters.RiotApiRequester;
             Summoner = new SummonerEndpoint(requester, _cache);
@@ -117,8 +118,9 @@ namespace RiotSharp
         /// Dependency injection constructor
         /// </summary>
         /// <param name="rateLimitedRequester"></param>
-        public RiotApi(IRateLimitedRequester rateLimitedRequester)
+        public RiotApi(IRateLimitedRequester rateLimitedRequester, ICache cache = null)
         {
+            _cache = cache ?? PassThroughCache();
             if (rateLimitedRequester == null)
             {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
