@@ -120,7 +120,7 @@ namespace RiotSharp
         /// <param name="rateLimitedRequester"></param>
         public RiotApi(IRateLimitedRequester rateLimitedRequester, ICache cache = null)
         {
-            _cache = cache ?? PassThroughCache();
+            _cache = cache ?? new PassThroughCache();
             if (rateLimitedRequester == null)
             {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
