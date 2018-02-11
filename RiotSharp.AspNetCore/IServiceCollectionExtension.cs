@@ -7,6 +7,8 @@ using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
 using RiotSharp.Caching;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace RiotSharp.AspNetCore
 {
@@ -48,7 +50,10 @@ namespace RiotSharp.AspNetCore
                 else if (riotSharpOptions.RiotApi.UseDistributedCache)
                     serviceCollection.AddSingleton<ICache, DistributedCache>();
                 else if (riotSharpOptions.RiotApi.UseHybridCache)
-                    serviceCollection.AddSingleton<ICache, HybridCache>();
+                    serviceCollection.AddSingleton<ICache, HybridCache>(serviceProvider => {
+                        return new HybridCache(serviceProvider.GetRequiredService<IMemoryCache>(),
+                            serviceProvider.GetRequiredService<IDistributedCache>(), riotSharpOptions.RiotApi.SlidingExpirationTime);
+                    });
                 else if (riotSharpOptions.RiotApi.UseCache)
                     serviceCollection.AddSingleton<ICache, Cache>();
                 else
