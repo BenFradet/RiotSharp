@@ -35,7 +35,8 @@ namespace RiotSharp.AspNetCore
                     riotSharpOptions.RiotApi.RateLimits);
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
                     new TournamentRiotApi(rateLimitedRequester));
-                serviceCollection.AddSingleton<IRiotApi>(serviceProvider => new RiotApi(rateLimitedRequester));
+                serviceCollection.AddSingleton<IRiotApi>(serviceProvider =>
+                    new RiotApi(rateLimitedRequester, serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
 
                 var staticApiRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey, new Dictionary<TimeSpan, int>
                 {
