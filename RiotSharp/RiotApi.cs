@@ -14,6 +14,8 @@ using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Endpoints.ThirdPartyEndpoint;
+using RiotSharp.Endpoints.Interfaces.Static;
+using RiotSharp.Endpoints.StaticDataEndpoint;
 
 namespace RiotSharp
 {
@@ -46,6 +48,7 @@ namespace RiotSharp
 
         public IThirdPartyEndpoint ThirdParty { get; }
 
+        public IStaticDataEndpoints Static { get; }
         #endregion
 
         /// <summary>
@@ -111,27 +114,36 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
+            Static = StaticDataEndpoints.GetInstance(apiKey, true);
         }
 
         /// <summary>
         /// Dependency injection constructor
         /// </summary>
         /// <param name="rateLimitedRequester"></param>
-        public RiotApi(IRateLimitedRequester rateLimitedRequester)
+        /// <param name="staticEndpointProvider"></param>
+        public RiotApi(IRateLimitedRequester rateLimitedRequester, IStaticEndpointProvider staticEndpointProvider)
         {
             if (rateLimitedRequester == null)
             {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
             }
-           Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
-           Champion = new ChampionEndpoint(rateLimitedRequester);
-           Masteries = new MasteriesEndpoint(rateLimitedRequester);
-           Runes = new RunesEndpoint(rateLimitedRequester);
-           League = new LeagueEndpoint(rateLimitedRequester);
-           Match = new MatchEndpoint(rateLimitedRequester, _cache);
-           Spectator = new SpectatorEndpoint(rateLimitedRequester);
-           ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
-           ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+
+            if (staticEndpointProvider == null)
+            {
+                throw new ArgumentNullException(nameof(staticEndpointProvider));
+            }
+
+            Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
+            Champion = new ChampionEndpoint(rateLimitedRequester);
+            Masteries = new MasteriesEndpoint(rateLimitedRequester);
+            Runes = new RunesEndpoint(rateLimitedRequester);
+            League = new LeagueEndpoint(rateLimitedRequester);
+            Match = new MatchEndpoint(rateLimitedRequester, _cache);
+            Spectator = new SpectatorEndpoint(rateLimitedRequester);
+            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
+            ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+            Static = new StaticDataEndpoints(staticEndpointProvider);
         }
     }
 }

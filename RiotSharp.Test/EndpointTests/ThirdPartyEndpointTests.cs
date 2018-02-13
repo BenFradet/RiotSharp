@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using RiotSharp.Misc;
@@ -20,7 +21,8 @@ namespace RiotSharp.Test.EndpointTests
         public void Initialize()
         {
             _requester = new Mock<IRateLimitedRequester>();
-            _riotApi = new RiotApi(_requester.Object);
+            var staticEndpointProvider = new Mock<IStaticEndpointProvider>();
+            _riotApi = new RiotApi(_requester.Object, staticEndpointProvider.Object);
         }
 
         [TestMethod]

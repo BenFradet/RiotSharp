@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
+using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
@@ -24,7 +25,7 @@ namespace RiotSharp.Test.EndpointTests
         public void Initialize()
         {
             _requester = new Mock<IRateLimitedRequester>();
-
+            var staticEndpointProvider = new Mock<IStaticEndpointProvider>();
             _currentGameResponse = new CurrentGame
             {
                 GameId = 1,
@@ -45,7 +46,7 @@ namespace RiotSharp.Test.EndpointTests
                 },
                 ClientRefreshInterval = 30
             };
-            _riotApi = new RiotApi(_requester.Object);
+            _riotApi = new RiotApi(_requester.Object, staticEndpointProvider.Object);
         }
 
         [TestMethod]
