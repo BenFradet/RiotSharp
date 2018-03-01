@@ -1,9 +1,11 @@
-﻿using RiotSharp.Misc;
+﻿using Newtonsoft.Json;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell.Cache
 {
     class SummonerSpellListStaticWrapper
     {
+        [JsonProperty]
         public SummonerSpellListStatic SummonerSpellListStatic { get; private set; }
         public Language Language { get; private set; }
         public SummonerSpellData SummonerSpellData { get; private set; }
