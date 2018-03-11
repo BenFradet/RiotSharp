@@ -14,12 +14,16 @@ namespace RiotSharp.AspNetCore
         private IDistributedCache distributedCache;
         private IMemoryCache memoryCache;
         private List<object> usedKeys;
+        private TimeSpan slidingExpiry;
 
 #pragma warning disable CS1591
-        public HybridCache(IMemoryCache memoryCache, IDistributedCache distributedCache)
+
+        /// <param name="slidingExpiry">Used to set expiry in memory cache after data is loaded for first time from distributed cache.</param>
+        public HybridCache(IMemoryCache memoryCache, IDistributedCache distributedCache, TimeSpan slidingExpiry)
         {
             this.memoryCache = memoryCache;
             this.distributedCache = distributedCache;
+            this.slidingExpiry = slidingExpiry;
             usedKeys = new List<object>();
         }
 
@@ -53,7 +57,15 @@ namespace RiotSharp.AspNetCore
             if (memoryCache.TryGetValue(key, out output))
                 return output;
             else
-                return distributedCache.GetJson<V>(key.ToString());
+            {
+                output = distributedCache.GetJson<V>(key.ToString());
+                if (output != null)
+                {
+                    usedKeys.Add(key);
+                    memoryCache.Set(key, output, slidingExpiry);
+                }               
+                return output;
+            }  
         }
 
         public void Remove<K>(K key)

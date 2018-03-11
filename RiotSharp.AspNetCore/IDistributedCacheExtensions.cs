@@ -27,6 +27,8 @@ namespace RiotSharp.AspNetCore
         public static T GetJson<T>(this IDistributedCache distributedCache, string key)
         {
             var unserializedValue = distributedCache.GetString(key.ToString());
+            if (unserializedValue == null)
+                return default(T);
             return JsonConvert.DeserializeObject<T>(unserializedValue);
         }
     }

@@ -1,4 +1,4 @@
-﻿using RiotSharp.Http;
+using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using System;

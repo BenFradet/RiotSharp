@@ -1,9 +1,11 @@
-﻿using RiotSharp.Misc;
+﻿using Newtonsoft.Json;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune.Cache
 {
     class RuneListStaticWrapper
     {
+        [JsonProperty]
         public RuneListStatic RuneListStatic { get; private set; }
         public Language Language { get; private set; }
         public RuneData RuneData { get; private set; }

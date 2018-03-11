@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
+using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
@@ -23,6 +24,7 @@ namespace RiotSharp.Test.EndpointTests
         public void Initialize()
         {
             _requester = new Mock<IRateLimitedRequester>();
+            var staticEndpointProvider = new Mock<IStaticEndpointProvider>();
             _response = new RunePages
             {
                 Pages = new List<RunePage>
@@ -49,7 +51,7 @@ namespace RiotSharp.Test.EndpointTests
                 },
                 SummonerId = 1
             };
-            _riotApi = new RiotApi(_requester.Object);
+            _riotApi = new RiotApi(_requester.Object, staticEndpointProvider.Object);
         }
 
         [TestMethod]

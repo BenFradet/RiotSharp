@@ -11,6 +11,7 @@ using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Misc;
+using RiotSharp.Endpoints.Interfaces.Static;
 
 namespace RiotSharp.Interfaces
 {
@@ -55,5 +56,8 @@ namespace RiotSharp.Interfaces
         /// The Third Party Endpoint.
         /// </summary>
         IThirdPartyEndpoint ThirdParty { get; }
+        /// The Static Data Endpoint.
+        /// </summary>
+        IStaticDataEndpoints Static { get; }
     }
 }
