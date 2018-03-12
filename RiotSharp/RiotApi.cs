@@ -125,15 +125,15 @@ namespace RiotSharp
             {
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
             }
-           Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
-           Champion = new ChampionEndpoint(rateLimitedRequester);
-           Masteries = new MasteriesEndpoint(rateLimitedRequester);
-           Runes = new RunesEndpoint(rateLimitedRequester);
-           League = new LeagueEndpoint(rateLimitedRequester);
-           Match = new MatchEndpoint(rateLimitedRequester, _cache);
-           Spectator = new SpectatorEndpoint(rateLimitedRequester);
-           ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
-           ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+            Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
+            Champion = new ChampionEndpoint(rateLimitedRequester);
+            Masteries = new MasteriesEndpoint(rateLimitedRequester);
+            Runes = new RunesEndpoint(rateLimitedRequester);
+            League = new LeagueEndpoint(rateLimitedRequester);
+            Match = new MatchEndpoint(rateLimitedRequester, _cache);
+            Spectator = new SpectatorEndpoint(rateLimitedRequester);
+            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
+            ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
         }
     }
 }
