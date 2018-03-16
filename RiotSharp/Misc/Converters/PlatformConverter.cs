@@ -41,6 +41,8 @@ namespace RiotSharp.Misc.Converters
                     return Platform.EUW1;
                 case "KR":
                     return Platform.KR;
+                case "NA":
+                    return Platform.NA1;
                 default:
                     return null;
             }
