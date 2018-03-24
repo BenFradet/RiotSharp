@@ -11,7 +11,7 @@ namespace RiotSharp.Http.Interfaces
         /// </summary>
         /// <param name="relativeUrl"></param>
         /// <param name="region"></param>
-        /// <param name="addedArguments"></param>
+        /// <param name="queryParameters"></param>
         /// <param name="useHttps"></param>
         /// <returns>The content of the response.</returns>
         /// <exception cref="RiotSharpException">
@@ -19,6 +19,6 @@ namespace RiotSharp.Http.Interfaces
         /// Contains the Http error code and error message.
         /// </exception>
         Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
-            List<string> addedArguments = null, bool useHttps = true);
+            List<string> queryParameters = null, bool useHttps = true);
     }
 }

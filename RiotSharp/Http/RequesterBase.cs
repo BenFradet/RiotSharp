@@ -74,13 +74,13 @@ namespace RiotSharp.Http
             return response;
         }
 
-        protected HttpRequestMessage PrepareRequest(string relativeUrl, List<string> addedArguments,
+        protected HttpRequestMessage PrepareRequest(string relativeUrl, List<string> queryParameters,
             bool useHttps, HttpMethod httpMethod)
         {
             var scheme = useHttps ? "https" : "http";
-            var url = addedArguments == null ?
+            var url = queryParameters == null ?
                 $"{scheme}://{rootDomain}{relativeUrl}?api_key={ApiKey}" :
-                $"{scheme}://{rootDomain}{relativeUrl}?{BuildArgumentsString(addedArguments)}api_key={ApiKey}";
+                $"{scheme}://{rootDomain}{relativeUrl}?{BuildArgumentsString(queryParameters)}api_key={ApiKey}";
 
             return new HttpRequestMessage(httpMethod, url);
         }
@@ -88,7 +88,7 @@ namespace RiotSharp.Http
         protected string BuildArgumentsString(List<string> arguments)
         {
             return arguments
-                .Where(arg => arg != string.Empty)
+                .Where(arg => !string.IsNullOrWhiteSpace(arg))
                 .Aggregate(string.Empty, (current, arg) => current + (arg + "&"));
         }
 
