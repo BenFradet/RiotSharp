@@ -17,6 +17,10 @@ namespace RiotSharp.AspNetCore
                 [TimeSpan.FromSeconds(1)] = 20,
                 [TimeSpan.FromMinutes(2)] = 100
             };
+            RiotApi.StaticDataRateLimits = new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromHours(1)] = 10
+            };
             TournamentApi = new TournamentApiKeyOptions();
             TournamentApi.RateLimits = new Dictionary<TimeSpan, int>
             {

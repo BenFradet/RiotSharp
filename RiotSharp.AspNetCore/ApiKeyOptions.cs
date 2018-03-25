@@ -9,6 +9,7 @@ namespace RiotSharp.AspNetCore
 
         public string ApiKey { get; set; }
         public IDictionary<TimeSpan, int> RateLimits { get; set; }
+        public IDictionary<TimeSpan, int> StaticDataRateLimits { get; set; }
 
         /// <summary>
         /// Enable or disable default RiotSharp's internal caching for the static data endpint
