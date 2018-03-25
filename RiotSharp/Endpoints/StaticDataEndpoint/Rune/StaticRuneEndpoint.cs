@@ -25,9 +25,10 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune
             : this(requester, cache, null) { }
 
         public async Task<RuneListStatic> GetRunesAsync(Region region, RuneData runeData = RuneData.All,
-            Language language = Language.en_US)
+            Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, RuneListStaticWrapper>(RunesCacheKey);
+            var cacheKey = RunesCacheKey + region + runeData + language + language + version;
+            var wrapper = cache.Get<string, RuneListStaticWrapper>(cacheKey);
             if (wrapper != null && !(language != wrapper.Language | runeData != wrapper.RuneData))
             {
                 return wrapper.RuneListStatic;
@@ -36,20 +37,20 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune
                 new List<string>
                 {
                     $"locale={language}",
-                    runeData == RuneData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, runeData.ToString().ToLower())
+                    runeData == RuneData.Basic ? null : string.Format(TagsParameter, runeData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
             wrapper = new RuneListStaticWrapper(runes, language, runeData);
-            cache.Add(RunesCacheKey, wrapper, SlidingExpirationTime);
+            cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.RuneListStatic;
         }
 
         public async Task<RuneStatic> GetRuneAsync(Region region, int runeId, RuneData runeData = RuneData.All,
-            Language language = Language.en_US)
+            Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, RuneStaticWrapper>(RuneByIdCacheKey + runeId);
+            var cacheKey = RuneByIdCacheKey + region + runeId + runeData + language + language + version;
+            var wrapper = cache.Get<string, RuneStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.RuneData == RuneData.All)
             {
                 return wrapper.RuneStatic;
@@ -65,12 +66,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune
                 new List<string>
                 {
                     $"locale={language}",
-                    runeData == RuneData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, runeData.ToString().ToLower())
+                    runeData == RuneData.Basic ? null : string.Format(TagsParameter, runeData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var rune = JsonConvert.DeserializeObject<RuneStatic>(json);
-            cache.Add(RuneByIdCacheKey + runeId, new RuneStaticWrapper(rune, language, runeData), SlidingExpirationTime);
+            cache.Add(cacheKey, new RuneStaticWrapper(rune, language, runeData), SlidingExpirationTime);
             return rune;
         }
     }

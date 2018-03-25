@@ -27,9 +27,10 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
         #region Language Strings       
 
         public async Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
-            Language language = Language.en_US, string version = "")
+            Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(LanguageStringsCacheKey);
+            var cacheKey = LanguageStringsCacheKey + region + language + version;
+            var wrapper = cache.Get<string, LanguageStringsStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
             {
                 return wrapper.LanguageStringsStatic;
@@ -38,12 +39,12 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + LanguageStringsUrl, region,
                 new List<string> {
                     $"locale={language}",
-                    $"version={version}"
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
 
-            cache.Add(LanguageStringsCacheKey, new LanguageStringsStaticWrapper(languageStrings,
-                language, version), SlidingExpirationTime);
+            cache.Add(cacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), 
+                SlidingExpirationTime);
 
             return languageStrings;
         }
@@ -53,7 +54,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
 
         public async Task<List<Language>> GetLanguagesAsync(Region region)
         {
-            var wrapper = cache.Get<string, List<Language>>(LanguagesCacheKey);
+            var cacheKey = LanguagesCacheKey + region;
+            var wrapper = cache.Get<string, List<Language>>(cacheKey);
             if (wrapper != null)
             {
                 return wrapper;
@@ -62,7 +64,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + LanguagesUrl, region).ConfigureAwait(false);
             var languages = JsonConvert.DeserializeObject<List<Language>>(json);
 
-            cache.Add(LanguagesCacheKey, languages, SlidingExpirationTime);
+            cache.Add(cacheKey, languages, SlidingExpirationTime);
 
             return languages;
         }

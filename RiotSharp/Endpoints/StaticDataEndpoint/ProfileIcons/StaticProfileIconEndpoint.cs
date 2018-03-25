@@ -21,9 +21,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons
         public StaticProfileIconEndpoint(IRateLimitedRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ProfileIconListStatic> GetProfileIconsAsync(Region region, Language language = Language.en_US)
+        public async Task<ProfileIconListStatic> GetProfileIconsAsync(Region region, Language language = Language.en_US,
+            string version = null)
         {
-            var wrapper = cache.Get<string, ProfileIconsStaticWrapper>(ProfileIconsCacheKey);
+            var cacheKey = ProfileIconsCacheKey + region + language + version;
+            var wrapper = cache.Get<string, ProfileIconsStaticWrapper>(cacheKey);
             if (wrapper != null && language == wrapper.Language)
             {
                 return wrapper.ProfileIconListStatic;
@@ -32,10 +34,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons
                 new List<string>
                 {
                     $"locale={language}",
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var profileIcons = JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
             wrapper = new ProfileIconsStaticWrapper(profileIcons, language);
-            cache.Add(ProfileIconsCacheKey, wrapper, SlidingExpirationTime);
+            cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ProfileIconListStatic;
         }
     }

@@ -24,9 +24,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
             : this(requester, cache, null) { }
 
         public async Task<SummonerSpellListStatic> GetSummonerSpellsAsync(Region region,
-            SummonerSpellData summonerSpellData = SummonerSpellData.All, Language language = Language.en_US)
+            SummonerSpellData summonerSpellData = SummonerSpellData.All, Language language = Language.en_US,
+            string version = null)
         {
-            var wrapper = cache.Get<string, SummonerSpellListStaticWrapper>(SummonerSpellsCacheKey);
+            var cacheKey = SummonerSpellsCacheKey + region + summonerSpellData + language + version;
+            var wrapper = cache.Get<string, SummonerSpellListStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.SummonerSpellData == summonerSpellData)
             {
                 return wrapper.SummonerSpellListStatic;
@@ -36,20 +38,21 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
                 {
                     $"locale={language}",
                     summonerSpellData == SummonerSpellData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
+                        null : string.Format(TagsParameter, summonerSpellData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
             wrapper = new SummonerSpellListStaticWrapper(spells, language, summonerSpellData);
-            cache.Add(SummonerSpellsCacheKey, wrapper, SlidingExpirationTime);
+            cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.SummonerSpellListStatic;
         }
 
         public async Task<SummonerSpellStatic> GetSummonerSpellAsync(Region region, int summonerSpellId,
-            SummonerSpellData summonerSpellData = SummonerSpellData.All, Language language = Language.en_US)
+            SummonerSpellData summonerSpellData = SummonerSpellData.All, Language language = Language.en_US, 
+            string version = null)
         {
-            var wrapper = cache.Get<string, SummonerSpellStaticWrapper>(
-                SummonerSpellByIdCacheKey + summonerSpellId);
+            var cacheKey = SummonerSpellByIdCacheKey + region + summonerSpellId + summonerSpellData + language + version;
+            var wrapper = cache.Get<string, SummonerSpellStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.SummonerSpellData == summonerSpellData && wrapper.Language == language)
             {
                 return wrapper.SummonerSpellStatic;
@@ -67,12 +70,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
                 {
                     $"locale={language}",
                     summonerSpellData == SummonerSpellData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, summonerSpellData.ToString().ToLower())
+                        null : string.Format(TagsParameter, summonerSpellData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var spell = JsonConvert.DeserializeObject<SummonerSpellStatic>(json);
-            cache.Add(SummonerSpellByIdCacheKey + summonerSpellId,
-                new SummonerSpellStaticWrapper(spell, language, summonerSpellData), SlidingExpirationTime);
+            cache.Add(cacheKey, new SummonerSpellStaticWrapper(spell, language, summonerSpellData), SlidingExpirationTime);
             return spell;
         }
     }
