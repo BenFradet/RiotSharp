@@ -24,9 +24,10 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
             : this(requester, cache, null) { }
 
         public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
-            string version = "")
+            string version = null)
         {
-            var wrapper = cache.Get<string, MapsStaticWrapper>(MapsCacheKey);
+            var cacheKey = MapsCacheKey + region + language + version;
+            var wrapper = cache.Get<string, MapsStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
             {
                 return wrapper.MapsStatic.Data.Values.ToList();
@@ -35,11 +36,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + MapsUrl, region,
                 new List<string> {
                     $"locale={language}",
-                    $"version={version}"
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
 
-            cache.Add(MapsCacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);
+            cache.Add(cacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);
 
             return maps.Data.Values.ToList();
         }

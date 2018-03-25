@@ -22,7 +22,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Realm
 
         public async Task<RealmStatic> GetRealmAsync(Region region)
         {
-            var wrapper = cache.Get<string, RealmStaticWrapper>(RealmsCacheKey);
+            var cacheKey = RealmsCacheKey + region;
+            var wrapper = cache.Get<string, RealmStaticWrapper>(cacheKey);
             if (wrapper != null)
             {
                 return wrapper.RealmStatic;
@@ -31,7 +32,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Realm
             var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + RealmsUrl, region).ConfigureAwait(false);
             var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
 
-            cache.Add(RealmsCacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);
+            cache.Add(cacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);
 
             return realm;
         }

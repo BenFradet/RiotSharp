@@ -22,7 +22,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Version
 
         public async Task<List<string>> GetVersionsAsync(Region region)
         {
-            var wrapper = cache.Get<string, List<string>>(VersionsCacheKey);
+            var cacheKey = VersionsCacheKey + region;
+            var wrapper = cache.Get<string, List<string>>(cacheKey);
             if (wrapper != null)
             {
                 return wrapper;
@@ -32,7 +33,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Version
                 await requester.CreateGetRequestAsync(StaticDataRootUrl + VersionsUrl, region).ConfigureAwait(false);
             var version = JsonConvert.DeserializeObject<List<string>>(json);
 
-            cache.Add(VersionsCacheKey, version, SlidingExpirationTime);
+            cache.Add(cacheKey, version, SlidingExpirationTime);
 
             return version;
         }

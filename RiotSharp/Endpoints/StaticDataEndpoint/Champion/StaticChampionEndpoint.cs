@@ -25,9 +25,10 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             : this(requester, cache, null) { }
 
         public async Task<ChampionListStatic> GetChampionsAsync(Region region,
-            ChampionData championData = ChampionData.All, Language language = Language.en_US)
+            ChampionData championData = ChampionData.All, Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, ChampionListStaticWrapper>(ChampionsCacheKey);
+            var cacheKey = ChampionsCacheKey + region + championData + language + version;
+            var wrapper = cache.Get<string, ChampionListStaticWrapper>(cacheKey);
             if (wrapper != null && language == wrapper.Language && championData == wrapper.ChampionData)
             {
                 return wrapper.ChampionListStatic;
@@ -36,20 +37,20 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
                 new List<string>
                 {
                     $"locale={language}",
-                    championData == ChampionData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, championData.ToString().ToLower())
+                    championData == ChampionData.Basic ? null : string.Format(TagsParameter, championData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
             wrapper = new ChampionListStaticWrapper(champs, language, championData);
-            cache.Add(ChampionsCacheKey, wrapper, SlidingExpirationTime);
+            cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ChampionListStatic;
         }
 
         public async Task<ChampionStatic> GetChampionAsync(Region region, int championId,
-            ChampionData championData = ChampionData.All, Language language = Language.en_US)
+            ChampionData championData = ChampionData.All, Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, ChampionStaticWrapper>(ChampionByIdCacheKey + championId);
+            var cacheKey = ChampionsCacheKey + region + championId + championData + language + version;
+            var wrapper = cache.Get<string, ChampionStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.ChampionData == championData)
             {
                 return wrapper.ChampionStatic;
@@ -65,13 +66,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
                 new List<string>
                 {
                     $"locale={language}",
-                    championData == ChampionData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, championData.ToString().ToLower())
+                    championData == ChampionData.Basic ? null : string.Format(TagsParameter, championData.ToString().ToLower()),
+                    version == null ? string.Empty : $"version={version}"
                 }).ConfigureAwait(false);
             var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
-            cache.Add(ChampionByIdCacheKey + championId, new ChampionStaticWrapper(champ, language, championData),
-                SlidingExpirationTime);
+            cache.Add(cacheKey, new ChampionStaticWrapper(champ, language, championData), SlidingExpirationTime);
             return champ;
         }
     }

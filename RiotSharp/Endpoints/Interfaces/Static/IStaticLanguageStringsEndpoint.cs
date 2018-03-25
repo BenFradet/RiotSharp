@@ -22,6 +22,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
         Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
-            Language language = Language.en_US, string version = "");
+            Language language = Language.en_US, string version = null);
     }
 }

@@ -26,9 +26,10 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
             : this(requester, cache, null) { }
 
         public async Task<ItemListStatic> GetItemsAsync(Region region, ItemData itemData = ItemData.All,
-            Language language = Language.en_US)
+            Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, ItemListStaticWrapper>(ItemsCacheKey);
+            var cacheKey = ItemsCacheKey + region + itemData + language + version;
+            var wrapper = cache.Get<string, ItemListStaticWrapper>(cacheKey);
             if (wrapper != null && language == wrapper.Language && itemData == wrapper.ItemData)
             {
                 return wrapper.ItemListStatic;
@@ -37,20 +38,20 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
                 new List<string>
                 {
                     $"locale={language}",
-                    itemData == ItemData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, itemData.ToString().ToLower())
+                    itemData == ItemData.Basic ? null : string.Format(TagsParameter, itemData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
             wrapper = new ItemListStaticWrapper(items, language, itemData);
-            cache.Add(ItemsCacheKey, wrapper, SlidingExpirationTime);
+            cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ItemListStatic;
         }
 
         public async Task<ItemStatic> GetItemAsync(Region region, int itemId, ItemData itemData = ItemData.All,
-            Language language = Language.en_US)
+            Language language = Language.en_US, string version = null)
         {
-            var wrapper = cache.Get<string, ItemStaticWrapper>(ItemByIdCacheKey + itemId);
+            var cacheKey = ItemByIdCacheKey + region + itemId + itemData + language + version;
+            var wrapper = cache.Get<string, ItemStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.ItemData == itemData)
             {
                 return wrapper.ItemStatic;
@@ -66,12 +67,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
                 new List<string>
                 {
                     $"locale={language}",
-                    itemData == ItemData.Basic ?
-                        string.Empty :
-                        string.Format(TagsParameter, itemData.ToString().ToLower())
+                    itemData == ItemData.Basic ? null : string.Format(TagsParameter, itemData.ToString().ToLower()),
+                    version == null ? null : $"version={version}"
                 }).ConfigureAwait(false);
             var item = JsonConvert.DeserializeObject<ItemStatic>(json);
-            cache.Add(ItemByIdCacheKey + itemId, new ItemStaticWrapper(item, language, itemData), SlidingExpirationTime);
+            cache.Add(cacheKey, new ItemStaticWrapper(item, language, itemData), SlidingExpirationTime);
             return item;
         }
     }
