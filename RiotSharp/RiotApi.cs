@@ -14,6 +14,8 @@ using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Endpoints.ThirdPartyEndpoint;
+using RiotSharp.Endpoints.Interfaces.Static;
+using RiotSharp.Endpoints.StaticDataEndpoint;
 
 namespace RiotSharp
 {
@@ -23,11 +25,14 @@ namespace RiotSharp
     public class RiotApi : IRiotApi
     {
         #region Private Fields
-
         private static RiotApi _instance;
 
         private ICache _cache;
 
+        private Dictionary<TimeSpan, int> _staticDataRateLimits;
+        #endregion
+
+        #region Endpoints
         public ISummonerEndpoint Summoner { get; }
 
         public IChampionEndpoint Champion { get; }
@@ -46,6 +51,7 @@ namespace RiotSharp
 
         public IThirdPartyEndpoint ThirdParty { get; }
 
+        public IStaticDataEndpoints Static { get; }
         #endregion
 
         /// <summary>
@@ -100,8 +106,9 @@ namespace RiotSharp
 
         private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
-            _cache = cache;
+            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
+            Requesters.StaticApiRequester = new RateLimitedRequester(apiKey, _staticDataRateLimits);
             var requester = Requesters.RiotApiRequester;
             Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);
@@ -112,19 +119,24 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
+            Static = new StaticDataEndpoints(Requesters.StaticApiRequester, cache);
         }
 
         /// <summary>
         /// Dependency injection constructor
         /// </summary>
-        /// <param name="rateLimitedRequester"></param>
-        public RiotApi(IRateLimitedRequester rateLimitedRequester, ICache cache = null)
+        /// <param name="rateLimitedRequester">Rate limited requester for all endpoints except the static endpoint.</param>
+        /// <param name="staticDataRateLimitedRequester">Rate limited requester for static data endpoints.</param>
+        public RiotApi(IRateLimitedRequester rateLimitedRequester, IStaticEndpointProvider staticEndpointProvider,
+            ICache cache = null)
         {
-            _cache = cache ?? new PassThroughCache();
-            if (rateLimitedRequester == null)
-            {
+            if(rateLimitedRequester == null)
                 throw new ArgumentNullException(nameof(rateLimitedRequester));
-            }
+            if (staticEndpointProvider == null)
+                throw new ArgumentNullException(nameof(staticEndpointProvider));
+
+            _cache = cache ?? new PassThroughCache();
+            
             Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
             Champion = new ChampionEndpoint(rateLimitedRequester);
             Masteries = new MasteriesEndpoint(rateLimitedRequester);
@@ -134,6 +146,7 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(rateLimitedRequester);
             ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+            Static = new StaticDataEndpoints(staticEndpointProvider);
         }
     }
 }
