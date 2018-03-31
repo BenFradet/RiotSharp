@@ -7,6 +7,7 @@ using RiotSharp.Endpoints.StaticDataEndpoint.Map;
 using RiotSharp.Endpoints.StaticDataEndpoint.Mastery;
 using RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons;
 using RiotSharp.Endpoints.StaticDataEndpoint.Realm;
+using RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune;
 using RiotSharp.Endpoints.StaticDataEndpoint.Rune;
 using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
 using RiotSharp.Endpoints.StaticDataEndpoint.Version;
@@ -35,6 +36,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
                 new StaticRuneEndpoint(requester, cache),
                 new StaticSummonerSpellEndpoint(requester, cache),
                 new StaticVersionEndpoint(requester, cache),
+                new StaticReforgedRuneEndpoint(requester, cache)
             };
         }
 
