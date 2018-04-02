@@ -18,6 +18,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         public IStaticMasteryEndpoint Mastery { get; private set; }
         public IStaticProfileIconEndpoint ProfileIcon { get; private set; }
         public IStaticRealmEndpoint Realm { get; private set; }
+        public IStaticReforgedRuneEndpoint ReforgedRune { get; private set; }
         public IStaticRuneEndpoint Rune { get; private set; }
         public IStaticSummonerSpellEndpoint SummonerSpell { get; private set; }
         public IStaticVersionEndpoint Version { get; private set; }
@@ -90,6 +91,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
             this.Mastery = staticEndpointProvider.GetEndpoint<IStaticMasteryEndpoint>();
             this.ProfileIcon = staticEndpointProvider.GetEndpoint<IStaticProfileIconEndpoint>();
             this.Realm = staticEndpointProvider.GetEndpoint<IStaticRealmEndpoint>();
+            this.ReforgedRune = staticEndpointProvider.GetEndpoint<IStaticReforgedRuneEndpoint>();
             this.Rune = staticEndpointProvider.GetEndpoint<IStaticRuneEndpoint>();
             this.SummonerSpell = staticEndpointProvider.GetEndpoint<IStaticSummonerSpellEndpoint>();
             this.Version = staticEndpointProvider.GetEndpoint<IStaticVersionEndpoint>();

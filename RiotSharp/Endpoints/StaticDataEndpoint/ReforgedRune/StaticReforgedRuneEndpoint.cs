@@ -37,7 +37,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
             {
                 return wrapper.ReforgedRune;
             }
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ReforgedRuneByIdUrl, region,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + string.Format(ReforgedRuneByIdUrl, reforgedRuneId), region,
                 new List<string>
                 {
                     $"locale={language}",
@@ -75,7 +75,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
             {
                 return wrapper.ReforgedRunePath;
             }
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ReforgedRuneByIdUrl, region,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + string.Format(ReforgedRunePathByIdUrl, reforgedRunePathId), region,
                 new List<string>
                 {
                     $"locale={language}",
@@ -94,7 +94,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
             {
                 return wrapper.ReforgedRunePaths;
             }
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ReforgedRunesUrl, region,
+            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ReforgedRunePathsUrl, region,
                 new List<string>
                 {
                     $"locale={language}",
