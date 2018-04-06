@@ -20,8 +20,8 @@ namespace RiotSharp.Test
         public const int StaticRuneId = 5001;
         public const string StaticRuneName = "Lesser Mark of Attack Damage";
 
-        public const int StaticReforgedRuneId = 8139;
-        public const string StaticReforgedRuneName = "Taste of Blood";
+        public const int StaticReforgedRuneId = 8200;
+        public const string StaticReforgedRuneName = "Sorcery";
 
         public static readonly SummonerSpell StaticSummonerSpell = (SummonerSpell)Enum.Parse(typeof(SummonerSpell), "Barrier");
         public const string StaticSummonerSpellName = "Barrier";
