@@ -11,7 +11,7 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// Get a summoner spell asynchronously.
         /// </summary>
         /// <param name="region">Region from which to retrieve the data.</param>
-        /// <param name="summonerSpell">Summoner spell to retrieve.</param>
+        /// <param name="summonerSpellId">Id of the summoner spell to retrieve.</param>
         /// <param name="summonerSpellData">Data to retrieve.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Patch version for returned data. If not specified, the latest version for the region is used. 

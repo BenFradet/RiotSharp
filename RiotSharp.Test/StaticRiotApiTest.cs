@@ -170,6 +170,58 @@ namespace RiotSharp.Test
         }
         #endregion
 
+        #region Reforged Runes
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetReforgedRunesAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var reforgedRunes = _api.ReforgedRune.GetReforgedRunesAsync(StaticRiotApiTestBase.Region).Result;
+
+                Assert.IsTrue(reforgedRunes.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetReforgedRuneAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var reforgedRune = _api.ReforgedRune.GetReforgedRuneAsync(StaticRiotApiTestBase.Region,
+                    StaticRiotApiTestBase.StaticReforgedRuneId).Result;
+
+                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRuneName, reforgedRune.Name);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetReforgedRunePathsAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var reforgedRunePaths = _api.ReforgedRune.GetReforgedRunePathsAsync(StaticRiotApiTestBase.Region).Result;
+
+                Assert.IsTrue(reforgedRunePaths.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetReforgedRunePathAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var reforgedRunePath = _api.ReforgedRune.GetReforgedRunePathAsync(StaticRiotApiTestBase.Region,
+                    StaticRiotApiTestBase.StaticReforgedRuneId).Result;
+
+                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRuneName, reforgedRunePath.Name);
+            });
+        }
+        #endregion
+
         #region Runes
 
         [TestMethod]
@@ -178,9 +230,9 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var runes = _api.Rune.GetRunesAsync(StaticRiotApiTestBase.Region);
+                var runes = _api.Rune.GetRunesAsync(StaticRiotApiTestBase.Region).Result;
 
-                Assert.IsTrue(runes.Result.Runes.Count > 0);
+                Assert.IsTrue(runes.Runes.Count > 0);
             });
         }
 
@@ -191,9 +243,9 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var rune = _api.Rune.GetRuneAsync(StaticRiotApiTestBase.Region, 
-                    StaticRiotApiTestBase.StaticRuneId);
+                    StaticRiotApiTestBase.StaticRuneId).Result;
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticRuneName, rune.Result.Name);
+                Assert.AreEqual(StaticRiotApiTestBase.StaticRuneName, rune.Name);
             });
         }
         #endregion

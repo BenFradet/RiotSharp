@@ -9,6 +9,7 @@
         IStaticMasteryEndpoint Mastery { get; }
         IStaticProfileIconEndpoint ProfileIcon { get; }
         IStaticRealmEndpoint Realm { get; }
+        IStaticReforgedRuneEndpoint ReforgedRune { get; }
         IStaticRuneEndpoint Rune { get; }
         IStaticSummonerSpellEndpoint SummonerSpell { get; }
         IStaticVersionEndpoint Version { get; }
