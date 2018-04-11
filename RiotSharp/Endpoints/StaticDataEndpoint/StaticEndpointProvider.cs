@@ -10,6 +10,7 @@ using RiotSharp.Endpoints.StaticDataEndpoint.Realm;
 using RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune;
 using RiotSharp.Endpoints.StaticDataEndpoint.Rune;
 using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
+using RiotSharp.Endpoints.StaticDataEndpoint.TarballLinks;
 using RiotSharp.Endpoints.StaticDataEndpoint.Version;
 using RiotSharp.Http.Interfaces;
 using System;
@@ -36,7 +37,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
                 new StaticRuneEndpoint(requester, cache),
                 new StaticSummonerSpellEndpoint(requester, cache),
                 new StaticVersionEndpoint(requester, cache),
-                new StaticReforgedRuneEndpoint(requester, cache)
+                new StaticReforgedRuneEndpoint(requester, cache),
+                new StaticTarballLinkEndPoint(requester, cache)
             };
         }
 

@@ -25,5 +25,11 @@ namespace RiotSharp.Test
 
         public static readonly SummonerSpell StaticSummonerSpell = (SummonerSpell)Enum.Parse(typeof(SummonerSpell), "Barrier");
         public const string StaticSummonerSpellName = "Barrier";
+
+        public static readonly string StaticTarballLinkBaseUrl = "http://ddragon.leagueoflegends.com/cdn/dragontail-";
+        public const string StaticTarballLinkVersion = "0.151.2";
+        public const string StaticTarballLinkExtension = ".tgz";
+        public static readonly string StaticTarballLinkVersionUrl = $"{StaticTarballLinkBaseUrl}{StaticTarballLinkVersion}{StaticTarballLinkExtension}";
+        
     }
 }
