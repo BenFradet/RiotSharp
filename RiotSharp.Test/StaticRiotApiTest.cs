@@ -323,7 +323,7 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("StaticDataRiotApi"), TestCategory("Async")]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetTarballLinksAsyncVersion_Test()
         {
             EnsureCredibility(() =>

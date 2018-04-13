@@ -5,7 +5,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
 {
     public interface IStaticTarballLinkEndPoint : IStaticEndpoint
     {
-        Task<string> GetTarballLinksAsync(Region region);
-        Task<string> GetTarballLinksAsync(Region region, string version);
+        Task<string> GetTarballLinksAsync(Region region, string version = "");
     }
 }

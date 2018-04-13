@@ -6,3 +6,4 @@ TestResults/
 *.nupkg
 .vs/
 project.lock.json
+.vscode/
