@@ -56,7 +56,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
             {
                 return wrapper.ItemStatic;
             }
-            var listWrapper = cache.Get<String, ItemListStaticWrapper>(ItemsCacheKey);
+            var listWrapper = cache.Get<String, ItemListStaticWrapper>(cacheKey);
             if (listWrapper != null && listWrapper.Language == language && listWrapper.ItemData == itemData)
             {
                 return listWrapper.ItemListStatic.Items.ContainsKey(itemId) ?
