@@ -20,7 +20,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.TarballLinks
         public StaticTarballLinkEndPoint(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
-        public async Task<string> GetTarballLinksAsync(Region region, String version = "")
+        public async Task<string> GetTarballLinksAsync(Region region, String version = null)
         {
             var cacheKey = TarballLinksCacheKey + region + version;
             var wrapper = cache.Get<string, string>(cacheKey);
