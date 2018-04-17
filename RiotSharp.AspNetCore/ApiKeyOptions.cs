@@ -33,5 +33,10 @@ namespace RiotSharp.AspNetCore
         /// Sliding expiration time for caching of the static data endpoint
         /// </summary>
         public TimeSpan SlidingExpirationTime { get; set; }
+
+        /// <summary>
+        /// For static data only: Throws a RiotSharpException instead of delaying the request when the rate limit is reached.
+        /// </summary>
+        public bool ThrowOnRateLimitedReached { get; set; }
     }
 }

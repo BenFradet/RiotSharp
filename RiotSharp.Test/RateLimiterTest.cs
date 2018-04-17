@@ -40,6 +40,40 @@ namespace RiotSharp.Test
             AssertDelayed(TimeSpan.Zero);
         }
 
+        [TestMethod]
+        [TestCategory("RateLimiter")]
+        public void HandleRateLimitAsync_ThrowOnDelay_ThrowsException()
+        {
+            var rateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromHours(1)] = 1
+            }, true);
+
+            var exception = Assert.ThrowsException<AggregateException>(action: () =>
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    rateLimiter.HandleRateLimitAsync().Wait();
+                }
+            });
+            Assert.IsInstanceOfType(exception.InnerException, typeof(RiotSharpException));
+        }
+
+        [TestMethod]
+        [TestCategory("RateLimiter"), TestCategory("Async")]
+        public async Task HandleRateLimitAsync_NotThrowOnDelay_NoException()
+        {
+            var rateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
+            {
+                [TimeSpan.FromSeconds(1)] = 1
+            });
+
+            for (int i = 0; i < 2; i++)
+            {
+                await rateLimiter.HandleRateLimitAsync();
+            }
+        }
+
         [Ignore]
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
