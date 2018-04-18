@@ -25,9 +25,13 @@ namespace RiotSharp.Http
         /// <summary>Key is rate limit interval, value is the current request count.</summary>
         private readonly IDictionary<TimeSpan, int> rateLimitCounts = new Dictionary<TimeSpan, int>();
 
-        public RateLimiter(IDictionary<TimeSpan, int> rateLimits)
+        /// <summary>Indicates if rate limit exceeded exception is thrown, when the rate limit is exceeded. </summary>
+        private bool _throwOnDelay;
+
+        public RateLimiter(IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false)
         {
             this.rateLimits = rateLimits;
+            _throwOnDelay = throwOnDelay;
         }
 
         /// <summary>
@@ -48,7 +52,10 @@ namespace RiotSharp.Http
             await accessSemaphore.WaitAsync().ConfigureAwait(false);
             try
             {
-                await Task.Delay(GetDelay()).ConfigureAwait(false);
+                var delay = GetDelay();
+                if (_throwOnDelay && delay > TimeSpan.Zero)
+                    throw new RiotSharpException("Rate limit reached.", (System.Net.HttpStatusCode)429);
+                await Task.Delay(delay).ConfigureAwait(false);
                 UpdateDelay();
             }
             finally

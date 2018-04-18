@@ -39,7 +39,7 @@ namespace RiotSharp.AspNetCore
                     new TournamentRiotApi(rateLimitedRequester));
 
                 var staticApiRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey, 
-                    riotSharpOptions.RiotApi.StaticDataRateLimits);
+                    riotSharpOptions.RiotApi.StaticDataRateLimits, riotSharpOptions.RiotApi.ThrowOnRateLimitedReached);
 
                 if (riotSharpOptions.RiotApi.UseMemoryCache)
                     serviceCollection.AddSingleton<ICache, MemoryCache>();
