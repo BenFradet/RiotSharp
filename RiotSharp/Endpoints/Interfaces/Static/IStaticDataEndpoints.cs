@@ -13,5 +13,6 @@
         IStaticRuneEndpoint Rune { get; }
         IStaticSummonerSpellEndpoint SummonerSpell { get; }
         IStaticVersionEndpoint Version { get; }
+        IStaticTarballLinkEndPoint TarballLink { get; }
     }
 }

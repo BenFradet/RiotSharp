@@ -33,7 +33,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var champ = _api.Champion.GetChampionAsync(StaticRiotApiTestBase.Region, 
+                var champ = _api.Champion.GetChampionAsync(StaticRiotApiTestBase.Region,
                     StaticRiotApiTestBase.StaticChampionId);
 
                 Assert.AreEqual(StaticRiotApiTestBase.StaticChampionName, champ.Result.Name);
@@ -74,7 +74,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var item = _api.Item.GetItemAsync(StaticRiotApiTestBase.Region, 
+                var item = _api.Item.GetItemAsync(StaticRiotApiTestBase.Region,
                     StaticRiotApiTestBase.StaticItemId);
 
                 Assert.AreEqual(StaticRiotApiTestBase.StaticItemName, item.Result.Name);
@@ -147,7 +147,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var mastery = _api.Mastery.GetMasteryAsync(StaticRiotApiTestBase.Region, 
+                var mastery = _api.Mastery.GetMasteryAsync(StaticRiotApiTestBase.Region,
                     StaticRiotApiTestBase.StaticMasteryId);
 
                 Assert.AreEqual(StaticRiotApiTestBase.StaticMasteryName, mastery.Result.Name);
@@ -242,7 +242,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var rune = _api.Rune.GetRuneAsync(StaticRiotApiTestBase.Region, 
+                var rune = _api.Rune.GetRuneAsync(StaticRiotApiTestBase.Region,
                     StaticRiotApiTestBase.StaticRuneId).Result;
 
                 Assert.AreEqual(StaticRiotApiTestBase.StaticRuneName, rune.Name);
@@ -304,6 +304,34 @@ namespace RiotSharp.Test
                 var realm = _api.Realm.GetRealmAsync(StaticRiotApiTestBase.Region);
 
                 Assert.IsNotNull(realm.Result);
+            });
+        }
+        #endregion
+
+        #region TarballLinks Tests
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetTarballLinksAsyncNoVersion_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var tarballLink = _api.TarballLink.GetTarballLinksAsync(StaticRiotApiTestBase.Region);
+
+                Assert.IsTrue(tarballLink.Result.StartsWith(StaticRiotApiTestBase.StaticTarballLinkBaseUrl));
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public void GetTarballLinksAsyncVersion_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var tarballLink = _api.TarballLink.GetTarballLinksAsync(StaticRiotApiTestBase.Region,
+                StaticRiotApiTestBase.StaticTarballLinkVersion);
+                
+                Assert.AreEqual(StaticRiotApiTestBase.StaticTarballLinkVersionUrl, tarballLink.Result);
             });
         }
         #endregion

@@ -22,6 +22,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         public IStaticRuneEndpoint Rune { get; private set; }
         public IStaticSummonerSpellEndpoint SummonerSpell { get; private set; }
         public IStaticVersionEndpoint Version { get; private set; }
+        public IStaticTarballLinkEndPoint TarballLink { get; private set; }
 
         /// <summary>
         /// Get the instance of StaticDataEndpoints which contains all the static Endpoints as Properties.
@@ -95,6 +96,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
             this.Rune = staticEndpointProvider.GetEndpoint<IStaticRuneEndpoint>();
             this.SummonerSpell = staticEndpointProvider.GetEndpoint<IStaticSummonerSpellEndpoint>();
             this.Version = staticEndpointProvider.GetEndpoint<IStaticVersionEndpoint>();
+            this.TarballLink = staticEndpointProvider.GetEndpoint<IStaticTarballLinkEndPoint>();
         }
     }
 }
