@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/BenFradet/RiotSharp</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/BenFradet/RiotSharp/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</PackageIconUrl>
-    <Copyright>Copyright (c) Benjamin Fradet 2013-2017</Copyright>
+    <Copyright>Copyright (c) Benjamin Fradet 2013-2018</Copyright>
     <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
     <Version>3.0.1</Version>
   </PropertyGroup>
