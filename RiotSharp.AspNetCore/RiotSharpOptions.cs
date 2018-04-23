@@ -12,6 +12,7 @@ namespace RiotSharp.AspNetCore
         public RiotSharpOptions()
         {
             RiotApi = new ApiKeyOptions();
+            RiotApi.SlidingExpirationTime = TimeSpan.FromHours(1);
             RiotApi.RateLimits = new Dictionary<TimeSpan, int>
             {
                 [TimeSpan.FromSeconds(1)] = 20,

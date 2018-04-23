@@ -56,7 +56,8 @@ namespace RiotSharp.AspNetCore
                     serviceCollection.AddSingleton<ICache, PassThroughCache>();
 
                 serviceCollection.AddSingleton<IStaticEndpointProvider>(serviceProvider =>
-                    new StaticEndpointProvider(staticApiRequester, serviceProvider.GetRequiredService<ICache>()));
+                    new StaticEndpointProvider(staticApiRequester, serviceProvider.GetRequiredService<ICache>(), 
+                        riotSharpOptions.RiotApi.SlidingExpirationTime));
 
                 serviceCollection.AddSingleton<IStaticDataEndpoints>(serviceProvider => 
                     new StaticDataEndpoints(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));

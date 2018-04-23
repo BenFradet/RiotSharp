@@ -23,22 +23,22 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
     {
         public List<IStaticEndpoint> Endpoints { get; set; }
 
-        public StaticEndpointProvider(IRateLimitedRequester requester, ICache cache)
+        public StaticEndpointProvider(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
         {
             this.Endpoints = new List<IStaticEndpoint>
             {
-                new StaticChampionEndpoint(requester, cache),
-                new StaticItemEndpoint(requester, cache),
-                new StaticLanguageEndpoint(requester, cache),
-                new StaticMapEndpoint(requester, cache),
-                new StaticMasteryEndpoint(requester, cache),
-                new StaticProfileIconEndpoint(requester, cache),
-                new StaticRealmEndpoint(requester, cache),
-                new StaticRuneEndpoint(requester, cache),
-                new StaticSummonerSpellEndpoint(requester, cache),
-                new StaticVersionEndpoint(requester, cache),
-                new StaticReforgedRuneEndpoint(requester, cache),
-                new StaticTarballLinkEndPoint(requester, cache)
+                new StaticChampionEndpoint(requester, cache, slidingExpirationTime),
+                new StaticItemEndpoint(requester, cache, slidingExpirationTime),
+                new StaticLanguageEndpoint(requester, cache, slidingExpirationTime),
+                new StaticMapEndpoint(requester, cache, slidingExpirationTime),
+                new StaticMasteryEndpoint(requester, cache, slidingExpirationTime),
+                new StaticProfileIconEndpoint(requester, cache, slidingExpirationTime),
+                new StaticRealmEndpoint(requester, cache, slidingExpirationTime),
+                new StaticRuneEndpoint(requester, cache, slidingExpirationTime),
+                new StaticSummonerSpellEndpoint(requester, cache, slidingExpirationTime),
+                new StaticVersionEndpoint(requester, cache, slidingExpirationTime),
+                new StaticReforgedRuneEndpoint(requester, cache, slidingExpirationTime),
+                new StaticTarballLinkEndPoint(requester, cache, slidingExpirationTime)
             };
         }
 
