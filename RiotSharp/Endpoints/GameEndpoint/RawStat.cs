@@ -345,7 +345,7 @@ namespace RiotSharp.Endpoints.GameEndpoint
         /// Time played.
         /// </summary>
         [JsonProperty("timePlayed")]
-        [JsonConverter(typeof(TimeSpanConverterFromS))]
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
         public TimeSpan TimePlayed { get; set; }
 
         /// <summary>
@@ -388,7 +388,7 @@ namespace RiotSharp.Endpoints.GameEndpoint
         /// Amount of time of crowd control given to enemies during the game.
         /// </summary>
         [JsonProperty("totalTimeCrowdControlDealt")]
-        [JsonConverter(typeof(TimeSpanConverterFromS))]
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
         public TimeSpan TotalTimeCrowdControlDealt { get; set; }
 
         /// <summary>

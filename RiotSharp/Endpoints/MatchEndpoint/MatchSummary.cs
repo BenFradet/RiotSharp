@@ -32,7 +32,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Match duration.
         /// </summary>
         [JsonProperty("matchDuration")]
-        [JsonConverter(typeof(TimeSpanConverterFromS))]
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
         public TimeSpan MatchDuration { get; set; }
 
         /// <summary>

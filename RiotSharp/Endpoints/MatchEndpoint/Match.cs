@@ -68,7 +68,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// The game duration.
         /// </summary>
         [JsonProperty("gameDuration")]
-        [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
         public TimeSpan GameDuration { get; set; }
 
         /// <summary>
