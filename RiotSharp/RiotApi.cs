@@ -1,21 +1,19 @@
-using RiotSharp.Http;
-using RiotSharp.Http.Interfaces;
-using RiotSharp.Interfaces;
 using System;
 using System.Collections.Generic;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.Interfaces;
+using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.LeagueEndpoint;
-using RiotSharp.Endpoints.MasteriesEndpoint;
 using RiotSharp.Endpoints.MatchEndpoint;
-using RiotSharp.Endpoints.RunesEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
+using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Endpoints.ThirdPartyEndpoint;
-using RiotSharp.Endpoints.Interfaces.Static;
-using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharp.Http;
+using RiotSharp.Http.Interfaces;
+using RiotSharp.Interfaces;
 
 namespace RiotSharp
 {
@@ -36,10 +34,6 @@ namespace RiotSharp
         public ISummonerEndpoint Summoner { get; }
 
         public IChampionEndpoint Champion { get; }
-
-        public IMasteriesEndpoint Masteries { get; }
-
-        public IRunesEndpoint Runes { get; }
 
         public ILeagueEndpoint League { get; }
 
@@ -112,8 +106,6 @@ namespace RiotSharp
             var requester = Requesters.RiotApiRequester;
             Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);
-            Masteries = new MasteriesEndpoint(requester);
-            Runes = new RunesEndpoint(requester);
             League = new LeagueEndpoint(requester);
             Match = new MatchEndpoint(requester, _cache);
             Spectator = new SpectatorEndpoint(requester);
@@ -139,8 +131,6 @@ namespace RiotSharp
             
             Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
             Champion = new ChampionEndpoint(rateLimitedRequester);
-            Masteries = new MasteriesEndpoint(rateLimitedRequester);
-            Runes = new RunesEndpoint(rateLimitedRequester);
             League = new LeagueEndpoint(rateLimitedRequester);
             Match = new MatchEndpoint(rateLimitedRequester, _cache);
             Spectator = new SpectatorEndpoint(rateLimitedRequester);

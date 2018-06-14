@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Endpoints.MatchEndpoint.Enums;
-using RiotSharp.Misc;
 
 namespace RiotSharp.Test
 {
@@ -94,74 +92,6 @@ namespace RiotSharp.Test
 
                 Assert.AreEqual(12, champion.Result.Id);
             });
-        }
-        #endregion
-
-        #region Masteries Tests
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasteryPagesAsync_ExistingSummonerId_HasMasteryPages()
-        {
-            EnsureCredibility(() =>
-            {
-                var pages = Api.Masteries.GetMasteryPagesAsync(RiotApiTestBase.SummonersRegion, Summoner1Id);
-
-                Assert.IsTrue(pages.Result.Count >= 1 && pages.Result.Count <= 20);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasteryPagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
-        {
-            try
-            {
-                EnsureCredibility(() =>
-                {
-                    var task = Api.Masteries.GetMasteryPagesAsync(RiotApiTestBase.SummonersRegion, InvalidSummonerId);
-                    task.Wait();
-                    Assert.Fail();
-                });
-            }
-            catch (RiotSharpException exception)
-            {
-                Assert.AreEqual(HttpStatusCode.NotFound, exception.HttpStatusCode);  
-            }
-        }
-        #endregion
-
-        #region Runes Tests
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetRunePagesAsync_ExistingSummonerId_HasRunePages()
-        {
-            EnsureCredibility(() =>
-            {
-                var runes = Api.Runes.GetRunePagesAsync(RiotApiTestBase.SummonersRegion, Summoner1Id);
-
-                Assert.IsTrue(runes.Result.Count >= 0 && runes.Result.Count <= 20);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetRunePagesAsync_InvalidSummonerId_ThrowsResouceNotFound()
-        {
-            try
-            {
-                EnsureCredibility(() =>
-                {
-                    var task = Api.Runes.GetRunePagesAsync(RiotApiTestBase.SummonersRegion, InvalidSummonerId);
-                    task.Wait();
-                    Assert.Fail();
-                });
-            }
-            catch (RiotSharpException e)
-            {
-                Assert.AreEqual(HttpStatusCode.NotFound, e.HttpStatusCode);
-            }
         }
         #endregion
 
