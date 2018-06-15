@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RiotSharp.Http;
-using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Caching;
-using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Endpoints.Interfaces.Static;
+using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharp.Http;
 
 namespace RiotSharp.Test
 {
@@ -215,9 +215,9 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var reforgedRunePath = _api.ReforgedRune.GetReforgedRunePathAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticReforgedRuneId).Result;
+                    StaticRiotApiTestBase.StaticReforgedRunePathId).Result;
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRuneName, reforgedRunePath.Name);
+                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRunePathName, reforgedRunePath.Name);
             });
         }
         #endregion
