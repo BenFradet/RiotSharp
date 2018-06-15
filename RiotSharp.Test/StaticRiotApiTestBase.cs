@@ -1,6 +1,6 @@
-﻿using RiotSharp.Misc;
-using System;
+﻿using System;
 using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Test
 {
@@ -20,8 +20,11 @@ namespace RiotSharp.Test
         public const int StaticRuneId = 5001;
         public const string StaticRuneName = "Lesser Mark of Attack Damage";
 
-        public const int StaticReforgedRuneId = 8200;
-        public const string StaticReforgedRuneName = "Sorcery";
+        public const int StaticReforgedRunePathId = 8200;
+        public const string StaticReforgedRunePathName = "Sorcery";
+
+        public const int StaticReforgedRuneId = 8210;
+        public const string StaticReforgedRuneName = "Transcendence";
 
         public static readonly SummonerSpell StaticSummonerSpell = (SummonerSpell)Enum.Parse(typeof(SummonerSpell), "Barrier");
         public const string StaticSummonerSpellName = "Barrier";
