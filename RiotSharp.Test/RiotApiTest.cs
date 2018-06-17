@@ -347,7 +347,6 @@ namespace RiotSharp.Test
                     var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner3Region,
                         Summoner3Id);
 
-                Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
                     Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
                 });
             }, "Third party code was not found for the summoner. (404)");

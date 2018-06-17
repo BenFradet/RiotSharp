@@ -29,6 +29,11 @@ namespace RiotSharp.Test
         public static string Summoner3Name = "xsunx";
         public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "ru");
 
+        /// <summary>
+        /// Ensures that test returns data (Shows test warnings for 404 status exceptions)
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <param name="message">The message.</param>
         protected void EnsureData(Action action, string message = "Data not found (404).")
         {
             try
