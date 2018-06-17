@@ -1,9 +1,8 @@
 ﻿using System;
-using RiotSharp.Misc;
-using RiotSharp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Test
 {
@@ -24,6 +23,30 @@ namespace RiotSharp.Test
         public static long Summoner2Id = 31815991;
         public static long Summoner2AccountId = 46532395;
         public static string Summoner2Name = "BabyBarf";
+
+        public static long Summoner3Id = 175907;
+        public static long Summoner3AccountId = 200107642;
+        public static string Summoner3Name = "xsunx";
+        public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "ru");
+
+        protected void EnsureData(Action action, string message = "Data not found (404).")
+        {
+            try
+            {
+                action();
+            }
+            catch (RiotSharpException exception)
+            {
+                HandleRiotNotFoundSharpException(exception, message);
+                throw;
+            }
+            // Catches exception thrown by async methods
+            catch (AggregateException exception)
+            {
+                HandleAggregateException(exception, (ex) => HandleRiotNotFoundSharpException(ex, message));
+                throw exception;
+            }
+        }
 
         /// <summary>
         /// Ignores the test if the server responds with 429 or 500
@@ -65,6 +88,13 @@ namespace RiotSharp.Test
             }
             else
                 return;
+        }
+
+        private void HandleRiotNotFoundSharpException(RiotSharpException exception, string message)
+        {
+            if (exception.HttpStatusCode == HttpStatusCode.NotFound)
+                Assert.Inconclusive(message);
+            throw exception;
         }
 
         private void HandleRiotSharpException(RiotSharpException exception)
