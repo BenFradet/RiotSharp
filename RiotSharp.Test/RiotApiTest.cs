@@ -324,26 +324,32 @@ namespace RiotSharp.Test
         [TestCategory("RiotApi")]
         public void GetThirdPartyCode_Test()
         {
-            EnsureCredibility(() =>
+            EnsureData(() =>
             {
-                var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner1And2Region,
-                    Summoner1Id).Result;
+                EnsureCredibility(() =>
+                {
+                    var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner3Region,
+                        Summoner3Id).Result;
 
-                Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code);
-            });
+                    Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code);
+                });
+            }, "Third party code was not found for the summoner. (404)");
         }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetThirdPartyCodeAsync_Test()
         {
-            EnsureCredibility(() =>
+            EnsureData(() =>
             {
-                var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner1And2Region,
-                    Summoner1Id);
+                EnsureCredibility(() =>
+                {
+                    var code = Api.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Summoner3Region,
+                        Summoner3Id);
 
-                Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
-            });
+                    Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
+                });
+            }, "Third party code was not found for the summoner. (404)");
         }
         #endregion
     }
