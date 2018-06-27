@@ -8,6 +8,7 @@ namespace RiotSharp.Test
     public class TournamentRiotApiTest : TournamentRiotApiTestBase
     {
         // Cannot use constant tournament id
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
@@ -35,7 +36,8 @@ namespace RiotSharp.Test
         }
 
         #region CreateTournamentCodes
-         
+
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateTournamentCodesAsync_InvalidTeamSize_ThrowsArgumentException()
@@ -59,6 +61,7 @@ namespace RiotSharp.Test
             });
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateTournamentCodesAsync_CountGreaterThan1000_ThrowsArgumentException()
@@ -82,6 +85,7 @@ namespace RiotSharp.Test
             });
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
         public void CreateTournamentCodesAsync_CountLessThan1_ThrowsArgumentException()

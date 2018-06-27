@@ -37,7 +37,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Match queue type.
         /// </summary>
         [JsonProperty("queue")]
-        public string Queue { get; set; }
+        public int Queue { get; set; }
 
         /// <summary>
         /// The region match was played in.
