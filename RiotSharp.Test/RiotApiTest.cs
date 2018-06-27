@@ -10,7 +10,9 @@ namespace RiotSharp.Test
     public class RiotApiTest : CommonTestBase
     {
         private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance(ApiKey);
-        private static readonly DateTime BeginTime = new DateTime(2015, 01, 01);
+
+        // The maximum time range allowed is one week, otherwise a 400 error code is returned.
+        private static readonly DateTime BeginTime = DateTime.Now.AddDays(-6);
         private static DateTime EndTime => DateTime.Now;
 
         #region Summoner Tests
@@ -151,7 +153,6 @@ namespace RiotSharp.Test
             });
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Test()
@@ -165,7 +166,6 @@ namespace RiotSharp.Test
             });
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_ChampionIds_Test()
@@ -183,45 +183,48 @@ namespace RiotSharp.Test
             });
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Queues_Test()
         {
-            EnsureCredibility(() =>
+            EnsureData(() =>
             {
-                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
-                    RiotApiTestBase.Summoner1AccountId, null, 
-                    new List<int> { RiotApiTestBase.QueueId }).Result.Matches;
-
-                foreach (var match in matches)
+                EnsureCredibility(() =>
                 {
-                    Assert.AreEqual(RiotApiTestBase.Queue, match.Queue);
-                }
-            });
+                    var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
+                        RiotApiTestBase.AccountIds.First(), null,
+                        new List<int> { RiotApiTestBase.QueueId }).Result.Matches;
+
+                    foreach (var match in matches)
+                    {
+                        Assert.AreEqual(RiotApiTestBase.QueueId, match.Queue);
+                    }
+                });
+            }, "No Matches found fot the test summoner (404).");
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Seasons_Test()
         {
-            EnsureCredibility(() =>
+            EnsureData(() =>
             {
-                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion, 
-                    RiotApiTestBase.Summoner1AccountId, null, null, 
-                    new List<Season> { RiotApiTestBase.Season }).Result.Matches;
-
-                Assert.IsTrue(matches.Any());
-
-                foreach (var match in matches)
+                EnsureCredibility(() =>
                 {
-                    Assert.AreEqual(RiotApiTestBase.Season.ToString(), match.Season.ToString());
-                }
-            });
+                    var matches = Api.Match.GetMatchListAsync(Summoner3Region,
+                        Summoner3AccountId, null, null,
+                        new List<Season> { RiotApiTestBase.Season }).Result.Matches;
+
+                    Assert.IsTrue(matches.Any());
+
+                    foreach (var match in matches)
+                    {
+                        Assert.AreEqual(RiotApiTestBase.Season.ToString(), match.Season.ToString());
+                    }
+                });
+            }, "No Matches found fot the test summoner (404).");
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_DateTimes_Test()
@@ -229,7 +232,7 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
-                    RiotApiTestBase.Summoner1AccountId, null, null, null, BeginTime, EndTime).Result.Matches;
+                    RiotApiTestBase.AccountIds.First(), null, null, null, BeginTime, EndTime).Result.Matches;
 
                 foreach (var match in matches)
                 {
@@ -239,7 +242,6 @@ namespace RiotSharp.Test
             });
         }
 
-        [Ignore]
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Index_Test()
