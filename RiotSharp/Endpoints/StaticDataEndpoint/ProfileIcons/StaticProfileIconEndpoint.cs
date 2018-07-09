@@ -12,32 +12,26 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons
 {
     public class StaticProfileIconEndpoint : StaticEndpointBase, IStaticProfileIconEndpoint
     {
-        private const string ProfileIconsUrl = "profile-icons";
+        private const string ProfileIconsDataKey = "profileicon";
         private const string ProfileIconsCacheKey = "profile-icons";
 
-        public StaticProfileIconEndpoint(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
+        public StaticProfileIconEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
-        public StaticProfileIconEndpoint(IRateLimitedRequester requester, ICache cache)
+        public StaticProfileIconEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ProfileIconListStatic> GetProfileIconsAsync(Region region, Language language = Language.en_US,
-            string version = null)
+        public async Task<ProfileIconListStatic> GetProfileIconsAsync(string version, Language language = Language.en_US)
         {
-            var cacheKey = ProfileIconsCacheKey + region + language + version;
+            var cacheKey = ProfileIconsCacheKey + language + version;
             var wrapper = cache.Get<string, ProfileIconsStaticWrapper>(cacheKey);
-            if (wrapper != null && language == wrapper.Language)
+            if (wrapper != null && language == wrapper.Language && version == wrapper.Version)
             {
                 return wrapper.ProfileIconListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ProfileIconsUrl, region,
-                new List<string>
-                {
-                    $"locale={language}",
-                    version == null ? null : $"version={version}"
-                }).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, ProfileIconsDataKey)).ConfigureAwait(false);
             var profileIcons = JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
-            wrapper = new ProfileIconsStaticWrapper(profileIcons, language);
+            wrapper = new ProfileIconsStaticWrapper(profileIcons, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ProfileIconListStatic;
         }

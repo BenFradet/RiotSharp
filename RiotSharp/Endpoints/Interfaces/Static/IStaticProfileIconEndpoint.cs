@@ -9,12 +9,9 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <summary>
         /// Get a list of profile icons asynchronously
         /// </summary>
-        /// <param name="region">Region corresponding to data to retrieve.</param>
-        /// <param name="language">>Language of the data to be retrieved.</param>
-        /// <param name="version">Patch version for returned data. If not specified, the latest version for the region is used. 
-        /// List of valid versions can be obtained from the /versions endpoint.</param>
+        /// <param name="version">Patch version for returned data.</param>
+        /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A ProfileIconListStatic object containing all runes.</returns>
-        Task<ProfileIconListStatic> GetProfileIconsAsync(Region region, Language language = Language.en_US,
-            string version = null);
+        Task<ProfileIconListStatic> GetProfileIconsAsync(string version, Language language = Language.en_US);
     }
 }
