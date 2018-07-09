@@ -13,64 +13,48 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 {
     public class StaticChampionEndpoint : StaticEndpointBase, IStaticChampionEndpoint
     {
-        private const string ChampionsUrl = "champions";
+        private const string ChampionsDataKey = "champions";
         private const string ChampionByIdUrl = "champions/{0}";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
 
-        public StaticChampionEndpoint(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
+        public StaticChampionEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
-        public StaticChampionEndpoint(IRateLimitedRequester requester, ICache cache)
+        public StaticChampionEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ChampionListStatic> GetChampionsAsync(Region region,
-            ChampionData championData = ChampionData.All, Language language = Language.en_US, string version = null)
+        public async Task<ChampionListStatic> GetChampionsAsync(string version, Language language = Language.en_US)
         {
-            var cacheKey = ChampionsCacheKey + region + championData + language + version;
+            var cacheKey = ChampionsCacheKey + language + version;
             var wrapper = cache.Get<string, ChampionListStaticWrapper>(cacheKey);
-            if (wrapper != null && language == wrapper.Language && championData == wrapper.ChampionData)
+            if (wrapper != null && language == wrapper.Language && version == wrapper.Version)
             {
                 return wrapper.ChampionListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + ChampionsUrl, region,
-                new List<string>
-                {
-                    $"locale={language}",
-                    championData == ChampionData.Basic ? null : string.Format(TagsParameter, championData.ToString().ToLower()),
-                    version == null ? null : $"version={version}"
-                }).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, ChampionsDataKey)).ConfigureAwait(false);
             var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
-            wrapper = new ChampionListStaticWrapper(champs, language, championData);
+            wrapper = new ChampionListStaticWrapper(champs, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);
             return wrapper.ChampionListStatic;
         }
 
-        public async Task<ChampionStatic> GetChampionAsync(Region region, int championId,
-            ChampionData championData = ChampionData.All, Language language = Language.en_US, string version = null)
+        public async Task<ChampionStatic> GetChampionAsync(string key, string version, Language language = Language.en_US)
         {
-            var cacheKey = ChampionsCacheKey + region + championId + championData + language + version;
+            var cacheKey = ChampionsCacheKey + key + language + version;
             var wrapper = cache.Get<string, ChampionStaticWrapper>(cacheKey);
-            if (wrapper != null && wrapper.Language == language && wrapper.ChampionData == championData)
+            if (wrapper != null && wrapper.Language == language)
             {
                 return wrapper.ChampionStatic;
             }
             var listWrapper = cache.Get<string, ChampionListStaticWrapper>(ChampionsCacheKey);
-            if (listWrapper != null && listWrapper.Language == language &&
-                listWrapper.ChampionData == championData)
+            if (listWrapper != null && listWrapper.Language == language && version == listWrapper.Version)
             {
-                return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Id == championId);
+                return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Key == key);
             }
-            var json = await requester.CreateGetRequestAsync(
-                StaticDataRootUrl + string.Format(ChampionByIdUrl, championId), region,
-                new List<string>
-                {
-                    $"locale={language}",
-                    championData == ChampionData.Basic ? null : string.Format(TagsParameter, championData.ToString().ToLower()),
-                    version == null ? string.Empty : $"version={version}"
-                }).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(RootUrl + $"{version}/data/{language}/champion/{key}.json").ConfigureAwait(false);
             var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
-            cache.Add(cacheKey, new ChampionStaticWrapper(champ, language, championData), SlidingExpirationTime);
+            cache.Add(cacheKey, new ChampionStaticWrapper(champ, language, version), SlidingExpirationTime);
             return champ;
         }
     }

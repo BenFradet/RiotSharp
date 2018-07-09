@@ -8,13 +8,13 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion.Cache
         [JsonProperty]
         public ChampionListStatic ChampionListStatic { get; private set; }
         public Language Language { get; private set; }
-        public ChampionData ChampionData { get; private set; }
+        public string Version { get; private set; }
 
-        public ChampionListStaticWrapper(ChampionListStatic champions, Language language, ChampionData championData)
+        public ChampionListStaticWrapper(ChampionListStatic champions, Language language, string version)
         {
             ChampionListStatic = champions;
             Language = language;
-            ChampionData = championData;
+            Version = version;
         }
     }
 }
