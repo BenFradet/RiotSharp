@@ -8,14 +8,14 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell.Cache
         [JsonProperty]
         public SummonerSpellListStatic SummonerSpellListStatic { get; private set; }
         public Language Language { get; private set; }
-        public SummonerSpellData SummonerSpellData { get; private set; }
+        public string Version { get; private set; }
 
         public SummonerSpellListStaticWrapper(SummonerSpellListStatic spells, Language language
-            , SummonerSpellData summonerSpellData)
+            , string version)
         {
             SummonerSpellListStatic = spells;
             Language = language;
-            SummonerSpellData = summonerSpellData;
+            Version = version;
         }
     }
 }
