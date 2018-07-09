@@ -20,5 +20,12 @@ namespace RiotSharp.Http.Interfaces
         /// </exception>
         Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
             List<string> queryParameters = null, bool useHttps = true);
+
+        /// <summary>
+        ///  Create a get request and send it asynchronously to the server.
+        /// </summary>
+        /// <param name="absoluteUrl"></param>
+        /// <returns></returns>
+        Task<string> CreateGetRequestAsync(string absoluteUrl);
     }
 }
