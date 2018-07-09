@@ -25,9 +25,7 @@ namespace RiotSharp
         #region Private Fields
         private static RiotApi _instance;
 
-        private ICache _cache;
-
-        private Dictionary<TimeSpan, int> _staticDataRateLimits;
+        private ICache _cache;       
         #endregion
 
         #region Endpoints
@@ -102,7 +100,7 @@ namespace RiotSharp
         {
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
-            Requesters.StaticApiRequester = new RateLimitedRequester(apiKey, _staticDataRateLimits);
+            Requesters.StaticApiRequester = new Requester(apiKey);
             var requester = Requesters.RiotApiRequester;
             Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);

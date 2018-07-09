@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
     {
         public List<IStaticEndpoint> Endpoints { get; set; }
 
-        public StaticEndpointProvider(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
+        public StaticEndpointProvider(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
         {
             this.Endpoints = new List<IStaticEndpoint>
             {
@@ -38,7 +38,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
                 new StaticSummonerSpellEndpoint(requester, cache, slidingExpirationTime),
                 new StaticVersionEndpoint(requester, cache, slidingExpirationTime),
                 new StaticReforgedRuneEndpoint(requester, cache, slidingExpirationTime),
-                new StaticTarballLinkEndPoint(requester, cache, slidingExpirationTime)
+                new StaticTarballLinkEndPoint()
             };
         }
 

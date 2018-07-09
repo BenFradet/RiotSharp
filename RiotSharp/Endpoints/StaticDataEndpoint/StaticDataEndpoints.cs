@@ -27,25 +27,20 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// <summary>
         /// Get the instance of StaticDataEndpoints which contains all the static Endpoints as Properties.
         /// </summary>
-        /// <param name="apiKey">The api key.</param>
         /// <returns>The instance of StaticDataEndpoint.</returns>
-        public static StaticDataEndpoints GetInstance(string apiKey, bool useCache = true)
+        public static StaticDataEndpoints GetInstance(bool useCache = true)
         {
             if (instance == null ||
-                Requesters.StaticApiRequester == null ||
-                apiKey != Requesters.StaticApiRequester.ApiKey)
+                Requesters.StaticApiRequester == null)
             {
-                instance = new StaticDataEndpoints(apiKey, useCache);
+                instance = new StaticDataEndpoints(useCache);
             }
             return instance;
         }
 
-        private StaticDataEndpoints(string apiKey, bool useCache = true)
+        private StaticDataEndpoints(bool useCache = true)
         {
-            Requesters.StaticApiRequester = new RateLimitedRequester(apiKey, new Dictionary<TimeSpan, int>
-            {
-                { new TimeSpan(1, 0, 0), 10 }
-            });
+            Requesters.StaticApiRequester = new Requester("NOT-NEEDED");
 
             ICache cache = null;
             if (useCache)
@@ -70,7 +65,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// </summary>
         /// <param name="requester"></param>
         /// <param name="cache"></param>
-        public StaticDataEndpoints(IRateLimitedRequester requester, ICache cache)
+        public StaticDataEndpoints(IRequester requester, ICache cache)
         {
             if (requester == null)
             {
