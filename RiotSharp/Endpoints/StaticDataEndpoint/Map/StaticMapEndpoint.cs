@@ -14,30 +14,25 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
 {
     public class StaticMapEndpoint : StaticEndpointBase, IStaticMapEndpoint
     {
-        private const string MapsUrl = "maps";
+        private const string MapsDataKey = "maps";
         private const string MapsCacheKey = "maps";
 
-        public StaticMapEndpoint(IRateLimitedRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
+        public StaticMapEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
-        public StaticMapEndpoint(IRateLimitedRequester requester, ICache cache)
+        public StaticMapEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<List<MapStatic>> GetMapsAsync(Region region, Language language = Language.en_US,
-            string version = null)
+        public async Task<List<MapStatic>> GetMapsAsync(string version, Language language = Language.en_US)
         {
-            var cacheKey = MapsCacheKey + region + language + version;
+            var cacheKey = MapsCacheKey + language + version;
             var wrapper = cache.Get<string, MapsStaticWrapper>(cacheKey);
             if (wrapper != null && wrapper.Language == language && wrapper.Version == version)
             {
                 return wrapper.MapsStatic.Data.Values.ToList();
             }
 
-            var json = await requester.CreateGetRequestAsync(StaticDataRootUrl + MapsUrl, region,
-                new List<string> {
-                    $"locale={language}",
-                    version == null ? null : $"version={version}"
-                }).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, MapsDataKey)).ConfigureAwait(false);
             var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
 
             cache.Add(cacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);
