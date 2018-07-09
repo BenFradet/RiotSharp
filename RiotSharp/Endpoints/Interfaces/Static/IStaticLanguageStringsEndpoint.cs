@@ -12,7 +12,7 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// </summary>
         /// <param name="region">Region from which to retrieve the data.</param>
         /// <returns>A list of languages.</returns>
-        Task<List<Language>> GetLanguagesAsync(Region region);
+        Task<List<Language>> GetLanguagesAsync();
 
         /// <summary>
         /// Retrieve language strings asynchronously.
@@ -21,7 +21,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <param name="version">Version of the dragon API.</param>
         /// <returns>A object containing the language strings.</returns>
-        Task<LanguageStringsStatic> GetLanguageStringsAsync(Region region,
-            Language language = Language.en_US, string version = null);
+        Task<LanguageStringsStatic> GetLanguageStringsAsync(string version, Language language = Language.en_US);
     }
 }
