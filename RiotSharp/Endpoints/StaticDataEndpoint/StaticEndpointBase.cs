@@ -9,7 +9,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
     public abstract class StaticEndpointBase : IStaticEndpoint
     {
         protected const string RootUrl = "http://ddragon.leagueoflegends.com/cdn/";
-        protected const string DefaultUrlPattern = "http://ddragon.leagueoflegends.com/cdn/{0}/data/{1}/{3}.json";
+        protected const string DefaultUrlPattern = "http://ddragon.leagueoflegends.com/cdn/{0}/data/{1}/{2}.json";
         protected IRequester requester;
 
         protected ICache cache;
