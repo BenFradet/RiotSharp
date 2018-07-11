@@ -1,339 +1,328 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.StaticDataEndpoint;
-using RiotSharp.Http;
 
 namespace RiotSharp.Test
 {
     [TestClass]
-    public class StaticRiotApiTest : CommonTestBase
+    public class StaticRiotApiTest : StaticRiotApiTestBase
     {
         private readonly IStaticDataEndpoints _api;
-        private static readonly RateLimitedRequester Requester = new RateLimitedRequester(ApiKey, new Dictionary<TimeSpan, int>
-            {
-                { new TimeSpan(1, 0, 0), 10 }
-            });
 
         public StaticRiotApiTest()
         {
             var cache = new Cache();
-            _api = StaticDataEndpoints.GetInstance(Requester.ApiKey, true);
+            _api = StaticDataEndpoints.GetInstance(true);
         }
-
 
         #region Champions Tests
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetChampionAsync_Test()
+        public async Task GetChampionAsync_Test()
         {
-            EnsureCredibility(() =>
+            await EnsureCredibilityAsync(async () =>
             {
-                var champ = _api.Champion.GetChampionAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticChampionId);
-
-                Assert.AreEqual(StaticRiotApiTestBase.StaticChampionName, champ.Result.Name);
+                var champ = await _api.Champion.GetChampionAsync(StaticChampionKey, StaticVersion);
+                Assert.AreEqual(StaticChampionName, champ.Name);
             });
         }
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetChampionsAsync_Test()
+        public async Task GetChampionsAsync_Test()
         {
-            EnsureCredibility(() =>
+            await EnsureCredibilityAsync(async () =>
             {
-                var champs = _api.Champion.GetChampionsAsync(StaticRiotApiTestBase.Region);
-
-                Assert.IsTrue(champs.Result.Champions.Count > 0);
+                var champs = await _api.Champion.GetChampionsAsync(StaticVersion);
+                Assert.IsTrue(champs.Champions.Count > 0);
             });
         }
 
         #endregion
 
-        #region Items Tests
+        //        #region Items Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetItemsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var items = _api.Item.GetItemsAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetItemsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var items = _api.Item.GetItemsAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(items.Result.Items.Count > 0);
-            });
-        }
+        //                Assert.IsTrue(items.Result.Items.Count > 0);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetItemAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var item = _api.Item.GetItemAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticItemId);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetItemAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var item = _api.Item.GetItemAsync(StaticRiotApiTestBase.Region,
+        //                    StaticRiotApiTestBase.StaticItemId);
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticItemName, item.Result.Name);
-            });
-        }
-        #endregion
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticItemName, item.Result.Name);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Language Strings Tests
+        //        #region Language Strings Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetLanguageStringsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var strings = _api.Language.GetLanguageStringsAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetLanguageStringsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var strings = _api.Language.GetLanguageStringsAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(strings.Result.Data.Count > 0);
-            });
-        }
-        #endregion
+        //                Assert.IsTrue(strings.Result.Data.Count > 0);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Languages Tests
+        //        #region Languages Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetLanguagesAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var langs = _api.Language.GetLanguagesAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetLanguagesAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var langs = _api.Language.GetLanguagesAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(langs.Result.Count > 0);
-            });
-        }
-        #endregion
+        //                Assert.IsTrue(langs.Result.Count > 0);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Maps Tests
+        //        #region Maps Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetMapsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var maps = _api.Map.GetMapsAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetMapsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var maps = _api.Map.GetMapsAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(maps.Result.Count > 0);
-            });
-        }
-        #endregion
+        //                Assert.IsTrue(maps.Result.Count > 0);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Masteries
+        //        #region Masteries
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetMasteriesAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var masteries = _api.Mastery.GetMasteriesAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetMasteriesAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var masteries = _api.Mastery.GetMasteriesAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(masteries.Result.Masteries.Count > 0);
-            });
-        }
+        //                Assert.IsTrue(masteries.Result.Masteries.Count > 0);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetMasteryAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var mastery = _api.Mastery.GetMasteryAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticMasteryId);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetMasteryAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var mastery = _api.Mastery.GetMasteryAsync(StaticRiotApiTestBase.Region,
+        //                    StaticRiotApiTestBase.StaticMasteryId);
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticMasteryName, mastery.Result.Name);
-            });
-        }
-        #endregion
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticMasteryName, mastery.Result.Name);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Profile Icons Tests
+        //        #region Profile Icons Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetProfileIconsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var profileIcons = _api.ProfileIcon.GetProfileIconsAsync(StaticRiotApiTestBase.Region).Result;
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetProfileIconsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var profileIcons = _api.ProfileIcon.GetProfileIconsAsync(StaticRiotApiTestBase.Region).Result;
 
-                Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
-            });
-        }
-        #endregion
+        //                Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Reforged Runes
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetReforgedRunesAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var reforgedRunes = _api.ReforgedRune.GetReforgedRunesAsync(StaticRiotApiTestBase.Region).Result;
+        //        #region Reforged Runes
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetReforgedRunesAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var reforgedRunes = _api.ReforgedRune.GetReforgedRunesAsync(StaticRiotApiTestBase.Region).Result;
 
-                Assert.IsTrue(reforgedRunes.Count > 0);
-            });
-        }
+        //                Assert.IsTrue(reforgedRunes.Count > 0);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetReforgedRuneAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var reforgedRune = _api.ReforgedRune.GetReforgedRuneAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticReforgedRuneId).Result;
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetReforgedRuneAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var reforgedRune = _api.ReforgedRune.GetReforgedRuneAsync(StaticRiotApiTestBase.Region,
+        //                    StaticRiotApiTestBase.StaticReforgedRuneId).Result;
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRuneName, reforgedRune.Name);
-            });
-        }
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRuneName, reforgedRune.Name);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetReforgedRunePathsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var reforgedRunePaths = _api.ReforgedRune.GetReforgedRunePathsAsync(StaticRiotApiTestBase.Region).Result;
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetReforgedRunePathsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var reforgedRunePaths = _api.ReforgedRune.GetReforgedRunePathsAsync(StaticRiotApiTestBase.Region).Result;
 
-                Assert.IsTrue(reforgedRunePaths.Count > 0);
-            });
-        }
+        //                Assert.IsTrue(reforgedRunePaths.Count > 0);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetReforgedRunePathAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var reforgedRunePath = _api.ReforgedRune.GetReforgedRunePathAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticReforgedRunePathId).Result;
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetReforgedRunePathAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var reforgedRunePath = _api.ReforgedRune.GetReforgedRunePathAsync(StaticRiotApiTestBase.Region,
+        //                    StaticRiotApiTestBase.StaticReforgedRunePathId).Result;
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRunePathName, reforgedRunePath.Name);
-            });
-        }
-        #endregion
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticReforgedRunePathName, reforgedRunePath.Name);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Runes
+        //        #region Runes
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetRunesAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var runes = _api.Rune.GetRunesAsync(StaticRiotApiTestBase.Region).Result;
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetRunesAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var runes = _api.Rune.GetRunesAsync(StaticRiotApiTestBase.Region).Result;
 
-                Assert.IsTrue(runes.Runes.Count > 0);
-            });
-        }
+        //                Assert.IsTrue(runes.Runes.Count > 0);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetRuneAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var rune = _api.Rune.GetRuneAsync(StaticRiotApiTestBase.Region,
-                    StaticRiotApiTestBase.StaticRuneId).Result;
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetRuneAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var rune = _api.Rune.GetRuneAsync(StaticRiotApiTestBase.Region,
+        //                    StaticRiotApiTestBase.StaticRuneId).Result;
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticRuneName, rune.Name);
-            });
-        }
-        #endregion
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticRuneName, rune.Name);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Summoner Spells Tests
+        //        #region Summoner Spells Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetSummonerSpellsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var spells = _api.SummonerSpell.GetSummonerSpellsAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetSummonerSpellsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var spells = _api.SummonerSpell.GetSummonerSpellsAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(spells.Result.SummonerSpells.Count > 0);
-            });
-        }
+        //                Assert.IsTrue(spells.Result.SummonerSpells.Count > 0);
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetSummonerSpellAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var spell = _api.SummonerSpell.GetSummonerSpellAsync(StaticRiotApiTestBase.Region,
-                    (int)StaticRiotApiTestBase.StaticSummonerSpell);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetSummonerSpellAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var spell = _api.SummonerSpell.GetSummonerSpellAsync(StaticRiotApiTestBase.Region,
+        //                    (int)StaticRiotApiTestBase.StaticSummonerSpell);
 
-                Assert.AreEqual(StaticRiotApiTestBase.StaticSummonerSpellName, spell.Result.Name);
-            });
-        }
-        #endregion
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticSummonerSpellName, spell.Result.Name);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Versions Tests
+        //        #region Versions Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetVersionsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var versions = _api.Version.GetVersionsAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetVersionsAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var versions = _api.Version.GetVersionsAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(versions.Result.Count() > 0);
-            });
-        }
-        #endregion
+        //                Assert.IsTrue(versions.Result.Count() > 0);
+        //            });
+        //        }
+        //        #endregion
 
-        #region Realms Tests
+        //        #region Realms Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetRealmAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var realm = _api.Realm.GetRealmAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetRealmAsync_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var realm = _api.Realm.GetRealmAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsNotNull(realm.Result);
-            });
-        }
-        #endregion
+        //                Assert.IsNotNull(realm.Result);
+        //            });
+        //        }
+        //        #endregion
 
-        #region TarballLinks Tests
+        //        #region TarballLinks Tests
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetTarballLinksAsyncNoVersion_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var tarballLink = _api.TarballLink.GetTarballLinksAsync(StaticRiotApiTestBase.Region);
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetTarballLinksAsyncNoVersion_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var tarballLink = _api.TarballLink.GetTarballLinksAsync(StaticRiotApiTestBase.Region);
 
-                Assert.IsTrue(tarballLink.Result.StartsWith(StaticRiotApiTestBase.StaticTarballLinkBaseUrl));
-            });
-        }
+        //                Assert.IsTrue(tarballLink.Result.StartsWith(StaticRiotApiTestBase.StaticTarballLinkBaseUrl));
+        //            });
+        //        }
 
-        [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetTarballLinksAsyncVersion_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var tarballLink = _api.TarballLink.GetTarballLinksAsync(StaticRiotApiTestBase.Region,
-                StaticRiotApiTestBase.StaticTarballLinkVersion);
-                
-                Assert.AreEqual(StaticRiotApiTestBase.StaticTarballLinkVersionUrl, tarballLink.Result);
-            });
-        }
-        #endregion
+        //        [TestMethod]
+        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        //        public void GetTarballLinksAsyncVersion_Test()
+        //        {
+        //            EnsureCredibility(() =>
+        //            {
+        //                var tarballLink = _api.TarballLink.GetTarballLinksAsync(StaticRiotApiTestBase.Region,
+        //                StaticRiotApiTestBase.StaticTarballLinkVersion);
+
+        //                Assert.AreEqual(StaticRiotApiTestBase.StaticTarballLinkVersionUrl, tarballLink.Result);
+        //            });
+        //        }
+        //        #endregion
     }
 }

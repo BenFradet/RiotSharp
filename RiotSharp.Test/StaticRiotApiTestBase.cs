@@ -7,8 +7,9 @@ namespace RiotSharp.Test
     public class StaticRiotApiTestBase : CommonTestBase
     {
         public static readonly Region Region = (Region)Enum.Parse(typeof(Region), "na");
+        public const string StaticVersion = "8.13.1";
 
-        public const int StaticChampionId = 1;
+        public const string StaticChampionKey = "Annie";
         public const string StaticChampionName = "Annie";
 
         public const int StaticItemId = 1001;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Misc;
@@ -57,11 +58,30 @@ namespace RiotSharp.Test
         /// Ignores the test if the server responds with 429 or 500
         /// </summary>
         /// <param name="action"></param>
+        [Obsolete("Use async version")]
         protected void EnsureCredibility(Action action)
         {
             try
             {
                 action();
+            }
+            catch (RiotSharpException exception)
+            {
+                HandleRiotSharpException(exception);
+            }
+            // Catches exception thrown by async methods
+            catch (AggregateException exception)
+            {
+                HandleAggregateException(exception);
+                throw exception;
+            }
+        }
+
+        protected async Task EnsureCredibilityAsync(Func<Task> action)
+        {
+            try
+            {
+                await action();
             }
             catch (RiotSharpException exception)
             {
