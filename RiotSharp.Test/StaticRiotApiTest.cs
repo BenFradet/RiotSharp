@@ -58,35 +58,35 @@ namespace RiotSharp.Test
 
         #endregion
 
-        //        #region Language Strings Tests
+        #region Language Strings Tests
 
-        //        [TestMethod]
-        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        //        public void GetLanguageStringsAsync_Test()
-        //        {
-        //            EnsureCredibility(() =>
-        //            {
-        //                var strings = _api.Language.GetLanguageStringsAsync(StaticRiotApiTestBase.Region);
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public async Task GetLanguageStringsAsync_Test()
+        {
+            await EnsureCredibilityAsync(async () =>
+            {
+                var strings = await _api.Language.GetLanguageStringsAsync(StaticVersion);
+                Assert.IsTrue(strings.Data.Count > 0);
+            });
+        }
 
-        //                Assert.IsTrue(strings.Result.Data.Count > 0);
-        //            });
-        //        }
-        //        #endregion
+        #endregion
 
-        //        #region Languages Tests
+        #region Languages Tests
 
-        //        [TestMethod]
-        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        //        public void GetLanguagesAsync_Test()
-        //        {
-        //            EnsureCredibility(() =>
-        //            {
-        //                var langs = _api.Language.GetLanguagesAsync(StaticRiotApiTestBase.Region);
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public async Task GetLanguagesAsync_Test()
+        {
+            await EnsureCredibilityAsync(async () =>
+            {
+                var langs = await _api.Language.GetLanguagesAsync();
+                Assert.IsTrue(langs.Count > 0);
+            });
+        }
 
-        //                Assert.IsTrue(langs.Result.Count > 0);
-        //            });
-        //        }
-        //        #endregion
+        #endregion
 
         //        #region Maps Tests
 
