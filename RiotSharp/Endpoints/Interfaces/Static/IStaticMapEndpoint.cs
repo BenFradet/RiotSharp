@@ -13,6 +13,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="version">Patch version for returned data.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A list of objects representing maps.</returns>
-        Task<List<MapStatic>> GetMapsAsync(string version, Language language = Language.en_US);
+        Task<List<MapStatic>> GetAll(string version, Language language = Language.en_US);
     }
 }

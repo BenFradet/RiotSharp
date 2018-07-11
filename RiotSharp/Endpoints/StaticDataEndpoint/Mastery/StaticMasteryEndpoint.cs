@@ -22,7 +22,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Mastery
         public StaticMasteryEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<MasteryListStatic> GetMasteriesAsync(string version, Language language = Language.en_US)
+        public async Task<MasteryListStatic> GetAll(string version, Language language = Language.en_US)
         {
             var cacheKey = MasteriesCacheKey + language + version;
             var wrapper = cache.Get<string, MasteryListStaticWrapper>(cacheKey);

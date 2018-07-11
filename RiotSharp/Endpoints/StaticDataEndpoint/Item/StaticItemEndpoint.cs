@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
         public StaticItemEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ItemListStatic> GetItemsAsync(string version, Language language = Language.en_US)
+        public async Task<ItemListStatic> GetAll(string version, Language language = Language.en_US)
         {
             var cacheKey = ItemsCacheKey + language + version;
             var wrapper = cache.Get<string, ItemListStaticWrapper>(cacheKey);

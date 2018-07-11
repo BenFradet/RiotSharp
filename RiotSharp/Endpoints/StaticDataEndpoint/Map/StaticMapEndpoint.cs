@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
         public StaticMapEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<List<MapStatic>> GetMapsAsync(string version, Language language = Language.en_US)
+        public async Task<List<MapStatic>> GetAll(string version, Language language = Language.en_US)
         {
             var cacheKey = MapsCacheKey + language + version;
             var wrapper = cache.Get<string, MapsStaticWrapper>(cacheKey);

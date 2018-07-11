@@ -14,7 +14,7 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="version">Patch version for returned data.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A champion.</returns>
-        Task<ChampionStatic> GetChampionAsync(string key, string version, Language language = Language.en_US);
+        Task<ChampionStatic> GetByKey(string key, string version, Language language = Language.en_US);
 
         /// <summary>
         /// Get a list of all champions asynchronously.
@@ -22,6 +22,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="version">Patch version for returned data.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A ChampionListStatic object containing all champions.</returns>
-        Task<ChampionListStatic> GetChampionsAsync(string version, Language language = Language.en_US);
+        Task<ChampionListStatic> GetAll(string version, Language language = Language.en_US);
     }
 }

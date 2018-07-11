@@ -25,7 +25,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var champ = await _api.Champions.GetChampionAsync(StaticChampionKey, StaticVersion);
+                var champ = await _api.Champions.GetByKey(StaticChampionKey, StaticVersion);
                 Assert.AreEqual(StaticChampionName, champ.Name);
             });
         }
@@ -36,7 +36,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var champs = await _api.Champions.GetChampionsAsync(StaticVersion);
+                var champs = await _api.Champions.GetAll(StaticVersion);
                 Assert.IsTrue(champs.Champions.Count > 0);
             });
         }
@@ -51,7 +51,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var items = await _api.Items.GetItemsAsync(StaticVersion);
+                var items = await _api.Items.GetAll(StaticVersion);
                 Assert.IsTrue(items.Items.Count > 0);
             });
         }
@@ -96,7 +96,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var maps = await _api.Maps.GetMapsAsync(StaticVersion);
+                var maps = await _api.Maps.GetAll(StaticVersion);
                 Assert.IsTrue(maps.Count > 0);
             });
         }
@@ -111,7 +111,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var masteries = await _api.Masteries.GetMasteriesAsync(LegacyVersion); 
+                var masteries = await _api.Masteries.GetAll(LegacyVersion); 
                 Assert.IsTrue(masteries.Masteries.Count > 0);
             });
         }
@@ -126,7 +126,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var profileIcons = await _api.ProfileIcons.GetProfileIconsAsync(StaticVersion);
+                var profileIcons = await _api.ProfileIcons.GetAll(StaticVersion);
                 Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
             });
         }
@@ -141,7 +141,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var reforgedRunes = await _api.ReforgedRunes.GetReforgedRunesAsync(StaticVersion);
+                var reforgedRunes = await _api.ReforgedRunes.GetAll(StaticVersion);
                 Assert.IsTrue(reforgedRunes.Count > 0);
             });
         }
@@ -156,7 +156,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var runes = await _api.Runes.GetRunesAsync(LegacyVersion);
+                var runes = await _api.Runes.GetAll(LegacyVersion);
                 Assert.IsTrue(runes.Runes.Count > 0);
             });
         }
@@ -171,7 +171,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var spells = await _api.SummonerSpells.GetSummonerSpellsAsync(StaticVersion);
+                var spells = await _api.SummonerSpells.GetAll(StaticVersion);
                 Assert.IsTrue(spells.SummonerSpells.Count > 0);
             });
         }
@@ -186,7 +186,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var versions = await _api.Versions.GetVersionsAsync();
+                var versions = await _api.Versions.GetAll();
                 Assert.IsTrue(versions.Count > 0);
             });
         }
@@ -201,7 +201,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var realm = await _api.Realms.GetRealmAsync(Region);
+                var realm = await _api.Realms.GetAll(Region);
                 Assert.IsNotNull(realm);
             });
         }
@@ -214,7 +214,7 @@ namespace RiotSharp.Test
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
         public void GetTarballLinksAsyncVersion_Test()
         {
-            var tarballLink = _api.TarballLinks.GetTarballLink(StaticVersion);
+            var tarballLink = _api.TarballLinks.Get(StaticVersion);
             Assert.IsFalse(string.IsNullOrEmpty(tarballLink));
         }
 

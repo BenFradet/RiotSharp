@@ -19,7 +19,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Realm
         public StaticRealmEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<RealmStatic> GetRealmAsync(Region region)
+        public async Task<RealmStatic> GetAll(Region region)
         {
             var cacheKey = RealmsCacheKey + region;
             var wrapper = cache.Get<string, RealmStaticWrapper>(cacheKey);

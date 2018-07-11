@@ -10,6 +10,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// </summary>
         /// <param name="version">Patch version for returned data.</param>
         /// <returns>A string containing the URL for the tarball file.</returns>
-        string GetTarballLink(string version);
+        string Get(string version);
     }
 }

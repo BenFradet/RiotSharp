@@ -22,7 +22,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune
         public StaticRuneEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<RuneListStatic> GetRunesAsync(string version, Language language = Language.en_US)
+        public async Task<RuneListStatic> GetAll(string version, Language language = Language.en_US)
         {
             var cacheKey = RunesCacheKey + language + language + version;
             var wrapper = cache.Get<string, RuneListStaticWrapper>(cacheKey);

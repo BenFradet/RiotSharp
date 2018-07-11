@@ -11,7 +11,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.TarballLinks
 {
     public class StaticTarballLinkEndPoint : IStaticTarballLinkEndPoint, IStaticEndpoint
     {
-        public string GetTarballLink(string version)
+        public string Get(string version)
         {
             return $"http://ddragon.leagueoflegends.com/cdn/dragontail-{version}.tgz";
         }
