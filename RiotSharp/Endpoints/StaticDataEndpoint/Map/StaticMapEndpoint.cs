@@ -14,7 +14,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
 {
     public class StaticMapEndpoint : StaticEndpointBase, IStaticMapEndpoint
     {
-        private const string MapsDataKey = "maps";
+        private const string MapsDataKey = "map";
         private const string MapsCacheKey = "maps";
 
         public StaticMapEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)

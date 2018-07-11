@@ -14,7 +14,6 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
     public class StaticChampionEndpoint : StaticEndpointBase, IStaticChampionEndpoint
     {
         private const string ChampionsDataKey = "champion";
-        private const string ChampionByIdUrl = "champion/{0}";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
 
@@ -53,9 +52,9 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
                 return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Key == key);
             }
             var json = await requester.CreateGetRequestAsync(RootUrl + $"{version}/data/{language}/champion/{key}.json").ConfigureAwait(false);
-            var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
-            cache.Add(cacheKey, new ChampionStaticWrapper(champ, language, version), SlidingExpirationTime);
-            return champ;
+            var championStandAlone = JsonConvert.DeserializeObject<ChampionStandAloneStatic>(json);
+            cache.Add(cacheKey, new ChampionStaticWrapper(championStandAlone.Data.First().Value, language, version), SlidingExpirationTime);
+            return championStandAlone.Data.First().Value;
         }
     }
 }

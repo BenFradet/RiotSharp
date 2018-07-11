@@ -32,8 +32,9 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 
         /// <summary>
         /// Id of this champion.
+        /// Taken from key field to remain consistent with the old static data api.
         /// </summary>
-        [JsonProperty("key")] // Swapped to remain consistent with the old static data api. Ref: https://discussion.developer.riotgames.com/articles/5719/removal-of-the-lol-static-data-v3-api.html
+        [JsonProperty("key")]
         public int Id { get; set; }
 
         /// <summary>
@@ -50,11 +51,12 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 
         /// <summary>
         /// Key of this champion.
+        /// Taken from key field to remain consistent with the old static data api.
         /// <para>This is diffrent from the Name attribute!
         /// (Name = ingame display name, Key = codebase name
         /// [Fiddlesticks key = FiddleSticks, Wukong key = MonkeyKing, ... ]</para>
         /// </summary>
-        [JsonProperty("id")] // Swapped to remain consistent with the old static data api. Ref: https://discussion.developer.riotgames.com/articles/5719/removal-of-the-lol-static-data-v3-api.html
+        [JsonProperty("id")]
         public string Key { get; set; }
 
         /// <summary>

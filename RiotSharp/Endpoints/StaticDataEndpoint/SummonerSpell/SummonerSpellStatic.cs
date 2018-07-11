@@ -61,8 +61,9 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
 
         /// <summary>
         /// Spell's id.
+        /// Taken from key field to remain consistent with the old static data api.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("key")]
         public int Id { get; set; }
 
         /// <summary>
@@ -73,8 +74,9 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
 
         /// <summary>
         /// Spell's key.
+        /// Taken from id field to remain consistent with the old static data api.
         /// </summary>
-        [JsonProperty("key")]
+        [JsonProperty("id")]
         public string Key { get; set; }
 
         /// <summary>

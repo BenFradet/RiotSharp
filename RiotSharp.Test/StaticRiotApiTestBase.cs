@@ -8,6 +8,7 @@ namespace RiotSharp.Test
     {
         public static readonly Region Region = (Region)Enum.Parse(typeof(Region), "na");
         public const string StaticVersion = "8.13.1";
+        public const string LegacyVersion = "7.13.1"; // For testing deprecated rune and mastery endpoint
 
         public const string StaticChampionKey = "Annie";
         public const string StaticChampionName = "Annie";

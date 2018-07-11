@@ -111,7 +111,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var masteries = await _api.Mastery.GetMasteriesAsync(StaticVersion);
+                var masteries = await _api.Mastery.GetMasteriesAsync(LegacyVersion); 
                 Assert.IsTrue(masteries.Masteries.Count > 0);
             });
         }
@@ -156,7 +156,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var runes = await _api.Rune.GetRunesAsync(StaticVersion);
+                var runes = await _api.Rune.GetRunesAsync(LegacyVersion);
                 Assert.IsTrue(runes.Runes.Count > 0);
             });
         }
