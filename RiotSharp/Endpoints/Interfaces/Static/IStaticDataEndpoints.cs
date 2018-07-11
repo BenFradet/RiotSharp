@@ -2,17 +2,17 @@
 {
     public interface IStaticDataEndpoints
     {
-        IStaticChampionEndpoint Champion { get; }
-        IStaticItemEndpoint Item { get; }
-        IStaticLanguageEndpoint Language { get; }
-        IStaticMapEndpoint Map { get; }
-        IStaticMasteryEndpoint Mastery { get; }
-        IStaticProfileIconEndpoint ProfileIcon { get; }
-        IStaticRealmEndpoint Realm { get; }
-        IStaticReforgedRuneEndpoint ReforgedRune { get; }
-        IStaticRuneEndpoint Rune { get; }
-        IStaticSummonerSpellEndpoint SummonerSpell { get; }
-        IStaticVersionEndpoint Version { get; }
-        IStaticTarballLinkEndPoint TarballLink { get; }
+        IStaticChampionEndpoint Champions { get; }
+        IStaticItemEndpoint Items { get; }
+        IStaticLanguageEndpoint Languages { get; }
+        IStaticMapEndpoint Maps { get; }
+        IStaticMasteryEndpoint Masteries { get; }
+        IStaticProfileIconEndpoint ProfileIcons { get; }
+        IStaticRealmEndpoint Realms { get; }
+        IStaticReforgedRuneEndpoint ReforgedRunes { get; }
+        IStaticRuneEndpoint Runes { get; }
+        IStaticSummonerSpellEndpoint SummonerSpells { get; }
+        IStaticVersionEndpoint Versions { get; }
+        IStaticTarballLinkEndPoint TarballLinks { get; }
     }
 }
