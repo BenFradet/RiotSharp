@@ -13,8 +13,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 {
     public class StaticChampionEndpoint : StaticEndpointBase, IStaticChampionEndpoint
     {
-        private const string ChampionsDataKey = "champions";
-        private const string ChampionByIdUrl = "champions/{0}";
+        private const string ChampionsDataKey = "champion";
+        private const string ChampionByIdUrl = "champion/{0}";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
 
