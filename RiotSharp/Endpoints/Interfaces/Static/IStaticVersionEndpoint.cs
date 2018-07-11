@@ -6,6 +6,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
 {
     public interface IStaticVersionEndpoint : IStaticEndpoint
     {
-        Task<List<string>> GetAll();
+        Task<List<string>> GetAllAsync();
     }
 }

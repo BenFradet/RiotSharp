@@ -15,6 +15,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="version">Patch version for returned data.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A summoner spell.</returns>
-        Task<List<ReforgedRuneStatic>> GetAll(string version, Language language = Language.en_US);
+        Task<List<ReforgedRuneStatic>> GetAllAsync(string version, Language language = Language.en_US);
     }
 }

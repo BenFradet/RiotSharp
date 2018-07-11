@@ -21,7 +21,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
         public StaticSummonerSpellEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<SummonerSpellListStatic> GetAll(string version, Language language = Language.en_US)
+        public async Task<SummonerSpellListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = SummonerSpellsCacheKey + language + version;
             var wrapper = cache.Get<string, SummonerSpellListStaticWrapper>(cacheKey);

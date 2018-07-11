@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
             : this(requester, cache, null) { }
 
 
-        public async Task<List<ReforgedRuneStatic>> GetAll(string version, Language language = Language.en_US)
+        public async Task<List<ReforgedRuneStatic>> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = ReforgdRunesCacheKey + language + language + version;
             var wrapper = cache.Get<string, ReforgedRuneListStaticWrapper>(cacheKey);

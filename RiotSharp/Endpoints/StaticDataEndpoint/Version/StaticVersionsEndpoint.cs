@@ -19,7 +19,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Version
         public StaticVersionEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<List<string>> GetAll()
+        public async Task<List<string>> GetAllAsync()
         {
             var cacheKey = VersionsCacheKey;
             var wrapper = cache.Get<string, List<string>>(cacheKey);

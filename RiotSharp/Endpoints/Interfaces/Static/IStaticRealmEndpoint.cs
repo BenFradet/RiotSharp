@@ -11,6 +11,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// </summary>
         /// <param name="region">Region corresponding to data to retrieve.</param>
         /// <returns>A realm object containing the requested information.</returns>
-        Task<RealmStatic> GetAll(Region region);
+        Task<RealmStatic> GetAllAsync(Region region);
     }
 }

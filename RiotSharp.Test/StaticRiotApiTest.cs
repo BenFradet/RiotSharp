@@ -25,7 +25,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var champ = await _api.Champions.GetByKey(StaticChampionKey, StaticVersion);
+                var champ = await _api.Champions.GetByKeyAsync(StaticChampionKey, StaticVersion);
                 Assert.AreEqual(StaticChampionName, champ.Name);
             });
         }
@@ -36,7 +36,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var champs = await _api.Champions.GetAll(StaticVersion);
+                var champs = await _api.Champions.GetAllAsync(StaticVersion);
                 Assert.IsTrue(champs.Champions.Count > 0);
             });
         }
@@ -51,7 +51,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var items = await _api.Items.GetAll(StaticVersion);
+                var items = await _api.Items.GetAllAsync(StaticVersion);
                 Assert.IsTrue(items.Items.Count > 0);
             });
         }
@@ -96,7 +96,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var maps = await _api.Maps.GetAll(StaticVersion);
+                var maps = await _api.Maps.GetAllAsync(StaticVersion);
                 Assert.IsTrue(maps.Count > 0);
             });
         }
@@ -111,7 +111,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var masteries = await _api.Masteries.GetAll(LegacyVersion); 
+                var masteries = await _api.Masteries.GetAllAsync(LegacyVersion); 
                 Assert.IsTrue(masteries.Masteries.Count > 0);
             });
         }
@@ -126,7 +126,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var profileIcons = await _api.ProfileIcons.GetAll(StaticVersion);
+                var profileIcons = await _api.ProfileIcons.GetAllAsync(StaticVersion);
                 Assert.IsTrue(profileIcons.ProfileIcons.Count > 0);
             });
         }
@@ -141,7 +141,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var reforgedRunes = await _api.ReforgedRunes.GetAll(StaticVersion);
+                var reforgedRunes = await _api.ReforgedRunes.GetAllAsync(StaticVersion);
                 Assert.IsTrue(reforgedRunes.Count > 0);
             });
         }
@@ -156,7 +156,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var runes = await _api.Runes.GetAll(LegacyVersion);
+                var runes = await _api.Runes.GetAllAsync(LegacyVersion);
                 Assert.IsTrue(runes.Runes.Count > 0);
             });
         }
@@ -171,7 +171,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var spells = await _api.SummonerSpells.GetAll(StaticVersion);
+                var spells = await _api.SummonerSpells.GetAllAsync(StaticVersion);
                 Assert.IsTrue(spells.SummonerSpells.Count > 0);
             });
         }
@@ -186,7 +186,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var versions = await _api.Versions.GetAll();
+                var versions = await _api.Versions.GetAllAsync();
                 Assert.IsTrue(versions.Count > 0);
             });
         }
@@ -201,7 +201,7 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var realm = await _api.Realms.GetAll(Region);
+                var realm = await _api.Realms.GetAllAsync(Region);
                 Assert.IsNotNull(realm);
             });
         }

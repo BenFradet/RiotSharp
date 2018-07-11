@@ -21,7 +21,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons
         public StaticProfileIconEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ProfileIconListStatic> GetAll(string version, Language language = Language.en_US)
+        public async Task<ProfileIconListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = ProfileIconsCacheKey + language + version;
             var wrapper = cache.Get<string, ProfileIconsStaticWrapper>(cacheKey);

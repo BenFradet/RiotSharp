@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
         public StaticChampionEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ChampionListStatic> GetAll(string version, Language language = Language.en_US)
+        public async Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = ChampionsCacheKey + language + version;
             var wrapper = cache.Get<string, ChampionListStaticWrapper>(cacheKey);
@@ -38,7 +38,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             return wrapper.ChampionListStatic;
         }
 
-        public async Task<ChampionStatic> GetByKey(string key, string version, Language language = Language.en_US)
+        public async Task<ChampionStatic> GetByKeyAsync(string key, string version, Language language = Language.en_US)
         {
             var cacheKey = ChampionsCacheKey + key + language + version;
             var wrapper = cache.Get<string, ChampionStaticWrapper>(cacheKey);
