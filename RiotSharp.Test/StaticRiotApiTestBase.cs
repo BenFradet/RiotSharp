@@ -12,9 +12,6 @@ namespace RiotSharp.Test
         public const string StaticChampionKey = "Annie";
         public const string StaticChampionName = "Annie";
 
-        public const int StaticItemId = 1001;
-        public const string StaticItemName = "Boots of Speed";
-
         public const int StaticMasteryId = 6111;
         public const string StaticMasteryName = "Fury";
 

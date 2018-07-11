@@ -43,33 +43,20 @@ namespace RiotSharp.Test
 
         #endregion
 
-        //        #region Items Tests
+        #region Items Tests
 
-        //        [TestMethod]
-        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        //        public void GetItemsAsync_Test()
-        //        {
-        //            EnsureCredibility(() =>
-        //            {
-        //                var items = _api.Item.GetItemsAsync(StaticRiotApiTestBase.Region);
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public async Task GetItemsAsync_Test()
+        {
+            await EnsureCredibilityAsync(async () =>
+            {
+                var items = await _api.Item.GetItemsAsync(StaticVersion);
+                Assert.IsTrue(items.Items.Count > 0);
+            });
+        }
 
-        //                Assert.IsTrue(items.Result.Items.Count > 0);
-        //            });
-        //        }
-
-        //        [TestMethod]
-        //        [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        //        public void GetItemAsync_Test()
-        //        {
-        //            EnsureCredibility(() =>
-        //            {
-        //                var item = _api.Item.GetItemAsync(StaticRiotApiTestBase.Region,
-        //                    StaticRiotApiTestBase.StaticItemId);
-
-        //                Assert.AreEqual(StaticRiotApiTestBase.StaticItemName, item.Result.Name);
-        //            });
-        //        }
-        //        #endregion
+        #endregion
 
         //        #region Language Strings Tests
 
