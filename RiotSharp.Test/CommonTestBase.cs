@@ -55,10 +55,9 @@ namespace RiotSharp.Test
         }
 
         /// <summary>
-        /// Ignores the test if the server responds with 429 or 500
+        /// Ignores the test if the server responds with 429/500/503 codes
         /// </summary>
         /// <param name="action"></param>
-        [Obsolete("Use async version")]
         protected void EnsureCredibility(Action action)
         {
             try
@@ -77,6 +76,11 @@ namespace RiotSharp.Test
             }
         }
 
+        /// <summary>
+        /// Ignores the test if the server responds with 429/500/503 codes
+        /// Async Version
+        /// </summary>
+        /// <param name="action"></param>
         protected async Task EnsureCredibilityAsync(Func<Task> action)
         {
             try
@@ -86,12 +90,6 @@ namespace RiotSharp.Test
             catch (RiotSharpException exception)
             {
                 HandleRiotSharpException(exception);
-            }
-            // Catches exception thrown by async methods
-            catch (AggregateException exception)
-            {
-                HandleAggregateException(exception);
-                throw exception;
             }
         }
 

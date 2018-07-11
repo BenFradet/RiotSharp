@@ -52,7 +52,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             {
                 return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Key == key);
             }
-            var json = await requester.CreateGetRequestAsync(RootUrl + $"{version}/data/{language}/champion/{key}.json").ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(RootUrl + $"{version}/data/{language}/champion2/{key}.json").ConfigureAwait(false);
             var champ = JsonConvert.DeserializeObject<ChampionStatic>(json);
             cache.Add(cacheKey, new ChampionStaticWrapper(champ, language, version), SlidingExpirationTime);
             return champ;
