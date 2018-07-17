@@ -19,7 +19,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         private const string MatchByIdUrl = "/{0}";
         private const string MatchByIdAndTournamentCodeUrl = "/{0}/by-tournament-code/{1}";
         private const string MatchListByAccountIdUrl = "/by-account/{0}";
-        private const string MatchListByAccountIdRecentUrl = "/by-account/{0}/recent";
         private const string TimelineByMatchIdUrl = "/by-match/{0}";
         private const string MatchCache = "match-{0}_{1}";
         private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
@@ -65,14 +64,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             var json = await _requester.CreateGetRequestAsync(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
                 region, addedArguments).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<MatchList>(json);
-        }
-
-        public async Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                MatchListRootUrl + string.Format(MatchListByAccountIdRecentUrl, summonerId),
-                region).ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<MatchList>(json).Matches;
         }
 
         #region Helper
