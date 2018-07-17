@@ -50,12 +50,5 @@ namespace RiotSharp.Endpoints.Interfaces
             long? beginIndex = null,
             long? endIndex = null);
 
-        /// <summary>
-        /// Get the 10 most recent matches by summoner ID asynchronously.
-        /// </summary>
-        /// <param name="region">Region where to retrieve the data.</param>
-        /// <param name="summonerId">ID of the summoner for which to retrieve recent matches.</param>
-        /// <returns>A list of the 10 most recent matches.</returns>
-        Task<List<MatchReference>> GetRecentMatchesAsync(Region region, long summonerId);
     }
 }
