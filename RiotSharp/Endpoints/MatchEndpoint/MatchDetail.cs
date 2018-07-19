@@ -20,6 +20,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Match timeline data. Not included by default.
         /// </summary>
         [JsonProperty("timeline")]
-        public Timeline Timeline { get; set; }
+        public MatchTimeline Timeline { get; set; }
     }
 }

@@ -50,5 +50,11 @@ namespace RiotSharp.Endpoints.Interfaces
             long? beginIndex = null,
             long? endIndex = null);
 
+        /// <summary>
+        /// Get match timeline by match ID asynchronously. 
+        /// </summary>
+        /// <param name="region">Region in which the summoner is.</param>
+        /// <param name="matchId">The match ID of the timeline to be retrieved.</param>
+        Task<MatchTimeline> GetMatchTimelineAsync(Region region, long matchId);
     }
 }

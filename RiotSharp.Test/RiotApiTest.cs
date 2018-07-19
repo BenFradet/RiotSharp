@@ -155,6 +155,20 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchTimelineAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var matchTimeline = Api.Match.GetMatchTimelineAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId).Result;
+
+                Assert.IsNotNull(matchTimeline.Frames);
+                Assert.IsTrue(matchTimeline.Frames.First().Timestamp == TimeSpan.FromMilliseconds(144));
+                Assert.IsTrue(matchTimeline.FrameInterval == TimeSpan.FromMilliseconds(60000));
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMatchListAsync_Test()
         {
             EnsureCredibility(() =>

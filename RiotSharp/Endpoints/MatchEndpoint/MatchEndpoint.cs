@@ -21,6 +21,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         private const string MatchListByAccountIdUrl = "/by-account/{0}";
         private const string TimelineByMatchIdUrl = "/by-match/{0}";
         private const string MatchCache = "match-{0}_{1}";
+        private const string MatchTimeLineCacheKey = "match-timeline-{0}_{1}";
         private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
         private readonly IRateLimitedRequester _requester;
@@ -64,6 +65,21 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             var json = await _requester.CreateGetRequestAsync(MatchListRootUrl + string.Format(MatchListByAccountIdUrl, accountId),
                 region, addedArguments).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<MatchList>(json);
+        }
+
+        public async Task<MatchTimeline> GetMatchTimelineAsync(Region region, long matchId)
+        {
+            var chacheKey = string.Format(MatchTimeLineCacheKey, region, matchId);
+            var matchTimeline = _cache.Get<string, MatchTimeline>(chacheKey);
+            if (matchTimeline != null)
+            {
+                return matchTimeline;
+            }
+            var json = await _requester.CreateGetRequestAsync(TimelinesRootUrl +
+                                                  string.Format(TimelineByMatchIdUrl, matchId), region).ConfigureAwait(false);
+            matchTimeline = JsonConvert.DeserializeObject<MatchTimeline>(json);
+            _cache.Add(chacheKey, matchTimeline, MatchTtl);
+            return matchTimeline;
         }
 
         #region Helper
