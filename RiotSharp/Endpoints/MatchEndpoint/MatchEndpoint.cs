@@ -69,8 +69,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 
         public async Task<MatchTimeline> GetMatchTimelineAsync(Region region, long matchId)
         {
-            var chacheKey = string.Format(MatchTimeLineCacheKey, region, matchId);
-            var matchTimeline = _cache.Get<string, MatchTimeline>(chacheKey);
+            var cacheKey = string.Format(MatchTimeLineCacheKey, region, matchId);
+            var matchTimeline = _cache.Get<string, MatchTimeline>(cacheKey);
             if (matchTimeline != null)
             {
                 return matchTimeline;
@@ -78,7 +78,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             var json = await _requester.CreateGetRequestAsync(TimelinesRootUrl +
                                                   string.Format(TimelineByMatchIdUrl, matchId), region).ConfigureAwait(false);
             matchTimeline = JsonConvert.DeserializeObject<MatchTimeline>(json);
-            _cache.Add(chacheKey, matchTimeline, MatchTtl);
+            _cache.Add(cacheKey, matchTimeline, MatchTtl);
             return matchTimeline;
         }
 
