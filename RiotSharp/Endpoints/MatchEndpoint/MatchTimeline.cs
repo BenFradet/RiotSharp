@@ -8,9 +8,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
     /// <summary>
     /// Class representing a match's timeline (Match API).
     /// </summary>
-    public class Timeline
+    public class MatchTimeline
     {
-        internal Timeline() { }
+        internal MatchTimeline() { }
 
         /// <summary>
         /// Time between each returned frame.
