@@ -10,17 +10,21 @@ namespace RiotSharp.Http
 {
     public abstract class RequesterBase
     {
-        protected string rootDomain;
+        protected string host;
         protected const string platformDomain = ".api.riotgames.com";
         private readonly HttpClient httpClient;
 
         public string ApiKey { get; set; }
 
-        protected RequesterBase(string apiKey)
+        protected RequesterBase(string apiKey) : this()
         {
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentNullException(nameof(apiKey));
             ApiKey = apiKey;
+        }
+
+        protected RequesterBase()
+        {
             httpClient = new HttpClient();
         }
 
@@ -79,17 +83,21 @@ namespace RiotSharp.Http
         {
             var scheme = useHttps ? "https" : "http";
             var url = queryParameters == null ?
-                $"{scheme}://{rootDomain}{relativeUrl}?api_key={ApiKey}" :
-                $"{scheme}://{rootDomain}{relativeUrl}?{BuildArgumentsString(queryParameters)}api_key={ApiKey}";
+                $"{scheme}://{host}{relativeUrl}" :
+                $"{scheme}://{host}{relativeUrl}?{BuildArgumentsString(queryParameters)}";
 
-            return new HttpRequestMessage(httpMethod, url);
+            var requestMessage = new HttpRequestMessage(httpMethod, url);
+
+            if (!string.IsNullOrWhiteSpace(ApiKey))
+                requestMessage.Headers.Add("X-Riot-Token", ApiKey);
+            return requestMessage;
         }
 
         protected string BuildArgumentsString(List<string> arguments)
         {
             return arguments
                 .Where(arg => !string.IsNullOrWhiteSpace(arg))
-                .Aggregate(string.Empty, (current, arg) => current + (arg + "&"));
+                .Aggregate(string.Empty, (current, arg) => current + ("&" + arg));
         }
 
         protected void HandleRequestFailure(HttpStatusCode statusCode)

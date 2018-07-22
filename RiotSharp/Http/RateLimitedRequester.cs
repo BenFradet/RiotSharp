@@ -30,7 +30,7 @@ namespace RiotSharp.Http
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
             bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
+            host = GetPlatformDomain(region);
 
             var request = PrepareRequest(relativeUrl, queryParameters, useHttps, HttpMethod.Get);
             
@@ -45,7 +45,7 @@ namespace RiotSharp.Http
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
+            host = GetPlatformDomain(region);
 
             var request = PrepareRequest(relativeUrl, queryParameters, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
@@ -61,7 +61,7 @@ namespace RiotSharp.Http
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {
-            rootDomain = GetPlatformDomain(region);
+            host = GetPlatformDomain(region);
 
             var request = PrepareRequest(relativeUrl, queryParameters, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
