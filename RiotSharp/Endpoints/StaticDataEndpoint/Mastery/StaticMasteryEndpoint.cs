@@ -30,7 +30,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Mastery
             {
                 return wrapper.MasteryListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, MasteriesDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, MasteriesDataKey)).ConfigureAwait(false);
             var masteries = JsonConvert.DeserializeObject<MasteryListStatic>(json);
             wrapper = new MasteryListStaticWrapper(masteries, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

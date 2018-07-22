@@ -30,9 +30,8 @@ namespace RiotSharp.Http
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
             bool useHttps = true)
         {
-            host = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, queryParameters, useHttps, HttpMethod.Get);
+            var host = GetPlatformHost(region);
+            var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
             
             await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
 
@@ -45,9 +44,8 @@ namespace RiotSharp.Http
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {
-            host = GetPlatformDomain(region);
-
-            var request = PrepareRequest(relativeUrl, queryParameters, useHttps, HttpMethod.Post);
+            var host = GetPlatformHost(region);
+            var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
             await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
@@ -61,9 +59,9 @@ namespace RiotSharp.Http
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {
-            host = GetPlatformDomain(region);
+            var host = GetPlatformHost(region);
 
-            var request = PrepareRequest(relativeUrl, queryParameters, useHttps, HttpMethod.Put);
+            var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Put);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
             await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);

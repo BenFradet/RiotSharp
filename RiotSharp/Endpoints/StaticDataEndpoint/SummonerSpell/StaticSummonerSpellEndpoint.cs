@@ -29,7 +29,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
             {
                 return wrapper.SummonerSpellListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, SummonerSpellsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, SummonerSpellsDataKey)).ConfigureAwait(false);
             var spells = JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
             wrapper = new SummonerSpellListStaticWrapper(spells, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

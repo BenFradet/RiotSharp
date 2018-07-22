@@ -30,7 +30,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune
             {
                 return wrapper.RuneListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, RunesDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, RunesDataKey)).ConfigureAwait(false);
             var runes = JsonConvert.DeserializeObject<RuneListStatic>(json);
             wrapper = new RuneListStaticWrapper(runes, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

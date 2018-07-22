@@ -12,6 +12,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Version
     public class StaticVersionEndpoint : StaticEndpointBase, IStaticVersionEndpoint
     {
         private const string VersionsCacheKey = "versions";
+        private const string VersionsUrl = ApiUrl + "versions.json";
 
         public StaticVersionEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
@@ -29,7 +30,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Version
             }
 
             var json =
-                await requester.CreateGetRequestAsync("https://ddragon.leagueoflegends.com/api/versions.json").ConfigureAwait(false);
+                await requester.CreateGetRequestAsync(Host, VersionsUrl).ConfigureAwait(false);
             var version = JsonConvert.DeserializeObject<List<string>>(json);
 
             cache.Add(cacheKey, version, SlidingExpirationTime);

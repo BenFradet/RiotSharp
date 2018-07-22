@@ -11,9 +11,11 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.TarballLinks
 {
     public class StaticTarballLinkEndPoint : IStaticTarballLinkEndPoint, IStaticEndpoint
     {
-        public string Get(string version)
+        private const string TarballLinkUrl = StaticEndpointBase.Host + "/cdn/dragontail-{0}.tgz";
+
+        public string Get(string version, bool useHttps = true)
         {
-            return $"http://ddragon.leagueoflegends.com/cdn/dragontail-{version}.tgz";
+            return useHttps ? "https://": "http://" + string.Format(TarballLinkUrl, version);
         }
     }
 }

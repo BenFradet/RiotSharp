@@ -40,7 +40,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
 
         private StaticDataEndpoints(bool useCache = true)
         {
-            Requesters.StaticApiRequester = new Requester("NOT-NEEDED");
+            Requesters.StaticApiRequester = new Requester();
 
             ICache cache = null;
             if (useCache)

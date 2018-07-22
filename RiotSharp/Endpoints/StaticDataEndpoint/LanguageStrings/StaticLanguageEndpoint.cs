@@ -12,6 +12,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
 {
     public class StaticLanguageEndpoint : StaticEndpointBase, IStaticLanguageEndpoint
     {
+        private const string LanguagesUrl = CdnUrl + "languages.json";
+
         private const string LanguageStringsDataKey = "language";
         private const string LanguageStringsCacheKey = "language-strings";
 
@@ -33,7 +35,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
                 return wrapper.LanguageStringsStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, LanguageStringsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, LanguageStringsDataKey)).ConfigureAwait(false);
             var languageStrings = JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
 
             cache.Add(cacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), 
@@ -53,7 +55,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
                 return wrapper;
             }
 
-            var json = await requester.CreateGetRequestAsync(RootUrl + "languages.json").ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, LanguagesUrl).ConfigureAwait(false);
             var languages = JsonConvert.DeserializeObject<List<Language>>(json);
 
             cache.Add(cacheKey, languages, SlidingExpirationTime);

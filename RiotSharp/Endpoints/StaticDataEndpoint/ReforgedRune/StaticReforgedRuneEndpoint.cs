@@ -31,7 +31,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
             {
                 return wrapper.ReforgedRunes;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, ReforgedRunesDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ReforgedRunesDataKey)).ConfigureAwait(false);
             var reforgedRunes = JsonConvert.DeserializeObject<List<ReforgedRuneStatic>>(json);
             cache.Add(cacheKey, new ReforgedRuneListStaticWrapper(language, version, reforgedRunes), SlidingExpirationTime);
             return reforgedRunes;

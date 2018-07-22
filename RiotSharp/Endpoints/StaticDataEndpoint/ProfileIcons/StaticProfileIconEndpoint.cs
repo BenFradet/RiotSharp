@@ -29,7 +29,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons
             {
                 return wrapper.ProfileIconListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, ProfileIconsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ProfileIconsDataKey)).ConfigureAwait(false);
             var profileIcons = JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
             wrapper = new ProfileIconsStaticWrapper(profileIcons, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

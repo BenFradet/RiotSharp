@@ -21,7 +21,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public async Task GetChampionAsync_Test()
+        public async Task GetChampionByKeyAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -212,7 +212,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("StaticRiotApi"), TestCategory("Async")]
-        public void GetTarballLinksAsyncVersion_Test()
+        public void GetTarballLink_Test()
         {
             var tarballLink = _api.TarballLinks.Get(StaticVersion);
             Assert.IsFalse(string.IsNullOrEmpty(tarballLink));

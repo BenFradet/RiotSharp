@@ -32,7 +32,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
                 return wrapper.MapsStatic.Data.Values.ToList();
             }
 
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, MapsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, MapsDataKey)).ConfigureAwait(false);
             var maps = JsonConvert.DeserializeObject<MapsStatic>(json);
 
             cache.Add(cacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);

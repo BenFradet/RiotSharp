@@ -11,6 +11,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Realm
 {
     public class StaticRealmEndpoint : StaticEndpointBase, IStaticRealmEndpoint
     {
+        private const string RealmsUrl = "/realms/{0}.json";
         private const string RealmsCacheKey = "realms";
 
         public StaticRealmEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
@@ -28,7 +29,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Realm
                 return wrapper.RealmStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync($"https://ddragon.leagueoflegends.com/realms/{region.ToString().ToLower()}.json").ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, string.Format(RealmsUrl, region.ToString().ToLower())).ConfigureAwait(false);
             var realm = JsonConvert.DeserializeObject<RealmStatic>(json);
 
             cache.Add(cacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);

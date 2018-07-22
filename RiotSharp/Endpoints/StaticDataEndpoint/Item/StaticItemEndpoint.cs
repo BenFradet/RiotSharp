@@ -31,7 +31,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
             {
                 return wrapper.ItemListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, ItemsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ItemsDataKey)).ConfigureAwait(false);
             var items = JsonConvert.DeserializeObject<ItemListStatic>(json);
             wrapper = new ItemListStaticWrapper(items, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

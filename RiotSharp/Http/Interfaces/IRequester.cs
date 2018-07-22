@@ -26,6 +26,7 @@ namespace RiotSharp.Http.Interfaces
         /// </summary>
         /// <param name="absoluteUrl"></param>
         /// <returns></returns>
-        Task<string> CreateGetRequestAsync(string absoluteUrl);
+        Task<string> CreateGetRequestAsync(string host, string relativeUrl,
+            List<string> queryParameters = null, bool useHttps = true);
     }
 }

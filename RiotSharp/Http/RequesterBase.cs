@@ -10,7 +10,6 @@ namespace RiotSharp.Http
 {
     public abstract class RequesterBase
     {
-        protected string host;
         protected const string platformDomain = ".api.riotgames.com";
         private readonly HttpClient httpClient;
 
@@ -78,7 +77,7 @@ namespace RiotSharp.Http
             return response;
         }
 
-        protected HttpRequestMessage PrepareRequest(string relativeUrl, List<string> queryParameters,
+        protected HttpRequestMessage PrepareRequest(string host, string relativeUrl, List<string> queryParameters,
             bool useHttps, HttpMethod httpMethod)
         {
             var scheme = useHttps ? "https" : "http";
@@ -132,7 +131,7 @@ namespace RiotSharp.Http
             }
         }
 
-        protected string GetPlatformDomain(Region region)
+        protected string GetPlatformHost(Region region)
         {
             return GetPlatform(region) + platformDomain;
         }

@@ -13,6 +13,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 {
     public class StaticChampionEndpoint : StaticEndpointBase, IStaticChampionEndpoint
     {
+        private const string ChampionByKeyUrl = CdnUrl + "{0}/data/{1}/champion/{2}.json";
         private const string ChampionsDataKey = "champion";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
@@ -31,7 +32,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             {
                 return wrapper.ChampionListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(CreateUrl(version, language, ChampionsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ChampionsDataKey)).ConfigureAwait(false);
             var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
             wrapper = new ChampionListStaticWrapper(champs, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);
@@ -51,7 +52,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             {
                 return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Key == key);
             }
-            var json = await requester.CreateGetRequestAsync(RootUrl + $"{version}/data/{language}/champion/{key}.json").ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, string.Format(ChampionByKeyUrl, version, language, key)).ConfigureAwait(false);
             var championStandAlone = JsonConvert.DeserializeObject<ChampionStandAloneStatic>(json);
             cache.Add(cacheKey, new ChampionStaticWrapper(championStandAlone.Data.First().Value, language, version), SlidingExpirationTime);
             return championStandAlone.Data.First().Value;
