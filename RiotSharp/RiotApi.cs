@@ -25,9 +25,7 @@ namespace RiotSharp
         #region Private Fields
         private static RiotApi _instance;
 
-        private ICache _cache;
-
-        private Dictionary<TimeSpan, int> _staticDataRateLimits;
+        private ICache _cache;       
         #endregion
 
         #region Endpoints
@@ -45,7 +43,7 @@ namespace RiotSharp
 
         public IThirdPartyEndpoint ThirdParty { get; }
 
-        public IStaticDataEndpoints Static { get; }
+        public IStaticDataEndpoints StaticData { get; }
         #endregion
 
         /// <summary>
@@ -102,7 +100,7 @@ namespace RiotSharp
         {
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
-            Requesters.StaticApiRequester = new RateLimitedRequester(apiKey, _staticDataRateLimits);
+            Requesters.StaticApiRequester = new Requester(apiKey);
             var requester = Requesters.RiotApiRequester;
             Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);
@@ -111,7 +109,7 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
-            Static = new StaticDataEndpoints(Requesters.StaticApiRequester, cache);
+            StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, cache);
         }
 
         /// <summary>
@@ -136,7 +134,7 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(rateLimitedRequester);
             ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
-            Static = new StaticDataEndpoints(staticEndpointProvider);
+            StaticData = new StaticDataEndpoints(staticEndpointProvider);
         }
     }
 }

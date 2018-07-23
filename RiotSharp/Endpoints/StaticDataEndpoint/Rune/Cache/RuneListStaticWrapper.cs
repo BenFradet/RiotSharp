@@ -8,13 +8,13 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune.Cache
         [JsonProperty]
         public RuneListStatic RuneListStatic { get; private set; }
         public Language Language { get; private set; }
-        public RuneData RuneData { get; private set; }
+        public string Version { get; private set; }
 
-        public RuneListStaticWrapper(RuneListStatic runes, Language language, RuneData runeData)
+        public RuneListStaticWrapper(RuneListStatic runes, Language language, string version)
         {
             RuneListStatic = runes;
             Language = language;
-            RuneData = runeData;
+            Version = version;
         }
     }
 }
