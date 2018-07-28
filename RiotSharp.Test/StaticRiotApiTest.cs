@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces.Static;
@@ -36,8 +37,22 @@ namespace RiotSharp.Test
         {
             await EnsureCredibilityAsync(async () =>
             {
-                var champs = await _api.Champions.GetAllAsync(StaticVersion);
+                var champs = await _api.Champions.GetAllAsync(StaticVersion, fullData: false);
                 Assert.IsTrue(champs.Champions.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public async Task GetChampionsAsync_Full_Test()
+        {
+            await EnsureCredibilityAsync(async () =>
+            {
+                var champs = await _api.Champions.GetAllAsync(StaticVersion, fullData: true);
+                var champion = champs.Champions.First();
+                Assert.IsTrue(champs.Champions.Count > 0);
+                Assert.IsNotNull(champion.Value.Passive);
+                Assert.IsNotNull(champion.Value.Spells);
             });
         }
 
