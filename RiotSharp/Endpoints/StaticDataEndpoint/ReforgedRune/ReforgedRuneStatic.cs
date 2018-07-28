@@ -10,13 +10,9 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
     /// </summary>
     public class ReforgedRuneStatic
     {
-        public string RunePathName { get; set; }
-
-        public int RunePathId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
-
-        public int Id { get; set; }
 
         public string Key { get; set; }
 

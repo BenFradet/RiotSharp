@@ -10,9 +10,9 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune.Cache
         public Language Language { get; set; }
         public string Version { get; set; }
 
-        public List<ReforgedRuneStatic> ReforgedRunes { get; set; }
+        public List<ReforgedRunePathStatic> ReforgedRunes { get; set; }
 
-        public ReforgedRuneListStaticWrapper(Language language, string version, List<ReforgedRuneStatic> reforgedRunes)
+        public ReforgedRuneListStaticWrapper(Language language, string version, List<ReforgedRunePathStatic> reforgedRunes)
         {
             Language = language;
             Version = version;
