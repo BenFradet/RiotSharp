@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.StaticDataEndpoint;
@@ -67,7 +68,34 @@ namespace RiotSharp.Test
             await EnsureCredibilityAsync(async () =>
             {
                 var items = await _api.Items.GetAllAsync(StaticVersion);
+                var item = items.Items.First();
+
                 Assert.IsTrue(items.Items.Count > 0);
+                Assert.IsTrue(item.Value.Id > 0);
+                Assert.IsTrue(!string.IsNullOrEmpty(item.Value.Name));
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        public async Task JsonSerialize_ItemListStatic_Test()
+        {
+            await EnsureCredibilityAsync(async () =>
+            {
+                // Arange 
+                var itemsSample = await _api.Items.GetAllAsync(StaticVersion);
+                var itemSample = itemsSample.Items.First();
+
+                // Act
+                var itemsJson = JsonConvert.SerializeObject(itemsSample);
+
+                // Arange
+                var items = JsonConvert.DeserializeObject<Endpoints.StaticDataEndpoint.Item.ItemListStatic>(itemsJson);
+                var item = items.Items.First();
+
+                Assert.AreEqual(itemsSample.Items.Count, items.Items.Count);
+                Assert.AreEqual(itemSample.Value.Id, item.Value.Id);
+                Assert.AreEqual(itemSample.Value.Name, item.Value.Name);
             });
         }
 
