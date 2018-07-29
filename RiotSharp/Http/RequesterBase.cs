@@ -83,9 +83,9 @@ namespace RiotSharp.Http
             if (!string.IsNullOrWhiteSpace(ApiKey))
             {
                 if (queryParameters == null)
-                    queryParameters.Add("api_key=" + ApiKey);
+                    queryParameters = new List<string> { "api_key=" + ApiKey };                
                 else
-                    queryParameters = new List<string> { "api_key=" + ApiKey };
+                    queryParameters.Add("api_key=" + ApiKey);
             }
 
             var scheme = useHttps ? "https" : "http";
