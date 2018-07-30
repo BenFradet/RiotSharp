@@ -12,7 +12,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
         /// <summary>
         /// Map of items indexed by their id.
         /// </summary>
-        [JsonProperty("data")]
+        [JsonProperty("data"), JsonConverter(typeof(ItemsConverter))]
         public Dictionary<int, ItemStatic> Items { get; set; }
 
         /// <summary>

@@ -21,7 +21,8 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// </summary>
         /// <param name="version">Patch version for returned data.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
+        /// <param name="fullData">If true ChampionStatic instances will populate properties, like 'passive', 'spells', etc. If false these will be null.</param>
         /// <returns>A ChampionListStatic object containing all champions.</returns>
-        Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US);
+        Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US, bool fullData = true);
     }
 }

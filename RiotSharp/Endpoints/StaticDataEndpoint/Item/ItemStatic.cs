@@ -67,7 +67,6 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
         /// <summary>
         /// Item's id.
         /// </summary>
-        [JsonProperty("id")]
         public int Id { get; set; }
 
         /// <summary>

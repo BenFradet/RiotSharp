@@ -78,9 +78,10 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var champions = Api.Champion.GetChampionsAsync(Summoner1And2Region, true);
+                var champions = Api.Champion.GetChampionsAsync(Summoner1And2Region, true).Result;
 
-                Assert.IsTrue(champions.Result.Count() > 0);
+                Assert.IsTrue(champions.Count() >= 14);
+                Assert.IsTrue(champions.Count() < 20);
             });
         }
 

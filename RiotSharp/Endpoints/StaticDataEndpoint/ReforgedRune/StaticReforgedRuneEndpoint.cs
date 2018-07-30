@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
             : this(requester, cache, null) { }
 
 
-        public async Task<List<ReforgedRuneStatic>> GetAllAsync(string version, Language language = Language.en_US)
+        public async Task<List<ReforgedRunePathStatic>> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = ReforgdRunesCacheKey + language + language + version;
             var wrapper = cache.Get<string, ReforgedRuneListStaticWrapper>(cacheKey);
@@ -32,7 +32,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune
                 return wrapper.ReforgedRunes;
             }
             var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ReforgedRunesDataKey)).ConfigureAwait(false);
-            var reforgedRunes = JsonConvert.DeserializeObject<List<ReforgedRuneStatic>>(json);
+            var reforgedRunes = JsonConvert.DeserializeObject<List<ReforgedRunePathStatic>>(json);
             cache.Add(cacheKey, new ReforgedRuneListStaticWrapper(language, version, reforgedRunes), SlidingExpirationTime);
             return reforgedRunes;
         }

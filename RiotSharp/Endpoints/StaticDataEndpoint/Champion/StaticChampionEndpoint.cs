@@ -15,6 +15,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
     {
         private const string ChampionByKeyUrl = CdnUrl + "{0}/data/{1}/champion/{2}.json";
         private const string ChampionsDataKey = "champion";
+        private const string ChampionsFullDataKey = "championFull";
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
 
@@ -24,7 +25,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
         public StaticChampionEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
-        public async Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US)
+        public async Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US, bool fullData = true)
         {
             var cacheKey = ChampionsCacheKey + language + version;
             var wrapper = cache.Get<string, ChampionListStaticWrapper>(cacheKey);
@@ -32,7 +33,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             {
                 return wrapper.ChampionListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ChampionsDataKey)).ConfigureAwait(false);
+            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, fullData ? ChampionsFullDataKey : ChampionsDataKey)).ConfigureAwait(false);
             var champs = JsonConvert.DeserializeObject<ChampionListStatic>(json);
             wrapper = new ChampionListStaticWrapper(champs, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

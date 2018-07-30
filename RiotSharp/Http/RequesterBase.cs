@@ -80,15 +80,20 @@ namespace RiotSharp.Http
         protected HttpRequestMessage PrepareRequest(string host, string relativeUrl, List<string> queryParameters,
             bool useHttps, HttpMethod httpMethod)
         {
+            if (!string.IsNullOrWhiteSpace(ApiKey))
+            {
+                if (queryParameters == null)
+                    queryParameters = new List<string> { "api_key=" + ApiKey };                
+                else
+                    queryParameters.Add("api_key=" + ApiKey);
+            }
+
             var scheme = useHttps ? "https" : "http";
             var url = queryParameters == null ?
                 $"{scheme}://{host}{relativeUrl}" :
                 $"{scheme}://{host}{relativeUrl}?{BuildArgumentsString(queryParameters)}";
 
-            var requestMessage = new HttpRequestMessage(httpMethod, url);
-
-            if (!string.IsNullOrWhiteSpace(ApiKey))
-                requestMessage.Headers.Add("X-Riot-Token", ApiKey);
+            var requestMessage = new HttpRequestMessage(httpMethod, url);        
             return requestMessage;
         }
 
