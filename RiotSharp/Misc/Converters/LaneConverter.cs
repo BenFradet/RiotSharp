@@ -32,6 +32,8 @@ namespace RiotSharp.Misc.Converters
                     return Lane.Bot;
                 case "BOTTOM":
                     return Lane.Bottom;
+                case "NONE":
+                    return Lane.None;
                 default:
                     return null;
             }
