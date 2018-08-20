@@ -18,7 +18,7 @@ namespace RiotSharp.Misc.Converters
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() == null) return null;
-            var str = token.Value<string>();
+            var str = token.Value<string>().ToUpperInvariant();;
             switch (str)
             {
                 case "NA1":
