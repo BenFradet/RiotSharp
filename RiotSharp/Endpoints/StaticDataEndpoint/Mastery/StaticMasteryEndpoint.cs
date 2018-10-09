@@ -5,23 +5,29 @@ using RiotSharp.Endpoints.StaticDataEndpoint.Mastery.Cache;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Mastery
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticMasteryEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticMasteryEndpoint" />
     public class StaticMasteryEndpoint : StaticEndpointBase, IStaticMasteryEndpoint
     {
         private const string MasteriesDataKey = "mastery";
         private const string MasteriesCacheKey = "masteries";
 
+        /// <inheritdoc />
         public StaticMasteryEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticMasteryEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<MasteryListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = MasteriesCacheKey + language + version;

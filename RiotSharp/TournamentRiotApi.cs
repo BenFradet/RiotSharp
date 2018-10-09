@@ -13,6 +13,10 @@ using RiotSharp.Interfaces;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Implementation of <see cref="ITournamentRiotApi"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Interfaces.ITournamentRiotApi" />
     public class TournamentRiotApi : ITournamentRiotApi
     {
         #region Private Fields
@@ -47,10 +51,10 @@ namespace RiotSharp
         /// <summary>
         /// Default constructor for dependency injection
         /// </summary>
-        /// <param name="useStub">
-        /// If true, the tournament stub will be used for requests. 
-        /// Useful for testing purposes.
-        /// </param>
+        /// <param name="rateLimitedRequester">The rate limited requester.</param>
+        /// <param name="useStub">If true, the tournament stub will be used for requests.
+        /// Useful for testing purposes.</param>
+        /// <exception cref="ArgumentNullException">rateLimitedRequester</exception>
         public TournamentRiotApi(IRateLimitedRequester rateLimitedRequester, bool useStub = false)
         {
             if (rateLimitedRequester == null)
@@ -86,11 +90,11 @@ namespace RiotSharp
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
         /// is the number of requests allowed per that time span. Use null for no limits (default).</param>
-        /// <param name="useStub">
-        /// If true, the tournament stub will be used for requests. 
-        /// Useful for testing purposes.
-        /// </param>
-        /// <returns>The instance of TournamentRiotApi.</returns>
+        /// <param name="useStub">If true, the tournament stub will be used for requests.
+        /// Useful for testing purposes.</param>
+        /// <returns>
+        /// The instance of TournamentRiotApi.
+        /// </returns>
         public static TournamentRiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
             if (rateLimits == null)
@@ -120,6 +124,7 @@ namespace RiotSharp
 
         #region Public Methods
 
+        /// <inheritdoc />
         public async Task<int> CreateProviderAsync(Region region, string url)
         {
             var body = new Dictionary<string, object>
@@ -135,6 +140,7 @@ namespace RiotSharp
             return int.Parse(json);
         }
 
+        /// <inheritdoc />
         public async Task<int> CreateTournamentAsync(int providerId, string name)
         {
             var body = new Dictionary<string, object> {
@@ -149,6 +155,8 @@ namespace RiotSharp
             return int.Parse(json);
         }
 
+        /// <inheritdoc />
+        /// <exception cref="T:System.ArgumentException">Thrown if an invalid <paramref name="teamSize" /> or an invalid <paramref name="count" /> is provided.</exception>
         public async Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int count, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, 
             TournamentMapType mapType, List<long> allowedParticipantIds = null,  string metadata = null)
@@ -179,6 +187,7 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<List<string>>(json);
         }
 
+        /// <inheritdoc />
         public async Task<TournamentCodeDetail> GetTournamentCodeDetailsAsync(string tournamentCode)
         {
             var json =
@@ -189,6 +198,7 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<TournamentCodeDetail>(json);
         }
 
+        /// <inheritdoc />
         public async Task<List<TournamentLobbyEvent>> GetTournamentLobbyEventsAsync(string tournamentCode)
         {
             var json =
@@ -199,6 +209,7 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<Dictionary<string, List<TournamentLobbyEvent>>>(json)["eventList"];
         }
 
+        /// <inheritdoc />
         public Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedParticipantIds = null,
             TournamentSpectatorType? spectatorType = null, TournamentPickType? pickType = null, TournamentMapType? mapType = null)
         {
@@ -212,6 +223,7 @@ namespace RiotSharp
 
         #region Get Tournament Matches (based on Match endpoint)
 
+        /// <inheritdoc />
         public async Task<MatchDetail> GetTournamentMatchAsync(Region region, long matchId, string tournamentCode,
             bool includeTimeline)
         {
@@ -228,6 +240,7 @@ namespace RiotSharp
             return JsonConvert.DeserializeObject<MatchDetail>(json);
         }
 
+        /// <inheritdoc />
         public async Task<long> GetTournamentMatchIdAsync(Region region, string tournamentCode)
         {
             var json =

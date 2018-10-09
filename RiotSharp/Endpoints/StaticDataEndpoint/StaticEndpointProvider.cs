@@ -19,10 +19,18 @@ using System.Linq;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticEndpointProvider"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticEndpointProvider" />
     public class StaticEndpointProvider : IStaticEndpointProvider
     {
+        /// <summary>
+        /// A list of StaticEndpoints
+        /// </summary>
         public List<IStaticEndpoint> Endpoints { get; set; }
 
+        /// <inheritdoc />
         public StaticEndpointProvider(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
         {
             this.Endpoints = new List<IStaticEndpoint>
@@ -42,11 +50,13 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
             };
         }
 
+        /// <inheritdoc />
         public StaticEndpointProvider(IEnumerable<IStaticEndpoint> staticEndpoints)
         {
             this.Endpoints = staticEndpoints.ToList();
         }
 
+        /// <inheritdoc />
         public TStaticEndpoint GetEndpoint<TStaticEndpoint>() where TStaticEndpoint : IStaticEndpoint
         {
             foreach (var endpoint in Endpoints)

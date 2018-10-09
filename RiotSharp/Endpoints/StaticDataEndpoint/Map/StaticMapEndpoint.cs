@@ -12,17 +12,25 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Map
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticMapEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticMapEndpoint" />
     public class StaticMapEndpoint : StaticEndpointBase, IStaticMapEndpoint
     {
         private const string MapsDataKey = "map";
         private const string MapsCacheKey = "maps";
 
+        /// <inheritdoc />
         public StaticMapEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticMapEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<List<MapStatic>> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = MapsCacheKey + language + version;

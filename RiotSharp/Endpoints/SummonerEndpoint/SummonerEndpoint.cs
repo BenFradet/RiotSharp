@@ -8,6 +8,10 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.SummonerEndpoint
 {
+    /// <summary>
+    /// Implementation of <see cref="ISummonerEndpoint"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.ISummonerEndpoint" />
     public class SummonerEndpoint : ISummonerEndpoint
     {
         private const string SummonerRootUrl = "/lol/summoner/v3/summoners";
@@ -20,12 +24,14 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         private readonly IRateLimitedRequester _requester;
         private ICache _cache;
 
-        public SummonerEndpoint(IRateLimitedRequester requester,ICache cache)
+        /// <inheritdoc />
+        public SummonerEndpoint(IRateLimitedRequester requester, ICache cache)
         {
             _requester = requester;
             _cache = cache;
         }
 
+        /// <inheritdoc />
         public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
         {
             var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
@@ -44,6 +50,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
             return summoner;
         }
 
+        /// <inheritdoc />
         public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
         {
             var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
@@ -62,6 +69,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
             return summoner;
         }
 
+        /// <inheritdoc />
         public async Task<Summoner> GetSummonerByNameAsync(Region region, string summonerName)
         {
             var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerName));

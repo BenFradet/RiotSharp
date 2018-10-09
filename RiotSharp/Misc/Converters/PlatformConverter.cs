@@ -7,12 +7,13 @@ namespace RiotSharp.Misc.Converters
 {
     class PlatformConverter : JsonConverter
     {
-
+        /// <inheritdoc />
         public override bool CanConvert(Type objectType)
         {
             return typeof(string).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
         }
 
+        /// <inheritdoc />
         public override object ReadJson(
             JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
@@ -48,6 +49,7 @@ namespace RiotSharp.Misc.Converters
             }
         }
 
+        /// <inheritdoc />
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             serializer.Serialize(writer, ((Platform)value).ToString().ToUpper());

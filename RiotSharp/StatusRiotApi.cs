@@ -9,6 +9,10 @@ using RiotSharp.Endpoints.StatusEndpoint;
 
 namespace RiotSharp
 {
+    /// <summary>
+    /// Implementation of <see cref="IStatusRiotApi"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Interfaces.IStatusRiotApi" />
     public class StatusRiotApi : IStatusRiotApi
     {
         #region Private Fields
@@ -43,6 +47,11 @@ namespace RiotSharp
             requester = Requesters.StatusApiRequester;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StatusRiotApi"/> class.
+        /// </summary>
+        /// <param name="requester">The requester.</param>
+        /// <exception cref="ArgumentNullException">requester</exception>
         public StatusRiotApi(IRequester requester)
         {
             if (requester == null)
@@ -52,6 +61,7 @@ namespace RiotSharp
 
         #region Public Methods      
 
+        /// <inheritdoc />
         public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
             var json = await requester.CreateGetRequestAsync(StatusRootUrl, region, null, true).ConfigureAwait(false);

@@ -7,21 +7,48 @@ using System.Collections.Generic;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticDataEndpoints"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticDataEndpoints" />
     public class StaticDataEndpoints : IStaticDataEndpoints
     {
         private static StaticDataEndpoints instance;
 
+        /// <inheritdoc />
         public IStaticChampionEndpoint Champions { get; private set; }
+
+        /// <inheritdoc />
         public IStaticItemEndpoint Items { get; private set; }
+
+        /// <inheritdoc />
         public IStaticLanguageEndpoint Languages { get; private set; }
+
+        /// <inheritdoc />
         public IStaticMapEndpoint Maps { get; private set; }
+
+        /// <inheritdoc />
         public IStaticMasteryEndpoint Masteries { get; private set; }
+
+        /// <inheritdoc />
         public IStaticProfileIconEndpoint ProfileIcons { get; private set; }
+
+        /// <inheritdoc />
         public IStaticRealmEndpoint Realms { get; private set; }
+
+        /// <inheritdoc />
         public IStaticReforgedRuneEndpoint ReforgedRunes { get; private set; }
+
+        /// <inheritdoc />
         public IStaticRuneEndpoint Runes { get; private set; }
+
+        /// <inheritdoc />
         public IStaticSummonerSpellEndpoint SummonerSpells { get; private set; }
+
+        /// <inheritdoc />
         public IStaticVersionEndpoint Versions { get; private set; }
+
+        /// <inheritdoc />
         public IStaticTarballLinkEndPoint TarballLinks { get; private set; }
 
         /// <summary>

@@ -47,6 +47,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         [JsonProperty("matchMode")]
         public string MatchMode { get; set; }
 
+        /// <summary>
+        /// Defines what GameType the match is eg. Custom, Matched, Tutorial.
+        /// </summary>
         [JsonProperty("matchType")]
         public GameType MatchType { get; set; }
 

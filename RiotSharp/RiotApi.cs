@@ -18,8 +18,9 @@ using RiotSharp.Interfaces;
 namespace RiotSharp
 {
     /// <summary>
-    /// Implementation of IRiotApi
+    /// Implementation of <see cref="IRiotApi"/>
     /// </summary>
+    /// <seealso cref="RiotSharp.Interfaces.IRiotApi" />
     public class RiotApi : IRiotApi
     {
         #region Private Fields
@@ -29,20 +30,29 @@ namespace RiotSharp
         #endregion
 
         #region Endpoints
+
+        /// <inheritdoc />
         public ISummonerEndpoint Summoner { get; }
 
+        /// <inheritdoc />
         public IChampionEndpoint Champion { get; }
 
+        /// <inheritdoc />
         public ILeagueEndpoint League { get; }
 
+        /// <inheritdoc />
         public IMatchEndpoint Match { get; }
 
+        /// <inheritdoc />
         public ISpectatorEndpoint Spectator { get; }
 
+        /// <inheritdoc />
         public IChampionMasteryEndpoint ChampionMastery { get; }
 
+        /// <inheritdoc />
         public IThirdPartyEndpoint ThirdParty { get; }
 
+        /// <inheritdoc />
         public IStaticDataEndpoints StaticData { get; }
         #endregion
 
@@ -52,7 +62,10 @@ namespace RiotSharp
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimitPer1s">The 1 second rate limit for your api key. 20 by default.</param>
         /// <param name="rateLimitPer2m">The 2 minute rate limit for your api key. 100 by default.</param>
-        /// <returns>The instance of RiotApi.</returns>
+        /// <param name="cache">The cache.</param>
+        /// <returns>
+        /// The instance of RiotApi.
+        /// </returns>
         public static RiotApi GetDevelopmentInstance(string apiKey, int rateLimitPer1s = 20, int rateLimitPer2m = 100, ICache cache = null)
         {
             return GetInstance(apiKey, new Dictionary<TimeSpan, int>
@@ -68,7 +81,10 @@ namespace RiotSharp
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
         /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
-        /// <returns>The instance of RiotApi.</returns>
+        /// <param name="cache">The cache.</param>
+        /// <returns>
+        /// The instance of RiotApi.
+        /// </returns>
         public static RiotApi GetInstance(string apiKey, int rateLimitPer10s, int rateLimitPer10m, ICache cache = null)
         {
             return GetInstance(apiKey, new Dictionary<TimeSpan, int>
@@ -84,7 +100,10 @@ namespace RiotSharp
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
         /// is the number of requests allowed per that time span.</param>
-        /// <returns>The instance of RiotApi.</returns>
+        /// <param name="cache">The cache.</param>
+        /// <returns>
+        /// The instance of RiotApi.
+        /// </returns>
         public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
             if (_instance == null || Requesters.RiotApiRequester == null ||
@@ -116,7 +135,13 @@ namespace RiotSharp
         /// Dependency injection constructor
         /// </summary>
         /// <param name="rateLimitedRequester">Rate limited requester for all endpoints except the static endpoint.</param>
-        /// <param name="staticDataRateLimitedRequester">Rate limited requester for static data endpoints.</param>
+        /// <param name="staticEndpointProvider">The static endpoint provider.</param>
+        /// <param name="cache">The cache.</param>
+        /// <exception cref="ArgumentNullException">
+        /// rateLimitedRequester
+        /// or
+        /// staticEndpointProvider
+        /// </exception>
         public RiotApi(IRateLimitedRequester rateLimitedRequester, IStaticEndpointProvider staticEndpointProvider,
             ICache cache = null)
         {

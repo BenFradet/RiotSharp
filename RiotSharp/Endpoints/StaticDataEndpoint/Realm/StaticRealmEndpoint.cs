@@ -9,17 +9,25 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Realm
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticRealmEndpoint" />
     public class StaticRealmEndpoint : StaticEndpointBase, IStaticRealmEndpoint
     {
         private const string RealmsUrl = "/realms/{0}.json";
         private const string RealmsCacheKey = "realms";
 
+        /// <inheritdoc />
         public StaticRealmEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticRealmEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<RealmStatic> GetAllAsync(Region region)
         {
             var cacheKey = RealmsCacheKey + region;
