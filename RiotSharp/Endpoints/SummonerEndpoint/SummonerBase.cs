@@ -8,6 +8,9 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
     /// </summary>
     public class SummonerBase
     {
+        /// <summary>
+        /// Defines the Region of a Summoner.
+        /// </summary>
         public Region Region { get; set; }
 
         internal SummonerBase() { }

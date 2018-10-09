@@ -18,6 +18,11 @@ namespace RiotSharp.AspNetCore
 
 #pragma warning disable CS1591
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HybridCache"/> class.
+        /// </summary>
+        /// <param name="memoryCache">The memory cache.</param>
+        /// <param name="distributedCache">The distributed cache.</param>
         /// <param name="slidingExpiry">Used to set expiry in memory cache after data is loaded for first time from distributed cache.</param>
         public HybridCache(IMemoryCache memoryCache, IDistributedCache distributedCache, TimeSpan slidingExpiry)
         {

@@ -10,17 +10,25 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticSummonerSpellEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticSummonerSpellEndpoint" />
     public class StaticSummonerSpellEndpoint : StaticEndpointBase, IStaticSummonerSpellEndpoint
     {
         private const string SummonerSpellsDataKey = "summoner";
         private const string SummonerSpellsCacheKey = "summoner-spells";
 
+        /// <inheritdoc />
         public StaticSummonerSpellEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             :base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticSummonerSpellEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<SummonerSpellListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = SummonerSpellsCacheKey + language + version;

@@ -5,6 +5,9 @@ using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
+    /// <summary>
+    /// Match class containing all properties to define a match.
+    /// </summary>
     public class Match
     {
         /// <summary>
@@ -13,6 +16,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         [JsonProperty("seasonId")]
         public int SeasonId { get; set; }
 
+        /// <summary>
+        /// Specifies the Queue ID.
+        /// </summary>
         [JsonProperty("queueId")]
         public int QueueId { get; set; }
 

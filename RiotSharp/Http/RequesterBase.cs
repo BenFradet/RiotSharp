@@ -15,6 +15,11 @@ namespace RiotSharp.Http
 
         public string ApiKey { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequesterBase"/> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <exception cref="ArgumentNullException">apiKey</exception>
         protected RequesterBase(string apiKey) : this()
         {
             if (string.IsNullOrWhiteSpace(apiKey))
@@ -22,6 +27,9 @@ namespace RiotSharp.Http
             ApiKey = apiKey;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequesterBase"/> class.
+        /// </summary>
         protected RequesterBase()
         {
             httpClient = new HttpClient();

@@ -10,17 +10,25 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticProfileIconEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticProfileIconEndpoint" />
     public class StaticProfileIconEndpoint : StaticEndpointBase, IStaticProfileIconEndpoint
     {
         private const string ProfileIconsDataKey = "profileicon";
         private const string ProfileIconsCacheKey = "profile-icons";
 
+        /// <inheritdoc />
         public StaticProfileIconEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticProfileIconEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<ProfileIconListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = ProfileIconsCacheKey + language + version;

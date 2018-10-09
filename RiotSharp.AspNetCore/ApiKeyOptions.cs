@@ -3,11 +3,21 @@ using System.Collections.Generic;
 
 namespace RiotSharp.AspNetCore
 {
+    /// <summary>
+    /// Specifies the options for ApiKey
+    /// </summary>
     public class ApiKeyOptions
     {
         internal ApiKeyOptions() { }
 
+        /// <summary>
+        /// Gets or sets the API key.
+        /// </summary>
         public string ApiKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rate limits.
+        /// </summary>
         public IDictionary<TimeSpan, int> RateLimits { get; set; }
 
         /// <summary>

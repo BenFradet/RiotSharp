@@ -4,6 +4,10 @@ using Newtonsoft.Json;
 
 namespace RiotSharp.Caching
 {
+    /// <summary>
+    /// Cache implementation which will write the cache to a file.
+    /// </summary>
+    /// <seealso cref="RiotSharp.Caching.ICache" />
     public class FileCache : ICache
     {
 
@@ -35,21 +39,24 @@ namespace RiotSharp.Caching
             File.WriteAllText(GetPath(key.ToString()), JsonConvert.SerializeObject(data));
         }
 
-        public bool IsExpired<T>(CacheData<T> data)
+        private bool IsExpired<T>(CacheData<T> data)
         {
             return data == null || DateTime.Now > data.CreatedAt.AddMinutes(data.TtlMinutes);
         }
 
+        /// <inheritdoc />
         public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
             Store(key, value, (long) slidingExpiry.TotalMinutes);
         }
 
+        /// <inheritdoc />
         public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
             Store(key, value, (long) (absoluteExpiry - DateTime.Now).TotalMinutes);
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
             DirectoryInfo di = new DirectoryInfo(_directory);
@@ -64,6 +71,7 @@ namespace RiotSharp.Caching
             }
         }
 
+        /// <inheritdoc />
         public TV Get<TK, TV>(TK key) where TV : class
         {
             var data = Load<CacheData<TV>>(key.ToString());
@@ -71,6 +79,7 @@ namespace RiotSharp.Caching
             return IsExpired(data) ? null : data.Data;
         }
 
+        /// <inheritdoc />
         public void Remove<TK>(TK key)
         {
             var path = GetPath(key.ToString());

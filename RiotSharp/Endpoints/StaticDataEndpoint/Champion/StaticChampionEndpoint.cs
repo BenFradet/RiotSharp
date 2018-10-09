@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 {
+    /// <summary>
+    /// Implementation of IStaticChampionEndpoint, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticChampionEndpoint" />
     public class StaticChampionEndpoint : StaticEndpointBase, IStaticChampionEndpoint
     {
         private const string ChampionByKeyUrl = CdnUrl + "{0}/data/{1}/champion/{2}.json";
@@ -19,12 +24,15 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
         private const string ChampionsCacheKey = "champions";
         private const string ChampionByIdCacheKey = "champion";
 
+        /// <inheritdoc />
         public StaticChampionEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticChampionEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US, bool fullData = true)
         {
             var cacheKey = ChampionsCacheKey + language + version;
@@ -40,6 +48,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             return wrapper.ChampionListStatic;
         }
 
+        /// <inheritdoc />
         public async Task<ChampionStatic> GetByKeyAsync(string key, string version, Language language = Language.en_US)
         {
             var cacheKey = ChampionsCacheKey + key + language + version;

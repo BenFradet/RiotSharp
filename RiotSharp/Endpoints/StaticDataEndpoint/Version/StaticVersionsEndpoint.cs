@@ -9,17 +9,25 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Version
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticVersionEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticVersionEndpoint" />
     public class StaticVersionEndpoint : StaticEndpointBase, IStaticVersionEndpoint
     {
         private const string VersionsCacheKey = "versions";
         private const string VersionsUrl = ApiUrl + "versions.json";
 
+        /// <inheritdoc />
         public StaticVersionEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticVersionEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<List<string>> GetAllAsync()
         {
             var cacheKey = VersionsCacheKey;

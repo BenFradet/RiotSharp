@@ -1,28 +1,39 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces.Static;
-using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Endpoints.StaticDataEndpoint.Item.Cache;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticItemEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticItemEndpoint" />
     public class StaticItemEndpoint : StaticEndpointBase, IStaticItemEndpoint
     {
         private const string ItemsDataKey = "item";
         private const string ItemsCacheKey = "items";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StaticItemEndpoint"/> class.
+        /// </summary>
+        /// <param name="requester">The requester.</param>
+        /// <param name="cache">The cache.</param>
+        /// <param name="slidingExpirationTime">The sliding expiration time.</param>
+        /// <inheritdoc />
         public StaticItemEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticItemEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
+        /// <inheritdoc />
         public async Task<ItemListStatic> GetAllAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = ItemsCacheKey + language + version;

@@ -40,13 +40,13 @@ namespace RiotSharp.Interfaces
         /// <param name="spectatorType">The spectator type of the game.</param>
         /// <param name="pickType">The pick type of the game.</param>
         /// <param name="mapType">The map type of the game.</param>
+        /// <param name="allowedParticipantIds">List of id's for allowed participants. Defaults to null</param>
         /// <param name="metadata">
         ///     Optional string that may contain any data in any format, if specified at all. Used to denote any
         ///     custom information about the game.
         /// </param>
         /// <param name="count">The number of codes to create (max 1000).</param>
         /// <returns>A list of tournament codes in string format.</returns>
-        /// <exception cref="ArgumentException">Thrown if an invalid <paramref name="teamSize"/> or an invalid <paramref name="count"/> is provided.</exception>
         Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int count, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType,
             TournamentMapType mapType, List<long> allowedParticipantIds = null, string metadata = "");

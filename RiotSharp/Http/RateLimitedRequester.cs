@@ -11,12 +11,15 @@ namespace RiotSharp.Http
     /// <summary>
     /// A requester with a rate limiter
     /// </summary>
+    /// <seealso cref="RiotSharp.Http.RequesterBase" />
+    /// <seealso cref="RiotSharp.Http.Interfaces.IRateLimitedRequester" />
     public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
         private bool _throwOnDelay;
 
         public readonly IDictionary<TimeSpan, int> RateLimits;
 
+        /// <inheritdoc />
         public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey)
         {
             RateLimits = rateLimits;
@@ -27,6 +30,7 @@ namespace RiotSharp.Http
 
         #region Public Methods
 
+        /// <inheritdoc />
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
             bool useHttps = true)
         {
@@ -40,7 +44,8 @@ namespace RiotSharp.Http
                 return await GetResponseContentAsync(response).ConfigureAwait(false);
             }
         }
-        
+
+        /// <inheritdoc />
         public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {
@@ -56,6 +61,7 @@ namespace RiotSharp.Http
             }
         }
 
+        /// <inheritdoc />
         public async Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {

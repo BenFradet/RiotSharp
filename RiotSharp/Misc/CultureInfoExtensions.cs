@@ -3,6 +3,9 @@ using System.Globalization;
 
 namespace RiotSharp.Misc
 {
+    /// <summary>
+    /// Extensions to use on <see cref="CultureInfo"/>
+    /// </summary>
     public static class CultureInfoExtensions
     {
         /// <summary>

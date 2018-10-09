@@ -5,6 +5,9 @@ using System.Threading;
 
 namespace RiotSharp.Caching
 {
+    /// <summary>
+    /// In-memory cache implementation based on <see cref="ICache"/>
+    /// </summary>
     public class Cache : ICache
     {
         private IDictionary<object, CacheItem> cache = new Dictionary<object, CacheItem>();

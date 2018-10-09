@@ -7,6 +7,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.LeagueEndpoint
 {
+    /// <summary>
+    /// Implementation of <see cref="ILeagueEndpoint"/>
+    /// </summary>
     public class LeagueEndpoint : ILeagueEndpoint
     {
         private const string LeagueRootUrl = "/lol/league/v3";
@@ -16,11 +19,16 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LeagueEndpoint"/> class.
+        /// </summary>
+        /// <param name="requester">The requester.</param>
         public LeagueEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
         }
 
+        /// <inheritdoc />
         public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(
@@ -29,6 +37,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
             return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
         }
 
+        /// <inheritdoc />
         public async Task<League> GetChallengerLeagueAsync(Region region, string queue)
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue),
@@ -36,6 +45,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
             return JsonConvert.DeserializeObject<League>(json);
         }
 
+        /// <inheritdoc />
         public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),

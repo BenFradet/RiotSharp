@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
 {
+    /// <summary>
+    /// Implementation of <see cref="IStaticLanguageEndpoint"/>, inherits from <see cref="StaticEndpointBase"/>
+    /// </summary>
+    /// <seealso cref="RiotSharp.Endpoints.StaticDataEndpoint.StaticEndpointBase" />
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticLanguageEndpoint" />
     public class StaticLanguageEndpoint : StaticEndpointBase, IStaticLanguageEndpoint
     {
         private const string LanguagesUrl = CdnUrl + "languages.json";
@@ -19,13 +24,17 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
 
         private const string LanguagesCacheKey = "languages";
 
+        /// <inheritdoc />
         public StaticLanguageEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
             : base(requester, cache, slidingExpirationTime) { }
 
+        /// <inheritdoc />
         public StaticLanguageEndpoint(IRequester requester, ICache cache)
             : this(requester, cache, null) { }
 
         #region Language Strings
+
+        /// <inheritdoc />
         public async Task<LanguageStringsStatic> GetLanguageStringsAsync(string version, Language language = Language.en_US)
         {
             var cacheKey = LanguageStringsCacheKey + language + version;
@@ -46,6 +55,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings
         #endregion
 
         #region Languages
+
+        /// <inheritdoc />
         public async Task<List<Language>> GetLanguagesAsync()
         {
             var cacheKey = LanguagesCacheKey;
