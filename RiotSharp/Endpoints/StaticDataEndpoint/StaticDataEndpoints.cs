@@ -3,7 +3,6 @@ using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint
 {
@@ -13,7 +12,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
     /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticDataEndpoints" />
     public class StaticDataEndpoints : IStaticDataEndpoints
     {
-        private static StaticDataEndpoints instance;
+        private static StaticDataEndpoints _instance;
 
         /// <inheritdoc />
         public IStaticChampionEndpoint Champions { get; private set; }
@@ -57,23 +56,19 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// <returns>The instance of StaticDataEndpoint.</returns>
         public static StaticDataEndpoints GetInstance(bool useCache = true)
         {
-            if (instance == null ||
+            if (_instance == null ||
                 Requesters.StaticApiRequester == null)
             {
-                instance = new StaticDataEndpoints(useCache);
+                _instance = new StaticDataEndpoints(useCache);
             }
-            return instance;
+            return _instance;
         }
 
         private StaticDataEndpoints(bool useCache = true)
         {
             Requesters.StaticApiRequester = new Requester();
 
-            ICache cache = null;
-            if (useCache)
-                cache = new Cache();
-            else
-                cache = new PassThroughCache();
+            var cache = useCache ? (ICache)new Cache() : new PassThroughCache();
 
             InitializeEndpoints(new StaticEndpointProvider(Requesters.StaticApiRequester, cache));
         }
@@ -107,18 +102,18 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
 
         private void InitializeEndpoints(IStaticEndpointProvider staticEndpointProvider)
         {
-            this.Champions = staticEndpointProvider.GetEndpoint<IStaticChampionEndpoint>();
-            this.Items = staticEndpointProvider.GetEndpoint<IStaticItemEndpoint>();
-            this.Languages = staticEndpointProvider.GetEndpoint<IStaticLanguageEndpoint>();
-            this.Maps = staticEndpointProvider.GetEndpoint<IStaticMapEndpoint>();
-            this.Masteries = staticEndpointProvider.GetEndpoint<IStaticMasteryEndpoint>();
-            this.ProfileIcons = staticEndpointProvider.GetEndpoint<IStaticProfileIconEndpoint>();
-            this.Realms = staticEndpointProvider.GetEndpoint<IStaticRealmEndpoint>();
-            this.ReforgedRunes = staticEndpointProvider.GetEndpoint<IStaticReforgedRuneEndpoint>();
-            this.Runes = staticEndpointProvider.GetEndpoint<IStaticRuneEndpoint>();
-            this.SummonerSpells = staticEndpointProvider.GetEndpoint<IStaticSummonerSpellEndpoint>();
-            this.Versions = staticEndpointProvider.GetEndpoint<IStaticVersionEndpoint>();
-            this.TarballLinks = staticEndpointProvider.GetEndpoint<IStaticTarballLinkEndPoint>();
+            Champions = staticEndpointProvider.GetEndpoint<IStaticChampionEndpoint>();
+            Items = staticEndpointProvider.GetEndpoint<IStaticItemEndpoint>();
+            Languages = staticEndpointProvider.GetEndpoint<IStaticLanguageEndpoint>();
+            Maps = staticEndpointProvider.GetEndpoint<IStaticMapEndpoint>();
+            Masteries = staticEndpointProvider.GetEndpoint<IStaticMasteryEndpoint>();
+            ProfileIcons = staticEndpointProvider.GetEndpoint<IStaticProfileIconEndpoint>();
+            Realms = staticEndpointProvider.GetEndpoint<IStaticRealmEndpoint>();
+            ReforgedRunes = staticEndpointProvider.GetEndpoint<IStaticReforgedRuneEndpoint>();
+            Runes = staticEndpointProvider.GetEndpoint<IStaticRuneEndpoint>();
+            SummonerSpells = staticEndpointProvider.GetEndpoint<IStaticSummonerSpellEndpoint>();
+            Versions = staticEndpointProvider.GetEndpoint<IStaticVersionEndpoint>();
+            TarballLinks = staticEndpointProvider.GetEndpoint<IStaticTarballLinkEndPoint>();
         }
     }
 }

@@ -24,16 +24,7 @@ namespace RiotSharp.Misc
             else
             {
                 var riotLanguageName = cultureInfo.Name.Replace('-', '_');
-                Language language = Language.en_US;
-                if (Enum.TryParse(riotLanguageName, out language))
-                {
-                    return language;
-                }
-                else
-                {
-                    // Parent culture is always neutral (as far as the supported languages go)
-                    return ParseNeutralCulture(cultureInfo.Parent); 
-                }
+                return Enum.TryParse(riotLanguageName, out Language language) ? language : ParseNeutralCulture(cultureInfo.Parent);
             }
         }
 

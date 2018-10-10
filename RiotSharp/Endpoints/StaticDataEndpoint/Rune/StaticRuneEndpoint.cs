@@ -5,8 +5,6 @@ using RiotSharp.Endpoints.StaticDataEndpoint.Rune.Cache;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune

@@ -7,8 +7,8 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.LanguageStrings.Cache
     {
         [JsonProperty]
         public LanguageStringsStatic LanguageStringsStatic { get; private set; }
-        public Language Language { get; private set; }
-        public string Version { get; private set; }
+        public Language Language { get; }
+        public string Version { get; }
 
         public LanguageStringsStaticWrapper(LanguageStringsStatic languageStringsStatic, Language language, string version)
         {

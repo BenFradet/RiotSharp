@@ -37,9 +37,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
 
     static class MonsterSubTypeExtension
     {
-        public static string ToCustomString(this MonsterSubType MonsterSubType)
+        public static string ToCustomString(this MonsterSubType monsterSubType)
         {
-            switch (MonsterSubType)
+            switch (monsterSubType)
             {
                 case MonsterSubType.AirDragon:
                     return "AIR_DRAGON";

@@ -3,12 +3,12 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion.Cache
 {
-    class ChampionListStaticWrapper
+    internal class ChampionListStaticWrapper
     {
         [JsonProperty]
         public ChampionListStatic ChampionListStatic { get; private set; }
-        public Language Language { get; private set; }
-        public string Version { get; private set; }
+        public Language Language { get; }
+        public string Version { get; }
 
         public ChampionListStaticWrapper(ChampionListStatic champions, Language language, string version)
         {

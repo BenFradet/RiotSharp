@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.Endpoints.MatchEndpoint;
-using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.Interfaces

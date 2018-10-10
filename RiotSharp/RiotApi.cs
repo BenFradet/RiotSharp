@@ -26,7 +26,7 @@ namespace RiotSharp
         #region Private Fields
         private static RiotApi _instance;
 
-        private ICache _cache;       
+        private readonly ICache _cache;       
         #endregion
 
         #region Endpoints

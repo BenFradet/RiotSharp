@@ -11,26 +11,26 @@ namespace RiotSharp.Http
     {
         /// <summary>Semaphore to prevent multiple requests from interferering with each other's rate limit
         /// calculations.</summary>
-        private readonly SemaphoreSlim accessSemaphore = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim _accessSemaphore = new SemaphoreSlim(1);
 
         /// <summary>Time to retry when 429 Retry-After headers are set.</summary>
-        private DateTime? retryAfter;
+        private DateTime? _retryAfter;
 
         /// <summary>Key is rate limit interval, value is the maximum requests allowed in that interval.</summary>
-        private readonly IDictionary<TimeSpan, int> rateLimits;
+        private readonly IDictionary<TimeSpan, int> _rateLimits;
 
         /// <summary>Key is rate limit interval, value is time the inteval started.</summary>
-        private readonly IDictionary<TimeSpan, DateTime> rateLimitStarts = new Dictionary<TimeSpan, DateTime>();
+        private readonly IDictionary<TimeSpan, DateTime> _rateLimitStarts = new Dictionary<TimeSpan, DateTime>();
 
         /// <summary>Key is rate limit interval, value is the current request count.</summary>
-        private readonly IDictionary<TimeSpan, int> rateLimitCounts = new Dictionary<TimeSpan, int>();
+        private readonly IDictionary<TimeSpan, int> _rateLimitCounts = new Dictionary<TimeSpan, int>();
 
         /// <summary>Indicates if rate limit exceeded exception is thrown, when the rate limit is exceeded. </summary>
-        private bool _throwOnDelay;
+        private readonly bool _throwOnDelay;
 
         public RateLimiter(IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false)
         {
-            this.rateLimits = rateLimits;
+            this._rateLimits = rateLimits;
             _throwOnDelay = throwOnDelay;
         }
 
@@ -42,14 +42,14 @@ namespace RiotSharp.Http
         /// <param name="delay">Time to delay.</param>
         public void SetRetryAfter(TimeSpan delay)
         {
-            retryAfter = DateTime.Now + delay;
+            _retryAfter = DateTime.Now + delay;
         }
 
         /// <summary>Creates a task that blocks until a request can be made without violating rate limit rules. Release
         /// must be called after the task completes.</summary>
         public async Task HandleRateLimitAsync()
         {
-            await accessSemaphore.WaitAsync().ConfigureAwait(false);
+            await _accessSemaphore.WaitAsync().ConfigureAwait(false);
             try
             {
                 var delay = GetDelay();
@@ -60,7 +60,7 @@ namespace RiotSharp.Http
             }
             finally
             {
-                accessSemaphore.Release();
+                _accessSemaphore.Release();
             }
         }
 
@@ -76,23 +76,23 @@ namespace RiotSharp.Http
             var delay = TimeSpan.Zero;
             
             // RetryAfter delay.
-            var retryDelay = retryAfter - now;
+            var retryDelay = _retryAfter - now;
             if (retryDelay > delay)
                 delay = (TimeSpan) retryDelay;
 
             // Rate limits.
-            foreach (var rateLimitCount in rateLimitCounts)
+            foreach (var rateLimitCount in _rateLimitCounts)
             {
                 // For each rate limit count.
                 var timeSpan = rateLimitCount.Key;
                 var count = rateLimitCount.Value;
-                var limit = rateLimits[timeSpan];
+                var limit = _rateLimits[timeSpan];
 
                 // If request count is a limit, update the delay to match.
                 if (count >= limit)
                 {
                     // Start should exist if count exists.
-                    var start = rateLimitStarts[timeSpan];
+                    var start = _rateLimitStarts[timeSpan];
                     var newDelay = start + timeSpan - now;
                     if (newDelay > delay)
                         delay = newDelay;
@@ -109,27 +109,26 @@ namespace RiotSharp.Http
         {
             var now = DateTime.Now;
 
-            foreach (var rateLimit in rateLimits)
+            foreach (var rateLimit in _rateLimits)
             {
                 var timeSpan = rateLimit.Key;
 
                 int count;
-                DateTime start = DateTime.MinValue;
-                rateLimitStarts.TryGetValue(timeSpan, out start);
+                _rateLimitStarts.TryGetValue(timeSpan, out var start);
 
                 // If the rate limit hasn't been initialized (no start value) or the time span has ended.
                 if (start == DateTime.MinValue || start <= now - timeSpan)
                 {
-                    rateLimitStarts[timeSpan] = now;
+                    _rateLimitStarts[timeSpan] = now;
                     count = 0;
                 }
                 else
                 {
                     // Rate limit must've been initialized and is current.
-                    count = rateLimitCounts[timeSpan];
+                    count = _rateLimitCounts[timeSpan];
                 }
 
-                rateLimitCounts[timeSpan] = count + 1;
+                _rateLimitCounts[timeSpan] = count + 1;
             }
         }
     }

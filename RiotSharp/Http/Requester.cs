@@ -1,9 +1,6 @@
 ﻿using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -20,7 +17,8 @@ namespace RiotSharp.Http
         public Requester(string apiKey) : base(apiKey) { }
 
         /// <inheritdoc />
-        public Requester() : base() { }
+        public Requester()
+        { }
 
         #region Public Methods
 

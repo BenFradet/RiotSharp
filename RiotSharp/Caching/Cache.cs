@@ -10,39 +10,23 @@ namespace RiotSharp.Caching
     /// </summary>
     public class Cache : ICache
     {
-        private IDictionary<object, CacheItem> cache = new Dictionary<object, CacheItem>();
-        private IDictionary<object, SlidingDetails> slidingTimes = new Dictionary<object, SlidingDetails>();
+        private readonly IDictionary<object, CacheItem> _cache = new Dictionary<object, CacheItem>();
+        private readonly IDictionary<object, SlidingDetails> _slidingTimes = new Dictionary<object, SlidingDetails>();
 
         private const int DefaultMonitorWait = 1000;
         private const int MonitorWaitToUpdateSliding = 500;
 
-        private readonly object sync = new object();
+        private readonly object _sync = new object();
 
         #region ICache interface
-        /// <summary>
-        /// Add a (key, value) pair to the cache with a relative expiry time (e.g. 2 mins).
-        /// </summary>
-        /// <typeparam name="K">Type of the key.</typeparam>
-        /// <typeparam name="V">Type of the value which has to be a reference type.</typeparam>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
-        /// <param name="slidingExpiry">The sliding time at the end of which the (key, value) pair should expire and
-        /// be purged from the cache.</param>
-        public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
             Add(key, value, slidingExpiry, true);
         }
 
-        /// <summary>
-        /// Add a (key, value) pair to the cache with an absolute expiry date (e.g. 23:33:00 03/04/2030)
-        /// </summary>
-        /// <typeparam name="K">Type of the key.</typeparam>
-        /// <typeparam name="V">Type of the value which has to be a reference type.</typeparam>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
-        /// <param name="absoluteExpiry">The absolute expiry date when the (key, value) pair should expire and
-        /// be purged from the cache.</param>
-        public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
             if (absoluteExpiry > DateTime.Now)
             {
@@ -51,71 +35,57 @@ namespace RiotSharp.Caching
             }
         }
 
-        /// <summary>
-        /// Get a value from the cache.
-        /// </summary>
-        /// <typeparam name="K">Type of the key.</typeparam>
-        /// <typeparam name="V">Type of the value which has to be a reference type.</typeparam>
-        /// <param name="key">The key</param>
-        /// <returns>The value if the key exists in the cache, null otherwise.</returns>
-        public V Get<K, V>(K key) where V : class
+        /// <inheritdoc />
+        public TV Get<TK, TV>(TK key) where TV : class
         {
-            if (cache.ContainsKey(key))
+            if (_cache.ContainsKey(key))
             {
-                var cacheItem = cache[key];
+                var cacheItem = _cache[key];
 
                 if (cacheItem.RelativeExpiry.HasValue)
                 {
-                    if (Monitor.TryEnter(sync, MonitorWaitToUpdateSliding))
+                    if (Monitor.TryEnter(_sync, MonitorWaitToUpdateSliding))
                     {
                         try
                         {
-                            slidingTimes[key].Viewed();
+                            _slidingTimes[key].Viewed();
                         }
                         finally
                         {
-                            Monitor.Exit(sync);
+                            Monitor.Exit(_sync);
                         }
                     }
                 }
 
-                return (V)cacheItem.Value;
+                return (TV)cacheItem.Value;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
-        /// <summary>
-        /// Remove the value associated with the specified key from the cache.
-        /// </summary>
-        /// <typeparam name="K">Type of the key.</typeparam>
-        /// <param name="key">The key.</param>
-        public void Remove<K>(K key)
+        /// <inheritdoc />
+        public void Remove<TK>(TK key)
         {
             if (!Equals(key, null))
             {
-                cache.Remove(key);
-                slidingTimes.Remove(key);
+                _cache.Remove(key);
+                _slidingTimes.Remove(key);
             }
         }
 
-        /// <summary>
-        /// Clear the cache.
-        /// </summary>
+        /// <inheritdoc />
         public void Clear()
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
-                    cache.Clear();
-                    slidingTimes.Clear();
+                    _cache.Clear();
+                    _slidingTimes.Clear();
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
         }
@@ -124,25 +94,23 @@ namespace RiotSharp.Caching
         /// <summary>
         /// Enumerator for the keys of a specific type.
         /// </summary>
-        /// <typeparam name="K">Type of the key.</typeparam>
+        /// <typeparam name="TK">Type of the key.</typeparam>
         /// <returns>Enumerator for the keys of a specific type.</returns>
-        internal IEnumerable<K> Keys<K>()
+        internal IEnumerable<TK> Keys<TK>()
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
-                    return cache.Keys.Where(k => k.GetType() == typeof(K)).Cast<K>().ToList();
+                    return _cache.Keys.Where(k => k.GetType() == typeof(TK)).Cast<TK>().ToList();
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
-            else
-            {
-                return Enumerable.Empty<K>();
-            }
+
+            return Enumerable.Empty<TK>();
         }
 
         /// <summary>
@@ -151,48 +119,44 @@ namespace RiotSharp.Caching
         /// <returns>Enumerator for all keys.</returns>
         internal IEnumerable<object> Keys()
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
-                    return cache.Keys.ToList();
+                    return _cache.Keys.ToList();
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
-            else
-            {
-                return Enumerable.Empty<object>();
-            }
+
+            return Enumerable.Empty<object>();
         }
 
         /// <summary>
         /// Enumerator for the values of a specific type.
         /// </summary>
-        /// <typeparam name="V">Type of the value which has to be a reference type.</typeparam>
+        /// <typeparam name="TV">Type of the value which has to be a reference type.</typeparam>
         /// <returns>Enumerator for the values of a specific type.</returns>
-        internal IEnumerable<V> Values<V>() where V : class
+        internal IEnumerable<TV> Values<TV>() where TV : class
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
-                    return cache.Values
+                    return _cache.Values
                         .Select(cacheItem => cacheItem.Value)
-                        .Where(v => v.GetType() == typeof(V))
-                        .Cast<V>().ToList();
+                        .Where(v => v.GetType() == typeof(TV))
+                        .Cast<TV>().ToList();
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
-            else
-            {
-                return Enumerable.Empty<V>();
-            }
+
+            return Enumerable.Empty<TV>();
         }
 
         /// <summary>
@@ -201,21 +165,19 @@ namespace RiotSharp.Caching
         /// <returns>Enumerator for all values.</returns>
         internal IEnumerable<object> Values()
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
-                    return cache.Values.Select(cacheItem => cacheItem.Value).ToList();
+                    return _cache.Values.Select(cacheItem => cacheItem.Value).ToList();
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
-            else
-            {
-                return Enumerable.Empty<object>();
-            }
+
+            return Enumerable.Empty<object>();
         }
 
         /// <summary>
@@ -224,47 +186,45 @@ namespace RiotSharp.Caching
         /// <returns>Total amount of (key, value) pairs in the cache.</returns>
         internal int Count()
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
-                    return cache.Keys.Count;
+                    return _cache.Keys.Count;
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
-            else
-            {
-                return -1;
-            }
+
+            return -1;
         }
 
-        private void Add<K, V>(K key, V value, TimeSpan timeSpan, bool isSliding) where V : class
+        private void Add<TK, TV>(TK key, TV value, TimeSpan timeSpan, bool isSliding) where TV : class
         {
-            if (Monitor.TryEnter(sync, DefaultMonitorWait))
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
                 {
                     Remove(key);
-                    cache.Add(key, new CacheItem(value, isSliding ? timeSpan : (TimeSpan?)null));
+                    _cache.Add(key, new CacheItem(value, isSliding ? timeSpan : (TimeSpan?)null));
 
                     if (isSliding)
                     {
-                        slidingTimes.Add(key, new SlidingDetails(timeSpan));
+                        _slidingTimes.Add(key, new SlidingDetails(timeSpan));
                     }
 
                     StartObserving(key, timeSpan);
                 }
                 finally
                 {
-                    Monitor.Exit(sync);
+                    Monitor.Exit(_sync);
                 }
             }
         }
 
-        private void StartObserving<K>(K key, TimeSpan timeSpan)
+        private void StartObserving<TK>(TK key, TimeSpan timeSpan)
         {
             Timer timer = null;
             timer = new Timer(x =>
@@ -274,12 +234,11 @@ namespace RiotSharp.Caching
             }, key, timeSpan, TimeSpan.FromMilliseconds(-1));
         }
 
-        private void TryPurgeItem<K>(K key)
+        private void TryPurgeItem<TK>(TK key)
         {
-            if (slidingTimes.ContainsKey(key))
+            if (_slidingTimes.ContainsKey(key))
             {
-                TimeSpan tryAfter;
-                if (!slidingTimes[key].CanExpire(out tryAfter))
+                if (!_slidingTimes[key].CanExpire(out var tryAfter))
                 {
                     StartObserving(key, tryAfter);
                     return;
@@ -291,38 +250,36 @@ namespace RiotSharp.Caching
 
         private class CacheItem
         {
-            public CacheItem() { }
-
             public CacheItem(object value, TimeSpan? relativeExpiry)
             {
                 Value = value;
                 RelativeExpiry = relativeExpiry;
             }
 
-            public object Value { get; set; }
-            public TimeSpan? RelativeExpiry { get; set; }
+            public object Value { get; }
+            public TimeSpan? RelativeExpiry { get; }
         }
 
         private class SlidingDetails
         {
-            private TimeSpan relativeExpiry;
-            private DateTime expireAt;
+            private readonly TimeSpan _relativeExpiry;
+            private DateTime _expireAt;
 
             public SlidingDetails(TimeSpan relativeExpiry)
             {
-                this.relativeExpiry = relativeExpiry;
+                _relativeExpiry = relativeExpiry;
                 Viewed();
             }
 
             public bool CanExpire(out TimeSpan tryAfter)
             {
-                tryAfter = expireAt - DateTime.Now;
+                tryAfter = _expireAt - DateTime.Now;
                 return (0 > tryAfter.Ticks);
             }
 
             public void Viewed()
             {
-                expireAt = DateTime.Now.Add(relativeExpiry);
+                _expireAt = DateTime.Now.Add(_relativeExpiry);
             }
         }
     }

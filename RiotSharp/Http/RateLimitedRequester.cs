@@ -15,9 +15,10 @@ namespace RiotSharp.Http
     /// <seealso cref="RiotSharp.Http.Interfaces.IRateLimitedRequester" />
     public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
-        private bool _throwOnDelay;
-
         public readonly IDictionary<TimeSpan, int> RateLimits;
+
+        private readonly bool _throwOnDelay;
+        private readonly Dictionary<Region, RateLimiter> _rateLimiters = new Dictionary<Region, RateLimiter>();
 
         /// <inheritdoc />
         public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey)
@@ -25,8 +26,6 @@ namespace RiotSharp.Http
             RateLimits = rateLimits;
             _throwOnDelay = throwOnDelay;
         }
-
-        private readonly Dictionary<Region, RateLimiter> rateLimiters = new Dictionary<Region, RateLimiter>();
 
         #region Public Methods
 
@@ -87,9 +86,9 @@ namespace RiotSharp.Http
         /// <returns></returns>
         private RateLimiter GetRateLimiter(Region region)
         {
-            if (!rateLimiters.ContainsKey(region))
-                rateLimiters[region] = new RateLimiter(RateLimits, _throwOnDelay);
-            return rateLimiters[region]; 
+            if (!_rateLimiters.ContainsKey(region))
+                _rateLimiters[region] = new RateLimiter(RateLimits, _throwOnDelay);
+            return _rateLimiters[region]; 
         }
     }
 }

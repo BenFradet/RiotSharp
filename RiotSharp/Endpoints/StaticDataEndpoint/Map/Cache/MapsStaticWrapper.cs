@@ -3,12 +3,12 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Map.Cache
 {
-    class MapsStaticWrapper
+    internal class MapsStaticWrapper
     {
         [JsonProperty]
         public MapsStatic MapsStatic { get; private set; }
-        public Language Language { get; private set; }
-        public string Version { get; private set; }
+        public Language Language { get; }
+        public string Version { get; }
 
         public MapsStaticWrapper(MapsStatic mapsStatic, Language language, string version)
         {

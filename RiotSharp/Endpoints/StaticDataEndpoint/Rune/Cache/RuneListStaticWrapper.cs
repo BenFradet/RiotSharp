@@ -3,12 +3,12 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Rune.Cache
 {
-    class RuneListStaticWrapper
+    internal class RuneListStaticWrapper
     {
         [JsonProperty]
         public RuneListStatic RuneListStatic { get; private set; }
-        public Language Language { get; private set; }
-        public string Version { get; private set; }
+        public Language Language { get; }
+        public string Version { get; }
 
         public RuneListStaticWrapper(RuneListStatic runes, Language language, string version)
         {

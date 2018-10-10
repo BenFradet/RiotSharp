@@ -3,12 +3,12 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell.Cache
 {
-    class SummonerSpellListStaticWrapper
+    internal class SummonerSpellListStaticWrapper
     {
         [JsonProperty]
         public SummonerSpellListStatic SummonerSpellListStatic { get; private set; }
-        public Language Language { get; private set; }
-        public string Version { get; private set; }
+        public Language Language { get; }
+        public string Version { get; }
 
         public SummonerSpellListStaticWrapper(SummonerSpellListStatic spells, Language language
             , string version)

@@ -5,7 +5,7 @@ using RiotSharp.Endpoints.MatchEndpoint.Enums;
 
 namespace RiotSharp.Misc
 {
-    static class Util
+    internal static class Util
     {
 
         public static DateTime BaseDateTime = new DateTime(1970, 1, 1);

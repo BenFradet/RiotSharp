@@ -8,33 +8,29 @@ namespace RiotSharp.Caching
     public class PassThroughCache : ICache
     {
         /// <inheritdoc />
-        public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
-            return;
         }
 
         /// <inheritdoc />
-        public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
-            return;
         }
 
         /// <inheritdoc />
         public void Clear()
         {
-            return;
         }
 
         /// <inheritdoc />
-        public V Get<K, V>(K key) where V : class
+        public TV Get<TK, TV>(TK key) where TV : class
         {
             return null;
         }
 
         /// <inheritdoc />
-        public void Remove<K>(K key)
+        public void Remove<TK>(TK key)
         {
-            return;
         }
     }
 }
