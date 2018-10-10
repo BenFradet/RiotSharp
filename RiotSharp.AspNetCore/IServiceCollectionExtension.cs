@@ -2,10 +2,8 @@
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Http;
-using RiotSharp.Http.Interfaces;
 using RiotSharp.Interfaces;
 using System;
-using System.Collections.Generic;
 using RiotSharp.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Caching.Distributed;
@@ -35,7 +33,7 @@ namespace RiotSharp.AspNetCore
             {
                 var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey,
                     riotSharpOptions.RiotApi.RateLimits);
-                serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
+                serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider =>
                     new TournamentRiotApi(rateLimitedRequester));
 
                 if (riotSharpOptions.RiotApi.UseMemoryCache)
@@ -43,20 +41,21 @@ namespace RiotSharp.AspNetCore
                 else if (riotSharpOptions.RiotApi.UseDistributedCache)
                     serviceCollection.AddSingleton<ICache, DistributedCache>();
                 else if (riotSharpOptions.RiotApi.UseHybridCache)
-                    serviceCollection.AddSingleton<ICache, HybridCache>(serviceProvider => {
-                        return new HybridCache(serviceProvider.GetRequiredService<IMemoryCache>(),
-                            serviceProvider.GetRequiredService<IDistributedCache>(), riotSharpOptions.RiotApi.SlidingExpirationTime);
-                    });
+                    serviceCollection.AddSingleton<ICache, HybridCache>(
+                        serviceProvider => new HybridCache(
+                            serviceProvider.GetRequiredService<IMemoryCache>(),
+                            serviceProvider.GetRequiredService<IDistributedCache>(),
+                            riotSharpOptions.RiotApi.SlidingExpirationTime));
                 else if (riotSharpOptions.RiotApi.UseCache)
                     serviceCollection.AddSingleton<ICache, Cache>();
                 else
                     serviceCollection.AddSingleton<ICache, PassThroughCache>();
 
                 serviceCollection.AddSingleton<IStaticEndpointProvider>(serviceProvider =>
-                    new StaticEndpointProvider(new Requester(riotSharpOptions.RiotApi.ApiKey), serviceProvider.GetRequiredService<ICache>(), 
+                    new StaticEndpointProvider(new Requester(riotSharpOptions.RiotApi.ApiKey), serviceProvider.GetRequiredService<ICache>(),
                         riotSharpOptions.RiotApi.SlidingExpirationTime));
 
-                serviceCollection.AddSingleton<IStaticDataEndpoints>(serviceProvider => 
+                serviceCollection.AddSingleton<IStaticDataEndpoints>(serviceProvider =>
                     new StaticDataEndpoints(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
 
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider =>
@@ -65,12 +64,12 @@ namespace RiotSharp.AspNetCore
 
             if (riotSharpOptions.TournamentApi.ApiKey != null)
             {
-                var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.TournamentApi.ApiKey, 
+                var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.TournamentApi.ApiKey,
                     riotSharpOptions.TournamentApi.RateLimits);
-                serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider => 
+                serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider =>
                     new TournamentRiotApi(rateLimitedRequester, riotSharpOptions.TournamentApi.UseStub));
             }
-            
+
             return serviceCollection;
         }
     }

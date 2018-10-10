@@ -10,46 +10,53 @@ namespace RiotSharp.AspNetCore
     /// </summary>
     public class DistributedCache : ICache
     {
-        private IDistributedCache distributed;
-        private List<object> usedKeys;
+        private readonly IDistributedCache _distributed;
+        private readonly List<object> _usedKeys;
 
-#pragma warning disable CS1591
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DistributedCache"/> class.
+        /// </summary>
+        /// <param name="memoryCache">The memory cache.</param>
         public DistributedCache(IDistributedCache memoryCache)
         {
-            this.distributed = memoryCache;
-            usedKeys = new List<object>();
+            _distributed = memoryCache;
+            _usedKeys = new List<object>();
         }
 
-        public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
-            usedKeys.Add(key);
-            distributed.SetJson(key.ToString(), value, slidingExpiry);
+            _usedKeys.Add(key);
+            _distributed.SetJson(key.ToString(), value, slidingExpiry);
         }
 
-        public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
-            usedKeys.Add(key);
-            distributed.SetJson(key.ToString(), value, absoluteExpiry);
+            _usedKeys.Add(key);
+            _distributed.SetJson(key.ToString(), value, absoluteExpiry);
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
-            foreach (var usedKey in usedKeys)
+            foreach (var usedKey in _usedKeys)
             {
-                distributed.Remove(usedKey.ToString());
-                usedKeys.Remove(usedKey);
+                _distributed.Remove(usedKey.ToString());
+                _usedKeys.Remove(usedKey);
             }
         }
 
-        public V Get<K, V>(K key) where V : class
+        /// <inheritdoc />
+        public TV Get<TK, TV>(TK key) where TV : class
         {
-            return distributed.GetJson<V>(key.ToString());
+            return _distributed.GetJson<TV>(key.ToString());
         }
 
-        public void Remove<K>(K key)
+        /// <inheritdoc />
+        public void Remove<TK>(TK key)
         {
-            distributed.Remove(key.ToString());
+            _distributed.Remove(key.ToString());
         }
-#pragma warning restore
     }
 }

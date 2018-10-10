@@ -6,52 +6,57 @@ using RiotSharp.Caching;
 namespace RiotSharp.AspNetCore
 {
     /// <summary>
-    /// Implementation of ICache with AspNetCore's local in-memory cache
+    /// Implementation of <see cref="ICache"/> with AspNetCore's local in-memory cache
     /// </summary>
     public class MemoryCache : ICache
     {
-        private IMemoryCache memoryCache;
-        private List<object> usedKeys;
+        private readonly IMemoryCache _memoryCache;
+        private readonly List<object> _usedKeys;
 
-#pragma warning disable CS1591
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemoryCache"/> class.
+        /// </summary>
+        /// <param name="memoryCache">The memory cache.</param>
         public MemoryCache(IMemoryCache memoryCache)
         {
-            this.memoryCache = memoryCache;
-            usedKeys = new List<object>();
+            _memoryCache = memoryCache;
+            _usedKeys = new List<object>();
         }
 
-        public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
-            usedKeys.Add(key);
-            memoryCache.Set(key, value, slidingExpiry);
+            _usedKeys.Add(key);
+            _memoryCache.Set(key, value, slidingExpiry);
         }
 
-        public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
-            usedKeys.Add(key);
-            memoryCache.Set(key, value, absoluteExpiry);
+            _usedKeys.Add(key);
+            _memoryCache.Set(key, value, absoluteExpiry);
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
-            foreach (var usedKey in usedKeys)
+            foreach (var usedKey in _usedKeys)
             {    
-                memoryCache.Remove(usedKey);
-                usedKeys.Remove(usedKey);
+                _memoryCache.Remove(usedKey);
+                _usedKeys.Remove(usedKey);
             }
         }
 
-        public V Get<K, V>(K key) where V : class
+        /// <inheritdoc />
+        public TV Get<TK, TV>(TK key) where TV : class
         {
-            V output = null;
-            memoryCache.TryGetValue(key, out output);
+            _memoryCache.TryGetValue(key, out TV output);
             return output;
         }
 
-        public void Remove<K>(K key)
+        public void Remove<TK>(TK key)
         {
-            memoryCache.Remove(key);
+            _memoryCache.Remove(key);
         }
-#pragma warning restore
     }
 }
