@@ -11,12 +11,10 @@ namespace RiotSharp.AspNetCore
     /// </summary>
     public class HybridCache : ICache
     {
-        private IDistributedCache distributedCache;
-        private IMemoryCache memoryCache;
-        private List<object> usedKeys;
-        private TimeSpan slidingExpiry;
-
-#pragma warning disable CS1591
+        private readonly IDistributedCache _distributedCache;
+        private readonly IMemoryCache _memoryCache;
+        private readonly List<object> _usedKeys;
+        private readonly TimeSpan _slidingExpiry;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HybridCache"/> class.
@@ -26,58 +24,59 @@ namespace RiotSharp.AspNetCore
         /// <param name="slidingExpiry">Used to set expiry in memory cache after data is loaded for first time from distributed cache.</param>
         public HybridCache(IMemoryCache memoryCache, IDistributedCache distributedCache, TimeSpan slidingExpiry)
         {
-            this.memoryCache = memoryCache;
-            this.distributedCache = distributedCache;
-            this.slidingExpiry = slidingExpiry;
-            usedKeys = new List<object>();
+            _memoryCache = memoryCache;
+            _distributedCache = distributedCache;
+            _slidingExpiry = slidingExpiry;
+            _usedKeys = new List<object>();
         }
 
-        public void Add<K, V>(K key, V value, TimeSpan slidingExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
-            usedKeys.Add(key);
-            memoryCache.Set(key, value, slidingExpiry);
-            distributedCache.SetJson(key.ToString(), value, slidingExpiry);
+            _usedKeys.Add(key);
+            _memoryCache.Set(key, value, slidingExpiry);
+            _distributedCache.SetJson(key.ToString(), value, slidingExpiry);
         }
 
-        public void Add<K, V>(K key, V value, DateTime absoluteExpiry) where V : class
+        /// <inheritdoc />
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
-            usedKeys.Add(key);
-            memoryCache.Set(key, value, absoluteExpiry);
-            distributedCache.SetJson(key.ToString(), value, absoluteExpiry);
+            _usedKeys.Add(key);
+            _memoryCache.Set(key, value, absoluteExpiry);
+            _distributedCache.SetJson(key.ToString(), value, absoluteExpiry);
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
-            foreach (var usedKey in usedKeys)
+            foreach (var usedKey in _usedKeys)
             {
-                memoryCache.Remove(usedKey);
-                distributedCache.Remove(usedKey.ToString());
-                usedKeys.Remove(usedKey);
+                _memoryCache.Remove(usedKey);
+                _distributedCache.Remove(usedKey.ToString());
+                _usedKeys.Remove(usedKey);
             }
         }
 
-        public V Get<K, V>(K key) where V : class
+        /// <inheritdoc />
+        public TV Get<TK, TV>(TK key) where TV : class
         {
-            V output = null;
-            if (memoryCache.TryGetValue(key, out output))
+            if (_memoryCache.TryGetValue(key, out TV output))
                 return output;
-            else
+
+            output = _distributedCache.GetJson<TV>(key.ToString());
+            if (output != null)
             {
-                output = distributedCache.GetJson<V>(key.ToString());
-                if (output != null)
-                {
-                    usedKeys.Add(key);
-                    memoryCache.Set(key, output, slidingExpiry);
-                }               
-                return output;
-            }  
+                _usedKeys.Add(key);
+                _memoryCache.Set(key, output, _slidingExpiry);
+            }               
+            return output;
         }
 
-        public void Remove<K>(K key)
+        /// <inheritdoc />
+        public void Remove<TK>(TK key)
         {
-            memoryCache.Remove(key);
-            distributedCache.Remove(key.ToString());
+            _memoryCache.Remove(key);
+            _distributedCache.Remove(key.ToString());
         }
-#pragma warning restore
     }
 }

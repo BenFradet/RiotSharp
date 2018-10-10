@@ -9,7 +9,7 @@ namespace RiotSharp.AspNetCore
         public static void SetJson(this IDistributedCache distributedCache, string key, object value, TimeSpan slidingExpiry)
         {
             var serializedValue = JsonConvert.SerializeObject(value);
-            distributedCache.SetString(key.ToString(), serializedValue, new DistributedCacheEntryOptions
+            distributedCache.SetString(key, serializedValue, new DistributedCacheEntryOptions
             {
                 SlidingExpiration = slidingExpiry
             });
@@ -18,7 +18,7 @@ namespace RiotSharp.AspNetCore
         public static void SetJson(this IDistributedCache distributedCache, string key, object value, DateTime absoluteExpiry)
         {
             var serializedValue = JsonConvert.SerializeObject(value);
-            distributedCache.SetString(key.ToString(), serializedValue, new DistributedCacheEntryOptions
+            distributedCache.SetString(key, serializedValue, new DistributedCacheEntryOptions
             {
                 AbsoluteExpiration = absoluteExpiry
             });
@@ -26,7 +26,7 @@ namespace RiotSharp.AspNetCore
 
         public static T GetJson<T>(this IDistributedCache distributedCache, string key)
         {
-            var unserializedValue = distributedCache.GetString(key.ToString());
+            var unserializedValue = distributedCache.GetString(key);
             if (unserializedValue == null)
                 return default(T);
             return JsonConvert.DeserializeObject<T>(unserializedValue);
