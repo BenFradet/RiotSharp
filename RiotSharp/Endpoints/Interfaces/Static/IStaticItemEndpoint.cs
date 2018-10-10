@@ -1,5 +1,4 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint;
-using RiotSharp.Endpoints.StaticDataEndpoint.Item;
+﻿using RiotSharp.Endpoints.StaticDataEndpoint.Item;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 

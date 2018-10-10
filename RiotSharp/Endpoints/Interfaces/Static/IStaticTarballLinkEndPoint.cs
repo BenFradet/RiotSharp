@@ -1,6 +1,3 @@
-using System.Threading.Tasks;
-using RiotSharp.Misc;
-
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
     public interface IStaticTarballLinkEndPoint : IStaticEndpoint

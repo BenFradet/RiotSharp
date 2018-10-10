@@ -10,8 +10,8 @@ namespace RiotSharp.Http
 {
     public abstract class RequesterBase
     {
-        protected const string platformDomain = ".api.riotgames.com";
-        private readonly HttpClient httpClient;
+        protected const string PlatformDomain = ".api.riotgames.com";
+        private readonly HttpClient _httpClient;
 
         public string ApiKey { get; set; }
 
@@ -32,7 +32,7 @@ namespace RiotSharp.Http
         /// </summary>
         protected RequesterBase()
         {
-            httpClient = new HttpClient();
+            _httpClient = new HttpClient();
         }
 
         #region Protected Methods
@@ -45,7 +45,7 @@ namespace RiotSharp.Http
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> GetAsync(HttpRequestMessage request)
         {
-            var response = await httpClient.GetAsync(request.RequestUri, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var response = await _httpClient.GetAsync(request.RequestUri, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -61,7 +61,7 @@ namespace RiotSharp.Http
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
         {
-            var response = await httpClient.PutAsync(request.RequestUri, request.Content).ConfigureAwait(false);
+            var response = await _httpClient.PutAsync(request.RequestUri, request.Content).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -77,7 +77,7 @@ namespace RiotSharp.Http
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
         protected async Task<HttpResponseMessage> PostAsync(HttpRequestMessage request)
         {
-            var response = await httpClient.PostAsync(request.RequestUri, request.Content).ConfigureAwait(false);
+            var response = await _httpClient.PostAsync(request.RequestUri, request.Content).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -146,7 +146,7 @@ namespace RiotSharp.Http
 
         protected string GetPlatformHost(Region region)
         {
-            return GetPlatform(region) + platformDomain;
+            return GetPlatform(region) + PlatformDomain;
         }
 
         private string GetPlatform(Region region)

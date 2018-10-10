@@ -25,7 +25,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
         private readonly IRateLimitedRequester _requester;
-        private ICache _cache;
+        private readonly ICache _cache;
 
         public MatchEndpoint(IRateLimitedRequester requester, ICache cache)
         {

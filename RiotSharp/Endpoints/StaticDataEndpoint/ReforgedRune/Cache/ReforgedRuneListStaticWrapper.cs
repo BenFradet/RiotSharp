@@ -1,15 +1,15 @@
 ﻿using RiotSharp.Misc;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using Newtonsoft.Json;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune.Cache
 {
-    class ReforgedRuneListStaticWrapper
+    internal class ReforgedRuneListStaticWrapper
     {
-        public Language Language { get; set; }
-        public string Version { get; set; }
+        public Language Language { get; }
+        public string Version { get; }
 
+        [JsonProperty]
         public List<ReforgedRunePathStatic> ReforgedRunes { get; set; }
 
         public ReforgedRuneListStaticWrapper(Language language, string version, List<ReforgedRunePathStatic> reforgedRunes)

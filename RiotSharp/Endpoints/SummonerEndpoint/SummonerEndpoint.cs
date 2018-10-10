@@ -22,7 +22,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
 
         private readonly IRateLimitedRequester _requester;
-        private ICache _cache;
+        private readonly ICache _cache;
 
         /// <inheritdoc />
         public SummonerEndpoint(IRateLimitedRequester requester, ICache cache)

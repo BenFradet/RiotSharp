@@ -23,9 +23,9 @@ namespace RiotSharp
 
         private const string RootDomain = "api.riotgames.com";
 
-        private IRequester requester;
+        private readonly IRequester _requester;
 
-        private static StatusRiotApi instance;
+        private static StatusRiotApi _instance;
 
         #endregion
 
@@ -36,15 +36,15 @@ namespace RiotSharp
         /// <returns>The instance of StatusRiotApi.</returns>
         public static StatusRiotApi GetInstance(string apiKey)
         {
-            if (instance == null)
-                instance = new StatusRiotApi(apiKey);
-            return instance;
+            if (_instance == null)
+                _instance = new StatusRiotApi(apiKey);
+            return _instance;
         }
 
         private StatusRiotApi(string apiKey)
         {
             Requesters.StatusApiRequester = new Requester(apiKey);
-            requester = Requesters.StatusApiRequester;
+            _requester = Requesters.StatusApiRequester;
         }
 
         /// <summary>
@@ -54,9 +54,7 @@ namespace RiotSharp
         /// <exception cref="ArgumentNullException">requester</exception>
         public StatusRiotApi(IRequester requester)
         {
-            if (requester == null)
-                throw new ArgumentNullException(nameof(requester));
-            this.requester = requester;
+            this._requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
         #region Public Methods      
@@ -64,7 +62,7 @@ namespace RiotSharp
         /// <inheritdoc />
         public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
-            var json = await requester.CreateGetRequestAsync(StatusRootUrl, region, null, true).ConfigureAwait(false);
+            var json = await _requester.CreateGetRequestAsync(StatusRootUrl, region).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<ShardStatus>(json);
         }

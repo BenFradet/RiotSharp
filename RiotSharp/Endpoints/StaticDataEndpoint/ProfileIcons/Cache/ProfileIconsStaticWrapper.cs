@@ -3,12 +3,12 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons.Cache
 {
-    class ProfileIconsStaticWrapper
+    public class ProfileIconsStaticWrapper
     {
         [JsonProperty]
         public ProfileIconListStatic ProfileIconListStatic { get; private set; }
-        public Language Language { get; private set; }
-        public string Version { get; private set; }
+        public Language Language { get; }
+        public string Version { get; }
 
         public ProfileIconsStaticWrapper(ProfileIconListStatic profileIconListStatic, Language language, string version)
         {
