@@ -38,9 +38,9 @@ Then copy the `Riotsharp.*.nupkg` file from the `bin` folder into your local NuG
 ## Usage
 
 ### Main API
-In order to use the api you need an api key which you can get [here](https://developer.riotgames.com/).
+In order to use the API you need an API key which you can get [here](https://developer.riotgames.com/).
 
-Entry point to the api if you do not own a production API key:
+Entry point to the API if you do not own a production API key:
 ```c#
 var api = RiotApi.GetDevelopmentInstance("YOUR_API_KEY");
 ```
@@ -132,7 +132,7 @@ foreach (var champion in champions)
 }
 ```
 
-Additionally, you can use the regular api and static api to, for example, retrieve champion masteries for the summoner:
+Additionally, you can use the regular API and static API to, for example, retrieve champion masteries for the summoner:
 ```c#
 try
 {
