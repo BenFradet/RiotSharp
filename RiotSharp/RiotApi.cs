@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
+using RiotSharp.Endpoints.ChampionRotationEndpoint;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.LeagueEndpoint;
@@ -51,6 +52,9 @@ namespace RiotSharp
 
         /// <inheritdoc />
         public IThirdPartyEndpoint ThirdParty { get; }
+
+        /// <inheritdoc />
+        public IChampionRotationEndpoint ChampionRotation { get; }
 
         /// <inheritdoc />
         public IStaticDataEndpoints StaticData { get; }
@@ -128,6 +132,7 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
+            ChampionRotation = new ChampionRotationEndpoint(requester);
             StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, cache);
         }
 
@@ -159,6 +164,7 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(rateLimitedRequester);
             ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+            ChampionRotation = new ChampionRotationEndpoint(rateLimitedRequester);
             StaticData = new StaticDataEndpoints(staticEndpointProvider);
         }
     }

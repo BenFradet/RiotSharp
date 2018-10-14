@@ -336,6 +336,23 @@ namespace RiotSharp.Test
         }
         #endregion
 
+        #region Champion Rotation Tests
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChampionRotationAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var championRotation = Api.ChampionRotation.GetChampionRotationAsync(Summoner1And2Region).Result;
+
+                Assert.IsTrue(championRotation.FreeChampionIds.Count() == 14);
+                Assert.IsTrue(championRotation.FreeChampionIdsForNewPlayers.Count() == 10);
+                Assert.IsTrue(championRotation.MaxNewPlayerLevel > 0);
+            });
+        }
+        #endregion
+
         #region Third Party Tests
         [TestMethod]
         [TestCategory("RiotApi")]
