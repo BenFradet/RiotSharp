@@ -33,10 +33,6 @@ namespace RiotSharp.Interfaces
         /// </summary>
         IChampionMasteryEndpoint ChampionMastery { get; }
         /// <summary>
-        /// The Champion Rotation Endpoint.
-        /// </summary>
-        IChampionRotationEndpoint ChampionRotation { get; }
-        /// <summary>
         /// The Third Party Endpoint.
         /// </summary>
         IThirdPartyEndpoint ThirdParty { get; }

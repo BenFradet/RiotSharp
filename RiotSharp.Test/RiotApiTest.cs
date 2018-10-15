@@ -96,6 +96,20 @@ namespace RiotSharp.Test
                 Assert.AreEqual(12, champion.Result.Id);
             });
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetChampionRotationAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var championRotation = Api.Champion.GetChampionRotationAsync(Summoner1And2Region).Result;
+
+                Assert.IsTrue(championRotation.FreeChampionIds.Count() == 14);
+                Assert.IsTrue(championRotation.FreeChampionIdsForNewPlayers.Count() == 10);
+                Assert.IsTrue(championRotation.MaxNewPlayerLevel > 0);
+            });
+        }
         #endregion
 
         #region League Tests
@@ -332,23 +346,6 @@ namespace RiotSharp.Test
                     Summoner1And2Region, Summoner1Id).Result;
 
                 Assert.IsTrue(totalChampionMasteryScore > -1);
-            });
-        }
-        #endregion
-
-        #region Champion Rotation Tests
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionRotationAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var championRotation = Api.ChampionRotation.GetChampionRotationAsync(Summoner1And2Region).Result;
-
-                Assert.IsTrue(championRotation.FreeChampionIds.Count() == 14);
-                Assert.IsTrue(championRotation.FreeChampionIdsForNewPlayers.Count() == 10);
-                Assert.IsTrue(championRotation.MaxNewPlayerLevel > 0);
             });
         }
         #endregion

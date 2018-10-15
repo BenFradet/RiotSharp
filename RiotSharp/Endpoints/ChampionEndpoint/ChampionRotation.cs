@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace RiotSharp.Endpoints.ChampionRotationEndpoint
+namespace RiotSharp.Endpoints.ChampionEndpoint
 {
     /// <summary>
     /// Class representing Champions in the current rotation in the API.
