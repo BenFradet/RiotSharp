@@ -25,5 +25,12 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="championId">Id of the champion you're looking for.</param>
         /// <returns>A champion.</returns>
         Task<Champion> GetChampionAsync(Region region, int championId);
+
+        /// <summary>
+        /// Get the list of free champions by region asynchronously.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for champion rotation.</param>
+        /// <returns>An object containing id's of champions in rotation as well as max new player level.</returns>
+        Task<ChampionRotation> GetChampionRotationAsync(Region region);
     }
 }
