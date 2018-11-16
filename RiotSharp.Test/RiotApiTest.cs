@@ -62,43 +62,6 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionsAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var champions = Api.Champion.GetChampionsAsync(Summoner1And2Region);
-
-                Assert.IsTrue(champions.Result.Count() > 0);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionsAsync_FreeToPlay_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var champions = Api.Champion.GetChampionsAsync(Summoner1And2Region, true).Result;
-
-                Assert.IsTrue(champions.Count() >= 14);
-                Assert.IsTrue(champions.Count() < 20);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                var champion = Api.Champion.GetChampionAsync(Summoner1And2Region, 12);
-
-                Assert.AreEqual(12, champion.Result.Id);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetChampionRotationAsync_Test()
         {
             EnsureCredibility(() =>
