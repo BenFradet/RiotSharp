@@ -16,7 +16,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="region"><see cref="Region"/> in which you wish to look for the league positions of the summoner.</param>
         /// <param name="summonerId">The summoner id.</param>
         /// <returns><see cref="LeaguePosition" /> of the summoner in the leagues.</returns>
-        Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId);
+        Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, string summonerId);
 
         /// <summary>
         /// Get the challenger league for a particular queue asynchronously.

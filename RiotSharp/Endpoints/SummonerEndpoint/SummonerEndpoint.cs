@@ -14,9 +14,10 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
     /// <seealso cref="RiotSharp.Endpoints.Interfaces.ISummonerEndpoint" />
     public class SummonerEndpoint : ISummonerEndpoint
     {
-        private const string SummonerRootUrl = "/lol/summoner/v3/summoners";
+        private const string SummonerRootUrl = "/lol/summoner/v4/summoners";
         private const string SummonerByAccountIdUrl = "/by-account/{0}";
         private const string SummonerByNameUrl = "/by-name/{0}";
+        private const string SummonerByPuuid = "/by-puuid/{0}";
         private const string SummonerBySummonerIdUrl = "/{0}";
         private const string SummonerCache = "summoner-{0}_{1}";
         private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
@@ -32,7 +33,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, long summonerId)
+        public async Task<Summoner> GetSummonerBySummonerIdAsync(Region region, string summonerId)
         {
             var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, summonerId));
             if (summonerInCache != null)
@@ -51,7 +52,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, long accountId)
+        public async Task<Summoner> GetSummonerByAccountIdAsync(Region region, string accountId)
         {
             var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, accountId));
             if (summonerInCache != null)
@@ -85,6 +86,24 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
                 summoner.Region = region;
             }
             _cache.Add(string.Format(SummonerCache, region, summonerName), summoner, SummonerTtl);
+            return summoner;
+        }
+
+        /// <inheritdoc />
+        public async Task<Summoner> GetSummonerByPuuidAsync(Region region, string puuid)
+        {
+            var summonerInCache = _cache.Get<string, Summoner>(string.Format(SummonerCache, region, puuid));
+            if (summonerInCache != null)
+            {
+                return summonerInCache;
+            }
+            var jsonResponse = await _requester.CreateGetRequestAsync(string.Format(SummonerRootUrl + SummonerByPuuid, puuid), region).ConfigureAwait(false);
+            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
+            if (summoner != null)
+            {
+                summoner.Region = region;
+            }
+            _cache.Add(string.Format(SummonerCache, region, puuid), summoner, SummonerTtl);
             return summoner;
         }
     }

@@ -56,6 +56,19 @@ namespace RiotSharp.Test
                 Assert.AreEqual(Summoner1Id, summoner.Result.Id);
             });
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetSummonerBySummonerPuuidAsync_ExistingId_ReturnsSummoner()
+        {
+            EnsureCredibility(() =>
+            {
+                var summoner = Api.Summoner.GetSummonerByPuuidAsync(Summoner1And2Region,
+                    Summoner1Puuid);
+
+                Assert.AreEqual(Summoner1Name, summoner.Result.Name);
+            });
+        }
         #endregion
 
         #region Champion Tests
@@ -205,13 +218,13 @@ namespace RiotSharp.Test
                 {
                     var matches = Api.Match.GetMatchListAsync(Summoner3Region,
                         Summoner3AccountId, null, null,
-                        new List<Season> { RiotApiTestBase.Season }).Result.Matches;
+                        new List<Season> {}).Result.Matches;
 
                     Assert.IsTrue(matches.Any());
 
                     foreach (var match in matches)
                     {
-                        Assert.AreEqual(RiotApiTestBase.Season.ToString(), match.Season.ToString());
+                        Assert.AreEqual(Season.Season2018.ToString(), match.Season.ToString());
                     }
                 });
             }, "No Matches found fot the test summoner (404).");
@@ -277,7 +290,6 @@ namespace RiotSharp.Test
                 var championMastery = Api.ChampionMastery.GetChampionMasteryAsync(Summoner1And2Region,
                     Summoner1Id, RiotApiTestBase.Summoner1MasteryChampionId).Result;
 
-                Assert.AreEqual(Summoner1Id, championMastery.PlayerId);
                 Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionId, 
                     championMastery.ChampionId);
                 Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionLevel, 

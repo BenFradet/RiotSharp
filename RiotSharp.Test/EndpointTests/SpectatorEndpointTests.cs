@@ -54,7 +54,7 @@ namespace RiotSharp.Test.EndpointTests
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(JsonConvert.SerializeObject(_currentGameResponse));
-            var currentGame = await _riotApi.Spectator.GetCurrentGameAsync(Region.Europe, 1);
+            var currentGame = await _riotApi.Spectator.GetCurrentGameAsync(Region.Europe, "summonerId");
             Assert.AreEqual(1, currentGame.GameId);
         }
 

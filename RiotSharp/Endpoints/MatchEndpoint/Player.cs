@@ -38,19 +38,19 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Current account ID.
         /// </summary>
         [JsonProperty("currentAccountId")]
-        public long CurrentAccountId { get; set; }
+        public string CurrentAccountId { get; set; }
 
         /// <summary>
         /// Account ID.
         /// </summary>
         [JsonProperty("accountId")]
-        public long AccountId { get; set; }
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Summoner ID.
         /// </summary>
         [JsonProperty("summonerId")]
-        public long SummonerId { get; set; }
+        public string SummonerId { get; set; }
 
         /// <summary>
         /// Summoner name.
