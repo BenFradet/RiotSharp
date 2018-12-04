@@ -57,6 +57,11 @@ namespace RiotSharp.Misc
         /// <summary>
         /// Korea.
         /// </summary>
-        KR
+        KR,
+
+        /// <summary>
+        /// No Platform (e.g. platformId of bot players).
+        /// </summary>
+        NoPlatform
     }
 }

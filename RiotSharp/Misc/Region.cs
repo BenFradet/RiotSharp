@@ -58,7 +58,7 @@ namespace RiotSharp.Misc
         /// Turkey.
         /// </summary>
         tr,
-        
+
         /// <summary>
         /// Japan.
         /// </summary>
@@ -73,13 +73,20 @@ namespace RiotSharp.Misc
         /// Regional proxy for services only deployed in North America. For example the tournament and tournament stub services.
         /// </summary>
         Americas,
+
         /// <summary>
         /// Regional proxy for services only deployed in Europe.
         /// </summary>
         Europe,
+
         /// <summary>
         /// Regional proxy for services only deployed in Asia.
         /// </summary>
-        Asia       
+        Asia,
+
+        /// <summary>
+        /// Region associated with Platform.NoPlatform (e.g. platform of bot players).
+        /// </summary>
+        NoRegion
     }
 }
