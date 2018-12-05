@@ -19,7 +19,7 @@ namespace RiotSharp.Misc.Converters
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() == null) return null;
-            var str = token.Value<string>().ToUpperInvariant();;
+            var str = token.Value<string>().ToUpperInvariant();
             switch (str)
             {
                 case "NA1":
@@ -44,6 +44,8 @@ namespace RiotSharp.Misc.Converters
                     return Platform.KR;
                 case "NA":
                     return Platform.NA1;
+                case "":
+                    return Platform.NoPlatform;
                 default:
                     return null;
             }
@@ -82,6 +84,8 @@ namespace RiotSharp.Misc.Converters
                     return Region.euw;
                 case Platform.KR:
                     return Region.kr;
+                case Platform.NoPlatform:
+                    return Region.NoRegion;
                 default:
                     return Region.na;
             }
