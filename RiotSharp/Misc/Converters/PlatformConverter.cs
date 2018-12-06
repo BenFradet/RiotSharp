@@ -54,7 +54,9 @@ namespace RiotSharp.Misc.Converters
         /// <inheritdoc />
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((Platform)value).ToString().ToUpper());
+            var platform = (Platform)value;
+            var str = platform == Platform.NoPlatform ? "" : platform.ToString().ToUpper();
+            serializer.Serialize(writer, str);
         }
     }
 
