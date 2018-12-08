@@ -38,46 +38,14 @@ namespace RiotSharp.Http
         #region Protected Methods
 
         /// <summary>
-        /// Send a get request asynchronously.
+        /// Send a <see cref="HttpRequestMessage"/> asynchronously.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
-        protected async Task<HttpResponseMessage> GetAsync(HttpRequestMessage request)
+        protected async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
             var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode)
-            {
-                HandleRequestFailure(response.StatusCode);
-            }
-            return response;
-        }
-
-        /// <summary>
-        /// Send a put request asynchronously.
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
-        protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
-        {
-            var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode)
-            {
-                HandleRequestFailure(response.StatusCode);
-            }
-            return response;
-        }
-
-        /// <summary>
-        /// Send a post request asynchronously.
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
-        protected async Task<HttpResponseMessage> PostAsync(HttpRequestMessage request)
-        {
-            var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);

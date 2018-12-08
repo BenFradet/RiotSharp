@@ -30,34 +30,24 @@ namespace RiotSharp.Http
         #region Public Methods
 
         /// <inheritdoc />
-        public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
+        public Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
             bool useHttps = true)
         {
             var host = GetPlatformHost(region);
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
-            
-            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
 
-            using (var response = await GetAsync(request).ConfigureAwait(false))
-            {
-                return await GetResponseContentAsync(response).ConfigureAwait(false);
-            }
+            return GetRateLimitedResponseContentAsync(request, region);
         }
 
         /// <inheritdoc />
-        public async Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
+        public Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
             List<string> queryParameters = null, bool useHttps = true)
         {
             var host = GetPlatformHost(region);
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Post);
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
-
-            using (var response = await PostAsync(request).ConfigureAwait(false))
-            {
-                return await GetResponseContentAsync(response).ConfigureAwait(false);
-            }
+            return GetRateLimitedResponseContentAsync(request, region);
         }
 
         /// <inheritdoc />
@@ -70,11 +60,17 @@ namespace RiotSharp.Http
             request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
             await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
-
-            using (var response = await PutAsync(request).ConfigureAwait(false))
+            try
             {
-                return (int)response.StatusCode >= 200 && (int)response.StatusCode < 300;
-            }                
+                var response = await SendAsync(request).ConfigureAwait(false);
+                response.Dispose();
+                return true;
+                
+            }
+            catch (RiotSharpException)
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -89,6 +85,21 @@ namespace RiotSharp.Http
             if (!_rateLimiters.ContainsKey(region))
                 _rateLimiters[region] = new RateLimiter(RateLimits, _throwOnDelay);
             return _rateLimiters[region]; 
+        }
+
+        /// <summary>
+        /// Sends a configured <see cref="HttpRequestMessage"/> possibly Rate-Limited for the specific <paramref name="region"/>
+        /// </summary>
+        /// <param name="request">Pre-Configured <see cref="HttpRequestMessage"/></param>
+        /// <param name="region">The region which's requests should be rate limited</param>
+        private async Task<string> GetRateLimitedResponseContentAsync(HttpRequestMessage request, Region region)
+        {
+            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
+
+            using (var response = await SendAsync(request).ConfigureAwait(false))
+            {
+                return await GetResponseContentAsync(response).ConfigureAwait(false);
+            }
         }
     }
 }
