@@ -48,7 +48,7 @@ namespace RiotSharp.Http
             var response = await httpClient.GetAsync(request.RequestUri, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
-                HandleRequestFailure(response.StatusCode);
+                await HandleRequestFailureAsync(response);
             }
             return response;
         }
@@ -64,7 +64,7 @@ namespace RiotSharp.Http
             var response = await httpClient.PutAsync(request.RequestUri, request.Content).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
-                HandleRequestFailure(response.StatusCode);
+                await HandleRequestFailureAsync(response);
             }
             return response;
         }
@@ -80,7 +80,7 @@ namespace RiotSharp.Http
             var response = await httpClient.PostAsync(request.RequestUri, request.Content).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
-                HandleRequestFailure(response.StatusCode);
+                await HandleRequestFailureAsync(response);
             }
             return response;
         }
@@ -112,26 +112,35 @@ namespace RiotSharp.Http
                 .Aggregate(string.Empty, (current, arg) => current + ("&" + arg));
         }
 
-        protected void HandleRequestFailure(HttpStatusCode statusCode)
+        protected async Task HandleRequestFailureAsync(HttpResponseMessage message)
         {
-            switch (statusCode)
+            try
             {
-                case HttpStatusCode.ServiceUnavailable:
-                    throw new RiotSharpException("503, Service unavailable", statusCode);
-                case HttpStatusCode.InternalServerError:
-                    throw new RiotSharpException("500, Internal server error", statusCode);
-                case HttpStatusCode.Unauthorized:
-                    throw new RiotSharpException("401, Unauthorized", statusCode);
-                case HttpStatusCode.BadRequest:
-                    throw new RiotSharpException("400, Bad request", statusCode);
-                case HttpStatusCode.NotFound:
-                    throw new RiotSharpException("404, Resource not found", statusCode);
-                case HttpStatusCode.Forbidden:
-                    throw new RiotSharpException("403, Forbidden", statusCode);
-                case (HttpStatusCode)429:
-                    throw new RiotSharpException("429, Rate Limit Exceeded", statusCode);
-                default:
-                    throw new RiotSharpException("Unexpeced failure", statusCode);
+                var content = await GetResponseContentAsync(message);
+                var errorResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(content);
+                throw new RiotSharpException(errorResponse.Status.Message, message.StatusCode);
+            }
+            catch
+            {
+                switch (message.StatusCode)
+                {
+                    case HttpStatusCode.ServiceUnavailable:
+                        throw new RiotSharpException("503, Service unavailable", message.StatusCode);
+                    case HttpStatusCode.InternalServerError:
+                        throw new RiotSharpException("500, Internal server error", message.StatusCode);
+                    case HttpStatusCode.Unauthorized:
+                        throw new RiotSharpException("401, Unauthorized", message.StatusCode);
+                    case HttpStatusCode.BadRequest:
+                        throw new RiotSharpException("400, Bad request", message.StatusCode);
+                    case HttpStatusCode.NotFound:
+                        throw new RiotSharpException("404, Resource not found", message.StatusCode);
+                    case HttpStatusCode.Forbidden:
+                        throw new RiotSharpException("403, Forbidden", message.StatusCode);
+                    case (HttpStatusCode)429:
+                        throw new RiotSharpException("429, Rate Limit Exceeded", message.StatusCode);
+                    default:
+                        throw new RiotSharpException("Unexpeced failure", message.StatusCode);
+                }
             }
         }
 
