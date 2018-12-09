@@ -386,5 +386,129 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("winner")]
         public bool Winner { get; set; }
+
+        #region Perk Stats
+        /// <summary>
+        /// Primary rune path.
+        /// </summary>
+        [JsonProperty("perkPrimaryStyle")]
+        public int PerkPrimaryStyle { get; set; }
+        /// <summary>
+        /// Secondary rune path.
+        /// </summary>
+        [JsonProperty("perkSubStyle")]
+        public int PerkSubStyle { get; set; }
+
+        /// <summary>
+        /// Primary path keystone rune.
+        /// </summary>
+        [JsonProperty("perk0")]
+        public int Perk0 { get; set; }
+        /// <summary>
+        /// Primary path rune.
+        /// </summary>
+        [JsonProperty("perk1")]
+        public int Perk1 { get; set; }
+        /// <summary>
+        /// Primary path rune.
+        /// </summary>
+        [JsonProperty("perk2")]
+        public int Perk2 { get; set; }
+        /// <summary>
+        /// Primary path rune.
+        /// </summary>
+        [JsonProperty("perk3")]
+        public int Perk3 { get; set; }
+        /// <summary>
+        /// Secondary path rune.
+        /// </summary>
+        [JsonProperty("perk4")]
+        public int Perk4 { get; set; }
+        /// <summary>
+        /// Secondary path rune.
+        /// </summary>
+        [JsonProperty("perk5")]
+        public int Perk5 { get; set; }
+
+        /// <summary>
+        /// Post game rune stat of Perk1.
+        /// </summary>
+        [JsonProperty("perk1Var1")]
+        public int Perk1Var1 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk1.
+        /// </summary>
+        [JsonProperty("perk1Var2")]
+        public int Perk1Var2 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk1.
+        /// </summary>
+        [JsonProperty("perk1Var3")]
+        public int Perk1Var3 { get; set; }
+
+        /// <summary>
+        /// Post game rune stat of Perk2.
+        /// </summary>
+        [JsonProperty("perk2Var1")]
+        public int Perk2Var1 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk2.
+        /// </summary>
+        [JsonProperty("perk2Var2")]
+        public int Perk2Var2 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk2.
+        /// </summary>
+        [JsonProperty("perk2Var3")]
+        public int Perk2Var3 { get; set; }
+
+        /// <summary>
+        /// Post game rune stat of Perk3.
+        /// </summary>
+        [JsonProperty("perk3Var1")]
+        public int Perk3Var1 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk3.
+        /// </summary>
+        [JsonProperty("perk3Var2")]
+        public int Perk3Var2 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk3.
+        /// </summary>
+        [JsonProperty("perk3Var3")]
+        public int Perk3Var3 { get; set; }
+
+        /// <summary>
+        /// Post game rune stat of Perk4.
+        /// </summary>
+        [JsonProperty("perk4Var1")]
+        public int Perk4Var1 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk4.
+        /// </summary>
+        [JsonProperty("perk4Var2")]
+        public int Perk4Var2 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk4.
+        /// </summary>
+        [JsonProperty("perk4Var3")]
+        public int Perk4Var3 { get; set; }
+
+        /// <summary>
+        /// Post game rune stat of Perk5.
+        /// </summary>
+        [JsonProperty("perk5Var1")]
+        public int Perk5Var1 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk5.
+        /// </summary>
+        [JsonProperty("perk5Var2")]
+        public int Perk5Var2 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk5.
+        /// </summary>
+        [JsonProperty("perk5Var3")]
+        public int Perk5Var3 { get; set; }
+        #endregion
     }
 }
