@@ -21,22 +21,10 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         public long ChampionId { get; set; }
 
         /// <summary>
-        /// The masteries used by this participant
-        /// </summary>
-        [JsonProperty("masteries")]
-        public List<Mastery> Masteries { get; set; }
-
-        /// <summary>
         /// The ID of the profile icon used by this participant
         /// </summary>
         [JsonProperty("profileIconId")]
         public long ProfileIconId { get; set; }
-
-        /// <summary>
-        /// The runes used by this participant
-        /// </summary>
-        [JsonProperty("runes")]
-        public List<Rune> Runes { get; set; }
 
         /// <summary>
         /// The ID of the first summoner spell used by this participant
