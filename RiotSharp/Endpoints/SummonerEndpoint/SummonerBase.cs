@@ -19,24 +19,31 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         {
             Region = region;
             Name = name;
-            Id = long.Parse(id);
+            Id = id;
         }
 
         /// <summary>
         /// Summoner ID.
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
-        /// Account ID
+        /// Account ID.
         /// </summary>
-        public long AccountId { get; set; }
+        [JsonProperty("accountId")]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Summoner name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// PUUID.
+        /// </summary>
+        [JsonProperty("puuid")]
+        public string Puuid { get; set; }
     }
 }

@@ -17,16 +17,17 @@ namespace RiotSharp.Test
         public static Region Summoner1And2Region = (Region)Enum.Parse(typeof(Region), "na");
 
         public static long InvalidSummonerId = -1;
-        public static long Summoner1Id = 73074921;
-        public static long Summoner1AccountId = 231816919;
+        public static string Summoner1Id = "fhOx2QJ2VKSaaD9nVJ4XJSzMBPW2es7FboigIwW5ss97coA";
+        public static string Summoner1AccountId = "6GwG-_gvthMjC4bMSh-K_n89fXmwAO2r_xW_bydQX6jsQdI";
         public static string Summoner1Name = "toothlessG";
+        public static string Summoner1Puuid = "R2RjsXCUB-zJ9T5cZVr1ZI4vVqa3sOR61xRmU71bsJ3o_TCRR_ttdVphhKaD4y57xcvB2AdrNWqGKw";
 
         public static long Summoner2Id = 31815991;
         public static long Summoner2AccountId = 46532395;
         public static string Summoner2Name = "BabyBarf";
 
-        public static long Summoner3Id = 175907;
-        public static long Summoner3AccountId = 200107642;
+        public static string Summoner3Id = "I2QEPYTtazuZge0E31Ge7j8GiPFb2bva7LnJQK1-GJF6";
+        public static string Summoner3AccountId = "NRKCQCgDMkctfkkEcC-fEDNX3WwP4Ga8vQWqzdY3dcGL1Ho";
         public static string Summoner3Name = "xsunx";
         public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "ru");
 

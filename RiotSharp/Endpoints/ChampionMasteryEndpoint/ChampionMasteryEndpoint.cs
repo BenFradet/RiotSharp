@@ -9,7 +9,7 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
 {
     class ChampionMasteryEndpoint : IChampionMasteryEndpoint
     {
-        private const string ChampionMasteryRootUrl = "/lol/champion-mastery/v3";
+        private const string ChampionMasteryRootUrl = "/lol/champion-mastery/v4";
         private const string ChampionMasteriesBySummonerUrl = "/champion-masteries/by-summoner/{0}";
         private const string ChampionMasteryBySummonerUrl = "/champion-masteries/by-summoner/{0}/by-champion/{1}";
         private const string ChampionMasteryTotalScoreBySummonerUrl = "/scores/by-summoner/{0}";
@@ -21,7 +21,7 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
             _requester = requester;
         }
 
-        public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, long summonerId, long championId)
+        public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, string summonerId, long championId)
         {
             var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
 
@@ -29,7 +29,7 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
             return JsonConvert.DeserializeObject<ChampionMastery>(json);
         }
 
-        public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, long summonerId)
+        public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, string summonerId)
         {
             var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
 
@@ -37,7 +37,7 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
             return JsonConvert.DeserializeObject<List<ChampionMastery>>(json);
         }
 
-        public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, long summonerId)
+        public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, string summonerId)
         {
             var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
 

@@ -59,7 +59,7 @@ namespace RiotSharp.Endpoints.ChampionMasteryEndpoint
         /// <summary>
         /// Player ID for this entry.
         /// </summary>
-        [JsonProperty("playerId")]
-        public long PlayerId { get; set; }
+        [JsonProperty("summonerId")]
+        public string SummonerId { get; set; }
     }
 }

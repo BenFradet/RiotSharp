@@ -40,7 +40,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>
         /// <param name="endIndex">The end index to use for fetching matches.</param>
         /// <returns>A list of Match references object.</returns>
-        Task<MatchList> GetMatchListAsync(Region region, long accountId,
+        Task<MatchList> GetMatchListAsync(Region region, string accountId,
             List<int> championIds = null,
             List<int> queues = null,
             List<MatchEndpoint.Enums.Season> seasons = null,

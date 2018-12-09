@@ -12,7 +12,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
     /// </summary>
     public class LeagueEndpoint : ILeagueEndpoint
     {
-        private const string LeagueRootUrl = "/lol/league/v3";
+        private const string LeagueRootUrl = "/lol/league/v4";
         private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
         private const string LeagueMasterUrl = "/masterleagues/by-queue/{0}";
         private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
@@ -29,7 +29,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, long summonerId)
+        public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, string summonerId)
         {
             var json = await _requester.CreateGetRequestAsync(
                 LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId), region).ConfigureAwait(false);

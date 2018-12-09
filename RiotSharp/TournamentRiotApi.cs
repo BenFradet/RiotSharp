@@ -21,7 +21,7 @@ namespace RiotSharp
     {
         #region Private Fields
 
-        private const string TournamentStubUrl = "/lol/tournament-stub/v3";
+        private const string TournamentStubUrl = "/lol/tournament-stub/v4";
         private const string TournamentUrl = "/lol/tournament/v3";
         private const string CreateCodesUrl = "/codes";
         private const string GetCodesUrl = "/codes/{0}";

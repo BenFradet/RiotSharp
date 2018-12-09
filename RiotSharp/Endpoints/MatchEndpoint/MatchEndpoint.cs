@@ -12,9 +12,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 {
     class MatchEndpoint : IMatchEndpoint
     {
-        private const string MatchRootUrl = "/lol/match/v3/matches";
-        private const string MatchListRootUrl = "/lol/match/v3/matchlists";
-        private const string TimelinesRootUrl = "/lol/match/v3/timelines";
+        private const string MatchRootUrl = "/lol/match/v4/matches";
+        private const string MatchListRootUrl = "/lol/match/v4/matchlists";
+        private const string TimelinesRootUrl = "/lol/match/v4/timelines";
         private const string MatchIdsByTournamentCodeUrl = "/by-tournament-code/{0}/ids";
         private const string MatchByIdUrl = "/{0}";
         private const string MatchByIdAndTournamentCodeUrl = "/{0}/by-tournament-code/{1}";
@@ -56,7 +56,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             return match;
         }
 
-        public async Task<MatchList> GetMatchListAsync(Region region, long accountId, List<int> championIds = null, List<int> queues = null, List<Season> seasons = null,
+        public async Task<MatchList> GetMatchListAsync(Region region, string accountId, List<int> championIds = null, List<int> queues = null, List<Season> seasons = null,
             DateTime? beginTime = null, DateTime? endTime = null, long? beginIndex = null, long? endIndex = null)
         {
             var addedArguments = CreateArgumentsListForMatchListRequest(championIds, queues, seasons, beginTime,
