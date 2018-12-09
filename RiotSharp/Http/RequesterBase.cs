@@ -38,46 +38,14 @@ namespace RiotSharp.Http
         #region Protected Methods
 
         /// <summary>
-        /// Send a get request asynchronously.
+        /// Send a <see cref="HttpRequestMessage"/> asynchronously.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
-        protected async Task<HttpResponseMessage> GetAsync(HttpRequestMessage request)
+        protected async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
-            var response = await _httpClient.GetAsync(request.RequestUri, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode)
-            {
-                HandleRequestFailure(response.StatusCode);
-            }
-            return response;
-        }
-
-        /// <summary>
-        /// Send a put request asynchronously.
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
-        protected async Task<HttpResponseMessage> PutAsync(HttpRequestMessage request)
-        {
-            var response = await _httpClient.PutAsync(request.RequestUri, request.Content).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode)
-            {
-                HandleRequestFailure(response.StatusCode);
-            }
-            return response;
-        }
-
-        /// <summary>
-        /// Send a post request asynchronously.
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <exception cref="RiotSharpException">Thrown if an Http error occurs. Contains the Http error code and error message.</exception>
-        protected async Task<HttpResponseMessage> PostAsync(HttpRequestMessage request)
-        {
-            var response = await _httpClient.PostAsync(request.RequestUri, request.Content).ConfigureAwait(false);
+            var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 HandleRequestFailure(response.StatusCode);
@@ -88,20 +56,16 @@ namespace RiotSharp.Http
         protected HttpRequestMessage PrepareRequest(string host, string relativeUrl, List<string> queryParameters,
             bool useHttps, HttpMethod httpMethod)
         {
-            if (!string.IsNullOrWhiteSpace(ApiKey))
-            {
-                if (queryParameters == null)
-                    queryParameters = new List<string> { "api_key=" + ApiKey };                
-                else
-                    queryParameters.Add("api_key=" + ApiKey);
-            }
-
             var scheme = useHttps ? "https" : "http";
             var url = queryParameters == null ?
                 $"{scheme}://{host}{relativeUrl}" :
                 $"{scheme}://{host}{relativeUrl}?{BuildArgumentsString(queryParameters)}";
 
-            var requestMessage = new HttpRequestMessage(httpMethod, url);        
+            var requestMessage = new HttpRequestMessage(httpMethod, url);
+            if (!string.IsNullOrEmpty(ApiKey))
+            {
+                requestMessage.Headers.Add("X-Riot-Token", ApiKey);
+            }
             return requestMessage;
         }
 

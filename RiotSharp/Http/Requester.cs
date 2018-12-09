@@ -28,7 +28,7 @@ namespace RiotSharp.Http
         {
             var host = GetPlatformHost(region);
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
-            var response = await GetAsync(request).ConfigureAwait(false);
+            var response = await SendAsync(request).ConfigureAwait(false);
             return await GetResponseContentAsync(response).ConfigureAwait(false);
         }
 
@@ -37,7 +37,7 @@ namespace RiotSharp.Http
             List<string> queryParameters = null, bool useHttps = true)
         {
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
-            var response = await GetAsync(request).ConfigureAwait(false);
+            var response = await SendAsync(request).ConfigureAwait(false);
             return await GetResponseContentAsync(response).ConfigureAwait(false);
         }
         #endregion
