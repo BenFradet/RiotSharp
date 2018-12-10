@@ -131,16 +131,55 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchAsync_Test()
+        public void GetMatchAsync_RunesMasteries_Test()
         {
             EnsureCredibility(() =>
             {
-                var match = Api.Match.GetMatchAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId).Result;
+                var match = Api.Match.GetMatchAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.RunesMasteriesGameId).Result;
 
-                Assert.AreEqual(RiotApiTestBase.GameId, match.GameId);
+                Assert.AreEqual(RiotApiTestBase.RunesMasteriesGameId, match.GameId);
                 Assert.IsNotNull(match.ParticipantIdentities);
                 Assert.IsNotNull(match.Participants);
                 Assert.IsNotNull(match.Teams);
+                foreach (var participant in match.Participants)
+                {
+                    Assert.IsNotNull(participant.Runes);
+                    Assert.IsNotNull(participant.Masteries);
+                    foreach(var rune in participant.Runes)
+                    {
+                        Assert.IsTrue(rune.RuneId != 0);
+                        Assert.IsTrue(rune.Rank != 0);
+                    }
+                    foreach (var mastery in participant.Masteries)
+                    {
+                        Assert.IsTrue(mastery.MasteryId != 0);
+                        Assert.IsTrue(mastery.Rank != 0);
+                    }
+                }
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchAsync_Perks_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var match = Api.Match.GetMatchAsync(RiotSharp.Misc.Region.euw, RiotApiTestBase.PerksGameId).Result;
+
+                Assert.AreEqual(RiotApiTestBase.PerksGameId, match.GameId);
+                Assert.IsNotNull(match.ParticipantIdentities);
+                Assert.IsNotNull(match.Participants);
+                Assert.IsNotNull(match.Teams);
+                foreach(var participant in match.Participants)
+                {
+                    Assert.IsTrue(participant.Stats.Perk0 != 0);
+                    Assert.IsTrue(participant.Stats.Perk1 != 0);
+                    Assert.IsTrue(participant.Stats.Perk2 != 0);
+                    Assert.IsTrue(participant.Stats.Perk3 != 0);
+                    Assert.IsTrue(participant.Stats.Perk4 != 0);
+                    Assert.IsTrue(participant.Stats.Perk5 != 0);
+                }
             });
         }
 
