@@ -18,6 +18,7 @@ namespace RiotSharp.Test.EndpointTests
     {
         private Mock<IRateLimitedRequester> _requester;
         private CurrentGame _currentGameResponse;
+        private FeaturedGame _featureGameResponse;
         private FeaturedGames _featuredGamesResponse;
         private IRiotApi _riotApi;
 
@@ -37,12 +38,23 @@ namespace RiotSharp.Test.EndpointTests
                 GameStartTime = DateTime.Today,
                 Platform = Platform.EUW1
             };
+            _featureGameResponse = new FeaturedGame
+            {
+                GameId = 1,
+                GameLength = 60,
+                GameMode = "GameMode",
+                GameQueueType = "Normal Draft",
+                GameType = GameType.MatchedGame,
+                MapType = MapType.SummonersRift,
+                GameStartTime = DateTime.Today,
+                Platform = Platform.EUW1
+            };
 
             _featuredGamesResponse = new FeaturedGames
             {
-                GameList = new List<CurrentGame>
+                GameList = new List<FeaturedGame>
                 {
-                    _currentGameResponse
+                    _featureGameResponse
                 },
                 ClientRefreshInterval = 30
             };

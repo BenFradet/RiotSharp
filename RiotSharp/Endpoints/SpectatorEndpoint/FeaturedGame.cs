@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace RiotSharp.Endpoints.SpectatorEndpoint
 {
     /// <summary>
-    /// Class representing a CurrentGameInfo in the API.
+    /// Class representing a FeaturedGameInfo  in the API.
     /// </summary>
-    public class CurrentGame
+    public class FeaturedGame
     {
-        internal CurrentGame() { }
+        internal FeaturedGame() { }
 
         /// <summary>
         /// Banned champion information
@@ -72,7 +73,7 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         /// The participant information
         /// </summary>
         [JsonProperty("participants")]
-        public List<CurrentGameParticipant> Participants { get; set; }
+        public List<Participant> Participants { get; set; }
 
         /// <summary>
         /// The ID of the platform on which the game is being played
