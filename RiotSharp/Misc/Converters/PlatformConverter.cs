@@ -40,6 +40,8 @@ namespace RiotSharp.Misc.Converters
                     return Platform.RU;
                 case "EUW1":
                     return Platform.EUW1;
+                case "JP1":
+                    return Platform.JP1;
                 case "KR":
                     return Platform.KR;
                 case "NA":
@@ -86,6 +88,8 @@ namespace RiotSharp.Misc.Converters
                     return Region.euw;
                 case Platform.KR:
                     return Region.kr;
+                case Platform.JP1:
+                    return Region.jp;
                 case Platform.NoPlatform:
                     return Region.NoRegion;
                 default:

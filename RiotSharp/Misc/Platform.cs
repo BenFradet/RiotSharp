@@ -60,6 +60,11 @@ namespace RiotSharp.Misc
         KR,
 
         /// <summary>
+        /// Japan.
+        /// </summary>
+        JP1,
+
+        /// <summary>
         /// No Platform (e.g. platformId of bot players).
         /// </summary>
         NoPlatform
