@@ -30,7 +30,8 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         /// The amount of time in seconds that has passed since the game started
         /// </summary>
         [JsonProperty("gameLength")]
-        public long GameLength { get; set; }
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
+        public TimeSpan GameLength { get; set; }
 
         /// <summary>
         /// Game mode.
