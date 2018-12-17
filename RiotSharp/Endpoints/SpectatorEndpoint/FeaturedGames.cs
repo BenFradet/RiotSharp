@@ -18,6 +18,6 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         /// The list of featured games
         /// </summary>
         [JsonProperty("gameList")]
-        public List<CurrentGame> GameList { get; set; }
+        public List<FeaturedGame> GameList { get; set; }
     }
 }

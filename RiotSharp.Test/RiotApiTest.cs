@@ -131,16 +131,55 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchAsync_Test()
+        public void GetMatchAsync_RunesMasteries_Test()
         {
             EnsureCredibility(() =>
             {
-                var match = Api.Match.GetMatchAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.GameId).Result;
+                var match = Api.Match.GetMatchAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.RunesMasteriesGameId).Result;
 
-                Assert.AreEqual(RiotApiTestBase.GameId, match.GameId);
+                Assert.AreEqual(RiotApiTestBase.RunesMasteriesGameId, match.GameId);
                 Assert.IsNotNull(match.ParticipantIdentities);
                 Assert.IsNotNull(match.Participants);
                 Assert.IsNotNull(match.Teams);
+                foreach (var participant in match.Participants)
+                {
+                    Assert.IsNotNull(participant.Runes);
+                    Assert.IsNotNull(participant.Masteries);
+                    foreach(var rune in participant.Runes)
+                    {
+                        Assert.IsTrue(rune.RuneId != 0);
+                        Assert.IsTrue(rune.Rank != 0);
+                    }
+                    foreach (var mastery in participant.Masteries)
+                    {
+                        Assert.IsTrue(mastery.MasteryId != 0);
+                        Assert.IsTrue(mastery.Rank != 0);
+                    }
+                }
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetMatchAsync_Perks_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var match = Api.Match.GetMatchAsync(RiotSharp.Misc.Region.euw, RiotApiTestBase.PerksGameId).Result;
+
+                Assert.AreEqual(RiotApiTestBase.PerksGameId, match.GameId);
+                Assert.IsNotNull(match.ParticipantIdentities);
+                Assert.IsNotNull(match.Participants);
+                Assert.IsNotNull(match.Teams);
+                foreach(var participant in match.Participants)
+                {
+                    Assert.IsTrue(participant.Stats.Perk0 != 0);
+                    Assert.IsTrue(participant.Stats.Perk1 != 0);
+                    Assert.IsTrue(participant.Stats.Perk2 != 0);
+                    Assert.IsTrue(participant.Stats.Perk3 != 0);
+                    Assert.IsTrue(participant.Stats.Perk4 != 0);
+                    Assert.IsTrue(participant.Stats.Perk5 != 0);
+                }
             });
         }
 
@@ -265,6 +304,28 @@ namespace RiotSharp.Test
         #endregion
 
         #region Spectator Tests
+        [Ignore] // Needs to be manually adjusted for testing
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetCurrentGameAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var currentGame = Api.Spectator.GetCurrentGameAsync(RiotSharp.Misc.Region.euw, "w1_k11kGq3N2zydfKN5xc7XcGwv-4jrnJJGsuQfHJmDFVFs").Result;
+
+                Assert.IsNotNull(currentGame);
+                Assert.IsTrue(currentGame.GameId != 0);
+                Assert.IsNotNull(currentGame.Participants);
+                Assert.IsNotNull(currentGame.GameStartTime);
+                Assert.IsNotNull(currentGame.GameQueueType);
+                Assert.IsNotNull(currentGame.Observers);
+                foreach(var participant in currentGame.Participants)
+                {
+                    Assert.IsNotNull(participant.Perks);
+                    Assert.IsNotNull(participant.GameCustomizationObjects);
+                }
+            });
+        }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
@@ -272,9 +333,19 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var games = Api.Spectator.GetFeaturedGamesAsync(Summoner1And2Region);
+                var games = Api.Spectator.GetFeaturedGamesAsync(Summoner1And2Region).Result;
 
-                Assert.IsNotNull(games.Result);
+                Assert.IsNotNull(games);
+                Assert.IsNotNull(games.GameList);
+                foreach(var game in games.GameList)
+                {
+                    Assert.IsNotNull(game);
+                    Assert.IsTrue(game.GameId != 0);
+                    Assert.IsNotNull(game.Participants);
+                    Assert.IsNotNull(game.GameStartTime);
+                    Assert.IsNotNull(game.GameQueueType);
+                    Assert.IsNotNull(game.Observers);
+                }
             });
         }
         #endregion

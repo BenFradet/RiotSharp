@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 namespace RiotSharp.Endpoints.SpectatorEndpoint
 {
     /// <summary>
-    /// Class representing a Participant in the API.
+    /// Class representing a CurrentGameParticipant in the API.
     /// </summary>
-    public class Participant
+    public class CurrentGameParticipant
     {
         /// <summary>
         /// Flag indicating whether or not this participant is a bot
@@ -39,6 +39,12 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         public long SummonerSpell2 { get; set; }
 
         /// <summary>
+        /// The encrypted summoner ID of this participant
+        /// </summary>
+        [JsonProperty("summonerId")]
+        public string SummonerId { get; set; }
+
+        /// <summary>
         /// The summoner name of this participant
         /// </summary>
         [JsonProperty("summonerName")]
@@ -49,5 +55,17 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         /// </summary>
         [JsonProperty("teamId")]
         public long TeamId { get; set; }
+
+        /// <summary>
+        /// List of Game Customizations
+        /// </summary>
+        [JsonProperty("gameCustomizationObjects")]
+        public List<GameCustomizationObject> GameCustomizationObjects { get; set; }
+
+        /// <summary>
+        /// Perks/Runes Reforged Information
+        /// </summary>
+        [JsonProperty("perks")]
+        public Perks Perks { get; set; }
     }
 }
