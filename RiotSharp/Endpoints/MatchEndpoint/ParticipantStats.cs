@@ -384,7 +384,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// <summary>
         /// Flag indicating whether or not the participant won.
         /// </summary>
-        [JsonProperty("winner")]
+        [JsonProperty("win")]
         public bool Winner { get; set; }
 
         #region Perk Stats
