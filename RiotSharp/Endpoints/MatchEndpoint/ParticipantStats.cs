@@ -186,8 +186,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// <summary>
         /// Minions kiled.
         /// </summary>
-        [JsonProperty("minionsKilled")]
-        public long MinionsKilled { get; set; }
+        [JsonProperty("totalMinionsKilled")]
+        public long TotalMinionsKilled { get; set; }
 
         /// <summary>
         /// Neutral minions killed.
