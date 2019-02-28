@@ -48,7 +48,7 @@ namespace RiotSharp.Http
             var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
-                HandleRequestFailure(response.StatusCode);
+                HandleRequestFailure(response); //Pass Response to get status code, Then Dispose Object.
             }
             return response;
         }
@@ -76,26 +76,33 @@ namespace RiotSharp.Http
                 .Aggregate(string.Empty, (current, arg) => current + ("&" + arg));
         }
 
-        protected void HandleRequestFailure(HttpStatusCode statusCode)
+        protected void HandleRequestFailure(HttpResponseMessage response)
         {
-            switch (statusCode)
+            var statusCode = response.StatusCode;
+            try
             {
-                case HttpStatusCode.ServiceUnavailable:
-                    throw new RiotSharpException("503, Service unavailable", statusCode);
-                case HttpStatusCode.InternalServerError:
-                    throw new RiotSharpException("500, Internal server error", statusCode);
-                case HttpStatusCode.Unauthorized:
-                    throw new RiotSharpException("401, Unauthorized", statusCode);
-                case HttpStatusCode.BadRequest:
-                    throw new RiotSharpException("400, Bad request", statusCode);
-                case HttpStatusCode.NotFound:
-                    throw new RiotSharpException("404, Resource not found", statusCode);
-                case HttpStatusCode.Forbidden:
-                    throw new RiotSharpException("403, Forbidden", statusCode);
-                case (HttpStatusCode)429:
-                    throw new RiotSharpException("429, Rate Limit Exceeded", statusCode);
-                default:
-                    throw new RiotSharpException("Unexpeced failure", statusCode);
+                switch (statusCode)
+                {
+                    case HttpStatusCode.ServiceUnavailable:
+                        throw new RiotSharpException("503, Service unavailable", statusCode);
+                    case HttpStatusCode.InternalServerError:
+                        throw new RiotSharpException("500, Internal server error", statusCode);
+                    case HttpStatusCode.Unauthorized:
+                        throw new RiotSharpException("401, Unauthorized", statusCode);
+                    case HttpStatusCode.BadRequest:
+                        throw new RiotSharpException("400, Bad request", statusCode);
+                    case HttpStatusCode.NotFound:
+                        throw new RiotSharpException("404, Resource not found", statusCode);
+                    case HttpStatusCode.Forbidden:
+                        throw new RiotSharpException("403, Forbidden", statusCode);
+                    case (HttpStatusCode)429:
+                        throw new RiotSharpException("429, Rate Limit Exceeded", statusCode);
+                    default:
+                        throw new RiotSharpException("Unexpeced failure", statusCode);
+                }
+            } finally
+            {
+                response.Dispose(); //Dispose Response On Error
             }
         }
 
