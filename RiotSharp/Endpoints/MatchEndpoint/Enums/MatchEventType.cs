@@ -6,8 +6,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
     /// <summary>
     /// Event's type (Match API).
     /// </summary>
-    [JsonConverter(typeof(EventTypeConverter))]
-    public enum EventType
+    [JsonConverter(typeof(MatchEventTypeConverter))]
+    public enum MatchEventType
     {
         /// <summary>
         /// Ascended event.
@@ -72,33 +72,33 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
 
     static class EventTypeExtension
     {
-        public static string ToCustomString(this EventType eventType)
+        public static string ToCustomString(this MatchEventType eventType)
         {
             switch (eventType)
             {
-                case EventType.AscendedEvent:
+                case MatchEventType.AscendedEvent:
                     return "ASCENDED_EVENT";
-                case EventType.BuildingKill:
+                case MatchEventType.BuildingKill:
                     return "BUILDING_KILL";
-                case EventType.CapturePoint:
+                case MatchEventType.CapturePoint:
                     return "CAPTURE_POINT";
-                case EventType.ChampionKill:
+                case MatchEventType.ChampionKill:
                     return "CHAMPION_KILL";
-                case EventType.EliteMonsterKill:
+                case MatchEventType.EliteMonsterKill:
                     return "ELITE_MONSTER_KILL";
-                case EventType.ItemDestroyed:
+                case MatchEventType.ItemDestroyed:
                     return "ITEM_DESTROYED";
-                case EventType.ItemPurchased:
+                case MatchEventType.ItemPurchased:
                     return "ITEM_PURCHASED";
-                case EventType.ItemSold:
+                case MatchEventType.ItemSold:
                     return "ITEM_SOLD";
-                case EventType.ItemUndo:
+                case MatchEventType.ItemUndo:
                     return "ITEM_UNDO";
-                case EventType.SkillLevelUp:
+                case MatchEventType.SkillLevelUp:
                     return "SKILL_LEVEL_UP";
-                case EventType.WardKill:
+                case MatchEventType.WardKill:
                     return "WARD_KILL";
-                case EventType.WardPlaced:
+                case MatchEventType.WardPlaced:
                     return "WARD_PLACED";
                 default:
                     return string.Empty;

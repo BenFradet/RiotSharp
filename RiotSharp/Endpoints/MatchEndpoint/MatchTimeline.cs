@@ -23,6 +23,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// List of timeline frames for the game.
         /// </summary>
         [JsonProperty("frames")]
-        public List<Frame> Frames { get; set; }
+        public List<MatchFrame> Frames { get; set; }
     }
 }

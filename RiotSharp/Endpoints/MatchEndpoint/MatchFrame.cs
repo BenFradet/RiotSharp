@@ -8,15 +8,15 @@ namespace RiotSharp.Endpoints.MatchEndpoint
     /// <summary>
     /// Class representing a frame in a match (Match API).
     /// </summary>
-    public class Frame
+    public class MatchFrame
     {
-        internal Frame() { }
+        internal MatchFrame() { }
 
         /// <summary>
         /// List of events for this frame.
         /// </summary>
         [JsonProperty("events")]
-        public List<Event> Events { get; set; }
+        public List<MatchEvent> Events { get; set; }
 
         /// <summary>
         /// Map of each participant ID to the participant's information for the frame.
