@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace RiotSharp.Endpoints.MatchEndpoint.Enums.Converters
 {
-    class EventTypeConverter : JsonConverter
+    class MatchEventTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -21,29 +21,29 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums.Converters
             switch (str)
             {
                 case "ASCENDED_EVENT":
-                    return EventType.AscendedEvent;
+                    return MatchEventType.AscendedEvent;
                 case "BUILDING_KILL":
-                    return EventType.BuildingKill;
+                    return MatchEventType.BuildingKill;
                 case "CAPTURE_POINT":
-                    return EventType.CapturePoint;
+                    return MatchEventType.CapturePoint;
                 case "CHAMPION_KILL":
-                    return EventType.ChampionKill;
+                    return MatchEventType.ChampionKill;
                 case "ELITE_MONSTER_KILL":
-                    return EventType.EliteMonsterKill;
+                    return MatchEventType.EliteMonsterKill;
                 case "ITEM_DESTROYED":
-                    return EventType.ItemDestroyed;
+                    return MatchEventType.ItemDestroyed;
                 case "ITEM_PURCHASED":
-                    return EventType.ItemPurchased;
+                    return MatchEventType.ItemPurchased;
                 case "ITEM_SOLD":
-                    return EventType.ItemSold;
+                    return MatchEventType.ItemSold;
                 case "ITEM_UNDO":
-                    return EventType.ItemUndo;
+                    return MatchEventType.ItemUndo;
                 case "SKILL_LEVEL_UP":
-                    return EventType.SkillLevelUp;
+                    return MatchEventType.SkillLevelUp;
                 case "WARD_KILL":
-                    return EventType.WardKill;
+                    return MatchEventType.WardKill;
                 case "WARD_PLACED":
-                    return EventType.WardPlaced;
+                    return MatchEventType.WardPlaced;
                 default:
                     return null;
             }
@@ -51,7 +51,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums.Converters
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((EventType)value).ToCustomString());
+            serializer.Serialize(writer, ((MatchEventType)value).ToCustomString());
         }
     }
 }

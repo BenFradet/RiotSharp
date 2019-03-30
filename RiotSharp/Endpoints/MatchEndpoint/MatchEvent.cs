@@ -9,9 +9,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
     /// <summary>
     /// Class representing a particular event during a match (Match API).
     /// </summary>
-    public class Event
+    public class MatchEvent
     {
-        internal Event() { }
+        internal MatchEvent() { }
 
         /// <summary>
         /// The ascended type of the event. Only present if relevant.
@@ -42,19 +42,19 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Event type (building kills, champion kills, ward placements, items purchases, etc).
         /// </summary>
         [JsonProperty("type")]
-        public EventType? EventType { get; set; }
+        public MatchEventType? EventType { get; set; }
 
         /// <summary>
         /// The ending item ID of the event. Only present if relevant.
         /// </summary>
-        [JsonProperty("itemAfter")]
-        public int ItemAfter { get; set; }
+        [JsonProperty("afterId")]
+        public int ItemAfterId { get; set; }
 
         /// <summary>
         /// The starting item ID of the event. Only present if relevant.
         /// </summary>
-        [JsonProperty("itemBefore")]
-        public int ItemBefore { get; set; }
+        [JsonProperty("beforeId")]
+        public int ItemBeforeId { get; set; }
 
         /// <summary>
         /// The item ID of the event. Only present if relevant.
