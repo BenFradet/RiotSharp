@@ -30,7 +30,7 @@ namespace RiotSharp.Test.EndpointTests
             _currentGameResponse = new CurrentGame
             {
                 GameId = 1,
-                GameLength = 60,
+                GameLength = TimeSpan.FromSeconds(60),
                 GameMode = "GameMode",
                 GameQueueType = "Normal Draft",
                 GameType = GameType.MatchedGame,
@@ -41,7 +41,7 @@ namespace RiotSharp.Test.EndpointTests
             _featureGameResponse = new FeaturedGame
             {
                 GameId = 1,
-                GameLength = 60,
+                GameLength = TimeSpan.FromSeconds(60),
                 GameMode = "GameMode",
                 GameQueueType = "Normal Draft",
                 GameType = GameType.MatchedGame,
