@@ -43,7 +43,8 @@ namespace RiotSharp
 
         private TournamentRiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
-            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, rateLimits);
+            var httpClient = new System.Net.Http.HttpClient();
+            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, httpClient, rateLimits);
             _requester = Requesters.TournamentApiRequester;
             SetTournamentRootUrl(useStub);
         }

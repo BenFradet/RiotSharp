@@ -21,7 +21,7 @@ namespace RiotSharp.Http
         private readonly Dictionary<Region, RateLimiter> _rateLimiters = new Dictionary<Region, RateLimiter>();
 
         /// <inheritdoc />
-        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey)
+        public RateLimitedRequester(string apiKey, HttpClient httpClient, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey, httpClient)
         {
             RateLimits = rateLimits;
             _throwOnDelay = throwOnDelay;

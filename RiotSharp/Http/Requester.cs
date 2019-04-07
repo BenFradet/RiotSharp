@@ -14,11 +14,10 @@ namespace RiotSharp.Http
     public class Requester : RequesterBase, IRequester
     {
         /// <inheritdoc />
-        public Requester(string apiKey) : base(apiKey) { }
+        public Requester(string apiKey, HttpClient httpClient) : base(apiKey, httpClient) { }
 
         /// <inheritdoc />
-        public Requester()
-        { }
+        public Requester(HttpClient httpClient) : base(httpClient) { }
 
         #region Public Methods
 

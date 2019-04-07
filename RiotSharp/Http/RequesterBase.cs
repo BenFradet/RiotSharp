@@ -20,7 +20,7 @@ namespace RiotSharp.Http
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         /// <exception cref="ArgumentNullException">apiKey</exception>
-        protected RequesterBase(string apiKey) : this()
+        protected RequesterBase(string apiKey, HttpClient httpClient) : this(httpClient)
         {
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentNullException(nameof(apiKey));
@@ -30,9 +30,16 @@ namespace RiotSharp.Http
         /// <summary>
         /// Initializes a new instance of the <see cref="RequesterBase"/> class.
         /// </summary>
-        protected RequesterBase()
+        protected RequesterBase(HttpClient httpClient)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        }
+
+        /// <summary>
+        /// Allow only injection of http client
+        /// </summary>
+        private RequesterBase()
+        {
         }
 
         #region Protected Methods

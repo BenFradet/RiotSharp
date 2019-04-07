@@ -3,6 +3,7 @@ using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
 using System;
+using System.Net.Http;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint
 {
@@ -66,7 +67,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
 
         private StaticDataEndpoints(bool useCache = true)
         {
-            Requesters.StaticApiRequester = new Requester();
+            Requesters.StaticApiRequester = new Requester(new HttpClient());
 
             var cache = useCache ? (ICache)new Cache() : new PassThroughCache();
 

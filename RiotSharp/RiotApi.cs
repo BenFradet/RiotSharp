@@ -121,9 +121,10 @@ namespace RiotSharp
 
         private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
+            var httpClient = new System.Net.Http.HttpClient();
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
-            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
-            Requesters.StaticApiRequester = new Requester(apiKey);
+            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, httpClient, rateLimits);
+            Requesters.StaticApiRequester = new Requester(apiKey, httpClient);
             var requester = Requesters.RiotApiRequester;
 
             Summoner = new SummonerEndpoint(requester, _cache);
