@@ -13,16 +13,18 @@ namespace RiotSharp.Test.EndpointTests
     [TestClass]
     public class ThirdPartyEndpointTests
     {
-        private Mock<IRateLimitedRequester> _requester;
+        private Mock<IRequester> _requester;
+        private Mock<IRateLimitedRequester> _rateLimitedRequester;
         private const string response = "*someReponse*";
         private IRiotApi _riotApi;
 
         [TestInitialize]
         public void Initialize()
         {
-            _requester = new Mock<IRateLimitedRequester>();
+            _requester = new Mock<IRequester>();
+            _rateLimitedRequester = new Mock<IRateLimitedRequester>();
             var staticEndpointProvider = new Mock<IStaticEndpointProvider>();
-            _riotApi = new RiotApi(_requester.Object, staticEndpointProvider.Object);
+            _riotApi = new RiotApi(_rateLimitedRequester.Object, _requester.Object, staticEndpointProvider.Object);
         }
 
         [TestMethod]
