@@ -17,7 +17,6 @@ namespace RiotSharp.Endpoints.StatusEndpoint
     public class StatusEndpoint : IStatusEndpoint
     {
         private const string StatusRootUrl = "/lol/status/v3/shard-data";
-        private const string PlatformSubdomain = "{0}.";
 
         private readonly IRequester _requester;
 
