@@ -22,36 +22,36 @@ namespace RiotSharp.Misc.Converters
             {
                 case "BR":
                 case "br":
-                    return Region.br;
+                    return Region.Br;
                 case "EUNE":
                 case "eune":
-                    return Region.eune;
+                    return Region.Eune;
                 case "EUW":
                 case "euw":
-                    return Region.euw;
+                    return Region.Euw;
                 case "KR":
-                    return Region.kr;
+                    return Region.Kr;
                 case "LAN":
                 case "lan":
-                    return Region.lan;
+                    return Region.Lan;
                 case "LAS":
                 case "las":
-                    return Region.las;
+                    return Region.Las;
                 case "NA":
                 case "na":
-                    return Region.na;
+                    return Region.Na;
                 case "OCE":
                 case "oce":
-                    return Region.oce;
+                    return Region.Oce;
                 case "RU":
                 case "ru":
-                    return Region.ru;
+                    return Region.Ru;
                 case "TR":
                 case "tr":
-                    return Region.tr;
+                    return Region.Tr;
                 case "JP":
                 case "jp":
-                    return Region.jp;
+                    return Region.Jp;
                 default:
                     return null;
             }

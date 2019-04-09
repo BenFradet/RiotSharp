@@ -124,29 +124,29 @@ namespace RiotSharp.Http
         {
             switch (region)
             {
-                case Region.br:
+                case Region.Br:
                     return "br1";
-                case Region.eune:
+                case Region.Eune:
                     return "eun1";
-                case Region.euw:
+                case Region.Euw:
                     return "euw1";
-                case Region.jp:
+                case Region.Jp:
                     return "jp1";
-                case Region.kr:
+                case Region.Kr:
                     return "kr";
-                case Region.lan:
+                case Region.Lan:
                     return "la1";
-                case Region.las:
+                case Region.Las:
                     return "la2";
-                case Region.na:
+                case Region.Na:
                     return "na1";
-                case Region.oce:
+                case Region.Oce:
                     return "oc1";
-                case Region.tr:
+                case Region.Tr:
                     return "tr1";
-                case Region.ru:
+                case Region.Ru:
                     return "ru";
-                case Region.global:
+                case Region.Global:
                     return "global";
                 case Region.Americas:
                     return "americas";

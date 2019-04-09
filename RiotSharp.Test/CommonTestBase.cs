@@ -14,7 +14,7 @@ namespace RiotSharp.Test
         public static string ApiKey = Configuration["ApiKey"];
         public static string FaultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
 
-        public static Region Summoner1And2Region = (Region)Enum.Parse(typeof(Region), "na");
+        public static Region Summoner1And2Region = (Region)Enum.Parse(typeof(Region), "Na");
 
         public static long InvalidSummonerId = -1;
         public static string Summoner1Id = "fhOx2QJ2VKSaaD9nVJ4XJSzMBPW2es7FboigIwW5ss97coA";
@@ -29,7 +29,7 @@ namespace RiotSharp.Test
         public static string Summoner3Id = "I2QEPYTtazuZge0E31Ge7j8GiPFb2bva7LnJQK1-GJF6";
         public static string Summoner3AccountId = "NRKCQCgDMkctfkkEcC-fEDNX3WwP4Ga8vQWqzdY3dcGL1Ho";
         public static string Summoner3Name = "xsunx";
-        public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "ru");
+        public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "Ru");
 
         /// <summary>
         /// Ensures that test returns data (Shows test warnings for 404 status exceptions)

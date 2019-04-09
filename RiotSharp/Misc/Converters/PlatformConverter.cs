@@ -69,31 +69,31 @@ namespace RiotSharp.Misc.Converters
             switch (platform)
             {
                 case Platform.NA1:
-                    return Region.na;
+                    return Region.Na;
                 case Platform.BR1:
-                    return Region.br;
+                    return Region.Br;
                 case Platform.LA1:
-                    return Region.lan;
+                    return Region.Lan;
                 case Platform.LA2:
-                    return Region.las;
+                    return Region.Las;
                 case Platform.OC1:
-                    return Region.oce;
+                    return Region.Oce;
                 case Platform.EUN1:
-                    return Region.eune;
+                    return Region.Eune;
                 case Platform.TR1:
-                    return Region.tr;
+                    return Region.Tr;
                 case Platform.RU:
-                    return Region.ru;
+                    return Region.Ru;
                 case Platform.EUW1:
-                    return Region.euw;
+                    return Region.Euw;
                 case Platform.KR:
-                    return Region.kr;
+                    return Region.Kr;
                 case Platform.JP1:
-                    return Region.jp;
+                    return Region.Jp;
                 case Platform.NoPlatform:
                     return Region.NoRegion;
                 default:
-                    return Region.na;
+                    return Region.Na;
             }
         }
     }

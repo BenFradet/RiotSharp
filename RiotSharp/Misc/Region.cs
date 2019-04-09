@@ -12,62 +12,62 @@ namespace RiotSharp.Misc
         /// <summary>
         /// Brasil.
         /// </summary>
-        br,
+        Br,
 
         /// <summary>
         /// North-eastern europe.
         /// </summary>
-        eune,
+        Eune,
 
         /// <summary>
         /// Western europe.
         /// </summary>
-        euw,
+        Euw,
 
         /// <summary>
         /// North america.
         /// </summary>
-        na,
+        Na,
 
         /// <summary>
         /// South korea.
         /// </summary>
-        kr,
+        Kr,
 
         /// <summary>
         /// Latin America North.
         /// </summary>
-        lan,
+        Lan,
 
         /// <summary>
         /// Latin America South.
         /// </summary>
-        las,
+        Las,
 
         /// <summary>
         /// Oceania.
         /// </summary>
-        oce,
+        Oce,
 
         /// <summary>
         /// Russia.
         /// </summary>
-        ru,
+        Ru,
 
         /// <summary>
         /// Turkey.
         /// </summary>
-        tr,
+        Tr,
 
         /// <summary>
         /// Japan.
         /// </summary>
-        jp,
+        Jp,
 
         /// <summary>
         /// Global.
         /// </summary>
-        global,
+        Global,
 
         /// <summary>
         /// Regional proxy for services only deployed in North America. For example the tournament and tournament stub services.

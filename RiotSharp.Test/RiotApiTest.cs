@@ -165,7 +165,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var match = Api.Match.GetMatchAsync(RiotSharp.Misc.Region.euw, RiotApiTestBase.PerksGameId).Result;
+                var match = Api.Match.GetMatchAsync(RiotSharp.Misc.Region.Euw, RiotApiTestBase.PerksGameId).Result;
 
                 Assert.AreEqual(RiotApiTestBase.PerksGameId, match.GameId);
                 Assert.IsNotNull(match.ParticipantIdentities);
@@ -311,7 +311,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var currentGame = Api.Spectator.GetCurrentGameAsync(RiotSharp.Misc.Region.euw, "w1_k11kGq3N2zydfKN5xc7XcGwv-4jrnJJGsuQfHJmDFVFs").Result;
+                var currentGame = Api.Spectator.GetCurrentGameAsync(RiotSharp.Misc.Region.Euw, "w1_k11kGq3N2zydfKN5xc7XcGwv-4jrnJJGsuQfHJmDFVFs").Result;
 
                 Assert.IsNotNull(currentGame);
                 Assert.IsTrue(currentGame.GameId != 0);
