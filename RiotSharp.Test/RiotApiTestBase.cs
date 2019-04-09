@@ -55,7 +55,7 @@ namespace RiotSharp.Test
             "LL Stylish"
         };
 
-        public static Region SummonersRegion = (Region) Enum.Parse(typeof(Region), "na");
+        public static Region SummonersRegion = (Region) Enum.Parse(typeof(Region), "Na");
         public static string Queue = "RANKED_SOLO_5x5";
 
         // Normal 5v5 Draft Pick games

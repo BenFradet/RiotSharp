@@ -21,7 +21,7 @@ namespace RiotSharp.Test
 
         protected static readonly TournamentRiotApi api = TournamentRiotApi.GetInstance(TournamentApiKey, useStub: true);
 
-        public static int ProviderId = api.CreateProviderAsync(Region.na, TournamentUrl).GetAwaiter().GetResult();
+        public static int ProviderId = api.CreateProviderAsync(Region.Na, TournamentUrl).GetAwaiter().GetResult();
         public static int TournamentId = api.CreateTournamentAsync(ProviderId, TournamentName).GetAwaiter().GetResult();
         public static string TournamentCode = api.CreateTournamentCodesAsync(TournamentId, 1, 5, tournamentSpectatorType, tournamentPickType, tournamentMapType).GetAwaiter().GetResult().First();
     }

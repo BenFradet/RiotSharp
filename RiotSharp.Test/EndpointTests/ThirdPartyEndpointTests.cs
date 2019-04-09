@@ -32,7 +32,7 @@ namespace RiotSharp.Test.EndpointTests
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(response);
-            var code = _riotApi.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Region.na, "SummonerId").Result;
+            var code = _riotApi.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Region.Na, "SummonerId").Result;
             Assert.AreEqual("someReponse", code);
         }
 
@@ -41,7 +41,7 @@ namespace RiotSharp.Test.EndpointTests
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(response);
-            var code = await _riotApi.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Region.na, "SummonerId");
+            var code = await _riotApi.ThirdParty.GetThirdPartyCodeBySummonerIdAsync(Region.Na, "SummonerId");
             Assert.AreEqual("someReponse", code);
         }
     }
