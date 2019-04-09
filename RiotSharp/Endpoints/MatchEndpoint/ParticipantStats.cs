@@ -364,6 +364,12 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public long UnrealKills { get; set; }
 
         /// <summary>
+        /// Vision score.
+        /// </summary>
+        [JsonProperty("visionScore")]
+        public long VisionScore { get; set; }
+
+        /// <summary>
         /// Number of vision wards purchased.
         /// </summary>
         [JsonProperty("visionWardsBoughtInGame")]

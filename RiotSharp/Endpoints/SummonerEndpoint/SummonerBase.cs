@@ -23,13 +23,13 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         }
 
         /// <summary>
-        /// Summoner ID.
+        /// Encrypted summoner ID. Max length 63 characters.
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// Account ID.
+        /// Encrypted account ID. Max length 56 characters.
         /// </summary>
         [JsonProperty("accountId")]
         public string AccountId { get; set; }
@@ -41,7 +41,7 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
         public string Name { get; set; }
 
         /// <summary>
-        /// PUUID.
+        /// Encrypted PUUID. Exact length of 78 characters.
         /// </summary>
         [JsonProperty("puuid")]
         public string Puuid { get; set; }

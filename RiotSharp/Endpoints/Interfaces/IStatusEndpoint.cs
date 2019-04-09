@@ -2,16 +2,16 @@
 using RiotSharp.Endpoints.StatusEndpoint;
 using RiotSharp.Misc;
 
-namespace RiotSharp.Interfaces
+namespace RiotSharp.Endpoints.Interfaces
 {
     /// <summary>
     /// Entry point for the status API.
+    /// Requests to this endpoint are not counted against the application rate limits and are not being cached.
     /// </summary>
-    public interface IStatusRiotApi
+    public interface IStatusEndpoint
     {
         /// <summary>
-        /// Get shard status asynchronously.
-        /// Returns the data available on the status.leagueoflegends.com website for the given platform.
+        /// Get the League of Legends status for the given shard asynchronously.
         /// </summary>
         /// <param name="region">Region for which to check the status.</param>
         /// <returns>A shard status object containing different information regarding the shard.</returns>

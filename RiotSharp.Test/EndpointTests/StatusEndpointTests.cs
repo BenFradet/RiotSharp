@@ -3,12 +3,12 @@ using RiotSharp;
 using RiotSharp.Misc;
 
 
-namespace RiotSharp.Test
+namespace RiotSharp.Test.EndpointTests
 {
     [TestClass]
-    public class StatusRiotApiTest : CommonTestBase
+    public class StatusEndpointTests : CommonTestBase
     {
-        private static readonly StatusRiotApi Api = StatusRiotApi.GetInstance(ApiKey);
+        private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance(ApiKey);
 
         [TestMethod]
         [TestCategory("StatusRiotApi"), TestCategory("Async")]
@@ -16,7 +16,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var shardStatus = Api.GetShardStatusAsync(Summoner1And2Region);
+                var shardStatus = Api.Status.GetShardStatusAsync(Summoner1And2Region);
 
                 Assert.AreEqual(StatusRiotApiTestBase.Platform.ToString().ToLower(),
                     shardStatus.Result.RegionTag);

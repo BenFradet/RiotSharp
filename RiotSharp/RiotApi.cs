@@ -9,6 +9,7 @@ using RiotSharp.Endpoints.LeagueEndpoint;
 using RiotSharp.Endpoints.MatchEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharp.Endpoints.StatusEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
 using RiotSharp.Endpoints.ThirdPartyEndpoint;
 using RiotSharp.Http;
@@ -54,6 +55,9 @@ namespace RiotSharp
 
         /// <inheritdoc />
         public IStaticDataEndpoints StaticData { get; }
+
+        /// <inheritdoc />
+        public IStatusEndpoint Status { get; }
         #endregion
 
         /// <summary>
@@ -121,6 +125,7 @@ namespace RiotSharp
             Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
             Requesters.StaticApiRequester = new Requester(apiKey);
             var requester = Requesters.RiotApiRequester;
+
             Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);
             League = new LeagueEndpoint(requester);
@@ -128,7 +133,9 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
-            StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, cache);
+
+            StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, _cache);
+            Status = new StatusEndpoint(Requesters.StaticApiRequester);
         }
 
         /// <summary>
@@ -142,7 +149,7 @@ namespace RiotSharp
         /// or
         /// staticEndpointProvider
         /// </exception>
-        public RiotApi(IRateLimitedRequester rateLimitedRequester, IStaticEndpointProvider staticEndpointProvider,
+        public RiotApi(IRateLimitedRequester rateLimitedRequester, IRequester requester, IStaticEndpointProvider staticEndpointProvider,
             ICache cache = null)
         {
             if(rateLimitedRequester == null)
@@ -159,7 +166,9 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(rateLimitedRequester);
             ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+
             StaticData = new StaticDataEndpoints(staticEndpointProvider);
+            Status = new StatusEndpoint(requester);
         }
     }
 }
