@@ -31,7 +31,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("platformId")]
         [JsonConverter(typeof(PlatformConverter))]
-        public Platform PlatformID { get; set; }
+        public Platform PlatformId { get; set; }
 
         /// <summary>
         /// Match queue type.
@@ -42,8 +42,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// <summary>
         /// The region match was played in.
         /// </summary>
-        [JsonProperty("region")]
-        public Region Region { get; set; }
+        public Region Region { get { return PlatformToRegionConverter.ConvertToRegion(PlatformId); } }
 
         /// <summary>
         /// Participant's role.
