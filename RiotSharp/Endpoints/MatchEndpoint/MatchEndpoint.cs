@@ -10,7 +10,7 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
-    class MatchEndpoint : IMatchEndpoint
+    public class MatchEndpoint : IMatchEndpoint
     {
         private const string MatchRootUrl = "/lol/match/v4/matches";
         private const string MatchListRootUrl = "/lol/match/v4/matchlists";
