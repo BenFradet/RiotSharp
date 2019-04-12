@@ -24,5 +24,11 @@
   <ItemGroup>
     <None Include="appsettings.json" CopyToOutputDirectory="Always" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\MatchEndpoint\MatchList_EUW_Response.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   
 </Project>
