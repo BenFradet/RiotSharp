@@ -43,6 +43,11 @@ namespace RiotSharp.Endpoints.LeagueEndpoint.Enums
         /// Bronze tier.
         /// </summary>
         Bronze,
+
+        /// <summary>
+        /// Iron tier.
+        /// </summary>
+        Iron,
         
         /// <summary>
         /// Unranked.

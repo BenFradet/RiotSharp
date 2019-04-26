@@ -2,42 +2,15 @@
 
 namespace RiotSharp.Endpoints.LeagueEndpoint
 {
-    /// <summary>
-    /// Team or summoner in a league (League API).
-    /// </summary>
-    public class LeaguePosition
+    public class LeagueItem
     {
-        internal LeaguePosition()
-        {
-        }
-
-        /// <summary>
-        /// The name of the league of the participant.
-        /// Only when it's called from the GetLeaguePositions()
-        /// </summary>
-        [JsonProperty("leagueName")]
-        public string LeagueName { get; set; }
-
-        /// <summary>
-        /// The queue type of the league.
-        /// Only for the GetLeaguePositions() -> don't exist when it's an entry from a League
-        /// as there is already the Queue property in this case.
-        /// </summary>
-        [JsonProperty("queueType")]
-        public string QueueType { get; set; }
+        internal LeagueItem() { }
 
         /// <summary>
         /// The rank of the participant in a league.
         /// </summary>
         [JsonProperty("rank")]
         public string Rank { get; set; }
-
-        ///<summary>
-        /// The league tier of the participant.
-        /// Only when it's called from the GetLeaguePositions()
-        /// </summary>
-        [JsonProperty("tier")]
-        public string Tier { get; set; }
 
         /// <summary>
         /// Specifies if the participant is fresh blood.
@@ -82,16 +55,16 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public MiniSeries MiniSeries { get; set; }
 
         /// <summary>
-        /// The ID of the participant (i.e., summoner or team) represented by this entry.
+        /// The name of the the summoner represented by this entry.
         /// </summary>
-        [JsonProperty("playerOrTeamId")]
-        public string PlayerOrTeamId { get; set; }
+        [JsonProperty("summonerName")]
+        public string SummonerName { get; set; }
 
         /// <summary>
-        /// The name of the the participant (i.e., summoner or team) represented by this entry.
+        /// The encrypted id of the the summoner represented by this entry.
         /// </summary>
-        [JsonProperty("playerOrTeamName")]
-        public string PlayerOrTeamName { get; set; }
+        [JsonProperty("summonerId")]
+        public string SummonerId { get; set; }
 
         /// <summary>
         /// The number of wins for the participant.
