@@ -22,7 +22,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// Get the master league for a particular queue asynchronously.
         /// </summary>
         /// <param name="region"><see cref="Region"/> in which you wish to look for a master league.</param>
-        /// <param name="queue">Queue in which you wish to look for a master league.</param>
+        /// <param name="queue">Queue in which you wish to look for a master league.  (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>A <see cref="League" /> which contains all the masters for this specific region and queue.</returns>
         Task<League> GetMasterLeagueAsync(Region region, string queue);
 
@@ -32,7 +32,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="region">The region</param>
         /// <param name="division">The division</param>
         /// <param name="tier">The tier (<see cref="Enums.Tier.Iron"/> to <see cref="Enums.Tier.Diamond"/>)</param>
-        /// <param name="rankedQueue">Ranked queue. See <see cref="Misc.Queue"/></param>
+        /// <param name="rankedQueue">Ranked queue. (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>List of matching <see cref="LeagueEntry"/>s</returns>
         Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, LeagueEndpoint.Enums.Division division, LeagueEndpoint.Enums.Tier tier, string rankedQueue, int page = 1);
 
@@ -57,7 +57,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// Get the grandmaster league for a particular queue asynchronously.
         /// </summary>
         /// <param name="region"></param>
-        /// <param name="rankedQueue">A ranked queue (See <see cref="Misc.Queue"/>-constants)</param>
+        /// <param name="rankedQueue">A ranked queue  (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>A <see cref="League" /> which contains all the grandmasters for this specific region and queue.</returns>
         Task<League> GetLeagueGrandmastersByQueueAsync(Region region, string rankedQueue);
     }
