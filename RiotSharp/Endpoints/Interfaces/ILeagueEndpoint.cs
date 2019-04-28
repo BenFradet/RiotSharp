@@ -14,7 +14,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// Get the challenger league for a particular queue asynchronously.
         /// </summary>
         /// <param name="region"><see cref="Region"/> in which you wish to look for a challenger league.</param>
-        /// <param name="queue">Queue in which you wish to look for a challenger league.</param>
+        /// <param name="queue">Queue in which you wish to look for a challenger league. (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>A <see cref="League" /> which contains all the challengers for this specific region and queue.</returns>
         Task<League> GetChallengerLeagueAsync(Region region, string queue);
 
@@ -57,7 +57,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// Get the grandmaster league for a particular queue asynchronously.
         /// </summary>
         /// <param name="region"></param>
-        /// <param name="rankedQueue">A ranked queue  (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
+        /// <param name="rankedQueue">A ranked queue (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>A <see cref="League" /> which contains all the grandmasters for this specific region and queue.</returns>
         Task<League> GetLeagueGrandmastersByQueueAsync(Region region, string rankedQueue);
     }
