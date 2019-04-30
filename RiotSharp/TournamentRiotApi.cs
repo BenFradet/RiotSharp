@@ -22,11 +22,11 @@ namespace RiotSharp
         #region Private Fields
 
         private const string TournamentStubUrl = "/lol/tournament-stub/v4";
-        private const string TournamentUrl = "/lol/tournament/v3";
+        private const string TournamentUrl = "/lol/tournament/v4";
         private const string CreateCodesUrl = "/codes";
         private const string GetCodesUrl = "/codes/{0}";
         private const string PutCodeUrl = "/codes/{0}";
-        private const string LobbyEventUrl = "/lol/tournament/v3/lobby-events/by-code/{0}";
+        private const string LobbyEventUrl = "/lobby-events/by-code/{0}";
         private const string CreateProviderUrl = "/providers";
         private const string CreateTournamentUrl = "/tournaments";
 
@@ -102,7 +102,7 @@ namespace RiotSharp
                 apiKey != Requesters.TournamentApiRequester.ApiKey ||
                 !rateLimits.Equals(Requesters.TournamentApiRequester.RateLimits))
             {
-                _instance = new TournamentRiotApi(apiKey, rateLimits);
+                _instance = new TournamentRiotApi(apiKey, rateLimits, useStub);
             }
             return _instance;
         }
@@ -157,14 +157,14 @@ namespace RiotSharp
         /// <exception cref="T:System.ArgumentException">Thrown if an invalid <paramref name="teamSize" /> or an invalid <paramref name="count" /> is provided.</exception>
         public async Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int count, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType, 
-            TournamentMapType mapType, List<long> allowedParticipantIds = null,  string metadata = null)
+            TournamentMapType mapType, List<string> allowedEncryptedSummonerIds = null,  string metadata = null)
         {
             ValidateTeamSize(teamSize);
             ValidateTournamentCodeCount(count);
             var body = new Dictionary<string, object>
             {
                 { "teamSize", teamSize },
-                { "allowedSummonerIds", allowedParticipantIds },
+                { "allowedSummonerIds", allowedEncryptedSummonerIds },
                 { "spectatorType", spectatorType },
                 { "pickType", pickType },
                 { "mapType", mapType },
@@ -208,10 +208,10 @@ namespace RiotSharp
         }
 
         /// <inheritdoc />
-        public Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedParticipantIds = null,
+        public Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<string> allowedEncryptedSummonerIds = null,
             TournamentSpectatorType? spectatorType = null, TournamentPickType? pickType = null, TournamentMapType? mapType = null)
         {
-            var body = BuildTournamentUpdateBody(allowedParticipantIds, spectatorType, pickType, mapType);
+            var body = BuildTournamentUpdateBody(allowedEncryptedSummonerIds, spectatorType, pickType, mapType);
 
             return _requester.CreatePutRequestAsync(_tournamentRootUrl + string.Format(PutCodeUrl, tournamentCode),
                 Region.Americas, JsonConvert.SerializeObject(body));
@@ -257,12 +257,12 @@ namespace RiotSharp
             _tournamentRootUrl = useStub ? TournamentStubUrl : TournamentUrl;
         }
 
-        private Dictionary<string, object> BuildTournamentUpdateBody(List<long> allowedSummonerIds,
+        private Dictionary<string, object> BuildTournamentUpdateBody(List<string> allowedEncryptedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType)
         {
             var body = new Dictionary<string, object>();
-            if (allowedSummonerIds != null)
-                body.Add("allowedParticipants", string.Join(",", allowedSummonerIds));
+            if (allowedEncryptedSummonerIds != null)
+                body.Add("allowedParticipants", allowedEncryptedSummonerIds);
             if (spectatorType != null)
                 body.Add("spectatorType", spectatorType);
             if (pickType != null)
