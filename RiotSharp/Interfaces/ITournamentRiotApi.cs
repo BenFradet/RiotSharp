@@ -38,9 +38,9 @@ namespace RiotSharp.Interfaces
         /// <param name="tournamentId">The tournament ID</param>
         /// <param name="teamSize">The team size of the game. Valid values are 1-5.</param>
         /// <param name="spectatorType">The spectator type of the game.</param>
-        /// <param name="pickType">The pick type of the game.</param>
-        /// <param name="mapType">The map type of the game.</param>
-        /// <param name="allowedParticipantIds">List of id's for allowed participants. Defaults to null</param>
+        /// <param name="pickType">The pick type of the game. (Legal values: BLIND_PICK, DRAFT_MODE, ALL_RANDOM, TOURNAMENT_DRAFT)</param>
+        /// <param name="mapType">The map type of the game. (Legal values: SUMMONERS_RIFT, TWISTED_TREELINE, HOWLING_ABYSS)</param>
+        /// <param name="allowedParticipantIds">Optional list of encrypted summonerIds in order to validate the players eligible to join the lobby.</param>
         /// <param name="metadata">
         ///     Optional string that may contain any data in any format, if specified at all. Used to denote any
         ///     custom information about the game.
@@ -49,7 +49,7 @@ namespace RiotSharp.Interfaces
         /// <returns>A list of tournament codes in string format.</returns>
         Task<List<string>> CreateTournamentCodesAsync(int tournamentId, int count, int teamSize,
             TournamentSpectatorType spectatorType, TournamentPickType pickType,
-            TournamentMapType mapType, List<long> allowedParticipantIds = null, string metadata = "");
+            TournamentMapType mapType, List<string> allowedEncryptedSummonerIds = null, string metadata = "");
 
         /// <summary>
         ///     Returns the details of a certain tournament code.
@@ -69,12 +69,12 @@ namespace RiotSharp.Interfaces
         ///     Update the pick type, map, spectator type, or allowed summoners for a code.
         /// </summary>
         /// <param name="tournamentCode">The tournament code to update</param>
-        /// <param name="allowedSummonerIds">List of summoner id's.</param>
-        /// <param name="spectatorType">The spectator type.</param>
-        /// <param name="pickType">The pick type.</param>
-        /// <param name="mapType">The map type.</param>
+        /// <param name="allowedSummonerIds">Optional list of encrypted summonerIds in order to validate the players eligible to join the lobby.</param>
+        /// <param name="spectatorType">The spectator type (Legal values: NONE, LOBBYONLY, ALL).</param>
+        /// <param name="pickType">The pick type (Legal values: BLIND_PICK, DRAFT_MODE, ALL_RANDOM, TOURNAMENT_DRAFT).</param>
+        /// <param name="mapType">The map type (Legal values: SUMMONERS_RIFT, TWISTED_TREELINE, HOWLING_ABYSS).</param>
         /// /// <returns>Success value.</returns>
-        Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<long> allowedSummonerIds,
+        Task<bool> UpdateTournamentCodeAsync(string tournamentCode, List<string> allowedEncryptedSummonerIds,
             TournamentSpectatorType? spectatorType, TournamentPickType? pickType, TournamentMapType? mapType);
         
         /// <summary>
