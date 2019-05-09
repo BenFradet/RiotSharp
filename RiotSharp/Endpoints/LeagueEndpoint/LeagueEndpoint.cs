@@ -14,7 +14,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
     {
         private const string LeagueRootUrl = "/lol/league/v4";
         private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
-        private const string LeagueGrandMasterUrl = "/grandmasterleagues/by-queue/{0};
+        private const string LeagueGrandMasterUrl = "/grandmasterleagues/by-queue/{0}";
         private const string LeagueMasterUrl = "/masterleagues/by-queue/{0}";
         private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
 
