@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         /// The name of the summoner.
         /// </summary>
         [JsonProperty("summonerName")]
-        public string summonerName { get; set; }
+        public string SummonerName { get; set; }
 
         /// <summary>
         /// Specifies if the participant is on a hot streak.
