@@ -14,6 +14,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
     {
         private const string LeagueRootUrl = "/lol/league/v4";
         private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
+        private const string LeagueGrandMasterUrl = "/grandmasterleagues/by-queue/{0};
         private const string LeagueMasterUrl = "/masterleagues/by-queue/{0}";
         private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
 
@@ -49,6 +50,14 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public async Task<League> GetMasterLeagueAsync(Region region, string queue)
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),
+                region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<League>(json);
+        }
+        
+        /// <inheritdoc />
+        public async Task<League> GetGrandMasterLeagueAsync(Region region, string queue)
+        {
+            var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueGrandMasterUrl, queue),
                 region).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<League>(json);
         }
