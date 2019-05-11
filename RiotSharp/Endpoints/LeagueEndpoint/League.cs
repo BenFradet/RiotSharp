@@ -35,5 +35,11 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         /// </summary>
         [JsonProperty("tier")]
         public Tier Tier { get; set; }
+        
+        /// <summary>
+        /// League ID
+        /// </summary>
+        [JsonProperty("leagueId")]
+        public string LeagueID { get; set; }
     }
 }
