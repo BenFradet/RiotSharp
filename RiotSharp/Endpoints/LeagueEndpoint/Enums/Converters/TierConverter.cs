@@ -16,29 +16,14 @@ namespace RiotSharp.Endpoints.LeagueEndpoint.Enums.Converters
             JsonSerializer serializer)
         {
             var token = JToken.Load(reader);
-            if (token.Value<string>() == null) return null;
             var str = token.Value<string>();
-            switch (str)
+            if (str == null) return null;
+
+            if(Enum.TryParse<Tier>(str, true, out var result))
             {
-                case "MASTER":
-                    return Tier.Master;
-                case "CHALLENGER":
-                    return Tier.Challenger;
-                case "DIAMOND":
-                    return Tier.Diamond;
-                case "PLATINUM":
-                    return Tier.Platinum;
-                case "GOLD":
-                    return Tier.Gold;
-                case "SILVER":
-                    return Tier.Silver;
-                case "BRONZE":
-                    return Tier.Bronze;
-                case "UNRANKED":
-                    return Tier.Unranked;
-                default:
-                    return null;
+                return result;
             }
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

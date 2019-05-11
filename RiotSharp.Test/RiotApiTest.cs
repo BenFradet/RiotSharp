@@ -23,7 +23,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerBySummonerIdAsync(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerBySummonerIdAsync(Summoner1And2Region,
                     Summoner1Id);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -37,7 +37,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerByAccountIdAsync(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerByAccountIdAsync(Summoner1And2Region,
                     Summoner1AccountId);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -50,7 +50,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerByNameAsync(Summoner1And2Region, 
+                var summoner = Api.Summoner.GetSummonerByNameAsync(Summoner1And2Region,
                     Summoner1Name);
 
                 Assert.AreEqual(Summoner1Id, summoner.Result.Id);
@@ -92,15 +92,59 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeaguePositionsAsync_BySummoner_Test()
+        public void GetLeagueEntriesBySummonerAsync_Test()
         {
             EnsureCredibility(() =>
             {
-                var leagues = Api.League.GetLeaguePositionsAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
+                // TODO: Properly implement encrypted SummonerId tests
+                return;
+                var leagues = Api.League.GetLeagueEntriesBySummonerAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
 
                 Assert.IsTrue(leagues.Result.Count > 0);
             });
         }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeagueByIdAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                // TODO: Properly implement League id test
+                return;
+                var leagues = Api.League.GetLeagueByIdAsync(RiotApiTestBase.SummonersRegion, "LEAGUE-ID-HERE");
+
+                Assert.IsTrue(leagues.Result.Queue != null);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeagueEntriesAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var leagues = Api.League.GetLeagueEntriesAsync(RiotApiTestBase.SummonersRegion,
+                    Endpoints.LeagueEndpoint.Enums.Division.I,
+                    Endpoints.LeagueEndpoint.Enums.Tier.Bronze,
+                    RiotSharp.Misc.Queue.RankedSolo5x5);
+
+                Assert.IsTrue(leagues.Result.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeagueGrandmastersByQueueAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var leagues = Api.League.GetLeagueGrandmastersByQueueAsync(RiotApiTestBase.SummonersRegion, RiotSharp.Misc.Queue.RankedSolo5x5);
+
+                Assert.IsTrue(leagues.Result.Queue != null);
+            });
+        }
+
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
@@ -145,7 +189,7 @@ namespace RiotSharp.Test
                 {
                     Assert.IsNotNull(participant.Runes);
                     Assert.IsNotNull(participant.Masteries);
-                    foreach(var rune in participant.Runes)
+                    foreach (var rune in participant.Runes)
                     {
                         Assert.IsTrue(rune.RuneId != 0);
                         Assert.IsTrue(rune.Rank != 0);
@@ -171,7 +215,7 @@ namespace RiotSharp.Test
                 Assert.IsNotNull(match.ParticipantIdentities);
                 Assert.IsNotNull(match.Participants);
                 Assert.IsNotNull(match.Teams);
-                foreach(var participant in match.Participants)
+                foreach (var participant in match.Participants)
                 {
                     Assert.IsTrue(participant.Stats.Perk0 != 0);
                     Assert.IsTrue(participant.Stats.Perk1 != 0);
@@ -203,7 +247,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion, 
+                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
                     RiotApiTestBase.Summoner1AccountId).Result.Matches;
 
                 Assert.IsTrue(matches.Any());
@@ -221,7 +265,7 @@ namespace RiotSharp.Test
 
                 foreach (var match in matches)
                 {
-                    Assert.AreEqual(RiotApiTestBase.ChampionId.ToString(), 
+                    Assert.AreEqual(RiotApiTestBase.ChampionId.ToString(),
                         match.ChampionID.ToString());
                 }
             });
@@ -257,7 +301,7 @@ namespace RiotSharp.Test
                 {
                     var matches = Api.Match.GetMatchListAsync(Summoner3Region,
                         Summoner3AccountId, null, null,
-                        new List<Season> {}).Result.Matches;
+                        new List<Season> { }).Result.Matches;
 
                     Assert.IsTrue(matches.Any());
 
@@ -319,7 +363,7 @@ namespace RiotSharp.Test
                 Assert.IsNotNull(currentGame.GameStartTime);
                 Assert.IsNotNull(currentGame.GameQueueType);
                 Assert.IsNotNull(currentGame.Observers);
-                foreach(var participant in currentGame.Participants)
+                foreach (var participant in currentGame.Participants)
                 {
                     Assert.IsNotNull(participant.Perks);
                     Assert.IsNotNull(participant.GameCustomizationObjects);
@@ -337,7 +381,7 @@ namespace RiotSharp.Test
 
                 Assert.IsNotNull(games);
                 Assert.IsNotNull(games.GameList);
-                foreach(var game in games.GameList)
+                foreach (var game in games.GameList)
                 {
                     Assert.IsNotNull(game);
                     Assert.IsTrue(game.GameId != 0);
@@ -361,9 +405,9 @@ namespace RiotSharp.Test
                 var championMastery = Api.ChampionMastery.GetChampionMasteryAsync(Summoner1And2Region,
                     Summoner1Id, RiotApiTestBase.Summoner1MasteryChampionId).Result;
 
-                Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionId, 
+                Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionId,
                     championMastery.ChampionId);
-                Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionLevel, 
+                Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionLevel,
                     championMastery.ChampionLevel);
             });
         }

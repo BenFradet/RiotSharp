@@ -15,7 +15,10 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         private const string LeagueRootUrl = "/lol/league/v4";
         private const string LeagueChallengerUrl = "/challengerleagues/by-queue/{0}";
         private const string LeagueMasterUrl = "/masterleagues/by-queue/{0}";
-        private const string LeaguePositionBySummonerUrl = "/positions/by-summoner/{0}";
+        private const string LeagueEntriesBySummoner = "/entries/by-summoner/{0}";
+        private const string LeagueGrandmastersByQueue = "/grandmasterleagues/by-queue/{0}";
+        private const string LeagueEntriesByDivTierQueue = "/entries/{0}/{1}/{2}";
+        private const string LeagueLeagueById = "/leagues/{0}";
 
         private readonly IRateLimitedRequester _requester;
 
@@ -26,15 +29,6 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public LeagueEndpoint(IRateLimitedRequester requester)
         {
             _requester = requester;
-        }
-
-        /// <inheritdoc />
-        public async Task<List<LeaguePosition>> GetLeaguePositionsAsync(Region region, string summonerId)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeaguePositionBySummonerUrl, summonerId), region).ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<List<LeaguePosition>>(json);
         }
 
         /// <inheritdoc />
@@ -50,6 +44,44 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),
                 region).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<League>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<LeagueEntry>> GetLeagueEntriesBySummonerAsync(Region region, string encryptedSummonerId)
+        {
+            var json = await _requester.CreateGetRequestAsync(
+                LeagueRootUrl + string.Format(LeagueEntriesBySummoner, encryptedSummonerId), region).ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<List<LeagueEntry>>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, Enums.Division division, Enums.Tier tier, string rankedQueue, int page = 1)
+        {
+            var json = await _requester.CreateGetRequestAsync(
+                LeagueRootUrl + string.Format(LeagueEntriesByDivTierQueue, division, tier.ToString().ToUpperInvariant(), rankedQueue),
+                region,
+                new List<string> { page.ToString() }).ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<List<LeagueEntry>>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<League> GetLeagueGrandmastersByQueueAsync(Region region, string rankedQueue)
+        {
+            var json = await _requester.CreateGetRequestAsync(
+                LeagueRootUrl + string.Format(LeagueGrandmastersByQueue, rankedQueue), region).ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<League>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<League> GetLeagueByIdAsync(Region region, string leagueId)
+        {
+            var json = await _requester.CreateGetRequestAsync(
+                LeagueRootUrl + string.Format(LeagueLeagueById, leagueId), region).ConfigureAwait(false);
+
             return JsonConvert.DeserializeObject<League>(json);
         }
     }

@@ -5,7 +5,7 @@ using RiotSharp.Endpoints.LeagueEndpoint.Enums;
 namespace RiotSharp.Endpoints.LeagueEndpoint
 {
     /// <summary>
-    /// Class representing a League in the API.
+    /// Class representing a LeagueList in the API.
     /// </summary>
     public class League
     {
@@ -15,7 +15,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         /// The requested league entries.
         /// </summary>
         [JsonProperty("entries")]
-        public List<LeaguePosition> Entries { get; set; }
+        public List<LeagueItem> Entries { get; set; }
 
         /// <summary>
         /// This name is an internal place-holder name only.
@@ -23,6 +23,12 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The league id.
+        /// </summary>
+        [JsonProperty("leagueId")]
+        public string LeagueId { get; set; }
 
         /// <summary>
         /// League queue (eg: RankedSolo5x5).
