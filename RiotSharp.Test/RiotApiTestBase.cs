@@ -57,6 +57,8 @@ namespace RiotSharp.Test
 
         public static Region SummonersRegion = (Region) Enum.Parse(typeof(Region), "Na");
         public static string Queue = "RANKED_SOLO_5x5";
+        public static string Tier = "DIAMOND";
+        public static string Division = "II";
 
         // Normal 5v5 Draft Pick games
         public static int QueueId = 400;

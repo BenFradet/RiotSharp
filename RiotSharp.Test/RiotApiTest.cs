@@ -92,13 +92,25 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeaguePositionsAsync_BySummoner_Test()
+        public void GetLeagueEntriesAsync_Test()
         {
             EnsureCredibility(() =>
             {
-                var leagues = Api.League.GetLeaguePositionsAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
+                var entries = Api.League.GetLeagueEntriesAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.Queue, RiotApiTestBase.Tier, RiotApiTestBase.Division);
 
-                Assert.IsTrue(leagues.Result.Count > 0);
+                Assert.IsTrue(entries.Result.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeagueEntriesBySummonerIdAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var entries = Api.League.GetLeagueEntriesBySummonerIdAsync(Summoner1And2Region, Summoner1Id);
+
+                Assert.IsTrue(entries.Result.Count > 0);
             });
         }
 
@@ -121,6 +133,18 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var league = Api.League.GetMasterLeagueAsync(Summoner1And2Region, RiotApiTestBase.Queue);
+
+                Assert.IsTrue(league.Result.Entries.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetGrandMasterLeagueAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var league = Api.League.GetGrandMasterLeagueAsync(Summoner1And2Region, RiotApiTestBase.Queue);
 
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
