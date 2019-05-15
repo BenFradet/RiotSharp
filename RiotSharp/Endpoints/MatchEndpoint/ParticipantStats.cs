@@ -515,6 +515,24 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("perk5Var3")]
         public int Perk5Var3 { get; set; }
+
+        /// <summary>
+        /// Rune stat
+        /// </summary>
+        [JsonProperty("statPerk0")]
+        public int StatPerk0 { get; set; }
+
+        /// <summary>
+        /// Rune stat
+        /// </summary>
+        [JsonProperty("statPerk1")]
+        public int StatPerk1 { get; set; }
+
+        /// <summary>
+        /// Rune stat
+        /// </summary>
+        [JsonProperty("statPerk2")]
+        public int StatPerk2 { get; set; }
         #endregion
     }
 }
