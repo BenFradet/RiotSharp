@@ -223,6 +223,9 @@ namespace RiotSharp.Test
                     Assert.IsTrue(participant.Stats.Perk3 != 0);
                     Assert.IsTrue(participant.Stats.Perk4 != 0);
                     Assert.IsTrue(participant.Stats.Perk5 != 0);
+                    Assert.IsTrue(participant.Stats.StatPerk0 != 0);
+                    Assert.IsTrue(participant.Stats.StatPerk1 != 0);
+                    Assert.IsTrue(participant.Stats.StatPerk2 != 0);
                 }
             });
         }
