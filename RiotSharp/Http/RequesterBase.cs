@@ -96,11 +96,26 @@ namespace RiotSharp.Http
                     case HttpStatusCode.Forbidden:
                         throw new RiotSharpException("403, Forbidden", statusCode);
                     case (HttpStatusCode)429:
-                        throw new RiotSharpException("429, Rate Limit Exceeded", statusCode);
+                        var retryAfter = TimeSpan.Zero;
+                        if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
+                        {
+                            if (int.TryParse(retryAfterHeaderValues.FirstOrDefault(), out var seconds))
+                            {
+                                retryAfter = TimeSpan.FromSeconds(seconds);
+                            }
+                        }
+
+                        string rateLimitType = null;
+                        if(response.Headers.TryGetValues("X-Rate-Limit-Type", out var rateLimitTypeHeaderValues))
+                        {
+                            rateLimitType = rateLimitTypeHeaderValues.FirstOrDefault();
+                        }
+                        throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", statusCode, retryAfter, rateLimitType);
                     default:
                         throw new RiotSharpException("Unexpeced failure", statusCode);
                 }
-            } finally
+            }
+            finally
             {
                 response.Dispose(); //Dispose Response On Error
             }
