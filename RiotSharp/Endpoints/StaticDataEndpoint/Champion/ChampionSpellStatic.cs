@@ -73,7 +73,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
         /// <summary>
         ///  String identifying a spell (champion's name + key to activate the spell, example: "AatroxQ".
         /// </summary>
-        [JsonProperty("key")]
+        [JsonProperty("id")]
         public string Key { get; set; }
 
         /// <summary>
