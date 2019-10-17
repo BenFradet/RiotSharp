@@ -47,9 +47,8 @@ namespace RiotSharp.Http
         {
             var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
-            {
                 HandleRequestFailure(response); //Pass Response to get status code, Then Dispose Object.
-            }
+            
             return response;
         }
 
