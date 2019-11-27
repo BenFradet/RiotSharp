@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RiotSharp.Misc;
 using System;
+using System.Collections.Concurrent;
 
 namespace RiotSharp.Http
 {
@@ -18,7 +19,7 @@ namespace RiotSharp.Http
         public readonly IDictionary<TimeSpan, int> RateLimits;
 
         private readonly bool _throwOnDelay;
-        private readonly Dictionary<Region, RateLimiter> _rateLimiters = new Dictionary<Region, RateLimiter>();
+        private readonly ConcurrentDictionary<Region, RateLimiter> _rateLimiters = new ConcurrentDictionary<Region, RateLimiter>();
 
         /// <inheritdoc />
         public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey)
@@ -82,9 +83,7 @@ namespace RiotSharp.Http
         /// <returns></returns>
         private RateLimiter GetRateLimiter(Region region)
         {
-            if (!_rateLimiters.ContainsKey(region))
-                _rateLimiters[region] = new RateLimiter(RateLimits, _throwOnDelay);
-            return _rateLimiters[region]; 
+            return _rateLimiters.GetOrAdd(region, _ => new RateLimiter(RateLimits, _throwOnDelay));
         }
 
         /// <summary>
