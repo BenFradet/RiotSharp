@@ -7,6 +7,8 @@ C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
 Documentation can be found [here](http://benfradet.github.io/RiotSharp/api/index.html).
 
+A discord server to chat about RiotSharp can be found [here](https://discord.gg/w6U8ke).
+
 ## Features
 
 - No need to worry about the 10 requests per 10s or the 500 requests per 10m rate limits, they are already implemented in the wrapper
