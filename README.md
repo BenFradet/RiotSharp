@@ -113,19 +113,20 @@ or, alternatively, if you do not wish to create a separate Tournament object, yo
 
 You can find a list of all the available operations in [TournamentRiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.TournamentRiotApi.html).
 
-### Static API
+### Static API / Data Dragon
 
-You can retrieve static information about the game thanks to the static API, there is no rate limiting on this API and RiotSharp
+You can retrieve static information about the game thanks to the static API (Data Dragon), there is no rate limiting on this API and RiotSharp
 caches as much data as possible to make as few calls as possible.
 
 First, as with the others APIs you need to obtain an instance of the API:
 ```c#
-var staticApi = StaticRiotApi.GetInstance("API_KEY");
+var staticApi = StaticRiotApi.GetInstance();
 ```
 
 Then, you can, for example, retrieve data about champions:
 ```c#
-var champions = staticApi.GetChampions(Region.euw, ChampionData.all).Champions.Values;
+var latestVersion = "10.1.1";
+var champions = staticApi.Champions.GetAllAsync(latestVersion).Champions.Values;
 foreach (var champion in champions)
 {
     Console.WriteLine(champ.Name);
@@ -147,7 +148,7 @@ catch (RiotSharpException ex)
 foreach (var championMastery in championMasteries)
 {
     var id = championMastery.ChampionId;
-    var name = staticApi.GetChampion(RiotSharp.Misc.Region.euw, id).Name;
+    var name = staticApi.Champions.GetAllAsync(latestVersion).Champions.Values.Single(x => x.Id == id).Name; // using System.Linq;
     var level = championMastery.ChampionLevel;
     var points = championMastery.ChampionPoints;
 
