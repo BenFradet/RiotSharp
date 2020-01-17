@@ -138,7 +138,7 @@ Additionally, you can use the regular API and static API to, for example, retrie
 ```c#
 try
 {
-    var championMasteries =  api.GetChampionMasteries(RiotSharp.Misc.Region.na, summoner.Id);
+    var championMasteries =  api.ChampionMastery.GetChampionMasteriesAsync(RiotSharp.Misc.Region.na, summoner.Id).Result;
 }
 catch (RiotSharpException ex)
 {
@@ -148,7 +148,7 @@ catch (RiotSharpException ex)
 foreach (var championMastery in championMasteries)
 {
     var id = championMastery.ChampionId;
-    var name = staticApi.Champions.GetAllAsync(latestVersion).Champions.Values.Single(x => x.Id == id).Name; // using System.Linq;
+    var name = staticApi.Champions.GetAllAsync(latestVersion).Result.Champions.Values.Single(x => x.Id == id).Name; // using System.Linq;
     var level = championMastery.ChampionLevel;
     var points = championMastery.ChampionPoints;
 
