@@ -1,68 +1,98 @@
 ﻿namespace RiotSharp.Misc
 {
     /// <summary>
-    /// Mode of the game (Game API).
+    /// Mode of the game (Game API). (http://static.developer.riotgames.com/docs/lol/gameModes.json)
     /// </summary>
     public static class GameMode
     {
         /// <summary>
-        /// Classic Summoner's Rift and Twisted Treeline games.
+        /// Classic Summoner's Rift and Twisted Treeline games
         /// </summary>
         public const string Classic = "CLASSIC";
 
         /// <summary>
-        /// Dominion/Crystal Scar games.
+        /// Dominion/Crystal Scar games
         /// </summary>
         public const string Dominion = "ODIN";
 
         /// <summary>
-        /// ARAM games.
+        /// ARAM games
         /// </summary>
         public const string Aram = "ARAM";
 
         /// <summary>
-        /// Tutorial games.
+        /// Tutorial games
         /// </summary>
         public const string Tutorial = "TUTORIAL";
 
         /// <summary>
-        /// One for All games.
+        /// URF games
+        /// </summary>
+        public const string Urf = "URF";
+
+        /// <summary>
+        /// Doom Bot games
+        /// </summary>
+        public const string DoomBot = "DOOMBOTSTEEMO";
+
+        /// <summary>
+        /// One for All games
         /// </summary>
         public const string OneForAll = "ONEFORALL";
 
         /// <summary>
-        /// Snowdown Showdown games.
+        /// Ascension games
         /// </summary>
-        public const string FirstBlood = "FIRSTBLOOD";
+        public const string Ascension = "Ascension games";
 
         /// <summary>
-        /// Ascension mode games.
+        /// Snowdown Showdown games
         /// </summary>
-        public const string Ascension = "ASCENSION";
+        public const string Snowdown = "FIRSTBLOOD";
 
         /// <summary>
-        /// Introduction game mode.
+        /// Legend of the Poro King games
         /// </summary>
-        public const string Intro = "INTRO";
+        public const string PoroKing = "KINGPORO";
 
         /// <summary>
-        /// King Poro game mode.
+        /// Nexus Siege games
         /// </summary>
-        public const string KingPoro = "KINGPORO";
+        public const string NexusSiege = "SIEGE";
 
         /// <summary>
-        /// Nexus Siege game mode.
+        /// Blood Hunt Assassin games
         /// </summary>
-        public const string Siege = "SIEGE";
+        public const string BloodHunt = "ASSASSINATE";
 
         /// <summary>
-        /// Assassinate game mode.
+        /// All Random Summoner's Rift games
         /// </summary>
-        public const string Assassinate = "ASSASSINATE";
+        public const string ARSR = "ARSR";
 
         /// <summary>
-        /// Darkstar game mode.
+        /// Dark Star: Singularity games
         /// </summary>
         public const string Darkstar = "DARKSTAR";
+
+        /// <summary>
+        /// Star Guardian Invasion games
+        /// </summary>
+        public const string Starguardian = "STARGUARDIAN";
+
+        /// <summary>
+        /// PROJECT: Hunters games
+        /// </summary>
+        public const string Project = "PROJECT";
+
+        /// <summary>
+        /// Nexus Blitz games
+        /// </summary>
+        public const string NexusBlitz = "GAMEMODEX";
+
+        /// <summary>
+        /// Odyssey: Extraction games
+        /// </summary>
+        public const string Oddysey = "ODDYSEY";
     }
 }

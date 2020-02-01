@@ -1,168 +1,149 @@
 ﻿namespace RiotSharp.Misc
 {
     /// <summary>
-    /// Language for the data retrieved (Static API).
+    /// Language for the data retrieved (Static API) (https://ddragon.leagueoflegends.com/cdn/languages.json)
     /// </summary>
     public enum Language
     {
         /// <summary>
-        /// American English.
-        /// </summary>
-        en_US,
-
-        /// <summary>
-        /// British English.
-        /// </summary>
-        en_GB,
-
-        /// <summary>
-        /// Polish English.
-        /// </summary>
-        en_PL,
-
-        /// <summary>
-        /// Australian English.
-        /// </summary>
-        en_AU,
-
-        /// <summary>
-        /// Filipino English.
-        /// </summary>
-        en_PH,
-
-        /// <summary>
-        /// Singaporean English.
-        /// </summary>
-        en_SG,
-
-        /// <summary>
-        /// Polish.
-        /// </summary>
-        pl_PL,
-
-        /// <summary>
-        /// Czech.
+        /// Czech (Czech Republic)
         /// </summary>
         cs_CZ,
 
         /// <summary>
-        /// Hungarian.
-        /// </summary>
-        hu_HU,
-
-        /// <summary>
-        /// German.
-        /// </summary>
-        de_DE,
-
-        /// <summary>
-        /// Spanish.
-        /// </summary>
-        es_ES,
-
-        /// <summary>
-        /// Argentinian Spanish.
-        /// </summary>
-        es_AR,
-
-        /// <summary>
-        /// Latam Spanish.
-        /// </summary>
-        es_MX,
-
-        /// <summary>
-        /// French.
-        /// </summary>
-        fr_FR,
-
-        /// <summary>
-        /// Italian.
-        /// </summary>
-        it_IT,
-
-        /// <summary>
-        /// Romanian.
-        /// </summary>
-        ro_RO,
-
-        /// <summary>
-        /// Greek.
+        /// Greek (Greece)
         /// </summary>
         el_GR,
 
         /// <summary>
-        /// Portuguese
+        /// Polish (Poland)
         /// </summary>
-        pt_PT,
+        pl_PL,
+        en_PL,
 
         /// <summary>
-        /// Brazilian Portuguese.
+        /// Romanian (Romania)
         /// </summary>
-        pt_BR,
+        ro_RO,
 
         /// <summary>
-        /// Turkish.
+        /// Hungarian (Hungary)
         /// </summary>
-        tr_TR,
+        hu_HU,
 
         /// <summary>
-        /// Russian.
+        /// English (United Kingdom)
         /// </summary>
-        ru_RU,
+        en_GB,
 
         /// <summary>
-        /// Chinese.
+        /// German (Germany)
         /// </summary>
-        zh_CN,
+        de_DE,
 
         /// <summary>
-        /// Taiwanese Chinese.
+        /// Spanish (Spain)
         /// </summary>
-        zh_TW,
+        es_ES,
 
         /// <summary>
-        /// Korean.
+        /// Italian (Italy)
+        /// </summary>
+        it_IT,
+
+        /// <summary>
+        /// French (France)
+        /// </summary>
+        fr_FR,
+
+        /// <summary>
+        /// Japanese (Japan)
+        /// </summary>
+        ja_JP,
+
+        /// <summary>
+        /// Korean (Korea)
         /// </summary>
         ko_KR,
 
         /// <summary>
-        /// Bulgarian.
+        /// Spanish (Mexico)
         /// </summary>
-        bg_BG,
+        es_MX,
 
         /// <summary>
-        /// Indonesian.
+        /// Spanish (Argentina)
         /// </summary>
-        id_ID,
+        es_AR,
 
         /// <summary>
-        /// Malaysian.
+        /// Portuguese (Brazil)
+        /// </summary>
+        pt_BR,
+
+        /// <summary>
+        /// English (United States)
+        /// </summary>
+        en_US,
+
+        /// <summary>
+        /// English (Australia)
+        /// </summary>
+        en_AU,
+
+        /// <summary>
+        /// Russian (Russia)
+        /// </summary>
+        ru_RU,
+
+        /// <summary>
+        /// Turkish (Turkey)
+        /// </summary>
+        tr_TR,
+
+        /// <summary>
+        /// Malay (Malaysia)
         /// </summary>
         ms_MY,
 
         /// <summary>
-        /// Malaysian Chinese.
+        /// English (Republic of the Philippines)
         /// </summary>
-        zh_MY,
+        en_PH,
 
         /// <summary>
-        /// Dutch.
+        /// English (Singapore)
         /// </summary>
-        nl_NL,
+        en_SG,
 
         /// <summary>
-        /// Thaï.
+        /// Thai (Thailand)
         /// </summary>
         th_TH,
 
         /// <summary>
-        /// Vietnamese.
+        /// Vietnamese (Viet Nam)
         /// </summary>
         vn_VN,
 
         /// <summary>
-        /// Japanese.
+        /// Indonesian (Indonesia)
         /// </summary>
-        ja_JP
+        id_ID,
+
+        /// <summary>
+        /// Chinese (Malaysia)
+        /// </summary>
+        zh_MY,
+
+        /// <summary>
+        /// Chinese (China)
+        /// </summary>
+        zh_CN,
+
+        /// <summary>
+        /// Chinese (Taiwan)
+        /// </summary>
+        zh_TW
     }
 }

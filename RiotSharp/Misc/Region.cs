@@ -17,7 +17,7 @@ namespace RiotSharp.Misc
         /// <summary>
         /// North-eastern europe.
         /// </summary>
-        Eune,
+        Eun1,
 
         /// <summary>
         /// Western europe.

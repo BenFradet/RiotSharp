@@ -79,7 +79,7 @@ namespace RiotSharp.Misc.Converters
                 case Platform.OC1:
                     return Region.Oce;
                 case Platform.EUN1:
-                    return Region.Eune;
+                    return Region.Eun1;
                 case Platform.TR1:
                     return Region.Tr;
                 case Platform.RU:

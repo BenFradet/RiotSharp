@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
-using RiotSharp.Endpoints.LeagueEndpoint.Enums.Converters;
+using RiotSharp.Misc.Converters;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace RiotSharp.Endpoints.LeagueEndpoint.Enums
+namespace RiotSharp.Misc
 {
     /// <summary>
     /// Tier of the league (League API).
@@ -48,7 +51,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint.Enums
         /// Iron tier.
         /// </summary>
         Iron,
-        
+
         /// <summary>
         /// Unranked.
         /// </summary>

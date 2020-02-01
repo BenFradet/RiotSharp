@@ -14,13 +14,13 @@ namespace RiotSharp.Test
         public static string ApiKey = Configuration["ApiKey"];
         public static string FaultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
 
-        public static Region Summoner1And2Region = (Region)Enum.Parse(typeof(Region), "Na");
+        public static Region Summoner1And2Region = (Region)Enum.Parse(typeof(Region), "Eun1");
 
         public static long InvalidSummonerId = -1;
-        public static string Summoner1Id = "fhOx2QJ2VKSaaD9nVJ4XJSzMBPW2es7FboigIwW5ss97coA";
-        public static string Summoner1AccountId = "6GwG-_gvthMjC4bMSh-K_n89fXmwAO2r_xW_bydQX6jsQdI";
-        public static string Summoner1Name = "toothlessG";
-        public static string Summoner1Puuid = "R2RjsXCUB-zJ9T5cZVr1ZI4vVqa3sOR61xRmU71bsJ3o_TCRR_ttdVphhKaD4y57xcvB2AdrNWqGKw";
+        public static string Summoner1Id = "79Ks2KwGjbX3ar0InA4SZoo5VhBffkYmvjHIFfCNzWqtiZM";
+        public static string Summoner1AccountId = "IjeB_hkeO8eS9-g36yTJvXPuHu7ge6rLRhYkIfJSVVLiqQ";
+        public static string Summoner1Name = "Feeding King";
+        public static string Summoner1Puuid = "NrPw06OU-eP-iQEh-V1oXcA3IeIA9ofQf5e-1dgt7uY5TT_FFDTaGQgiDKNaDqat8IXTpRTUuj5mIA";
 
         public static long Summoner2Id = 31815991;
         public static long Summoner2AccountId = 46532395;

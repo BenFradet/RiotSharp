@@ -10,48 +10,73 @@ namespace RiotSharp.Misc
     public enum MapType
     {
         /// <summary>
-        /// Summoner's Rift Summer Variant
+        /// Original Summer variant
         /// </summary>
         SummonersRiftSummerVariant = 1,
 
         /// <summary>
-        /// Summoner's Rift Autumn Variant
+        /// Original Autumn variant
         /// </summary>
         SummonersRiftAutumnVariant = 2,
 
         /// <summary>
-        /// The Proving Grounds Tutorial Map
+        /// Tutorial Map
         /// </summary>
         TheProvingGrounds = 3,
 
         /// <summary>
-        /// Twisted Treeline Original Version
+        /// Original Version
         /// </summary>
         TwistedTreelineOriginal = 4,
 
         /// <summary>
-        ///The Crystal Scar Dominion Map
+        /// Dominion map
         /// </summary>
         TheCrystalScar = 8,
 
         /// <summary>
-        /// Twisted Treeline Current Version
+        /// Last TT map
         /// </summary>
-        TwistedTreelineCurrent = 10,
+        TwistedTreeline = 10,
 
         /// <summary>
-        /// Summoner's Rift Current Version
+        /// Current Version
         /// </summary>
         SummonersRift = 11,
 
         /// <summary>
-        /// Howling Abyss ARAM Map
+        /// ARAM map
         /// </summary>
         HowlingAbyss = 12,
 
         /// <summary>
-        /// Darkstar Map
+        /// Alternate ARAM map
         /// </summary>
-        CosmicRuins = 16
+        ButchersBridge = 14,
+
+        /// <summary>
+        /// Dark Star: Singularity map
+        /// </summary>
+        CosmicRuins = 16,
+
+        /// <summary>
+        /// Star Guardian Invasion map
+        /// </summary>
+        ValoranCityPark = 18,
+
+        /// <summary>
+        /// PROJECT: Hunters map
+        /// </summary>
+        Substructure43 = 19,
+
+        /// <summary>
+        /// Odyssey: Extraction map
+        /// </summary>
+        CrashSite = 20,
+
+        /// <summary>
+        /// Nexus Blitz map
+        /// </summary>
+        NexusBltiz = 21
     }
 }

@@ -25,7 +25,7 @@ namespace RiotSharp.Misc.Converters
                     return Region.Br;
                 case "EUNE":
                 case "eune":
-                    return Region.Eune;
+                    return Region.Eun1;
                 case "EUW":
                 case "euw":
                     return Region.Euw;

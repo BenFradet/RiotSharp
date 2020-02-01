@@ -1,4 +1,8 @@
-﻿namespace RiotSharp.Endpoints.LeagueEndpoint.Enums
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace RiotSharp.Misc
 {
     public enum Division
     {

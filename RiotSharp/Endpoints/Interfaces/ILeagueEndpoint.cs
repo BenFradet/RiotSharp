@@ -31,10 +31,10 @@ namespace RiotSharp.Endpoints.Interfaces
         /// </summary>
         /// <param name="region">The region</param>
         /// <param name="division">The division</param>
-        /// <param name="tier">The tier (<see cref="Enums.Tier.Iron"/> to <see cref="Enums.Tier.Diamond"/>)</param>
+        /// <param name="tier">The tier (<see cref="Iron"/> to <see cref="Diamond"/>)</param>
         /// <param name="rankedQueue">Ranked queue. (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>List of matching <see cref="LeagueEntry"/>s</returns>
-        Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, LeagueEndpoint.Enums.Division division, LeagueEndpoint.Enums.Tier tier, string rankedQueue, int page = 1);
+        Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, string rankedQueue, Tier tier, Division division, int page = 1);
 
         /// <summary>
         /// Used to retrieve a list of <see cref="LeagueEntry"/> for the given <paramref name="encryptedSummonerId"/>.

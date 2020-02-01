@@ -1,9 +1,11 @@
-﻿using System;
-using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
 
-namespace RiotSharp.Endpoints.LeagueEndpoint.Enums.Converters
+namespace RiotSharp.Misc.Converters
 {
     class TierConverter : JsonConverter
     {
@@ -19,7 +21,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint.Enums.Converters
             var str = token.Value<string>();
             if (str == null) return null;
 
-            if(Enum.TryParse<Tier>(str, true, out var result))
+            if (Enum.TryParse<Tier>(str, true, out var result))
             {
                 return result;
             }

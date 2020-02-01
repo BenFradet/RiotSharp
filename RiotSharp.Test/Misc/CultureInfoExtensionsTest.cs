@@ -21,14 +21,14 @@ namespace RiotSharp.Test.Misc
             { Language.ro_RO, new CultureInfo("ro") }, { Language.ru_RU, new CultureInfo("ru") },
             { Language.th_TH, new CultureInfo("th") }, { Language.tr_TR, new CultureInfo("tr") },
             { Language.vn_VN, new CultureInfo("vn") }, { Language.zh_CN, new CultureInfo("zh") },
-           
+
         };
         private static Dictionary<Language, CultureInfo> directlySupportedCultureInfos = new Dictionary<Language, CultureInfo>
         {
             { Language.cs_CZ, new CultureInfo("cs-CZ") }, { Language.de_DE, new CultureInfo("de-DE") },
             { Language.el_GR, new CultureInfo("el-GR") }, { Language.en_AU, new CultureInfo("en-AU") },
             { Language.en_GB, new CultureInfo("en-GB") }, { Language.en_PH, new CultureInfo("en-PH") },
-            { Language.en_PL, new CultureInfo("en-PL") }, { Language.en_SG, new CultureInfo("en-SG") },
+            { Language.en_SG, new CultureInfo("en-SG") }, { Language.zh_TW, new CultureInfo("zh-TW") },
             { Language.en_US, new CultureInfo("en-US") }, { Language.es_AR, new CultureInfo("es-AR") },
             { Language.es_ES, new CultureInfo("es-ES") }, { Language.es_MX, new CultureInfo("es-MX") },
             { Language.fr_FR, new CultureInfo("fr-FR") }, { Language.hu_HU, new CultureInfo("hu-HU") },
@@ -38,8 +38,7 @@ namespace RiotSharp.Test.Misc
             { Language.pt_BR, new CultureInfo("pt-BR") }, { Language.ro_RO, new CultureInfo("ro-RO") },
             { Language.ru_RU, new CultureInfo("ru-RU") }, { Language.th_TH, new CultureInfo("th-TH") },
             { Language.tr_TR, new CultureInfo("tr-TR") }, { Language.vn_VN, new CultureInfo("vn-VN") },
-            { Language.zh_CN, new CultureInfo("zh-CN") }, { Language.zh_MY, new CultureInfo("zh-MY") },
-            { Language.zh_TW, new CultureInfo("zh-TW") }
+            { Language.zh_CN, new CultureInfo("zh-CN") }, { Language.zh_MY, new CultureInfo("zh-MY") }
         };
         private static CultureInfo unsupportedNeutralCultureInfo = new CultureInfo("et");
         private static CultureInfo unsupportedCultureInfo = new CultureInfo("et-ET");
@@ -48,7 +47,7 @@ namespace RiotSharp.Test.Misc
         public void ToLanguage_SupportedNeutralCultureInfo_ReturnsLanguage()
         {
             foreach(var supportedNeutralCulture in supportedNeutralCultureInfos)
-            {               
+            {
                 // Act
                 var language = supportedNeutralCulture.Value.ToLanguage();
 
