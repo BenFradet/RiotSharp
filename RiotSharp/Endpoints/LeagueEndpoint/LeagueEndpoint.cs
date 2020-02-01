@@ -20,14 +20,6 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         private const string LeagueEntriesByDivTierQueue = "/entries/{0}/{1}/{2}";
         private const string LeagueLeagueById = "/leagues/{0}";
 
-        private const string TftLeagueRootUrl = "/tft/league/v1";
-        private const string TftGrandmasterLeague = "/grandmaster";
-        private const string TftChallengerLeague = "/challenger";
-        private const string TftMasterLeague = "/master";
-        private const string TftLeagueEntriesBySummoner = "/entries/by-summoner/{0}";
-        private const string TftLeagueEntriesByTierDivision = "/{0}/{1}";
-        private const string TftLeagueEntriesByLeagueId = "/leagues/{0}";
-
         private readonly IRateLimitedRequester _requester;
 
         /// <summary>
@@ -92,59 +84,6 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
             var json = await _requester.CreateGetRequestAsync(
                 LeagueRootUrl + string.Format(LeagueLeagueById, leagueId), region).ConfigureAwait(false);
 
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
-        /// <inheritdoc />
-        public async Task<League> GetTftGrandmasterLeagueAsync(Region region)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                TftLeagueRootUrl + TftGrandmasterLeague, region).ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
-        /// <inheritdoc />
-        public async Task<League> GetTftChallengerLeagueAsync(Region region)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                TftLeagueRootUrl + TftChallengerLeague, region).ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
-        /// <inheritdoc />
-        public async Task<League> GetTftMasterLeagueAsync(Region region)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-               TftLeagueRootUrl + TftMasterLeague, region).ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<League>(json);
-        }
-
-        /// <inheritdoc />
-        public async Task<List<LeagueEntry>> GetTftLeagueEntriesBySummonerAsync(Region region, string encryptedSummonerId)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                TftLeagueRootUrl + string.Format(TftLeagueEntriesBySummoner, encryptedSummonerId), region).ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<List<LeagueEntry>>(json);
-        }
-
-        /// <inheritdoc />
-        public async Task<List<LeagueEntry>> GetTftLeagueByTierDivisionAsync(Region region, Enums.Tier tier, Enums.Division division)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                TftLeagueRootUrl + string.Format(TftLeagueEntriesByTierDivision, tier, division), region).ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<List<LeagueEntry>>(json);
-        }
-
-        /// <inheritdoc />
-        public async Task<League> GetTftLeagueByIdAsync(Region region, string leagueId)
-        {
-            var json = await _requester.CreateGetRequestAsync(
-                TftLeagueRootUrl + string.Format(TftLeagueEntriesByLeagueId, leagueId), region).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<League>(json);
         }
 

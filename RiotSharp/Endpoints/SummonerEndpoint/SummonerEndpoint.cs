@@ -15,13 +15,11 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
     public class SummonerEndpoint : ISummonerEndpoint
     {
         private const string SummonerRootUrl = "/lol/summoner/v4/summoners";
-        private const string TftSummonerRootUrl = "/tft/summoner/v1/summoners";
         private const string SummonerByAccountIdUrl = "/by-account/{0}";
         private const string SummonerByNameUrl = "/by-name/{0}";
         private const string SummonerByPuuid = "/by-puuid/{0}";
         private const string SummonerBySummonerIdUrl = "/{0}";
         private const string SummonerCache = "summoner-{0}_{1}";
-        private const string TftSummonerCache = "tft-summoner-{0}_{1}";
         private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
 
         private readonly IRateLimitedRequester _requester;
@@ -106,94 +104,6 @@ namespace RiotSharp.Endpoints.SummonerEndpoint
                 summoner.Region = region;
             }
             _cache.Add(string.Format(SummonerCache, region, puuid), summoner, SummonerTtl);
-            return summoner;
-        }
-
-        /// <inheritdoc />
-        public async Task<Summoner> GetTftSummonerByAccountIdAsync(Region region, string accountId)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(TftSummonerCache, region, accountId));
-            if(summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-
-            var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(TftSummonerRootUrl + SummonerByAccountIdUrl, accountId), region).ConfigureAwait(false);
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-
-            if(summoner != null)
-            {
-                summoner.Region = region;
-            }
-
-            _cache.Add(string.Format(TftSummonerCache, region, accountId), summoner, SummonerTtl);
-            return summoner;
-        }
-
-        /// <inheritdoc />
-        public async Task<Summoner> GetTftSummonerByNameAsync(Region region, string summonerName)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(TftSummonerCache, region, summonerName));
-            if(summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-
-            var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(TftSummonerRootUrl + SummonerByNameUrl, summonerName),region).ConfigureAwait(false);
-
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-
-            if(summoner != null)
-            {
-                summoner.Region = region;
-            }
-            _cache.Add(string.Format(TftSummonerCache, region, summonerName), summoner, SummonerTtl);
-            return summoner;
-        }
-
-        /// <inheritdoc />
-        public async Task<Summoner> GetTftSummonerByPuuidAsync(Region region, string puuid)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(TftSummonerCache, region, puuid));
-            if (summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-
-            var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(TftSummonerRootUrl + SummonerByPuuid, puuid), region).ConfigureAwait(false);
-
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-
-            if (summoner != null)
-            {
-                summoner.Region = region;
-            }
-            _cache.Add(string.Format(TftSummonerCache, region, puuid), summoner, SummonerTtl);
-            return summoner;
-        }
-
-        /// <inheritdoc />
-        public async Task<Summoner> GetTftSummonerBySummonerIdAsync(Region region, string summonerId)
-        {
-            var summonerInCache = _cache.Get<string, Summoner>(string.Format(TftSummonerCache, region, summonerId));
-            if (summonerInCache != null)
-            {
-                return summonerInCache;
-            }
-
-            var jsonResponse = await _requester.CreateGetRequestAsync(
-                string.Format(TftSummonerRootUrl + SummonerBySummonerIdUrl, summonerId), region).ConfigureAwait(false);
-
-            var summoner = JsonConvert.DeserializeObject<Summoner>(jsonResponse);
-
-            if (summoner != null)
-            {
-                summoner.Region = region;
-            }
-            _cache.Add(string.Format(TftSummonerCache, region, summonerId), summoner, SummonerTtl);
             return summoner;
         }
     }

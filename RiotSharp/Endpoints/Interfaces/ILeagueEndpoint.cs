@@ -61,50 +61,5 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <returns>A <see cref="League" /> which contains all the grandmasters for this specific region and queue.</returns>
         Task<League> GetLeagueGrandmastersByQueueAsync(Region region, string rankedQueue);
 
-        /// <summary>
-        /// Get the TFT grandmaster league
-        /// </summary>
-        /// <param name="region">Participants server region</param>
-        /// <returns><see cref="LeagueEntry"> class</returns>
-        Task<League> GetTftGrandmasterLeagueAsync(Region region);
-
-        /// <summary>
-        /// Get the TFT challenger league
-        /// </summary>
-        /// <param name="region">Participants server region</param>
-        /// <returns><see cref="League"> class</returns>
-        Task<League> GetTftChallengerLeagueAsync(Region region);
-
-        /// <summary>
-        /// Get the TFT master league
-        /// </summary>
-        /// <param name="region">Participants server region</param>
-        /// <returns><see cref="League"> class</returns>
-        Task<League> GetTftMasterLeagueAsync(Region region);
-
-        /// <summary>
-        /// Gets a list of TFT league entries
-        /// </summary>
-        /// <param name="region">Summoners server region</param>
-        /// <param name="encryptedSummonerId">Summoners encrypted id</param>
-        /// <returns>List of <see cref="LeagueEntry"> class</returns>
-        Task<List<LeagueEntry>> GetTftLeagueEntriesBySummonerAsync(Region region, string encryptedSummonerId);
-
-        /// <summary>
-        /// Gets a list of league entries for a given tier/division
-        /// </summary>
-        /// <param name="region">Participants server region</param>
-        /// <param name="tier">Tier to get league entries from</param>
-        /// <param name="division">Tier division to get league entries from</param>
-        /// <returns>List of <see cref="LeagueEntry"> class</returns>
-        Task<List<LeagueEntry>> GetTftLeagueByTierDivisionAsync(Region region, LeagueEndpoint.Enums.Tier tier, LeagueEndpoint.Enums.Division division);
-
-        /// <summary>
-        /// Gets the TFT league by league uuid
-        /// </summary>
-        /// <param name="region">Participants server region</param>
-        /// <param name="leagueId">UUID of the league</param>
-        /// <returns><see cref="League"> object/returns>
-        Task<League> GetTftLeagueByIdAsync(Region region, string leagueId);
     }
 }

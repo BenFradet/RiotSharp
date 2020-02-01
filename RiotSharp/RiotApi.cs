@@ -58,6 +58,15 @@ namespace RiotSharp
 
         /// <inheritdoc />
         public IStatusEndpoint Status { get; }
+
+        ///<inheritdoc />
+        public ITftLeagueEndpoint TftLeague { get; }
+
+        ///<inheritdoc />
+        public ITftMatchEndpoint TftMatch { get; }
+
+        ///<inheritdoc />
+        public ITftSummonerEndpoint TftSummoner { get; }
         #endregion
 
         /// <summary>

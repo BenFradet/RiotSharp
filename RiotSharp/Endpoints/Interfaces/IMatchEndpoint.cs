@@ -55,21 +55,5 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="region">Region in which the summoner is.</param>
         /// <param name="matchId">The match ID of the timeline to be retrieved.</param>
         Task<MatchTimeline> GetMatchTimelineAsync(Region region, long matchId);
-
-        /// <summary>
-        /// Gets a list of match ids by puuid
-        /// </summary>
-        /// <param name="region">Region in which the summoner is.</param>
-        /// <param name="puuid"></param>
-        /// <returns>A list of strings</returns>
-        Task<List<string>> GetTftMatchIdsByPuuidAsync(Region region, string puuid, int count = 20);
-
-        /// <summary>
-        /// Get a match by id
-        /// </summary>
-        /// <param name="region">Region in which the summoner is.</param>
-        /// <param name="matchId">The match id for the match wanting to be retrieved</param>
-        /// <returns><see cref="Match"> object </returns>
-        Task<Match> GetTftMatchByIdAsync(Region region, string matchId);
     }
 }
