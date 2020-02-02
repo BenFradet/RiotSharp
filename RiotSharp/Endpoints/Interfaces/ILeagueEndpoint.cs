@@ -60,6 +60,5 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="rankedQueue">A ranked queue (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>A <see cref="League" /> which contains all the grandmasters for this specific region and queue.</returns>
         Task<League> GetLeagueGrandmastersByQueueAsync(Region region, string rankedQueue);
-
     }
 }

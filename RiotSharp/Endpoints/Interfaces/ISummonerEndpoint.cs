@@ -40,6 +40,5 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="puuid">PUUID of the summoner you're looking for.</param>
         /// <returns>A summoner.</returns>
         Task<Summoner> GetSummonerByPuuidAsync(Region region, string puuid);
-
     }
 }
