@@ -75,7 +75,16 @@ namespace RiotSharp.Caching
 
         private T Load<T>(string key)
         {
-            var json = File.ReadAllText(GetPath(key));
+            var json = "";
+        
+            try
+            {
+                json = File.ReadAllText(GetPath(key));
+            }
+            catch(FileNotFoundException ex)
+            {
+                
+            }
             return JsonConvert.DeserializeObject<T>(json);
         }
 
