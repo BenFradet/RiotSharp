@@ -56,7 +56,7 @@ namespace RiotSharp.Caching
         /// <inheritdoc />
         public TV Get<TK, TV>(TK key) where TV : class
         {
-            var data = Load<CacheData<TV>>(key);
+            var data = Load<CacheData<TV>>(key.ToString());
 
             return IsExpired(data) ? null : data.Data;
         }
