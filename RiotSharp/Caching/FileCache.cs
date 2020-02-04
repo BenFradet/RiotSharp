@@ -16,9 +16,14 @@ namespace RiotSharp.Caching
         /// Create file cache instance
         /// </summary>
         /// <param name="dir">Directory for the cache to store in</param>
-        public FileCache(string dir = "/cache")
+        public FileCache(string dir = "cache")
         {
             _directory = Path.Combine(Directory.GetCurrentDirectory(), dir);
+            
+            if(!Directory.Exists(_directory))
+            {
+                Directory.CreateDirectory(_directory);
+            }
         }
 
         /// <inheritdoc />
@@ -51,7 +56,7 @@ namespace RiotSharp.Caching
         /// <inheritdoc />
         public TV Get<TK, TV>(TK key) where TV : class
         {
-            var data = Load<CacheData<TV>>(key.ToString());
+            var data = Load<CacheData<TV>>(key);
 
             return IsExpired(data) ? null : data.Data;
         }
@@ -68,9 +73,9 @@ namespace RiotSharp.Caching
             return Path.Combine(_directory, key.GetHashCode().ToString());
         }
 
-        private T Load<T>(string path)
+        private T Load<T>(string key)
         {
-            var json = File.ReadAllText(path);
+            var json = File.ReadAllText(GetPath(key));
             return JsonConvert.DeserializeObject<T>(json);
         }
 
