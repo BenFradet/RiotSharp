@@ -15,12 +15,20 @@ namespace RiotSharp.Caching
         /// <summary>
         /// Create file cache instance
         /// </summary>
-        /// <param name="dir">Directory for the cache to store in</param>
-        public FileCache(string dir = "cache")
+        /// <param name="relativeDir">Relative Directory for the cache to store in (if<see cref="absoluteDir"/> is not null this directory gets ignored)</param>
+        /// <param name="absoluteDir">Absolute Directory for the cache to store in (if not null this directory is prefered)</param>
+        public FileCache(string relativeDir = "cache", string absoluteDir = null)
         {
-            _directory = Path.Combine(Directory.GetCurrentDirectory(), dir);
-            
-            if(!Directory.Exists(_directory))
+            if(absoluteDir != null)
+            {
+                _directory = absoluteDir;
+            }
+            else
+            {
+                _directory = Path.Combine(Directory.GetCurrentDirectory(), relativeDir);
+            }
+
+            if (!Directory.Exists(_directory))
             {
                 Directory.CreateDirectory(_directory);
             }
