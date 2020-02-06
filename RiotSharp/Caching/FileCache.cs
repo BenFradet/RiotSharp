@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace RiotSharp.Caching
@@ -16,9 +18,11 @@ namespace RiotSharp.Caching
         /// Create file cache instance
         /// </summary>
         /// <param name="dir">Directory for the cache to store in</param>
-        public FileCache(string dir = "/cache")
+        public FileCache(string dir = "cache")
         {
-            _directory = Path.Combine(Directory.GetCurrentDirectory(), dir);
+            string baseDir = Directory.GetCurrentDirectory();
+            _directory = Path.Combine(baseDir, dir);
+            Directory.CreateDirectory(_directory);
         }
 
         /// <inheritdoc />
@@ -51,8 +55,16 @@ namespace RiotSharp.Caching
         /// <inheritdoc />
         public TV Get<TK, TV>(TK key) where TV : class
         {
-            var data = Load<CacheData<TV>>(key.ToString());
-
+            CacheData<TV> data;
+            try
+            {
+                var str = key.ToString();
+                data = Load<CacheData<TV>>(str);
+            }
+            catch (FileNotFoundException)
+            {
+                data = null;
+            }
             return IsExpired(data) ? null : data.Data;
         }
 
@@ -65,19 +77,31 @@ namespace RiotSharp.Caching
 
         private string GetPath(string key)
         {
-            return Path.Combine(_directory, key.GetHashCode().ToString());
+            string keyHashCode;
+            using (SHA1 hasher = SHA1.Create())
+            {
+                byte[] input = Encoding.UTF8.GetBytes(key);
+                byte[] hashBytes = hasher.ComputeHash(input);
+                keyHashCode = BitConverter.ToString(hashBytes).Replace("-", "");
+            }
+            var path = Path.Combine(_directory, keyHashCode);
+            return path;
         }
 
         private T Load<T>(string path)
         {
-            var json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<T>(json);
+            var hashedFilePath = $"{GetPath(path)}.json";
+            var readText = File.ReadAllText(hashedFilePath);
+            var json = JsonConvert.DeserializeObject<T>(readText);
+            return json;
         }
 
         private void Store<TK, TV>(TK key, TV value, long ttlMins = 24 * 60 * 7 * 4) // A month
         {
             CacheData<TV> data = new CacheData<TV>(ttlMins, value);
-            File.WriteAllText(GetPath(key.ToString()), JsonConvert.SerializeObject(data));
+            var hashedFilePath = GetPath(key.ToString());
+            var serialisedJson = JsonConvert.SerializeObject(data);
+            File.WriteAllText($"{hashedFilePath}.json", serialisedJson);
         }
 
         private bool IsExpired<T>(CacheData<T> data)
