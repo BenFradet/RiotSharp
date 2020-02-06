@@ -20,6 +20,11 @@ namespace RiotSharp.Caching
         /// <param name="dir">Directory for the cache to store in</param>
         public FileCache(string dir = "cache")
         {
+            if (string.IsNullOrWhiteSpace(dir))
+            {
+                throw new ArgumentNullException("Directory path cannot be empty or null.");
+            }
+            
             string baseDir = Directory.GetCurrentDirectory();
             _directory = Path.Combine(baseDir, dir);
             Directory.CreateDirectory(_directory);
