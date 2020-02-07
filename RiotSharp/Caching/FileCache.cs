@@ -18,15 +18,27 @@ namespace RiotSharp.Caching
         /// Create file cache instance
         /// </summary>
         /// <param name="dir">Directory for the cache to store in</param>
-        public FileCache(string dir = "cache")
+        public FileCache(Uri directory)
         {
-            if (string.IsNullOrWhiteSpace(dir))
+            if (directory == null)
             {
-                throw new ArgumentNullException("Directory path cannot be empty or null.");
+                throw new ArgumentNullException("Input Uri cannot be null.");
             }
-            
-            string baseDir = Directory.GetCurrentDirectory();
-            _directory = Path.Combine(baseDir, dir);
+            else if (string.IsNullOrWhiteSpace(directory.OriginalString))
+            {
+                throw new ArgumentNullException("Directory path cannot be null or empty.");
+            }
+
+            if (directory.IsAbsoluteUri)
+            {
+                _directory = directory.LocalPath;
+            }
+            else
+            {
+                string baseDir = Directory.GetCurrentDirectory();
+                _directory = Path.Combine(baseDir, directory.OriginalString);
+            }
+
             Directory.CreateDirectory(_directory);
         }
 
