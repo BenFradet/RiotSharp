@@ -12,13 +12,14 @@ namespace RiotSharp.Caching
     /// <seealso cref="RiotSharp.Caching.ICache" />
     public class FileCache : ICache
     {
-        private static string _directory;
+        private string _directory;
+        private bool _hashKeys;
 
         /// <summary>
         /// Create file cache instance
         /// </summary>
         /// <param name="dir">Directory for the cache to store in</param>
-        public FileCache(Uri directory)
+        public FileCache(Uri directory, bool hashKeys = false)
         {
             if (directory == null)
             {
@@ -40,6 +41,7 @@ namespace RiotSharp.Caching
             }
 
             Directory.CreateDirectory(_directory);
+            _hashKeys = hashKeys;
         }
 
         /// <inheritdoc />
@@ -94,21 +96,23 @@ namespace RiotSharp.Caching
 
         private string GetPath(string key)
         {
-            string keyHashCode;
-            using (SHA1 hasher = SHA1.Create())
+            if (_hashKeys)
             {
-                byte[] input = Encoding.UTF8.GetBytes(key);
-                byte[] hashBytes = hasher.ComputeHash(input);
-                keyHashCode = BitConverter.ToString(hashBytes).Replace("-", "");
+                using (SHA1 hasher = SHA1.Create())
+                {
+                    byte[] input = Encoding.UTF8.GetBytes(key);
+                    byte[] hashBytes = hasher.ComputeHash(input);
+                    key = BitConverter.ToString(hashBytes).Replace("-", "");
+                }
             }
-            var path = Path.Combine(_directory, keyHashCode);
+            var path = Path.Combine(_directory, key + ".json");
             return path;
         }
 
         private T Load<T>(string path)
         {
-            var hashedFilePath = $"{GetPath(path)}.json";
-            var readText = File.ReadAllText(hashedFilePath);
+            var filePath = GetPath(path);
+            var readText = File.ReadAllText(filePath);
             var json = JsonConvert.DeserializeObject<T>(readText);
             return json;
         }
@@ -116,9 +120,9 @@ namespace RiotSharp.Caching
         private void Store<TK, TV>(TK key, TV value, long ttlMins = 24 * 60 * 7 * 4) // A month
         {
             CacheData<TV> data = new CacheData<TV>(ttlMins, value);
-            var hashedFilePath = GetPath(key.ToString());
+            var filePath = GetPath(key.ToString());
             var serialisedJson = JsonConvert.SerializeObject(data);
-            File.WriteAllText($"{hashedFilePath}.json", serialisedJson);
+            File.WriteAllText(filePath, serialisedJson);
         }
 
         private bool IsExpired<T>(CacheData<T> data)
