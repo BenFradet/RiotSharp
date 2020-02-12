@@ -2,13 +2,16 @@
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RiotSharp.Endpoints.TftSummonerEndpoint
 {
     public class TftSummoner
     {
+        /// <summary>
+        /// Defines the Region of a Summoner.
+        /// </summary>
+        public Region Region { get; set; }
+
         internal TftSummoner() { }
 
         internal TftSummoner(string id, string name, Region region)
@@ -36,10 +39,6 @@ namespace RiotSharp.Endpoints.TftSummonerEndpoint
         /// </summary>
         [JsonProperty("summonerLevel")]
         public long Level { get; set; }
-        /// <summary>
-        /// Defines the Region of a Summoner.
-        /// </summary>
-        public Region Region { get; set; }
 
         /// <summary>
         /// Encrypted summoner ID. Max length 63 characters.

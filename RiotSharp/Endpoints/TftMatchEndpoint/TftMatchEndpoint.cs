@@ -14,7 +14,7 @@ namespace RiotSharp.TftMatchEndpoint
     public class TftMatchEndpoint : ITftMatchEndpoint
     {
         private const string TftMatchRootUrl = "/tft/match/v1/matches";
-        private const string TftMatchByPuuidUrl = "/by-puuid/{0}ids?count={1}";
+        private const string TftMatchByPuuidUrl = "/by-puuid/{0}/ids?count={1}";
         private const string TftMatchCache = "tft-match-{0}_{1}";
         private const string TftMatchByIdUrl = "/{0}";
         private static readonly TimeSpan TftMatchTtl = TimeSpan.FromDays(60);

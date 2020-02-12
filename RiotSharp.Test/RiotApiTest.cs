@@ -583,34 +583,6 @@ namespace RiotSharp.Test
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
         }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetTftLeagueEntriesBySummonerAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                // TODO: Properly implement encrypted SummonerId tests
-                return;
-                var leagues = Api.TftLeague.GetTftLeagueEntriesBySummonerAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
-
-                Assert.IsTrue(leagues.Result.Count > 0);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetTftLeagueByIdAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                // TODO: Properly implement League id test
-                return;
-                var leagues = Api.TftLeague.GetTftLeagueByIdAsync(RiotApiTestBase.SummonersRegion, "LEAGUE-ID-HERE");
-
-                Assert.IsTrue(leagues.Result.Queue != null);
-            });
-        }
         #endregion
     }
 }

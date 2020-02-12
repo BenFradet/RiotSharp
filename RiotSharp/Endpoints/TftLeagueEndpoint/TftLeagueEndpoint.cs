@@ -67,6 +67,7 @@ namespace RiotSharp.Endpoints.TftLeagueEndpoint
             return JsonConvert.DeserializeObject<TftLeague>(json);
         }
 
+        /// <inheritdoc />
         public async Task<List<TftLeagueEntry>> GetTftLeagueByTierDivisionAsync(Region region, LeagueEndpoint.Enums.Tier tier, 
             LeagueEndpoint.Enums.Division division)
         {

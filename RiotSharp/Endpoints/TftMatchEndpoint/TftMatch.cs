@@ -50,7 +50,7 @@ namespace RiotSharp.Endpoints.TftMatchEndpoint
         /// <summary>
         /// The map ID.
         /// </summary>
-        [JsonProperty("MapId")]
+        [JsonProperty("mapId")]
         public int MapId { get; set; }
 
         /// <summary>
