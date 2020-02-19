@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace RiotSharp.Caching
@@ -10,15 +12,36 @@ namespace RiotSharp.Caching
     /// <seealso cref="RiotSharp.Caching.ICache" />
     public class FileCache : ICache
     {
-        private static string _directory;
+        private string _directory;
+        private bool _hashKeys;
 
         /// <summary>
         /// Create file cache instance
         /// </summary>
         /// <param name="dir">Directory for the cache to store in</param>
-        public FileCache(string dir = "/cache")
+        public FileCache(Uri directory, bool hashKeys = false)
         {
-            _directory = Path.Combine(Directory.GetCurrentDirectory(), dir);
+            if (directory == null)
+            {
+                throw new ArgumentNullException("Input Uri cannot be null.");
+            }
+            else if (string.IsNullOrWhiteSpace(directory.OriginalString))
+            {
+                throw new ArgumentNullException("Directory path cannot be null or empty.");
+            }
+
+            if (directory.IsAbsoluteUri)
+            {
+                _directory = directory.LocalPath;
+            }
+            else
+            {
+                string baseDir = Directory.GetCurrentDirectory();
+                _directory = Path.Combine(baseDir, directory.OriginalString);
+            }
+
+            Directory.CreateDirectory(_directory);
+            _hashKeys = hashKeys;
         }
 
         /// <inheritdoc />
@@ -51,8 +74,16 @@ namespace RiotSharp.Caching
         /// <inheritdoc />
         public TV Get<TK, TV>(TK key) where TV : class
         {
-            var data = Load<CacheData<TV>>(key.ToString());
-
+            CacheData<TV> data;
+            try
+            {
+                var str = key.ToString();
+                data = Load<CacheData<TV>>(str);
+            }
+            catch (FileNotFoundException)
+            {
+                data = null;
+            }
             return IsExpired(data) ? null : data.Data;
         }
 
@@ -65,19 +96,33 @@ namespace RiotSharp.Caching
 
         private string GetPath(string key)
         {
-            return Path.Combine(_directory, key.GetHashCode().ToString());
+            if (_hashKeys)
+            {
+                using (SHA1 hasher = SHA1.Create())
+                {
+                    byte[] input = Encoding.UTF8.GetBytes(key);
+                    byte[] hashBytes = hasher.ComputeHash(input);
+                    key = BitConverter.ToString(hashBytes).Replace("-", "");
+                }
+            }
+            var path = Path.Combine(_directory, key + ".json");
+            return path;
         }
 
         private T Load<T>(string path)
         {
-            var json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<T>(json);
+            var filePath = GetPath(path);
+            var readText = File.ReadAllText(filePath);
+            var json = JsonConvert.DeserializeObject<T>(readText);
+            return json;
         }
 
         private void Store<TK, TV>(TK key, TV value, long ttlMins = 24 * 60 * 7 * 4) // A month
         {
             CacheData<TV> data = new CacheData<TV>(ttlMins, value);
-            File.WriteAllText(GetPath(key.ToString()), JsonConvert.SerializeObject(data));
+            var filePath = GetPath(key.ToString());
+            var serialisedJson = JsonConvert.SerializeObject(data);
+            File.WriteAllText(filePath, serialisedJson);
         }
 
         private bool IsExpired<T>(CacheData<T> data)
