@@ -77,7 +77,17 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
         /// <summary>
         /// Season 2019.
         /// </summary>
-        Season2019 = 13
+        Season2019 = 13,
+
+        /// <summary>
+        /// Pre season 2020.
+        /// </summary>
+        PreSeason2020 = 14,
+
+        /// <summary>
+        /// Season 2020
+        /// </summary>
+        Season2020 = 15
     }
 
     static class SeasonExtension
@@ -114,6 +124,10 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
                     return "PRESEASON2019";
                 case Season.Season2019:
                     return "SEASON2019";
+                case Season.PreSeason2020:
+                    return "PRESEASON2020";
+                case Season.Season2020:
+                    return "SEASON2020";
                 default:
                     return string.Empty;
             }

@@ -10,59 +10,59 @@ namespace RiotSharp.Misc
     public enum Platform
     {
         /// <summary>
-        /// North America.
-        /// </summary>
-        NA1,
-
-        /// <summary>
-        /// Brasil.
+        /// Brasil
         /// </summary>
         BR1,
 
         /// <summary>
-        /// Latin America North.
-        /// </summary>
-        LA1,
-
-        /// <summary>
-        /// Latin America South.
-        /// </summary>
-        LA2,
-
-        /// <summary>
-        /// Oceania.
-        /// </summary>
-        OC1,
-
-        /// <summary>
-        /// North-eastern Europe.
+        /// Europe North-East
         /// </summary>
         EUN1,
 
         /// <summary>
-        /// Turkey.
-        /// </summary>
-        TR1,
-
-        /// <summary>
-        /// Russia.
-        /// </summary>
-        RU,
-
-        /// <summary>
-        /// Western Europe.
+        /// Europe West
         /// </summary>
         EUW1,
 
         /// <summary>
-        /// Korea.
+        /// Japan
+        /// </summary>
+        JP1,
+
+        /// <summary>
+        /// Korea
         /// </summary>
         KR,
 
         /// <summary>
-        /// Japan.
+        /// Latin America North
         /// </summary>
-        JP1,
+        LA1,
+
+        /// <summary>
+        /// Latin America South
+        /// </summary>
+        LA2,
+
+        /// <summary>
+        /// North America
+        /// </summary>
+        NA1,
+
+        /// <summary>
+        /// Oceania
+        /// </summary>
+        OC1,
+
+        /// <summary>
+        /// Turkey
+        /// </summary>
+        TR1,
+
+        /// <summary>
+        /// Rusia
+        /// </summary>
+        RU,
 
         /// <summary>
         /// No Platform (e.g. platformId of bot players).

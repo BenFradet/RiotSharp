@@ -141,7 +141,7 @@ namespace RiotSharp.Http
             {
                 case Region.Br:
                     return "br1";
-                case Region.Eune:
+                case Region.Eun1:
                     return "eun1";
                 case Region.Euw:
                     return "euw1";

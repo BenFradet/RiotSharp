@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace RiotSharp.Endpoints.ChampionEndpoint
 {
-    class ChampionList
+    class NotUsedChampionList
     {
         /// <summary>
         /// List of Champions.

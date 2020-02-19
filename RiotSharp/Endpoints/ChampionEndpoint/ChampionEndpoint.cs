@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RiotSharp.Caching;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Http.Interfaces;
 using RiotSharp.Misc;
@@ -19,6 +20,7 @@ namespace RiotSharp.Endpoints.ChampionEndpoint
 
         private readonly IRateLimitedRequester _requester;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChampionEndpoint"/> class.
         /// </summary>
@@ -29,11 +31,11 @@ namespace RiotSharp.Endpoints.ChampionEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<ChampionRotation> GetChampionRotationAsync(Region region)
+        public async Task<NotUsedChampionRotation> GetChampionRotationAsync(Region region)
         {
             var json = await _requester.CreateGetRequestAsync(PlatformRootUrl + ChampionRotationUrl, region
                 ).ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ChampionRotation>(json);
+            return JsonConvert.DeserializeObject<NotUsedChampionRotation>(json);
         }
     }
 }

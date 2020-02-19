@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using RiotSharp.Endpoints.LeagueEndpoint.Enums;
+using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {

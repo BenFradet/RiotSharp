@@ -1,9 +1,11 @@
-﻿using System;
-using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
 
-namespace RiotSharp.Endpoints.LeagueEndpoint.Enums.Converters
+namespace RiotSharp.Misc.Converters
 {
     class CharArrayConverter : JsonConverter
     {

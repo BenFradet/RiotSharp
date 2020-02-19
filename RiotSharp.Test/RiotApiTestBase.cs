@@ -7,60 +7,50 @@ namespace RiotSharp.Test
 {
     internal class RiotApiTestBase : CommonTestBase
     {
-        public static long RunesMasteriesGameId = 2510454764; // Game from a patch where the old masteries and runes were active (Platform NA1)
+        public static long RunesMasteriesGameId = 3518102254; // Game from a patch where the old masteries and runes were active (Platform NA1)
         public static long PerksGameId = 3857603699;  // Game from a patch with reforged runes (Platform EUW)
 
-        public static long GameId = 2510454764;        
-        public static int ChampionId = 38;
+        public static long GameId = 3518102254;
+        public static int ChampionId = 497;
         public static Platform Summoner1Platform = (Platform) Enum.Parse(typeof(Platform), "NA1");
-        public static int Summoner1MasteryChampionId = 98;
+        public static int Summoner1MasteryChampionId = 497;
         public static int Summoner1MasteryChampionLevel = 7;
         public static long UnrankedSummonerId = 76723437;
+        public static string TftLeagueId = "a8750230-0e29-11ea-ade7-a6f857269bfa";
 
         public static List<string> AccountIds = new List<string>
         {
-            "6GwG-_gvthMjC4bMSh-K_n89fXmwAO2r_xW_bydQX6jsQdI",
-            "sfezrcI0J4ujlyNhM-CF_ImoIheDW-CHL3Jr-yegcZ5Rkm8",
-            "K36_BOxYJ6zc22ROFJz3lNpUnUM0fXlbRM6bxNIcjrK53Gw",
-            "h36GnnMLKm0Nuu4gKUgzGOpKUNfn8YOMufZWL8FGq1kY550"
+            "h1O1kZfsBNz5koxxRagxoddngVBXRYGUUm5PUVBihvjE7w",
+            "39_s8uzR2RkzRT3_0qgMfLBPhamNxw0l79n-nlsy8cdHh9A",
+            "4EsSNLw0tijFP1ckk1pYxBjhAYywCuBdgTWaa-2UtVwbkRCtelop_Xn1",
+            "JRqk5qeN_ABHsoG_uO8iMooed5EGV69rrJQ0JI39FeiDUAA",
+            "idJeoVA3X-ypIlRAJge29A82gR2FfVWJ5y5Oa9hgB_HBY9A",
+
         };
 
         public static List<string> SummonerIds = new List<string>
         {
-            "Ki6Ed6nkLuc3kCYQhqG922A3baTTdAwRX7LOlVfLl29Ka30",
-            "pU48DLZmrnwJaowPfWj1eIL-wmh5S7EEi2_8Qthdc5w07Hs",
-            "EJSU56nc6omjP9doWiuBErFDpqbSsuEIslJEIvY-mRi-fHw",
-            "e9LoFSVipdsgZtPX-CLPA5rbd4z4_6rOm65YA451J2P8atU",
-            "alGEcJUa85NZOlCbwYwKTTXRLiTEiuCVtfYIAkTclMKoamk",
-            "XD6QLPpYK7jPPuiJ6XLle3gY9-nfWEzknMRJKltpzJiFp4Q",
-            "T4Pdm6UMGtllvS_NcPBoMBGdVv0-6DWf5olYUPfBLusGFnw",
-            "YC2q7TM2hWbCS9y-HaFiPDpzQT7TynVydJN1OExcKnO3HR8",
-            "7Ux5zHUPUeXcfFOTb6MMzijl0iSIt5yMqlWOnR0CxriH6Qk",
-            "v7tt3i1nryKVQvqknf8RK5_5WZTW4iWKtccIiAhLLyLLPpw",
-            "AFd-eTKqedjdKxaYlzSV00_gGPQNDvuKkdwG1PMvHafpjq0"
+            "HW96gOrX-QhzSo57KbITsibEBbTYRstm5d4RfRrsa1gBNDE",
+            "r8pDRHnmw1MqZWWvaOCNl-rntPATTWRzCERTn45JHHK1oCnj",
+            "ff3si8hPRgvXu0knr-tbzSd_hBhbR8bKE9TN5XjWkBWQC7Dl",
+            "vBsQ_rxBLUHiU8JxcksbaH3eX9AjJLZU4EuV0ZHdKMiocfzt"
         };
 
         public static List<string> SummonerNames = new List<string>
         {
-            "Imaqtpie",
-            "C9 Ray",
-            "C9 Gun",
-            "C9 Winter",
-            "Fox Brandini",
-            "P1 Shady",
-            "clg imaqtpie69",
-            "Anivia Kid",
-            "Butler Delta",
-            "Contractz",
-            "LL Stylish"
+            "Hi Im DEPA",
+            "From Iron",
+            "Adrian Seira",
+            "Liquid Impact"
         };
 
-        public static Region SummonersRegion = (Region) Enum.Parse(typeof(Region), "Na");
+        public static Region Summoners1Region = (Region)Enum.Parse(typeof(Region), "Eun1");
+        public static Region SummonersRegion = (Region) Enum.Parse(typeof(Region), "Euw");
         public static string Queue = "RANKED_SOLO_5x5";
 
         // Normal 5v5 Draft Pick games
-        public static int QueueId = 400;
-        public static Season Season = (Season) Enum.Parse(typeof(Season), "Season2015");
+        public static int QueueId = 850;
+        public static Season Season = (Season) Enum.Parse(typeof(Season), "Season2020");
         public static readonly string ThirdPartyCode = "test-third-party-code";
     }
 }

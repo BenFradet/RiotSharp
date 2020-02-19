@@ -6,7 +6,7 @@ namespace RiotSharp.Endpoints.ChampionEndpoint
     /// <summary>
     /// Class representing Champions in the current rotation in the API.
     /// </summary>
-    public class ChampionRotation
+    public class NotUsedChampionRotation
     {
 
         /// <summary>

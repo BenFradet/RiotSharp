@@ -6,11 +6,15 @@ using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.LeagueEndpoint;
+using RiotSharp.Endpoints.LoREndpoint;
+using RiotSharp.Endpoints.LoREndpoint.Interfaces;
 using RiotSharp.Endpoints.MatchEndpoint;
 using RiotSharp.Endpoints.SpectatorEndpoint;
 using RiotSharp.Endpoints.StaticDataEndpoint;
 using RiotSharp.Endpoints.StatusEndpoint;
 using RiotSharp.Endpoints.SummonerEndpoint;
+using RiotSharp.Endpoints.TFTEndpoint;
+using RiotSharp.Endpoints.TFTEndpoint.Interfaces;
 using RiotSharp.Endpoints.ThirdPartyEndpoint;
 using RiotSharp.Http;
 using RiotSharp.Http.Interfaces;
@@ -27,7 +31,7 @@ namespace RiotSharp
         #region Private Fields
         private static RiotApi _instance;
 
-        private readonly ICache _cache;       
+        private readonly ICache _cache;
         #endregion
 
         #region Endpoints
@@ -58,6 +62,18 @@ namespace RiotSharp
 
         /// <inheritdoc />
         public IStatusEndpoint Status { get; }
+
+        /// <inheritdoc />
+        public ILoRRankedEndpoint LoR_Leaderboards { get; }
+
+        /// <inheritdoc />
+        public ITFTLeagueEndpoint TftLeague { get; }
+
+        /// <inheritdoc />
+        public ITFTMatchEndpoint TftMatch { get; }
+
+        /// <inheritdoc />
+        public ITFTSummonerEndpoint TftSummoner { get; }
         #endregion
 
         /// <summary>
@@ -133,6 +149,10 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(requester);
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
+            LoR_Leaderboards = new LoRRankedEndpoint(requester);
+            TftLeague = new TFTLeagueEndpoint(requester);
+            TftMatch = new TFTMatchEndpoint(requester, _cache);
+            TftSummoner = new TFTSummonerEndpoint(requester, _cache);
 
             StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, _cache);
             Status = new StatusEndpoint(Requesters.StaticApiRequester);
@@ -158,7 +178,7 @@ namespace RiotSharp
                 throw new ArgumentNullException(nameof(staticEndpointProvider));
 
             _cache = cache ?? new PassThroughCache();
-            
+
             Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
             Champion = new ChampionEndpoint(rateLimitedRequester);
             League = new LeagueEndpoint(rateLimitedRequester);
@@ -166,6 +186,10 @@ namespace RiotSharp
             Spectator = new SpectatorEndpoint(rateLimitedRequester);
             ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+            LoR_Leaderboards = new LoRRankedEndpoint(rateLimitedRequester);
+            TftLeague = new TFTLeagueEndpoint(rateLimitedRequester);
+            TftMatch = new TFTMatchEndpoint(rateLimitedRequester, _cache);
+            TftSummoner = new TFTSummonerEndpoint(rateLimitedRequester, _cache);
 
             StaticData = new StaticDataEndpoints(staticEndpointProvider);
             Status = new StatusEndpoint(requester);
