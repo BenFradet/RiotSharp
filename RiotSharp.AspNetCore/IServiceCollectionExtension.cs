@@ -33,6 +33,7 @@ namespace RiotSharp.AspNetCore
             {
                 var rateLimitedRequester = new RateLimitedRequester(riotSharpOptions.RiotApi.ApiKey,
                     riotSharpOptions.RiotApi.RateLimits);
+                var requester = new Requester(riotSharpOptions.RiotApi.ApiKey);
                 serviceCollection.AddSingleton<ITournamentRiotApi>(serviceProvider =>
                     new TournamentRiotApi(rateLimitedRequester));
 
@@ -59,7 +60,7 @@ namespace RiotSharp.AspNetCore
                     new StaticDataEndpoints(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
 
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider =>
-                    new RiotApi(rateLimitedRequester, serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
+                    new RiotApi(rateLimitedRequester, requester, serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
             }
 
             if (riotSharpOptions.TournamentApi.ApiKey != null)
