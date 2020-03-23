@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.Champion;
+using RiotSharp.Endpoints.StaticDataEndpoint.Champion;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The Static Champion Endpoint
+    /// </summary>
     public interface IStaticChampionEndpoint : IStaticEndpoint
     {
         /// <summary>

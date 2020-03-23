@@ -1,5 +1,8 @@
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static tarball link endpoint
+    /// </summary>
     public interface IStaticTarballLinkEndPoint : IStaticEndpoint
     {
         /// <summary>

@@ -1,5 +1,8 @@
-﻿namespace RiotSharp.Endpoints.LeagueEndpoint.Enums
+namespace RiotSharp.Endpoints.LeagueEndpoint.Enums
 {
+    /// <summary>
+    /// The division with a <see cref="Tier"/>
+    /// </summary>
     public enum Division
     {
         /// <summary>Division I</summary>

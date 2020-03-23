@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons;
+using RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Profile icon Endpoint
+    /// </summary>
     public interface IStaticProfileIconEndpoint : IStaticEndpoint
     {
         /// <summary>

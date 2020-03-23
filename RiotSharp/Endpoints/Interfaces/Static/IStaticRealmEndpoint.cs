@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.Realm;
+using RiotSharp.Endpoints.StaticDataEndpoint.Realm;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Realm Endpoint
+    /// </summary>
     public interface IStaticRealmEndpoint : IStaticEndpoint
     {
         /// <summary>

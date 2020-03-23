@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.Rune;
+using RiotSharp.Endpoints.StaticDataEndpoint.Rune;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Rune Endpoint
+    /// </summary>
     public interface IStaticRuneEndpoint : IStaticEndpoint
     {
         /// <summary>
