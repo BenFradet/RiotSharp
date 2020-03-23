@@ -12,13 +12,14 @@ namespace RiotSharp.Caching
     /// <seealso cref="RiotSharp.Caching.ICache" />
     public class FileCache : ICache
     {
-        private string _directory;
-        private bool _hashKeys;
+        private readonly string _directory;
+        private readonly bool _hashKeys;
 
         /// <summary>
         /// Create file cache instance
         /// </summary>
-        /// <param name="dir">Directory for the cache to store in</param>
+        /// <param name="directory">Directory for the cache to store in</param>
+        /// <param name="hashKeys"></param>
         public FileCache(Uri directory, bool hashKeys = false)
         {
             if (directory == null)

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.Endpoints.LeagueEndpoint;
 using RiotSharp.Misc;
@@ -31,7 +31,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// </summary>
         /// <param name="region">The region</param>
         /// <param name="division">The division</param>
-        /// <param name="tier">The tier (<see cref="Enums.Tier.Iron"/> to <see cref="Enums.Tier.Diamond"/>)</param>
+        /// <param name="tier">The tier (<see cref="Endpoints.LeagueEndpoint.Enums.Tier.Iron"/> to <see cref="Endpoints.LeagueEndpoint.Enums.Tier.Diamond"/>)</param>
         /// <param name="rankedQueue">Ranked queue. (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
         /// <returns>List of matching <see cref="LeagueEntry"/>s</returns>
         Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, LeagueEndpoint.Enums.Division division, LeagueEndpoint.Enums.Tier tier, string rankedQueue, int page = 1);
