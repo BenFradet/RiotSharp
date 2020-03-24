@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
+    /// <summary>
+    /// A ban
+    /// </summary>
     public class TeamBan
     {
         internal TeamBan() { }

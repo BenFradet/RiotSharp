@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
 {
-    public class ChampionStandAloneStatic
+    internal class ChampionStandAloneStatic
     {
-        public string Type { get; set; }
-        public string Format { get; set; }
-        public string Version { get; set; }
-        public Dictionary<string, ChampionStatic> Data { get; set; }
+        internal string Type { get; set; }
+        internal string Format { get; set; }
+        internal string Version { get; set; }
+        internal Dictionary<string, ChampionStatic> Data { get; set; }
     }
 }

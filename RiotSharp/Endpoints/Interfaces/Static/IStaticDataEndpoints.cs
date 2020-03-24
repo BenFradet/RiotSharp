@@ -1,5 +1,8 @@
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The interface containing all static endpoints
+    /// </summary>
     public interface IStaticDataEndpoints
     {
         /// <summary>

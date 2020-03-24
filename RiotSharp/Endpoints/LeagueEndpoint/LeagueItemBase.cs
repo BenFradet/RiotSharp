@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace RiotSharp.Endpoints.LeagueEndpoint
 {
+    /// <summary>
+    /// A League item
+    /// </summary>
     public class LeagueItem
     {
         internal LeagueItem() { }
