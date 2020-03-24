@@ -33,6 +33,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="division">The division</param>
         /// <param name="tier">The tier (<see cref="Endpoints.LeagueEndpoint.Enums.Tier.Iron"/> to <see cref="Endpoints.LeagueEndpoint.Enums.Tier.Diamond"/>)</param>
         /// <param name="rankedQueue">Ranked queue. (Supported: <see cref="Misc.Queue.RankedSolo5x5"/>, <see cref="Misc.Queue.RankedFlexSR"/>, <see cref="Misc.Queue.RankedFlexTT"/>)</param>
+        /// <param name="page"></param>
         /// <returns>List of matching <see cref="LeagueEntry"/>s</returns>
         Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, LeagueEndpoint.Enums.Division division, LeagueEndpoint.Enums.Tier tier, string rankedQueue, int page = 1);
 

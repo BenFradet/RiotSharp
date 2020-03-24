@@ -1,10 +1,13 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune;
+using RiotSharp.Endpoints.StaticDataEndpoint.ReforgedRune;
 using RiotSharp.Misc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Reforged Runes Endpoint
+    /// </summary>
     public interface IStaticReforgedRuneEndpoint : IStaticEndpoint
     {
         /// <summary>

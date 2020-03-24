@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.Item;
+using RiotSharp.Endpoints.StaticDataEndpoint.Item;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The Static Item Endpoint
+    /// </summary>
     public interface IStaticItemEndpoint : IStaticEndpoint
     {
         /// <summary>

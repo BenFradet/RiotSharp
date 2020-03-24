@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.Mastery;
+using RiotSharp.Endpoints.StaticDataEndpoint.Mastery;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Mastery Endpoint
+    /// </summary>
     public interface IStaticMasteryEndpoint : IStaticEndpoint
     {
         /// <summary>

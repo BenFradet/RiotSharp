@@ -1,9 +1,12 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
+using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
 using RiotSharp.Misc;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Summoner Spell Endpoint
+    /// </summary>
     public interface IStaticSummonerSpellEndpoint : IStaticEndpoint
     {
         /// <summary>

@@ -1,10 +1,13 @@
-﻿using RiotSharp.Endpoints.StaticDataEndpoint.Map;
+using RiotSharp.Endpoints.StaticDataEndpoint.Map;
 using RiotSharp.Misc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
+    /// <summary>
+    /// The static Map Endpoint
+    /// </summary>
     public interface IStaticMapEndpoint : IStaticEndpoint
     {
         /// <summary>
