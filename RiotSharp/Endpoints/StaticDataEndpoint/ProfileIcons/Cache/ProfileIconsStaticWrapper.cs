@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.StaticDataEndpoint.ProfileIcons.Cache
 {
-    public class ProfileIconsStaticWrapper
+    internal class ProfileIconsStaticWrapper
     {
         [JsonProperty]
-        public ProfileIconListStatic ProfileIconListStatic { get; private set; }
-        public Language Language { get; }
-        public string Version { get; }
+        internal ProfileIconListStatic ProfileIconListStatic { get; private set; }
+        internal Language Language { get; }
+        internal string Version { get; }
 
-        public ProfileIconsStaticWrapper(ProfileIconListStatic profileIconListStatic, Language language, string version)
+        internal ProfileIconsStaticWrapper(ProfileIconListStatic profileIconListStatic, Language language, string version)
         {
             ProfileIconListStatic = profileIconListStatic;
             Language = language;

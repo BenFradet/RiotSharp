@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Misc;
@@ -6,6 +6,9 @@ using RiotSharp.Misc.Converters;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
+    /// <summary>
+    /// A reference to a match
+    /// </summary>
     public class MatchReference
     {
         /// <summary>

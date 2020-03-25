@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
+    /// <summary>
+    /// Represents a list of matches
+    /// </summary>
     public class MatchList
     {
         /// <summary>

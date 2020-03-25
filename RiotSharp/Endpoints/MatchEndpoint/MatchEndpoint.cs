@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -10,6 +10,9 @@ using RiotSharp.Misc;
 
 namespace RiotSharp.Endpoints.MatchEndpoint
 {
+    /// <summary>
+    /// The match endpoint
+    /// </summary>
     public class MatchEndpoint : IMatchEndpoint
     {
         private const string MatchRootUrl = "/lol/match/v4/matches";
@@ -27,12 +30,18 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         private readonly IRateLimitedRequester _requester;
         private readonly ICache _cache;
 
+        /// <summary>
+        /// Creates a new match endpoint
+        /// </summary>
+        /// <param name="requester">the requester</param>
+        /// <param name="cache">the cache</param>
         public MatchEndpoint(IRateLimitedRequester requester, ICache cache)
         {
             _requester = requester;
             _cache = cache;
         }
 
+        /// <inheritdoc />
         public async Task<List<long>> GetMatchIdsByTournamentCodeAsync(Region region, string tournamentCode)
         {
             var json = await _requester.CreateGetRequestAsync(MatchRootUrl +
@@ -42,6 +51,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             return JsonConvert.DeserializeObject<List<long>>(json);
         }
 
+        /// <inheritdoc />
         public async Task<Match> GetMatchAsync(Region region, long matchId)
         {
             var matchInCache = _cache.Get<string, Match>(string.Format(MatchCache, region, matchId));
@@ -56,6 +66,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             return match;
         }
 
+        /// <inheritdoc />
         public async Task<MatchList> GetMatchListAsync(Region region, string accountId, List<int> championIds = null, List<int> queues = null, List<Season> seasons = null,
             DateTime? beginTime = null, DateTime? endTime = null, long? beginIndex = null, long? endIndex = null)
         {
@@ -67,6 +78,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             return JsonConvert.DeserializeObject<MatchList>(json);
         }
 
+        /// <inheritdoc />
         public async Task<MatchTimeline> GetMatchTimelineAsync(Region region, long matchId)
         {
             var cacheKey = string.Format(MatchTimeLineCacheKey, region, matchId);
