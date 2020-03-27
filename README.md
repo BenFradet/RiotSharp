@@ -52,19 +52,34 @@ var api = RiotApi.GetInstance("YOUR_API_KEY",
   yourRateLimitPer10s, yourRateLimitPer10m);
 ```
 
-To get a summoner:
+To get basic data of a summoner:
 ```c#
 try
 {
-  var summoner = api.GetSummonerByName(Region.euw, "StopOFlop");
+  var summoner = api.Summoner.GetSummonerByNameAsync(Region.euw, "StopOFlop").Result;
+  var name = summoner.Name;
+  var level = summoner.Level;
+  var accountId = summoner.AccountId;
 }
 catch (RiotSharpException ex)
 {
   // Handle the exception however you want.
 }
 ```
+Each class represents an API:
+* Champion
+* League  
+* Match  
+* Spectator  
+* Status  
+* Summoner 
+* ChampionMastery  
+* StaticData  
+* ThirdParty  
 
-You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
+
+You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html) 
+or test some queries on the [Riot Developer Portal](https://developer.riotgames.com/apis)
 
 ### Tournament API
 
