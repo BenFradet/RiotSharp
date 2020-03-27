@@ -66,13 +66,20 @@ catch (RiotSharpException ex)
   // Handle the exception however you want.
 }
 ```
-All classes were separated according to their tasks. The following classes can be distinguished:  
-> <i>Champion League Match Spectator Status Summoner ChampionMastery StaticData ThirdParty  
-> [Wiki](http://benfradet.github.io/RiotSharp/api/RiotSharp.IRiotApi.html)
-</i>
-  
+Each class represents an API:
+* Champion
+* League  
+* Match  
+* Spectator  
+* Status  
+* Summoner 
+* ChampionMastery  
+* StaticData  
+* ThirdParty  
 
-You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html).
+
+You can find a list of all the available operations in [RiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.RiotApi.html) 
+or test some queries on the [Riot Developer Portal](https://developer.riotgames.com/apis)
 
 ### Tournament API
 
