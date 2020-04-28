@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace RiotSharp.AspNetCore
+namespace RiotSharp.AspNetCore.Caching
 {
     internal static class IDistributedCacheExtensions
     {

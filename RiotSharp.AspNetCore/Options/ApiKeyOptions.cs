@@ -1,14 +1,17 @@
-﻿using System;
+﻿using RiotSharp.AspNetCore.Caching;
+using System;
 using System.Collections.Generic;
 
-namespace RiotSharp.AspNetCore
+namespace RiotSharp.AspNetCore.Options
 {
     /// <summary>
     /// Specifies the options for ApiKey
     /// </summary>
     public class ApiKeyOptions
     {
-        internal ApiKeyOptions() { }
+        internal ApiKeyOptions() {
+            CacheType = CacheType.Internal;
+        }
 
         /// <summary>
         /// Gets or sets the API key.
@@ -21,22 +24,9 @@ namespace RiotSharp.AspNetCore
         public IDictionary<TimeSpan, int> RateLimits { get; set; }
 
         /// <summary>
-        /// Enable or disable default RiotSharp's internal caching for the static data endpint
+        /// Cache type for the RiotSharp API. By default it is set to internal.
         /// </summary>
-        public bool UseCache { get; set; }
-
-        /// <summary>
-        /// Enable or disable ASP.NET Core in-memory cache implementation for caching
-        /// </summary>
-        public bool UseMemoryCache { get; set; }
-        /// <summary>
-        /// Enable or disable ASP.NET Core distributed cache implementation for caching
-        /// </summary>
-        public bool UseDistributedCache { get; set; }
-        /// <summary>
-        /// Enable or disable memory cache and distributed cache. If enabled, in-memory cache will be at first and distributed as a fallback.
-        /// </summary>
-        public bool UseHybridCache { get; set; }
+        public CacheType CacheType { get; set; }
 
         /// <summary>
         /// Sliding expiration time for caching of the static data endpoint

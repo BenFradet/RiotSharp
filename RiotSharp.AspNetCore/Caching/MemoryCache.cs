@@ -1,25 +1,25 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using RiotSharp.Caching;
 
-namespace RiotSharp.AspNetCore
+namespace RiotSharp.AspNetCore.Caching
 {
     /// <summary>
-    /// Implementation of ICache with AspNetCore's distributed cache
+    /// Implementation of <see cref="ICache"/> with AspNetCore's local in-memory cache
     /// </summary>
-    public class DistributedCache : ICache
+    public class MemoryCache : ICache
     {
-        private readonly IDistributedCache _distributed;
+        private readonly IMemoryCache _memoryCache;
         private readonly List<object> _usedKeys;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DistributedCache"/> class.
+        /// Initializes a new instance of the <see cref="MemoryCache"/> class.
         /// </summary>
         /// <param name="memoryCache">The memory cache.</param>
-        public DistributedCache(IDistributedCache memoryCache)
+        public MemoryCache(IMemoryCache memoryCache)
         {
-            _distributed = memoryCache;
+            _memoryCache = memoryCache;
             _usedKeys = new List<object>();
         }
 
@@ -27,22 +27,22 @@ namespace RiotSharp.AspNetCore
         public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
             _usedKeys.Add(key);
-            _distributed.SetJson(key.ToString(), value, slidingExpiry);
+            _memoryCache.Set(key, value, slidingExpiry);
         }
 
         /// <inheritdoc />
         public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
             _usedKeys.Add(key);
-            _distributed.SetJson(key.ToString(), value, absoluteExpiry);
+            _memoryCache.Set(key, value, absoluteExpiry);
         }
 
         /// <inheritdoc />
         public void Clear()
         {
             foreach (var usedKey in _usedKeys)
-            {
-                _distributed.Remove(usedKey.ToString());
+            {    
+                _memoryCache.Remove(usedKey);
                 _usedKeys.Remove(usedKey);
             }
         }
@@ -50,13 +50,13 @@ namespace RiotSharp.AspNetCore
         /// <inheritdoc />
         public TV Get<TK, TV>(TK key) where TV : class
         {
-            return _distributed.GetJson<TV>(key.ToString());
+            _memoryCache.TryGetValue(key, out TV output);
+            return output;
         }
 
-        /// <inheritdoc />
         public void Remove<TK>(TK key)
         {
-            _distributed.Remove(key.ToString());
+            _memoryCache.Remove(key);
         }
     }
 }

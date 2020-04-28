@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RiotSharp.AspNetCore
+namespace RiotSharp.AspNetCore.Options
 {
     /// <summary>
     /// Options for dependency injection

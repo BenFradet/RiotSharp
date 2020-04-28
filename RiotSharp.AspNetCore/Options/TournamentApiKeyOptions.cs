@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RiotSharp.AspNetCore
+namespace RiotSharp.AspNetCore.Options
 {
     public class TournamentApiKeyOptions : ApiKeyOptions
     {
