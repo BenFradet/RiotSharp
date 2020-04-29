@@ -66,6 +66,8 @@ namespace RiotSharp.AspNetCore
             switch(options.RiotApi.CacheType)
             {
                 case CacheType.None:
+                    break;
+                case CacheType.PassThrough:
                     serviceCollection.AddSingleton<ICache, PassThroughCache>();
                     break;
                 case CacheType.Internal:

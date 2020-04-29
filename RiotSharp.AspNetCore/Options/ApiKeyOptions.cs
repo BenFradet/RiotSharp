@@ -10,7 +10,7 @@ namespace RiotSharp.AspNetCore.Options
     public class ApiKeyOptions
     {
         internal ApiKeyOptions() {
-            CacheType = CacheType.Internal;
+            CacheType = CacheType.PassThrough;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace RiotSharp.AspNetCore.Options
         public IDictionary<TimeSpan, int> RateLimits { get; set; }
 
         /// <summary>
-        /// Cache type for the RiotSharp API. By default it is set to internal.
+        /// Cache type for the RiotSharp API. By default caching is disabled.
         /// </summary>
         public CacheType CacheType { get; set; }
 
