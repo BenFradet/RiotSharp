@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using RiotSharp.Caching;
 
-namespace RiotSharp.AspNetCore
+namespace RiotSharp.AspNetCore.Caching
 {
     /// <summary>
     /// Hybrid cache implementation with usage of in-memory and distributed cache
