@@ -158,6 +158,7 @@ namespace RiotSharp.Test
             });
         }
 
+
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
         public void GetMasterLeagueAsync_Test()
@@ -169,6 +170,7 @@ namespace RiotSharp.Test
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
         }
+
         #endregion
 
         #region Match Tests
@@ -348,6 +350,7 @@ namespace RiotSharp.Test
                 Assert.IsTrue(matches.Count <= endIndex - beginIndex);
             });
         }
+
         #endregion
 
         #region Spectator Tests
@@ -474,6 +477,111 @@ namespace RiotSharp.Test
                     Assert.AreEqual(RiotApiTestBase.ThirdPartyCode, code.Result);
                 });
             }, "Third party code was not found for the summoner. (404)");
+        }
+        #endregion
+
+        #region TFT Summoner Tests 
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftSummonerBySummonerIdAsync_ExistingId_ReturnsSummoner()
+        {
+            EnsureCredibility(() =>
+            {
+                var summoner = Api.TftSummoner.GetTftSummonerBySummonerIdAsync(Summoner1And2Region,
+                    Summoner1Id);
+
+                Assert.AreEqual(Summoner1Name, summoner.Result.Name);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftSummonerByPuuidAsync_ExistingId_ReturnsSummoner()
+        {
+            EnsureCredibility(() =>
+            {
+                var summoner = Api.TftSummoner.GetTftSummonerByPuuidAsync(Summoner1And2Region,
+                    Summoner1Puuid);
+
+                Assert.AreEqual(Summoner1Name, summoner.Result.Name);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftSummonerByNameAsync_ExistingName_ReturnsSummoner()
+        {
+            EnsureCredibility(() =>
+            {
+                var summoner = Api.TftSummoner.GetTftSummonerByNameAsync(Summoner1And2Region,
+                    Summoner1Name);
+
+                Assert.AreEqual(Summoner1Id, summoner.Result.Id);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftSummonerByAccountIdAsync_ExistingAccountId_ReturnsSummoner()
+        {
+            EnsureCredibility(() =>
+            {
+                var summoner = Api.TftSummoner.GetTftSummonerByAccountIdAsync(Summoner1And2Region,
+                    Summoner1AccountId);
+
+                Assert.AreEqual(Summoner1Name, summoner.Result.Name);
+            });
+        }
+        #endregion
+
+        #region TFT League Tests
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftLeagueByTierDivisionAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var league = Api.TftLeague.GetTftLeagueByTierDivisionAsync(Summoner1And2Region,
+                    Endpoints.LeagueEndpoint.Enums.Tier.Bronze,
+                    Endpoints.LeagueEndpoint.Enums.Division.I);
+
+                Assert.IsTrue(league.Result.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftGrandmasterLeagueAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var league = Api.TftLeague.GetTftGrandmasterLeagueAsync(Summoner1And2Region);
+                Assert.IsTrue(league.Result.Entries.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftChallengerLeagueAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var league = Api.TftLeague.GetTftChallengerLeagueAsync(Summoner1And2Region);
+                Assert.IsTrue(league.Result.Entries.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetTftMasterLeagueAsync_Test()
+        {
+            EnsureCredibility(() =>
+            {
+                var league = Api.TftLeague.GetTftMasterLeagueAsync(Summoner1And2Region);
+                Assert.IsTrue(league.Result.Entries.Count > 0);
+            });
         }
         #endregion
     }

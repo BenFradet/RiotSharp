@@ -36,6 +36,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueChallengerUrl, queue),
                 region).ConfigureAwait(false);
+
             return JsonConvert.DeserializeObject<League>(json);
         }
 
@@ -44,6 +45,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         {
             var json = await _requester.CreateGetRequestAsync(LeagueRootUrl + string.Format(LeagueMasterUrl, queue),
                 region).ConfigureAwait(false);
+
             return JsonConvert.DeserializeObject<League>(json);
         }
 
@@ -84,5 +86,6 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
 
             return JsonConvert.DeserializeObject<League>(json);
         }
+
     }
 }
