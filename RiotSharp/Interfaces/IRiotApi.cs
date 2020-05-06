@@ -40,5 +40,10 @@ namespace RiotSharp.Interfaces
         /// The Static Data Endpoint.
         /// </summary>
         IStaticDataEndpoints StaticData { get; }
+        
+        /// <summary>
+        /// The Clash Endpoint
+        /// </summary>
+        IClashEndpoint Clash { get; }
     }
 }
