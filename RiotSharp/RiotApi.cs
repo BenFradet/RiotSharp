@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RiotSharp.Caching;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
+using RiotSharp.Endpoints.ClashEndpoint;
 using RiotSharp.Endpoints.Interfaces;
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.LeagueEndpoint;
@@ -55,9 +56,13 @@ namespace RiotSharp
 
         /// <inheritdoc />
         public IStaticDataEndpoints StaticData { get; }
+        
+        ///<inheritdoc cref="Clash"/>
+        public IClashEndpoint Clash { get; }
 
         /// <inheritdoc />
         public IStatusEndpoint Status { get; }
+
         #endregion
 
         /// <summary>
@@ -136,6 +141,8 @@ namespace RiotSharp
 
             StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, _cache);
             Status = new StatusEndpoint(Requesters.StaticApiRequester);
+            
+            Clash = new ClashEndpoint(requester, _cache);
         }
 
         /// <summary>
@@ -169,6 +176,8 @@ namespace RiotSharp
 
             StaticData = new StaticDataEndpoints(staticEndpointProvider);
             Status = new StatusEndpoint(requester);
+            
+            Clash = new ClashEndpoint(rateLimitedRequester, _cache);
         }
     }
 }
