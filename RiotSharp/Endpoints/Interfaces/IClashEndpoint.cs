@@ -29,5 +29,12 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="teamId">Clash team id</param>
         /// <returns>Returns Clash Team model object containing all team info</returns>
         Task<ClashTeam> GetClashTeamByTeamIdAsync(Region region, string teamId);
+        
+        /// <summary>
+        /// Returns a list of active and upcoming tournaments in specified tournament.
+        /// </summary>
+        /// <param name="region">Region in which the tournament is held</param>
+        /// <returns>Return a list of tournament entity models</returns>
+        Task<List<ClashTournament>> GetClashTournamentListAsync(Region region);
     }
 }
