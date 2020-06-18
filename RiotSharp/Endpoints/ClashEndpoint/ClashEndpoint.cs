@@ -20,11 +20,13 @@ namespace RiotSharp.Endpoints.ClashEndpoint
         private const string ClashTeamById = "/teams/{0}";
         private const string ClashTournaments = "/tournaments";
         private const string ClashTournamentByTeam = "/tournaments/by-team/{0}";
+        private const string ClashTournamentById = "/tournaments/{0}";
 
         private const string ClashPlayerCacheKey = "clash-player-{0}_{1}";
         private const string ClashTeamCacheKey = "clash-team-{0}_{1}";
         private const string ClashTournamentListCacheKey = "clash-tournaments-{0}";
         private const string ClashTournamentByTeamCacheKey = "clash-tournament-by-team-{0}-{1}";
+        private const string ClashTournamentByIdCacheKey = "clash-tournament-by-id-{0}-{1}";
         
         private static readonly TimeSpan ClashPlayersTtl = TimeSpan.FromDays(5);
 
@@ -116,6 +118,25 @@ namespace RiotSharp.Endpoints.ClashEndpoint
             }
 
             var json = await _requester.CreateGetRequestAsync(ClashRootUrl + string.Format(ClashTournamentByTeam, teamId), region)
+                .ConfigureAwait(false);
+
+            var tournament = JsonConvert.DeserializeObject<ClashTournament>(json);
+            _cache.Add(cacheKey, tournament, ClashPlayersTtl);
+
+            return tournament;
+        }
+
+        public async Task<ClashTournament> GetClashTournamentByIdAsync(Region region, int tournamentId)
+        {
+            var cacheKey = string.Format(ClashTournamentByIdCacheKey, region, tournamentId);
+            var cacheTournament = _cache.Get<string, ClashTournament>(cacheKey);
+
+            if (cacheTournament != null)
+            {
+                return cacheTournament;
+            }
+
+            var json = await _requester.CreateGetRequestAsync(ClashRootUrl + string.Format(ClashTournamentById, tournamentId), region)
                 .ConfigureAwait(false);
 
             var tournament = JsonConvert.DeserializeObject<ClashTournament>(json);

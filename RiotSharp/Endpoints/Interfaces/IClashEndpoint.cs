@@ -41,8 +41,16 @@ namespace RiotSharp.Endpoints.Interfaces
         /// Returns a active or upcoming tournament for specified team.
         /// </summary>
         /// <param name="region">Region in which the tournament is held</param>
-        /// <param name="teamId">Team Id for which the tournament list is fetched</param>
-        /// <returns>Return a list of tournament entity models</returns>
+        /// <param name="teamId">Team Id for which the tournament entity is fetched</param>
+        /// <returns>Return a tournament entity model</returns>
         Task<ClashTournament> GetClashTournamentByTeamAsync(Region region, string teamId);
+        
+        /// <summary>
+        /// Returns a active or upcoming tournament by its Id.
+        /// </summary>
+        /// <param name="region">Region in which the tournament is held</param>
+        /// <param name="tournamentId">tournament id</param>
+        /// <returns>Return a tournament entity model</returns>
+        Task<ClashTournament> GetClashTournamentByIdAsync(Region region, int tournamentId);
     }
 }
