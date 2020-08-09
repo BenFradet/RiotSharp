@@ -26,5 +26,14 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="fullData">If true ChampionStatic instances will populate properties, like 'passive', 'spells', etc. If false these will be null.</param>
         /// <returns>A ChampionListStatic object containing all champions.</returns>
         Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US, bool fullData = true);
+
+        /// <summary>
+        /// Get a champion by his id asynchronously.
+        /// </summary>
+        /// <param name="key">Champion id, e.g. "266 for Aatrox".</param>
+        /// <param name="version">Patch version for returned data.</param>
+        /// <param name="language">Language of the data to be retrieved.</param>
+        /// <returns>A champion.</returns>
+        Task<ChampionStatic> GetByIdAsync(int staticChampionId, string staticVersion, Language language = Language.en_US);
     }
 }

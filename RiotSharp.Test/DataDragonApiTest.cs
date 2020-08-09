@@ -35,6 +35,18 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
+        public async Task GetChampionByIdAsync_Test()
+        {
+            await EnsureCredibilityAsync(async () =>
+            {
+                var aatroxId = 266;
+                var champ = await _api.Champions.GetByIdAsync(aatroxId, StaticVersion);
+                Assert.AreEqual("Aatrox", champ.Name);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetChampionsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>

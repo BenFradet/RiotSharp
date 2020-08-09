@@ -66,5 +66,19 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Champion
             cache.Add(cacheKey, new ChampionStaticWrapper(championStandAlone.Data.First().Value, language, version), SlidingExpirationTime);
             return championStandAlone.Data.First().Value;
         }
+
+        /// <inheritdoc />
+        public async Task<ChampionStatic> GetByIdAsync(int id, string version, Language language = Language.en_US)
+        {
+            var allChampions = await GetAllAsync(version, language, true);
+
+            var championName = string.Empty;
+            if (allChampions.Keys.ContainsKey(id))
+                championName = allChampions.Keys[id];
+            else
+                throw new ArgumentException("The champion ID is not valid, please try another.");
+
+            return allChampions.Champions[championName];
+        }
     }
 }

@@ -44,7 +44,8 @@ namespace RiotSharp.Interfaces
         IThirdPartyEndpoint ThirdParty { get; }
 
         /// <summary>
-        /// The Data Dragon Endpoint./// </summary>
+        /// The Data Dragon Endpoint.
+        /// </summary>
         IDataDragonEndpoints DataDragon { get; }
         
         /// <summary>
