@@ -1,10 +1,9 @@
 ﻿using System;
-using RiotSharp.Endpoints.StaticDataEndpoint.SummonerSpell;
 using RiotSharp.Misc;
 
 namespace RiotSharp.Test
 {
-    public class StaticRiotApiTestBase : CommonTestBase
+    public class DataDragonApiTestBase : CommonTestBase
     {
         public static readonly Region Region = (Region)Enum.Parse(typeof(Region), "na");
         public const string StaticVersion = "8.13.1";

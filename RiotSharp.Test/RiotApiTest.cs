@@ -139,7 +139,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var leagues = Api.League.GetLeagueGrandmastersByQueueAsync(RiotApiTestBase.SummonersRegion, RiotSharp.Misc.Queue.RankedSolo5x5);
+                 var leagues = Api.League.GetLeagueGrandmastersByQueueAsync(RiotApiTestBase.SummonersRegion, RiotSharp.Misc.Queue.RankedSolo5x5);
 
                 Assert.IsTrue(leagues.Result.Queue != null);
             });

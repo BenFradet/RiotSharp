@@ -9,20 +9,21 @@ using RiotSharp.Endpoints.StaticDataEndpoint;
 namespace RiotSharp.Test
 {
     [TestClass]
-    public class StaticRiotApiTest : StaticRiotApiTestBase
+    public class DataDragonApiTest : DataDragonApiTestBase
     {
-        private readonly IStaticDataEndpoints _api;
+        private readonly IDataDragonEndpoints _api;
+        private const string TestCategory = "DataDragonApi";
 
-        public StaticRiotApiTest()
+        public DataDragonApiTest()
         {
             var cache = new Cache();
-            _api = StaticDataEndpoints.GetInstance(true);
+            _api = DataDragonEndpoints.GetInstance(true);
         }
 
         #region Champions Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetChampionByKeyAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -33,7 +34,7 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetChampionsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -44,7 +45,7 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetChampionsAsync_Full_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -62,7 +63,7 @@ namespace RiotSharp.Test
         #region Items Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetItemsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -77,7 +78,7 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task JsonSerialize_ItemListStatic_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -104,7 +105,7 @@ namespace RiotSharp.Test
         #region Language Strings Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetLanguageStringsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -119,7 +120,7 @@ namespace RiotSharp.Test
         #region Languages Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetLanguagesAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -134,7 +135,7 @@ namespace RiotSharp.Test
         #region Maps Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetMapsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -149,7 +150,7 @@ namespace RiotSharp.Test
         #region Masteries
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetMasteriesAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -164,7 +165,7 @@ namespace RiotSharp.Test
         #region Profile Icons Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetProfileIconsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -179,7 +180,7 @@ namespace RiotSharp.Test
         #region Reforged Runes
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetReforgedRunesAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -194,7 +195,7 @@ namespace RiotSharp.Test
         #region Runes
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetRunesAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -209,7 +210,7 @@ namespace RiotSharp.Test
         #region Summoner Spells Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetSummonerSpellsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -224,7 +225,7 @@ namespace RiotSharp.Test
         #region Versions Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetVersionsAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -239,7 +240,7 @@ namespace RiotSharp.Test
         #region Realms Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public async Task GetRealmAsync_Test()
         {
             await EnsureCredibilityAsync(async () =>
@@ -254,7 +255,7 @@ namespace RiotSharp.Test
         #region TarballLinks Tests
 
         [TestMethod]
-        [TestCategory("StaticRiotApi"), TestCategory("Async")]
+        [TestCategory(TestCategory), TestCategory("Async")]
         public void GetTarballLink_Test()
         {
             var tarballLink = _api.TarballLinks.Get(StaticVersion);
