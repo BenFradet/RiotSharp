@@ -34,6 +34,6 @@ namespace RiotSharp.Endpoints.Interfaces.Static
         /// <param name="version">Patch version for returned data.</param>
         /// <param name="language">Language of the data to be retrieved.</param>
         /// <returns>A champion.</returns>
-        Task<ChampionStatic> GetByIdAsync(int staticChampionId, string staticVersion, Language language = Language.en_US);
+        Task<ChampionStatic> GetByIdAsync(int id, string version, Language language = Language.en_US);
     }
 }
