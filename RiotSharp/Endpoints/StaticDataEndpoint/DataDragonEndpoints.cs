@@ -7,12 +7,13 @@ using System;
 namespace RiotSharp.Endpoints.StaticDataEndpoint
 {
     /// <summary>
-    /// Implementation of <see cref="IStaticDataEndpoints"/>
+    /// Implementation of <see cref="IDataDragonEndpoints"> which contains all static data </see>/>
     /// </summary>
-    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IStaticDataEndpoints" />
-    public class StaticDataEndpoints : IStaticDataEndpoints
+    /// <seealso cref="RiotSharp.Endpoints.Interfaces.Static.IDataDragonEndpoints" />
+    public class DataDragonEndpoints : IDataDragonEndpoints
+
     {
-        private static StaticDataEndpoints _instance;
+        private static DataDragonEndpoints _instance;
 
         /// <inheritdoc />
         public IStaticChampionEndpoint Champions { get; private set; }
@@ -51,20 +52,20 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         public IStaticTarballLinkEndPoint TarballLinks { get; private set; }
 
         /// <summary>
-        /// Get the instance of StaticDataEndpoints which contains all the static Endpoints as Properties.
+        /// Get the instance of DataDragonEndpoints which contains all the static Endpoints as Properties.
         /// </summary>
-        /// <returns>The instance of StaticDataEndpoint.</returns>
-        public static StaticDataEndpoints GetInstance(bool useCache = true)
+        /// <returns>The instance of DataDragonEndpoint.</returns>
+        public static DataDragonEndpoints GetInstance(bool useCache = true)
         {
             if (_instance == null ||
                 Requesters.StaticApiRequester == null)
             {
-                _instance = new StaticDataEndpoints(useCache);
+                _instance = new DataDragonEndpoints(useCache);
             }
             return _instance;
         }
 
-        private StaticDataEndpoints(bool useCache = true)
+        private DataDragonEndpoints(bool useCache = true)
         {
             Requesters.StaticApiRequester = new Requester();
 
@@ -77,7 +78,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// Default dependency injection constructor
         /// </summary>
         /// <param name="staticEndpointProvider">provider that provides configured static-endpoints</param>
-        public StaticDataEndpoints(IStaticEndpointProvider staticEndpointProvider)
+        public DataDragonEndpoints(IStaticEndpointProvider staticEndpointProvider)
         {
             InitializeEndpoints(staticEndpointProvider);
         }
@@ -87,7 +88,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// </summary>
         /// <param name="requester"></param>
         /// <param name="cache"></param>
-        public StaticDataEndpoints(IRequester requester, ICache cache)
+        public DataDragonEndpoints(IRequester requester, ICache cache)
         {
             if (requester == null)
             {

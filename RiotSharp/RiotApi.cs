@@ -55,7 +55,7 @@ namespace RiotSharp
         public IThirdPartyEndpoint ThirdParty { get; }
 
         /// <inheritdoc />
-        public IStaticDataEndpoints StaticData { get; }
+        public IDataDragonEndpoints DataDragon { get; }
         
         ///<inheritdoc cref="Clash"/>
         public IClashEndpoint Clash { get; }
@@ -139,7 +139,7 @@ namespace RiotSharp
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
 
-            StaticData = new StaticDataEndpoints(Requesters.StaticApiRequester, _cache);
+            DataDragon = new DataDragonEndpoints(Requesters.StaticApiRequester, _cache);
             Status = new StatusEndpoint(Requesters.StaticApiRequester);
             
             Clash = new ClashEndpoint(requester, _cache);
@@ -174,7 +174,7 @@ namespace RiotSharp
             ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
 
-            StaticData = new StaticDataEndpoints(staticEndpointProvider);
+            DataDragon = new DataDragonEndpoints(staticEndpointProvider);
             Status = new StatusEndpoint(requester);
             
             Clash = new ClashEndpoint(rateLimitedRequester, _cache);

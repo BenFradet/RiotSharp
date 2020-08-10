@@ -1,9 +1,9 @@
 namespace RiotSharp.Endpoints.Interfaces.Static
 {
     /// <summary>
-    /// The interface containing all static endpoints
+    /// The interface containing all Data Dragon endpoints
     /// </summary>
-    public interface IStaticDataEndpoints
+    public interface IDataDragonEndpoints
     {
         /// <summary>
         /// The static Champion Endpoint

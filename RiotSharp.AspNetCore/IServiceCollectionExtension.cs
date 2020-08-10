@@ -43,8 +43,8 @@ namespace RiotSharp.AspNetCore
                     new StaticEndpointProvider(new Requester(riotSharpOptions.RiotApi.ApiKey), serviceProvider.GetRequiredService<ICache>(),
                         riotSharpOptions.RiotApi.SlidingExpirationTime));
 
-                serviceCollection.AddSingleton<IStaticDataEndpoints>(serviceProvider =>
-                    new StaticDataEndpoints(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
+                serviceCollection.AddSingleton<IDataDragonEndpoints>(serviceProvider =>
+                    new DataDragonEndpoints(serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
 
                 serviceCollection.AddSingleton<IRiotApi>(serviceProvider =>
                     new RiotApi(rateLimitedRequester, requester, serviceProvider.GetRequiredService<IStaticEndpointProvider>()));
