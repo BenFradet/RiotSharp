@@ -4,7 +4,9 @@ using RiotSharp.Caching;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.ClashEndpoint;
+using RiotSharp.Endpoints.ClientEndpoint;
 using RiotSharp.Endpoints.Interfaces;
+using RiotSharp.Endpoints.Interfaces.Client;
 using RiotSharp.Endpoints.Interfaces.Static;
 using RiotSharp.Endpoints.LeagueEndpoint;
 using RiotSharp.Endpoints.MatchEndpoint;
@@ -62,6 +64,9 @@ namespace RiotSharp
 
         /// <inheritdoc />
         public IStatusEndpoint Status { get; }
+
+        /// <inheritdoc />
+        public IClientEndpoint Client { get; }
 
         #endregion
 
@@ -143,6 +148,7 @@ namespace RiotSharp
             Status = new StatusEndpoint(Requesters.StaticApiRequester);
             
             Clash = new ClashEndpoint(requester, _cache);
+            Client = new ClientEndpoint(Requesters.ClientApiRequester);
         }
 
         /// <summary>
@@ -176,6 +182,7 @@ namespace RiotSharp
 
             DataDragon = new DataDragonEndpoints(staticEndpointProvider);
             Status = new StatusEndpoint(requester);
+            Client = new ClientEndpoint(requester);
             
             Clash = new ClashEndpoint(rateLimitedRequester, _cache);
         }

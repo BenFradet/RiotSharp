@@ -1,4 +1,5 @@
 ﻿using RiotSharp.Endpoints.Interfaces;
+using RiotSharp.Endpoints.Interfaces.Client;
 using RiotSharp.Endpoints.Interfaces.Static;
 
 namespace RiotSharp.Interfaces
@@ -49,8 +50,18 @@ namespace RiotSharp.Interfaces
         IDataDragonEndpoints DataDragon { get; }
         
         /// <summary>
-        /// The Clash Endpoint
+        /// The Clash Endpoint.
         /// </summary>
         IClashEndpoint Clash { get; }
+
+        /// <summary>
+        /// The Status Endpoint.
+        /// </summary>
+        IStatusEndpoint Status { get; }
+
+        /// <summary>
+        /// The Local Client Endpoint.
+        /// </summary>
+        IClientEndpoint Client { get; }
     }
 }
