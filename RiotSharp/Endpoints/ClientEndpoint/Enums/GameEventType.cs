@@ -28,6 +28,9 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Enums
         [EnumMember(Value = "BaronKill")]
         BaronKilled,
         
+        [EnumMember(Value = "FirstBlood")]
+        FirstBlood,
+        
         [EnumMember(Value = "ChampionKill")]
         ChampionKilled,
         

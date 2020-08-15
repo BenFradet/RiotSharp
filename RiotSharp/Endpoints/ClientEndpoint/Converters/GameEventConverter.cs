@@ -62,6 +62,11 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Converters
                     result = new BaronKilledEvent();
                     break;
                 }
+                case GameEventType.FirstBlood:
+                {
+                    result = new FirstBloodEvent();
+                    break;
+                }
                 case GameEventType.ChampionKilled:
                 {
                     result = new ChampionKilledEvent();
