@@ -35,6 +35,15 @@ namespace RiotSharp.Http
             _httpClient = new HttpClient();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequesterBase"/> class.
+        /// </summary>
+        /// <param name="clientHandler">The <see cref="HttpClientHandler"/> instance to use for the underlying <see cref="HttpClient"/>.</param>
+        protected RequesterBase(HttpClientHandler clientHandler)
+        {
+            _httpClient = new HttpClient(clientHandler ?? throw new ArgumentNullException(nameof(clientHandler)));
+        }
+
         #region Protected Methods
 
         /// <summary>

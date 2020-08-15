@@ -19,6 +19,9 @@ namespace RiotSharp.Http
         /// <inheritdoc />
         public Requester()
         { }
+        
+        /// <inheritdoc />
+        public Requester(HttpClientHandler clientHandler) : base(clientHandler) { }
 
         #region Public Methods
 
