@@ -1,11 +1,22 @@
-﻿namespace RiotSharp.Endpoints.ClientEndpoint.Enums
+﻿using System.Runtime.Serialization;
+
+namespace RiotSharp.Endpoints.ClientEndpoint.Enums
 {
     public enum TeamType
     {
+        [EnumMember(Value = "UNKNOWN")]
         Unknown,
+
+        [EnumMember(Value = "ALL")]
         All,
+
+        [EnumMember(Value = "NEUTRAL")]
         Neutral,
+
+        [EnumMember(Value = "CHAOS")]
         Chaos,
-        Order,
+
+        [EnumMember(Value = "ORDER")]
+        Order
     }
 }

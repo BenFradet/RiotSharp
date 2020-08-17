@@ -2,10 +2,10 @@
 
 namespace RiotSharp.Endpoints.ClientEndpoint.GameEvents
 {
-    public class BaseKilledGameEvent : BaseGameEvent
+    public class BaseKilledGameEvent : GameEvent
     {
         internal BaseKilledGameEvent() { }
-        
+
         [JsonProperty("KillerName")]
         public string KillerSummonerName { get; set; }
     }

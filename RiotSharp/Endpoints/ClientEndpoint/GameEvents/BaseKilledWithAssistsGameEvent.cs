@@ -3,8 +3,14 @@ using Newtonsoft.Json;
 
 namespace RiotSharp.Endpoints.ClientEndpoint.GameEvents
 {
-    public class BaseKilledWithAssistsGameEvent : BaseKilledGameEvent
+    /// <summary>
+    /// Represents a generic <see cref="BaseKilledGameEvent"/> where other summoners (besides the actual killer) contributed.
+    /// </summary>
+    public abstract class BaseKilledWithAssistsGameEvent : BaseKilledGameEvent
     {
+        /// <summary>
+        /// Gets or sets the list of contributing summoners, who have not killed the victim.
+        /// </summary>
         [JsonProperty("Assisters")]
         public List<string> AssistingSummonerNames { get; set; }
     }

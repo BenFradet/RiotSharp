@@ -19,7 +19,7 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Converters
             var jsonObject = JToken.ReadFrom(reader);
             var eventType = jsonObject["EventName"].ToObject<GameEventType>();
 
-            BaseGameEvent result;
+            GameEvent result;
             switch (eventType)
             {
                 case GameEventType.GameStart:
@@ -87,7 +87,7 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Converters
                     throw new ArgumentException($"Unknown {nameof(GameEventType)}: {eventType}!");
                 }
             }
-            
+
             serializer.Populate(jsonObject.CreateReader(), result);
             return result;
         }

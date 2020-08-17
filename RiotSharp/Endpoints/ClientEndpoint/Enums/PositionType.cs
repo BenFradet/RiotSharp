@@ -6,20 +6,20 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Enums
     {
         [EnumMember(Value = "")]
         Unknown,
-        
+
         [EnumMember(Value = "TOP")]
         Top,
-        
+
         [EnumMember(Value = "MIDDLE")]
         Middle,
-        
+
         [EnumMember(Value = "BOTTOM")]
         Bottom,
-        
+
         [EnumMember(Value = "SUPPORT")]
         Support,
-        
+
         [EnumMember(Value = "JUNGLE")]
-        Jungle,
+        Jungle
     }
 }
