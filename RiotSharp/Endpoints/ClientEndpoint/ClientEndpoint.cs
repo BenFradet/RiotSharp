@@ -5,6 +5,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RiotSharp.Endpoints.ClientEndpoint.ActivePlayer;
 using RiotSharp.Endpoints.ClientEndpoint.GameEvents;
 using RiotSharp.Endpoints.ClientEndpoint.PlayerList;
 using RiotSharp.Endpoints.Interfaces.Client;
@@ -19,6 +20,10 @@ namespace RiotSharp.Endpoints.ClientEndpoint
         
         private const string Host = "127.0.0.1:2999";
         private const string ClientDataRootUrl = "/liveclientdata";
+        private const string ActivePlayerUrl = "/activeplayer";
+        private const string ActivePlayerSummonerNameUrl = "/activeplayername";
+        private const string ActivePlayerAbilitiesUrl = "/activeplayerabilities";
+        private const string ActivePlayerRunesUrl = "/activeplayerrunes";
         private const string PlayerListUrl = "/playerlist";
         private const string PlayerItemsBySummonerNameUrl = "/playeritems?summonername={0}";
         private const string PlayerMainRunesBySummonerNameUrl = "/playermainrunes?summonername={0}";
@@ -26,7 +31,6 @@ namespace RiotSharp.Endpoints.ClientEndpoint
         private const string PlayerScoresBySummonerNameUrl = "/playerscores?summonername={0}";
         private const string GameEventListUrl = "/eventdata";
         private const string GameStatsUrl = "/gamestats";
-        private const string ActivePlayerSummonerNameUrl = "/activeplayername";
 
         private static ClientEndpoint _instance;
 
@@ -62,6 +66,29 @@ namespace RiotSharp.Endpoints.ClientEndpoint
         internal ClientEndpoint(IRequester requester)
         {
             _requester = requester ?? throw new ArgumentNullException(nameof(requester));
+        }
+
+        public async Task<ActivePlayer.ActivePlayer> GetActivePlayerAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ActivePlayer.ActivePlayer>(json);
+        }
+        
+        public async Task<string> GetActivePlayerSummonerNameAsync()
+        {
+            return await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerSummonerNameUrl}").ConfigureAwait(false);
+        }
+
+        public async Task<ActivePlayerAbilities> GetActivePlayerAbilitiesAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerAbilitiesUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ActivePlayerAbilities>(json);
+        }
+
+        public async Task<ActivePlayerFullRunes> GetActivePlayerRunesAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerRunesUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ActivePlayerFullRunes>(json);
         }
 
         public async Task<List<Player>> GetPlayerListAsync()
@@ -104,11 +131,6 @@ namespace RiotSharp.Endpoints.ClientEndpoint
         {
             var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameStatsUrl}").ConfigureAwait(false);
             return JsonConvert.DeserializeObject<GameStats>(json);
-        }
-
-        public async Task<string> GetActivePlayerSummonerNameAsync()
-        {
-            return await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerSummonerNameUrl}").ConfigureAwait(false);
         }
     }
 }
