@@ -32,9 +32,9 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Converters
                     result = new MinionsSpawningEvent();
                     break;
                 }
-                case GameEventType.FirstTower:
+                case GameEventType.FirstTurretKilled:
                 {
-                    result = new FirstTowerEvent();
+                    result = new FirstTurretKilledEvent();
                     break;
                 }
                 case GameEventType.TurretKilled:

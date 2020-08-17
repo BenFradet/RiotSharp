@@ -9,9 +9,9 @@ namespace RiotSharp.Endpoints.ClientEndpoint.GameEvents
     public abstract class BaseKilledWithAssistsGameEvent : BaseKilledGameEvent
     {
         /// <summary>
-        /// Gets or sets the list of contributing summoners, who have not killed the victim.
+        /// Gets or sets the list of contributors, who have not killed the victim.
         /// </summary>
         [JsonProperty("Assisters")]
-        public List<string> AssistingSummonerNames { get; set; }
+        public List<string> AssistersNames { get; set; }
     }
 }

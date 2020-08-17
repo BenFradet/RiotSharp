@@ -3,11 +3,11 @@
     /// <summary>
     /// Represents the destruction of the first tower in the game.
     /// </summary>
-    public class FirstTowerEvent : BaseKilledGameEvent
+    public class FirstTurretKilledEvent : BaseKilledGameEvent
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirstTowerEvent"/> class.
+        /// Initializes a new instance of the <see cref="FirstTurretKilledEvent"/> class.
         /// </summary>
-        internal FirstTowerEvent() { }
+        internal FirstTurretKilledEvent() { }
     }
 }

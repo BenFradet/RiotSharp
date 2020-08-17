@@ -23,7 +23,7 @@ namespace RiotSharp.Endpoints.ClientEndpoint.Enums
         /// Represents the destruction of the first tower.
         /// </summary>
         [EnumMember(Value = "FirstBrick")]
-        FirstTower,
+        FirstTurretKilled,
 
         /// <summary>
         /// Represents the destruction of a tower.
