@@ -17,7 +17,7 @@ namespace RiotSharp.Endpoints.ClientEndpoint
     /// <inheritdoc cref="IClientEndpoint"/>
     public class ClientEndpoint : IClientEndpoint
     {
-        private const string PrivateCertificateThumbprint = "8259aafd8f71a809d2b154dd1cdb492981e448bd";
+        private const string ClientCertificateThumbprint = "8259aafd8f71a809d2b154dd1cdb492981e448bd";
 
         private const string Host = "127.0.0.1:2999";
         private const string ClientDataRootUrl = "/liveclientdata";
@@ -46,26 +46,27 @@ namespace RiotSharp.Endpoints.ClientEndpoint
             {
                 var clientHandler = new HttpClientHandler
                                     {
-                                        ServerCertificateCustomValidationCallback =
-                                            delegate(HttpRequestMessage message, X509Certificate2 certificate, X509Chain chain, SslPolicyErrors errors)
-                                            {
-                                                if (errors == SslPolicyErrors.None)
-                                                {
-                                                    return true;
-                                                }
-
-                                                if (certificate?.Thumbprint?.Equals(PrivateCertificateThumbprint, StringComparison.OrdinalIgnoreCase) == true)
-                                                {
-                                                    return true;
-                                                }
-
-                                                return false;
-                                            }
+                                        ServerCertificateCustomValidationCallback = ValidateClientCertificate
                                     };
                 Requesters.ClientApiRequester = new Requester(clientHandler);
             }
 
             return _instance ?? (_instance = new ClientEndpoint(Requesters.ClientApiRequester));
+        }
+
+        private static bool ValidateClientCertificate(HttpRequestMessage message, X509Certificate2 certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            if (errors == SslPolicyErrors.None)
+            {
+                return true;
+            }
+
+            if (certificate?.Thumbprint?.Equals(ClientCertificateThumbprint, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private readonly IRequester _requester;
