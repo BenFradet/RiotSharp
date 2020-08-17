@@ -21,6 +21,7 @@ namespace RiotSharp.Endpoints.ClientEndpoint
 
         private const string Host = "127.0.0.1:2999";
         private const string ClientDataRootUrl = "/liveclientdata";
+        private const string GameDataUrl = "/allgamedata";
         private const string ActivePlayerUrl = "/activeplayer";
         private const string ActivePlayerSummonerNameUrl = "/activeplayername";
         private const string ActivePlayerAbilitiesUrl = "/activeplayerabilities";
@@ -76,6 +77,13 @@ namespace RiotSharp.Endpoints.ClientEndpoint
         internal ClientEndpoint(IRequester requester)
         {
             _requester = requester ?? throw new ArgumentNullException(nameof(requester));
+        }
+
+        /// <inheritdoc/>
+        public async Task<GameData> GetGameDataAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameDataUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<GameData>(json);
         }
 
         /// <inheritdoc/>

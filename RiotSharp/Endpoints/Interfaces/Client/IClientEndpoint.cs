@@ -13,6 +13,12 @@ namespace RiotSharp.Endpoints.Interfaces.Client
     public interface IClientEndpoint
     {
         /// <summary>
+        /// Retrieves the <see cref="GameData"/> asynchronously.
+        /// </summary>
+        /// <returns>The <see cref="GameData"/>.</returns>
+        Task<GameData> GetGameDataAsync();
+        
+        /// <summary>
         /// Retrieves the <see cref="ActivePlayer"/> asynchronously.
         /// </summary>
         /// <returns>The <see cref="ActivePlayer"/>.</returns>
