@@ -14,7 +14,7 @@ using RiotSharp.Http.Interfaces;
 
 namespace RiotSharp.Endpoints.ClientEndpoint
 {
-    /// <inheritdoc cref="IClientEndpoint"/>
+    /// <inheritdoc cref="IClientEndpoint" />
     public class ClientEndpoint : IClientEndpoint
     {
         private const string ClientCertificateThumbprint = "8259aafd8f71a809d2b154dd1cdb492981e448bd";
@@ -35,11 +35,109 @@ namespace RiotSharp.Endpoints.ClientEndpoint
         private const string GameStatsUrl = "/gamestats";
 
         private static ClientEndpoint _instance;
-        
+
+        private readonly IRequester _requester;
+
         /// <summary>
-        /// Gets the singleton instance of the <see cref="ClientEndpoint"/> class.
+        ///     Initializes a new instance of the <see cref="ClientEndpoint" /> class.
         /// </summary>
-        /// <returns>The singleton instance of the <see cref="ClientEndpoint"/> class.</returns>
+        /// <param name="requester">The <see cref="IRequester" /> to use for API requests.</param>
+        internal ClientEndpoint(IRequester requester)
+        {
+            _requester = requester ?? throw new ArgumentNullException(nameof(requester));
+        }
+
+        /// <inheritdoc />
+        public async Task<GameData> GetGameDataAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameDataUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<GameData>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<ActivePlayer.ActivePlayer> GetActivePlayerAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ActivePlayer.ActivePlayer>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<string> GetActivePlayerSummonerNameAsync()
+        {
+            return await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerSummonerNameUrl}").ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<ActivePlayerAbilities> GetActivePlayerAbilitiesAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerAbilitiesUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ActivePlayerAbilities>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<ActivePlayerFullRunes> GetActivePlayerRunesAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerRunesUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ActivePlayerFullRunes>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<Player>> GetPlayerListAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{PlayerListUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<List<Player>>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<PlayerItem>> GetPlayerItemsAsync(string summonerName)
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerItemsBySummonerNameUrl}", summonerName))
+                                       .ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<List<PlayerItem>>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<PlayerMainRunes> GetPlayerMainRunesAsync(string summonerName)
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerMainRunesBySummonerNameUrl}", summonerName))
+                                       .ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<PlayerMainRunes>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<PlayerSummonerSpellList> GetPlayerSummonerSpellsAsync(string summonerName)
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerSummonerSpellsBySummonerNameUrl}", summonerName))
+                                       .ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<PlayerSummonerSpellList>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<PlayerScores> GetPlayerScoresAsync(string summonerName)
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerScoresBySummonerNameUrl}", summonerName))
+                                       .ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<PlayerScores>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<GameEventList> GetGameEventListAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameEventListUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<GameEventList>(json);
+        }
+
+        /// <inheritdoc />
+        public async Task<GameStats> GetGameStatsAsync()
+        {
+            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameStatsUrl}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<GameStats>(json);
+        }
+
+        /// <summary>
+        ///     Gets the singleton instance of the <see cref="ClientEndpoint" /> class.
+        /// </summary>
+        /// <returns>The singleton instance of the <see cref="ClientEndpoint" /> class.</returns>
         public static IClientEndpoint GetInstance()
         {
             if (Requesters.ClientApiRequester == null)
@@ -67,104 +165,6 @@ namespace RiotSharp.Endpoints.ClientEndpoint
             }
 
             return false;
-        }
-
-        private readonly IRequester _requester;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClientEndpoint"/> class.
-        /// </summary>
-        /// <param name="requester">The <see cref="IRequester"/> to use for API requests.</param>
-        internal ClientEndpoint(IRequester requester)
-        {
-            _requester = requester ?? throw new ArgumentNullException(nameof(requester));
-        }
-
-        /// <inheritdoc/>
-        public async Task<GameData> GetGameDataAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameDataUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<GameData>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<ActivePlayer.ActivePlayer> GetActivePlayerAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ActivePlayer.ActivePlayer>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<string> GetActivePlayerSummonerNameAsync()
-        {
-            return await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerSummonerNameUrl}").ConfigureAwait(false);
-        }
-
-        /// <inheritdoc/>
-        public async Task<ActivePlayerAbilities> GetActivePlayerAbilitiesAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerAbilitiesUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ActivePlayerAbilities>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<ActivePlayerFullRunes> GetActivePlayerRunesAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{ActivePlayerRunesUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ActivePlayerFullRunes>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<List<Player>> GetPlayerListAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{PlayerListUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<List<Player>>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<List<PlayerItem>> GetPlayerItemsAsync(string summonerName)
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerItemsBySummonerNameUrl}", summonerName))
-                                       .ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<List<PlayerItem>>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<PlayerMainRunes> GetPlayerMainRunesAsync(string summonerName)
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerMainRunesBySummonerNameUrl}", summonerName))
-                                       .ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<PlayerMainRunes>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<PlayerSummonerSpellList> GetPlayerSummonerSpellsAsync(string summonerName)
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerSummonerSpellsBySummonerNameUrl}", summonerName))
-                                       .ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<PlayerSummonerSpellList>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<PlayerScores> GetPlayerScoresAsync(string summonerName)
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, string.Format($"{ClientDataRootUrl}{PlayerScoresBySummonerNameUrl}", summonerName))
-                                       .ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<PlayerScores>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<GameEventList> GetGameEventListAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameEventListUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<GameEventList>(json);
-        }
-
-        /// <inheritdoc/>
-        public async Task<GameStats> GetGameStatsAsync()
-        {
-            var json = await _requester.CreateGetRequestAsync(Host, $"{ClientDataRootUrl}{GameStatsUrl}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<GameStats>(json);
         }
     }
 }

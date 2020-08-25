@@ -23,6 +23,9 @@
 
   <ItemGroup>
     <None Include="appsettings.json" CopyToOutputDirectory="Always" />
+    <None Update="Resources\ClientEndpoint\full-game.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
