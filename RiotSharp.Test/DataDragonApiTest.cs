@@ -272,6 +272,9 @@ namespace RiotSharp.Test
         {
             var tarballLink = _api.TarballLinks.Get(StaticVersion);
             Assert.IsFalse(string.IsNullOrEmpty(tarballLink));
+            
+            Assert.AreEqual($"https://ddragon.leagueoflegends.com/cdn/dragontail-{StaticVersion}.tgz", _api.TarballLinks.Get(StaticVersion, true));
+            Assert.AreEqual($"http://ddragon.leagueoflegends.com/cdn/dragontail-{StaticVersion}.tgz", _api.TarballLinks.Get(StaticVersion, false));
         }
 
         #endregion

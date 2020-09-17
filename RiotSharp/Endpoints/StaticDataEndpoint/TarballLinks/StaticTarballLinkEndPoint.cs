@@ -14,7 +14,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.TarballLinks
         /// <inheritdoc />
         public string Get(string version, bool useHttps = true)
         {
-            return useHttps ? "https://" : "http://" + string.Format(TarballLinkUrl, version);
+            return (useHttps ? "https://" : "http://") + string.Format(TarballLinkUrl, version);
         }
     }
 }
