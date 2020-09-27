@@ -12,7 +12,7 @@ namespace RiotSharp.Test.EndpointTests
 
         [TestMethod]
         [TestCategory("StatusRiotApi"), TestCategory("Async")]
-        public void GetShardStatusAsync_Test()
+        public void GetShardStatusAsync_GetTheLeagueOfLegendsStatusForTheGivenShardAsync_AShardStatusObject()
         {
             EnsureCredibility(() =>
             {
