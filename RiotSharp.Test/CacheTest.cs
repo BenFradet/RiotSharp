@@ -46,7 +46,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAddAndExpire_ReturnTrue()
+        public void AddGet_DateTime_ShouldAddAndExpire_ReturnsTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 0, 1));
