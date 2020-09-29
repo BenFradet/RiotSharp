@@ -34,7 +34,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
-        public async Task SingleRequestAsync()
+        public async Task HandleRateLimitAsync_UseTheHandleRateLimitAsync_ReturnTimeSpanZero()
         {
             await RateLimiter.HandleRateLimitAsync();
             AssertDelayed(TimeSpan.Zero);
@@ -42,7 +42,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RateLimiter")]
-        public void HandleRateLimitAsync_ThrowOnDelay_ThrowsException()
+        public void HandleRateLimitAsync_ThrowOnDelay_ReturnThrowsException()
         {
             var rateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
             {
@@ -61,7 +61,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RateLimiter"), TestCategory("Async")]
-        public async Task HandleRateLimitAsync_NotThrowOnDelay_NoException()
+        public async Task HandleRateLimitAsync_NotThrowOnDelay_ReturnNoException()
         {
             var rateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
             {

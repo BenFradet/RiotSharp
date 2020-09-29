@@ -19,7 +19,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerBySummonerIdAsync_ExistingId_ReturnsSummoner()
+        public void GetSummonerBySummonerIdAsync_ExistingId_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -33,7 +33,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerByAccountIdAsync_ExistingAccountId_ReturnsSummoner()
+        public void GetSummonerByAccountIdAsync_ExistingAccountId_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -46,7 +46,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerByNameAsync_ExistingName_ReturnsSummoner()
+        public void GetSummonerByNameAsync_ExistingName_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -59,7 +59,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerBySummonerPuuidAsync_ExistingId_ReturnsSummoner()
+        public void GetSummonerBySummonerPuuidAsync_ExistingId_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -75,7 +75,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionRotationAsync_Test()
+        public void GetChampionRotationAsync_TestChampionRotationValues_ReturnAnChampionRotation()
         {
             EnsureCredibility(() =>
             {
@@ -89,34 +89,6 @@ namespace RiotSharp.Test
         #endregion
 
         #region League Tests
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeagueEntriesBySummonerAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                // TODO: Properly implement encrypted SummonerId tests
-                return;
-                var leagues = Api.League.GetLeagueEntriesBySummonerAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
-
-                Assert.IsTrue(leagues.Result.Count > 0);
-            });
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeagueByIdAsync_Test()
-        {
-            EnsureCredibility(() =>
-            {
-                // TODO: Properly implement League id test
-                return;
-                var leagues = Api.League.GetLeagueByIdAsync(RiotApiTestBase.SummonersRegion, "LEAGUE-ID-HERE");
-
-                Assert.IsTrue(leagues.Result.Queue != null);
-            });
-        }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
@@ -175,7 +147,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchAsync_RunesMasteries_Test()
+        public void GetMatchAsync_UseRunesMasteries_ReturnMatch()
         {
             EnsureCredibility(() =>
             {

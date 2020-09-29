@@ -47,7 +47,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetAllAsync_GetChampionsAsync_ReturnsChampions()
+        public async Task GetAllAsync_GetChampionsAsync_ReturnChampions()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -147,7 +147,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetMapsAsync_GetsAllMaps_RetrunAllMaps()
+        public async Task GetMapsAsync_GetsAllMaps_ReturnAllMaps()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -162,7 +162,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetAllAsync_GetMasteriesAsync_ReturnsAllMasteries()
+        public async Task GetAllAsync_GetMasteriesAsync_ReturnAllMasteries()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -222,7 +222,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetAllAsync_GetSummonerSpellsAsync_RetunsAllSummonerSpells()
+        public async Task GetAllAsync_GetSummonerSpellsAsync_ReturnAllSummonerSpells()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -252,7 +252,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetAllAsync_GetRealmAsync_RetrunsAllRealms()
+        public async Task GetAllAsync_GetRealmAsync_ReturnAllRealms()
         {
             await EnsureCredibilityAsync(async () =>
             {

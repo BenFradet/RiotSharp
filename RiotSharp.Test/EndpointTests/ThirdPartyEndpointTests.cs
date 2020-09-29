@@ -28,7 +28,7 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public void GetThirdPartyCodeBySummonerIdAsync_GetAThridPartyCodeBySummonerID_ReturnsSummerIDCodeResult()
+        public void GetThirdPartyCodeBySummonerIdAsync_GetAThridPartyCodeBySummonerID_ReturnSummerIDCodeResult()
         {
             _rateLimitedRequester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(response);
@@ -37,7 +37,7 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public async Task GetThirdPartyCodeBySummonerIdAsync_GetAThridPartyCodeBySummonerID_ReturnsSummerIDCode()
+        public async Task GetThirdPartyCodeBySummonerIdAsync_GetAThridPartyCodeBySummonerID_ReturnSummerIDCode()
         {
             _rateLimitedRequester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(response);

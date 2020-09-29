@@ -56,7 +56,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Add_ShouldUpdateIfPresent_ReturOtherValue()
+        public void Add_ShouldUpdateIfPresent_ReturnOtherValue()
         {
             Cache cache = new Cache();
             var otherValue = "otherValue";

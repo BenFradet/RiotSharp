@@ -11,7 +11,7 @@ namespace RiotSharp.Test
         [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void CreateProviderAsync_CreateTournamentAsync_CreateTournamentCodeAsync_UpdateTournamentCodeAsync_Test()
+        public void CreateProviderAsync_CreateATournamentCodeAnd_ReturnUpdateTournamentCodes()
         {
             EnsureCredibility(() =>
             {
@@ -40,7 +40,7 @@ namespace RiotSharp.Test
         [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void CreateTournamentCodesAsync_InvalidTeamSize_ThrowsArgumentException()
+        public void CreateTournamentCodesAsync_InvalidTeamSize_ReturnThrowsArgumentException()
         {
             EnsureCredibility(() =>
             {
@@ -64,7 +64,7 @@ namespace RiotSharp.Test
         [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void CreateTournamentCodesAsync_CountGreaterThan1000_ThrowsArgumentException()
+        public void CreateTournamentCodesAsync_CountGreaterThan1000_ReturnThrowsArgumentException()
         {
             EnsureCredibility(() =>
             {
@@ -88,7 +88,7 @@ namespace RiotSharp.Test
         [Ignore]
         [TestMethod]
         [TestCategory("TournamentRiotApi"), TestCategory("Async")]
-        public void CreateTournamentCodesAsync_CountLessThan1_ThrowsArgumentException()
+        public void CreateTournamentCodesAsync_CountLessThan1_ReturnThrowsArgumentException()
         {
             EnsureCredibility(() =>
             {

@@ -24,7 +24,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_TimeSpan_ShouldAddAndExpire_ReturnsTrue()
+        public void AddGet_TimeSpan_ShouldAddAndExpire_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -36,7 +36,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAdd_ReturnsTheTestValue()
+        public void AddGet_DateTime_ShouldAdd_ReturnTheTestValue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 5, 0));
@@ -46,7 +46,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAddAndExpire_ReturnsTrue()
+        public void AddGet_DateTime_ShouldAddAndExpire_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 0, 1));
@@ -58,7 +58,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Add_ShouldUpdateIfPresent_ReturnsUpdatedValue()
+        public void Add_ShouldUpdateIfPresent_ReturnUpdatedValue()
         {
             Cache cache = new Cache();
             var otherValue = "otherValue";
@@ -94,7 +94,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldRemoveIfPresent_ReturnsNull()
+        public void Remove_ShouldRemoveIfPresent_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -210,7 +210,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Count_ShouldGiveProperResults_ReturnsTheCorrectCounts()
+        public void Count_ShouldGiveProperResults_ReturnTheCorrectCounts()
         {
             Cache cache = new Cache();
 
