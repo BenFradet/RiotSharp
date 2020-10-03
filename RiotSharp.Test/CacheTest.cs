@@ -156,7 +156,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Keys_ShouldGetEmptyIfEmptyCache_ReturnsTrue()
+        public void Keys_ShouldGetEmptyIfEmptyCache_ReturnTrue()
         {
             Cache cache = new Cache();
             Assert.IsTrue(Enumerable.Empty<object>().SequenceEqual(cache.Keys()));
