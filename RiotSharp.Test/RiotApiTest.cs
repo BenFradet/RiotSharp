@@ -19,7 +19,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerBySummonerIdAsync_ExistingId_ReturnsSummoner()
+        public void GetSummonerBySummonerIdAsync_ExistingId_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -33,7 +33,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerByAccountIdAsync_ExistingAccountId_ReturnsSummoner()
+        public void GetSummonerByAccountIdAsync_ExistingAccountId_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -46,7 +46,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerByNameAsync_ExistingName_ReturnsSummoner()
+        public void GetSummonerByNameAsync_ExistingName_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -59,7 +59,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetSummonerBySummonerPuuidAsync_ExistingId_ReturnsSummoner()
+        public void GetSummonerBySummonerPuuidAsync_ExistingId_ReturnSummoner()
         {
             EnsureCredibility(() =>
             {
@@ -75,7 +75,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionRotationAsync_Test()
+        public void GetChampionRotationAsync_TestChampionRotationValues_ReturnAnChampionRotation()
         {
             EnsureCredibility(() =>
             {
@@ -89,10 +89,10 @@ namespace RiotSharp.Test
         #endregion
 
         #region League Tests
-
+        
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeagueEntriesBySummonerAsync_Test()
+        public void GetLeagueEntriesBySummonerAsync_ProperlyImplementEncryptedSummonerId_ReturnTrue()
         {
             EnsureCredibility(() =>
             {
@@ -106,7 +106,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeagueByIdAsync_Test()
+        public void GetLeagueByIdAsync_ProperlyImplementLeagueId_ReturnTrue()
         {
             EnsureCredibility(() =>
             {
@@ -120,7 +120,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeagueEntriesAsync_Test()
+        public void GetLeagueEntriesAsync_GetLeagueEntries_ReturnLeagueEntries()
         {
             EnsureCredibility(() =>
             {
@@ -135,7 +135,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetLeagueGrandmastersByQueueAsync_Test()
+        public void GetLeagueGrandmastersByQueueAsync_GetLeagueGrandmastersByQueue_ReturnLeagueGrandmastersByQueue()
         {
             EnsureCredibility(() =>
             {
@@ -148,7 +148,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChallengerLeagueAsync_Test()
+        public void GetChallengerLeagueAsync_GetsAChallengerLeague_ReturnChallengerLeague()
         {
             EnsureCredibility(() =>
             {
@@ -160,7 +160,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMasterLeagueAsync_Test()
+        public void GetMasterLeagueAsync_GetsAMasterLeague_ReturnMasterLeague()
         {
             EnsureCredibility(() =>
             {
@@ -175,7 +175,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchAsync_RunesMasteries_Test()
+        public void GetMatchAsync_UseRunesMasteries_ReturnMatch()
         {
             EnsureCredibility(() =>
             {
@@ -205,7 +205,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchAsync_Perks_Test()
+        public void GetMatchAsync_GetMatchPerks_ReturnMatchPerks()
         {
             EnsureCredibility(() =>
             {
@@ -232,7 +232,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchTimelineAsync_Test()
+        public void GetMatchTimelineAsync_GetMatchTimeline_ReturnMatchTimeline()
         {
             EnsureCredibility(() =>
             {
@@ -246,7 +246,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_Test()
+        public void GetMatchListAsync_GetMatchList_ReturnMatchList()
         {
             EnsureCredibility(() =>
             {
@@ -259,7 +259,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_ChampionIds_Test()
+        public void GetMatchListAsync_GetChampionIds_ReturnChampionIds()
         {
             EnsureCredibility(() =>
             {
@@ -276,7 +276,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_Queues_Test()
+        public void GetMatchListAsync_GetMatchListQueues_ReturnMatchList()
         {
             EnsureData(() =>
             {
@@ -296,7 +296,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_Seasons_Test()
+        public void GetMatchListAsync_GetMatchListSeasons_ReturnMatchList()
         {
             EnsureData(() =>
             {
@@ -318,7 +318,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_DateTimes_Test()
+        public void GetMatchListAsync_GetMatchListDateTimes_ReturnMatchList()
         {
             EnsureCredibility(() =>
             {
@@ -335,7 +335,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_Index_Test()
+        public void GetMatchListAsync_UseTheIndexToTest_ReturnMatches()
         {
             EnsureCredibility(() =>
             {
@@ -354,7 +354,7 @@ namespace RiotSharp.Test
         [Ignore] // Needs to be manually adjusted for testing
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetCurrentGameAsync_Test()
+        public void GetCurrentGameAsync_GetCurrentGame_ReturnGetCurrentGame()
         {
             EnsureCredibility(() =>
             {
@@ -376,7 +376,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetFeaturedGamesAsync_Test()
+        public void GetFeaturedGamesAsync_GetFeaturedGames_ReturnGetFeaturedGames()
         {
             EnsureCredibility(() =>
             {
@@ -401,7 +401,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionMasteryAsync_Test()
+        public void GetChampionMasteryAsync_GetAChampionMastery_ReturnChampionMastery()
         {
             EnsureCredibility(() =>
             {
@@ -417,7 +417,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetChampionsMasteriesAsync_Test()
+        public void GetChampionsMasteriesAsync_GetsChampionMasteries_ReturnChampionMasteries()
         {
             EnsureCredibility(() =>
             {
@@ -431,7 +431,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetTotalChampionMasteryScoreAsync_Test()
+        public void GetTotalChampionMasteryScoreAsync_GetsTheTotalChampionMasteryScore_ReturnTotalChampionMasteryScore()
         {
             EnsureCredibility(() =>
             {
@@ -446,7 +446,7 @@ namespace RiotSharp.Test
         #region Third Party Tests
         [TestMethod]
         [TestCategory("RiotApi")]
-        public void GetThirdPartyCode_Test()
+        public void GetThirdPartyCodeBySummonerIdAsync_GetThirdPartyCodeBySummonerId_ReturnThirdPartyCodeBySummonerIdResult()
         {
             EnsureData(() =>
             {
@@ -462,7 +462,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetThirdPartyCodeAsync_Test()
+        public void GetThirdPartyCodeBySummonerIdAsync_GetThirdPartyCodeBySummonerId_ReturnThirdPartyCodeBySummonerId()
         {
             EnsureData(() =>
             {

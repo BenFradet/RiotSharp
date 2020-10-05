@@ -24,30 +24,30 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetChampionByKeyAsync_Test()
+        public async Task GetByKeyAsync_GetChampionByKeyAsync_ReturnAnnie()
         {
             await EnsureCredibilityAsync(async () =>
             {
                 var champ = await _api.Champions.GetByKeyAsync(StaticChampionKey, StaticVersion);
-                Assert.AreEqual(StaticChampionName, champ.Name);
+                Assert.AreEqual(StaticChampionNameAnnie, champ.Name);
             });
         }
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetChampionByIdAsync_Test()
+        public async Task GetByIdAsync_GetChampionByIdAsync_ReturnAarox()
         {
             await EnsureCredibilityAsync(async () =>
             {
                 var aatroxId = 266;
                 var champ = await _api.Champions.GetByIdAsync(aatroxId, StaticVersion);
-                Assert.AreEqual("Aatrox", champ.Name);
+                Assert.AreEqual(StaticChampionNameAatrox, champ.Name);
             });
         }
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetChampionsAsync_Test()
+        public async Task GetAllAsync_GetChampionsAsync_ReturnChampions()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -58,7 +58,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetChampionsAsync_Full_Test()
+        public async Task GetAllAsync_GetChampionsAsync_ReturnAChampionWithPassiveAndSpells()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -76,7 +76,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetItemsAsync_Test()
+        public async Task GetAllAsync_GetItems_ReturnAllItems()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -91,21 +91,20 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task JsonSerialize_ItemListStatic_Test()
+        public async Task SerializeObject_ItemListStatic_ReturnDeserializeList()
         {
             await EnsureCredibilityAsync(async () =>
             {
-                // Arange 
+                // Arrange 
                 var itemsSample = await _api.Items.GetAllAsync(StaticVersion);
                 var itemSample = itemsSample.Items.First();
 
                 // Act
                 var itemsJson = JsonConvert.SerializeObject(itemsSample);
-
-                // Arange
                 var items = JsonConvert.DeserializeObject<Endpoints.StaticDataEndpoint.Item.ItemListStatic>(itemsJson);
                 var item = items.Items.First();
-
+                
+                // Assert
                 Assert.AreEqual(itemsSample.Items.Count, items.Items.Count);
                 Assert.AreEqual(itemSample.Value.Id, item.Value.Id);
                 Assert.AreEqual(itemSample.Value.Name, item.Value.Name);
@@ -118,7 +117,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetLanguageStringsAsync_Test()
+        public async Task GetLanguageStringsAsync_GetLanguageStrings_ReturnLanguageStrings()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -133,7 +132,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetLanguagesAsync_Test()
+        public async Task GetLanguagesAsync_GetLanguages_ReturnLanguages()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -148,7 +147,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetMapsAsync_Test()
+        public async Task GetMapsAsync_GetsAllMaps_ReturnAllMaps()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -163,7 +162,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetMasteriesAsync_Test()
+        public async Task GetAllAsync_GetMasteriesAsync_ReturnAllMasteries()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -178,7 +177,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetProfileIconsAsync_Test()
+        public async Task GetAllAsync_GetProfileIconsAsync_ReturnAllProfileIcons()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -193,7 +192,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetReforgedRunesAsync_Test()
+        public async Task GetAllAsync_GetReforgedRunesAsync_ReturnAllReforgedRunes()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -208,7 +207,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetRunesAsync_Test()
+        public async Task GetAllAsync_GetRunesAsync_ReturnAllRunes()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -223,7 +222,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetSummonerSpellsAsync_Test()
+        public async Task GetAllAsync_GetSummonerSpellsAsync_ReturnAllSummonerSpells()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -238,7 +237,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetVersionsAsync_Test()
+        public async Task GetAllAsync_GetVersionsAsync_ReturnAllVersions()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -253,7 +252,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetRealmAsync_Test()
+        public async Task GetAllAsync_GetRealmAsync_ReturnAllRealms()
         {
             await EnsureCredibilityAsync(async () =>
             {
@@ -268,7 +267,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public void GetTarballLink_Test()
+        public void Get_GetTarballLink_ReturnTarballLinks()
         {
             var tarballLink = _api.TarballLinks.Get(StaticVersion);
             Assert.IsFalse(string.IsNullOrEmpty(tarballLink));

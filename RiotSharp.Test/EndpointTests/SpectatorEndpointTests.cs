@@ -64,7 +64,7 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public async Task GetCurrentGameAsync_Test()
+        public async Task GetCurrentGameAsync_GetsTheCurrentGameBySummonerIDAsync_ReturnCurrentGameOfTheSummoner()
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(JsonConvert.SerializeObject(_currentGameResponse));
@@ -73,7 +73,7 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public async Task GetFeaturedGamesAsync_Test()
+        public async Task GetCurrentGameAsync_GetsTheFeaturedGamesByRegionAsync_ReturnFeaturedGamesForTheRegion()
         {
             _requester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(JsonConvert.SerializeObject(_featuredGamesResponse));

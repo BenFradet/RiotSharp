@@ -10,7 +10,8 @@ namespace RiotSharp.Test
         public const string LegacyVersion = "7.13.1"; // For testing deprecated rune and mastery endpoint
 
         public const string StaticChampionKey = "Annie";
-        public const string StaticChampionName = "Annie";
+        public const string StaticChampionNameAnnie = "Annie";
+        public const string StaticChampionNameAatrox = "Aatrox";
 
         public static readonly string StaticTarballLinkBaseUrl = "http://ddragon.leagueoflegends.com/cdn/dragontail-";
         public const string StaticTarballLinkVersion = "0.151.2";

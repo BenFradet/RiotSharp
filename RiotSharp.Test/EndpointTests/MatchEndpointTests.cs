@@ -28,7 +28,7 @@ namespace RiotSharp.Test.EndpointTests
         }
 
         [TestMethod]
-        public void GetMatchListAsync_Test()
+        public void GetMatchListAsync_GetTheListOfMatchesOfASpecificSummonerAsync_ReturnMatchList()
         {
             _rateLimitedRequester.Setup(moq => moq.CreateGetRequestAsync(It.IsAny<string>(), It.IsAny<Region>(),
                 It.IsAny<List<string>>(), It.IsAny<bool>())).ReturnsAsync(File.ReadAllText(ResponsePath));

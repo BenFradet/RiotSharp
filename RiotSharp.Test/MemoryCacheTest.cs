@@ -12,7 +12,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_TimeSpan_ShouldAddToTheCache_Test()
+        public void Add_TimeSpanShouldAddToTheCache_ReturnTestValue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 5, 0));
@@ -22,7 +22,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_TimeSpan_ShouldAddAndExpire_Test()
+        public void Add_TimeSpanShouldAddAndExpire_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -34,7 +34,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAdd_Test()
+        public void AddGet_DateTimeShouldAdd_ReturnTestValue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 5, 0));
@@ -44,7 +44,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAddAndExpire_Test()
+        public void Add_DateTimeShouldAddAndExpire_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 0, 1));
@@ -56,7 +56,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Add_ShouldUpdateIfPresent_Test()
+        public void Add_ShouldUpdateIfPresent_ReturnOtherValue()
         {
             Cache cache = new Cache();
             var otherValue = "otherValue";
@@ -69,7 +69,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldDoNothingIfNull_Test()
+        public void Remove_ShouldDoNothingIfNull_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -81,7 +81,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldDoNothingIfAbsent_Test()
+        public void Remove_ShouldDoNothingIfAbsent_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Remove(CacheTestBase.TestKey);
@@ -90,7 +90,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldRemoveIfPresent_Test()
+        public void Remove_ShouldRemoveIfPresent_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -102,7 +102,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Clear_ShouldRemoveAll_Test()
+        public void Clear_ShouldRemoveAll_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));

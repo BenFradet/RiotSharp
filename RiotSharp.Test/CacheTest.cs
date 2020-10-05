@@ -14,7 +14,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_TimeSpan_ShouldAddToTheCache_Test()
+        public void AddGet_TimeSpan_ShouldAddToTheCache_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 5, 0));
@@ -24,7 +24,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_TimeSpan_ShouldAddAndExpire_Test()
+        public void AddGet_TimeSpan_ShouldAddAndExpire_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -36,7 +36,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAdd_Test()
+        public void AddGet_DateTime_ShouldAdd_ReturnTheTestValue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 5, 0));
@@ -46,7 +46,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void AddGet_DateTime_ShouldAddAndExpire_Test()
+        public void AddGet_DateTime_ShouldAddAndExpire_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, DateTime.Now + new TimeSpan(0, 0, 1));
@@ -58,7 +58,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Add_ShouldUpdateIfPresent_Test()
+        public void Add_ShouldUpdateIfPresent_ReturnUpdatedValue()
         {
             Cache cache = new Cache();
             var otherValue = "otherValue";
@@ -71,7 +71,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldDoNothingIfNull_Test()
+        public void Remove_ShouldDoNothingIfNull_ReturnDontThrowExceptionIfNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -83,16 +83,18 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldDoNothingIfAbsent_Test()
+        public void Remove_ShouldDoNothingIfAbsent_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Remove(CacheTestBase.TestKey);
+
+            cache.Get<string, string>(CacheTestBase.TestKey);
             Assert.IsNull(cache.Get<string, string>(CacheTestBase.TestKey));
         }
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Remove_ShouldRemoveIfPresent_Test()
+        public void Remove_ShouldRemoveIfPresent_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -104,7 +106,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Clear_ShouldRemoveAll_Test()
+        public void Clear_ShouldRemoveAll_ReturnNull()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -116,7 +118,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Keys_ShouldGetAllKeysOfType_Test()
+        public void Keys_ShouldGetAllKeysOfType_ReturnOneKeyTypeAndTheTestKey()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -129,7 +131,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Keys_ShouldGetEmptyOfTypeIfNoMatches_Test()
+        public void Keys_ShouldGetEmptyOfTypeIfNoMatches_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -141,7 +143,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Keys_ShouldGetAllKeys_Test()
+        public void Keys_ShouldGetAllKeys_ReturnContainTwoKeysAndTestKey()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -154,7 +156,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Keys_ShouldGetEmptyIfEmptyCache_Test()
+        public void Keys_ShouldGetEmptyIfEmptyCache_ReturnTrue()
         {
             Cache cache = new Cache();
             Assert.IsTrue(Enumerable.Empty<object>().SequenceEqual(cache.Keys()));
@@ -162,7 +164,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Values_ShouldGetAllValuesOfType_Test()
+        public void Values_ShouldGetAllValuesOfType_ReturnContainOneTestKey()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -175,7 +177,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Values_ShouldGetEmptyOfTypeIfNoMatches_Test()
+        public void Values_ShouldGetEmptyOfTypeIfNoMatches_ReturnTrue()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -187,7 +189,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Values_ShouldGetAllValues_Test()
+        public void Values_ShouldGetAllValues_ReturnContainTwoTestValues()
         {
             Cache cache = new Cache();
             cache.Add(CacheTestBase.TestKey, CacheTestBase.TestValue, new TimeSpan(0, 0, 1));
@@ -200,7 +202,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Values_ShouldGetEmptyIfEmptyCache_Test()
+        public void Values_ShouldGetEmptyIfEmptyCache_ReturnTrue()
         {
             Cache cache = new Cache();
             Assert.IsTrue(Enumerable.Empty<object>().SequenceEqual(cache.Values()));
@@ -208,7 +210,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("Cache")]
-        public void Count_ShouldGiveProperResults_Test()
+        public void Count_ShouldGiveProperResults_ReturnTheCorrectCounts()
         {
             Cache cache = new Cache();
 

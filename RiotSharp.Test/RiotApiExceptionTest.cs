@@ -10,7 +10,7 @@ namespace RiotSharp.Test
         [TestMethod]
         [TestCategory("Exception")]
         [ExpectedException(typeof(RiotSharpException))]
-        public void GetSummoner_ShouldThrowRiotSharpException_Test()
+        public void GetSummonerBySummonerIdAsync_ThrowException_ReturnThrowRiotSharpException()
         {
             FaultyApi.Summoner.GetSummonerBySummonerIdAsync(CommonTestBase.Summoner1And2Region, CommonTestBase.Summoner1Id).GetAwaiter().GetResult();
         }

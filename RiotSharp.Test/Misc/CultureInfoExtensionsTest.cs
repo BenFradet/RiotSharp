@@ -45,7 +45,7 @@ namespace RiotSharp.Test.Misc
         private static CultureInfo unsupportedCultureInfo = new CultureInfo("et-ET");
 
         [TestMethod]
-        public void ToLanguage_SupportedNeutralCultureInfo_ReturnsLanguage()
+        public void ToLanguage_SupportedNeutralCultureInfo_ReturnLanguage()
         {
             foreach(var supportedNeutralCulture in supportedNeutralCultureInfos)
             {               
@@ -58,7 +58,7 @@ namespace RiotSharp.Test.Misc
         }
 
         [TestMethod]
-        public void ToLanguage_DirectlySupportedCultureInfo_ReturnsLanguage()
+        public void ToLanguage_DirectlySupportedCultureInfo_ReturnLanguage()
         {
             foreach (var directlySupportedCulture in directlySupportedCultureInfos)
             {
@@ -72,7 +72,7 @@ namespace RiotSharp.Test.Misc
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ToLanguage_UnsupportedNeutralCultureInfo_ThrowsArgumentException()
+        public void ToLanguage_UnsupportedNeutralCultureInfo_ReturnThrowsArgumentException()
         {
             // Act and Assert - Expects exception
             var language = unsupportedNeutralCultureInfo.ToLanguage();
@@ -80,7 +80,7 @@ namespace RiotSharp.Test.Misc
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ToLanguage_UnsupportedCultureInfo_ThrowsArgumentExcepion()
+        public void ToLanguage_UnsupportedCultureInfo_ReturnThrowsArgumentExcepion()
         {
             // Act and Assert - Expects exception
             var language = unsupportedNeutralCultureInfo.ToLanguage();
