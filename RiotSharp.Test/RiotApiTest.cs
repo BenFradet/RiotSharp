@@ -89,6 +89,34 @@ namespace RiotSharp.Test
         #endregion
 
         #region League Tests
+        
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeagueEntriesBySummonerAsync_ProperlyImplementEncryptedSummonerId_ReturnTrue()
+        {
+            EnsureCredibility(() =>
+            {
+                // TODO: Properly implement encrypted SummonerId tests
+                return;
+                var leagues = Api.League.GetLeagueEntriesBySummonerAsync(RiotApiTestBase.SummonersRegion, RiotApiTestBase.SummonerIds.FirstOrDefault());
+
+                Assert.IsTrue(leagues.Result.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetLeagueByIdAsync_ProperlyImplementLeagueId_ReturnTrue()
+        {
+            EnsureCredibility(() =>
+            {
+                // TODO: Properly implement League id test
+                return;
+                var leagues = Api.League.GetLeagueByIdAsync(RiotApiTestBase.SummonersRegion, "LEAGUE-ID-HERE");
+
+                Assert.IsTrue(leagues.Result.Queue != null);
+            });
+        }
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
