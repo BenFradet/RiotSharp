@@ -9,7 +9,7 @@ namespace RiotSharp.Test
     [TestClass]
     public class RiotApiTest : CommonTestBase
     {
-        private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance("RGAPI-e1d0f6c0-d841-4e7f-b555-0eccb16ce593");
+        private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance(ApiKey);
 
         // The maximum time range allowed is one week, otherwise a 400 error code is returned.
         private static readonly DateTime BeginTime = DateTime.Now.AddDays(-6);
