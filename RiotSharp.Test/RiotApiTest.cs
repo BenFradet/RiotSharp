@@ -9,11 +9,52 @@ namespace RiotSharp.Test
     [TestClass]
     public class RiotApiTest : CommonTestBase
     {
-        private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance(ApiKey);
+        private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance("RGAPI-e1d0f6c0-d841-4e7f-b555-0eccb16ce593");
 
         // The maximum time range allowed is one week, otherwise a 400 error code is returned.
         private static readonly DateTime BeginTime = DateTime.Now.AddDays(-6);
         private static DateTime EndTime => DateTime.Now;
+
+        #region Account Tests
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetAccountByPuuindAsync_ExistingPuuid_ReturnAccount()
+        {
+            EnsureCredibility(() =>
+            {
+                var account = Api.Account.GetAccountByPuuindAsync(RiotSharp.Misc.Region.Americas, Summoner1Puuid).Result;
+
+                Assert.AreEqual(account.Puuid, Summoner1Puuid);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetAccountRiotIdAsync_ExistingAccount_ReturnAccount()
+        {
+            EnsureCredibility(() =>
+            {
+                var account = Api.Account.GetAccountRiotIdAsync(RiotSharp.Misc.Region.Americas, AccountGameName, AccountTagLine).Result;
+
+                Assert.IsNotNull(account.Puuid);
+                Assert.IsNotNull(account.GameName);
+                Assert.IsNotNull(account.TagLine);
+            });
+        }
+
+        [TestMethod]
+        [TestCategory("RiotApi"), TestCategory("Async")]
+        public void GetActiveShardByPuuindAsync_LoR_ExistingPuuid_ReturnActiveShard()
+        {
+            EnsureCredibility(() =>
+            {
+                var activeShard = Api.Account.GetActiveShardByPuuindAsync(RiotSharp.Misc.Region.Americas, Endpoints.AccountEndpoint.Enums.Game.LoR, Summoner1Puuid).Result;
+
+                Assert.AreEqual(activeShard.Puuid, Summoner1Puuid);
+            });
+        }
+        #endregion
 
         #region Summoner Tests
 

@@ -52,6 +52,24 @@ namespace RiotSharp.Misc.Converters
                 case "JP":
                 case "jp":
                     return Region.Jp;
+                case "AMERICAS":
+                case "americas":
+                    return Region.Americas;
+                case "ASIA":
+                case "asia":
+                    return Region.Asia;
+                case "EUROPE":
+                case "europe":
+                    return Region.Europe;
+                case "AP":
+                case "ap":
+                    return Region.Ap;
+                case "EU":
+                case "eu":
+                    return Region.Eu;
+                case "LATAM":
+                case "latam":
+                    return Region.Latam;
                 default:
                     return null;
             }

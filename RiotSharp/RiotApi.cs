@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RiotSharp.Caching;
+using RiotSharp.Endpoints.AccountEndpoint;
 using RiotSharp.Endpoints.ChampionEndpoint;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Endpoints.ClashEndpoint;
@@ -28,10 +29,13 @@ namespace RiotSharp
         #region Private Fields
         private static RiotApi _instance;
 
-        private readonly ICache _cache;       
+        private readonly ICache _cache;
         #endregion
 
         #region Endpoints
+
+        /// <inheritdoc />
+        public IAccountEndpoint Account { get; }
 
         /// <inheritdoc />
         public ISummonerEndpoint Summoner { get; }
@@ -131,6 +135,7 @@ namespace RiotSharp
             Requesters.StaticApiRequester = new Requester(apiKey);
             var requester = Requesters.RiotApiRequester;
 
+            Account = new AccountEndpoint(requester);
             Summoner = new SummonerEndpoint(requester, _cache);
             Champion = new ChampionEndpoint(requester);
             League = new LeagueEndpoint(requester);
@@ -165,7 +170,8 @@ namespace RiotSharp
                 throw new ArgumentNullException(nameof(staticEndpointProvider));
 
             _cache = cache ?? new PassThroughCache();
-            
+
+            Account = new AccountEndpoint(rateLimitedRequester);
             Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
             Champion = new ChampionEndpoint(rateLimitedRequester);
             League = new LeagueEndpoint(rateLimitedRequester);

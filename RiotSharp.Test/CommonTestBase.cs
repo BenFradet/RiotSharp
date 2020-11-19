@@ -31,6 +31,10 @@ namespace RiotSharp.Test
         public static string Summoner3Name = "xsunx";
         public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "Ru");
 
+        public static string AccountGameName = "toothlessG";
+        public static string AccountTagLine = "NA1";
+        public static string AccountPuuid = Summoner1Puuid;
+
         /// <summary>
         /// Ensures that test returns data (Shows test warnings for 404 status exceptions)
         /// </summary>
