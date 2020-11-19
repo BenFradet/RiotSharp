@@ -1,4 +1,6 @@
-﻿using RiotSharp.Misc;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RiotSharp.Misc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,13 @@ namespace RiotSharp.Http
     {
         protected const string PlatformDomain = ".api.riotgames.com";
         private readonly HttpClient _httpClient;
+        private static HttpStatusCode[] RiotHttpStatusCodeResponse = new HttpStatusCode[] {
+            HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
+            HttpStatusCode.Forbidden,  HttpStatusCode.NotFound,
+            HttpStatusCode.MethodNotAllowed, HttpStatusCode.UnsupportedMediaType,
+            HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest,
+            HttpStatusCode.ServiceUnavailable, HttpStatusCode.GatewayTimeout
+        };
 
         public string ApiKey { get; set; }
 
@@ -78,42 +87,42 @@ namespace RiotSharp.Http
 
         protected void HandleRequestFailure(HttpResponseMessage response)
         {
-            var statusCode = response.StatusCode;
             try
             {
-                switch (statusCode)
+                if (response.StatusCode == (HttpStatusCode)429)
                 {
-                    case HttpStatusCode.ServiceUnavailable:
-                        throw new RiotSharpException("503, Service unavailable", statusCode);
-                    case HttpStatusCode.InternalServerError:
-                        throw new RiotSharpException("500, Internal server error", statusCode);
-                    case HttpStatusCode.Unauthorized:
-                        throw new RiotSharpException("401, Unauthorized", statusCode);
-                    case HttpStatusCode.BadRequest:
-                        throw new RiotSharpException("400, Bad request", statusCode);
-                    case HttpStatusCode.NotFound:
-                        throw new RiotSharpException("404, Resource not found", statusCode);
-                    case HttpStatusCode.Forbidden:
-                        throw new RiotSharpException("403, Forbidden", statusCode);
-                    case (HttpStatusCode)429:
-                        var retryAfter = TimeSpan.Zero;
-                        if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
+                    var retryAfter = TimeSpan.Zero;
+                    if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
+                    {
+                        if (int.TryParse(retryAfterHeaderValues.FirstOrDefault(), out var seconds))
                         {
-                            if (int.TryParse(retryAfterHeaderValues.FirstOrDefault(), out var seconds))
-                            {
-                                retryAfter = TimeSpan.FromSeconds(seconds);
-                            }
+                            retryAfter = TimeSpan.FromSeconds(seconds);
                         }
+                    }
 
-                        string rateLimitType = null;
-                        if(response.Headers.TryGetValues("X-Rate-Limit-Type", out var rateLimitTypeHeaderValues))
-                        {
-                            rateLimitType = rateLimitTypeHeaderValues.FirstOrDefault();
-                        }
-                        throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", statusCode, retryAfter, rateLimitType);
-                    default:
-                        throw new RiotSharpException("Unexpeced failure", statusCode);
+                    string rateLimitType = null;
+                    if (response.Headers.TryGetValues("X-Rate-Limit-Type", out var rateLimitTypeHeaderValues))
+                    {
+                        rateLimitType = rateLimitTypeHeaderValues.FirstOrDefault();
+                    }
+                    throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", response.StatusCode, retryAfter, rateLimitType);
                 }
+                else if (RiotHttpStatusCodeResponse.Contains(response.StatusCode))
+                {
+                    string message;
+                    try // try get error message from response
+                    {
+                        var json = response.Content.ReadAsStringAsync().Result;
+                        var obj = JObject.Parse(json);
+                        message = obj["status"]["message"].ToObject<string>();
+                    }
+                    catch {
+                        message = response.StatusCode.ToString();
+                    }
+                    throw new RiotSharpException(message, response.StatusCode);
+                }
+                else
+                    throw new RiotSharpException("Unexpeced failure", response.StatusCode);
             }
             finally
             {
