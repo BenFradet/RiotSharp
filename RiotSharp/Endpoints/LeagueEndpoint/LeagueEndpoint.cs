@@ -60,7 +60,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
         public async Task<List<LeagueEntry>> GetLeagueEntriesAsync(Region region, Enums.Division division, Enums.Tier tier, string rankedQueue, int page = 1)
         {
             var json = await _requester.CreateGetRequestAsync(
-                LeagueRootUrl + string.Format(LeagueEntriesByDivTierQueue, division, tier.ToString().ToUpperInvariant(), rankedQueue),
+                LeagueRootUrl + string.Format(LeagueEntriesByDivTierQueue, rankedQueue, tier.ToString().ToUpperInvariant(), division),
                 region,
                 new List<string> { page.ToString() }).ConfigureAwait(false);
 
