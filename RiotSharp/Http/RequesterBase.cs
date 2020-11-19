@@ -14,13 +14,13 @@ namespace RiotSharp.Http
     {
         protected const string PlatformDomain = ".api.riotgames.com";
         private readonly HttpClient _httpClient;
-        private static HttpStatusCode[] RiotHttpStatusCodeResponse = new HttpStatusCode[] {
+        private static HashSet<HttpStatusCode> RiotHttpStatusCodeResponse = new HashSet<HttpStatusCode>(
             HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
             HttpStatusCode.Forbidden,  HttpStatusCode.NotFound,
             HttpStatusCode.MethodNotAllowed, HttpStatusCode.UnsupportedMediaType,
             HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest,
             HttpStatusCode.ServiceUnavailable, HttpStatusCode.GatewayTimeout
-        };
+        );
 
         public string ApiKey { get; set; }
 
