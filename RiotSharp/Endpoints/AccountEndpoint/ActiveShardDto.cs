@@ -18,17 +18,14 @@ namespace RiotSharp.Endpoints.AccountEndpoint
         public string Puuid { get; set; }
 
         /// <summary>
-        /// 
+        /// The game.
         /// </summary>
         [JsonProperty("game")]
         public Game Game { get; set; }
 
         /// <summary>
-        /// 
+        /// Active shard for combination Puuid and Game.
         /// </summary>
-        /// <remarks>
-        /// Missing support for Valorant's platforms.
-        /// </remarks>
         [JsonProperty("activeShard")]
         public Region ActiveShard { get; set; }
     }

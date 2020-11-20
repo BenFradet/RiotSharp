@@ -30,7 +30,7 @@ namespace RiotSharp.Endpoints.AccountEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<Account> GetAccountByPuuindAsync(Region region, string puuid)
+        public async Task<Account> GetAccountByPuuidAsync(Region region, string puuid)
         {
             var json = await _requester.CreateGetRequestAsync(AccountRootUrl + string.Format(ByPuuid, puuid), region
                 ).ConfigureAwait(false);
@@ -48,7 +48,7 @@ namespace RiotSharp.Endpoints.AccountEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<ActiveShardDto> GetActiveShardByPuuindAsync(Region region, Game game, string puuid)
+        public async Task<ActiveShardDto> GetActiveShardByPuuidAsync(Region region, Game game, string puuid)
         {
             var json = await _requester.CreateGetRequestAsync(AccountRootUrl + string.Format(ByGame, game.ToString().ToLower(), puuid), region
                 ).ConfigureAwait(false);

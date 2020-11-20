@@ -23,7 +23,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var account = Api.Account.GetAccountByPuuindAsync(RiotSharp.Misc.Region.Americas, Summoner1Puuid).Result;
+                var account = Api.Account.GetAccountByPuuidAsync(RiotSharp.Misc.Region.Americas, Summoner1Puuid).Result;
 
                 Assert.AreEqual(account.Puuid, Summoner1Puuid);
             });
@@ -49,7 +49,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var activeShard = Api.Account.GetActiveShardByPuuindAsync(RiotSharp.Misc.Region.Americas, Endpoints.AccountEndpoint.Enums.Game.LoR, Summoner1Puuid).Result;
+                var activeShard = Api.Account.GetActiveShardByPuuidAsync(RiotSharp.Misc.Region.Americas, Endpoints.AccountEndpoint.Enums.Game.LoR, Summoner1Puuid).Result;
 
                 Assert.AreEqual(activeShard.Puuid, Summoner1Puuid);
             });
