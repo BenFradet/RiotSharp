@@ -16,7 +16,7 @@ namespace RiotSharp.Test.EndpointTests
         {
             EnsureCredibility(() =>
             {
-                var shardStatus = Api.Status.GetShardStatusAsync(Summoner1And2Region);
+                var shardStatus = Api.Status.GetShardStatusAsync(Summoner1Region);
 
                 Assert.AreEqual(StatusRiotApiTestBase.Platform.ToString().ToLower(),
                     shardStatus.Result.RegionTag);

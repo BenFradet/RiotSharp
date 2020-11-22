@@ -64,7 +64,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerBySummonerIdAsync(Summoner1And2Region,
+                var summoner = Api.Summoner.GetSummonerBySummonerIdAsync(Summoner1Region,
                     Summoner1Id);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -78,7 +78,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerByAccountIdAsync(Summoner1And2Region,
+                var summoner = Api.Summoner.GetSummonerByAccountIdAsync(Summoner1Region,
                     Summoner1AccountId);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -91,7 +91,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerByNameAsync(Summoner1And2Region,
+                var summoner = Api.Summoner.GetSummonerByNameAsync(Summoner1Region,
                     Summoner1Name);
 
                 Assert.AreEqual(Summoner1Id, summoner.Result.Id);
@@ -104,7 +104,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var summoner = Api.Summoner.GetSummonerByPuuidAsync(Summoner1And2Region,
+                var summoner = Api.Summoner.GetSummonerByPuuidAsync(Summoner1Region,
                     Summoner1Puuid);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);
@@ -120,10 +120,10 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var championRotation = Api.Champion.GetChampionRotationAsync(Summoner1And2Region).Result;
+                var championRotation = Api.Champion.GetChampionRotationAsync(Summoner1Region).Result;
 
-                Assert.IsTrue(championRotation.FreeChampionIds.Count() == 14);
-                Assert.IsTrue(championRotation.FreeChampionIdsForNewPlayers.Count() == 10);
+                Assert.IsTrue(championRotation.FreeChampionIds.Count() >= 14);
+                Assert.IsTrue(championRotation.FreeChampionIdsForNewPlayers.Count() >= 10);
                 Assert.IsTrue(championRotation.MaxNewPlayerLevel > 0);
             });
         }
@@ -193,7 +193,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var league = Api.League.GetChallengerLeagueAsync(Summoner1And2Region, RiotApiTestBase.Queue);
+                var league = Api.League.GetChallengerLeagueAsync(Summoner1Region, RiotApiTestBase.Queue);
 
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
@@ -205,7 +205,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var league = Api.League.GetMasterLeagueAsync(Summoner1And2Region, RiotApiTestBase.Queue);
+                var league = Api.League.GetMasterLeagueAsync(Summoner1Region, RiotApiTestBase.Queue);
 
                 Assert.IsTrue(league.Result.Entries.Count > 0);
             });
@@ -291,9 +291,9 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
-                    RiotApiTestBase.Summoner1AccountId).Result.Matches;
-
+            var matches = Api.Match.GetMatchListAsync(RiotApiTestBase.SummonersRegion,
+                   RiotApiTestBase.Summoner1AccountId).Result.Matches;
+                   
                 Assert.IsTrue(matches.Any());
             });
         }
@@ -330,28 +330,6 @@ namespace RiotSharp.Test
                     foreach (var match in matches)
                     {
                         Assert.AreEqual(RiotApiTestBase.QueueId, match.Queue);
-                    }
-                });
-            }, "No Matches found fot the test summoner (404).");
-        }
-
-        [TestMethod]
-        [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetMatchListAsync_GetMatchListSeasons_ReturnMatchList()
-        {
-            EnsureData(() =>
-            {
-                EnsureCredibility(() =>
-                {
-                    var matches = Api.Match.GetMatchListAsync(Summoner3Region,
-                        Summoner3AccountId, null, null,
-                        new List<Season> { }).Result.Matches;
-
-                    Assert.IsTrue(matches.Any());
-
-                    foreach (var match in matches)
-                    {
-                        Assert.AreEqual(Season.Season2018.ToString(), match.Season.ToString());
                     }
                 });
             }, "No Matches found fot the test summoner (404).");
@@ -421,7 +399,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var games = Api.Spectator.GetFeaturedGamesAsync(Summoner1And2Region).Result;
+                var games = Api.Spectator.GetFeaturedGamesAsync(Summoner1Region).Result;
 
                 Assert.IsNotNull(games);
                 Assert.IsNotNull(games.GameList);
@@ -446,7 +424,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var championMastery = Api.ChampionMastery.GetChampionMasteryAsync(Summoner1And2Region,
+                var championMastery = Api.ChampionMastery.GetChampionMasteryAsync(Summoner1Region,
                     Summoner1Id, RiotApiTestBase.Summoner1MasteryChampionId).Result;
 
                 Assert.AreEqual(RiotApiTestBase.Summoner1MasteryChampionId,
@@ -463,7 +441,7 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var allChampionsMastery = Api.ChampionMastery.GetChampionMasteriesAsync(
-                    Summoner1And2Region, Summoner1Id).Result;
+                    Summoner1Region, Summoner1Id).Result;
 
                 Assert.IsNotNull(allChampionsMastery.Find(championMastery =>
                     championMastery.ChampionId == RiotApiTestBase.Summoner1MasteryChampionId));
@@ -477,7 +455,7 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var totalChampionMasteryScore = Api.ChampionMastery.GetTotalChampionMasteryScoreAsync(
-                    Summoner1And2Region, Summoner1Id).Result;
+                    Summoner1Region, Summoner1Id).Result;
 
                 Assert.IsTrue(totalChampionMasteryScore > -1);
             });
