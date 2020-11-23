@@ -10,6 +10,12 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal ParticipantStats() { }
 
         /// <summary>
+        /// Participant ID
+        /// </summary>
+        [JsonProperty("participantId")]
+        public long ParticipantId { get; set; }
+        
+        /// <summary>
         /// Number of assists.
         /// </summary>
         [JsonProperty("assists")]
@@ -176,11 +182,29 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("magicDamageDealtToChampions")]
         public long MagicDamageDealtToChampions { get; set; }
+        
+        /// <summary>
+        /// Damage Dealt To Objectives.
+        /// </summary>
+        [JsonProperty("damageDealtToObjectives")]
+        public long DamageDealtToObjectives { get; set; }
+        
+        /// <summary>
+        /// Damage Dealt To Turrets.
+        /// </summary>
+        [JsonProperty("damageDealtToTurrets")]
+        public long DamageDealtToTurrets { get; set; }
+        
+        /// <summary>
+        /// Number of turrets destroyed.
+        /// </summary>
+        [JsonProperty("turretKills")]
+        public long TurretKills { get; set; }
 
         /// <summary>
         /// Magic damage taken.
         /// </summary>
-        [JsonProperty("magicDamageTaken")]
+        [JsonProperty("magicalDamageTaken")]
         public long MagicDamageTaken { get; set; }
 
         /// <summary>
@@ -320,6 +344,18 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("totalTimeCrowdControlDealt")]
         public long TotalTimeCrowdControlDealt { get; set; }
+        
+        /// <summary>
+        /// total time crowd control dealt to champions (scaled based on CC type).
+        /// </summary>
+        [JsonProperty("timeCCingOthers")]
+        public long TimeCCingOthers { get; set; }
+
+        /// <summary>
+        /// Longest Time Spent Living
+        /// </summary>
+        [JsonProperty("longestTimeSpentLiving")]
+        public long LongestTimeSpentLiving { get; set; }
 
         /// <summary>
         /// Total units healed.
@@ -356,6 +392,12 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("trueDamageTaken")]
         public long TrueDamageTaken { get; set; }
+        
+        /// <summary>
+        /// Damage Mitigated on Self I.E. the amount of damage a champion reduced or blocked, through abilities or shields.
+        /// </summary>
+        [JsonProperty("damageSelfMitigated")]
+        public long DamageSelfMitigated { get; set; }
 
         /// <summary>
         /// Number of unreal kills.
@@ -435,6 +477,22 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("perk5")]
         public int Perk5 { get; set; }
+        
+        /// <summary>
+        /// Post game rune stat of Perk0.
+        /// </summary>
+        [JsonProperty("perk0Var1")]
+        public int Perk0Var1 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk0.
+        /// </summary>
+        [JsonProperty("perk0Var2")]
+        public int Perk0Var2 { get; set; }
+        /// <summary>
+        /// Post game rune stat of Perk0.
+        /// </summary>
+        [JsonProperty("perk0Var3")]
+        public int Perk0Var3 { get; set; }
 
         /// <summary>
         /// Post game rune stat of Perk1.
@@ -533,6 +591,66 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("statPerk2")]
         public int StatPerk2 { get; set; }
+        
+        /// <summary>
+        /// Player score 0.
+        /// </summary>
+        [JsonProperty("playerScore0")]
+        public int PlayerScore0 { get; set; }
+        
+        /// <summary>
+        /// Player score 1.
+        /// </summary>
+        [JsonProperty("playerScore1")]
+        public int PlayerScore1 { get; set; }
+        
+        /// <summary>
+        /// Player score 2.
+        /// </summary>
+        [JsonProperty("playerScore2")]
+        public int PlayerScore2 { get; set; }
+        
+        /// <summary>
+        /// Player score 3.
+        /// </summary>
+        [JsonProperty("playerScore3")]
+        public int PlayerScore3 { get; set; }
+        
+        /// <summary>
+        /// Player score 4.
+        /// </summary>
+        [JsonProperty("playerScore4")]
+        public int PlayerScore4 { get; set; }
+        
+        /// <summary>
+        /// Player score 5.
+        /// </summary>
+        [JsonProperty("playerScore5")]
+        public int PlayerScore5 { get; set; }
+        
+        /// <summary>
+        /// Player score 6.
+        /// </summary>
+        [JsonProperty("playerScore6")]
+        public int PlayerScore6 { get; set; }
+        
+        /// <summary>
+        /// Player score 7.
+        /// </summary>
+        [JsonProperty("playerScore7")]
+        public int PlayerScore7 { get; set; }
+        
+        /// <summary>
+        /// Player score 8.
+        /// </summary>
+        [JsonProperty("playerScore8")]
+        public int PlayerScore8 { get; set; }
+        
+        /// <summary>
+        /// Player score 9.
+        /// </summary>
+        [JsonProperty("playerScore9")]
+        public int PlayerScore9 { get; set; }
         #endregion
     }
 }
