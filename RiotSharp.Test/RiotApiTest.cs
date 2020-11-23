@@ -19,7 +19,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetAccountByPuuindAsync_ExistingPuuid_ReturnAccount()
+        public void GetAccountByPuuidAsync_ExistingPuuid_ReturnAccount()
         {
             EnsureCredibility(() =>
             {
@@ -31,11 +31,11 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetAccountRiotIdAsync_ExistingAccount_ReturnAccount()
+        public void GetAccounBytRiotIdAsync_ExistingAccount_ReturnAccount()
         {
             EnsureCredibility(() =>
             {
-                var account = Api.Account.GetAccountRiotIdAsync(RiotSharp.Misc.Region.Americas, AccountGameName, AccountTagLine).Result;
+                var account = Api.Account.GetAccountByRiotIdAsync(RiotSharp.Misc.Region.Americas, AccountGameName, AccountTagLine).Result;
 
                 Assert.IsNotNull(account.Puuid);
                 Assert.IsNotNull(account.GameName);
@@ -45,7 +45,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory("RiotApi"), TestCategory("Async")]
-        public void GetActiveShardByPuuindAsync_LoR_ExistingPuuid_ReturnActiveShard()
+        public void GetActiveShardByPuuidAsync_LoR_ExistingPuuid_ReturnActiveShard()
         {
             EnsureCredibility(() =>
             {

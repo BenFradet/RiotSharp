@@ -39,7 +39,7 @@ namespace RiotSharp.Endpoints.AccountEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<Account> GetAccountRiotIdAsync(Region region, string gameName, string tagLine)
+        public async Task<Account> GetAccountByRiotIdAsync(Region region, string gameName, string tagLine)
         {
             var json = await _requester.CreateGetRequestAsync(AccountRootUrl + string.Format(ByRiotId, gameName, tagLine), region
                 ).ConfigureAwait(false);

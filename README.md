@@ -57,7 +57,7 @@ To get basic data of a summoner:
 ```c#
 try
 {
-  var summoner = api.Summoner.GetSummonerByNameAsync(Region.Euw, "StopOFlop").Result;
+  var summoner = api.Summoner.GetSummonerByNameAsync(Region.Euw, "SUMMONER_NAME").Result;
   var name = summoner.Name;
   var level = summoner.Level;
   var accountId = summoner.AccountId;
@@ -95,7 +95,7 @@ var tournamentApi = TournamentRiotApi.GetInstance("TOURNAMENT_API_KEY");
 Next up, create a provider.
 The url will receive callbacks with match results.
 ```c#
-var provider = tournamentApi.CreateProvider(Region.euw, url);
+var provider = tournamentApi.CreateProvider(Region.Euw, url);
 ```
 
 And create a tournament:
@@ -153,7 +153,7 @@ foreach (var champion in champions)
 ```
 
 Additionally, you can use the regular API and static API to, for example, retrieve champion masteries for the summoner:
-```csharp
+```c#
 List<ChampionMastery> championMasteries;
 try
 {
