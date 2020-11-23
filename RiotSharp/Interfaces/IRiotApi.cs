@@ -9,6 +9,11 @@ namespace RiotSharp.Interfaces
     public interface IRiotApi
     {
         /// <summary>
+        /// The Account Endpoint.
+        /// </summary>
+        IAccountEndpoint Account { get; }
+
+        /// <summary>
         /// The Summoner Endpoint.
         /// </summary>
         ISummonerEndpoint Summoner { get; }

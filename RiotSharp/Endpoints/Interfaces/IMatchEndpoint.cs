@@ -34,7 +34,7 @@ namespace RiotSharp.Endpoints.Interfaces
         /// <param name="accountId">Account ID for which you want to retrieve the match list.</param>
         /// <param name="championIds">List of champion IDS to use for fetching games.</param>
         /// <param name="queues">List of queue types to use for fetching games.</param>
-        /// <param name="seasons">List of seasons for which to filter the match list by.</param>
+        /// <param name="seasons">[DEPRECATED] This field should not be considered reliable for the purposes of filtering matches by season.</param>
         /// <param name="beginTime">The earliest date you wish to get matches from.</param>
         /// <param name="endTime">The latest date you wish to get matches from.</param>
         /// <param name="beginIndex">The begin index to use for fetching matches.</param>

@@ -17,41 +17,43 @@ namespace RiotSharp.Misc.Converters
         {
             var token = JToken.Load(reader);
             if (token.Value<string>() == null) return null;
-            var str = token.Value<string>();
+            var str = token.Value<string>().ToLower();
             switch (str)
             {
-                case "BR":
                 case "br":
                     return Region.Br;
-                case "EUNE":
                 case "eune":
                     return Region.Eune;
-                case "EUW":
                 case "euw":
                     return Region.Euw;
-                case "KR":
+                case "kr":
                     return Region.Kr;
-                case "LAN":
                 case "lan":
                     return Region.Lan;
-                case "LAS":
                 case "las":
                     return Region.Las;
-                case "NA":
                 case "na":
                     return Region.Na;
-                case "OCE":
                 case "oce":
                     return Region.Oce;
-                case "RU":
                 case "ru":
                     return Region.Ru;
-                case "TR":
                 case "tr":
                     return Region.Tr;
-                case "JP":
                 case "jp":
                     return Region.Jp;
+                case "americas":
+                    return Region.Americas;
+                case "asia":
+                    return Region.Asia;
+                case "europe":
+                    return Region.Europe;
+                case "ap":
+                    return Region.Ap;
+                case "eu":
+                    return Region.Eu;
+                case "latam":
+                    return Region.Latam;
                 default:
                     return null;
             }

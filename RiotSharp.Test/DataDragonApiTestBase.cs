@@ -5,7 +5,7 @@ namespace RiotSharp.Test
 {
     public class DataDragonApiTestBase : CommonTestBase
     {
-        public static readonly Region Region = (Region)Enum.Parse(typeof(Region), "na");
+        public static readonly Region Region = (Region)Enum.Parse(typeof(Region), "Na");
         public const string StaticVersion = "8.13.1";
         public const string LegacyVersion = "7.13.1"; // For testing deprecated rune and mastery endpoint
 

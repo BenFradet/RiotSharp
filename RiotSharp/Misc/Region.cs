@@ -87,6 +87,21 @@ namespace RiotSharp.Misc
         /// <summary>
         /// Region associated with Platform.NoPlatform (e.g. platform of bot players).
         /// </summary>
-        NoRegion
+        NoRegion,
+
+        /// <summary>
+        /// Asia Pacific.
+        /// </summary>
+        Ap,
+
+        /// <summary>
+        /// Europe.
+        /// </summary>
+        Eu,
+
+        /// <summary>
+        /// Latin America.
+        /// </summary>
+        Latam
     }
 }

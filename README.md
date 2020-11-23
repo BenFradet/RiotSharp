@@ -6,14 +6,15 @@
 
 C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
-Documentation can be found [here](http://benfradet.github.io/RiotSharp/api/index.html).
-
+<!---
+ Documentation can be found [here](http://benfradet.github.io/RiotSharp/api/index.html).
+--->
 ## Features
 
 - No need to worry about the 10 requests per 10s or the 500 requests per 10m rate limits, they are already implemented in the wrapper
 - LINQ support
 - Synchronous and asynchronous API
-- Caching for the Static API
+- Caching for the DataDragon (Static API)
 
 ## Installation
 
@@ -56,7 +57,7 @@ To get basic data of a summoner:
 ```c#
 try
 {
-  var summoner = api.Summoner.GetSummonerByNameAsync(Region.euw, "StopOFlop").Result;
+  var summoner = api.Summoner.GetSummonerByNameAsync(Region.Euw, "SUMMONER_NAME").Result;
   var name = summoner.Name;
   var level = summoner.Level;
   var accountId = summoner.AccountId;
@@ -67,6 +68,7 @@ catch (RiotSharpException ex)
 }
 ```
 Each class represents an API:
+* Account
 * Champion
 * League  
 * Match  
@@ -93,7 +95,7 @@ var tournamentApi = TournamentRiotApi.GetInstance("TOURNAMENT_API_KEY");
 Next up, create a provider.
 The url will receive callbacks with match results.
 ```c#
-var provider = tournamentApi.CreateProvider(Region.euw, url);
+var provider = tournamentApi.CreateProvider(Region.Euw, url);
 ```
 
 And create a tournament:
@@ -128,70 +130,51 @@ or, alternatively, if you do not wish to create a separate Tournament object, yo
 
 You can find a list of all the available operations in [TournamentRiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.TournamentRiotApi.html).
 
-### Static API / Data Dragon
+### Data Dragon / Static API
 
 You can retrieve static information about the game thanks to the static API (Data Dragon), there is no rate limiting on this API and RiotSharp
 caches as much data as possible to make as few calls as possible.
 
-First, as with the others APIs you need to obtain an instance of the API:
+DataDragon API is hidden in Main API.
 ```c#
-var staticApi = StaticRiotApi.GetInstance();
+var someData = api.DataDragon.SomeEndpoint.SomeMethod();
 ```
 
-Then, you can, for example, retrieve data about champions:
+For example, you can retrieve data about all champions:
 ```c#
-var latestVersion = "10.1.1";
-var champions = staticApi.Champions.GetAllAsync(latestVersion).Champions.Values;
+var allVersion = api.DataDragon.Versions.GetAllAsync().Result;
+var latestVersion = allVersion[0]; // Example of version: "10.23.1"
+var champions = api.DataDragon.Champions.GetAllAsync(latestVersion).Result.Champions.Values;
 foreach (var champion in champions)
 {
-    Console.WriteLine(champ.Name);
-    Console.WriteLine(champ.Lore);
+    Console.WriteLine(champion.Name);
+    Console.WriteLine(champion.Lore);
 }
 ```
 
 Additionally, you can use the regular API and static API to, for example, retrieve champion masteries for the summoner:
 ```c#
+List<ChampionMastery> championMasteries;
 try
 {
-    var championMasteries =  api.ChampionMastery.GetChampionMasteriesAsync(RiotSharp.Misc.Region.na, summoner.Id).Result;
+    championMasteries =  api.ChampionMastery.GetChampionMasteriesAsync(summoner.Region, summoner.Id).Result;
 }
 catch (RiotSharpException ex)
 {
-  // Handle the exception however you want.
+    // Handle the exception however you want.
+    return;
 }
 
 foreach (var championMastery in championMasteries)
 {
     var id = championMastery.ChampionId;
-    var name = staticApi.Champions.GetAllAsync(latestVersion).Result.Champions.Values.Single(x => x.Id == id).Name; // using System.Linq;
+    var name = api.DataDragon.Champions.GetAllAsync(latestVersion).Result.Champions.Values.Single(x => x.Id == id).Name; // using System.Linq;
     var level = championMastery.ChampionLevel;
     var points = championMastery.ChampionPoints;
 
     Console.WriteLine($" •  **Level {level} {name}** {points} Points");
 }
 ```
-
-You can find a list of all the available operations in [StaticRiotApi in the Documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.StaticRiotApi.html).
-
-### Status API
-
-You can also retrieve information available on [status.leagueoflegends.com](http://status.leagueoflegends.com/#euw) with the Status API. This API is not constrained to the rate limiting and you do not have to supply an API key.
-
-```c#
-var statusApi = StatusRiotApi.GetInstance();
-var shardStatuses = statusApi.GetShardStatus(Region.euw);
-foreach (var service in shardStatuses.Services)
-{
-    Console.WriteLine(service.Name);
-    foreach (var incident in service.Incidents)
-    {
-        incident.Updates.ForEach(u => Console.WriteLine("  " + u.Content));
-    }
-}
-```
-
-You can find a list of all the available operations in [StatusRiotApi in the documentation](http://benfradet.github.io/RiotSharp/api/RiotSharp.StatusRiotApi.html).
-
 
 For a full description check the [RiotSharpTest](RiotSharpTest) project.
 
