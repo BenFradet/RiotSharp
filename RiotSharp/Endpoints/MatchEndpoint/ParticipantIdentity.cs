@@ -10,6 +10,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal ParticipantIdentity() { }
 
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int ParticipantIdentityId { get; set; }
+
+        /// <summary>
         /// Participant ID.
         /// </summary>
         [JsonProperty("participantId")]

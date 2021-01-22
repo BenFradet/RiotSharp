@@ -7,6 +7,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal TeamBan() { }
 
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int TeamBanId { get; set; }
+
+        /// <summary>
         /// The pick turn where the champion has been banned.
         /// </summary>
         [JsonProperty("pickTurn")]

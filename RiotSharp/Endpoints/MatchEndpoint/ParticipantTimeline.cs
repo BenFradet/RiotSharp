@@ -6,6 +6,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
     public class ParticipantTimeline
     {
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int ParticipantTimelineId { get; set; }
+
+        /// <summary>
         /// The lane of the participant.
         /// </summary>
         [JsonProperty("lane")]

@@ -11,6 +11,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal TeamStats() { }
 
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int TeamStatsId { get; set; }
+
+        /// <summary>
         /// If game was draft mode, contains banned champion data, otherwise null.
         /// </summary>
         [JsonProperty("bans")]

@@ -11,6 +11,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal Player() { }
 
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int PlayerId { get; set; }
+
+        /// <summary>
         /// Current platform ID.
         /// </summary>
         [JsonProperty("currentPlatformId")]

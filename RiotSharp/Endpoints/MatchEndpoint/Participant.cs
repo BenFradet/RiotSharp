@@ -12,6 +12,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal Participant() { }
 
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int ParticipantId { get; set; }
+
+        /// <summary>
         /// Champion ID.
         /// </summary>
         [JsonProperty("championId")]
@@ -27,7 +32,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Participant ID.
         /// </summary>
         [JsonProperty("participantId")]
-        public int ParticipantId { get; set; }
+        public int RiotParticipantId { get; set; }
 
         /// <summary>
         /// List of rune information.
@@ -64,7 +69,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("timeline")]
         public ParticipantTimeline Timeline { get; set; }
-        
+
         /// <summary>
         /// Highest achieved season tier.
         /// </summary>

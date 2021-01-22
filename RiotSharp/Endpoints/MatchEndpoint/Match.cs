@@ -11,6 +11,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
     public class Match
     {
         /// <summary>
+        /// The primary key.
+        /// </summary>
+        public int MatchId { get; set; }
+
+        /// <summary>
         /// The season ID.
         /// </summary>
         [JsonProperty("seasonId")]
