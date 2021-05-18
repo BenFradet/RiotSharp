@@ -13,16 +13,15 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         internal MatchTimeline() { }
 
         /// <summary>
-        /// Time between each returned frame.
+        /// Metadata of the match
         /// </summary>
-        [JsonProperty("frameInterval")]
-        [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
-        public TimeSpan FrameInterval { get; set; }
+        [JsonProperty("metadata")]
+        public MatchMetadata Metadata { get; set; }
 
         /// <summary>
-        /// List of timeline frames for the game.
+        /// Info containing the most information about the match timeline.
         /// </summary>
-        [JsonProperty("frames")]
-        public List<MatchFrame> Frames { get; set; }
+        [JsonProperty("info")]
+        public MatchTimelineInfo Info { get; set; }
     }
 }
