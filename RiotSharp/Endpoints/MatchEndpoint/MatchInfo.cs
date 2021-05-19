@@ -43,7 +43,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// Name of the game.
         /// </summary>
         [JsonProperty("gameName")]
-        public long GameName { get; set; }
+        public string GameName { get; set; }
 
         /// <summary>
         /// The date time of the game start.

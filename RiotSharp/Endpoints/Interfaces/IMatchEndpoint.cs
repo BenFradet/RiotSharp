@@ -24,12 +24,12 @@ namespace RiotSharp.Endpoints.Interfaces
         /// </summary>
         /// <param name="region">Region in which the summoner is.</param>
         /// <param name="puuidId">PuuID for which you want to retrieve the match list.</param>
-        /// <param name="beginIndex">The begin index to use for fetching matches.</param>
-        /// <param name="endIndex">The end index to use for fetching matches.</param>
+        /// <param name="start">The begin index to use for fetching matches.</param>
+        /// <param name="count">The amount of matches to fetch.</param>
         /// <returns>A list of MatchIds.</returns>
         Task<List<string>> GetMatchListAsync(Region region, string puuidId,
-            long? beginIndex = null,
-            long? endIndex = null);
+            long? start = null,
+            long? count = null);
 
         /// <summary>
         /// Get match timeline by match ID asynchronously. 
