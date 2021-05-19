@@ -54,6 +54,14 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
         /// </summary>
         ItemUndo,
 
+        /// <summary>
+        /// Triggers on champion level up.
+        /// </summary>
+        LevelUp,
+
+        /// <summary>
+        /// Triggers on start of the game
+        /// </summary>
         PauseEnd,
 
         /// <summary>
