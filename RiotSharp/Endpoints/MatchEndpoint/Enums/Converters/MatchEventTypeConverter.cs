@@ -38,6 +38,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums.Converters
                     return MatchEventType.ItemSold;
                 case "ITEM_UNDO":
                     return MatchEventType.ItemUndo;
+                case "PAUSE_END":
+                    return MatchEventType.PauseEnd;
                 case "SKILL_LEVEL_UP":
                     return MatchEventType.SkillLevelUp;
                 case "WARD_KILL":

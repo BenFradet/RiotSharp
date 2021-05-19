@@ -54,6 +54,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
         /// </summary>
         ItemUndo,
 
+        PauseEnd,
+
         /// <summary>
         /// Triggers on skill level ups.
         /// </summary>
@@ -94,6 +96,8 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
                     return "ITEM_SOLD";
                 case MatchEventType.ItemUndo:
                     return "ITEM_UNDO";
+                case MatchEventType.PauseEnd:
+                    return "PAUSE_END";
                 case MatchEventType.SkillLevelUp:
                     return "SKILL_LEVEL_UP";
                 case MatchEventType.WardKill:

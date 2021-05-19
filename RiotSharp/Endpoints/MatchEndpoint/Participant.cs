@@ -488,21 +488,12 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         [JsonProperty("timeCCingOthers")]
         public long TimeCCingOthers { get; set; }
 
-
         /// <summary>
-        /// Minions kiled.
+        /// Time crowd controling others.
         /// </summary>
-        [JsonProperty("totalMinionsKilled")]
-        public long TotalMinionsKilled { get; set; }
-
-
-
-
-        /// <summary>
-        /// If game was a dominion game, number of completed team objectives (i.e., quests).
-        /// </summary>
-        [JsonProperty("teamObjective")]
-        public long TeamObjective { get; set; }
+        [JsonProperty("timePlayed")]
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
+        public TimeSpan timePlayed { get; set; }
 
         /// <summary>
         /// Total damage dealt.
@@ -517,6 +508,12 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public long TotalDamageDealtToChampions { get; set; }
 
         /// <summary>
+        /// Total damage shielded on teammates.
+        /// </summary>
+        [JsonProperty("totalDamageShieldedOnTeammates")]
+        public long TotalDamageShieldedOnTeammates { get; set; }
+
+        /// <summary>
         /// Total damage taken.
         /// </summary>
         [JsonProperty("totalDamageTaken")]
@@ -529,34 +526,28 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public long TotalHeal { get; set; }
 
         /// <summary>
-        /// If game was a dominion game, player's total score, otherwise 0.
+        /// Total heals on teammates.
         /// </summary>
-        [JsonProperty("totalPlayerScore")]
-        public long TotalPlayerScore { get; set; }
+        [JsonProperty("totalHealsOnTeammates")]
+        public long TotalHealsOnTeammates { get; set; }
 
         /// <summary>
-        /// If game was a dominion game, team rank of the player's total score (e.g., 1-5).
+        /// Minions kiled.
         /// </summary>
-        [JsonProperty("totalScoreRank")]
-        public long TotalScoreRank { get; set; }
+        [JsonProperty("totalMinionsKilled")]
+        public long TotalMinionsKilled { get; set; }
 
         /// <summary>
         /// Total time crowd control dealt.
         /// </summary>
-        [JsonProperty("totalTimeCrowdControlDealt")]
-        public long TotalTimeCrowdControlDealt { get; set; }
+        [JsonProperty("totalTimeCCDealt")]
+        public long TotalTimeCCDealt { get; set; }
 
         /// <summary>
         /// Total units healed.
         /// </summary>
         [JsonProperty("totalUnitsHealed")]
         public long TotalUnitsHealed { get; set; }
-
-        /// <summary>
-        /// Number of tower kills.
-        /// </summary>
-        [JsonProperty("towerKills")]
-        public long TowerKills { get; set; }
 
         /// <summary>
         /// Number of triple kills.
@@ -581,6 +572,18 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("trueDamageTaken")]
         public long TrueDamageTaken { get; set; }
+
+        /// <summary>
+        /// Number of tower kills.
+        /// </summary>
+        [JsonProperty("turretKills")]
+        public long TurretKills { get; set; }
+
+        /// <summary>
+        /// Number of turrets lost.
+        /// </summary>
+        [JsonProperty("turretsLost")]
+        public long TurretsLost { get; set; }
 
         /// <summary>
         /// Number of unreal kills.
