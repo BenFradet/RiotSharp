@@ -54,9 +54,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 
         /// <inheritdoc />
         public async Task<List<string>> GetMatchListAsync(Region region, string puuId,
-            long? beginIndex = null, long? endIndex = null)
+            long? start = null, long? count = null)
         {
-            var addedArguments = CreateArgumentsListForMatchListRequest(beginIndex, endIndex);
+            var addedArguments = CreateArgumentsListForMatchListRequest(start, count);
 
             var json = await _requester.CreateGetRequestAsync(MatchRootUrl + string.Format(MatchListByPuuIdUrl, puuId),
                 region, addedArguments).ConfigureAwait(false);
@@ -82,17 +82,17 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         #region Helper
 
         private List<string> CreateArgumentsListForMatchListRequest(
-            long? beginIndex = null,
-            long? endIndex = null)
+            long? start = null,
+            long? count = null)
         {
             var addedArguments = new List<string>();
-            if (beginIndex != null)
+            if (start != null)
             {
-                addedArguments.Add($"beginIndex={beginIndex}");
+                addedArguments.Add($"start={start}");
             }
-            if (endIndex != null)
+            if (count != null)
             {
-                addedArguments.Add($"endIndex={endIndex}");
+                addedArguments.Add($"count={count}");
             }
             return addedArguments;
         }
