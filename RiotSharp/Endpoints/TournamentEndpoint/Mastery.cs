@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.Endpoints.MatchEndpoint
+namespace RiotSharp.Endpoints.TournamentEndpoint
 {
     /// <summary>
     /// Class representing a mastery of a participant (Match API).

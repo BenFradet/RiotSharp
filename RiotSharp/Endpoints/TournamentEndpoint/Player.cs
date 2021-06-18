@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RiotSharp.Misc;
 
-namespace RiotSharp.Endpoints.MatchEndpoint
+namespace RiotSharp.Endpoints.TournamentEndpoint
 {
     /// <summary>
     /// Player in a match (Match API).

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RiotSharp.Endpoints.MatchEndpoint
+namespace RiotSharp.Endpoints.TournamentEndpoint
 {
     /// <summary>
     /// Class representing a rune of a participant (Match API).

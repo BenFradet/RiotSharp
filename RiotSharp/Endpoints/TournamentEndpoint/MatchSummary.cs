@@ -5,7 +5,7 @@ using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Misc;
 using RiotSharp.Misc.Converters;
 
-namespace RiotSharp.Endpoints.MatchEndpoint
+namespace RiotSharp.Endpoints.TournamentEndpoint
 {
     /// <summary>
     /// Summary of a match (Match API).

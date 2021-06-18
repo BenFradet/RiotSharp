@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace RiotSharp.Endpoints.MatchEndpoint
+namespace RiotSharp.Endpoints.TournamentEndpoint
 {
     /// <summary>
     /// The timeline of a participant in a match

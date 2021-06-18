@@ -28,8 +28,12 @@ namespace RiotSharp.Misc.Converters
                     return Role.Solo;
                 case "DUO_CARRY":
                     return Role.DuoCarry;
+                case "CARRY":
+                    return Role.Carry;
                 case "DUO_SUPPORT":
                     return Role.DuoSupport;
+                case "SUPPORT":
+                    return Role.Support;
                 default:
                     return null;
             }

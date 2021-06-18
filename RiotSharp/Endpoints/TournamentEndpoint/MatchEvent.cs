@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using RiotSharp.Endpoints.MatchEndpoint.Enums;
 using RiotSharp.Misc.Converters;
 
-namespace RiotSharp.Endpoints.MatchEndpoint
+namespace RiotSharp.Endpoints.TournamentEndpoint
 {
     /// <summary>
     /// Class representing a particular event during a match (Match API).
@@ -33,12 +33,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public BuildingType? BuildingType { get; set; }
 
         /// <summary>
-        /// Amount of bounty recieved by the killer. Only present if relevant.
-        /// </summary>
-        [JsonProperty("bounty")]
-        public int Bounty { get; set; }
-
-        /// <summary>
         /// The creator ID of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("creatorId")]
@@ -63,12 +57,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public int ItemBeforeId { get; set; }
 
         /// <summary>
-        /// Amount of gold gained by the event. Only peresent if relevant.
-        /// </summary>
-        [JsonProperty("goldGain")]
-        public int GoldDain { get; set; }
-
-        /// <summary>
         /// The item ID of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("itemId")]
@@ -81,28 +69,10 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public int KillerId { get; set; }
 
         /// <summary>
-        /// Amount of kills in a kill streak. Only present if relevant.
-        /// </summary>
-        [JsonProperty("killStreakLength")]
-        public int KillStreakLength { get; set; }
-
-        /// <summary>
-        /// The killer team ID of the event. Only present if relevant.
-        /// </summary>
-        [JsonProperty("killerTeamId")]
-        public int KillerTeamId { get; set; }
-
-        /// <summary>
         /// The lane type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("laneType")]
         public LaneType? LaneType { get; set; }
-
-        /// <summary>
-        /// The level up type of the event. Only present if relevant.
-        /// </summary>
-        [JsonProperty("level")]
-        public int Level{ get; set; }
 
         /// <summary>
         /// The level up type of the event. Only present if relevant.
@@ -141,13 +111,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public Position Position { get; set; }
 
         /// <summary>
-        /// Timestamp in the real world. Only present for game start.
-        /// </summary>
-        [JsonProperty("realTimestamp")]
-        [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime RealTimestamp { get; set; }
-
-        /// <summary>
         /// The skill slot of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("skillSlot")]
@@ -177,18 +140,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("victimId")]
         public int VictimId { get; set; }
-
-        /// <summary>
-        /// List of Damage Instances dealt by the victim. Only present if relevant.
-        /// </summary>
-        [JsonProperty("victimDamageDealt")]
-        public List<VictimDamage> VictimDamageDealt { get; set; }
-
-        /// <summary>
-        /// List of Damage Instances received by the victim. Only present if relevant.
-        /// </summary>
-        [JsonProperty("victimDamageReceived")]
-        public List<VictimDamage> VictimDamageReceived { get; set; }
 
         /// <summary>
         /// The ward type of the event. Only present if relevant.

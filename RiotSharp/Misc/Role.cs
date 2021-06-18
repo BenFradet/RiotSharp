@@ -32,7 +32,17 @@ namespace RiotSharp.Misc
         /// <summary>
         /// Corresponds to support.
         /// </summary>
-        DuoSupport
+        DuoSupport,
+
+        /// <summary>
+        /// Corresponds to ad carry.
+        /// </summary>
+        Carry,
+
+        /// <summary>
+        /// Corresponds to support.
+        /// </summary>
+        Support
     }
 
     static class RoleExtension
