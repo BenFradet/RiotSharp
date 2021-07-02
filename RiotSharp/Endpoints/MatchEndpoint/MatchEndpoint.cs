@@ -54,9 +54,9 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 
         /// <inheritdoc />
         public async Task<List<string>> GetMatchListAsync(Region region, string puuId,
-            long? start = null, long? count = null)
+            long? start = null, long? count = null, long? queue = null, Enums.MatchFilterType? type = null)
         {
-            var addedArguments = CreateArgumentsListForMatchListRequest(start, count);
+            var addedArguments = CreateArgumentsListForMatchListRequest(start, count, queue, type);
 
             var json = await _requester.CreateGetRequestAsync(MatchRootUrl + string.Format(MatchListByPuuIdUrl, puuId),
                 region, addedArguments).ConfigureAwait(false);
@@ -83,16 +83,26 @@ namespace RiotSharp.Endpoints.MatchEndpoint
 
         private List<string> CreateArgumentsListForMatchListRequest(
             long? start = null,
-            long? count = null)
+            long? count = null,
+            long? queue = null,
+            Enums.MatchFilterType? type = null)
         {
             var addedArguments = new List<string>();
-            if (start != null)
+            if (start.HasValue)
             {
-                addedArguments.Add($"start={start}");
+                addedArguments.Add($"start={start.Value}");
             }
-            if (count != null)
+            if (count.HasValue)
             {
-                addedArguments.Add($"count={count}");
+                addedArguments.Add($"count={count.Value}");
+            }
+            if (queue.HasValue)
+            {
+                addedArguments.Add($"queue={queue.Value}");
+            }
+            if (type.HasValue)
+            {
+                addedArguments.Add($"type={type.Value.ToCostumString()}");
             }
             return addedArguments;
         }
