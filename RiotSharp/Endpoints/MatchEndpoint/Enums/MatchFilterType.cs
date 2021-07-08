@@ -29,7 +29,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums
 
     static class MatchFilterTypeExtension
     {
-        public static string ToCostumString(this MatchFilterType matchFilterType)
+        public static string ToCustomString(this MatchFilterType matchFilterType)
         {
             switch (matchFilterType)
             {
