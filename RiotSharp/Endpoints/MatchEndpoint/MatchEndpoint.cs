@@ -102,7 +102,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
             }
             if (type.HasValue)
             {
-                addedArguments.Add($"type={type.Value.ToCostumString()}");
+                addedArguments.Add($"type={type.Value.ToCustomString()}");
             }
             return addedArguments;
         }
