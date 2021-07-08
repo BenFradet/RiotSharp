@@ -93,5 +93,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("teams")]
         public List<TeamStats> Teams { get; set; }
+
+        /// <summary>
+        /// The tournament code of the game. Only present if applicable.
+        /// </summary>
+        [JsonProperty("tournamentCode")]
+        public string TournamentCode { get; set; }
     }
 }
