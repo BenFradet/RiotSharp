@@ -32,6 +32,6 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// A string indicating whether or not the team won.
         /// </summary>
         [JsonProperty("win")]
-        public string Win { get; set; }
+        public bool Win { get; set; }
     }
 }
