@@ -4,6 +4,8 @@ on:
   create:
     tag:
       - '*.*.*'
+  push:
+    
   
 jobs:
   package:
