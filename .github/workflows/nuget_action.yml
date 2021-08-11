@@ -28,7 +28,10 @@ jobs:
       
     - name: Build Nuget
       working-directory: ./RiotSharp
-      run: dotnet pack /p:Configuration=Release /p:Version=${{ steps.get_version.outputs.VERSION }} --output ../npkgs
+      run: dotnet pack -p:Configuration=Release -p:Version=${{ steps.get_version.outputs.VERSION }} --output ../npkgs
+    - name: Check npkg
+      working-directory: ./npkgs
+      run: ls
     - name: Publish Nuget on nuget.org
       working-directory: ./npkgs
       run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.org -k ${{secrets.NUGET_API_KEY}}
