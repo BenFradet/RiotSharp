@@ -20,13 +20,15 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
+      working-directory: ./RiotSharp
       run: dotnet restore
-    - name: Build
+    - name: Build    
+      working-directory: ./RiotSharp
       run: dotnet build --no-restore
       
     - name: Build Nuget
-      working-directory: .
-      run: dotnet pack /p:Configuration=Release /p:Version=${{ steps.get_version.outputs.VERSION }} --output ./npkgs
+      working-directory: ./RiotSharp
+      run: dotnet pack /p:Configuration=Release /p:Version=${{ steps.get_version.outputs.VERSION }} --output ../npkgs
     - name: Publish Nuget on nuget.org
       working-directory: ./npkgs
       run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.org -k ${{secrets.NUGET_API_KEY}}
