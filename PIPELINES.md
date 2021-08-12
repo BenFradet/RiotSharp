@@ -12,4 +12,4 @@ Secrets required for the pipeline:
 
 ## Usage
 Create a Github Release with a tag in the format of versioning (eg 5.0.0 or 5.0.0-alpha).  
-Checkout the Actions tab to figure out whether the pipe run smoothly or errors occured.  
+Checkout the Actions tab to figure out whether the pipe ran smoothly or errors occurred.  
