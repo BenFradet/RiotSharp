@@ -33,6 +33,9 @@ jobs:
     - name: Check npkg
       working-directory: ./npkgs
       run: ls
+    - name: Publish Nuget on github
+      working-directory: ./npkgs
+      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.pkg.github.com/BenFradet/index.json -k ${{GITHUB_TOKEN}}
     - name: Publish Nuget on nuget.org
       working-directory: ./npkgs
       run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.org -k ${{secrets.NUGET_API_KEY}}
