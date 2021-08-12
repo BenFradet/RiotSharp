@@ -38,9 +38,9 @@ jobs:
 #      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.org -k ${{secrets.NUGET_API_KEY}}
     - name: Publish Nuget on github Fork
       working-directory: ./npkgs
-      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.pkg.github.com/xxlaokoonxx/index.json -k ${{secrets.GITHUB_KEY}}
+      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.pkg.github.com/xxlaokoonxx/index.json -k ${{secrets.MY_GITHUB_KEY}}
 
     - name: Publish Nuget on github
       working-directory: ./npkgs
-      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.pkg.github.com/BenFradet/index.json -k ${{secrets.GITHUB_KEY}}
+      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.pkg.github.com/BenFradet/index.json -k ${{secrets.MY_GITHUB_KEY}}
 
