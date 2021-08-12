@@ -8,7 +8,7 @@ The created nuget package can be published on nuget.org and within the github re
 In order for the pipeline to run there need to be some secrets in place.  
 Secrets can be added in the repository -> Settings -> Secrets -> (top right) New repository secret  
 Secrets required for the pipeline:  
-- MY_GITHUB_KEY being a personal access token with the right to push packages [github explaination](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+- MY_GITHUB_KEY being a personal access token with the right to write/upload packages [github explaination](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 - NUGET_API_KEY being an api key for nuget.org [nuget api key](https://www.nuget.org/account/apikeys)
 
 ## Usage
