@@ -1,0 +1,38 @@
+name: Nuget Release
+
+on:
+  create:
+    tag:
+      - '*.*.*'
+    
+  
+jobs:
+  package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      working-directory: ./RiotSharp
+      run: dotnet restore
+    - name: Build    
+      working-directory: ./RiotSharp
+      run: dotnet build --no-restore      
+    - name: Build Nuget
+      working-directory: ./RiotSharp
+      run: dotnet pack -p:Configuration=Release -p:Version=${{ steps.get_version.outputs.VERSION }} --output ../npkgs
+    - name: Publish Nuget on nuget.org
+      working-directory: ./npkgs
+      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.org -k ${{secrets.NUGET_API_KEY}}
+    - name: Publish Nuget on github
+      working-directory: ./npkgs
+      run: dotnet nuget push RiotSharp.${{ steps.get_version.outputs.VERSION }}.nupkg -s https://nuget.pkg.github.com/BenFradet/index.json -k ${{secrets.GITHUB_TOKEN}}
+
