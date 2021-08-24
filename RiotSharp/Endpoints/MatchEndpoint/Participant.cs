@@ -544,6 +544,13 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public long TotalTimeCCDealt { get; set; }
 
         /// <summary>
+        /// Total time crowd control dealt.
+        /// </summary>
+        [JsonProperty("totalTimeSpentDead")]
+        [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
+        public TimeSpan TotalTimeSpentDead { get; set; }
+
+        /// <summary>
         /// Total units healed.
         /// </summary>
         [JsonProperty("totalUnitsHealed")]

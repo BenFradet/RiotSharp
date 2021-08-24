@@ -93,6 +93,12 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public int KillerTeamId { get; set; }
 
         /// <summary>
+        /// The type of the kill. Only present if relevant.
+        /// </summary>
+        [JsonProperty("killType")]
+        public string KillType { get; set; }
+
+        /// <summary>
         /// The lane type of the event. Only present if relevant.
         /// </summary>
         [JsonProperty("laneType")]
@@ -195,5 +201,11 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         /// </summary>
         [JsonProperty("wardType")]
         public WardType? WardType { get; set; }
+
+        /// <summary>
+        /// The winning team of the event. Only present if relevant.
+        /// </summary>
+        [JsonProperty("winningTeam")]
+        public int WinningTeam { get; set; }
     }
 }

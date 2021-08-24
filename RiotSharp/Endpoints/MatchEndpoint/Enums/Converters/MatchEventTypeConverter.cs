@@ -28,8 +28,16 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums.Converters
                     return MatchEventType.CapturePoint;
                 case "CHAMPION_KILL":
                     return MatchEventType.ChampionKill;
+                case "CHAMPION_SPECIAL_KILL":
+                    return MatchEventType.ChampionSpecialKill;
+                case "CHAMPION_TRANSFORM":
+                    return MatchEventType.ChampionTransform;
+                case "DRAGON_SOUL_GIVEN":
+                    return MatchEventType.DragonSoulGiven;
                 case "ELITE_MONSTER_KILL":
                     return MatchEventType.EliteMonsterKill;
+                case "GAME_END":
+                    return MatchEventType.GameEnd;
                 case "ITEM_DESTROYED":
                     return MatchEventType.ItemDestroyed;
                 case "ITEM_PURCHASED":
@@ -38,10 +46,16 @@ namespace RiotSharp.Endpoints.MatchEndpoint.Enums.Converters
                     return MatchEventType.ItemSold;
                 case "ITEM_UNDO":
                     return MatchEventType.ItemUndo;
+                case "LEVEL_UP":
+                    return MatchEventType.LevelUp;
                 case "PAUSE_END":
                     return MatchEventType.PauseEnd;
+                case "PAUSE_START":
+                    return MatchEventType.PauseStart;
                 case "SKILL_LEVEL_UP":
                     return MatchEventType.SkillLevelUp;
+                case "TURRET_PLATE_DESTROYED":
+                    return MatchEventType.TurretPlateDestroyed;
                 case "WARD_KILL":
                     return MatchEventType.WardKill;
                 case "WARD_PLACED":
