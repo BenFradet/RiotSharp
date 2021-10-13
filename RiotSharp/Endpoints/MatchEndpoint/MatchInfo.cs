@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using RiotSharp.Misc.Converters;
 using System;
 using System.Collections.Generic;
@@ -26,6 +26,15 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         [JsonProperty("gameDuration")]
         [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
         public TimeSpan GameDuration { get; set; }
+
+        /// <summary>
+        /// The game duration.
+        /// Unix timestamp for when match ends on the game server.
+        /// This timestamp can occasionally be significantly longer than when the match "ends".
+        /// This field was added to match-v5 in patch 11.20 on Oct 5th, 2021.
+        /// </summary>
+        [JsonProperty("gameEndTimestamp")]
+        public long GameEndTimestamp { get; set; }
 
         /// <summary>
         /// Game ID.
