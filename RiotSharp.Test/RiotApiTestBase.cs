@@ -7,10 +7,7 @@ namespace RiotSharp.Test
 {
     internal class RiotApiTestBase : CommonTestBase
     {
-        public static long RunesMasteriesGameId = 2510454764; // Game from a patch where the old masteries and runes were active (Platform NA1)
-        public static long PerksGameId = 3857603699;  // Game from a patch with reforged runes (Platform EUW)
-
-        public static long GameId = 2510454764;        
+        public static string GameId = "NA1_4078611790";
         public static int ChampionId = 38;
         public static Platform Summoner1Platform = (Platform) Enum.Parse(typeof(Platform), "NA1");
         public static int Summoner1MasteryChampionId = 98;
@@ -55,7 +52,8 @@ namespace RiotSharp.Test
             "LL Stylish"
         };
 
-        public static Region SummonersRegion = (Region) Enum.Parse(typeof(Region), "Na");
+        public static Region SummonersRegion = Region.Americas;
+        public static Region SummonersPlatform = (Region) Enum.Parse(typeof(Region), "Na");
         public static string Queue = "RANKED_SOLO_5x5";
 
         // Normal 5v5 Draft Pick games

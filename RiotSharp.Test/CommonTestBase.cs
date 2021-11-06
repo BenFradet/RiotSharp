@@ -15,20 +15,15 @@ namespace RiotSharp.Test
         public static string FaultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
 
         public static long InvalidSummonerId = -1;
-        public static string Summoner1Id = "fhOx2QJ2VKSaaD9nVJ4XJSzMBPW2es7FboigIwW5ss97coA";
-        public static string Summoner1AccountId = "6GwG-_gvthMjC4bMSh-K_n89fXmwAO2r_xW_bydQX6jsQdI";
         public static string Summoner1Name = "toothlessG";
-        public static string Summoner1Puuid = "R2RjsXCUB-zJ9T5cZVr1ZI4vVqa3sOR61xRmU71bsJ3o_TCRR_ttdVphhKaD4y57xcvB2AdrNWqGKw";
-        public static Region Summoner1Region = (Region)Enum.Parse(typeof(Region), "Na");
+        public static Region Summoner1Platform = (Region)Enum.Parse(typeof(Region), "Na");
+        public static Region Summoner1Region = Region.Americas;
 
-        public static string Summoner3Id = "I2QEPYTtazuZge0E31Ge7j8GiPFb2bva7LnJQK1-GJF6";
-        public static string Summoner3AccountId = "NRKCQCgDMkctfkkEcC-fEDNX3WwP4Ga8vQWqzdY3dcGL1Ho";
         public static string Summoner3Name = "xsunx";
-        public static Region Summoner3Region = (Region)Enum.Parse(typeof(Region), "Ru");
+        public static Region Summoner3Platform = (Region)Enum.Parse(typeof(Region), "Ru");
 
         public static string AccountGameName = "toothlessG";
         public static string AccountTagLine = "NA1";
-        public static string AccountPuuid = Summoner1Puuid;
 
         /// <summary>
         /// Ensures that test returns data (Shows test warnings for 404 status exceptions)
