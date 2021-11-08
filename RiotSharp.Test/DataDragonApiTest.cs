@@ -63,8 +63,9 @@ namespace RiotSharp.Test
             await EnsureCredibilityAsync(async () =>
             {
                 var champs = await _api.Champions.GetAllAsync(StaticVersion, fullData: true);
-                var champion = champs.Champions.First();
                 Assert.IsTrue(champs.Champions.Count > 0);
+
+                var champion = champs.Champions.First();
                 Assert.IsNotNull(champion.Value.Passive);
                 Assert.IsNotNull(champion.Value.Spells);
             });
