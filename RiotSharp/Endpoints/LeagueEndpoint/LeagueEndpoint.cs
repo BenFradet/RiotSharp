@@ -62,7 +62,7 @@ namespace RiotSharp.Endpoints.LeagueEndpoint
             var json = await _requester.CreateGetRequestAsync(
                 LeagueRootUrl + string.Format(LeagueEntriesByDivTierQueue, rankedQueue, tier.ToString().ToUpperInvariant(), division),
                 region,
-                new List<string> { page.ToString() }).ConfigureAwait(false);
+                new List<string> { string.Format("page={0}", page) }).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<List<LeagueEntry>>(json);
         }
