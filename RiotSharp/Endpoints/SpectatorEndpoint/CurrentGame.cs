@@ -42,7 +42,7 @@ namespace RiotSharp.Endpoints.SpectatorEndpoint
         /// The queue type
         /// </summary>
         [JsonProperty("gameQueueConfigId")]
-        public string GameQueueType { get; set; }
+        public long GameQueueType { get; set; }
 
         /// <summary>
         /// The game start time
