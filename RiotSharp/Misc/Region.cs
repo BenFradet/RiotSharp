@@ -102,6 +102,11 @@ namespace RiotSharp.Misc
         /// <summary>
         /// Latin America.
         /// </summary>
-        Latam
+        Latam,
+
+        /// <summary>
+        /// Sount East Asia.
+        /// </summary>
+        Sea
     }
 }

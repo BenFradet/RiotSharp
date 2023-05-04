@@ -178,6 +178,8 @@ namespace RiotSharp.Http
                     return "europe";
                 case Region.Asia:
                     return "asia";
+                case Region.Sea:
+                    return "sea";
                 default:
                     throw new NotImplementedException();
             }
