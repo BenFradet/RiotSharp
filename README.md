@@ -23,9 +23,13 @@ Install RiotSharp through NuGet:
 PM> Install-Package RiotSharp
 ```
 
-or
+Install RiotSharp through Github:
 
-1. Clone the repo (https://github.com/BenFradet/RiotSharp.git) or [download the zip file](https://github.com/BenFradet/RiotSharp/archive/develop.zip).
+1. Clone the repo: 
+```
+git clone https://github.com/BenFradet/RiotSharp.git 
+```
+or [download the zip file](https://github.com/BenFradet/RiotSharp/archive/develop.zip).
 
 2. Build the RiotSharp project and add the library to your own application.
 
