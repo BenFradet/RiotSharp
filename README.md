@@ -29,6 +29,7 @@ git clone https://github.com/BenFradet/RiotSharp.git
 ```
 
 Install RiotSharp Manually:
+
 [download the zip file](https://github.com/BenFradet/RiotSharp/archive/develop.zip)
 
 Build the RiotSharp project and add the library to your own application.
