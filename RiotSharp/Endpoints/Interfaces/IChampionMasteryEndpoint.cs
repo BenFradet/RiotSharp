@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiotSharp.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.Misc;
@@ -20,12 +20,28 @@ namespace RiotSharp.Endpoints.Interfaces
         Task<ChampionMastery> GetChampionMasteryAsync(Region region, string summonerId, long championId);
 
         /// <summary>
+        /// Gets a champion mastery by puuid asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="puuid">Encrypted PUUID for the summoner</param>
+        /// <param name="championId">ID of the champion for which to retrieve mastery.</param>
+        Task<ChampionMastery> GetChampionMasteryByPuuidAsync(Region region, string puuid, long championId);
+
+        /// <summary>
         /// Get all champion mastery entries sorted by number of champion points descending asynchronously.
         /// </summary>
         /// <param name="region">Region where to retrieve the data.</param>
         /// <param name="summonerId">ID of the summoner for which to retrieve champion mastery.</param>
         /// <returns>All champions mastery entries for the specified summoner ID.</returns>
         Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, string summonerId);
+
+        /// <summary>
+        /// Get all champion mastery entries sorted by number of champion points descending asynchronously.
+        /// </summary>
+        /// <param name="region">Region where to retrieve the data.</param>
+        /// <param name="puuid">Encrypted PUUID for the summoner</param>
+        /// <param name="championId">ID of the champion for which to retrieve mastery.</param>
+        Task<List<ChampionMastery>> GetChampionMasteriesByPuuidAsync(Region region, string puuid);
 
         /// <summary>
         /// Get a player's total champion mastery score,
