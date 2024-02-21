@@ -19,19 +19,21 @@ namespace RiotSharp.Http
         public readonly IDictionary<TimeSpan, int> RateLimits;
 
         private readonly bool _throwOnDelay;
+        private readonly int _retryCount;
         private readonly ConcurrentDictionary<Region, RateLimiter> _rateLimiters = new ConcurrentDictionary<Region, RateLimiter>();
 
         /// <inheritdoc />
-        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey)
+        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false, int retryCount = 3) : base(apiKey)
         {
             RateLimits = rateLimits;
             _throwOnDelay = throwOnDelay;
+            _retryCount = retryCount;
         }
 
         #region Public Methods
 
         /// <inheritdoc />
-        public Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
+        public Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null,
             bool useHttps = true)
         {
             var host = GetPlatformHost(region);
@@ -66,7 +68,7 @@ namespace RiotSharp.Http
                 var response = await SendAsync(request).ConfigureAwait(false);
                 response.Dispose();
                 return true;
-                
+
             }
             catch (RiotSharpException)
             {
@@ -93,12 +95,30 @@ namespace RiotSharp.Http
         /// <param name="region">The region which's requests should be rate limited</param>
         private async Task<string> GetRateLimitedResponseContentAsync(HttpRequestMessage request, Region region)
         {
-            await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
+            var numRetries = 0;
+            Exception lastException = null;
 
-            using (var response = await SendAsync(request).ConfigureAwait(false))
+            while (numRetries < _retryCount)
             {
-                return await GetResponseContentAsync(response).ConfigureAwait(false);
+                await GetRateLimiter(region).HandleRateLimitAsync().ConfigureAwait(false);
+                try
+                {
+                    using (var response = await SendAsync(request).ConfigureAwait(false))
+                    {
+                        return await GetResponseContentAsync(response).ConfigureAwait(false);
+                    }
+                }
+                catch (RiotSharpRateLimitException e)
+                {
+                    lastException = e;
+                    GetRateLimiter(region).SetRetryAfter(e.RetryAfter);
+                    request = request.Clone();
+                    numRetries++;
+                    continue;
+                }
             }
+
+            throw lastException;
         }
     }
 }
