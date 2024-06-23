@@ -105,7 +105,10 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var accountFromRid = Api.Account.GetAccountByRiotIdAsync(RiotSharp.Misc.Region.Americas, AccountGameName, AccountTagLine).Result;
+                // TODO: UPDATE IMPLEMENTATION OF SUMMONERBASE
+                Assert.Fail();
+                return;
+                var accountFromRid = Api.Account.GetAccountByRiotIdAsync(RiotSharp.Misc.Region.Europe, AccountGameName, AccountTagLine).Result;
                 var summoner = Api.Summoner.GetSummonerByPuuidAsync(Summoner1Platform, accountFromRid.Puuid);
 
                 Assert.AreEqual(Summoner1Name, summoner.Result.Name);

@@ -35,7 +35,7 @@ namespace RiotSharp.Test
 
         [TestMethod]
         [TestCategory(TestCategory), TestCategory("Async")]
-        public async Task GetByIdAsync_GetChampionByIdAsync_ReturnAarox()
+        public async Task GetByIdAsync_GetChampionByIdAsync_ReturnAatrox()
         {
             await EnsureCredibilityAsync(async () =>
             {

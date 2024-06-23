@@ -68,8 +68,8 @@ namespace RiotSharp.Misc
                     return Language.th_TH;
                 case "tr":
                     return Language.tr_TR;
-                case "vn":
-                    return Language.vn_VN;
+                case "vi":
+                    return Language.vi_VN;
                 case "zh":
                     return Language.zh_CN;
                 default:
