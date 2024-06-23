@@ -7,3 +7,6 @@ TestResults/
 .vs/
 project.lock.json
 .vscode/
+
+/RiotSharp.Test/appsettings.json
+/RiotSharp.Test/appsettings.json
