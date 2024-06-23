@@ -14,7 +14,6 @@
     <PackageIconUrl>https://raw.githubusercontent.com/BenFradet/RiotSharp/develop/logo.png</PackageIconUrl>
     <Copyright>Copyright (c) Benjamin Fradet 2013-2018</Copyright>
     <PackageTags>riot-games riot-games-api league-of-legends</PackageTags>
-    <UserSecretsId>2ab51d7d-f75b-42c0-b546-6d1ec68d6edb</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

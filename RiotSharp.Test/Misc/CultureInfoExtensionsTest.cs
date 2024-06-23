@@ -20,7 +20,7 @@ namespace RiotSharp.Test.Misc
             { Language.pl_PL, new CultureInfo("pl") }, { Language.pt_BR, new CultureInfo("pt") },
             { Language.ro_RO, new CultureInfo("ro") }, { Language.ru_RU, new CultureInfo("ru") },
             { Language.th_TH, new CultureInfo("th") }, { Language.tr_TR, new CultureInfo("tr") },
-            { Language.vi_VN, new CultureInfo("vi") }, { Language.zh_CN, new CultureInfo("zh") },
+            { Language.vn_VN, new CultureInfo("vn") }, { Language.zh_CN, new CultureInfo("zh") },
            
         };
         private static Dictionary<Language, CultureInfo> directlySupportedCultureInfos = new Dictionary<Language, CultureInfo>
@@ -37,7 +37,7 @@ namespace RiotSharp.Test.Misc
             { Language.ms_MY, new CultureInfo("ms-MY") }, { Language.pl_PL, new CultureInfo("pl-PL") },
             { Language.pt_BR, new CultureInfo("pt-BR") }, { Language.ro_RO, new CultureInfo("ro-RO") },
             { Language.ru_RU, new CultureInfo("ru-RU") }, { Language.th_TH, new CultureInfo("th-TH") },
-            { Language.tr_TR, new CultureInfo("tr-TR") }, { Language.vi_VN, new CultureInfo("vi-VN") },
+            { Language.tr_TR, new CultureInfo("tr-TR") }, { Language.vn_VN, new CultureInfo("vn-VN") },
             { Language.zh_CN, new CultureInfo("zh-CN") }, { Language.zh_MY, new CultureInfo("zh-MY") },
             { Language.zh_TW, new CultureInfo("zh-TW") }
         };
