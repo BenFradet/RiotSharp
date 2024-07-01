@@ -12,6 +12,11 @@ namespace RiotSharp.Test
         public static Platform Summoner1Platform = (Platform) Enum.Parse(typeof(Platform), "NA1");
         public static int Summoner1MasteryChampionId = 98;
         public static int Summoner1MasteryChampionLevel = 7;
+
+        public static Platform Summoner2Platform = (Platform) Enum.Parse(typeof(Platform), "EUW1");
+        public static int Summoner2MasteryChampionId = 233; // Briar
+        public static int Summoner2MasteryChampionLevel = 1; // Never play the champ
+
         public static long UnrankedSummonerId = 76723437;
 
         public static List<string> AccountIds = new List<string>
@@ -52,8 +57,8 @@ namespace RiotSharp.Test
             "LL Stylish"
         };
 
-        public static Region SummonersRegion = Region.Americas;
-        public static Region SummonersPlatform = (Region) Enum.Parse(typeof(Region), "Na");
+        public static Region SummonersRegion = Region.Europe;
+        public static Region SummonersPlatform = (Region) Enum.Parse(typeof(Region), "Euw");
         public static string Queue = "RANKED_SOLO_5x5";
 
         // Normal 5v5 Draft Pick games

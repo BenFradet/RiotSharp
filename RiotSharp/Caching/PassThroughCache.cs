@@ -3,7 +3,7 @@
 namespace RiotSharp.Caching
 {
     /// <summary>
-    /// Implementation of ICache for disabling cache
+    /// "Implementation" of ICache for disabling cache
     /// </summary>
     public class PassThroughCache : ICache
     {

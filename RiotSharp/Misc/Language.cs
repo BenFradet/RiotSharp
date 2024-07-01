@@ -158,7 +158,7 @@
         /// <summary>
         /// Vietnamese.
         /// </summary>
-        vn_VN,
+        vi_VN,
 
         /// <summary>
         /// Japanese.

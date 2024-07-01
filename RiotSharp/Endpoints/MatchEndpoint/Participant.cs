@@ -165,7 +165,7 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public long GoldSpent { get; set; }
 
         /// <summary>
-        /// Gold spent.
+        /// Individual position of the player. Support marked as "UTILITY", ADC as "BOTTOM".
         /// </summary>
         [JsonProperty("individualPosition")]
         public string IndividualPosition { get; set; }

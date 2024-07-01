@@ -48,7 +48,7 @@ namespace RiotSharp.Test.EndpointTests
                 GameQueueType = "Normal Draft",
                 GameType = GameType.MatchedGame,
                 MapType = MapType.SummonersRift,
-                GameStartTime = DateTime.Today,
+                //GameStartTime = DateTime.Today,
                 Platform = Platform.EUW1
             };
 

@@ -16,7 +16,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
 
         protected const string CdnUrl = "/cdn/";
         protected const string ApiUrl = "/api/";
-        protected const string ResoureUrlPattern = CdnUrl + "{0}/data/{1}/{2}.json";
+        protected const string ResourceUrlPattern = CdnUrl + "{0}/data/{1}/{2}.json";
 
         protected bool useHttps;
         protected ICache cache;
@@ -56,7 +56,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         /// <param name="dataKey">The data key.</param>
         protected string CreateUrl(string version, Language language, string dataKey)
         {
-            return String.Format(ResoureUrlPattern, version, language, dataKey);
+            return String.Format(ResourceUrlPattern, version, language, dataKey);
         }
     }
 }

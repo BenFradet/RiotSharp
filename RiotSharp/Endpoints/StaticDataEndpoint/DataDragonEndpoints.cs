@@ -84,7 +84,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint
         }
 
         /// <summary>
-        /// StatidDataEndpoint using the default <see cref="IStaticEndpointProvider"/>
+        /// StaticDataEndpoint using the default <see cref="IStaticEndpointProvider"/>
         /// </summary>
         /// <param name="requester"></param>
         /// <param name="cache"></param>

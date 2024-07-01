@@ -15,15 +15,16 @@ namespace RiotSharp.Test
         public static string FaultyApiKey = "deadbeef-dead-beef-dead-beefdeadbeef";
 
         public static long InvalidSummonerId = -1;
-        public static string Summoner1Name = "toothlessG";
-        public static Region Summoner1Platform = (Region)Enum.Parse(typeof(Region), "Na");
-        public static Region Summoner1Region = Region.Americas;
+        public static string Summoner1Name = "AZZEBJ0RNEN";
+        public static Region Summoner1Platform = (Region)Enum.Parse(typeof(Region), "Euw");
+        public static Region Summoner1Region = Region.Europe;
 
         public static string Summoner3Name = "xsunx";
         public static Region Summoner3Platform = (Region)Enum.Parse(typeof(Region), "Ru");
 
-        public static string AccountGameName = "toothlessG";
-        public static string AccountTagLine = "NA1";
+        public static Region AccountRegion = Region.Europe;
+        public static string AccountGameName = "AZZEBJ0RNEN";
+        public static string AccountTagLine = "EUW";
 
         /// <summary>
         /// Ensures that test returns data (Shows test warnings for 404 status exceptions)

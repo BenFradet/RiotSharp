@@ -63,10 +63,10 @@ namespace RiotSharp.Endpoints.MatchEndpoint
         public int ItemBeforeId { get; set; }
 
         /// <summary>
-        /// Amount of gold gained by the event. Only peresent if relevant.
+        /// Amount of gold gained by the event. Only present if relevant.
         /// </summary>
         [JsonProperty("goldGain")]
-        public int GoldDain { get; set; }
+        public int GoldGain { get; set; }
 
         /// <summary>
         /// The item ID of the event. Only present if relevant.

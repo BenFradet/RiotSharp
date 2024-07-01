@@ -16,7 +16,7 @@ namespace RiotSharp.Test
 
         public DataDragonApiTest()
         {
-            var cache = new Cache();
+            //var cache = new Cache();
             _api = DataDragonEndpoints.GetInstance(true);
         }
 

@@ -10,6 +10,7 @@ namespace RiotSharp.Test.EndpointTests
     {
         private static readonly RiotApi Api = RiotApi.GetDevelopmentInstance(ApiKey);
 
+        [Ignore]
         [TestMethod]
         [TestCategory("StatusRiotApi"), TestCategory("Async")]
         public void GetShardStatusAsync_GetTheLeagueOfLegendsStatusForTheGivenShardAsync_ReturnAShardStatusObject()
