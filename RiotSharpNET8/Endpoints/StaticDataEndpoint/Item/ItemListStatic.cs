@@ -7,7 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
     /// </summary>
     public class ItemListStatic
     {
-        internal ItemListStatic() { }
         /// <summary>
         /// Map of items indexed by their id.
         /// </summary>

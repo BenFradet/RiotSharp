@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Mastery
     /// </summary>
     public class MasteryTreeItemStatic
     {
-        internal MasteryTreeItemStatic() { }
-
         /// <summary>
         /// Id of the mastery.
         /// </summary>

@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
     /// </summary>
     public class GoldStatic
     {
-        internal GoldStatic() { }
-
         /// <summary>
         /// Base price of an item.
         /// </summary>

@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.LeagueEndpoint
     /// </summary>
     public class League
     {
-        internal League() { }
-
         /// <summary>
         /// The requested league entries.
         /// </summary>

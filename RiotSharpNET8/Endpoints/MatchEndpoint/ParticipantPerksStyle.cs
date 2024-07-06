@@ -4,8 +4,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class ParticipantPerksStyle
     {
-        internal ParticipantPerksStyle() { }
-
         /// <summary>
         /// Description of the Style. <br/>
         /// Values might be 'primaryStyle' or 'subStyle'

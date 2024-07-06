@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Rune
     /// </summary>
     public class RuneListStatic
     {
-        internal RuneListStatic() { }
-
         /// <summary>
         /// Map of runes indexed by their id.
         /// </summary>

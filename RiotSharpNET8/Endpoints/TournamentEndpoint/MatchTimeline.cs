@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class MatchTimeline
     {
-        internal MatchTimeline() { }
-
         /// <summary>
         /// Time between each returned frame.
         /// </summary>

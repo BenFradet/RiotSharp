@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class ChampionStatsStatic
     {
-        internal ChampionStatsStatic() { }
-
         /// <summary>
         /// Base armor.
         /// </summary>

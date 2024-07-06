@@ -8,10 +8,6 @@ namespace RiotSharpNET8.Endpoints.LeagueEndpoint
     /// </summary>
     public class LeagueEntry : LeagueItem
     {
-        internal LeagueEntry()
-        {
-        }
-
         /// <summary>
         /// The Id of the league of the participant.
         /// </summary>

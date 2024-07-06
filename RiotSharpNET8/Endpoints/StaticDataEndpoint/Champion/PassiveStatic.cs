@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class PassiveStatic
     {
-        internal PassiveStatic() { }
-
         /// <summary>
         /// String descripting the passive.
         /// </summary>

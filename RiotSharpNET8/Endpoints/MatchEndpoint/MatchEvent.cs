@@ -9,8 +9,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class MatchEvent
     {
-        internal MatchEvent() { }
-
         /// <summary>
         /// The ascended type of the event. Only present if relevant.
         /// Note that CLEAR_ASCENDED refers to when a participants kills the ascended player.

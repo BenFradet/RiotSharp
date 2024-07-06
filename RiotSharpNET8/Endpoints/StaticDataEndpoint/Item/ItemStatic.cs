@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
     /// </summary>
     public class ItemStatic
     {
-        internal ItemStatic() { }
-
         /// <summary>
         /// Equals ";".
         /// </summary>

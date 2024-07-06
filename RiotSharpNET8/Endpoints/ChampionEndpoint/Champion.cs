@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.ChampionEndpoint
     /// </summary>
     public class Champion
     {
-        internal Champion() { }
-
         /// <summary>
         /// Indicates if the champion is active.
         /// </summary>

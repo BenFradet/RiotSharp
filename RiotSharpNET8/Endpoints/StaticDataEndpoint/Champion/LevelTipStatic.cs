@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class LevelTipStatic
     {
-        internal LevelTipStatic() { }
-
         /// <summary>
         /// List of string representing the effects of leveling up this spell (going from a percentage
         /// to another for example.

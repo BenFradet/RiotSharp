@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.LeagueEndpoint
     /// </summary>
     public class MiniSeries
     {
-        internal MiniSeries() { }
-
         /// <summary>
         /// Number of current losses in the mini series.
         /// </summary>

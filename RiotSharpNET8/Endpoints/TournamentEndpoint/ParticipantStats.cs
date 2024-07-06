@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class ParticipantStats
     {
-        internal ParticipantStats() { }
-
         /// <summary>
         /// Number of assists.
         /// </summary>

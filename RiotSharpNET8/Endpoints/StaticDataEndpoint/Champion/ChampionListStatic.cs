@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class ChampionListStatic
     {
-        internal ChampionListStatic() { }
-
         /// <summary>
         /// Map of champions indexed by their name.
         /// </summary>

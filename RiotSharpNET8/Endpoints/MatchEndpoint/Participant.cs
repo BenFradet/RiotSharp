@@ -9,8 +9,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class Participant
     {
-        internal Participant() { }
-
         /// <summary>
         /// Number of assists.
         /// </summary>

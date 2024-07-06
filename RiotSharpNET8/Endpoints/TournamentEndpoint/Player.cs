@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class Player
     {
-        internal Player() { }
-
         /// <summary>
         /// Current platform ID.
         /// </summary>

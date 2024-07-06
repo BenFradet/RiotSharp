@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class MatchTimeline
     {
-        internal MatchTimeline() { }
-
         /// <summary>
         /// Metadata of the match
         /// </summary>

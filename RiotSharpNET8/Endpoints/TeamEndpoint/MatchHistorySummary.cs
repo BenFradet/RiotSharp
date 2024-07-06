@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.TeamEndpoint
     /// </summary>
     public class MatchHistorySummary
     {
-        internal MatchHistorySummary() { }
-
         /// <summary>
         /// Number of assists.
         /// </summary>

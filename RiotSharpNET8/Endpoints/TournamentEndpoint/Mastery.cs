@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class Mastery
     {
-        internal Mastery() { }
-
         /// <summary>
         /// Mastery ID.
         /// </summary>

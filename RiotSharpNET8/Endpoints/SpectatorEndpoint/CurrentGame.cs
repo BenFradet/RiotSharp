@@ -9,8 +9,6 @@ namespace RiotSharpNET8.Endpoints.SpectatorEndpoint
     /// </summary>
     public class CurrentGame
     {
-        internal CurrentGame() { }
-
         /// <summary>
         /// Banned champion information
         /// </summary>

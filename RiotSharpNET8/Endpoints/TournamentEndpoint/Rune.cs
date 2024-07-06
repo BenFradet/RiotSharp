@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class Rune
     {
-        internal Rune() { }
-
         /// <summary>
         /// Rune rank.
         /// </summary>

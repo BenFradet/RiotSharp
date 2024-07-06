@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class MatchFrame
     {
-        internal MatchFrame() { }
-
         /// <summary>
         /// List of events for this frame.
         /// </summary>

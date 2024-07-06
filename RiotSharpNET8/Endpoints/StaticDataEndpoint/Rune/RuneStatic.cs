@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Rune
     /// </summary>
     public class RuneStatic
     {
-        internal RuneStatic() { }
-
         /// <summary>
         /// Equals ";".
         /// </summary>

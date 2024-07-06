@@ -4,8 +4,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class ChampionStats
     {
-        internal ChampionStats() { }
-
         [JsonPropertyName("abilityHaste")]
         public int AbilityHaste { get; set; }
 

@@ -9,8 +9,6 @@ namespace RiotSharpNET8.Endpoints.SpectatorEndpoint
     /// </summary>
     public class FeaturedGame
     {
-        internal FeaturedGame() { }
-
         /// <summary>
         /// Banned champion information
         /// </summary>

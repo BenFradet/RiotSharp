@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.TeamEndpoint
     /// </summary>
     public class Roster
     {
-        internal Roster() { }
-
         /// <summary>
         /// List of the team members of the roster.
         /// </summary>

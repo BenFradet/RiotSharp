@@ -4,8 +4,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class ParticipantPerks
     {
-        internal ParticipantPerks() { }
-
         /// <summary>
         /// Stat perks selected by participant.
         /// </summary>

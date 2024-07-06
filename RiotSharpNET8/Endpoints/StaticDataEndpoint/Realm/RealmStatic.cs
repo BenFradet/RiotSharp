@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Realm
     /// </summary>
     public class RealmStatic
     {
-        internal RealmStatic() { }
-
         /// <summary>
         /// The base CDN url.
         /// </summary>

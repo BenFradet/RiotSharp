@@ -4,9 +4,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class DamageStats
     {
-        internal DamageStats() { }
-
-
         [JsonPropertyName("magicDamageDone")]
         public int MagicDamageDone { get; set; }
 

@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
     /// </summary>
     public class GroupStatic
     {
-        internal GroupStatic() { }
-
         /// <summary>
         /// Max group ownable.
         /// </summary>

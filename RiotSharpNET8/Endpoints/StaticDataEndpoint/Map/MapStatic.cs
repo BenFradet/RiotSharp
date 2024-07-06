@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Map
     /// </summary>
     public class MapStatic
     {
-        internal MapStatic() { }
-
         /// <summary>
         /// Map id.
         /// </summary>

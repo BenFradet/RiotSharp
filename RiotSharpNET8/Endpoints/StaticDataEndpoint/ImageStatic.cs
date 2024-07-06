@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
     /// </summary>
     public class ImageStatic
     {
-        internal ImageStatic() { }
-
         /// <summary>
         /// Full name for this image.
         /// </summary>

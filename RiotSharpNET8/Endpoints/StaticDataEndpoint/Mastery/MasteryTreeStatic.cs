@@ -5,8 +5,6 @@
     /// </summary>
     public class MasteryTreeStatic
     {
-        internal MasteryTreeStatic() { }
-
         /// <summary>
         /// List of list of objects (masteryId, prereq) in the defense tree.
         /// </summary>

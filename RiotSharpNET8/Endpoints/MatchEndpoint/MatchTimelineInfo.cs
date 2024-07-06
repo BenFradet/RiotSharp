@@ -5,8 +5,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class MatchTimelineInfo
     {
-        internal MatchTimelineInfo() { }
-
         /// <summary>
         /// Time between each returned frame.
         /// </summary>

@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class MatchDetail : MatchSummary
     {
-        internal MatchDetail() { }
-
         /// <summary>
         /// Team information.
         /// </summary>

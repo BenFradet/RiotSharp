@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.AccountEndpoint
     /// </summary>
     public class Account
     {
-        internal Account() { }
-
         /// <summary>
         /// Encrypted PUUID. Exact length of 78 characters.
         /// </summary>

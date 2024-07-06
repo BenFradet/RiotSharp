@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class ChampionSpellStatic
     {
-        internal ChampionSpellStatic() { }
-
         /// <summary>
         /// List of alternative images.
         /// </summary>

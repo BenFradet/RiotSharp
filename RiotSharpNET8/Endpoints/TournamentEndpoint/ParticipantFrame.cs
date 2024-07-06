@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class ParticipantFrame
     {
-        internal ParticipantFrame() { }
-
         /// <summary>
         /// Participant's current gold.
         /// </summary>

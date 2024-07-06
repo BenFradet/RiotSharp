@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class Participant
     {
-        internal Participant() { }
-
         /// <summary>
         /// Champion ID.
         /// </summary>

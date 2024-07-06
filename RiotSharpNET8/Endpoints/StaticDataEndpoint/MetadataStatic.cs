@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
     /// </summary>
     public class MetadataStatic
     {
-        internal MetadataStatic() { }
-
         /// <summary>
         /// Whether this item is a rune or not.
         /// </summary>

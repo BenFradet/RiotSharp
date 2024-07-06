@@ -4,8 +4,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class ParticipantPerksStatPerks
     {
-        internal ParticipantPerksStatPerks() { }
-
         /// <summary>
         /// Perk Id of the defense stat perk.
         /// </summary>

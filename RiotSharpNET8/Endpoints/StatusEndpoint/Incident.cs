@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.StatusEndpoint
     /// </summary>
     public class Incident
     {
-        internal Incident() { }
-
         /// <summary>
         /// Whether or not this incident is still active.
         /// </summary>

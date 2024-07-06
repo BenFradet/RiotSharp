@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.StatusEndpoint
     /// </summary>
     public class Message
     {
-        internal Message() { }
-
         /// <summary>
         /// Author of the message.
         /// </summary>

@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class MatchInfo
     {
-        internal MatchInfo() { }
-
         /// <summary>
         /// The date time of the game creation.
         /// </summary>

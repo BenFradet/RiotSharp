@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class ParticipantFrame
     {
-        internal ParticipantFrame() { }
-
         /// <summary>
         /// Participant's champion stats.
         /// </summary>

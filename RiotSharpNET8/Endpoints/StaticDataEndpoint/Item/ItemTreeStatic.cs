@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
     /// </summary>
     public class ItemTreeStatic
     {
-        internal ItemTreeStatic() { }
-
         /// <summary>
         /// Tree's header (Tools, Defense, Attack, Magic, Movement).
         /// </summary>

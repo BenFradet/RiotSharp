@@ -10,8 +10,6 @@ namespace RiotSharpNET8.Endpoints.TournamentEndpoint
     /// </summary>
     public class MatchSummary
     {
-        internal MatchSummary() { }
-
         /// <summary>
         /// Map type.
         /// </summary>

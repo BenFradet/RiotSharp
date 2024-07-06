@@ -4,8 +4,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
 {
     public class ParticipantPerkSelection
     {
-        internal ParticipantPerkSelection() { }
-
         /// <summary>
         /// Perk Id of the <see cref="ParticipantPerkSelection"/>
         /// </summary>

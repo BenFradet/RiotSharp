@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class BlockItemStatic
     {
-        internal BlockItemStatic() { }
-
         /// <summary>
         /// Recommended count.
         /// </summary>

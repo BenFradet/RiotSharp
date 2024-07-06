@@ -9,8 +9,6 @@ namespace RiotSharpNET8.Endpoints.AccountEndpoint
     /// </summary>
     public class ActiveShardDto
     {
-        internal ActiveShardDto() { }
-
         /// <summary>
         /// Encrypted PUUID. Exact length of 78 characters.
         /// </summary>

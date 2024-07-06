@@ -8,8 +8,6 @@ namespace RiotSharpNET8.Endpoints.TeamEndpoint
     /// </summary>
     public class MessageOfDay
     {
-        internal MessageOfDay() { }
-
         /// <summary>
         /// Date of the message creation.
         /// </summary>

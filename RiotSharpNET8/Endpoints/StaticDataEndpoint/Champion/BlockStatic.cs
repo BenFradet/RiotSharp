@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class BlockStatic
     {
-        internal BlockStatic() { }
-
         /// <summary>
         /// List of recommended items.
         /// </summary>

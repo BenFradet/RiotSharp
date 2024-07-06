@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
     /// </summary>
     public class Position
     {
-        internal Position() { }
-
         /// <summary>
         /// Participant's X coordinate.
         /// </summary>

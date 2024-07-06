@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.LanguageStrings
     /// </summary>
     public class LanguageStringsStatic
     {
-        internal LanguageStringsStatic() { }
-
         /// <summary>
         /// Type of data returned.
         /// </summary>

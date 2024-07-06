@@ -9,8 +9,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class ChampionStatic
     {
-        internal ChampionStatic() { }
-
         /// <summary>
         /// List of tips to use while playing this champion.
         /// </summary>

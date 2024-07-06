@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.LeagueEndpoint
     /// </summary>
     public class LeagueItem
     {
-        internal LeagueItem() { }
-
         /// <summary>
         /// The rank of the participant in a league.
         /// </summary>

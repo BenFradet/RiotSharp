@@ -7,8 +7,6 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
     /// </summary>
     public class InfoStatic
     {
-        internal InfoStatic() { }
-
         /// <summary>
         /// Number between 1 and 10 representing the attack power of a champion.
         /// </summary>
