@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp.Misc;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test.Misc
 {

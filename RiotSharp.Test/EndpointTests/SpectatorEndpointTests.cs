@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
-using RiotSharp.Endpoints.Interfaces.Static;
-using RiotSharp.Endpoints.SpectatorEndpoint;
-using RiotSharp.Http.Interfaces;
-using RiotSharp.Interfaces;
-using RiotSharp.Misc;
+using RiotSharpNET8;
+using RiotSharpNET8.Endpoints.Interfaces.Static;
+using RiotSharpNET8.Endpoints.SpectatorEndpoint;
+using RiotSharpNET8.Http.Interfaces;
+using RiotSharpNET8.Interfaces;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test.EndpointTests
 {

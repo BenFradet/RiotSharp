@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp.Endpoints.MatchEndpoint.Enums;
+using RiotSharpNET8;
+using RiotSharpNET8.Endpoints.AccountEndpoint.Enums;
+using RiotSharpNET8.Endpoints.LeagueEndpoint.Enums;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test
 {
@@ -51,7 +54,7 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var accountFromRid = Api.Account.GetAccountByRiotIdAsync(AccountRegion, AccountGameName, AccountTagLine).Result;
-                var activeShard = Api.Account.GetActiveShardByPuuidAsync(AccountRegion, Endpoints.AccountEndpoint.Enums.Game.LoR, accountFromRid.Puuid).Result;
+                var activeShard = Api.Account.GetActiveShardByPuuidAsync(AccountRegion, Game.LoR, accountFromRid.Puuid).Result;
 
                 Assert.AreEqual(activeShard.Puuid, accountFromRid.Puuid);
             });
@@ -182,9 +185,9 @@ namespace RiotSharp.Test
             EnsureCredibility(() =>
             {
                 var leagues = Api.League.GetLeagueEntriesAsync(RiotApiTestBase.SummonersPlatform,
-                    Endpoints.LeagueEndpoint.Enums.Division.I,
-                    Endpoints.LeagueEndpoint.Enums.Tier.Bronze,
-                    RiotSharp.Misc.Queue.RankedSolo5x5);
+                    Division.I,
+                    Tier.Bronze,
+                    Queue.RankedSolo5x5);
 
                 Assert.IsTrue(leagues.Result.Count > 0);
             });
@@ -196,7 +199,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var leagues = Api.League.GetLeagueGrandmastersByQueueAsync(RiotApiTestBase.SummonersPlatform, RiotSharp.Misc.Queue.RankedSolo5x5);
+                var leagues = Api.League.GetLeagueGrandmastersByQueueAsync(RiotApiTestBase.SummonersPlatform, Queue.RankedSolo5x5);
 
                 Assert.IsTrue(leagues.Result.Queue != null);
             });
@@ -237,7 +240,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var match = Api.Match.GetMatchAsync(RiotSharp.Misc.Region.Americas, RiotApiTestBase.GameId).Result;
+                var match = Api.Match.GetMatchAsync(Region.Americas, RiotApiTestBase.GameId).Result;
 
                 Assert.IsNotNull(match);
                 Assert.IsNotNull(match.Metadata);
@@ -360,7 +363,7 @@ namespace RiotSharp.Test
         {
             EnsureCredibility(() =>
             {
-                var currentGame = Api.Spectator.GetCurrentGameAsync(RiotSharp.Misc.Region.Euw, "w1_k11kGq3N2zydfKN5xc7XcGwv-4jrnJJGsuQfHJmDFVFs").Result;
+                var currentGame = Api.Spectator.GetCurrentGameAsync(Region.Euw, "w1_k11kGq3N2zydfKN5xc7XcGwv-4jrnJJGsuQfHJmDFVFs").Result;
 
                 Assert.IsNotNull(currentGame);
                 Assert.IsTrue(currentGame.GameId != 0);

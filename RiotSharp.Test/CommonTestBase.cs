@@ -3,7 +3,8 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp.Misc;
+using RiotSharpNET8;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiotSharp.Endpoints.TournamentEndpoint.Enums;
+using RiotSharpNET8.Endpoints.TournamentEndpoint.Enums;
 
 namespace RiotSharp.Test
 {

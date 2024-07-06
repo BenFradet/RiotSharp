@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using RiotSharp.Endpoints.MatchEndpoint.Enums;
-using RiotSharp.Misc;
+using RiotSharpNET8.Endpoints.MatchEndpoint.Enums;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test
 {

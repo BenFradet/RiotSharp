@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RiotSharpNET8;
 
 namespace RiotSharp.Test
 {

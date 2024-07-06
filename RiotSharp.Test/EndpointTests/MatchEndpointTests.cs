@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using RiotSharp.Caching;
-using RiotSharp.Endpoints.Interfaces;
-using RiotSharp.Endpoints.MatchEndpoint;
-using RiotSharp.Http.Interfaces;
-using RiotSharp.Misc;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using RiotSharpNET8.Caching;
+using RiotSharpNET8.Endpoints.Interfaces;
+using RiotSharpNET8.Endpoints.MatchEndpoint;
+using RiotSharpNET8.Http.Interfaces;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test.EndpointTests
 {

@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using RiotSharp.Caching;
-using RiotSharp.Endpoints.Interfaces.Static;
-using RiotSharp.Endpoints.StaticDataEndpoint;
+using RiotSharpNET8.Endpoints.Interfaces.Static;
+using RiotSharpNET8.Endpoints.StaticDataEndpoint;
+using RiotSharpNET8.Endpoints.StaticDataEndpoint.Item;
 
 namespace RiotSharp.Test
 {
@@ -102,7 +102,7 @@ namespace RiotSharp.Test
 
                 // Act
                 var itemsJson = JsonConvert.SerializeObject(itemsSample);
-                var items = JsonConvert.DeserializeObject<Endpoints.StaticDataEndpoint.Item.ItemListStatic>(itemsJson);
+                var items = JsonConvert.DeserializeObject<ItemListStatic>(itemsJson);
                 var item = items.Items.First();
                 
                 // Assert

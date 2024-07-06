@@ -1,5 +1,5 @@
 ﻿using System;
-using RiotSharp.Misc;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharp.Test
 {

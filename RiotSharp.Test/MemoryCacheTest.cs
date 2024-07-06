@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading;
-using RiotSharp.Caching;
+using RiotSharpNET8.Caching;
 
 namespace RiotSharp.Test
 {

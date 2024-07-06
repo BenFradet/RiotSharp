@@ -20,7 +20,7 @@ namespace RiotSharp.Endpoints.StaticDataEndpoint.Item
         /// Whether the object is to be consumed on full or not.
         /// </summary>
         [JsonProperty("consumeOnFull")]
-        public bool ConsumOnFull { get; set; }
+        public bool ConsumeOnFull { get; set; }
 
         /// <summary>
         /// Whether the object is to be consumed or not.

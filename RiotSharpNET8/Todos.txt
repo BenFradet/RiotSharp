@@ -1,0 +1,25 @@
+﻿// Change to .NET 8
+
+// Change from MSTest to NUnit
+
+// Change from Newtonsoft.Json to System.Text.Json
+
+
+
+
+// Make some default values for the different JSON properties
+
+
+
+
+
+
+
+
+// Update gamemodes (riotsharp.misc)
+
+// Refactor the Summoner endpoint 
+
+// Update the championStaticListWrapper to include whether it is fullData or not
+
+// Update drakes, monsters and more
