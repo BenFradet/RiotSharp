@@ -5,7 +5,7 @@ namespace RiotSharpNET8.Misc.Converters
 {
 	class PlatformConverter : JsonConverter<Platform>
 	{
-        
+
 		public override Platform Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
             return (Platform)Enum.Parse(typeof(Platform), reader.GetString());

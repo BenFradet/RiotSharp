@@ -73,11 +73,11 @@ namespace RiotSharpNET8
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimitPer1s">The 1 second rate limit for your api key. 20 by default.</param>
         /// <param name="rateLimitPer2m">The 2 minute rate limit for your api key. 100 by default.</param>
-        /// <param name="cache">The cache.</param>
+        /// <param name="cache">The cache. PassThroughCache is default.</param>
         /// <returns>
         /// The instance of RiotApi.
         /// </returns>
-        public static RiotApi GetDevelopmentInstance(string apiKey, int rateLimitPer1s = 20, int rateLimitPer2m = 100, ICache cache = null)
+        public static RiotApi GetDevelopmentInstance(string apiKey, int rateLimitPer1s = 20, int rateLimitPer2m = 100, ICache? cache = null)
         {
             return GetInstance(apiKey, new Dictionary<TimeSpan, int>
             {
@@ -87,16 +87,16 @@ namespace RiotSharpNET8
         }
 
         /// <summary>
-        /// Get the instance of RiotApi.
+        /// Get the instance of a production RiotApi with custom rate limits.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimitPer10s">The 10 seconds rate limit for your production api key.</param>
         /// <param name="rateLimitPer10m">The 10 minutes rate limit for your production api key.</param>
-        /// <param name="cache">The cache.</param>
+        /// <param name="cache">The cache. PassThroughCache is default.</param>
         /// <returns>
         /// The instance of RiotApi.
         /// </returns>
-        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s, int rateLimitPer10m, ICache cache = null)
+        public static RiotApi GetInstance(string apiKey, int rateLimitPer10s, int rateLimitPer10m, ICache? cache = null)
         {
             return GetInstance(apiKey, new Dictionary<TimeSpan, int>
             {
@@ -107,6 +107,7 @@ namespace RiotSharpNET8
 
         /// <summary>
         /// Gets the instance of RiotApi, allowing custom rate limits.
+        /// It essentially constructs a new instance of RiotApi if the api key or rate limits have changed.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
         /// <param name="rateLimits">A dictionary of rate limits where the key is the time span and the value
@@ -115,7 +116,7 @@ namespace RiotSharpNET8
         /// <returns>
         /// The instance of RiotApi.
         /// </returns>
-        public static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
+        private static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
             if (_instance == null || Requesters.RiotApiRequester == null ||
                 apiKey != Requesters.RiotApiRequester.ApiKey ||
@@ -152,15 +153,16 @@ namespace RiotSharpNET8
         /// Dependency injection constructor
         /// </summary>
         /// <param name="rateLimitedRequester">Rate limited requester for all endpoints except the static endpoint.</param>
+        /// <param name="requester">Requester for static endpoints.</param>
         /// <param name="staticEndpointProvider">The static endpoint provider.</param>
-        /// <param name="cache">The cache.</param>
+        /// <param name="cache">The cache. PassThroughCache is default.</param>
         /// <exception cref="ArgumentNullException">
         /// rateLimitedRequester
         /// or
         /// staticEndpointProvider
         /// </exception>
         public RiotApi(IRateLimitedRequester rateLimitedRequester, IRequester requester, IStaticEndpointProvider staticEndpointProvider,
-            ICache cache = null)
+            ICache? cache = null)
         {
             if(rateLimitedRequester == null)
                 throw new ArgumentNullException(nameof(rateLimitedRequester));

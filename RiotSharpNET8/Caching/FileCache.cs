@@ -71,7 +71,7 @@ namespace RiotSharpNET8.Caching
         }
 
         /// <inheritdoc />
-        public TV Get<TK, TV>(TK key) where TV : class
+        public TV? Get<TK, TV>(TK key) where TV : class
         {
             CacheData<TV> data;
             try

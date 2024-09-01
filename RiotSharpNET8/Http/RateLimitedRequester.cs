@@ -14,14 +14,14 @@ namespace RiotSharpNET8.Http
     {
         public readonly IDictionary<TimeSpan, int> RateLimits;
 
-        private readonly bool _throwOnDelay;
+        private readonly bool _throwExceptionOnDelay;
         private readonly ConcurrentDictionary<Region, RateLimiter> _rateLimiters = new ConcurrentDictionary<Region, RateLimiter>();
 
         /// <inheritdoc />
-        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false) : base(apiKey)
+        public RateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwExceptionOnDelay = false) : base(apiKey)
         {
             RateLimits = rateLimits;
-            _throwOnDelay = throwOnDelay;
+            _throwExceptionOnDelay = throwExceptionOnDelay;
         }
 
         #region Public Methods
@@ -79,7 +79,7 @@ namespace RiotSharpNET8.Http
         /// <returns></returns>
         private RateLimiter GetRateLimiter(Region region)
         {
-            return _rateLimiters.GetOrAdd(region, _ => new RateLimiter(RateLimits, _throwOnDelay));
+            return _rateLimiters.GetOrAdd(region, _ => new RateLimiter(RateLimits, _throwExceptionOnDelay));
         }
 
         /// <summary>

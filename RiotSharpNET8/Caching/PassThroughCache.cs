@@ -21,7 +21,7 @@
         }
 
         /// <inheritdoc />
-        public TV Get<TK, TV>(TK key) where TV : class
+        public TV? Get<TK, TV>(TK key) where TV : class
         {
             return null;
         }

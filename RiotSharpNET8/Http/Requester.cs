@@ -21,7 +21,7 @@ namespace RiotSharpNET8.Http
 
         /// <inheritdoc />
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
-            List<string> queryParameters = null, bool useHttps = true)
+            List<string>? queryParameters = null, bool useHttps = true)
         {
             var host = GetPlatformHost(region);
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
@@ -31,7 +31,7 @@ namespace RiotSharpNET8.Http
 
         /// <inheritdoc />
         public async Task<string> CreateGetRequestAsync(string host, string relativeUrl, 
-            List<string> queryParameters = null, bool useHttps = true)
+            List<string>? queryParameters = null, bool useHttps = true)
         {
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
             var response = await SendAsync(request).ConfigureAwait(false);

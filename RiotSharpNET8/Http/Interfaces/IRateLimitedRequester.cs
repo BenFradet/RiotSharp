@@ -6,7 +6,7 @@ namespace RiotSharpNET8.Http.Interfaces
     {
 
         /// <summary>
-        ///  Create a get request and send it asynchronously to the server.
+        /// Create a get request and send it asynchronously to the server.
         /// </summary>
         /// <param name="relativeUrl"></param>
         /// <param name="region"></param>
@@ -17,7 +17,7 @@ namespace RiotSharpNET8.Http.Interfaces
         /// Thrown if an Http error occurs. 
         /// Contains the Http error code and error message.
         /// </exception>
-        Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
+        Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string>? queryParameters = null, 
             bool useHttps = true);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Http.Interfaces
         /// Contains the Http error code and error message.
         /// </exception>
         Task<string> CreatePostRequestAsync(string relativeUrl, Region region, string body,
-            List<string> queryParameters = null, bool useHttps = true);
+            List<string>? queryParameters = null, bool useHttps = true);
 
         /// <summary>
         /// Create a post request and send it asynchronously to the server.
@@ -50,6 +50,6 @@ namespace RiotSharpNET8.Http.Interfaces
         /// Contains the Http error code and error message.
         /// </exception>
         Task<bool> CreatePutRequestAsync(string relativeUrl, Region region, string body,
-            List<string> queryParameters = null, bool useHttps = true);
+            List<string>? queryParameters = null, bool useHttps = true);
     }
 }

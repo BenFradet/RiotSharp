@@ -11,7 +11,7 @@ namespace RiotSharpNET8.Misc.Converters
 	{
 		public override MapType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-            return (MapType)Enum.Parse(typeof(MapType), reader.GetString());
+            return (MapType)Enum.Parse(typeof(MapType), reader.GetString() ?? string.Empty);
 		}
 
 		public override void Write(Utf8JsonWriter writer, MapType value, JsonSerializerOptions options)

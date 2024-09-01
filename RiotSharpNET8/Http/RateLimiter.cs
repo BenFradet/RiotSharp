@@ -1,10 +1,14 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Threading;
 
 [assembly: InternalsVisibleTo("RiotSharp.Test")]
 namespace RiotSharpNET8.Http
 {
+    
     internal class RateLimiter
     {
+        private readonly System.Threading.RateLimiting.RateLimiter _rateLimiter;
+
         /// <summary>Semaphore to prevent multiple requests from interferering with each other's rate limit
         /// calculations.</summary>
         private readonly SemaphoreSlim _accessSemaphore = new SemaphoreSlim(1);
@@ -18,16 +22,16 @@ namespace RiotSharpNET8.Http
         /// <summary>Key is rate limit interval, value is time the inteval started.</summary>
         private readonly IDictionary<TimeSpan, DateTime> _rateLimitStarts = new Dictionary<TimeSpan, DateTime>();
 
-        /// <summary>Key is rate limit interval, value is the current request count.</summary>
+        /// <summary>Key is rate limit interval, value is the current request count for the rate limit.</summary>
         private readonly IDictionary<TimeSpan, int> _rateLimitCounts = new Dictionary<TimeSpan, int>();
 
         /// <summary>Indicates if rate limit exceeded exception is thrown, when the rate limit is exceeded. </summary>
-        private readonly bool _throwOnDelay;
+        private readonly bool _throwExceptionOnDelay;
 
-        public RateLimiter(IDictionary<TimeSpan, int> rateLimits, bool throwOnDelay = false)
+        public RateLimiter(IDictionary<TimeSpan, int> rateLimits, bool throwExceptionOnDelay = false)
         {
-            this._rateLimits = rateLimits;
-            _throwOnDelay = throwOnDelay;
+	        _rateLimits = rateLimits;
+            _throwExceptionOnDelay = throwExceptionOnDelay;
         }
 
         /// <summary>
@@ -49,7 +53,7 @@ namespace RiotSharpNET8.Http
             try
             {
                 var delay = GetDelay();
-                if (_throwOnDelay && delay > TimeSpan.Zero)
+                if (_throwExceptionOnDelay && delay > TimeSpan.Zero)
                     throw new RiotSharpException("Rate limit reached.", (System.Net.HttpStatusCode)429);
                 await Task.Delay(delay).ConfigureAwait(false);
                 UpdateDelay();
@@ -63,17 +67,17 @@ namespace RiotSharpNET8.Http
         /// <summary>
         /// Gets the delay required. Should only be called when accessSemaphore is currently owned. Non-destructive.
         /// </summary>
+        /// <!-- There has to be a cleaner was to do this? -->
         /// <returns></returns>
         private TimeSpan GetDelay()
         {
             var now = DateTime.Now;
-
             // Check if we are at the rate limit, find the longest delay.
             var delay = TimeSpan.Zero;
             
-            // RetryAfter delay.
+            // RetryAfter delay as a timespan instead of a datetime.
             var retryDelay = _retryAfter - now;
-            if (retryDelay > delay)
+            if (retryDelay > delay) // It may be smaller than zero. then we good
                 delay = (TimeSpan) retryDelay;
 
             // Rate limits.

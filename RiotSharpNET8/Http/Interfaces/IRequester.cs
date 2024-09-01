@@ -17,7 +17,7 @@ namespace RiotSharpNET8.Http.Interfaces
         /// Contains the Http error code and error message.
         /// </exception>
         Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
-            List<string> queryParameters = null, bool useHttps = true);
+            List<string>? queryParameters = null, bool useHttps = true);
 
         /// <summary>
         /// Create a get request and send it asynchronously to the server.
@@ -27,6 +27,6 @@ namespace RiotSharpNET8.Http.Interfaces
         /// <param name="queryParameters">The query parameters.</param>
         /// <param name="useHttps">Use HTTPS based on the boolean. Default = true</param>
         Task<string> CreateGetRequestAsync(string host, string relativeUrl,
-            List<string> queryParameters = null, bool useHttps = true);
+            List<string>? queryParameters = null, bool useHttps = true);
     }
 }

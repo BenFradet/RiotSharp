@@ -9,7 +9,7 @@ namespace RiotSharpNET8.Misc.Converters
 		{
             if (reader.TokenType == JsonTokenType.String)
 			{
-				return DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(reader.GetString())).DateTime;
+				return DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(reader.GetString() ?? string.Empty)).DateTime;
 			}
 			return default;
 		}

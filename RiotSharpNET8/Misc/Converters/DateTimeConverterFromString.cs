@@ -10,7 +10,7 @@ namespace RiotSharpNET8.Misc.Converters
 		{
             if (reader.TokenType == JsonTokenType.String)
 			{
-				return DateTime.ParseExact(reader.GetString(), "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+				return DateTime.ParseExact(reader.GetString() ?? string.Empty, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 			}
 			return default;
 		}

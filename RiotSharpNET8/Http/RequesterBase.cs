@@ -8,13 +8,14 @@ namespace RiotSharpNET8.Http
     {
         protected const string PlatformDomain = ".api.riotgames.com";
         private readonly HttpClient _httpClient;
-        private static HashSet<HttpStatusCode> RiotHttpStatusCodeResponse = new HashSet<HttpStatusCode>(){
-            HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
-            HttpStatusCode.Forbidden,  HttpStatusCode.NotFound,
-            HttpStatusCode.MethodNotAllowed, HttpStatusCode.UnsupportedMediaType,
-            HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest,
-            HttpStatusCode.ServiceUnavailable, HttpStatusCode.GatewayTimeout
-        };
+        private static readonly HashSet<HttpStatusCode> RiotHttpStatusCodeBadResponse =
+        [
+	        HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
+	        HttpStatusCode.Forbidden, HttpStatusCode.NotFound,
+	        HttpStatusCode.MethodNotAllowed, HttpStatusCode.UnsupportedMediaType,
+	        HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest,
+	        HttpStatusCode.ServiceUnavailable, HttpStatusCode.GatewayTimeout
+        ];
 
         public string ApiKey { get; set; }
 
@@ -56,7 +57,7 @@ namespace RiotSharpNET8.Http
             return response;
         }
 
-        protected HttpRequestMessage PrepareRequest(string host, string relativeUrl, List<string> queryParameters,
+        protected HttpRequestMessage PrepareRequest(string host, string relativeUrl, List<string>? queryParameters,
             bool useHttps, HttpMethod httpMethod)
         {
             var scheme = useHttps ? "https" : "http";
@@ -94,25 +95,26 @@ namespace RiotSharpNET8.Http
                         }
                     }
 
-                    string rateLimitType = null;
+                    string? rateLimitType = null;
                     if (response.Headers.TryGetValues("X-Rate-Limit-Type", out var rateLimitTypeHeaderValues))
                     {
                         rateLimitType = rateLimitTypeHeaderValues.FirstOrDefault();
                     }
-                    throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", response.StatusCode, retryAfter, rateLimitType);
+                    throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", response.StatusCode, retryAfter, rateLimitType ?? "No rateLimitType specified in response");
                 }
-                else if (RiotHttpStatusCodeResponse.Contains(response.StatusCode))
+                // Here we handle all other HTTP status codes that are not 200 OK
+                else if (RiotHttpStatusCodeBadResponse.Contains(response.StatusCode))
                 {
-	                string message;
-	                try
-	                {
-		                var json = response.Content.ToString();
-						// Parse JSON using System.Text.Json
+	                string? message;
+	                var json = response.Content.ToString();
+					// Parse JSON using System.Text.Json
+					if (json != null)
+					{
 						using var doc = JsonDocument.Parse(json);
 						var root = doc.RootElement;
 						// Safely navigate JSON structure to find the message
 						if (root.TryGetProperty("status", out var statusElement) &&
-							statusElement.TryGetProperty("message", out var messageElement))
+						    statusElement.TryGetProperty("message", out var messageElement))
 						{
 							message = messageElement.GetString();
 						}
@@ -121,12 +123,13 @@ namespace RiotSharpNET8.Http
 							message = response.StatusCode.ToString();
 						}
 					}
-	                catch
-	                {
-		                message = response.StatusCode.ToString();
-	                }
-	                throw new RiotSharpException(message, response.StatusCode);
+					else
+					{
+						message = response.StatusCode.ToString();
+					}
+	                throw new RiotSharpException(message ?? "There was no message in the response", response.StatusCode);
                 }
+                // No idea what StatusCode was returned, but it isn't supported
                 else
                 {
 	                throw new RiotSharpException("Unexpected failure", response.StatusCode);

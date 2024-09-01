@@ -31,41 +31,45 @@
         }
 
         /// <inheritdoc />
-        public TV Get<TK, TV>(TK key) where TV : class
+        public TV? Get<TK, TV>(TK key) where TV : class
         {
-            if (_cache.ContainsKey(key))
+	        if (!_cache.TryGetValue(key, out var cacheItem)) return null;
+
+	        if (cacheItem.RelativeExpiry.HasValue)
             {
-                var cacheItem = _cache[key];
-
-                if (cacheItem.RelativeExpiry.HasValue)
-                {
-                    if (Monitor.TryEnter(_sync, MonitorWaitToUpdateSliding))
-                    {
-                        try
-                        {
-                            _slidingTimes[key].Viewed();
-                        }
-                        finally
-                        {
-                            Monitor.Exit(_sync);
-                        }
-                    }
-                }
-
-                return (TV)cacheItem.Value;
+	            if (Monitor.TryEnter(_sync, MonitorWaitToUpdateSliding))
+	            {
+		            try
+		            {
+			            _slidingTimes[key].Viewed();
+		            }
+		            finally
+		            {
+			            Monitor.Exit(_sync);
+		            }
+	            }
             }
 
-            return null;
+            return (TV)cacheItem.Value;
         }
 
         /// <inheritdoc />
         public void Remove<TK>(TK key)
         {
-            if (!Equals(key, null))
-            {
-                _cache.Remove(key);
-                _slidingTimes.Remove(key);
-            }
+            if(key is null) return;
+
+            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
+			{
+				try
+				{
+					_cache.Remove(key);
+					_slidingTimes.Remove(key);
+				}
+				finally
+				{
+					Monitor.Exit(_sync);
+				}
+			}
         }
 
         /// <inheritdoc />

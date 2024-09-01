@@ -26,25 +26,30 @@
         public const string Tutorial = "TUTORIAL";
 
         /// <summary>
+        /// URF games.
+        /// </summary>
+        public const string Urf = "URF";
+        
+        /// <summary>
+        /// Doom Bot games.
+        /// </summary>
+        public const string DoomBots = "DOOMBOTSTEEMO";
+
+        /// <summary>
         /// One for All games.
         /// </summary>
         public const string OneForAll = "ONEFORALL";
-
-        /// <summary>
-        /// Snowdown Showdown games.
-        /// </summary>
-        public const string FirstBlood = "FIRSTBLOOD";
-
+        
         /// <summary>
         /// Ascension mode games.
         /// </summary>
         public const string Ascension = "ASCENSION";
 
         /// <summary>
-        /// Introduction game mode.
+        /// Snowdown Showdown games.
         /// </summary>
-        public const string Intro = "INTRO";
-
+        public const string FirstBlood = "FIRSTBLOOD";
+        
         /// <summary>
         /// King Poro game mode.
         /// </summary>
@@ -56,13 +61,49 @@
         public const string Siege = "SIEGE";
 
         /// <summary>
-        /// Assassinate game mode.
+        /// Blood Hunt Assassin games.
         /// </summary>
         public const string Assassinate = "ASSASSINATE";
 
         /// <summary>
+        /// All Random Summoner's Rift games.
+        /// </summary>
+        public const string ARSR = "ARSR";
+        
+        /// <summary>
         /// Darkstar game mode.
         /// </summary>
         public const string Darkstar = "DARKSTAR";
+
+        /// <summary>
+        /// Star Guardian Invasion games.
+        /// </summary>
+        public const string StarGuardian = "STARGUARDIAN";
+
+        /// <summary>
+        /// PROJECT: Hunters games.
+        /// </summary>
+        public const string Project = "PROJECT";
+
+        /// <summary>
+        /// GameModeX games/Nexus Blitz games.
+        /// </summary>
+        public const string GameModeX = "GAMEMODEX";
+
+        /// <summary>
+        /// Odyssey: Extraction games.
+        /// </summary>
+        public const string Odyssey = "ODYSSEY";
+
+        /// <summary>
+        /// Nexus Blitz games.
+        /// </summary>
+        public const string NexusBlitz = "NEXUSBLITZ";
+
+        /// <summary>
+        /// Ultimate Spellbook games.
+        /// </summary>
+        public const string UltBook = "ULTBOOK";
+
     }
 }

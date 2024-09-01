@@ -34,7 +34,7 @@
         /// <typeparam name="TV">Type of the value which has to be a reference type.</typeparam>
         /// <param name="key">The key</param>
         /// <returns>The value if the key exists in the cache, null otherwise.</returns>
-        TV Get<TK, TV>(TK key) where TV : class;
+        TV? Get<TK, TV>(TK key) where TV : class;
 
         /// <summary>
         /// Remove the value associated with the specified key from the cache.

@@ -7,30 +7,28 @@ namespace RiotSharpNET8.Misc.Converters
 	{
 		public override Lane Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-            if (reader.TokenType == JsonTokenType.String)
+			if (reader.TokenType != JsonTokenType.String) return Lane.None;
+
+			var str = reader.GetString();
+			switch (str)
 			{
-				var str = reader.GetString();
-				switch (str)
-				{
-					case "MID":
-						return Lane.Mid;
-					case "MIDDLE":
-						return Lane.Middle;
-					case "TOP":
-						return Lane.Top;
-					case "JUNGLE":
-						return Lane.Jungle;
-					case "BOT":
-						return Lane.Bot;
-					case "BOTTOM":
-						return Lane.Bottom;
-					case "NONE":
-						return Lane.None;
-					default:
-						return Lane.None;
-				}
+				case "MID":
+					return Lane.Mid;
+				case "MIDDLE":
+					return Lane.Middle;
+				case "TOP":
+					return Lane.Top;
+				case "JUNGLE":
+					return Lane.Jungle;
+				case "BOT":
+					return Lane.Bot;
+				case "BOTTOM":
+					return Lane.Bottom;
+				case "NONE":
+					return Lane.None;
+				default:
+					return Lane.None;
 			}
-			return Lane.None;
 		}
 
 		public override void Write(Utf8JsonWriter writer, Lane value, JsonSerializerOptions options)
