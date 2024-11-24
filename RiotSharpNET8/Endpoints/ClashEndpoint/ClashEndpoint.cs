@@ -27,7 +27,7 @@ namespace RiotSharpNET8.Endpoints.ClashEndpoint
         
         private static readonly TimeSpan ClashPlayersTtl = TimeSpan.FromDays(5);
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
         private readonly ICache _cache;
         
         /// <summary>
@@ -35,7 +35,7 @@ namespace RiotSharpNET8.Endpoints.ClashEndpoint
         /// </summary>
         /// <param name="requester">The requester interface</param>
         /// <param name="cache">The cache interface</param>
-        public ClashEndpoint(IRateLimitedRequester requester, ICache cache)
+        public ClashEndpoint(IRiotRateLimitedRequester requester, ICache cache)
         {
             _requester = requester;
             _cache = cache;

@@ -23,11 +23,11 @@ namespace RiotSharpNET8.Misc
         /// Western europe.
         /// </summary>
         Euw,
-
+        
         /// <summary>
-        /// North america.
+        /// Japan.
         /// </summary>
-        Na,
+        Jp,
 
         /// <summary>
         /// South korea.
@@ -43,16 +43,16 @@ namespace RiotSharpNET8.Misc
         /// Latin America South.
         /// </summary>
         Las,
-
+                
+        /// <summary>
+        /// North america.
+        /// </summary>
+        Na,
+        
         /// <summary>
         /// Oceania.
         /// </summary>
         Oce,
-
-        /// <summary>
-        /// Russia.
-        /// </summary>
-        Ru,
 
         /// <summary>
         /// Turkey.
@@ -60,9 +60,39 @@ namespace RiotSharpNET8.Misc
         Tr,
 
         /// <summary>
-        /// Japan.
+        /// Russia.
         /// </summary>
-        Jp,
+        Ru,
+
+        /// <summary>
+        /// PH2 idk
+        /// </summary>
+        Ph,
+
+        /// <summary>
+        /// Sg idk
+        /// </summary>
+        Sg,
+
+        /// <summary>
+        /// Th idk, Thailand?
+        /// </summary>
+        Th,
+
+        /// <summary>
+        /// Tw idk, Taiwan?
+        /// </summary>
+        Tw,
+
+        /// <summary>
+        /// Vn idk, Vietnam?
+        /// </summary>
+        Vn,
+
+        /// <summary>
+        /// Middle East.
+        /// </summary>
+        Me,
 
         /// <summary>
         /// Global.
@@ -83,6 +113,16 @@ namespace RiotSharpNET8.Misc
         /// Regional proxy for services only deployed in Asia.
         /// </summary>
         Asia,
+
+        /// <summary>
+        /// Regional proxy for services only deployed in SEA? (South East Asia)
+        /// </summary>
+        Sea,
+
+        /// <summary>
+        /// For some reason there is an Esports region.
+        /// </summary>
+        Esports,
 
         /// <summary>
         /// Region associated with Platform.NoPlatform (e.g. platform of bot players).

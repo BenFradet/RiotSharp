@@ -15,6 +15,7 @@ using RiotSharpNET8.Endpoints.ThirdPartyEndpoint;
 using RiotSharpNET8.Http;
 using RiotSharpNET8.Http.Interfaces;
 using RiotSharpNET8.Interfaces;
+using RiotSharpNET8.Misc;
 
 namespace RiotSharpNET8
 {
@@ -61,6 +62,11 @@ namespace RiotSharpNET8
         
         ///<inheritdoc cref="Clash"/>
         public IClashEndpoint Clash { get; }
+
+        public void ChangeRegionApplicationRateLimits(Region region, IDictionary<TimeSpan, int> rateLimits)
+        {
+	        throw new NotImplementedException();
+        }
 
         /// <inheritdoc />
         public IStatusEndpoint Status { get; }
@@ -119,7 +125,7 @@ namespace RiotSharpNET8
         private static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
             if (_instance == null || Requesters.RiotApiRequester == null ||
-                apiKey != Requesters.RiotApiRequester.ApiKey ||
+                //apiKey != Requesters.RiotApiRequester.ApiKey ||
                 !rateLimits.Equals(Requesters.RiotApiRequester.RateLimits))
             {
                 _instance = new RiotApi(apiKey, rateLimits, cache);
@@ -130,7 +136,7 @@ namespace RiotSharpNET8
         private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
-            Requesters.RiotApiRequester = new RateLimitedRequester(apiKey, rateLimits);
+            Requesters.RiotApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
             Requesters.StaticApiRequester = new Requester(apiKey);
             var requester = Requesters.RiotApiRequester;
 
@@ -152,38 +158,38 @@ namespace RiotSharpNET8
         /// <summary>
         /// Dependency injection constructor
         /// </summary>
-        /// <param name="rateLimitedRequester">Rate limited requester for all endpoints except the static endpoint.</param>
+        /// <param name="riotRateLimitedRequesterte limited requester for all endpoints except the static endpoint.</param>
         /// <param name="requester">Requester for static endpoints.</param>
         /// <param name="staticEndpointProvider">The static endpoint provider.</param>
         /// <param name="cache">The cache. PassThroughCache is default.</param>
         /// <exception cref="ArgumentNullException">
-        /// rateLimitedRequester
+        /// riotRateLimitedRequester
         /// or
         /// staticEndpointProvider
         /// </exception>
-        public RiotApi(IRateLimitedRequester rateLimitedRequester, IRequester requester, IStaticEndpointProvider staticEndpointProvider,
+        public RiotApi(IRiotRateLimitedRequester riotRateLimitedRequester, IRequester requester, IStaticEndpointProvider staticEndpointProvider,
             ICache? cache = null)
         {
-            if(rateLimitedRequester == null)
-                throw new ArgumentNullException(nameof(rateLimitedRequester));
+            if(riotRateLimitedRequester == null)
+                throw new ArgumentNullException(nameof(riotRateLimitedRequester));
             if (staticEndpointProvider == null)
                 throw new ArgumentNullException(nameof(staticEndpointProvider));
 
             _cache = cache ?? new PassThroughCache();
 
-            Account = new AccountEndpoint(rateLimitedRequester);
-            Summoner = new SummonerEndpoint(rateLimitedRequester, _cache);
-            Champion = new ChampionEndpoint(rateLimitedRequester);
-            League = new LeagueEndpoint(rateLimitedRequester);
-            Match = new MatchEndpoint(rateLimitedRequester, _cache);
-            Spectator = new SpectatorEndpoint(rateLimitedRequester);
-            ChampionMastery = new ChampionMasteryEndpoint(rateLimitedRequester);
-            ThirdParty = new ThirdPartyEndpoint(rateLimitedRequester);
+            Account = new AccountEndpoint(riotRateLimitedRequester);
+            Summoner = new SummonerEndpoint(riotRateLimitedRequester, _cache);
+            Champion = new ChampionEndpoint(riotRateLimitedRequester);
+            League = new LeagueEndpoint(riotRateLimitedRequester);
+            Match = new MatchEndpoint(riotRateLimitedRequester, _cache);
+            Spectator = new SpectatorEndpoint(riotRateLimitedRequester);
+            ChampionMastery = new ChampionMasteryEndpoint(riotRateLimitedRequester);
+            ThirdParty = new ThirdPartyEndpoint(riotRateLimitedRequester);
 
             DataDragon = new DataDragonEndpoints(staticEndpointProvider);
             Status = new StatusEndpoint(requester);
             
-            Clash = new ClashEndpoint(rateLimitedRequester, _cache);
+            Clash = new ClashEndpoint(riotRateLimitedRequester, _cache);
         }
     }
 }

@@ -15,10 +15,10 @@
 // Change from MSTest to NUnit
 
 
+// RegionConverter needs to be updated to the new regions
 
 
-
-
+// The rate limiter does not yet support proper RetryAfter.
 
 
 

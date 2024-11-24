@@ -18,13 +18,13 @@ namespace RiotSharpNET8.Endpoints.LeagueEndpoint
         private const string LeagueEntriesByDivTierQueue = "/entries/{0}/{1}/{2}";
         private const string LeagueLeagueById = "/leagues/{0}";
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LeagueEndpoint"/> class.
         /// </summary>
         /// <param name="requester">The requester.</param>
-        public LeagueEndpoint(IRateLimitedRequester requester)
+        public LeagueEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;
         }

@@ -20,7 +20,7 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
         private const string MatchTimeLineCacheKey = "match-timeline-{0}_{1}";
         private static readonly TimeSpan MatchTtl = TimeSpan.FromDays(60);
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
         private readonly ICache _cache;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
         /// </summary>
         /// <param name="requester">the requester</param>
         /// <param name="cache">the cache</param>
-        public MatchEndpoint(IRateLimitedRequester requester, ICache cache)
+        public MatchEndpoint(IRiotRateLimitedRequester requester, ICache cache)
         {
             _requester = requester;
             _cache = cache;

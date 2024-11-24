@@ -17,13 +17,13 @@ namespace RiotSharpNET8.Endpoints.AccountEndpoint
         private const string ByRiotId = "/accounts/by-riot-id/{0}/{1}";
         private const string ByGame = "/active-shards/by-game/{0}/by-puuid/{1}";
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountEndpoint"/> class.
         /// </summary>
         /// <param name="requester">The requester.</param>
-        public AccountEndpoint(IRateLimitedRequester requester)
+        public AccountEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;
         }

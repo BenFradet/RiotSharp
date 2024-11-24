@@ -32,14 +32,14 @@ namespace RiotSharpNET8
 
         private static TournamentRiotApi _instance;
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
         private string _tournamentRootUrl;
 
         #endregion
 
         private TournamentRiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
-            Requesters.TournamentApiRequester = new RateLimitedRequester(apiKey, rateLimits);
+            Requesters.TournamentApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
             _requester = Requesters.TournamentApiRequester;
             SetTournamentRootUrl(useStub);
         }
@@ -47,13 +47,13 @@ namespace RiotSharpNET8
         /// <summary>
         /// Default constructor for dependency injection
         /// </summary>
-        /// <param name="rateLimitedRequester">The rate limited requester.</param>
+        /// <param name="riotRateLimitedRequestere rate limited requester.</param>
         /// <param name="useStub">If true, the tournament stub will be used for requests.
         /// Useful for testing purposes.</param>
-        /// <exception cref="ArgumentNullException">rateLimitedRequester</exception>
-        public TournamentRiotApi(IRateLimitedRequester rateLimitedRequester, bool useStub = false)
+        /// <exception cref="ArgumentNullException">riotRateLimitedRequester</exception>
+        public TournamentRiotApi(IRiotRateLimitedRequester riotRateLimitedRequester, bool useStub = false)
         {
-            _requester = rateLimitedRequester ?? throw new ArgumentNullException(nameof(rateLimitedRequester));
+            _requester = riotRateLimitedRequester ?? throw new ArgumentNullException(nameof(riotRateLimitedRequester));
             SetTournamentRootUrl(useStub);
         }
 
@@ -95,7 +95,7 @@ namespace RiotSharpNET8
                 rateLimits = new Dictionary<TimeSpan, int>();
             if (_instance == null ||
                 Requesters.TournamentApiRequester == null ||
-                apiKey != Requesters.TournamentApiRequester.ApiKey ||
+                //apiKey != Requesters.TournamentApiRequester.ApiKey ||
                 !rateLimits.Equals(Requesters.TournamentApiRequester.RateLimits))
             {
                 _instance = new TournamentRiotApi(apiKey, rateLimits, useStub);

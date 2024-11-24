@@ -17,7 +17,7 @@ namespace RiotSharp.Test.EndpointTests
     [TestClass]
     public class SpectatorEndpointTests
     {
-        private Mock<IRateLimitedRequester> _rateLimitedRequester;
+        private Mock<IRiotRateLimitedRequester> _rateLimitedRequester;
         private Mock<IRequester> _requester;
         private CurrentGame _currentGameResponse;
         private FeaturedGame _featureGameResponse;
@@ -27,7 +27,7 @@ namespace RiotSharp.Test.EndpointTests
         [TestInitialize]
         public void Initialize()
         {
-            _rateLimitedRequester = new Mock<IRateLimitedRequester>();
+            _rateLimitedRequester = new Mock<IRiotRateLimitedRequester>();
             _requester = new Mock<IRequester>();
             var staticEndpointProvider = new Mock<IStaticEndpointProvider>();
             _currentGameResponse = new CurrentGame

@@ -11,10 +11,10 @@ namespace RiotSharpNET8.Http
     public class Requester : RequesterBase, IRequester
     {
         /// <inheritdoc />
-        public Requester(string apiKey) : base(apiKey) { }
+        public Requester(string apiKey) : base(apiKey, new HttpRequester(new HttpClient())) { }
 
         /// <inheritdoc />
-        public Requester()
+        public Requester() : base("", new HttpRequester(new HttpClient()))
         { }
 
         #region Public Methods
@@ -23,9 +23,9 @@ namespace RiotSharpNET8.Http
         public async Task<string> CreateGetRequestAsync(string relativeUrl, Region region,
             List<string>? queryParameters = null, bool useHttps = true)
         {
-            var host = GetPlatformHost(region);
+	        var host = "GetPlatformHost(region);";
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
-            var response = await SendAsync(request).ConfigureAwait(false);
+            var response = await SendMessageAsync(request).ConfigureAwait(false);
             return await GetResponseContentAsync(response).ConfigureAwait(false);
         }
 
@@ -34,9 +34,15 @@ namespace RiotSharpNET8.Http
             List<string>? queryParameters = null, bool useHttps = true)
         {
             var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
-            var response = await SendAsync(request).ConfigureAwait(false);
+            var response = await SendMessageAsync(request).ConfigureAwait(false);
             return await GetResponseContentAsync(response).ConfigureAwait(false);
         }
         #endregion
+
+        protected override string platformDomain { get; }
+        public override void HandleRequestFailure(HttpResponseMessage response)
+        {
+	        throw new NotImplementedException();
+        }
     }
 }

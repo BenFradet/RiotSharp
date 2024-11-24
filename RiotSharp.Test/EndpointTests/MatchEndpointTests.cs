@@ -15,7 +15,7 @@ namespace RiotSharp.Test.EndpointTests
     [TestClass]
     public class MatchEndpointTests
     {
-        private Mock<IRateLimitedRequester> _rateLimitedRequester;
+        private Mock<IRiotRateLimitedRequester> _rateLimitedRequester;
         private IMatchEndpoint _matchEndpoint;
 
         private const string ResponsePath = "./Resources/MatchEndpoint/MatchList_EUW_Response.txt";
@@ -23,7 +23,7 @@ namespace RiotSharp.Test.EndpointTests
         [TestInitialize]
         public void Initialize()
         {
-            _rateLimitedRequester = new Mock<IRateLimitedRequester>();
+            _rateLimitedRequester = new Mock<IRiotRateLimitedRequester>();
             _matchEndpoint = new MatchEndpoint(_rateLimitedRequester.Object, new PassThroughCache());
         }
 

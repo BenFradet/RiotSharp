@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace RiotSharpNET8.Http.Interfaces
 {
-	internal interface IHttpRequester
+	public interface IHttpRequester
 	{
-		Task<HttpResponseMessage> SendAsync(HttpRequestMessage request);
-		HttpRequestMessage PrepareRequest(string host, string relativeUrl, List<string>? queryParameters, bool useHttps, HttpMethod httpMethod);
-		Task<string> GetResponseContentAsync(HttpResponseMessage response);
+		Task<HttpResponseMessage> SendMessageAsync(HttpRequestMessage request);
 	}
-
 }

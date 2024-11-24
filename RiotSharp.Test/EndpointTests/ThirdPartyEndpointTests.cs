@@ -15,7 +15,7 @@ namespace RiotSharp.Test.EndpointTests
     public class ThirdPartyEndpointTests
     {
         private Mock<IRequester> _requester;
-        private Mock<IRateLimitedRequester> _rateLimitedRequester;
+        private Mock<IRiotRateLimitedRequester> _rateLimitedRequester;
         private const string response = "*someReponse*";
         private IRiotApi _riotApi;
 
@@ -23,7 +23,7 @@ namespace RiotSharp.Test.EndpointTests
         public void Initialize()
         {
             _requester = new Mock<IRequester>();
-            _rateLimitedRequester = new Mock<IRateLimitedRequester>();
+            _rateLimitedRequester = new Mock<IRiotRateLimitedRequester>();
             var staticEndpointProvider = new Mock<IStaticEndpointProvider>();
             _riotApi = new RiotApi(_rateLimitedRequester.Object, _requester.Object, staticEndpointProvider.Object);
         }

@@ -13,13 +13,13 @@ namespace RiotSharpNET8.Endpoints.ThirdPartyEndpoint
         private const string ThirdPartyRootUrl = "/lol/platform/v4/third-party-code";
         private const string ThirdPartyBySummonerUrl = "/by-summoner/{0}";
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ThirdPartyEndpoint"/> class.
         /// </summary>
         /// <param name="requester">The requester.</param>
-        public ThirdPartyEndpoint(IRateLimitedRequester requester)
+        public ThirdPartyEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;
         }

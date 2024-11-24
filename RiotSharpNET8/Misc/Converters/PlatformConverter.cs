@@ -74,8 +74,9 @@ namespace RiotSharpNET8.Misc.Converters
 
 	public static class PlatformToRegionConverter
     {
-        public static Region ConvertToRegion(this Platform platform)
+        public static Region ConvertPlatformToRegion(this Platform platform)
         {
+            // TODO: Add more regions
             switch (platform)
             {
                 case Platform.NA1:

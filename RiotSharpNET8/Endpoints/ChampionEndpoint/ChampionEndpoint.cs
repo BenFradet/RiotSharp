@@ -15,13 +15,13 @@ namespace RiotSharpNET8.Endpoints.ChampionEndpoint
         private const string ChampionRotationUrl = "/champion-rotations";
         private const string IdUrl = "/{0}";
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChampionEndpoint"/> class.
         /// </summary>
         /// <param name="requester">The requester.</param>
-        public ChampionEndpoint(IRateLimitedRequester requester)
+        public ChampionEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;
         }

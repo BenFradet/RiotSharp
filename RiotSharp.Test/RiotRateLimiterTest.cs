@@ -10,7 +10,7 @@ using RiotSharpNET8.Http;
 namespace RiotSharp.Test
 {
     [TestClass]
-    public class RateLimiterTest
+    public class RiotRateLimiterTest
     {
         public static readonly TimeSpan TenSeconds = TimeSpan.FromSeconds(10);
         /// <summary>
@@ -20,13 +20,13 @@ namespace RiotSharp.Test
         public static readonly TimeSpan ErrorDelay = TimeSpan.FromMilliseconds(100);
         public const int Limit = 10;
 
-        internal RateLimiter RateLimiter;
+        internal RiotRateLimiter RiotRateLimiter;
         public Stopwatch Stopwatch = new Stopwatch();
 
         [TestInitialize]
         public void Initialize()
         {
-            RateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
+            RiotRateLimiter = new RiotRateLimiter(new Dictionary<TimeSpan, int>
             {
                 [TimeSpan.FromSeconds(10)] = Limit
             });
@@ -34,18 +34,18 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         public async Task HandleRateLimitAsync_UseTheHandleRateLimitAsync_ReturnTimeSpanZero()
         {
-            await RateLimiter.HandleRateLimitAsync();
+            await RiotRateLimiter.HandleRateLimitAsync();
             AssertDelayed(TimeSpan.Zero);
         }
 
         [TestMethod]
-        [TestCategory("RateLimiter")]
+        [TestCategory("RiotRateLimiter")]
         public void HandleRateLimitAsync_ThrowOnDelay_ReturnThrowsException()
         {
-            var rateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
+            var rateLimiter = new RiotRateLimiter(new Dictionary<TimeSpan, int>
             {
                 [TimeSpan.FromHours(1)] = 1
             }, true);
@@ -61,10 +61,10 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         public async Task HandleRateLimitAsync_NotThrowOnDelay_ReturnNoException()
         {
-            var rateLimiter = new RateLimiter(new Dictionary<TimeSpan, int>
+            var rateLimiter = new RiotRateLimiter(new Dictionary<TimeSpan, int>
             {
                 [TimeSpan.FromSeconds(1)] = 1
             });
@@ -77,11 +77,11 @@ namespace RiotSharp.Test
 
         [Ignore]
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]
         public async Task WhenAll_ManyRequestsAsync_ReturnTasks()
         {
-            var tasks = Enumerable.Range(0, Limit*3).Select(i => RateLimiter.HandleRateLimitAsync()
+            var tasks = Enumerable.Range(0, Limit*3).Select(i => RiotRateLimiter.HandleRateLimitAsync()
                 .ContinueWith(task => {
                     AssertDelayed(TimeSpan.FromTicks(i / Limit * TenSeconds.Ticks), i);
                 })).ToList();
@@ -94,21 +94,21 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 2)]
         public async Task WhenAll_DelayedRequestsAsync_ReturnTasks()
         {
             var expectedDelayed = TenSeconds;
             // delayed tasks first, just for fun
             var tasks = Enumerable.Range(Limit * 2, Limit).Select(i => Task.Delay(expectedDelayed)
-                .ContinueWith(task => RateLimiter.HandleRateLimitAsync())
+                .ContinueWith(task => RiotRateLimiter.HandleRateLimitAsync())
                 .ContinueWith(task =>
                 {
                     AssertDelayed(expectedDelayed, i);
                 })).ToList();
             // immediate tasks`
             var expected = TimeSpan.Zero;
-            tasks.AddRange(Enumerable.Range(0, Limit).Select(i => RateLimiter.HandleRateLimitAsync()
+            tasks.AddRange(Enumerable.Range(0, Limit).Select(i => RiotRateLimiter.HandleRateLimitAsync()
                 .ContinueWith(task =>
                 {
                     AssertDelayed(expected, i);
@@ -122,21 +122,21 @@ namespace RiotSharp.Test
         }
 
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]
         public async Task AddRange_AlternatingRequestsAsync_ReturnDelayedTasks()
         {
             var expectedDelayed = TimeSpan.FromTicks(TenSeconds.Ticks * 2);
             // delayed tasks first, just for fun
             var tasks = Enumerable.Range(Limit*2, Limit).Select(i => Task.Delay(expectedDelayed)
-                .ContinueWith(task => RateLimiter.HandleRateLimitAsync())
+                .ContinueWith(task => RiotRateLimiter.HandleRateLimitAsync())
                 .ContinueWith(task =>
                 {
                     AssertDelayed(expectedDelayed, i);
                 })).ToList();
             // immediate tasks
             var expected = TimeSpan.Zero;
-            tasks.AddRange(Enumerable.Range(0, Limit).Select(i => RateLimiter.HandleRateLimitAsync()
+            tasks.AddRange(Enumerable.Range(0, Limit).Select(i => RiotRateLimiter.HandleRateLimitAsync()
                 .ContinueWith(task =>
                 {
                     AssertDelayed(expected, i);
@@ -153,16 +153,16 @@ namespace RiotSharp.Test
         /// Sends 5 requests. Waits 5 seconds. Sends 10 More requests.
         /// </summary>
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 2)]
         public async Task WhenAll_MultipleManyRequests15Async_ReturnTasks()
         {
             // first 5 requests
-            var tasks = Enumerable.Range(0, 5).Select(i => RateLimiter.HandleRateLimitAsync()
+            var tasks = Enumerable.Range(0, 5).Select(i => RiotRateLimiter.HandleRateLimitAsync()
                 .ContinueWith(t => AssertDelayed(TimeSpan.Zero, i))).ToList();
             var fiveSeconds = TimeSpan.FromSeconds(5);
             await Task.Delay(fiveSeconds);
-            tasks.AddRange(Enumerable.Range(5, 10).Select(i => RateLimiter.HandleRateLimitAsync()
+            tasks.AddRange(Enumerable.Range(5, 10).Select(i => RiotRateLimiter.HandleRateLimitAsync()
                 .ContinueWith(t => AssertDelayed(i < 10 ? fiveSeconds : TenSeconds, i))));
             await Task.WhenAll(tasks);
             foreach (var task in tasks)
@@ -175,7 +175,7 @@ namespace RiotSharp.Test
         /// Same as above, but does the delay within the task.
         /// </summary>
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 2)]
         public async Task WhenAll_MultipleManyRequests15InlineAsync_ReturnTasks()
         {
@@ -183,14 +183,14 @@ namespace RiotSharp.Test
             int[] counts = {0, 0, 0};
             // first 5 requests
             var tasks = Enumerable.Range(0, 5).Select(async i => {
-                await RateLimiter.HandleRateLimitAsync();
+                await RiotRateLimiter.HandleRateLimitAsync();
                 counts[Stopwatch.Elapsed.Seconds / 10]++;
             }).ToList();
             var fiveSeconds = TimeSpan.FromSeconds(5);
             tasks.AddRange(Enumerable.Range(5, 10).Select(async i =>
             {
                 await Task.Delay(fiveSeconds);
-                await RateLimiter.HandleRateLimitAsync();
+                await RiotRateLimiter.HandleRateLimitAsync();
                 counts[Stopwatch.Elapsed.Seconds / 10]++;
             }));
 
@@ -208,7 +208,7 @@ namespace RiotSharp.Test
         /// Sends 15 requests. Waits 10 seconds. Expects 10 requests each to be delayed by 0, 10, and 20 seconds.
         /// </summary>
         [TestMethod]
-        [TestCategory("RateLimiter"), TestCategory("Async")]
+        [TestCategory("RiotRateLimiter"), TestCategory("Async")]
         [Timeout(1000 * 10 * 3)]
         public async Task WhenAll_MultipleManyRequests30InlineAsync_ReturnTasks()
         {
@@ -218,13 +218,13 @@ namespace RiotSharp.Test
             var tasks = Enumerable.Range(15, 15).Select(async i =>
             {
                 await Task.Delay(TenSeconds);
-                await RateLimiter.HandleRateLimitAsync();
+                await RiotRateLimiter.HandleRateLimitAsync();
                 counts[Stopwatch.Elapsed.Seconds / 10]++;
             }).ToList();
             // first 15 tasks
             tasks.AddRange(Enumerable.Range(0, 15).Select(async i =>
             {
-                await RateLimiter.HandleRateLimitAsync();
+                await RiotRateLimiter.HandleRateLimitAsync();
                 counts[Stopwatch.Elapsed.Seconds / 10]++;
             }));
 

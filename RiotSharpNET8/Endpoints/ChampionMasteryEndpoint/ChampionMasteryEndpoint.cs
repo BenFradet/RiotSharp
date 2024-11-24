@@ -17,13 +17,13 @@ namespace RiotSharpNET8.Endpoints.ChampionMasteryEndpoint
         private const string ChampionMasteryByPuuidUrl = "/champion-masteries/by-puuid/{0}/by-champion/{1}";
         private const string ChampionMasteriesByPuuidUrl = "/champion-masteries/by-puuid/{0}";
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChampionMasteryEndpoint"/> class.
         /// </summary>
         /// <param name="requester">The requester.</param>
-        public ChampionMasteryEndpoint(IRateLimitedRequester requester)
+        public ChampionMasteryEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;
         }

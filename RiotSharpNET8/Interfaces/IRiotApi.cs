@@ -1,5 +1,7 @@
 ﻿using RiotSharpNET8.Endpoints.Interfaces;
 using RiotSharpNET8.Endpoints.Interfaces.Static;
+using RiotSharpNET8.Misc;
+using System.Threading.RateLimiting;
 
 namespace RiotSharpNET8.Interfaces
 {
@@ -57,5 +59,7 @@ namespace RiotSharpNET8.Interfaces
         /// The Clash Endpoint
         /// </summary>
         IClashEndpoint Clash { get; }
+
+        void ChangeRegionApplicationRateLimits(Region region, IDictionary<TimeSpan, int> rateLimits);
     }
 }

@@ -20,11 +20,11 @@ namespace RiotSharpNET8.Endpoints.SummonerEndpoint
         private const string SummonerCache = "summoner-{0}_{1}";
         private static readonly TimeSpan SummonerTtl = TimeSpan.FromDays(30);
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
         private readonly ICache _cache;
 
         /// <inheritdoc />
-        public SummonerEndpoint(IRateLimitedRequester requester, ICache cache)
+        public SummonerEndpoint(IRiotRateLimitedRequester requester, ICache cache)
         {
             _requester = requester;
             _cache = cache;

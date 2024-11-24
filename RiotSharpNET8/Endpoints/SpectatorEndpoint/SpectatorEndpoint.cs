@@ -15,13 +15,13 @@ namespace RiotSharpNET8.Endpoints.SpectatorEndpoint
         private const string CurrentGameUrl = "/active-games/by-summoner/{0}";
         private const string FeaturedGamesUrl = "/featured-games";
 
-        private readonly IRateLimitedRequester _requester;
+        private readonly IRiotRateLimitedRequester _requester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpectatorEndpoint"/> class.
         /// </summary>
         /// <param name="requester">The requester.</param>
-        public SpectatorEndpoint(IRateLimitedRequester requester)
+        public SpectatorEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;
         }

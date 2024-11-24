@@ -5,9 +5,11 @@ using System.Threading;
 namespace RiotSharpNET8.Http
 {
     
-    internal class RateLimiter
+    internal class RiotRateLimiter
     {
         private readonly System.Threading.RateLimiting.RateLimiter _rateLimiter;
+
+        private readonly System.Threading.RateLimiting.FixedWindowRateLimiter _window;
 
         /// <summary>Semaphore to prevent multiple requests from interferering with each other's rate limit
         /// calculations.</summary>
@@ -28,7 +30,7 @@ namespace RiotSharpNET8.Http
         /// <summary>Indicates if rate limit exceeded exception is thrown, when the rate limit is exceeded. </summary>
         private readonly bool _throwExceptionOnDelay;
 
-        public RateLimiter(IDictionary<TimeSpan, int> rateLimits, bool throwExceptionOnDelay = false)
+        public RiotRateLimiter(IDictionary<TimeSpan, int> rateLimits, bool throwExceptionOnDelay = false)
         {
 	        _rateLimits = rateLimits;
             _throwExceptionOnDelay = throwExceptionOnDelay;
