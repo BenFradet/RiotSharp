@@ -18,6 +18,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public void Setup()
 		{
 			// No setup
+
 		}
 
 		[Test]
