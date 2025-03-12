@@ -17,7 +17,7 @@ namespace RiotSharpNET8.Http
         private readonly bool _throwExceptionOnDelay;
         private readonly ConcurrentDictionary<Region, RiotRateLimiter> _rateLimiters = new ConcurrentDictionary<Region, RiotRateLimiter>();
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public RiotRiotRateLimitedRequester(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool throwExceptionOnDelay = false) : base(apiKey, new HttpRequester(new HttpClient()))
         {
             RateLimits = rateLimits;
@@ -26,7 +26,7 @@ namespace RiotSharpNET8.Http
 
         #region Public Methods
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Task<string> CreateGetRequestAsync(string relativeUrl, Region region, List<string> queryParameters = null, 
             bool useHttps = true)
         {

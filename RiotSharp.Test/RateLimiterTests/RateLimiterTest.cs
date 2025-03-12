@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RiotSharp.Test.RateLimiterTests
 {
-	internal class ApplicationRateLimiterTest
+	internal class RateLimiterTest
 	{
 	}
 }

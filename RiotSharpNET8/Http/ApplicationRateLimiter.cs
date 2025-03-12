@@ -15,16 +15,16 @@ namespace RiotSharpNET8.Http
 	/// Rate limiter for the application rate limits.
 	/// The ratelimiter does not have a queue so if the rate limit is reached, the request will be rejected with a retry time.
 	/// </summary>
-	public class ApplicationRateLimiter : IApplicationRateLimiter, IDisposable
+	public class ApplicationRateLimiter : IRateLimiter, IDisposable
 	{
 		/// <summary>
 		/// Dictionary containing the rate limiters for each region.
 		/// Some of the regions are not used by the API, but they are included.
 		/// </summary>
-		private readonly ConcurrentDictionary<Region, List<RateLimiter>> _regionRateLimits = new();
+		private readonly ConcurrentDictionary<Region, List<System.Threading.RateLimiting.RateLimiter>> _regionRateLimits = new();
 
 		/// <summary>
-		/// 
+		/// Constructor for the ApplicationRateLimiter.
 		/// </summary>
 		/// <param name="rateLimits"></param>
 		/// <exception cref="ArgumentException">If dictionary is null or is empty an exception is thrown.</exception>
@@ -52,7 +52,7 @@ namespace RiotSharpNET8.Http
 							QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
 							AutoReplenishment = true
 						};
-						return (RateLimiter)new FixedWindowRateLimiter(options);
+						return (System.Threading.RateLimiting.RateLimiter)new FixedWindowRateLimiter(options);
 					}).ToList();
 
 				// Add sorted limiters to the corresponding region in the dictionary
@@ -67,10 +67,11 @@ namespace RiotSharpNET8.Http
 		/// <param name="region"></param>
 		/// <param name="numberOfLeases"></param>
 		/// <returns><see cref="RateLimitLease"/> object with the IsAcquired set to either true or false indicating the result of the request.</returns>
+		/// TODO: Consider making the returnvalue nullable.
 		private async ValueTask<RateLimitLease> AsyncAcquireLeaseForRegion(Region region, int numberOfLeases)
 		{
 			var rateLimitersForRegion = _regionRateLimits[region];
-			RateLimitLease lease = null;
+			RateLimitLease? lease = null;
 
 			// This foreach will go through the rate limiters in order of their window length.
 			// E.g. if the rate limits are the developer rate limit, it will go through the 20/1s rate limiter first, then the 100/2min rate limiter.
@@ -161,7 +162,7 @@ namespace RiotSharpNET8.Http
 						QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
 						AutoReplenishment = true
 					};
-					return (RateLimiter)new FixedWindowRateLimiter(options);
+					return (System.Threading.RateLimiting.RateLimiter)new FixedWindowRateLimiter(options);
 				}).ToList();
 
 			// Add or update the sorted limiters for the region in the dictionary

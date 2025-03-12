@@ -18,7 +18,7 @@ namespace RiotSharpNET8.Http
 		#region fields
 	    protected override string platformDomain => ".api.riotgames.com";
 
-	    private readonly IApplicationRateLimiter _rateLimiter;
+	    private readonly IRateLimiter _rateLimiter;
 		#endregion
 
 		#region Constructors
@@ -28,7 +28,7 @@ namespace RiotSharpNET8.Http
 		/// <param name="apiKey"></param>
 		/// <param name="httpRequester"></param>
 		/// <param name="rateLimiter"></param>
-		public RateLimitedRequester(string apiKey, IHttpRequester httpRequester, IApplicationRateLimiter rateLimiter) : base(apiKey, httpRequester)
+		public RateLimitedRequester(string apiKey, IHttpRequester httpRequester, IRateLimiter rateLimiter) : base(apiKey, httpRequester)
         {
 			_rateLimiter = rateLimiter;
 		}

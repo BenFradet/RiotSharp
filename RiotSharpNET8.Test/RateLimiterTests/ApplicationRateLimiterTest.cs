@@ -23,7 +23,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		[Test]
 		public void Constructor_NullRateLimits_ThrowsArgumentException()
 		{
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			Dictionary<TimeSpan, int>? emptyDictionary = null;
 
 			Assert.That(() => uut = new ApplicationRateLimiter(emptyDictionary),
@@ -33,7 +33,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		[Test]
 		public void Constructor_EmptyRateLimits_ThrowsArgumentException()
 		{
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var emptyDictionary = new Dictionary<TimeSpan, int>();
 
 			Assert.That(() => uut = new ApplicationRateLimiter(emptyDictionary),
@@ -44,7 +44,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public void Constructor_ValidRateLimits_CreatesApplicationRateLimiter()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20},
@@ -60,7 +60,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_20LeasesIn1Request_20AllowedIn1Second()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20}
@@ -79,7 +79,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_25LeasesIn1Request_ArgumentOutOfRange()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20}
@@ -87,14 +87,14 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act and Assert
-			Assert.That(() => uut.GetLeaseForRegion(Region.Euw, 25).Result, Throws.InnerException.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => uut.GetLeaseForRegion(Region.Euw, 25).Result, Throws.Exception.TypeOf<ArgumentOutOfRangeException>());
 		}
 
 		[Test]
 		public async Task GetLeaseForRegion_15LeasePlus10Lease_1IsAcquired1IsNot()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20}
@@ -117,7 +117,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_21AsyncRequests_20AllowedIn1Second()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20}
@@ -140,7 +140,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_DeveloperRateLimitTest_Accept100In6Seconds()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20},
@@ -167,7 +167,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_DeveloperRateLimitTest_Accept100In6Seconds_Decline1()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20},
@@ -197,7 +197,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_DeveloperRateLimitTest_RetryAfter1Second()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20},
@@ -230,7 +230,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_DeveloperRateLimitTest_RetryAfter2minutes()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20},
@@ -262,7 +262,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		public async Task GetLeaseForRegion_DeveloperRateLimitTest_RetryAfterIDK()
 		{
 			// Arrange
-			IApplicationRateLimiter uut = null;
+			IRateLimiter uut = null;
 			var rateLimits = new Dictionary<TimeSpan, int>
 			{
 				{TimeSpan.FromSeconds(1), 20},
