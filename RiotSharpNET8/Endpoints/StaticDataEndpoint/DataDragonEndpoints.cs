@@ -68,7 +68,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
         {
             Requesters.StaticApiRequester = new Requester();
 
-            var cache = useCache ? (ICache)new Cache() : new PassThroughCache();
+            var cache = useCache ? (ICache)new InMemoryCache() : new PassThroughCache();
 
             InitializeEndpoints(new StaticEndpointProvider(Requesters.StaticApiRequester, cache));
         }

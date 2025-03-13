@@ -20,6 +20,11 @@
         {
         }
 
+        public int Count()
+        {
+	        throw new NotImplementedException();
+        }
+
         /// <inheritdoc />
         public TV? Get<TK, TV>(TK key) where TV : class
         {

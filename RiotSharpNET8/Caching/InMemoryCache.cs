@@ -1,38 +1,77 @@
-﻿namespace RiotSharpNET8.Caching
+﻿using Microsoft.Extensions.Caching.Memory;
+
+namespace RiotSharpNET8.Caching
 {
     /// <summary>
     /// In-memory cache implementation based on <see cref="ICache"/>
     /// </summary>
-    public class Cache : ICache
+    public class InMemoryCache : ICache
     {
-        private readonly IDictionary<object, CacheItem> _cache = new Dictionary<object, CacheItem>();
-        private readonly IDictionary<object, SlidingDetails> _slidingTimes = new Dictionary<object, SlidingDetails>();
+        //private readonly IDictionary<object, CacheItem> _cache = new Dictionary<object, CacheItem>();
+        //private readonly IDictionary<object, SlidingDetails> _slidingTimes = new Dictionary<object, SlidingDetails>();
+        //private readonly object _sync = new object();
+        //private const int DefaultMonitorWait = 1000;
+        //private const int MonitorWaitToUpdateSliding = 500;
 
-        private const int DefaultMonitorWait = 1000;
-        private const int MonitorWaitToUpdateSliding = 500;
+        /// <summary>
+        /// The in memory cache. It should be thread safe. Not using the interface because it doesn't have the clear method.
+        /// </summary>
+        private readonly MemoryCache _memoryCache;
 
-        private readonly object _sync = new object();
+		/// <summary>
+		/// Constructor for the in-memory cache.
+		/// </summary>
+		/// <param name="expirationScanFrequency">The timespan of which the elements in the cache will be checked. Default is 5 minutes.</param>
+		public InMemoryCache(TimeSpan? expirationScanFrequency = null)
+		{
+			TimeSpan scanFrequency = expirationScanFrequency ?? TimeSpan.FromMinutes(5);
+			
+            _memoryCache = new MemoryCache(new MemoryCacheOptions
+			{
+				ExpirationScanFrequency = scanFrequency
+			});
+		}
 
-        #region ICache interface
-        /// <inheritdoc />
-        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
+		#region ICache interface
+		/// <inheritdoc />
+		/// <remarks>Entries are cached in memory for the specified duration.</remarks>
+		public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
         {
-            Add(key, value, slidingExpiry, true);
+	        if (key == null) throw new ArgumentNullException(nameof(key));
+	        //Add(key, value, slidingExpiry, true);
+            //_memoryCache.CreateEntry(key).SetValue(value).SetSlidingExpiration(slidingExpiry);
+            _memoryCache.Set(key, value, slidingExpiry);
         }
 
         /// <inheritdoc />
+        /// <remarks>Entries are cached in memory until the specified datetime is reached.</remarks>
         public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
         {
+			/*
             if (absoluteExpiry > DateTime.Now)
             {
                 var diff = absoluteExpiry - DateTime.Now;
                 Add(key, value, diff, false);
             }
+            */
+			if (key == null) throw new ArgumentNullException(nameof(key));
+			//_memoryCache.CreateEntry(key).SetValue(value).SetAbsoluteExpiration(absoluteExpiry);
+			_memoryCache.Set(key, value, absoluteExpiry);
         }
 
         /// <inheritdoc />
         public TV? Get<TK, TV>(TK key) where TV : class
         {
+			if (key == null) throw new ArgumentNullException(nameof(key));
+            if(_memoryCache.TryGetValue(key, out var value))
+			{
+				return (TV?)value;
+			}
+            else
+            {
+	            return null;
+			}
+			/*
 	        if (!_cache.TryGetValue(key, out var cacheItem)) return null;
 
 	        if (cacheItem.RelativeExpiry.HasValue)
@@ -51,11 +90,16 @@
             }
 
             return (TV)cacheItem.Value;
-        }
+            */
+		}
 
         /// <inheritdoc />
+        /// <remarks>The result of the operation is not returned to the caller.</remarks>
         public void Remove<TK>(TK key)
         {
+			if (key == null) throw new ArgumentNullException(nameof(key));
+			_memoryCache.Remove(key);
+			/*
             if(key is null) return;
 
             if (Monitor.TryEnter(_sync, DefaultMonitorWait))
@@ -70,11 +114,14 @@
 					Monitor.Exit(_sync);
 				}
 			}
-        }
+            */
+		}
 
         /// <inheritdoc />
         public void Clear()
         {
+			_memoryCache.Clear();
+			/*
             if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
@@ -87,15 +134,20 @@
                     Monitor.Exit(_sync);
                 }
             }
-        }
-        #endregion
+            */
+		}
+		#endregion
 
-        /// <summary>
-        /// Enumerator for the keys of a specific type.
-        /// </summary>
-        /// <typeparam name="TK">Type of the key.</typeparam>
-        /// <returns>Enumerator for the keys of a specific type.</returns>
-        internal IEnumerable<TK> Keys<TK>()
+		//Enumerators are not used in the current implementation. Perhaps they will be used in the future.
+		/*
+		#region Enumerator methods
+
+		/// <summary>
+		/// Enumerator for the keys of a specific type.
+		/// </summary>
+		/// <typeparam name="TK">Type of the key.</typeparam>
+		/// <returns>Enumerator for the keys of a specific type.</returns>
+		internal IEnumerable<TK> Keys<TK>()
         {
             if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
@@ -179,12 +231,15 @@
             return Enumerable.Empty<object>();
         }
 
-        /// <summary>
-        /// Total amount of (key, value) pairs in the cache.
-        /// </summary>
-        /// <returns>Total amount of (key, value) pairs in the cache.</returns>
-        internal int Count()
-        {
+		#endregion
+        */
+
+
+		/// <inheritdoc />
+		public int Count()
+		{
+			return _memoryCache.Count;
+			/*
             if (Monitor.TryEnter(_sync, DefaultMonitorWait))
             {
                 try
@@ -198,8 +253,10 @@
             }
 
             return -1;
-        }
+            */
+		}
 
+        /*
         private void Add<TK, TV>(TK key, TV value, TimeSpan timeSpan, bool isSliding) where TV : class
         {
             if (Monitor.TryEnter(_sync, DefaultMonitorWait))
@@ -281,5 +338,6 @@
                 _expireAt = DateTime.Now.Add(_relativeExpiry);
             }
         }
+        */
     }
 }

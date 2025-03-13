@@ -12,8 +12,7 @@
         /// <typeparam name="TV">Type of the value which has to be a reference type.</typeparam>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
-        /// <param name="slidingExpiry">The sliding time at the end of which the (key, value) pair should expire and
-        /// be purged from the cache.</param>
+        /// <param name="slidingExpiry">The sliding time at the end of which the (key, value) pair should expire and be purged from the cache.</param>
         void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class;
 
         /// <summary>
@@ -23,8 +22,7 @@
         /// <typeparam name="TV">Type of the value which has to be a reference type.</typeparam>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
-        /// <param name="absoluteExpiry">The absolute expiry date when the (key, value) pair should expire and
-        /// be purged from the cache.</param>
+        /// <param name="absoluteExpiry">The absolute expiry date when the (key, value) pair should expire and be purged from the cache.</param>
         void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class;
 
         /// <summary>
@@ -47,5 +45,10 @@
         /// Clear the cache.
         /// </summary>
         void Clear();
+
+        /// <summary>
+        /// Get the number of items in the cache. Most likely used for statistics or testing.
+        /// </summary>
+        int Count();
     }
 }

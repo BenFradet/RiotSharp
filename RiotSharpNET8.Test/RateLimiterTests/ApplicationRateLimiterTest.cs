@@ -26,7 +26,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 		{
 			IRateLimiter uut = null;
 			Dictionary<TimeSpan, int>? emptyDictionary = null;
-
+			
 			Assert.That(() => uut = new ApplicationRateLimiter(emptyDictionary),
 				Throws.TypeOf<ArgumentException>());
 		}

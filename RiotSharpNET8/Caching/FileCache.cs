@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace RiotSharpNET8.Caching
 {
     /// <summary>
-    /// Cache implementation which will write the cache to a file.
+    /// InMemoryCache implementation which will write the cache to a file.
     /// </summary>
     /// <seealso cref="ICache" />
     public class FileCache : ICache
@@ -68,6 +68,11 @@ namespace RiotSharpNET8.Caching
             {
                 dir.Delete(true);
             }
+        }
+
+        public int Count()
+        {
+	        throw new NotImplementedException();
         }
 
         /// <inheritdoc />
