@@ -1,17 +1,16 @@
 ﻿using System.Net;
-using System.Text.Json;
 using RiotSharpNET8.Http.Interfaces;
-using RiotSharpNET8.Misc;
 
-namespace RiotSharpNET8.Http
+namespace RiotSharpNET8.Http.Requesters
 {
     public abstract class RequesterBase
     {
-	    protected abstract string platformDomain { get; }
-
+	    protected abstract string PlatformDomain { get; }
+        
+        private bool _isUsingApiKey = false;
 		private readonly IHttpRequester _httpRequester;
         private string _apiKey = "";
-        protected readonly HashSet<HttpStatusCode> riotHttpStatusCodeBadResponse =
+        protected readonly HashSet<HttpStatusCode> RiotHttpStatusCodeBadResponse =
         [
 	        HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
 	        HttpStatusCode.Forbidden, HttpStatusCode.NotFound,
@@ -25,23 +24,25 @@ namespace RiotSharpNET8.Http
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         /// <param name="httpRequester">httpRequester that sends the messages.</param>
-        /// <exception cref="ArgumentNullException">apiKey</exception>
+        /// <exception cref="ArgumentNullException">apiKey, httpRequester</exception>
         protected RequesterBase(string apiKey, IHttpRequester httpRequester)
         {
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentNullException(nameof(apiKey));
             _apiKey = apiKey;
             _httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
+            _isUsingApiKey = true;
         }
 
 		/// <summary>
 		/// Used when no API key is required.
 		/// </summary>
 		/// <param name="httpRequester"></param>
-		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentNullException">httpRequester</exception>
 		protected RequesterBase(IHttpRequester httpRequester)
 		{
 			_httpRequester = httpRequester ?? throw new ArgumentNullException(nameof(httpRequester));
+			_isUsingApiKey = false;
 		}
 
 		#region Methods
@@ -72,7 +73,7 @@ namespace RiotSharpNET8.Http
 
             var requestMessage = new HttpRequestMessage(httpMethod, url);
             
-            if (!string.IsNullOrWhiteSpace(_apiKey))
+            if (_isUsingApiKey)
 				requestMessage.Headers.Add("X-Riot-Token", _apiKey);
             
             return requestMessage;

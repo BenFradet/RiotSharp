@@ -1,13 +1,6 @@
 ﻿using RiotSharpNET8.Http.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace RiotSharpNET8.Http
+namespace RiotSharpNET8.Http.Requesters
 {
 	public class HttpRequester : IHttpRequester
 	{

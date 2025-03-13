@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RiotSharpNET8.Http.Interfaces;
+﻿using RiotSharpNET8.Http.Interfaces;
 using RiotSharpNET8.Misc;
 
-namespace RiotSharpNET8.Http
+namespace RiotSharpNET8.Http.Requesters
 {
 	/// <summary>
 	/// Needs work.
@@ -34,7 +29,7 @@ namespace RiotSharpNET8.Http
 			return await GetResponseContentAsync(response).ConfigureAwait(false);
 		}
 
-		protected override string platformDomain => "ddragon.leagueoflegends.com";
+		protected override string PlatformDomain => "ddragon.leagueoflegends.com";
 		public override void HandleRequestFailure(HttpResponseMessage response)
 		{
 			throw new NotImplementedException();

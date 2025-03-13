@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Concurrent;
 using System.Threading.RateLimiting;
-using System.Threading.Tasks;
 using RiotSharpNET8.Http.Interfaces;
-using RiotSharpNET8.Http.RateLimiting;
 using RiotSharpNET8.Misc;
 
-namespace RiotSharpNET8.Http
+namespace RiotSharpNET8.Http.RateLimiting
 {
 	/// <summary>
 	/// The MethodRateLimiter is a special RateLimiter that is endforced per endpoint.

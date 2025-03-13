@@ -1,22 +1,19 @@
-﻿using System.Collections.Concurrent;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Net;
 using System.Text.Json;
 using RiotSharpNET8.Http.Interfaces;
 using RiotSharpNET8.Misc;
 
-namespace RiotSharpNET8.Http
+namespace RiotSharpNET8.Http.Requesters
 {
     /// <summary>
     /// A requester with a rate limiter
     /// </summary>
-    /// <seealso cref="RequesterBase" />
+    /// <seealso cref="RiotRequesters.RequesterBase" />
     /// <seealso cref="IRiotRateLimitedRequester" />
     public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
 		#region fields
-	    protected override string platformDomain => ".api.riotgames.com";
+	    protected override string PlatformDomain => ".api.riotgames.com";
 
 	    private readonly IRateLimiter _rateLimiter;
 		#endregion
@@ -146,7 +143,7 @@ namespace RiotSharpNET8.Http
                     throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", response.StatusCode, retryAfter, rateLimitType ?? "No rateLimitType specified in response");
                 }
                 // Here we handle all other HTTP status codes that are not 200 OK
-                else if (riotHttpStatusCodeBadResponse.Contains(response.StatusCode))
+                else if (RiotHttpStatusCodeBadResponse.Contains(response.StatusCode))
                 {
 	                string? message;
 	                var json = response.Content.ToString();
@@ -191,7 +188,7 @@ namespace RiotSharpNET8.Http
 		/// <returns></returns>
 		private string CreateHostString(Region region)
         {
-	        return GetRegionHostUrlString(region) + platformDomain;
+	        return GetRegionHostUrlString(region) + PlatformDomain;
         }
 
 		/// <summary>

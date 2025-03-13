@@ -39,9 +39,11 @@ namespace RiotSharpNET8
 
         private TournamentRiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, bool useStub = false)
         {
-            Requesters.TournamentApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
-            _requester = Requesters.TournamentApiRequester;
+            /*
+            RiotRequesters.TournamentApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
+            _requester = RiotRequesters.TournamentApiRequester;
             SetTournamentRootUrl(useStub);
+            */
         }
 
         /// <summary>
@@ -93,10 +95,10 @@ namespace RiotSharpNET8
         {
             if (rateLimits == null)
                 rateLimits = new Dictionary<TimeSpan, int>();
-            if (_instance == null ||
-                Requesters.TournamentApiRequester == null ||
-                //apiKey != Requesters.TournamentApiRequester.ApiKey ||
-                !rateLimits.Equals(Requesters.TournamentApiRequester.RateLimits))
+            if (_instance == null) //||
+                //RiotRequesters.TournamentApiRequester == null ||
+                //apiKey != RiotRequesters.TournamentApiRequester.ApiKey ||
+                //!rateLimits.Equals(RiotRequesters.TournamentApiRequester.RateLimits))
             {
                 _instance = new TournamentRiotApi(apiKey, rateLimits, useStub);
             }
@@ -105,8 +107,7 @@ namespace RiotSharpNET8
 
         internal static TournamentRiotApi GetInstance()
         {
-            if (_instance == null ||
-                Requesters.TournamentApiRequester == null)
+            if (_instance == null)// || RiotRequesters.TournamentApiRequester == null)
             {
                 throw new NotSupportedException(
                     "Can't get instance of TournamentRiotApi. " +

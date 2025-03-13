@@ -1,7 +1,7 @@
 ﻿using RiotSharpNET8.Http.Interfaces;
 using RiotSharpNET8.Misc;
 
-namespace RiotSharpNET8.Http
+namespace RiotSharpNET8.Http.Requesters
 {
     /// <summary>
     /// A requester without a rate limiter.
@@ -39,7 +39,7 @@ namespace RiotSharpNET8.Http
         }
         #endregion
 
-        protected override string platformDomain { get; }
+        protected override string PlatformDomain { get; }
         public override void HandleRequestFailure(HttpResponseMessage response)
         {
 	        throw new NotImplementedException();

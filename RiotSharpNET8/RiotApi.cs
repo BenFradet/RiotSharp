@@ -14,6 +14,7 @@ using RiotSharpNET8.Endpoints.SummonerEndpoint;
 using RiotSharpNET8.Endpoints.ThirdPartyEndpoint;
 using RiotSharpNET8.Http;
 using RiotSharpNET8.Http.Interfaces;
+using RiotSharpNET8.Http.Requesters;
 using RiotSharpNET8.Interfaces;
 using RiotSharpNET8.Misc;
 
@@ -123,22 +124,24 @@ namespace RiotSharpNET8
         /// The instance of RiotApi.
         /// </returns>
         private static RiotApi GetInstance(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
-        {
-            if (_instance == null || Requesters.RiotApiRequester == null ||
-                //apiKey != Requesters.RiotApiRequester.ApiKey ||
-                !rateLimits.Equals(Requesters.RiotApiRequester.RateLimits))
+        {/*
+            if (_instance == null || RiotRequesters.RiotApiRequester == null ||
+                //apiKey != RiotRequesters.RiotApiRequester.ApiKey ||
+                !rateLimits.Equals(RiotRequesters.RiotApiRequester.RateLimits))
             {
                 _instance = new RiotApi(apiKey, rateLimits, cache);
             }
+            */
             return _instance;
         }
 
         private RiotApi(string apiKey, IDictionary<TimeSpan, int> rateLimits, ICache cache)
         {
+            /*
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
-            Requesters.RiotApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
-            Requesters.StaticApiRequester = new Requester(apiKey);
-            var requester = Requesters.RiotApiRequester;
+            RiotRequesters.RiotApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
+            RiotRequesters.StaticApiRequester = new Requester(apiKey);
+            var requester = RiotRequesters.RiotApiRequester;
 
             Account = new AccountEndpoint(requester);
             Summoner = new SummonerEndpoint(requester, _cache);
@@ -149,10 +152,11 @@ namespace RiotSharpNET8
             ChampionMastery = new ChampionMasteryEndpoint(requester);
             ThirdParty = new ThirdPartyEndpoint(requester);
 
-            DataDragon = new DataDragonEndpoints(Requesters.StaticApiRequester, _cache);
-            Status = new StatusEndpoint(Requesters.StaticApiRequester);
+            DataDragon = new DataDragonEndpoints(RiotRequesters.StaticApiRequester, _cache);
+            Status = new StatusEndpoint(RiotRequesters.StaticApiRequester);
             
             Clash = new ClashEndpoint(requester, _cache);
+            */
         }
 
         /// <summary>

@@ -47,7 +47,7 @@
         void Clear();
 
         /// <summary>
-        /// Get the number of items in the cache. Most likely used for statistics or testing.
+        /// Get the number of items in the cache. Most likely only used for statistics or testing.
         /// </summary>
         int Count();
     }

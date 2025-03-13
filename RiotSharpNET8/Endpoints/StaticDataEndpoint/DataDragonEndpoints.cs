@@ -2,6 +2,7 @@
 using RiotSharpNET8.Endpoints.Interfaces.Static;
 using RiotSharpNET8.Http;
 using RiotSharpNET8.Http.Interfaces;
+using RiotSharpNET8.Http.Requesters;
 
 namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
 {
@@ -56,8 +57,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
         /// <returns>The instance of DataDragonEndpoint.</returns>
         public static DataDragonEndpoints GetInstance(bool useCache = true)
         {
-            if (_instance == null ||
-                Requesters.StaticApiRequester == null)
+            if (_instance == null)// ||RiotRequesters.StaticApiRequester == null)
             {
                 _instance = new DataDragonEndpoints(useCache);
             }
@@ -66,11 +66,11 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
 
         private DataDragonEndpoints(bool useCache = true)
         {
-            Requesters.StaticApiRequester = new Requester();
+            //RiotRequesters.StaticApiRequester = new Requester();
 
             var cache = useCache ? (ICache)new InMemoryCache() : new PassThroughCache();
 
-            InitializeEndpoints(new StaticEndpointProvider(Requesters.StaticApiRequester, cache));
+            //InitializeEndpoints(new StaticEndpointProvider(RiotRequesters.StaticApiRequester, cache));
         }
 
         /// <summary>
