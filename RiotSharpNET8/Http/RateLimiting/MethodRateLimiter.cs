@@ -121,12 +121,12 @@ namespace RiotSharpNET8.Http.RateLimiting
 		/// <param name="region"></param>
 		/// <param name="numberOfLeases"></param>
 		/// <returns></returns>
-		public ValueTask<RequestLease> GetLeaseForRegion(Region region, int numberOfLeases = 1)
+		public ValueTask<IRequestLease> GetLeaseForRegion(Region region, int numberOfLeases = 1)
 		{
 			// If the rate limiter is region based, get the list of ratelimiters. If not, get the global ratelimiter.
 			// This check is not really necessary, but it is here for clarity.
 			// When the list of ratelimiters is retrieved, loop through them like in the ApplicationRateLimiter.
-			return new ValueTask<RequestLease>();
+			return new ValueTask<IRequestLease>();
 		}
 	}
 }

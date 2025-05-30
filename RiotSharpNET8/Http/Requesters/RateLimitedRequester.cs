@@ -1,46 +1,43 @@
 ﻿using System.Net;
 using System.Text.Json;
 using RiotSharpNET8.Http.Interfaces;
+using RiotSharpNET8.Http.RateLimiting;
 using RiotSharpNET8.Misc;
 
 namespace RiotSharpNET8.Http.Requesters
 {
-    /// <summary>
-    /// A requester with a rate limiter
-    /// </summary>
-    /// <seealso cref="RiotRequesters.RequesterBase" />
-    /// <seealso cref="IRiotRateLimitedRequester" />
-    public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
+	/// <summary>
+	/// A requester that handles both application and method rate limiting.
+	/// </summary>
+	/// <seealso cref="RequesterBase" />
+	/// <seealso cref="IRiotRateLimitedRequester" />
+	public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
 		#region fields
 	    protected override string PlatformDomain => ".api.riotgames.com";
 
-	    private readonly IRateLimiter _rateLimiter;
+	    private readonly IRateLimiter _appRateLimiter;
+		private readonly IRateLimiter _methodRateLimiter;
 		#endregion
 
 		#region Constructors
+
 		/// <summary>
 		/// Constructor for RateLimitedRequester.
 		/// </summary>
 		/// <param name="apiKey"></param>
 		/// <param name="httpRequester"></param>
-		/// <param name="rateLimiter"></param>
-		public RateLimitedRequester(string apiKey, IHttpRequester httpRequester, IRateLimiter rateLimiter) : base(apiKey, httpRequester)
+		/// <param name="appRateLimiter"></param>
+		public RateLimitedRequester(string apiKey, IHttpRequester httpRequester, IRateLimiter appRateLimiter, IRateLimiter methodRateLimiter) : base(apiKey, httpRequester)
         {
-			_rateLimiter = rateLimiter;
-		}
-
-        /// <summary>
-        /// Turned private to prevent usage without an API key.
-        /// </summary>
-        /// <param name="httpRequester"></param>
-        private RateLimitedRequester(IHttpRequester httpRequester) : base(httpRequester)
-        {
+			_appRateLimiter = appRateLimiter;
+			_methodRateLimiter = methodRateLimiter;
 		}
 
 		#endregion
 
 		#region Methods
+
 		/// <summary>
 		/// Builds a GET request with the given parameters.
 		/// </summary>
@@ -50,7 +47,7 @@ namespace RiotSharpNET8.Http.Requesters
 		/// <param name="useHttps"></param>
 		/// <returns></returns>
 		/// <exception cref="RiotSharpRateLimitException"></exception>
-		public HttpRequestMessage CreateGetRequestAsync(Region region, string relativeUrl, List<string>? queryParameters = null, bool useHttps = true)
+		public HttpRequestMessage CreateGetRequest(Region region, string relativeUrl, List<string>? queryParameters = null, bool useHttps = true)
         {
 	        var host = CreateHostString(region);
 	        var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
@@ -58,7 +55,7 @@ namespace RiotSharpNET8.Http.Requesters
 		}
 
 		/// <summary>
-		/// Send a Http message to the given region.
+		/// Send a Http message to the given region. This method acquires the necessary leases for the request.
 		/// </summary>
 		/// <param name="request"></param>
 		/// <param name="region"></param>
@@ -66,8 +63,8 @@ namespace RiotSharpNET8.Http.Requesters
 		/// <exception cref="RiotSharpRateLimitException"></exception>
 		public async Task<HttpResponseMessage> SendMessageAsync(HttpRequestMessage request, Region region)
 		{
-			var lease = await _rateLimiter.GetLeaseForRegion(region).ConfigureAwait(false);
-			if(lease.IsAcquired)
+			var lease = await GetLeasesAsync(region).ConfigureAwait(false);
+			if (lease.IsAcquired)
 			{
 				var response = await base.SendMessageAsync(request).ConfigureAwait(false);
 				
@@ -75,13 +72,13 @@ namespace RiotSharpNET8.Http.Requesters
 			}
 			else
 			{
-				throw new RiotSharpRateLimitException("Rate limiter has blocked the request", HttpStatusCode.TooManyRequests, (TimeSpan)lease.RetryAfter!, "X-App-Rate-Limit");
+				throw new RiotSharpRateLimitException("Failed to acquire a lease for the request.", null, lease.RetryAfter, lease.RateLimitType);
 			}
 		}
 
 		/// <inheritdoc />
         public Task<string> CreatePostRequestAsync(Region region, string relativeUrl, string body,
-            List<string> queryParameters = null, bool useHttps = true)
+            List<string>? queryParameters = null, bool useHttps = true)
         {
 			/*
             var host = GetPlatformHost(region);
@@ -94,8 +91,8 @@ namespace RiotSharpNET8.Http.Requesters
 		}
 
         /// <inheritdoc />
-        public async Task<bool> CreatePutRequestAsync(Region region, string relativeUrl, string body,
-            List<string> queryParameters = null, bool useHttps = true)
+        public Task<bool> CreatePutRequestAsync(Region region, string relativeUrl, string body,
+            List<string>? queryParameters = null, bool useHttps = true)
         {
 			/*
             var host = GetPlatformHost(region);
@@ -118,13 +115,32 @@ namespace RiotSharpNET8.Http.Requesters
 			*/
 			throw new NotImplementedException();
 		}
-		
+
+		/// <summary>
+		/// Get the leases for the given region.
+		/// Starting with the method rate limiter, so we don't interfere with the app rate limiter unless necessary
+		/// </summary>
+		/// <param name="region"></param>
+		/// <returns>The given lease. May not be granted.</returns>
+		public async Task<IRequestLease> GetLeasesAsync(Region region)
+        {
+			// Note that no matter what we return the lease. It is up to the caller to check if it is acquired or not.
+			// Get the method rate limiter first. If we don't get the lease we just return the unacquired lease.
+			var methodLease = await _methodRateLimiter.GetLeaseForRegion(region);
+			if (!methodLease.IsAcquired) 
+				return methodLease;
+			// Get the app rate limiter.
+			var appLease = await _appRateLimiter.GetLeaseForRegion(region);
+			return appLease;
+        }
+
 		/// <inheritdoc/>
+		/// <remarks>We don't really "handle" the failure, just format an error message with information.</remarks>
 		public override void HandleRequestFailure(HttpResponseMessage response)
         {
             try
             {
-                if (response.StatusCode == (HttpStatusCode)429)
+                if (response.StatusCode == HttpStatusCode.TooManyRequests)
                 {
                     var retryAfter = TimeSpan.Zero;
                     if (response.Headers.TryGetValues("Retry-After", out var retryAfterHeaderValues))
@@ -139,8 +155,10 @@ namespace RiotSharpNET8.Http.Requesters
                     if (response.Headers.TryGetValues("X-Rate-Limit-Type", out var rateLimitTypeHeaderValues))
                     {
                         rateLimitType = rateLimitTypeHeaderValues.FirstOrDefault();
-                    }
-                    throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", response.StatusCode, retryAfter, rateLimitType ?? "No rateLimitType specified in response");
+					} // TODO: Fix the thrown exception to include the rate limit type. Possibly even a decoding of the header to the enum.
+
+                    throw new RiotSharpRateLimitException("429, Rate Limit Exceeded", response.StatusCode, retryAfter,
+	                    RateLimitType.App); //rateLimitType ?? "No rateLimitType specified in response");
                 }
                 // Here we handle all other HTTP status codes that are not 200 OK
                 else if (RiotHttpStatusCodeBadResponse.Contains(response.StatusCode))
@@ -195,62 +213,38 @@ namespace RiotSharpNET8.Http.Requesters
 		/// Return the string to be used in the host URL for the given region.
 		/// </summary>
 		/// <param name="region"></param>
-		/// <returns></returns>
+		/// <returns>The corresponding string used in the Riot API.</returns>
 		/// <exception cref="NotImplementedException"></exception>
 		private string GetRegionHostUrlString(Region region)
-        {
-	        switch (region)
-	        {
-		        case Region.Br:
-			        return "br1";
-		        case Region.Eune:
-			        return "eun1";
-		        case Region.Euw:
-			        return "euw1";
-		        case Region.Jp:
-			        return "jp1";
-		        case Region.Kr:
-			        return "kr";
-		        case Region.Lan:
-			        return "la1";
-		        case Region.Las:
-			        return "la2";
-		        case Region.Me:
-			        return "me1";
-		        case Region.Na:
-			        return "na1";
-		        case Region.Oce:
-			        return "oc1";
-		        case Region.Ph:
-			        return "ph2";
-		        case Region.Ru:
-			        return "ru";
-		        case Region.Sg:
-			        return "sg2";
-		        case Region.Th:
-			        return "th2";
-		        case Region.Tr:
-			        return "tr1";
-		        case Region.Tw: 
-			        return "tw2";
-		        case Region.Vn:
-			        return "vn2";
-		        case Region.Americas:
-			        return "americas";
-		        case Region.Asia:
-			        return "asia";
-		        case Region.Europe:
-			        return "europe";
-		        case Region.Esports:
-			        return "esports";
-		        case Region.Sea:
-			        return "sea";
-		        case Region.Global:
-			        return "global";
-		        default:
-			        throw new NotImplementedException();
-	        }
-        }
+		{
+			return region switch
+			{
+				Region.Br => "br1",
+				Region.Eune => "eun1",
+				Region.Euw => "euw1",
+				Region.Jp => "jp1",
+				Region.Kr => "kr",
+				Region.Lan => "la1",
+				Region.Las => "la2",
+				Region.Me => "me1",
+				Region.Na => "na1",
+				Region.Oce => "oc1",
+				Region.Ph => "ph2",
+				Region.Ru => "ru",
+				Region.Sg => "sg2",
+				Region.Th => "th2",
+				Region.Tr => "tr1",
+				Region.Tw => "tw2",
+				Region.Vn => "vn2",
+				Region.Americas => "americas",
+				Region.Asia => "asia",
+				Region.Europe => "europe",
+				Region.Esports => "esports",
+				Region.Sea => "sea",
+				Region.Global => "global",
+				_ => throw new NotImplementedException()
+			};
+		}
         #endregion
 
     }

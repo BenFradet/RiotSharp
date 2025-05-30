@@ -17,44 +17,34 @@ namespace RiotSharpNET8.Endpoints.ChampionMasteryEndpoint
         private const string ChampionMasteryByPuuidUrl = "/champion-masteries/by-puuid/{0}/by-champion/{1}";
         private const string ChampionMasteriesByPuuidUrl = "/champion-masteries/by-puuid/{0}";
 
-        private readonly IRiotRateLimitedRequester _requester;
+        //private readonly IRiotRateLimitedRequester _requester;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChampionMasteryEndpoint"/> class.
-        /// </summary>
-        /// <param name="requester">The requester.</param>
-        public ChampionMasteryEndpoint(IRiotRateLimitedRequester requester)
-        {
-            _requester = requester;
-        }
+        private readonly IRateLimitedRequester _requester;
 
-        /// <inheritdoc />
-        [Obsolete("Endpoints by summonerID are deprecated and will be removed in January/2024. Use the equivalent by PUUID.")]
-        public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, string summonerId, long championId)
-        {
-            var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ChampionMasteryEndpoint"/> class.
+		/// </summary>
+		/// <param name="requester">The rate limited requester.</param>
+		public ChampionMasteryEndpoint(IRateLimitedRequester requester)
+		{
+			_requester = requester;
+		}
 
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
-            return JsonSerializer.Deserialize<ChampionMastery>(json);
-        }
+		//TODO: Explore the possibility of making a util method that handles asking for permits for the method limiter and the application limiter.
 
-        /// <inheritdoc />
-        public async Task<ChampionMastery> GetChampionMasteryByPuuidAsync(Region region, string puuid, long championId)
+
+		/// <inheritdoc />
+		public async Task<ChampionMastery> GetChampionMasteryByPuuidAsync(Region region, string puuid, long championId)
         {
             var requestUrl = string.Format(ChampionMasteryByPuuidUrl, puuid, championId);
 
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
+            var request = _requester.CreateGetRequest(region, requestUrl, null);
+
+            var response = await _requester.SendMessageAsync(request, region).ConfigureAwait(false);
+
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
             return JsonSerializer.Deserialize<ChampionMastery>(json);
-        }
-
-        /// <inheritdoc />
-        [Obsolete("Endpoints by summonerID are deprecated and will be removed in January/2024. Use the equivalent by PUUID.")]
-        public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, string summonerId)
-        {
-            var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
-
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
-            return JsonSerializer.Deserialize<List<ChampionMastery>>(json);
         }
 
         /// <inheritdoc />
@@ -62,17 +52,62 @@ namespace RiotSharpNET8.Endpoints.ChampionMasteryEndpoint
         {
             var requestUrl = string.Format(ChampionMasteriesByPuuidUrl, puuid);
 
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
-            return JsonSerializer.Deserialize<List<ChampionMastery>>(json);
+            var request = _requester.CreateGetRequest(region, requestUrl, null);
+
+			var response = await _requester.SendMessageAsync(request, region).ConfigureAwait(false);
+
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+			//var json = await _requester.CreateGetRequest(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
+			return JsonSerializer.Deserialize<List<ChampionMastery>>(json); //TODO: Fix this null shit
         }
 
         /// <inheritdoc />
-        public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, string summonerId)
+        public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, string puuid)
         {
-            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, summonerId);
+            var requestUrl = string.Format(ChampionMasteryTotalScoreBySummonerUrl, puuid);
 
-            var json = await _requester.CreateGetRequestAsync(ChampionMasteryRootUrl + requestUrl, region).ConfigureAwait(false);
+            var request = _requester.CreateGetRequest(region, requestUrl, null);
+
+            var response = await _requester.SendMessageAsync(request, region).ConfigureAwait(false);
+
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
             return JsonSerializer.Deserialize<int>(json);
         }
+
+        #region obsolete
+
+        /// <inheritdoc />
+        [Obsolete("SummonerID is no longer in service. Use puuid!")]
+        public async Task<ChampionMastery> GetChampionMasteryAsync(Region region, string summonerId, long championId)
+        {
+	        var requestUrl = string.Format(ChampionMasteryBySummonerUrl, summonerId, championId);
+
+	        var request = _requester.CreateGetRequest(region, requestUrl, null);
+
+	        var response = await _requester.SendMessageAsync(request, region).ConfigureAwait(false);
+
+	        var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+	        return JsonSerializer.Deserialize<ChampionMastery>(json);
+        }
+        
+        /// <inheritdoc />
+        [Obsolete("SummonerID is no longer in service. Use puuid!")]
+        public async Task<List<ChampionMastery>> GetChampionMasteriesAsync(Region region, string summonerId)
+        {
+	        var requestUrl = string.Format(ChampionMasteriesBySummonerUrl, summonerId);
+
+	        var request = _requester.CreateGetRequest(region, requestUrl, null);
+
+	        var response = await _requester.SendMessageAsync(request, region).ConfigureAwait(false);
+
+	        var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+	        return JsonSerializer.Deserialize<List<ChampionMastery>>(json);
+        }
+        
+        #endregion obsolete
     }
 }

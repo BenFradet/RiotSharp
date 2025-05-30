@@ -5,11 +5,14 @@ namespace RiotSharpNET8.Http.Requesters
 {
     public abstract class RequesterBase
     {
-	    protected abstract string PlatformDomain { get; }
+		/// <summary>
+		/// The domain. (e.g. "api.riotgames.com" or "ddragon.leagueoflegends.com")
+		/// </summary>
+		protected abstract string PlatformDomain { get; }
         
-        private bool _isUsingApiKey = false;
+        private readonly bool _isUsingApiKey = false;
 		private readonly IHttpRequester _httpRequester;
-        private string _apiKey = "";
+        private readonly string _apiKey = "";
         protected readonly HashSet<HttpStatusCode> RiotHttpStatusCodeBadResponse =
         [
 	        HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
@@ -47,6 +50,11 @@ namespace RiotSharpNET8.Http.Requesters
 
 		#region Methods
 
+		/// <summary>
+		/// Uses the httpRequester to send the message.
+		/// </summary>
+		/// <param name="request"></param>
+		/// <returns>A HttpResponseMessage.</returns>
 		protected async Task<HttpResponseMessage> SendMessageAsync(HttpRequestMessage request)
 		{
 			var response = await _httpRequester.SendMessageAsync(request).ConfigureAwait(false);
@@ -79,7 +87,12 @@ namespace RiotSharpNET8.Http.Requesters
             return requestMessage;
         }
 
-        protected string BuildArgumentsString(List<string> arguments)
+		/// <summary>
+		/// Builds the arguments string.
+		/// </summary>
+		/// <param name="arguments"></param>
+		/// <returns>String that holds all the arguments.</returns>
+		private string BuildArgumentsString(List<string> arguments)
         {
             return arguments
                 .Where(arg => !string.IsNullOrWhiteSpace(arg))
@@ -94,8 +107,13 @@ namespace RiotSharpNET8.Http.Requesters
         /// <exception cref="RiotSharpRateLimitException"></exception>
         /// <exception cref="RiotSharpException"></exception>
         public abstract void HandleRequestFailure(HttpResponseMessage response);
-        
-        protected async Task<string> GetResponseContentAsync(HttpResponseMessage response)
+
+		/// <summary>
+		/// Pull the content from the response.
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns>The response content in the form of a string.</returns>
+		protected async Task<string> GetResponseContentAsync(HttpResponseMessage response)
         {
             using (response)
             using (var content = response.Content)

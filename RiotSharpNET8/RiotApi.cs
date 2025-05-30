@@ -187,7 +187,7 @@ namespace RiotSharpNET8
             League = new LeagueEndpoint(riotRateLimitedRequester);
             Match = new MatchEndpoint(riotRateLimitedRequester, _cache);
             Spectator = new SpectatorEndpoint(riotRateLimitedRequester);
-            ChampionMastery = new ChampionMasteryEndpoint(riotRateLimitedRequester);
+			//ChampionMastery = new ChampionMasteryEndpoint(riotRateLimitedRequester);
             ThirdParty = new ThirdPartyEndpoint(riotRateLimitedRequester);
 
             DataDragon = new DataDragonEndpoints(staticEndpointProvider);

@@ -20,7 +20,7 @@ namespace RiotSharpNET8.Http.Interfaces
 		/// <param name="region"></param>
 		/// <param name="numberOfLeases"></param>
 		/// <returns>true if the lease was available, false and a RetryAfter if not.</returns>
-		ValueTask<RequestLease> GetLeaseForRegion(Region region, int numberOfLeases = 1);
+		ValueTask<IRequestLease> GetLeaseForRegion(Region region, int numberOfLeases = 1);
 
 		/// <summary>
 		/// Changes the rate limits for a specific region.

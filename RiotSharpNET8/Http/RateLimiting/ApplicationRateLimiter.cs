@@ -98,7 +98,7 @@ namespace RiotSharpNET8.Http.RateLimiting
 		/// <param name="numberOfLeases"></param>
 		/// <returns>A <see cref="RequestLease"/> object with information about the state of the request.</returns>
 		/// <exception cref="ArgumentOutOfRangeException">If the number of leases exceed a given limit.</exception>
-		public async ValueTask<RequestLease> GetLeaseForRegion(Region region, int numberOfLeases = 1)
+		public async ValueTask<IRequestLease> GetLeaseForRegion(Region region, int numberOfLeases = 1)
 		{
 			try
 			{
@@ -106,12 +106,12 @@ namespace RiotSharpNET8.Http.RateLimiting
 
 				if (result.IsAcquired)
 				{
-					return new RequestLease(true, null);
+					return new RequestLease(true, null, RateLimitType.App);
 				}
 				else
 				{
 					result.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter);
-					return new RequestLease(false, (TimeSpan)retryAfter);
+					return new RequestLease(false, (TimeSpan)retryAfter, RateLimitType.App);
 				}
 			}
 			catch (Exception e)

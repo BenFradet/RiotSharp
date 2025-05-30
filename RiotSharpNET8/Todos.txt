@@ -1,4 +1,8 @@
-﻿// Change to .NET 8
+﻿// Method rate limiter needs to be implemented before implementing the RateLimitedRequester
+// This needs to be done so the overall functionality of the RateLimitedRequester is extended and less work is needed in the endpoints
+
+
+// Change to .NET 8
 
 // Implement RateLimiting through System.Threading.RateLimiting(nuget package)
 // One main application rate limit and one for each endpoint

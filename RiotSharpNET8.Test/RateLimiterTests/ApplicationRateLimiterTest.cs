@@ -126,7 +126,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act
-			var leases = new List<RequestLease>();
+			var leases = new List<IRequestLease>();
 			for (int i = 0; i < 21; i++)
 			{
 				leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
@@ -150,7 +150,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act
-			var leases = new List<RequestLease>();
+			var leases = new List<IRequestLease>();
 			for (int i = 0; i < 5; i++)
 			{
 				for (int j = 0; j < 20; j++)
@@ -177,7 +177,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act
-			var leases = new List<RequestLease>();
+			var leases = new List<IRequestLease>();
 			for (int i = 0; i < 5; i++)
 			{
 				for (int j = 0; j < 20; j++)
@@ -207,7 +207,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act
-			var leases = new List<RequestLease>();
+			var leases = new List<IRequestLease>();
 			for (int i = 0; i < 5; i++)
 			{
 				for (int j = 0; j < 20; j++)
@@ -240,7 +240,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act
-			var leases = new List<RequestLease>();
+			var leases = new List<IRequestLease>();
 			for (int i = 0; i < 5; i++)
 			{
 				for (int j = 0; j < 20; j++)
@@ -272,7 +272,7 @@ namespace RiotSharpNET8.Test.RateLimiterTests
 			uut = new ApplicationRateLimiter(rateLimits);
 
 			// Act
-			var leases = new List<RequestLease>();
+			var leases = new List<IRequestLease>();
 			for (int i = 0; i < 5; i++)
 			{
 				for (int j = 0; j < 20; j++)

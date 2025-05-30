@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RiotSharpNET8.Http.RateLimiting;
 
 namespace RiotSharpNET8.Http.Interfaces
 {
@@ -16,7 +17,7 @@ namespace RiotSharpNET8.Http.Interfaces
         /// <param name="relativeUrl">The relative URL.</param>
         /// <param name="queryParameters">The query parameters.</param>
         /// <param name="useHttps">Use HTTPS based on the boolean. Default = true</param>
-        HttpRequestMessage CreateGetRequestAsync(Region region, string relativeUrl,
+        HttpRequestMessage CreateGetRequest(Region region, string relativeUrl,
 	        List<string>? queryParameters = null, bool useHttps = true);
 
 		/// <summary>
@@ -58,5 +59,8 @@ namespace RiotSharpNET8.Http.Interfaces
         /// </exception>
         Task<bool> CreatePutRequestAsync(Region region, string relativeUrl, string body,
             List<string>? queryParameters = null, bool useHttps = true);
+
+		// Get leases necessary for the rate limiting
+		Task<IRequestLease> GetLeasesAsync(Region region);
 	}
 }
