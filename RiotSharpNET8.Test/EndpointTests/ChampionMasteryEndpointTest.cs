@@ -11,6 +11,7 @@ using RiotSharpNET8.Misc;
 namespace RiotSharpNET8.Test.EndpointTests
 {
     [TestFixture]
+    [Category("OnlyLocal")]
     public class ChampionMasteryEndpointTest
     {
 	    private static string ApiKey = "";
