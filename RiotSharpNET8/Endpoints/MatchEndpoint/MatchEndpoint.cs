@@ -26,7 +26,7 @@ namespace RiotSharpNET8.Endpoints.MatchEndpoint
         /// <summary>
         /// Creates a new match endpoint
         /// </summary>
-        /// <param name="requester">the requester</param>
+        /// <param name="requester">the riotRequester</param>
         /// <param name="cache">the cache</param>
         public MatchEndpoint(IRiotRateLimitedRequester requester, ICache cache)
         {

@@ -41,7 +41,7 @@ namespace RiotSharpNET8
         {
             /*
             RiotRequesters.TournamentApiRequester = new RiotRiotRateLimitedRequester(apiKey, rateLimits);
-            _requester = RiotRequesters.TournamentApiRequester;
+            _riotRequester = RiotRequesters.TournamentApiRequester;
             SetTournamentRootUrl(useStub);
             */
         }
@@ -49,7 +49,7 @@ namespace RiotSharpNET8
         /// <summary>
         /// Default constructor for dependency injection
         /// </summary>
-        /// <param name="riotRateLimitedRequestere rate limited requester.</param>
+        /// <param name="riotRateLimitedRequestere rate limited riotRequester.</param>
         /// <param name="useStub">If true, the tournament stub will be used for requests.
         /// Useful for testing purposes.</param>
         /// <exception cref="ArgumentNullException">riotRateLimitedRequester</exception>

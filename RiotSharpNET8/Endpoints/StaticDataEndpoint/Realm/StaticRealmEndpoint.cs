@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Realm
         private const string RealmsCacheKey = "realms";
 
         /// <inheritdoc />
-        public StaticRealmEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticRealmEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticRealmEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticRealmEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<RealmStatic> GetAllAsync(Region region)
@@ -35,7 +35,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Realm
                 return wrapper.RealmStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync(Host, string.Format(RealmsUrl, region.ToString().ToLower())).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, string.Format(RealmsUrl, region.ToString().ToLower())).ConfigureAwait(false);
             var realm = JsonSerializer.Deserialize<RealmStatic>(json); //JsonConvert.DeserializeObject<RealmStatic>(json);
 
             cache.Add(cacheKey, new RealmStaticWrapper(realm), SlidingExpirationTime);

@@ -22,12 +22,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.LanguageStrings
         private const string LanguagesCacheKey = "languages";
 
         /// <inheritdoc />
-        public StaticLanguageEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticLanguageEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticLanguageEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticLanguageEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         #region Language Strings
 
@@ -41,7 +41,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.LanguageStrings
                 return wrapper.LanguageStringsStatic;
             }
 
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, LanguageStringsDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, LanguageStringsDataKey)).ConfigureAwait(false);
             var languageStrings = JsonSerializer.Deserialize<LanguageStringsStatic>(json); //JsonConvert.DeserializeObject<LanguageStringsStatic>(json);
 
             cache.Add(cacheKey, new LanguageStringsStaticWrapper(languageStrings, language, version), 
@@ -63,7 +63,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.LanguageStrings
                 return wrapper;
             }
 
-            var json = await requester.CreateGetRequestAsync(Host, LanguagesUrl).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, LanguagesUrl).ConfigureAwait(false);
             var languages = JsonSerializer.Deserialize<List<Language>>(json); //JsonConvert.DeserializeObject<List<Language>>(json);
 
             cache.Add(cacheKey, languages, SlidingExpirationTime);

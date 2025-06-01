@@ -33,7 +33,7 @@ namespace RiotSharpNET8.Endpoints.ClashEndpoint
         /// <summary>
         /// Creates a Clash Endpoint
         /// </summary>
-        /// <param name="requester">The requester interface</param>
+        /// <param name="requester">The riotRequester interface</param>
         /// <param name="cache">The cache interface</param>
         public ClashEndpoint(IRiotRateLimitedRequester requester, ICache cache)
         {

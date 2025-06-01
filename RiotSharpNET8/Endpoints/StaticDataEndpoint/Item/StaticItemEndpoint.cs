@@ -20,16 +20,16 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
         /// <summary>
         /// Initializes a new instance of the <see cref="StaticItemEndpoint"/> class.
         /// </summary>
-        /// <param name="requester">The requester.</param>
+        /// <param name="riotRequester">The riotRequester.</param>
         /// <param name="cache">The cache.</param>
         /// <param name="slidingExpirationTime">The sliding expiration time.</param>
         /// <inheritdoc />
-        public StaticItemEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticItemEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticItemEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticItemEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<ItemListStatic> GetAllAsync(string version, Language language = Language.en_US)
@@ -40,7 +40,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Item
             {
                 return wrapper.ItemListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ItemsDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, ItemsDataKey)).ConfigureAwait(false);
             var items = JsonSerializer.Deserialize<ItemListStatic>(json); //JsonConvert.DeserializeObject<ItemListStatic>(json);
             wrapper = new ItemListStaticWrapper(items, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

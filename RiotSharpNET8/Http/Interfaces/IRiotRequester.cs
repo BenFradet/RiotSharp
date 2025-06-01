@@ -2,7 +2,7 @@
 
 namespace RiotSharpNET8.Http.Interfaces
 {
-    public interface IRequester
+    public interface IRiotRequester
     {
         /// <summary>
         /// Create a get request and send it asynchronously to the server.

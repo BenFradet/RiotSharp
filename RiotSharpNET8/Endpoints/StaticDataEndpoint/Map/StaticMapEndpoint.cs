@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Map
         private const string MapsCacheKey = "maps";
 
         /// <inheritdoc />
-        public StaticMapEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticMapEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticMapEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticMapEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<List<MapStatic>> GetAllAsync(string version, Language language = Language.en_US)
@@ -35,7 +35,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Map
                 return wrapper.MapsStatic.Data.Values.ToList();
             }
 
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, MapsDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, MapsDataKey)).ConfigureAwait(false);
             var maps = JsonSerializer.Deserialize<MapsStatic>(json); //JsonConvert.DeserializeObject<MapsStatic>(json);
 
             cache.Add(cacheKey, new MapsStaticWrapper(maps, language, version), SlidingExpirationTime);

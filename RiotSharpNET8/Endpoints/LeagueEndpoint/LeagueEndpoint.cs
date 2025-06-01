@@ -23,7 +23,7 @@ namespace RiotSharpNET8.Endpoints.LeagueEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="LeagueEndpoint"/> class.
         /// </summary>
-        /// <param name="requester">The requester.</param>
+        /// <param name="requester">The riotRequester.</param>
         public LeagueEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;

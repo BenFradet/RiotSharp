@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.ReforgedRune
         private const string ReforgdRunesCacheKey = "reforged-runes";
 
         /// <inheritdoc />
-        public StaticReforgedRuneEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-           : base(requester, cache, slidingExpirationTime) { }
+        public StaticReforgedRuneEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+           : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticReforgedRuneEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticReforgedRuneEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<List<ReforgedRunePathStatic>> GetAllAsync(string version, Language language = Language.en_US)
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.ReforgedRune
             {
                 return wrapper.ReforgedRunes;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ReforgedRunesDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, ReforgedRunesDataKey)).ConfigureAwait(false);
             var reforgedRunes = JsonSerializer.Deserialize<List<ReforgedRunePathStatic>>(json); //JsonConvert.DeserializeObject<List<ReforgedRunePathStatic>>(json);
             cache.Add(cacheKey, new ReforgedRuneListStaticWrapper(language, version, reforgedRunes), SlidingExpirationTime);
             return reforgedRunes;

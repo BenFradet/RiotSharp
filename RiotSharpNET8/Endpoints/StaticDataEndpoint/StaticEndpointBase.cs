@@ -19,20 +19,20 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
 
         protected bool useHttps;
         protected ICache cache;
-        protected IRequester requester;
+        protected IRiotRequester RiotRequester;
         protected TimeSpan SlidingExpirationTime;
         public readonly TimeSpan DefaultSlidingExpirationTime = new TimeSpan(1, 0, 0);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StaticEndpointBase"/> class.
         /// </summary>
-        /// <param name="requester">The requester.</param>
+        /// <param name="riotRequester">The riotRequester.</param>
         /// <param name="cache">The cache.</param>
         /// <param name="slidingExpirationTime">The sliding expiration time.</param>
         /// <param name="useHttps">if set to <c>true</c> [use HTTPS].</param>
-        protected StaticEndpointBase(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime, bool useHttps = true)
+        protected StaticEndpointBase(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime, bool useHttps = true)
         {
-            this.requester = requester;
+            this.RiotRequester = riotRequester;
             this.cache = cache;
             this.useHttps = useHttps;
 
@@ -42,10 +42,10 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="StaticEndpointBase"/> class.
         /// </summary>
-        /// <param name="requester">The requester.</param>
+        /// <param name="riotRequester">The riotRequester.</param>
         /// <param name="cache">The cache.</param>
-        protected StaticEndpointBase(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        protected StaticEndpointBase(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <summary>
         /// Creates the URL.

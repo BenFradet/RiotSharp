@@ -18,7 +18,7 @@ namespace RiotSharpNET8.Endpoints.ThirdPartyEndpoint
         /// <summary>
         /// Initializes a new instance of the <see cref="ThirdPartyEndpoint"/> class.
         /// </summary>
-        /// <param name="requester">The requester.</param>
+        /// <param name="requester">The riotRequester.</param>
         public ThirdPartyEndpoint(IRiotRateLimitedRequester requester)
         {
             _requester = requester;

@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.SummonerSpell
         private const string SummonerSpellsCacheKey = "summoner-spells";
 
         /// <inheritdoc />
-        public StaticSummonerSpellEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            :base(requester, cache, slidingExpirationTime) { }
+        public StaticSummonerSpellEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            :base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticSummonerSpellEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticSummonerSpellEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<SummonerSpellListStatic> GetAllAsync(string version, Language language = Language.en_US)
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.SummonerSpell
             {
                 return wrapper.SummonerSpellListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, SummonerSpellsDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, SummonerSpellsDataKey)).ConfigureAwait(false);
             var spells = JsonSerializer.Deserialize<SummonerSpellListStatic>(json); //JsonConvert.DeserializeObject<SummonerSpellListStatic>(json);
             wrapper = new SummonerSpellListStaticWrapper(spells, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

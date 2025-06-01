@@ -98,29 +98,6 @@ namespace RiotSharpNET8.Http.Requesters
                 .Where(arg => !string.IsNullOrWhiteSpace(arg))
                 .Aggregate(string.Empty, (current, arg) => current + ("&" + arg));
         }
-
-        /// <summary>
-        /// Handles the failure of a request if any.
-        /// <remarks>Should be more specific as to which type of limit has been breached.</remarks>
-        /// </summary>
-        /// <param name="response"></param>
-        /// <exception cref="RiotSharpRateLimitException"></exception>
-        /// <exception cref="RiotSharpException"></exception>
-        public abstract void HandleRequestFailure(HttpResponseMessage response);
-
-		/// <summary>
-		/// Pull the content from the response.
-		/// </summary>
-		/// <param name="response"></param>
-		/// <returns>The response content in the form of a string.</returns>
-		protected async Task<string> GetResponseContentAsync(HttpResponseMessage response)
-        {
-            using (response)
-            using (var content = response.Content)
-            {
-                return await content.ReadAsStringAsync().ConfigureAwait(false);
-            }
-        }
         
         #endregion
     }

@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Rune
         private const string RunesCacheKey = "runes";
 
         /// <inheritdoc />
-        public StaticRuneEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticRuneEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticRuneEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticRuneEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<RuneListStatic> GetAllAsync(string version, Language language = Language.en_US)
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Rune
             {
                 return wrapper.RuneListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, RunesDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, RunesDataKey)).ConfigureAwait(false);
             var runes = JsonSerializer.Deserialize<RuneListStatic>(json); //JsonConvert.DeserializeObject<RuneListStatic>(json);
             wrapper = new RuneListStaticWrapper(runes, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

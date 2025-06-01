@@ -13,11 +13,11 @@ namespace RiotSharpNET8.Endpoints.StatusEndpoint
     {
         private const string StatusRootUrl = "/lol/status/v3/shard-data";
 
-        private readonly IRequester _requester;
+        private readonly IRiotRequester _riotRequester;
 
-        public StatusEndpoint(IRequester requester)
+        public StatusEndpoint(IRiotRequester riotRequester)
         {
-            _requester = requester;
+            _riotRequester = riotRequester;
         }
 
         #region Public Methods      
@@ -25,7 +25,7 @@ namespace RiotSharpNET8.Endpoints.StatusEndpoint
         /// <inheritdoc />
         public async Task<ShardStatus> GetShardStatusAsync(Region region)
         {
-            var json = await _requester.CreateGetRequestAsync(StatusRootUrl, region).ConfigureAwait(false);
+            var json = await _riotRequester.CreateGetRequestAsync(StatusRootUrl, region).ConfigureAwait(false);
 
             return JsonSerializer.Deserialize<ShardStatus>(json); //JsonConvert.DeserializeObject<ShardStatus>(json);
         }

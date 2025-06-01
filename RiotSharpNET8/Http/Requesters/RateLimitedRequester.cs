@@ -7,7 +7,7 @@ using RiotSharpNET8.Misc;
 namespace RiotSharpNET8.Http.Requesters
 {
 	/// <summary>
-	/// A requester that handles both application and method rate limiting.
+	/// A riotRequester that handles both application and method rate limiting.
 	/// </summary>
 	/// <seealso cref="RequesterBase" />
 	/// <seealso cref="IRiotRateLimitedRequester" />
@@ -122,7 +122,7 @@ namespace RiotSharpNET8.Http.Requesters
 		/// </summary>
 		/// <param name="region"></param>
 		/// <returns>The given lease. May not be granted.</returns>
-		public async Task<IRequestLease> GetLeasesAsync(Region region)
+		private async Task<IRequestLease> GetLeasesAsync(Region region)
         {
 			// Note that no matter what we return the lease. It is up to the caller to check if it is acquired or not.
 			// Get the method rate limiter first. If we don't get the lease we just return the unacquired lease.
@@ -136,7 +136,7 @@ namespace RiotSharpNET8.Http.Requesters
 
 		/// <inheritdoc/>
 		/// <remarks>We don't really "handle" the failure, just format an error message with information.</remarks>
-		public override void HandleRequestFailure(HttpResponseMessage response)
+		public void HandleRequestFailure(HttpResponseMessage response)
         {
             try
             {
@@ -163,29 +163,36 @@ namespace RiotSharpNET8.Http.Requesters
                 // Here we handle all other HTTP status codes that are not 200 OK
                 else if (RiotHttpStatusCodeBadResponse.Contains(response.StatusCode))
                 {
-	                string? message;
-	                var json = response.Content.ToString();
-					// Parse JSON using System.Text.Json
-					if (json != null)
-					{
-						using var doc = JsonDocument.Parse(json);
-						var root = doc.RootElement;
-						// Safely navigate JSON structure to find the message
-						if (root.TryGetProperty("status", out var statusElement) &&
-						    statusElement.TryGetProperty("message", out var messageElement))
-						{
-							message = messageElement.GetString();
-						}
-						else
-						{
-							message = response.StatusCode.ToString();
-						}
-					}
-					else
-					{
-						message = response.StatusCode.ToString();
-					}
-	                throw new RiotSharpException(message ?? "There was no message in the response", response.StatusCode);
+	                string? message = null;
+	                string? content = null;
+	                try
+	                {
+		                content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+		                if (!string.IsNullOrWhiteSpace(content))
+		                {
+			                using var doc = JsonDocument.Parse(content);
+			                var root = doc.RootElement;
+			                if (root.TryGetProperty("status", out var statusElement) &&
+			                    statusElement.TryGetProperty("message", out var messageElement))
+			                {
+				                message = messageElement.GetString();
+			                }
+		                }
+	                }
+	                catch (JsonException)
+	                {
+		                // Content is not valid JSON, fall back to raw content
+		                message = content ?? response.StatusCode.ToString();
+	                }
+	                catch
+	                {
+		                message = response.StatusCode.ToString();
+	                }
+
+	                if (string.IsNullOrWhiteSpace(message))
+		                message = response.StatusCode.ToString();
+
+	                throw new RiotSharpException(message, response.StatusCode);
                 }
                 // No idea what StatusCode was returned, but it isn't supported
                 else

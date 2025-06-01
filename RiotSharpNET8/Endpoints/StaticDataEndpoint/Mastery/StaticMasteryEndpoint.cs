@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Mastery
         private const string MasteriesCacheKey = "masteries";
 
         /// <inheritdoc />
-        public StaticMasteryEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticMasteryEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticMasteryEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticMasteryEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<MasteryListStatic> GetAllAsync(string version, Language language = Language.en_US)
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Mastery
             {
                 return wrapper.MasteryListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, MasteriesDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, MasteriesDataKey)).ConfigureAwait(false);
             var masteries = JsonSerializer.Deserialize<MasteryListStatic>(json); //JsonConvert.DeserializeObject<MasteryListStatic>(json);
             wrapper = new MasteryListStaticWrapper(masteries, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

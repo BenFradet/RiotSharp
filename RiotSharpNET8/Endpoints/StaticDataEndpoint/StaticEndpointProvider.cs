@@ -28,21 +28,21 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
         public List<IStaticEndpoint> Endpoints { get; set; }
 
         /// <inheritdoc />
-        public StaticEndpointProvider(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime = null)
+        public StaticEndpointProvider(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime = null)
         {
             this.Endpoints = new List<IStaticEndpoint>
             {
-                new StaticChampionEndpoint(requester, cache, slidingExpirationTime),
-                new StaticItemEndpoint(requester, cache, slidingExpirationTime),
-                new StaticLanguageEndpoint(requester, cache, slidingExpirationTime),
-                new StaticMapEndpoint(requester, cache, slidingExpirationTime),
-                new StaticMasteryEndpoint(requester, cache, slidingExpirationTime),
-                new StaticProfileIconEndpoint(requester, cache, slidingExpirationTime),
-                new StaticRealmEndpoint(requester, cache, slidingExpirationTime),
-                new StaticRuneEndpoint(requester, cache, slidingExpirationTime),
-                new StaticSummonerSpellEndpoint(requester, cache, slidingExpirationTime),
-                new StaticVersionEndpoint(requester, cache, slidingExpirationTime),
-                new StaticReforgedRuneEndpoint(requester, cache, slidingExpirationTime),
+                new StaticChampionEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticItemEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticLanguageEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticMapEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticMasteryEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticProfileIconEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticRealmEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticRuneEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticSummonerSpellEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticVersionEndpoint(riotRequester, cache, slidingExpirationTime),
+                new StaticReforgedRuneEndpoint(riotRequester, cache, slidingExpirationTime),
                 new StaticTarballLinkEndPoint()
             };
         }

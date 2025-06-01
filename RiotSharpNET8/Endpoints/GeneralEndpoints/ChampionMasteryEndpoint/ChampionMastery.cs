@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using RiotSharpNET8.Misc.Converters;
 
-namespace RiotSharpNET8.Endpoints.ChampionMasteryEndpoint
+namespace RiotSharpNET8.Endpoints.GeneralEndpoints.ChampionMasteryEndpoint
 {
     /// <summary>
     /// Class representing a champion mastery for
@@ -9,10 +9,16 @@ namespace RiotSharpNET8.Endpoints.ChampionMasteryEndpoint
     /// </summary>
     public class ChampionMastery
     {
-        /// <summary>
-        /// Champion ID for this entry.
-        /// </summary>
-        [JsonPropertyName("championId")]
+		/// <summary>
+		/// Player Universal Unique Identifier. Exact length of 78 characters. (Encrypted)
+		/// </summary>
+		[JsonPropertyName("puuid")]
+		public string Puuid { get; set; }
+
+		/// <summary>
+		/// Champion ID for this entry.
+		/// </summary>
+		[JsonPropertyName("championId")]
         public long ChampionId { get; set; }
 
         /// <summary>
@@ -56,9 +62,31 @@ namespace RiotSharpNET8.Endpoints.ChampionMasteryEndpoint
         public DateTime LastPlayTime { get; set; }
 
         /// <summary>
-        /// Player ID for this entry.
+        /// No info on this.
         /// </summary>
-        [JsonPropertyName("summonerId")]
-        public string SummonerId { get; set; }
-    }
+        [JsonPropertyName("markRequiredForNextLevel")]
+		public int MarkRequiredForNextLevel { get; set; }
+
+		/// <summary>
+		/// No info on this.
+		/// </summary>
+		[JsonPropertyName("championSeasonMilestone")]
+        public int ChampionSeasonMilestone { get; set; }
+
+		[JsonPropertyName("nextSeasonMilestone")]
+		public NextSeasonMilestones NextSeasonMilestone { get; set; }
+
+		/// <summary>
+		/// The token earned for this champion at the current championLevel.
+		/// When the championLevel is advanced the tokensEarned resets to 0.
+		/// </summary>
+		[JsonPropertyName("tokensEarned")]
+		public int TokensEarned { get; set; }
+
+		/// <summary>
+		/// No info on this.
+		/// </summary>
+		[JsonPropertyName("milestoneGrades")]
+		public List<string> MilestoneGrades { get; set; }
+	}
 }

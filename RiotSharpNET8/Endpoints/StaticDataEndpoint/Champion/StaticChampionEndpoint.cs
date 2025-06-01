@@ -21,12 +21,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
         private const string ChampionByIdCacheKey = "champion";
 
         /// <inheritdoc />
-        public StaticChampionEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticChampionEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticChampionEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticChampionEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<ChampionListStatic> GetAllAsync(string version, Language language = Language.en_US, bool fullData = true)
@@ -37,7 +37,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
             {
                 return wrapper.ChampionListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, fullData ? ChampionsFullDataKey : ChampionsDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, fullData ? ChampionsFullDataKey : ChampionsDataKey)).ConfigureAwait(false);
             var champs = JsonSerializer.Deserialize<ChampionListStatic>(json); //JsonConvert.DeserializeObject<ChampionListStatic>(json);
             wrapper = new ChampionListStaticWrapper(champs, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);
@@ -58,7 +58,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Champion
             {
                 return listWrapper.ChampionListStatic.Champions.Values.FirstOrDefault(c => c.Key == key);
             }
-            var json = await requester.CreateGetRequestAsync(Host, string.Format(ChampionByKeyUrl, version, language, key)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, string.Format(ChampionByKeyUrl, version, language, key)).ConfigureAwait(false);
             var championStandAlone = JsonSerializer.Deserialize<ChampionStandAloneStatic>(json); //JsonConvert.DeserializeObject<ChampionStandAloneStatic>(json);
             cache.Add(cacheKey, new ChampionStaticWrapper(championStandAlone.Data.First().Value, language, version), SlidingExpirationTime);
             return championStandAlone.Data.First().Value;

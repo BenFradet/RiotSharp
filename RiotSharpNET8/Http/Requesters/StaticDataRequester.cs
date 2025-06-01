@@ -17,7 +17,8 @@ namespace RiotSharpNET8.Http.Requesters
 			var host = "GetPlatformHost(region);";
 			var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
 			var response = await SendMessageAsync(request).ConfigureAwait(false);
-			return await GetResponseContentAsync(response).ConfigureAwait(false);
+			return await response.Content.ReadAsStringAsync()
+				.ConfigureAwait(false); //GetResponseContentAsync(response).ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -26,11 +27,12 @@ namespace RiotSharpNET8.Http.Requesters
 		{
 			var request = PrepareRequest(host, relativeUrl, queryParameters, useHttps, HttpMethod.Get);
 			var response = await SendMessageAsync(request).ConfigureAwait(false);
-			return await GetResponseContentAsync(response).ConfigureAwait(false);
+			return await response.Content.ReadAsStringAsync()
+				.ConfigureAwait(false); //GetResponseContentAsync(response).ConfigureAwait(false);
 		}
 
 		protected override string PlatformDomain => "ddragon.leagueoflegends.com";
-		public override void HandleRequestFailure(HttpResponseMessage response)
+		public void HandleRequestFailure(HttpResponseMessage response)
 		{
 			throw new NotImplementedException();
 		}

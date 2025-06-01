@@ -16,12 +16,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Version
         private const string VersionsUrl = ApiUrl + "versions.json";
 
         /// <inheritdoc />
-        public StaticVersionEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticVersionEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticVersionEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticVersionEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<List<string>> GetAllAsync()
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.Version
             }
 
             var json =
-                await requester.CreateGetRequestAsync(Host, VersionsUrl).ConfigureAwait(false);
+                await RiotRequester.CreateGetRequestAsync(Host, VersionsUrl).ConfigureAwait(false);
             var version = JsonSerializer.Deserialize<List<string>>(json); //JsonConvert.DeserializeObject<List<string>>(json);
 
             cache.Add(cacheKey, version, SlidingExpirationTime);

@@ -18,12 +18,12 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.ProfileIcons
         private const string ProfileIconsCacheKey = "profile-icons";
 
         /// <inheritdoc />
-        public StaticProfileIconEndpoint(IRequester requester, ICache cache, TimeSpan? slidingExpirationTime)
-            : base(requester, cache, slidingExpirationTime) { }
+        public StaticProfileIconEndpoint(IRiotRequester riotRequester, ICache cache, TimeSpan? slidingExpirationTime)
+            : base(riotRequester, cache, slidingExpirationTime) { }
 
         /// <inheritdoc />
-        public StaticProfileIconEndpoint(IRequester requester, ICache cache)
-            : this(requester, cache, null) { }
+        public StaticProfileIconEndpoint(IRiotRequester riotRequester, ICache cache)
+            : this(riotRequester, cache, null) { }
 
         /// <inheritdoc />
         public async Task<ProfileIconListStatic> GetAllAsync(string version, Language language = Language.en_US)
@@ -34,7 +34,7 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint.ProfileIcons
             {
                 return wrapper.ProfileIconListStatic;
             }
-            var json = await requester.CreateGetRequestAsync(Host, CreateUrl(version, language, ProfileIconsDataKey)).ConfigureAwait(false);
+            var json = await RiotRequester.CreateGetRequestAsync(Host, CreateUrl(version, language, ProfileIconsDataKey)).ConfigureAwait(false);
             var profileIcons = JsonSerializer.Deserialize<ProfileIconListStatic>(json); //JsonConvert.DeserializeObject<ProfileIconListStatic>(json);
             wrapper = new ProfileIconsStaticWrapper(profileIcons, language, version);
             cache.Add(cacheKey, wrapper, SlidingExpirationTime);

@@ -85,19 +85,19 @@ namespace RiotSharpNET8.Endpoints.StaticDataEndpoint
         /// <summary>
         /// StaticDataEndpoint using the default <see cref="IStaticEndpointProvider"/>
         /// </summary>
-        /// <param name="requester"></param>
+        /// <param name="riotRequester"></param>
         /// <param name="cache"></param>
-        public DataDragonEndpoints(IRequester requester, ICache cache)
+        public DataDragonEndpoints(IRiotRequester riotRequester, ICache cache)
         {
-            if (requester == null)
+            if (riotRequester == null)
             {
-                throw new ArgumentNullException(nameof(requester));
+                throw new ArgumentNullException(nameof(riotRequester));
             }
             if (cache == null)
             {
                 throw new ArgumentNullException(nameof(cache));
             }
-            InitializeEndpoints(new StaticEndpointProvider(requester, cache));
+            InitializeEndpoints(new StaticEndpointProvider(riotRequester, cache));
         }
 
         private void InitializeEndpoints(IStaticEndpointProvider staticEndpointProvider)
