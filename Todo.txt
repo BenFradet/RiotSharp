@@ -1,0 +1,3 @@
+Remove the Misc stuff that is League specific
+Consider moving RateLimitedEndpointBase into Core
+Look into the Regions stuff, to asure that all regions are covered

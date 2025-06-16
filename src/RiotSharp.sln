@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RiotSharp.LeagueOfLegends",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.LeagueOfLegends", "RiotSharp.LeagueOfLegends\RiotSharp.LeagueOfLegends.csproj", "{20431230-B8F0-45B7-A833-6EC3AA085909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.Core.Tests", "RiotSharp.Core.Tests\RiotSharp.Core.Tests.csproj", "{E2961500-868E-4AC9-B0B2-84BB5AECF197}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{20431230-B8F0-45B7-A833-6EC3AA085909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20431230-B8F0-45B7-A833-6EC3AA085909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20431230-B8F0-45B7-A833-6EC3AA085909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2961500-868E-4AC9-B0B2-84BB5AECF197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2961500-868E-4AC9-B0B2-84BB5AECF197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2961500-868E-4AC9-B0B2-84BB5AECF197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2961500-868E-4AC9-B0B2-84BB5AECF197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8} = {B604F974-AE1E-41F3-94BD-AAA1FB15BCF2}
 		{20431230-B8F0-45B7-A833-6EC3AA085909} = {13CD99E5-C763-4F77-9BED-C8F0482ED742}
+		{E2961500-868E-4AC9-B0B2-84BB5AECF197} = {B604F974-AE1E-41F3-94BD-AAA1FB15BCF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {646D5714-227E-4776-8CC2-793467DB2788}
