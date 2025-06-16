@@ -1,35 +1,12 @@
 ﻿// Method rate limiter needs to be implemented before implementing the RateLimitedRequester
 // This needs to be done so the overall functionality of the RateLimitedRequester is extended and less work is needed in the endpoints
 
-
-// Change to .NET 8
-
-// Implement RateLimiting through System.Threading.RateLimiting(nuget package)
-// One main application rate limit and one for each endpoint
-// Do this in a manner so every endpoint theoretically can have its own rate limit
-// There are Application and Method rate limits and even service(this isnt really known)
-// https://hextechdocs.dev/rate-limiting/
-
-// RequesterBase has too much responsibility, it feels more like a service than a base class
-// It isnt even abstract. It should be a singleton that then gets used in the requesters instead of being inherited from.
-
 // HandleRequestFailure should be more deterministic in what went wrong, being it application rate limit or method rate limit. 
-// Maybe a new exception type for this?
-
-// Change from MSTest to NUnit
-
+// Maybe a new exception type for this? See comments in RequesterBase.HandleRequestFailure for enum.
 
 // RegionConverter needs to be updated to the new regions
 
-
 // The rate limiter does not yet support proper RetryAfter.
-
-
-
-
-
-
-// Change from Newtonsoft.Json to System.Text.Json
 
 // Make some default values for the different JSON properties????
 

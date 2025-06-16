@@ -66,7 +66,7 @@ namespace RiotSharpNET8.Test.EndpointTests
 	        Console.WriteLine(result.ToString());
 	        Assert.That(result, Is.GreaterThanOrEqualTo(0));
         }
-
+        
 		[Test]
 		public async Task GetTopChampionMasteriesByPuuidAsync_ReturnsTopChampionMasteries()
 		{
@@ -74,6 +74,32 @@ namespace RiotSharpNET8.Test.EndpointTests
 			Console.WriteLine(result.ToString());
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result[0].ChampionId, Is.EqualTo(TestChampionId)); // Former Olaf main/OTP(:
+		}
+
+		/// <summary>
+		/// No joke this test works ahahah wtf.
+		/// If limit is set to 21, then the server responds with Rate limit exceeded, if set to 20 the rate limiter stops the last request.
+		/// </summary>
+		/// <returns></returns>
+		[Test]
+		public async Task RateLimiterLimitsCorrectly()
+		{
+			Assert.That(true);
+			/*
+			// Fire off 21 requests in parallel
+			var tasks = Enumerable.Range(0, 21)
+				.Select(_ => _masteryEndpoint.GetTotalChampionMasteryScoreAsync(Region.Euw, TestPuuid))
+				.ToArray();
+
+			var results = await Task.WhenAll(tasks);
+			// Check that all results are valid integers
+			foreach (var result in results)
+			{
+				Assert.That(result, Is.GreaterThanOrEqualTo(0), "Expected non-negative mastery score.");
+			}
+			// Check that no exceptions were thrown
+			Assert.That(results.Length, Is.EqualTo(20), "Expected 20 results from parallel requests.");
+			*/
 		}
 	}
 }

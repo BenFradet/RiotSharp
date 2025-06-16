@@ -3,7 +3,10 @@ using RiotSharpNET8.Http.Requesters;
 
 namespace RiotSharpNET8.Http
 {
-    internal static class RiotRequesters
+	/// <summary>
+	/// This might be obsolete?
+	/// </summary>
+	internal static class RiotRequesters
     {
         //public static Requester? StaticApiRequester;
 		//public static Requester? StatusApiRequester; // obsolete
