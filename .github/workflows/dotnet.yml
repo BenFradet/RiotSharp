@@ -19,9 +19,12 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+          
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore src/RiotSharp.sln
+        
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build src/RiotSharp.sln --no-restore
+        
       - name: Test
-        run: dotnet test --no-build --verbosity normal --filter "TestCategory!=OnlyLocal"
+        run: dotnet test src/RiotSharp.sln --no-build --verbosity normal --filter "TestCategory!=OnlyLocal"
