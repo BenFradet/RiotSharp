@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotSharpNET8", "RiotSharpNET8\RiotSharpNET8.csproj", "{6467B15E-C7BC-48B6-8365-76BD70C29A0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharpNET8.Test", "RiotSharpNET8.Test\RiotSharpNET8.Test.csproj", "{EC8DE3B1-204C-4108-8BAF-D35B176C9B1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RiotSharp.Core", "RiotSharp.Core", "{B604F974-AE1E-41F3-94BD-AAA1FB15BCF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.Core", "RiotSharp.Core\RiotSharp.Core.csproj", "{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RiotSharp.LeagueOfLegends", "RiotSharp.LeagueOfLegends", "{13CD99E5-C763-4F77-9BED-C8F0482ED742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotSharp.LeagueOfLegends", "RiotSharp.LeagueOfLegends\RiotSharp.LeagueOfLegends.csproj", "{20431230-B8F0-45B7-A833-6EC3AA085909}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6467B15E-C7BC-48B6-8365-76BD70C29A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6467B15E-C7BC-48B6-8365-76BD70C29A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6467B15E-C7BC-48B6-8365-76BD70C29A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6467B15E-C7BC-48B6-8365-76BD70C29A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8DE3B1-204C-4108-8BAF-D35B176C9B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8DE3B1-204C-4108-8BAF-D35B176C9B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8DE3B1-204C-4108-8BAF-D35B176C9B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8DE3B1-204C-4108-8BAF-D35B176C9B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20431230-B8F0-45B7-A833-6EC3AA085909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20431230-B8F0-45B7-A833-6EC3AA085909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20431230-B8F0-45B7-A833-6EC3AA085909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20431230-B8F0-45B7-A833-6EC3AA085909}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86D1BF60-DE5C-4CA2-8F7E-DD1ECADF88B8} = {B604F974-AE1E-41F3-94BD-AAA1FB15BCF2}
+		{20431230-B8F0-45B7-A833-6EC3AA085909} = {13CD99E5-C763-4F77-9BED-C8F0482ED742}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {646D5714-227E-4776-8CC2-793467DB2788}
+	EndGlobalSection
+EndGlobal
