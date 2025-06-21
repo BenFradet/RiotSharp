@@ -1,6 +1,5 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
@@ -15,6 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -25,11 +25,21 @@ jobs:
           dotnet build src/RiotSharp.Core/RiotSharp.Core.csproj --configuration Release
           dotnet pack src/RiotSharp.Core/RiotSharp.Core.csproj --configuration Release --output ./local-nuget
 
-      - name: Add local NuGet source
-        run: dotnet nuget add source ./local-nuget --name local-temp
+      - name: Generate local NuGet config
+        run: |
+          cat <<EOF > nuget.config
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <clear />
+              <add key="local" value="./local-nuget" />
+              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+            </packageSources>
+          </configuration>
+          EOF
 
       - name: Restore dependencies
-        run: dotnet restore src/RiotSharp.sln
+        run: dotnet restore src/RiotSharp.sln --configfile nuget.config
 
       - name: Build
         run: dotnet build src/RiotSharp.sln --no-restore --configuration Release
