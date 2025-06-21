@@ -19,12 +19,20 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-          
+
+      - name: Pack RiotSharp.Core
+        run: |
+          dotnet build src/RiotSharp.Core/RiotSharp.Core.csproj --configuration Release
+          dotnet pack src/RiotSharp.Core/RiotSharp.Core.csproj --configuration Release --output ./local-nuget
+
+      - name: Add local NuGet source
+        run: dotnet nuget add source ./local-nuget --name local-temp
+
       - name: Restore dependencies
         run: dotnet restore src/RiotSharp.sln
-        
+
       - name: Build
-        run: dotnet build src/RiotSharp.sln --no-restore
-        
+        run: dotnet build src/RiotSharp.sln --no-restore --configuration Release
+
       - name: Test
         run: dotnet test src/RiotSharp.sln --no-build --verbosity normal --filter "TestCategory!=OnlyLocal"
