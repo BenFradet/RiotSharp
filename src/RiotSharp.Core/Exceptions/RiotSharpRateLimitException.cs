@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using RiotSharp.Core.Http.RateLimiting;
 
-namespace RiotSharpNET8
+namespace RiotSharp.Core.Exceptions
 {
     /// <summary>
     /// Gets thrown when a request fails because of a rate limit.

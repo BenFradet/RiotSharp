@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RiotSharp.Core.Misc.Converters
 {
-	class GameTypeConverter : JsonConverter<GameType>
+	public class GameTypeConverter : JsonConverter<GameType>
 	{
 		public override GameType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

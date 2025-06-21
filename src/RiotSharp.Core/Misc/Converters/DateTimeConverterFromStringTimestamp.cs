@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RiotSharp.Core.Misc.Converters
 {
-	class DateTimeConverterFromStringTimestamp : JsonConverter<DateTime>
+	public class DateTimeConverterFromStringTimestamp : JsonConverter<DateTime>
 	{
 		public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

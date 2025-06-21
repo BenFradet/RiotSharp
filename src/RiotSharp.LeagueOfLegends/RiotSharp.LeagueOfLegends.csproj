@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Misc\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RiotSharp.Core" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

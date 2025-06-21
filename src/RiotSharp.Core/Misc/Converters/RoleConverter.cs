@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RiotSharp.Core.Misc.Converters
 {
-	class RoleConverter : JsonConverter<Role>
+	public class RoleConverter : JsonConverter<Role>
 	{
 		public override Role Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

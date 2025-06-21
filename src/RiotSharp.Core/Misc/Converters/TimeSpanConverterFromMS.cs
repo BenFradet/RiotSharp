@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RiotSharp.Core.Misc.Converters
 {
-	class TimeSpanConverterFromMilliseconds : JsonConverter<TimeSpan>
+	public class TimeSpanConverterFromMilliseconds : JsonConverter<TimeSpan>
 	{
 		public override TimeSpan Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

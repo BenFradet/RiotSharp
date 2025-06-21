@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Text.Json;
+using RiotSharp.Core.Exceptions;
 using RiotSharp.Core.Http.Interfaces;
 using RiotSharp.Core.Http.RateLimiting;
 using RiotSharp.Core.Misc;
-using RiotSharpNET8;
 
 namespace RiotSharp.Core.Http.Requesters
 {
@@ -11,7 +11,6 @@ namespace RiotSharp.Core.Http.Requesters
 	/// A riotRequester that handles both application and method rate limiting.
 	/// </summary>
 	/// <seealso cref="RequesterBase" />
-	/// <seealso cref="IRiotRateLimitedRequester" />
 	public class RateLimitedRequester : RequesterBase, IRateLimitedRequester
     {
 		#region fields
@@ -198,7 +197,9 @@ namespace RiotSharp.Core.Http.Requesters
                 // No idea what StatusCode was returned, but it isn't supported
                 else
                 {
-	                throw new RiotSharpException("Unexpected failure", response.StatusCode);
+	                var unknownStatusCode = (int)response.StatusCode;
+	                var reason = response.ReasonPhrase;
+	                throw new RiotSharpException($"Unexpected failure: HTTP {(int)response.StatusCode} {reason}", response.StatusCode);
                 }
             }
             finally

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RiotSharp.Core.Misc.Converters
 {
-	class RegionConverter : JsonConverter<Region>
+	public class RegionConverter : JsonConverter<Region>
 	{
 		public override Region Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

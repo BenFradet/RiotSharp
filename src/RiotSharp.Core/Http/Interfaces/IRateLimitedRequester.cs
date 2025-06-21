@@ -1,5 +1,5 @@
-﻿using RiotSharp.Core.Misc;
-using RiotSharpNET8;
+﻿using RiotSharp.Core.Exceptions;
+using RiotSharp.Core.Misc;
 
 namespace RiotSharp.Core.Http.Interfaces
 {

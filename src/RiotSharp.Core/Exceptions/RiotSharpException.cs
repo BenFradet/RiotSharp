@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace RiotSharpNET8
+namespace RiotSharp.Core.Exceptions
 {
     /// <summary>
     /// RiotSharp exception.

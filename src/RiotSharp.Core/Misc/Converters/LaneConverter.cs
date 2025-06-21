@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RiotSharp.Core.Misc.Converters
 {
-	class LaneConverter : JsonConverter<Lane>
+	public class LaneConverter : JsonConverter<Lane>
 	{
 		public override Lane Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{

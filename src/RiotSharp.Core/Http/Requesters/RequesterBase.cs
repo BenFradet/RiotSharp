@@ -18,7 +18,7 @@ namespace RiotSharp.Core.Http.Requesters
 	        HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized,
 	        HttpStatusCode.Forbidden, HttpStatusCode.NotFound,
 	        HttpStatusCode.MethodNotAllowed, HttpStatusCode.UnsupportedMediaType,
-	        HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest,
+	        HttpStatusCode.InternalServerError, HttpStatusCode.BadGateway,
 	        HttpStatusCode.ServiceUnavailable, HttpStatusCode.GatewayTimeout
         ];
 
