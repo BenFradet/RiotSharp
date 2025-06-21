@@ -45,4 +45,4 @@ jobs:
         run: dotnet build src/RiotSharp.sln --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test src/RiotSharp.sln --no-build --verbosity normal --filter "TestCategory!=OnlyLocal"
+        run: dotnet test src/RiotSharp.sln --no-build --configuration Release --verbosity normal --filter "TestCategory!=OnlyLocal"
