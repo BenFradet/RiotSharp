@@ -2,18 +2,16 @@
 
 namespace RiotSharp.Core.Tests.CacheTests
 {
-    [TestFixture]
     public class InMemoryCacheTest
     {
-        private ICache _cache;
+        private readonly ICache _cache;
 
-        [SetUp]
-        public void SetUp()
+        public InMemoryCacheTest()
         {
             _cache = new InMemoryCache();
         }
 
-        [Test]
+        [Fact]
         public void Add_WithSlidingExpiration_ShouldAddToCache()
         {
             var key = "testKey";
@@ -23,10 +21,10 @@ namespace RiotSharp.Core.Tests.CacheTests
             _cache.Add(key, value, slidingExpiration);
 
             var cachedValue = _cache.Get<string, string>(key);
-            Assert.That(cachedValue, Is.EqualTo(value));
+            Assert.Equal(value, cachedValue);
         }
 
-        [Test]
+        [Fact]
         public void Add_WithAbsoluteExpiration_ShouldAddToCache()
         {
             var key = "testKey";
@@ -36,19 +34,19 @@ namespace RiotSharp.Core.Tests.CacheTests
             _cache.Add(key, value, absoluteExpiration);
 
             var cachedValue = _cache.Get<string, string>(key);
-            Assert.That(cachedValue, Is.EqualTo(value));
+            Assert.Equal(value, cachedValue);
         }
 
-        [Test]
+        [Fact]
         public void Get_WithNonExistentKey_ShouldReturnNull()
         {
             var key = "nonExistentKey";
 
             var cachedValue = _cache.Get<string, string>(key);
-            Assert.That(cachedValue, Is.Null);
+            Assert.Null(cachedValue);
         }
 
-        [Test]
+        [Fact]
         public void Remove_ShouldRemoveFromCache()
         {
             var key = "testKey";
@@ -59,10 +57,10 @@ namespace RiotSharp.Core.Tests.CacheTests
             _cache.Remove(key);
 
             var cachedValue = _cache.Get<string, string>(key);
-            Assert.That(cachedValue, Is.Null);
+            Assert.Null(cachedValue);
         }
 
-        [Test]
+        [Fact]
         public void Clear_ShouldRemoveAllItemsFromCache()
         {
             var key1 = "testKey1";
@@ -75,13 +73,11 @@ namespace RiotSharp.Core.Tests.CacheTests
             _cache.Add(key2, value2, slidingExpiration);
             _cache.Clear();
 
-            var cachedValue1 = _cache.Get<string, string>(key1);
-            var cachedValue2 = _cache.Get<string, string>(key2);
-            Assert.That(cachedValue1, Is.Null);
-            Assert.That(cachedValue2, Is.Null);
+            Assert.Null(_cache.Get<string, string>(key1));
+            Assert.Null(_cache.Get<string, string>(key2));
         }
 
-        [Test]
+        [Fact]
         public void Add_WithSlidingExpiration_ShouldExpire()
         {
             var key = "testKey";
@@ -89,13 +85,13 @@ namespace RiotSharp.Core.Tests.CacheTests
             var slidingExpiration = TimeSpan.FromSeconds(1);
 
             _cache.Add(key, value, slidingExpiration);
-            System.Threading.Thread.Sleep(2000);
+            Thread.Sleep(2000);
 
             var cachedValue = _cache.Get<string, string>(key);
-            Assert.That(cachedValue, Is.Null);
+            Assert.Null(cachedValue);
         }
 
-        [Test]
+        [Fact]
         public void Add_WithAbsoluteExpiration_ShouldExpire()
         {
             var key = "testKey";
@@ -103,13 +99,13 @@ namespace RiotSharp.Core.Tests.CacheTests
             var absoluteExpiration = DateTime.Now.AddSeconds(1);
 
             _cache.Add(key, value, absoluteExpiration);
-            System.Threading.Thread.Sleep(2000);
+            Thread.Sleep(2000);
 
             var cachedValue = _cache.Get<string, string>(key);
-            Assert.That(cachedValue, Is.Null);
+            Assert.Null(cachedValue);
         }
 
-        [Test]
+        [Fact]
         public void Count_ShouldReturnCorrectNumberOfItems()
         {
             var key1 = "testKey1";
@@ -122,7 +118,7 @@ namespace RiotSharp.Core.Tests.CacheTests
             _cache.Add(key2, value2, slidingExpiration);
 
             var count = _cache.Count();
-            Assert.That(count, Is.EqualTo(2));
+            Assert.Equal(2, count);
         }
     }
 }

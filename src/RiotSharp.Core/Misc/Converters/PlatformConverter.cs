@@ -8,7 +8,7 @@ namespace RiotSharp.Core.Misc.Converters
 
 		public override Platform Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-            return (Platform)Enum.Parse(typeof(Platform), reader.GetString());
+            return (Platform)Enum.Parse(typeof(Platform), reader.GetString() ?? string.Empty);
 		}
 
 		public override void Write(Utf8JsonWriter writer, Platform value, JsonSerializerOptions options)

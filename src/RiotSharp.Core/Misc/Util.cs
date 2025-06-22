@@ -1,6 +1,7 @@
-﻿namespace RiotSharp.Core.Misc
+﻿// Questionable if this is ever to be used.
+namespace RiotSharp.Core.Misc
 {
-    internal static class Util
+    public static class Util
     {
 
         public static DateTime BaseDateTime = new DateTime(1970, 1, 1);

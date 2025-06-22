@@ -62,7 +62,7 @@ namespace RiotSharp.Core.Http.RateLimiting
 		/// <param name="numberOfLeases"></param>
 		/// <returns><see cref="RateLimitLease"/> object with the IsAcquired set to either true or false indicating the result of the request.</returns>
 		/// TODO: Consider making the returnvalue nullable.
-		private async ValueTask<RateLimitLease> AsyncAcquireLeaseForRegion(Region region, int numberOfLeases)
+		private async ValueTask<RateLimitLease?> AsyncAcquireLeaseForRegion(Region region, int numberOfLeases)
 		{
 			var rateLimitersForRegion = _regionRateLimits[region];
 			RateLimitLease? lease = null;
@@ -81,7 +81,7 @@ namespace RiotSharp.Core.Http.RateLimiting
 						return lease;
 					}
 				}
-				catch (Exception e)
+				catch
 				{
 					lease?.Dispose(); // Dispose the lease if an exception is thrown
 					throw;
@@ -104,17 +104,24 @@ namespace RiotSharp.Core.Http.RateLimiting
 			{
 				using var result = await AsyncAcquireLeaseForRegion(region, numberOfLeases).ConfigureAwait(false);
 
-				if (result.IsAcquired)
+				if(result == null)
 				{
-					return new RequestLease(true, null, RateLimitType.App);
+					throw new NullReferenceException("The returned lease was null and a lease was not acquired.");
 				}
 				else
 				{
-					result.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter);
-					return new RequestLease(false, (TimeSpan)retryAfter, RateLimitType.App);
+					if (result is { IsAcquired: true })
+					{
+						return new RequestLease(true, null, RateLimitType.App);
+					}
+					else
+					{
+						result.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter);
+						return new RequestLease(false, retryAfter, RateLimitType.App);
+					}
 				}
 			}
-			catch (Exception e)
+			catch
 			{
 				throw;
 			}

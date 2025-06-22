@@ -14,6 +14,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
         private const string ChampionMasteryByPuuidUrl = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{0}/by-champion/{1}";
         private const string ChampionMasteriesByPuuidUrl = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{0}"; // encrypted PUUID
         private const string ChampionMasteryTopUrl = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{0}/top"; // with query parameters for top champion mastery
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ChampionMasteryEndpoint"/> class.
 		/// </summary>

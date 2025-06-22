@@ -20,13 +20,9 @@ namespace RiotSharp.Core.Caching
         /// <param name="hashKeys"></param>
         public FileCache(Uri directory, bool hashKeys = false)
         {
-            if (directory == null)
+            if (string.IsNullOrWhiteSpace(directory.OriginalString))
             {
-                throw new ArgumentNullException("Input Uri cannot be null.");
-            }
-            else if (string.IsNullOrWhiteSpace(directory.OriginalString))
-            {
-                throw new ArgumentNullException("Directory path cannot be null or empty.");
+	            throw new ArgumentNullException("Directory path cannot be null or empty.");
             }
 
             if (directory.IsAbsoluteUri)
@@ -78,42 +74,45 @@ namespace RiotSharp.Core.Caching
         /// <inheritdoc />
         public TV? Get<TK, TV>(TK key) where TV : class
         {
-            CacheData<TV> data;
+            CacheData<TV>? data;
             try
             {
-                var str = key.ToString();
+                var str = key?.ToString();
                 data = Load<CacheData<TV>>(str);
             }
             catch (FileNotFoundException)
             {
                 data = null;
             }
-            return IsExpired(data) ? null : data.Data;
+            return IsExpired(data) ? null : data?.Data;
         }
 
         /// <inheritdoc />
         public void Remove<TK>(TK key)
         {
-            var path = GetPath(key.ToString());
+            var path = GetPath(key?.ToString());
             File.Delete(path);
         }
 
-        private string GetPath(string key)
+        private string GetPath(string? key)
         {
             if (_hashKeys)
             {
                 using (SHA1 hasher = SHA1.Create())
                 {
-                    byte[] input = Encoding.UTF8.GetBytes(key);
-                    byte[] hashBytes = hasher.ComputeHash(input);
-                    key = BitConverter.ToString(hashBytes).Replace("-", "");
+	                if (key != null)
+	                {
+		                byte[] input = Encoding.UTF8.GetBytes(key);
+		                byte[] hashBytes = hasher.ComputeHash(input);
+		                key = BitConverter.ToString(hashBytes).Replace("-", "");
+	                }
                 }
             }
             var path = Path.Combine(_directory, key + ".json");
             return path;
         }
 
-        private T Load<T>(string path)
+        private T? Load<T>(string? path)
         {
             var filePath = GetPath(path);
             var readText = File.ReadAllText(filePath);
@@ -124,12 +123,12 @@ namespace RiotSharp.Core.Caching
         private void Store<TK, TV>(TK key, TV value, long ttlMins = 24 * 60 * 7 * 4) // A month
         {
             CacheData<TV> data = new CacheData<TV>(ttlMins, value);
-            var filePath = GetPath(key.ToString());
+            var filePath = GetPath(key?.ToString());
             var serialisedJson = JsonSerializer.Serialize(data);
             File.WriteAllText(filePath, serialisedJson);
         }
 
-        private bool IsExpired<T>(CacheData<T> data)
+        private bool IsExpired<T>(CacheData<T>? data)
         {
             return data == null || DateTime.Now > data.CreatedAt.AddMinutes(data.TtlMinutes);
         }
