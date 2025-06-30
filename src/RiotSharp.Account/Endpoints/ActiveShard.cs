@@ -27,8 +27,9 @@ namespace RiotSharp.Account.Endpoints
 
 		/// <summary>
 		/// Active shard for combination Puuid and Game.
+		/// Has to be a string for now because the API is inconsistent.
 		/// </summary>
 		[JsonPropertyName("activeShard")]
-		public Region ActiveShard { get; set; }
+		public string ActiveShard { get; set; }
 	}
 }

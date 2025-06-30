@@ -24,6 +24,7 @@ namespace RiotSharp.Account.Endpoints
 
 		/// <summary>
 		/// TagLine of account.
+		/// It is almost the same as a region, but can be in all caps.
 		/// </summary>
 		/// <remarks>
 		/// This field may be excluded if the account doesn't have a tagLine.

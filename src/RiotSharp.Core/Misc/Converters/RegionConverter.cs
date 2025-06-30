@@ -45,7 +45,7 @@ namespace RiotSharp.Core.Misc.Converters
 				case "latam":
 					return Region.Latam;
 				default:
-					return Region.Br;
+					return Region.NoRegion;
 			}
 		}
 
