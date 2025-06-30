@@ -11,3 +11,4 @@ project.lock.json
 
 /src/RiotSharp.LeagueOfLegends.Tests/appsettings.json
 /src/RiotSharpNET8.Test/appsettings.json
+/src/RiotSharp.Account.Tests/appsettings.json
