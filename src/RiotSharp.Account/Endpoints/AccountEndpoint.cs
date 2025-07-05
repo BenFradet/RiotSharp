@@ -58,7 +58,7 @@ namespace RiotSharp.Account.Endpoints
 		/// <inheritdoc/>
 		/// Uses the authorization header to get the account associated with the access token.
 		/// This is not yet supported, so it throws a NotImplementedException.
-		public async Task<Account?> GetAccountByAccessToken(Region region, string authorization)
+		public async Task<Account?> GetAccountByAccessTokenAsync(Region region, string authorization)
 		{
 			throw new NotImplementedException();
 		}

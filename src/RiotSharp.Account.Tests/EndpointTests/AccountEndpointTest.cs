@@ -43,7 +43,7 @@ namespace RiotSharp.Account.Tests.EndpointTests
 			Assert.Equal(TestPuuid, accountInfo.Puuid);
             Assert.Equal(TagLine, accountInfo.TagLine);
 			Assert.Equal(GameName, accountInfo.GameName);
-			_testOutputHelper.WriteLine($"Account Info: {accountInfo}");
+			_testOutputHelper.WriteLine($"RiotAccount Info: {accountInfo}");
 		}
 
         [Fact]
@@ -71,7 +71,7 @@ namespace RiotSharp.Account.Tests.EndpointTests
 	        Assert.Equal(TestPuuid, accountInfo.Puuid);
 	        Assert.Equal(TagLine, accountInfo.TagLine);
 	        Assert.Equal(GameName, accountInfo.GameName);
-	        _testOutputHelper.WriteLine($"Account Info: {accountInfo}");
+	        _testOutputHelper.WriteLine($"RiotAccount Info: {accountInfo}");
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace RiotSharp.Account.Tests.EndpointTests
 			Assert.Equal("europe", activeShard.ActiveShard);
 			// For real the inconsistencies in the API is crazy. In LoR its Europe, in Valorant its eu
 
-			_testOutputHelper.WriteLine($"Account Info: {activeShard}");
+			_testOutputHelper.WriteLine($"RiotAccount Info: {activeShard}");
 		}
 		
         [Fact]

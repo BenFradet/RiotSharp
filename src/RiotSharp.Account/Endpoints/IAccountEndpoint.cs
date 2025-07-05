@@ -50,6 +50,6 @@ namespace RiotSharp.Account.Endpoints
 		/// <param name="region">Region in which you wish to look for a account. (Legal values: Americas, Asia, Europe, Esports)</param>
 		/// <param name="authorization">Authorization token.</param>
 		/// <returns>The account that the token is bound to.</returns>
-		Task<Account?> GetAccountByAccessToken(Region region, string authorization);
+		Task<Account?> GetAccountByAccessTokenAsync(Region region, string authorization);
 	}
 }
