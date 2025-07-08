@@ -13,15 +13,20 @@ namespace RiotSharp.LeagueOfLegends
 	/// </summary>
 	public class LeagueOfLegends
 	{
-		public IChampionMasteryEndpoint ChampionMastery { get; }
+		public IChampionMasteryEndpoint? ChampionMastery { get; }
 
-		public LeagueOfLegends(IChampionMasteryEndpoint championMastery)
+		public IChampionRotationEndpoint? ChampionRotation { get; }
+
+		public LeagueOfLegends(IChampionMasteryEndpoint? championMastery, IChampionRotationEndpoint? championRotation)
 		{
-			ChampionMastery = championMastery ?? throw new ArgumentNullException(nameof(championMastery), "Champion Mastery endpoint cannot be null.");
+			ChampionMastery = championMastery;
+			ChampionRotation = championRotation;
 		}
+
 		public class Builder
 		{
-			private IChampionMasteryEndpoint _championMastery;
+			private IChampionMasteryEndpoint? _championMastery;
+			private IChampionRotationEndpoint? _championRotation;
 			// ... more endpoints
 
 			public Builder UseChampionMasteryEndpoint(IChampionMasteryEndpoint endpoint)
@@ -30,12 +35,18 @@ namespace RiotSharp.LeagueOfLegends
 				return this;
 			}
 
+			public Builder UseChampionRotationEndpoint(IChampionRotationEndpoint endpoint)
+			{
+				_championRotation = endpoint;
+				return this;
+			}
+
 			// ... more WithXEndpoint methods
 
 			public LeagueOfLegends Build()
 			{
 				// Optionally validate all required endpoints are set
-				return new LeagueOfLegends(_championMastery);
+				return new LeagueOfLegends(_championMastery, _championRotation);
 			}
 		}
 	}

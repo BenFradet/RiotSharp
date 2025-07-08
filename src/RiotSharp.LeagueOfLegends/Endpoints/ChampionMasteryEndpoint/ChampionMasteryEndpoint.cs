@@ -18,7 +18,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ChampionMasteryEndpoint"/> class.
 		/// </summary>
-		/// <param name="requester">The rate limited riotRequester.</param>
+		/// <param name="requester">The rate limited requester.</param>
 		public ChampionMasteryEndpoint(IRateLimitedRequester requester) : base(requester)
 		{}
 

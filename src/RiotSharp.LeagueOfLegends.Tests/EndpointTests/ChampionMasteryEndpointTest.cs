@@ -12,21 +12,23 @@ using Xunit.Abstractions;
 namespace RiotSharpNET8.Test.EndpointTests
 {
 	//[Collection("Sequential")]
-    public class ChampionMasteryEndpointTest : IClassFixture<TestContextFixture>
+	[Collection("Shared fixture")]
+    public class ChampionMasteryEndpointTest
     {
         private static readonly Region TestRegion = Region.Euw;
         private static readonly string TestPuuid = "mM9tG5eORZWYqLxYhKhtW5udauLToo7n90UiMPcUJwVbEZhIoqEhUwO24EhtElhscoMzau8rKV0kjw";
         private static readonly long TestChampionId = 2;
 
-        private IRateLimitedRequester _requester;
         private IChampionMasteryEndpoint _masteryEndpoint;
         private ITestOutputHelper _testOutputHelper;
 
-        public ChampionMasteryEndpointTest(TestContextFixture fixture, ITestOutputHelper testOutputHelper)
+        public ChampionMasteryEndpointTest(LeagueOfLegendsTextFixture fixture, ITestOutputHelper testOutputHelper)
         {
-            _requester = fixture.Requester;
 			_testOutputHelper = testOutputHelper;
-			_masteryEndpoint = new ChampionMasteryEndpoint(_requester);
+
+            _masteryEndpoint = fixture.LeagueOfLegends.ChampionMastery 
+                               ?? throw new ArgumentNullException(nameof(fixture), "Champion rotation endpoint cannot be null when running Tests!");
+
         }
 
         [Fact]
@@ -35,7 +37,7 @@ namespace RiotSharpNET8.Test.EndpointTests
         {
 	        try
 	        {
-		        var result = await _masteryEndpoint.GetChampionMasteryByPuuidAsync(TestRegion, TestPuuid, TestChampionId);
+		        ChampionMastery? result = await _masteryEndpoint.GetChampionMasteryByPuuidAsync(TestRegion, TestPuuid, TestChampionId);
 		        _testOutputHelper.WriteLine($"Result: {result}");
         
 		        Assert.NotNull(result);
