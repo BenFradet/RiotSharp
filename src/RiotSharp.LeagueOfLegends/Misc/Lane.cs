@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using RiotSharp.Core.Misc.Converters;
+using RiotSharp.LeagueOfLegends.Misc.Converters;
 
-namespace RiotSharp.Core.Misc
+namespace RiotSharp.LeagueOfLegends.Misc
 {
     /// <summary>
     /// Participant's lane (Match API).

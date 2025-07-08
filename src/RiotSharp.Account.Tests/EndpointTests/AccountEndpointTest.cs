@@ -1,8 +1,4 @@
 using System.Net;
-using Microsoft.Extensions.Configuration;
-using RiotSharp.Core.Http.Interfaces;
-using RiotSharp.Core.Http.RateLimiting;
-using RiotSharp.Core.Http.Requesters;
 using RiotSharp.Core.Misc;
 using Xunit.Abstractions;
 using RiotSharp.Account.Endpoints;
@@ -11,8 +7,8 @@ using RiotSharp.Core.Exceptions;
 
 namespace RiotSharp.Account.Tests.EndpointTests
 {
-	//[Collection("Sequential")]
-    public class AccountEndpointTest : IClassFixture<TestContextFixture>
+	[Collection("Shared fixture")]
+    public class AccountEndpointTest
     {
         private static readonly Region TestRegion = Region.Europe; // could be asia, americas or esports
 		private static readonly string TestPuuid = "mM9tG5eORZWYqLxYhKhtW5udauLToo7n90UiMPcUJwVbEZhIoqEhUwO24EhtElhscoMzau8rKV0kjw";
@@ -20,15 +16,13 @@ namespace RiotSharp.Account.Tests.EndpointTests
 		private static readonly string GameName = "AZZEBJ0RNEN";
 		private static readonly string TagLine = "EUW";
 
-        private IRateLimitedRequester _requester;
         private ITestOutputHelper _testOutputHelper;
         private IAccountEndpoint _accountEndpoint;
 
-        public AccountEndpointTest(TestContextFixture fixture, ITestOutputHelper testOutputHelper)
+        public AccountEndpointTest(AccountTextFixture fixture, ITestOutputHelper testOutputHelper)
         {
-            _requester = fixture.Requester;
 			_testOutputHelper = testOutputHelper;
-			_accountEndpoint = new AccountEndpoint(_requester);
+			_accountEndpoint = fixture.RiotAccount.Account ?? throw new ArgumentNullException(nameof(fixture), "Account endpoint cannot be null when running Tests!");
 		}
 
         [Fact]

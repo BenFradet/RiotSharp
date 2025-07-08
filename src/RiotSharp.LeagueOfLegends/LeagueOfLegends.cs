@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RiotSharp.LeagueOfLegends.Endpoints.EndpointInterfaces;
+using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 
 namespace RiotSharp.LeagueOfLegends
 {
@@ -17,16 +17,20 @@ namespace RiotSharp.LeagueOfLegends
 
 		public IChampionRotationEndpoint? ChampionRotation { get; }
 
-		public LeagueOfLegends(IChampionMasteryEndpoint? championMastery, IChampionRotationEndpoint? championRotation)
+		public IClashEndpoint? Clash { get; }
+
+		public LeagueOfLegends(IChampionMasteryEndpoint? championMastery, IChampionRotationEndpoint? championRotation, IClashEndpoint? clash)
 		{
 			ChampionMastery = championMastery;
 			ChampionRotation = championRotation;
+			Clash = clash;
 		}
 
 		public class Builder
 		{
 			private IChampionMasteryEndpoint? _championMastery;
 			private IChampionRotationEndpoint? _championRotation;
+			private IClashEndpoint? _clash;
 			// ... more endpoints
 
 			public Builder UseChampionMasteryEndpoint(IChampionMasteryEndpoint endpoint)
@@ -41,12 +45,18 @@ namespace RiotSharp.LeagueOfLegends
 				return this;
 			}
 
+			public Builder UseClashEndpoint(IClashEndpoint endpoint)
+			{
+				_clash = endpoint;
+				return this;
+			}
+
 			// ... more WithXEndpoint methods
 
 			public LeagueOfLegends Build()
 			{
 				// Optionally validate all required endpoints are set
-				return new LeagueOfLegends(_championMastery, _championRotation);
+				return new LeagueOfLegends(_championMastery, _championRotation, _clash);
 			}
 		}
 	}

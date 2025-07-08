@@ -1,7 +1,7 @@
 using RiotSharp.Core.Endpoints;
 using RiotSharp.Core.Http.Interfaces;
 using RiotSharp.Core.Misc;
-using RiotSharp.LeagueOfLegends.Endpoints.EndpointInterfaces;
+using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
 {
@@ -10,10 +10,11 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
     /// </summary>
     public class ChampionMasteryEndpoint : RateLimitedEndpointBase, IChampionMasteryEndpoint
     {
-        private const string ChampionMasteryTotalScoreByPuuidUrl = "/lol/champion-mastery/v4/scores/by-puuid/{0}";
-        private const string ChampionMasteryByPuuidUrl = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{0}/by-champion/{1}";
-        private const string ChampionMasteriesByPuuidUrl = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{0}"; // encrypted PUUID
-        private const string ChampionMasteryTopUrl = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{0}/top"; // with query parameters for top champion mastery
+        private const string ChampionMasteryRootUrl = "/lol/champion-mastery/v4";
+		private const string ChampionMasteryTotalScoreByPuuidUrl = ChampionMasteryRootUrl + "/scores/by-puuid/{0}";
+        private const string ChampionMasteryByPuuidUrl = ChampionMasteryRootUrl + "/champion-masteries/by-puuid/{0}/by-champion/{1}";
+        private const string ChampionMasteriesByPuuidUrl = ChampionMasteryRootUrl + "/champion-masteries/by-puuid/{0}"; // encrypted PUUID
+        private const string ChampionMasteryTopUrl = ChampionMasteryRootUrl + "/champion-masteries/by-puuid/{0}/top"; // with query parameters for top champion mastery
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ChampionMasteryEndpoint"/> class.

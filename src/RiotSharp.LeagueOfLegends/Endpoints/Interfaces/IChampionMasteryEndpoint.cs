@@ -1,7 +1,7 @@
 using RiotSharp.Core.Misc;
 using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.EndpointInterfaces
+namespace RiotSharp.LeagueOfLegends.Endpoints.Interfaces
 {
     /// <summary>
     /// The Champion Mastery Endpoint.

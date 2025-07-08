@@ -1,4 +1,4 @@
-﻿namespace RiotSharp.Core.Misc
+﻿namespace RiotSharp.LeagueOfLegends.Misc
 {
     /// <summary>
     /// Mode of the game (Game API).

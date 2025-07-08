@@ -1,5 +1,5 @@
 ﻿using RiotSharp.Core.Misc;
-using RiotSharp.LeagueOfLegends.Endpoints.EndpointInterfaces;
+using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 using RiotSharp.LeagueOfLegends.Tests.Shared;
 using Xunit.Abstractions;
 

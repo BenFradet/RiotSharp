@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace RiotSharp.Core.Misc.Converters
+namespace RiotSharp.LeagueOfLegends.Misc.Converters
 {
 	/// <summary>
 	/// Converts a <see cref="MapType"/> from and to JSON

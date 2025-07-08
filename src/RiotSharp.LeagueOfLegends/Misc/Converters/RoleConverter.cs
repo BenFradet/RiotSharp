@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace RiotSharp.Core.Misc.Converters
+namespace RiotSharp.LeagueOfLegends.Misc.Converters
 {
 	public class RoleConverter : JsonConverter<Role>
 	{

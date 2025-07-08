@@ -1,24 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
+using RiotSharp.Account.Endpoints;
 using RiotSharp.Core.Http.Interfaces;
 using RiotSharp.Core.Http.RateLimiting;
 using RiotSharp.Core.Http.Requesters;
-using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint;
-using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint;
-using RiotSharp.LeagueOfLegends.Endpoints.ClashEndpoint;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
-namespace RiotSharp.LeagueOfLegends.Tests.Shared
+namespace RiotSharp.Account.Tests.Shared
 {
 	[CollectionDefinition("Shared fixture")]
-	public class LeagueOfLegendsTextFixtureCollection : ICollectionFixture<LeagueOfLegendsTextFixture>
+	public class AccountFixtureCollection : ICollectionFixture<AccountTextFixture>
 	{
 		// This class has no code, and is never created. Its purpose is simply
 		// to be the place to apply [CollectionDefinition] and all the
 		// ICollectionFixture<> interfaces.
 	}
 
-	public class LeagueOfLegendsTextFixture : IDisposable
+	public class AccountTextFixture : IDisposable
 	{
 		private string? ApiKey { get; }
 		
@@ -30,9 +26,9 @@ namespace RiotSharp.LeagueOfLegends.Tests.Shared
 
 		private IRateLimitedRequester Requester { get; }
 
-		public LeagueOfLegends LeagueOfLegends { get; private set; }
+		public RiotAccount RiotAccount { get; private set; }
 
-		public LeagueOfLegendsTextFixture()
+		public AccountTextFixture()
 		{
 			var config = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
@@ -50,10 +46,8 @@ namespace RiotSharp.LeagueOfLegends.Tests.Shared
 				new ApplicationRateLimiter(RateLimits));
 
 			// Build the LeagueOfLegends instance with the required endpoints that need to be tested
-			LeagueOfLegends = new LeagueOfLegends.Builder()
-				.UseChampionMasteryEndpoint(new ChampionMasteryEndpoint(Requester))
-				.UseChampionRotationEndpoint(new ChampionRotationEndpoint(Requester))
-				.UseClashEndpoint(new ClashEndpoint(Requester))
+			RiotAccount = new RiotAccount.Builder()
+				.UseAccountEndpoint(new AccountEndpoint(Requester))
 				.Build();
 		}
 

@@ -4,7 +4,7 @@ using RiotSharp.Core.Http.RateLimiting;
 using RiotSharp.Core.Http.Requesters;
 using RiotSharp.Core.Misc;
 using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint;
-using RiotSharp.LeagueOfLegends.Endpoints.EndpointInterfaces;
+using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 using RiotSharp.LeagueOfLegends.Tests;
 using RiotSharp.LeagueOfLegends.Tests.Shared;
 using Xunit.Abstractions;

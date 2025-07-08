@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RiotSharp.Core.Misc;
 using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.EndpointInterfaces
+namespace RiotSharp.LeagueOfLegends.Endpoints.Interfaces
 {
 	/// <summary>
 	/// Interface for the Champion Rotation endpoint.
