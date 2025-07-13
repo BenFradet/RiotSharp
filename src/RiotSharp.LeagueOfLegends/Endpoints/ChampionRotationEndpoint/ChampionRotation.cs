@@ -24,6 +24,5 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint
         /// </summary>s
         [JsonPropertyName("freeChampionIds")]
         public List<int> FreeChampionIds { get; set; }
-
     }
 }

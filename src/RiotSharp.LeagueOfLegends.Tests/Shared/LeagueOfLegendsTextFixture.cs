@@ -5,6 +5,7 @@ using RiotSharp.Core.Http.Requesters;
 using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint;
 using RiotSharp.LeagueOfLegends.Endpoints.ClashEndpoint;
+using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
@@ -54,6 +55,7 @@ namespace RiotSharp.LeagueOfLegends.Tests.Shared
 				.UseChampionMasteryEndpoint(new ChampionMasteryEndpoint(Requester))
 				.UseChampionRotationEndpoint(new ChampionRotationEndpoint(Requester))
 				.UseClashEndpoint(new ClashEndpoint(Requester))
+				.UseLeagueEndpoint(new LeagueEndpoint(Requester))
 				.Build();
 		}
 
