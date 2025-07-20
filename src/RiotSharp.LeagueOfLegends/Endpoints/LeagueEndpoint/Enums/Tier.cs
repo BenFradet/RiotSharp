@@ -20,7 +20,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums
         Challenger,
 
         /// <summary>
-        /// Diamon tier.
+        /// Diamond tier.
         /// </summary>
         Diamond,
 
@@ -53,5 +53,26 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums
         /// Unranked.
         /// </summary>
         Unranked
+    }
+
+
+    public static class TierExtensions
+    {
+	    public static string ToApiString(this Tier tier)
+	    {
+		    return tier switch
+		    {
+			    Tier.Master => "MASTER",
+			    Tier.Challenger => "CHALLENGER",
+			    Tier.Diamond => "DIAMOND",
+			    Tier.Platinum => "PLATINUM",
+			    Tier.Gold => "GOLD",
+			    Tier.Silver => "SILVER",
+			    Tier.Bronze => "BRONZE",
+			    Tier.Iron => "IRON",
+			    Tier.Unranked => "UNRANKED",
+			    _ => throw new ArgumentOutOfRangeException(nameof(tier), tier, null)
+		    };
+	    }
     }
 }

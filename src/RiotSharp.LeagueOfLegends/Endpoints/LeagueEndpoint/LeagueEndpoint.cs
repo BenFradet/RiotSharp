@@ -62,7 +62,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint
 		/// <inheritdoc/>
 		public async Task<List<LeagueEntry>?> GetLeagueEntriesAsync(Region region, Division division, Tier tier, Queue rankedQueue, int pages = 1)
 		{
-			var requestUrl = string.Format(LeagueEntriesByQueueTierDivisionUrl, rankedQueue.ToApiString(), tier.ToString(), division.ToString());
+			var requestUrl = string.Format(LeagueEntriesByQueueTierDivisionUrl, rankedQueue.ToApiString(), tier.ToApiString(), division.ToString());
 			var queryParameters = new List<string> { $"page={pages}" };
 			return await GetContentAsync<List<LeagueEntry>>(region, requestUrl, queryParameters).ConfigureAwait(false);
 		}
