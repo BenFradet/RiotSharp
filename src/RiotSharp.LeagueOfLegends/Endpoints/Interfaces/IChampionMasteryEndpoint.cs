@@ -1,5 +1,5 @@
 using RiotSharp.Core.Misc;
-using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint;
+using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint.Models;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.Interfaces
 {

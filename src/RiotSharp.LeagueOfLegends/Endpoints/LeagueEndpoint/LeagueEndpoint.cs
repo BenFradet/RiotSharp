@@ -4,6 +4,7 @@ using RiotSharp.Core.Http.Interfaces;
 using RiotSharp.Core.Misc;
 using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums;
+using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint
 {

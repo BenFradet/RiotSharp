@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RiotSharp.Core.Misc;
-using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint;
+using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint.Models;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.Interfaces
 {

@@ -1,6 +1,6 @@
 using RiotSharp.Core.Misc;
-using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint;
 using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums;
+using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.Interfaces
 {

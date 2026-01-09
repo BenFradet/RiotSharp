@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint
+namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models
 {
     /// <summary>
     /// A League item

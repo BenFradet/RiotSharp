@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using RiotSharp.Core.Misc.Converters;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
+namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint.Models
 {
     /// <summary>
     /// Class representing a champion mastery for

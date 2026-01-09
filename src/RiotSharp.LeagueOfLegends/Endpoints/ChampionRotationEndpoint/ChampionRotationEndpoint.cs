@@ -3,6 +3,7 @@ using System.Text.Json;
 using RiotSharp.Core.Endpoints;
 using RiotSharp.Core.Http.Interfaces;
 using RiotSharp.Core.Misc;
+using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint.Models;
 using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint

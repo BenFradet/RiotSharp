@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint
+namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models
 {
     /// <summary>
     /// Team or summoner in a league (League API).

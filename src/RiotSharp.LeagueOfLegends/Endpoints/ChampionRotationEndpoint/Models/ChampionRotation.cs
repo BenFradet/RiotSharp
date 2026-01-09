@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint
+namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint.Models
 {
     /// <summary>
     /// Class representing Champions in the current rotation in the API.

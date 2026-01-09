@@ -1,6 +1,7 @@
 using RiotSharp.Core.Endpoints;
 using RiotSharp.Core.Http.Interfaces;
 using RiotSharp.Core.Misc;
+using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint.Models;
 using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
 
 namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint

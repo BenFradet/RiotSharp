@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
+namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint.Models
 {
 	public class NextSeasonMilestones
 	{
