@@ -9,7 +9,7 @@ using RiotSharp.LeagueOfLegends.Tests;
 using RiotSharp.LeagueOfLegends.Tests.Shared;
 using Xunit.Abstractions;
 
-namespace RiotSharpNET8.Test.EndpointTests
+namespace RiotSharp.LeagueOfLegends.Tests.EndpointTests
 {
 	//[Collection("Sequential")]
 	[Collection("Shared fixture")]
