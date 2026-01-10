@@ -1,8 +1,11 @@
-﻿namespace RiotSharp.Core.Misc
+﻿using System.Text.Json.Serialization;
+
+namespace RiotSharp.Core.Misc
 {
     /// <summary>
     /// Language for the data retrieved (Static API).
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))] // this converter works as the enum names are exactly as expected by the API
     public enum Language
     {
         /// <summary>
@@ -34,6 +37,11 @@
         /// Singaporean English.
         /// </summary>
         en_SG,
+
+        /// <summary>
+        /// Arabic (United Arab Emirates).
+        /// </summary>
+        ar_AE,
 
         /// <summary>
         /// Polish.

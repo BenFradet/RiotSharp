@@ -40,11 +40,11 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
             return await GetContentAsync<List<ChampionMastery>>(region, requestUrl).ConfigureAwait(false);
         }
 
-        public Task<List<ChampionMastery>?> GetTopChampionMasteriesByPuuidAsync(Region region, string puuid, int count = 3)
+        public async Task<List<ChampionMastery>?> GetTopChampionMasteriesByPuuidAsync(Region region, string puuid, int count = 3)
         {
 			var requestUrl = string.Format(ChampionMasteryTopUrl, puuid);
 			var queryParameters = new List<string> { $"count={count}" };
-			return GetContentAsync<List<ChampionMastery>>(region, requestUrl, queryParameters);
+			return await GetContentAsync<List<ChampionMastery>>(region, requestUrl, queryParameters).ConfigureAwait(false);
 		}
 
         /// <inheritdoc />

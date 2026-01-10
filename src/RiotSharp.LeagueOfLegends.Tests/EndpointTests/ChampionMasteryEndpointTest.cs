@@ -27,7 +27,7 @@ namespace RiotSharp.LeagueOfLegends.Tests.EndpointTests
 			_testOutputHelper = testOutputHelper;
 
             _masteryEndpoint = fixture.LeagueOfLegends.ChampionMastery 
-                               ?? throw new ArgumentNullException(nameof(fixture), "Champion rotation endpoint cannot be null when running Tests!");
+                               ?? throw new ArgumentNullException(nameof(fixture), "Champion mastery endpoint cannot be null when running Tests!");
 
         }
 

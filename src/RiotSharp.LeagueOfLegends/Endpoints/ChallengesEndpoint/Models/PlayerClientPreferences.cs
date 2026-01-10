@@ -13,8 +13,9 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
+        // The challenge ids are fucking ints/longs but docs say they are strings???
         [JsonPropertyName("challengeIds")]
-        public List<string> ChallengeIds { get; set; }
+        public List<int> ChallengeIds { get; set; }
 
         [JsonPropertyName("crestBorder")]
         public string CrestBorder { get; set; }

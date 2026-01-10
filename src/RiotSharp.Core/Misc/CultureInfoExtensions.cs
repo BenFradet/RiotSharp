@@ -31,6 +31,10 @@ namespace RiotSharp.Core.Misc
         {
             switch (cultureInfo.TwoLetterISOLanguageName)
             {
+                case "ar":
+                    return Language.ar_AE;
+                case "bg":
+                    return Language.bg_BG;
                 case "cs":
                     return Language.cs_CZ;
                 case "de":
@@ -55,6 +59,8 @@ namespace RiotSharp.Core.Misc
                     return Language.ko_KR;
                 case "ms":
                     return Language.ms_MY;
+                case "nl":
+                    return Language.nl_NL;
                 case "pl":
                     return Language.pl_PL;
                 case "pt":

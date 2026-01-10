@@ -6,6 +6,7 @@ using RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint;
 using RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint;
 using RiotSharp.LeagueOfLegends.Endpoints.ClashEndpoint;
 using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint;
+using RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
@@ -56,7 +57,8 @@ namespace RiotSharp.LeagueOfLegends.Tests.Shared
 				.UseChampionRotationEndpoint(new ChampionRotationEndpoint(Requester))
 				.UseClashEndpoint(new ClashEndpoint(Requester))
 				.UseLeagueEndpoint(new LeagueEndpoint(Requester))
-				.Build();
+				.UseChallengesEndpoint(new ChallengesEndpoint(Requester))
+                .Build();
 		}
 
 		public void Dispose()

@@ -15,6 +15,29 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Enums.Converter
         public override Level Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var value = reader.GetString();
+            return ParseLevel(value);
+        }
+
+        public override void Write(Utf8JsonWriter writer, Level value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToCustomString());
+        }
+
+        // Required for dictionary key deserialization
+        public override Level ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            var value = reader.GetString();
+            return ParseLevel(value);
+        }
+
+        // Required for dictionary key serialization
+        public override void WriteAsPropertyName(Utf8JsonWriter writer, Level value, JsonSerializerOptions options)
+        {
+            writer.WritePropertyName(value.ToCustomString());
+        }
+
+        private static Level ParseLevel(string? value)
+        {
             switch (value)
             {
                 case "IRON":
@@ -43,13 +66,8 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Enums.Converter
                     return Level.Lowest;
             }
 
-            // Again, cant return null here
+            // Default fallback
             return Level.None;
-        }
-
-        public override void Write(Utf8JsonWriter writer, Level value, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(value.ToCustomString());
         }
     }
 }

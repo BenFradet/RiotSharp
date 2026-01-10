@@ -21,20 +21,23 @@ namespace RiotSharp.LeagueOfLegends
 
 		public ILeagueEndpoint? League { get; }
 
-		/// <summary>
-		/// Private constructor to enforce the use of the Builder pattern.
-		/// </summary>
-		/// <param name="championMastery"></param>
-		/// <param name="championRotation"></param>
-		/// <param name="clash"></param>
-		/// <param name="league"></param>
-		private LeagueOfLegends(IChampionMasteryEndpoint? championMastery, IChampionRotationEndpoint? championRotation, IClashEndpoint? clash, ILeagueEndpoint? league)
+		public IChallengesEndpoint? Challenges { get; }
+
+        /// <summary>
+        /// Private constructor to enforce the use of the Builder pattern.
+        /// </summary>
+        /// <param name="championMastery"></param>
+        /// <param name="championRotation"></param>
+        /// <param name="clash"></param>
+        /// <param name="league"></param>
+        private LeagueOfLegends(IChampionMasteryEndpoint? championMastery, IChampionRotationEndpoint? championRotation, IClashEndpoint? clash, ILeagueEndpoint? league, IChallengesEndpoint? challenges)
 		{
 			ChampionMastery = championMastery;
 			ChampionRotation = championRotation;
 			Clash = clash;
 			League = league;
-		}
+			Challenges = challenges;
+        }
 
 		public class Builder
 		{
@@ -42,9 +45,10 @@ namespace RiotSharp.LeagueOfLegends
 			private IChampionRotationEndpoint? _championRotation;
 			private IClashEndpoint? _clash;
 			private ILeagueEndpoint? _league;
-			// ... more endpoints
+			private IChallengesEndpoint? _challenges;
+            // ... more endpoints
 
-			public Builder UseChampionMasteryEndpoint(IChampionMasteryEndpoint endpoint)
+            public Builder UseChampionMasteryEndpoint(IChampionMasteryEndpoint endpoint)
 			{
 				_championMastery = endpoint;
 				return this;
@@ -61,18 +65,23 @@ namespace RiotSharp.LeagueOfLegends
 				_clash = endpoint;
 				return this;
 			}
+
 			public Builder UseLeagueEndpoint(ILeagueEndpoint endpoint)
 			{
 				_league = endpoint;
 				return this;
 			}
+			public Builder UseChallengesEndpoint(IChallengesEndpoint endpoint)
+			{
+				_challenges = endpoint;
+				return this;
+            }
+            // ... more UseXEndpoint methods
 
-			// ... more UseXEndpoint methods
-
-			public LeagueOfLegends Build()
+            public LeagueOfLegends Build()
 			{
 				// Optionally validate all required endpoints are set
-				return new LeagueOfLegends(_championMastery, _championRotation, _clash, _league);
+				return new LeagueOfLegends(_championMastery, _championRotation, _clash, _league, _challenges);
 			}
 		}
 	}

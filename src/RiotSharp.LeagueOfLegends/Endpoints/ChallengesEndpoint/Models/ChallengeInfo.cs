@@ -22,11 +22,11 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
         public int PlayersInLevel { get; set; }
 
         /// <summary>
-        /// How long it took the player to achieve this challenge level. Probably in milliseconds since epoch. Test to verify and add converter.
+        /// When the player achieved this level for the challenge.
         /// </summary>
         [JsonPropertyName("achievedTime")]
-        //[JsonConverter(typeof(DateTimeConverterFromLong))]
-        public long AchievedTime { get; set; }
+        [JsonConverter(typeof(DateTimeConverterFromLong))]
+        public DateTime AchievedTime { get; set; }
 
         /// <summary>
         /// I don't know what this field is.
