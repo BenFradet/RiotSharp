@@ -42,10 +42,10 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
 
         public async Task<List<ChampionMastery>?> GetTopChampionMasteriesByPuuidAsync(Region region, string puuid, int count = 3)
         {
-			var requestUrl = string.Format(ChampionMasteryTopUrl, puuid);
-			var queryParameters = new List<string> { $"count={count}" };
-			return await GetContentAsync<List<ChampionMastery>>(region, requestUrl, queryParameters).ConfigureAwait(false);
-		}
+            var requestUrl = string.Format(ChampionMasteryTopUrl, puuid);
+            var queryParameters = new List<string> { $"count={count}" };
+            return await GetContentAsync<List<ChampionMastery>>(region, requestUrl, queryParameters).ConfigureAwait(false);
+        }
 
         /// <inheritdoc />
         public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, string puuid)

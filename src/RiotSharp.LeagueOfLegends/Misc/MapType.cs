@@ -5,7 +5,7 @@ namespace RiotSharp.LeagueOfLegends.Misc
 {
     /// <summary>
     /// Map of the game. Populate the mapId field
-    /// Last update: 24-08-2024
+    /// Last update: 16-01-2026
     /// </summary>
     [JsonConverter(typeof(MapTypeConverter))]
     public enum MapType
@@ -88,6 +88,12 @@ namespace RiotSharp.LeagueOfLegends.Misc
         /// <summary>
         /// Rings of Wrath, Arena map
         /// </summary>
-        RingsOfWrath = 30
+        RingsOfWrath = 30,
+
+        /// <summary>
+        /// Map for Brawl (`BRAWL`). Work together with your team to escort minions into the enemy portal. 
+        /// No roles, no lanes, no pressure. Just a five-on-five brawl.
+        /// </summary>
+        TheBandlewood = 35
     }
 }

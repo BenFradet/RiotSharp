@@ -18,29 +18,5 @@ namespace RiotSharp.LeagueOfLegends.Misc.Converters
 		{
             writer.WriteStringValue(value.ToString());
 		}
-		/*
-        /// <inheritdoc />
-        public override bool CanConvert(Type objectType)
-        {
-            return typeof(string).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
-        }
-
-        /// <inheritdoc />
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
-        {
-            var token = JToken.Load(reader);
-            if (token.Value<string>() == null) return null;
-            var str = token.Value<string>();
-            return (MapType)(Enum.Parse(typeof(MapType), str));
-        }
-
-        /// <inheritdoc />
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            string result = ((int)value).ToString();
-            serializer.Serialize(writer, result);
-        }
-        */
 	}
 }

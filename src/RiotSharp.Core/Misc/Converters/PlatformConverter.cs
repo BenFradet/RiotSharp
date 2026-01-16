@@ -101,6 +101,16 @@ namespace RiotSharp.Core.Misc.Converters
                     return Region.Kr;
                 case Platform.JP1:
                     return Region.Jp;
+                case Platform.PH2:
+                    return Region.Ph;
+                case Platform.SG2:
+                    return Region.Sg;
+                case Platform.TH2:
+                    return Region.Th;
+                case Platform.TW2:
+                    return Region.Tw;
+                case Platform.VN2:
+                    return Region.Vn;
                 case Platform.NoPlatform:
                     return Region.NoRegion;
                 default:

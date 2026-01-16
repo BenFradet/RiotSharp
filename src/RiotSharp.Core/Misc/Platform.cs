@@ -65,6 +65,31 @@ namespace RiotSharp.Core.Misc
         JP1,
 
         /// <summary>
+        /// Philippines.
+        /// </summary>
+        PH2,
+
+        /// <summary>
+        /// Singapore.
+        /// </summary>
+        SG2,
+
+        /// <summary>
+        /// Thailand.
+        /// </summary>
+        TH2,
+
+        /// <summary>
+        /// Taiwan.
+        /// </summary>
+        TW2,
+
+        /// <summary>
+        /// Vietnam.
+        /// </summary>
+        VN2,
+
+        /// <summary>
         /// No Platform (e.g. platformId of bot players).
         /// </summary>
         NoPlatform

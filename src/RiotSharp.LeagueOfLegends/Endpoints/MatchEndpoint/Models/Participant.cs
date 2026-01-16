@@ -1,0 +1,854 @@
+using RiotSharp.Core.Misc.Converters;
+using RiotSharp.LeagueOfLegends.Misc;
+using System.Text.Json.Serialization;
+
+namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
+{
+    /// <summary>
+    /// Class representing a participant in a match (Match API).
+    /// </summary>
+    public class Participant
+    {
+        /// <summary>
+        /// Yellow crossed swords ping count.
+        /// </summary>
+        [JsonPropertyName("allInPings")]
+        public int AllInPings { get; set; }
+
+        /// <summary>
+        /// Green flag ping count.
+        /// </summary>
+        [JsonPropertyName("assistMePings")]
+        public int AssistMePings { get; set; }
+
+        /// <summary>
+        /// Number of assists.
+        /// </summary>
+        [JsonPropertyName("assists")]
+        public int Assists { get; set; }
+
+        /// <summary>
+        /// Number of baron kills.
+        /// </summary>
+        [JsonPropertyName("baronKills")]
+        public int BaronKills { get; set; }
+
+        /// <summary>
+        /// Level of bounty on the champion.
+        /// </summary>
+        [JsonPropertyName("bountyLevel")]
+        public int BountyLevel { get; set; }
+
+        /// <summary>
+        /// Experience of the champion.
+        /// </summary>
+        [JsonPropertyName("champExperience")]
+        public int ChampExperience { get; set; }
+
+        /// <summary>
+        /// Champion level achieved.
+        /// </summary>
+        [JsonPropertyName("champLevel")]
+        public int ChampLevel { get; set; }
+
+        /// <summary>
+        /// Champion ID. Prior to patch 11.4 (Feb 18, 2021), this field returned invalid championIds.
+        /// </summary>
+        [JsonPropertyName("championId")]
+        public int ChampionId { get; set; }
+
+        /// <summary>
+        /// Champion name.
+        /// </summary>
+        [JsonPropertyName("championName")]
+        public string ChampionName { get; set; }
+
+        /// <summary>
+        /// Blue generic ping (ALT+click).
+        /// </summary>
+        [JsonPropertyName("commandPings")]
+        public int CommandPings { get; set; }
+
+        /// <summary>
+        /// Champion transformation (0 = None, 1 = Slayer, 2 = Assassin). Currently only for Kayn.
+        /// </summary>
+        [JsonPropertyName("championTransform")]
+        public int ChampionTransform { get; set; }
+
+        /// <summary>
+        /// Consumables purchased.
+        /// </summary>
+        [JsonPropertyName("consumablesPurchased")]
+        public int ConsumablesPurchased { get; set; }
+
+        /// <summary>
+        /// Challenges data.
+        /// </summary>
+        [JsonPropertyName("challenges")]
+        public Challenges Challenges { get; set; }
+
+        /// <summary>
+        /// Damage dealt to buildings.
+        /// </summary>
+        [JsonPropertyName("damageDealtToBuildings")]
+        public int DamageDealtToBuildings { get; set; }
+
+        /// <summary>
+        /// Damage dealt to objectives.
+        /// </summary>
+        [JsonPropertyName("damageDealtToObjectives")]
+        public int DamageDealtToObjectives { get; set; }
+
+        /// <summary>
+        /// Damage dealt to turrets.
+        /// </summary>
+        [JsonPropertyName("damageDealtToTurrets")]
+        public int DamageDealtToTurrets { get; set; }
+
+        /// <summary>
+        /// Damage self mitigated.
+        /// </summary>
+        [JsonPropertyName("damageSelfMitigated")]
+        public int DamageSelfMitigated { get; set; }
+
+        /// <summary>
+        /// Number of deaths.
+        /// </summary>
+        [JsonPropertyName("deaths")]
+        public int Deaths { get; set; }
+
+        /// <summary>
+        /// Number of detector wards placed.
+        /// </summary>
+        [JsonPropertyName("detectorWardsPlaced")]
+        public int DetectorWardsPlaced { get; set; }
+
+        /// <summary>
+        /// Number of double kills.
+        /// </summary>
+        [JsonPropertyName("doubleKills")]
+        public int DoubleKills { get; set; }
+
+        /// <summary>
+        /// Number of dragon kills.
+        /// </summary>
+        [JsonPropertyName("dragonKills")]
+        public int DragonKills { get; set; }
+
+        /// <summary>
+        /// Whether the participant is eligible for progression.
+        /// </summary>
+        [JsonPropertyName("eligibleForProgression")]
+        public bool EligibleForProgression { get; set; }
+
+        /// <summary>
+        /// Yellow questionmark ping count.
+        /// </summary>
+        [JsonPropertyName("enemyMissingPings")]
+        public int EnemyMissingPings { get; set; }
+
+        /// <summary>
+        /// Red eyeball ping count.
+        /// </summary>
+        [JsonPropertyName("enemyVisionPings")]
+        public int EnemyVisionPings { get; set; }
+
+        /// <summary>
+        /// Flag indicating if participant got an assist on first blood.
+        /// </summary>
+        [JsonPropertyName("firstBloodAssist")]
+        public bool FirstBloodAssist { get; set; }
+
+        /// <summary>
+        /// Flag indicating if participant got first blood.
+        /// </summary>
+        [JsonPropertyName("firstBloodKill")]
+        public bool FirstBloodKill { get; set; }
+
+        /// <summary>
+        /// Flag indicating if participant got an assist on first tower.
+        /// </summary>
+        [JsonPropertyName("firstTowerAssist")]
+        public bool FirstTowerAssist { get; set; }
+
+        /// <summary>
+        /// Flag indicating if participant got first tower.
+        /// </summary>
+        [JsonPropertyName("firstTowerKill")]
+        public bool FirstTowerKill { get; set; }
+
+        /// <summary>
+        /// Flag indicating if game ended in early surrender.
+        /// </summary>
+        [JsonPropertyName("gameEndedInEarlySurrender")]
+        public bool GameEndedInEarlySurrender { get; set; }
+
+        /// <summary>
+        /// Flag indicating if game ended in surrender.
+        /// </summary>
+        [JsonPropertyName("gameEndedInSurrender")]
+        public bool GameEndedInSurrender { get; set; }
+
+        /// <summary>
+        /// Hold ping count.
+        /// </summary>
+        [JsonPropertyName("holdPings")]
+        public int HoldPings { get; set; }
+
+        /// <summary>
+        /// Yellow circle with horizontal line ping count.
+        /// </summary>
+        [JsonPropertyName("getBackPings")]
+        public int GetBackPings { get; set; }
+
+        /// <summary>
+        /// Gold earned.
+        /// </summary>
+        [JsonPropertyName("goldEarned")]
+        public int GoldEarned { get; set; }
+
+        /// <summary>
+        /// Gold spent.
+        /// </summary>
+        [JsonPropertyName("goldSpent")]
+        public int GoldSpent { get; set; }
+
+        /// <summary>
+        /// Individual position of the player. Support marked as "UTILITY", ADC as "BOTTOM".
+        /// </summary>
+        /// <remarks> Should be an enum. But documentation is lacking so cannot be done.</remarks>
+        [JsonPropertyName("individualPosition")]
+        public string IndividualPosition { get; set; }
+
+        /// <summary>
+        /// Number of inhibitor kills.
+        /// </summary>
+        [JsonPropertyName("inhibitorKills")]
+        public int InhibitorKills { get; set; }
+
+        /// <summary>
+        /// Number of inhibitor takedowns.
+        /// </summary>
+        [JsonPropertyName("inhibitorTakedowns")]
+        public int InhibitorTakedowns { get; set; }
+
+        /// <summary>
+        /// Number of inhibitors lost.
+        /// </summary>
+        [JsonPropertyName("inhibitorsLost")]
+        public int InhibitorsLost { get; set; }
+
+        /// <summary>
+        /// First item ID.
+        /// </summary>
+        [JsonPropertyName("item0")]
+        public int Item0 { get; set; }
+
+        /// <summary>
+        /// Second item ID.
+        /// </summary>
+        [JsonPropertyName("item1")]
+        public int Item1 { get; set; }
+
+        /// <summary>
+        /// Third item ID.
+        /// </summary>
+        [JsonPropertyName("item2")]
+        public int Item2 { get; set; }
+
+        /// <summary>
+        /// Fourth item ID.
+        /// </summary>
+        [JsonPropertyName("item3")]
+        public int Item3 { get; set; }
+
+        /// <summary>
+        /// Fifth item ID.
+        /// </summary>
+        [JsonPropertyName("item4")]
+        public int Item4 { get; set; }
+
+        /// <summary>
+        /// Sixth item ID.
+        /// </summary>
+        [JsonPropertyName("item5")]
+        public int Item5 { get; set; }
+
+        /// <summary>
+        /// Seventh item ID (trinket).
+        /// </summary>
+        [JsonPropertyName("item6")]
+        public int Item6 { get; set; }
+
+        /// <summary>
+        /// Items purchased.
+        /// </summary>
+        [JsonPropertyName("itemsPurchased")]
+        public int ItemsPurchased { get; set; }
+
+        /// <summary>
+        /// Number of killing sprees.
+        /// </summary>
+        [JsonPropertyName("killingSprees")]
+        public int KillingSprees { get; set; }
+
+        /// <summary>
+        /// Number of kills.
+        /// </summary>
+        [JsonPropertyName("kills")]
+        public int Kills { get; set; }
+
+        /// <summary>
+        /// Lane assignment.
+        /// </summary>
+        [JsonPropertyName("lane")]
+        public Lane Lane { get; set; }
+
+        /// <summary>
+        /// Largest critical strike.
+        /// </summary>
+        [JsonPropertyName("largestCriticalStrike")]
+        public int LargestCriticalStrike { get; set; }
+
+        /// <summary>
+        /// Largest killing spree.
+        /// </summary>
+        [JsonPropertyName("largestKillingSpree")]
+        public int LargestKillingSpree { get; set; }
+
+        /// <summary>
+        /// Largest multi kill.
+        /// </summary>
+        [JsonPropertyName("largestMultiKill")]
+        public int LargestMultiKill { get; set; }
+
+        /// <summary>
+        /// Longest time spent living (in seconds).
+        /// </summary>
+        [JsonPropertyName("longestTimeSpentLiving")]
+        public int LongestTimeSpentLiving { get; set; }
+
+        /// <summary>
+        /// Magic damage dealt.
+        /// </summary>
+        [JsonPropertyName("magicDamageDealt")]
+        public int MagicDamageDealt { get; set; }
+
+        /// <summary>
+        /// Magic damage dealt to champions.
+        /// </summary>
+        [JsonPropertyName("magicDamageDealtToChampions")]
+        public int MagicDamageDealtToChampions { get; set; }
+
+        /// <summary>
+        /// Magic damage taken.
+        /// </summary>
+        [JsonPropertyName("magicDamageTaken")]
+        public int MagicDamageTaken { get; set; }
+
+        /// <summary>
+        /// Missions data.
+        /// </summary>
+        [JsonPropertyName("missions")]
+        public Missions Missions { get; set; }
+
+        /// <summary>
+        /// Neutral minions killed (jungle monsters).
+        /// </summary>
+        [JsonPropertyName("neutralMinionsKilled")]
+        public int NeutralMinionsKilled { get; set; }
+
+        /// <summary>
+        /// Green ward ping count.
+        /// </summary>
+        [JsonPropertyName("needVisionPings")]
+        public int NeedVisionPings { get; set; }
+
+        /// <summary>
+        /// Number of nexus kills.
+        /// </summary>
+        [JsonPropertyName("nexusKills")]
+        public int NexusKills { get; set; }
+
+        /// <summary>
+        /// Number of nexus takedowns.
+        /// </summary>
+        [JsonPropertyName("nexusTakedowns")]
+        public int NexusTakedowns { get; set; }
+
+        /// <summary>
+        /// Number of nexuses lost.
+        /// </summary>
+        [JsonPropertyName("nexusLost")]
+        public int NexusLost { get; set; }
+
+        /// <summary>
+        /// Number of objectives stolen.
+        /// </summary>
+        [JsonPropertyName("objectivesStolen")]
+        public int ObjectivesStolen { get; set; }
+
+        /// <summary>
+        /// Number of objective stolen assists.
+        /// </summary>
+        [JsonPropertyName("objectivesStolenAssists")]
+        public int ObjectivesStolenAssists { get; set; }
+
+        /// <summary>
+        /// Blue arrow pointing at ground ping count.
+        /// </summary>
+        [JsonPropertyName("onMyWayPings")]
+        public int OnMyWayPings { get; set; }
+
+        /// <summary>
+        /// Participant ID.
+        /// </summary>
+        [JsonPropertyName("participantId")]
+        public int ParticipantId { get; set; }
+
+        /// <summary>
+        /// Player score 0.
+        /// </summary>
+        [JsonPropertyName("playerScore0")]
+        public int PlayerScore0 { get; set; }
+
+        /// <summary>
+        /// Player score 1.
+        /// </summary>
+        [JsonPropertyName("playerScore1")]
+        public int PlayerScore1 { get; set; }
+
+        /// <summary>
+        /// Player score 2.
+        /// </summary>
+        [JsonPropertyName("playerScore2")]
+        public int PlayerScore2 { get; set; }
+
+        /// <summary>
+        /// Player score 3.
+        /// </summary>
+        [JsonPropertyName("playerScore3")]
+        public int PlayerScore3 { get; set; }
+
+        /// <summary>
+        /// Player score 4.
+        /// </summary>
+        [JsonPropertyName("playerScore4")]
+        public int PlayerScore4 { get; set; }
+
+        /// <summary>
+        /// Player score 5.
+        /// </summary>
+        [JsonPropertyName("playerScore5")]
+        public int PlayerScore5 { get; set; }
+
+        /// <summary>
+        /// Player score 6.
+        /// </summary>
+        [JsonPropertyName("playerScore6")]
+        public int PlayerScore6 { get; set; }
+
+        /// <summary>
+        /// Player score 7.
+        /// </summary>
+        [JsonPropertyName("playerScore7")]
+        public int PlayerScore7 { get; set; }
+
+        /// <summary>
+        /// Player score 8.
+        /// </summary>
+        [JsonPropertyName("playerScore8")]
+        public int PlayerScore8 { get; set; }
+
+        /// <summary>
+        /// Player score 9.
+        /// </summary>
+        [JsonPropertyName("playerScore9")]
+        public int PlayerScore9 { get; set; }
+
+        /// <summary>
+        /// Player score 10.
+        /// </summary>
+        [JsonPropertyName("playerScore10")]
+        public int PlayerScore10 { get; set; }
+
+        /// <summary>
+        /// Player score 11.
+        /// </summary>
+        [JsonPropertyName("playerScore11")]
+        public int PlayerScore11 { get; set; }
+
+        /// <summary>
+        /// Number of penta kills.
+        /// </summary>
+        [JsonPropertyName("pentaKills")]
+        public int PentaKills { get; set; }
+
+        /// <summary>
+        /// Perks/Runes data.
+        /// </summary>
+        [JsonPropertyName("perks")]
+        public Perks Perks { get; set; }
+
+        /// <summary>
+        /// Physical damage dealt.
+        /// </summary>
+        [JsonPropertyName("physicalDamageDealt")]
+        public int PhysicalDamageDealt { get; set; }
+
+        /// <summary>
+        /// Physical damage dealt to champions.
+        /// </summary>
+        [JsonPropertyName("physicalDamageDealtToChampions")]
+        public int PhysicalDamageDealtToChampions { get; set; }
+
+        /// <summary>
+        /// Physical damage taken.
+        /// </summary>
+        [JsonPropertyName("physicalDamageTaken")]
+        public int PhysicalDamageTaken { get; set; }
+
+        /// <summary>
+        /// Placement in Arena mode.
+        /// </summary>
+        [JsonPropertyName("placement")]
+        public int Placement { get; set; }
+
+        /// <summary>
+        /// Player augment 1 (Arena mode).
+        /// </summary>
+        [JsonPropertyName("playerAugment1")]
+        public int PlayerAugment1 { get; set; }
+
+        /// <summary>
+        /// Player augment 2 (Arena mode).
+        /// </summary>
+        [JsonPropertyName("playerAugment2")]
+        public int PlayerAugment2 { get; set; }
+
+        /// <summary>
+        /// Player augment 3 (Arena mode).
+        /// </summary>
+        [JsonPropertyName("playerAugment3")]
+        public int PlayerAugment3 { get; set; }
+
+        /// <summary>
+        /// Player augment 4 (Arena mode).
+        /// </summary>
+        [JsonPropertyName("playerAugment4")]
+        public int PlayerAugment4 { get; set; }
+
+        /// <summary>
+        /// Player subteam ID (Arena mode).
+        /// </summary>
+        [JsonPropertyName("playerSubteamId")]
+        public int PlayerSubteamId { get; set; }
+
+        /// <summary>
+        /// Green minion ping count.
+        /// </summary>
+        [JsonPropertyName("pushPings")]
+        public int PushPings { get; set; }
+
+        /// <summary>
+        /// Profile icon ID.
+        /// </summary>
+        [JsonPropertyName("profileIcon")]
+        public int ProfileIcon { get; set; }
+
+        /// <summary>
+        /// Player UUID.
+        /// </summary>
+        [JsonPropertyName("puuid")]
+        public string Puuid { get; set; }
+
+        /// <summary>
+        /// Number of quadra kills.
+        /// </summary>
+        [JsonPropertyName("quadraKills")]
+        public int QuadraKills { get; set; }
+
+        /// <summary>
+        /// Riot ID game name.
+        /// </summary>
+        [JsonPropertyName("riotIdGameName")]
+        public string RiotIdGameName { get; set; }
+
+        /// <summary>
+        /// Riot ID tagline.
+        /// </summary>
+        [JsonPropertyName("riotIdTagline")]
+        public string RiotIdTagline { get; set; }
+
+        /// <summary>
+        /// Role.
+        /// </summary>
+        [JsonPropertyName("role")]
+        public Role Role { get; set; }
+
+        /// <summary>
+        /// Number of sight wards purchased.
+        /// </summary>
+        [JsonPropertyName("sightWardsBoughtInGame")]
+        public int SightWardsBoughtInGame { get; set; }
+
+        /// <summary>
+        /// Spell 1 casts (Q).
+        /// </summary>
+        [JsonPropertyName("spell1Casts")]
+        public int Spell1Casts { get; set; }
+
+        /// <summary>
+        /// Spell 2 casts (W).
+        /// </summary>
+        [JsonPropertyName("spell2Casts")]
+        public int Spell2Casts { get; set; }
+
+        /// <summary>
+        /// Spell 3 casts (E).
+        /// </summary>
+        [JsonPropertyName("spell3Casts")]
+        public int Spell3Casts { get; set; }
+
+        /// <summary>
+        /// Spell 4 casts (R).
+        /// </summary>
+        [JsonPropertyName("spell4Casts")]
+        public int Spell4Casts { get; set; }
+
+        /// <summary>
+        /// Subteam placement (Arena mode).
+        /// </summary>
+        [JsonPropertyName("subteamPlacement")]
+        public int SubteamPlacement { get; set; }
+
+        /// <summary>
+        /// Summoner spell 1 casts.
+        /// </summary>
+        [JsonPropertyName("summoner1Casts")]
+        public int Summoner1Casts { get; set; }
+
+        /// <summary>
+        /// Summoner spell 1 ID.
+        /// </summary>
+        [JsonPropertyName("summoner1Id")]
+        public int Summoner1Id { get; set; }
+
+        /// <summary>
+        /// Summoner spell 2 casts.
+        /// </summary>
+        [JsonPropertyName("summoner2Casts")]
+        public int Summoner2Casts { get; set; }
+
+        /// <summary>
+        /// Summoner spell 2 ID.
+        /// </summary>
+        [JsonPropertyName("summoner2Id")]
+        public int Summoner2Id { get; set; }
+
+        /// <summary>
+        /// Encrypted summoner ID.
+        /// </summary>
+        [JsonPropertyName("summonerId")]
+        public string SummonerId { get; set; }
+
+        /// <summary>
+        /// Summoner level.
+        /// </summary>
+        [JsonPropertyName("summonerLevel")]
+        public int SummonerLevel { get; set; }
+
+        /// <summary>
+        /// Summoner name.
+        /// </summary>
+        [JsonPropertyName("summonerName")]
+        public string SummonerName { get; set; }
+
+        /// <summary>
+        /// Flag whether team surrendered early.
+        /// </summary>
+        [JsonPropertyName("teamEarlySurrendered")]
+        public bool TeamEarlySurrendered { get; set; }
+
+        /// <summary>
+        /// Team ID (100 = Blue, 200 = Red).
+        /// </summary>
+        [JsonPropertyName("teamId")]
+        public int TeamId { get; set; }
+
+        /// <summary>
+        /// Team position (TOP, JUNGLE, MIDDLE, BOTTOM, UTILITY).
+        /// </summary>
+        /// <remarks> Should be an enum. But documentation is lacking so cannot be done. Also can be empty string in ARAM!</remarks>
+        [JsonPropertyName("teamPosition")]
+        public string TeamPosition { get; set; }
+
+        /// <summary>
+        /// Time crowd controlling others (in seconds).
+        /// </summary>
+        [JsonPropertyName("timeCCingOthers")]
+        public int TimeCCingOthers { get; set; }
+
+        /// <summary>
+        /// Time played (in seconds).
+        /// </summary>
+        [JsonPropertyName("timePlayed")]
+        public int TimePlayed { get; set; }
+
+        /// <summary>
+        /// Total ally jungle minions killed.
+        /// </summary>
+        [JsonPropertyName("totalAllyJungleMinionsKilled")]
+        public int TotalAllyJungleMinionsKilled { get; set; }
+
+        /// <summary>
+        /// Total damage dealt.
+        /// </summary>
+        [JsonPropertyName("totalDamageDealt")]
+        public int TotalDamageDealt { get; set; }
+
+        /// <summary>
+        /// Total damage dealt to champions.
+        /// </summary>
+        [JsonPropertyName("totalDamageDealtToChampions")]
+        public int TotalDamageDealtToChampions { get; set; }
+
+        /// <summary>
+        /// Total damage shielded on teammates.
+        /// </summary>
+        [JsonPropertyName("totalDamageShieldedOnTeammates")]
+        public int TotalDamageShieldedOnTeammates { get; set; }
+
+        /// <summary>
+        /// Total damage taken.
+        /// </summary>
+        [JsonPropertyName("totalDamageTaken")]
+        public int TotalDamageTaken { get; set; }
+
+        /// <summary>
+        /// Total enemy jungle minions killed.
+        /// </summary>
+        [JsonPropertyName("totalEnemyJungleMinionsKilled")]
+        public int TotalEnemyJungleMinionsKilled { get; set; }
+
+        /// <summary>
+        /// Total heal amount.
+        /// </summary>
+        [JsonPropertyName("totalHeal")]
+        public int TotalHeal { get; set; }
+
+        /// <summary>
+        /// Total heals on teammates.
+        /// </summary>
+        [JsonPropertyName("totalHealsOnTeammates")]
+        public int TotalHealsOnTeammates { get; set; }
+
+        /// <summary>
+        /// Total minions killed.
+        /// </summary>
+        [JsonPropertyName("totalMinionsKilled")]
+        public int TotalMinionsKilled { get; set; }
+
+        /// <summary>
+        /// Total time crowd control dealt (in seconds).
+        /// </summary>
+        [JsonPropertyName("totalTimeCCDealt")]
+        public int TotalTimeCCDealt { get; set; }
+
+        /// <summary>
+        /// Total time spent dead (in seconds).
+        /// </summary>
+        [JsonPropertyName("totalTimeSpentDead")]
+        public int TotalTimeSpentDead { get; set; }
+
+        /// <summary>
+        /// Total units healed.
+        /// </summary>
+        [JsonPropertyName("totalUnitsHealed")]
+        public int TotalUnitsHealed { get; set; }
+
+        /// <summary>
+        /// Number of triple kills.
+        /// </summary>
+        [JsonPropertyName("tripleKills")]
+        public int TripleKills { get; set; }
+
+        /// <summary>
+        /// True damage dealt.
+        /// </summary>
+        [JsonPropertyName("trueDamageDealt")]
+        public int TrueDamageDealt { get; set; }
+
+        /// <summary>
+        /// True damage dealt to champions.
+        /// </summary>
+        [JsonPropertyName("trueDamageDealtToChampions")]
+        public int TrueDamageDealtToChampions { get; set; }
+
+        /// <summary>
+        /// True damage taken.
+        /// </summary>
+        [JsonPropertyName("trueDamageTaken")]
+        public int TrueDamageTaken { get; set; }
+
+        /// <summary>
+        /// Number of turret kills.
+        /// </summary>
+        [JsonPropertyName("turretKills")]
+        public int TurretKills { get; set; }
+
+        /// <summary>
+        /// Number of turret takedowns.
+        /// </summary>
+        [JsonPropertyName("turretTakedowns")]
+        public int TurretTakedowns { get; set; }
+
+        /// <summary>
+        /// Number of turrets lost.
+        /// </summary>
+        [JsonPropertyName("turretsLost")]
+        public int TurretsLost { get; set; }
+
+        /// <summary>
+        /// Number of unreal kills.
+        /// </summary>
+        [JsonPropertyName("unrealKills")]
+        public int UnrealKills { get; set; }
+
+        /// <summary>
+        /// Vision score.
+        /// </summary>
+        [JsonPropertyName("visionScore")]
+        public int VisionScore { get; set; }
+
+        /// <summary>
+        /// Vision cleared ping count.
+        /// </summary>
+        [JsonPropertyName("visionClearedPings")]
+        public int VisionClearedPings { get; set; }
+
+        /// <summary>
+        /// Number of vision wards (control wards) purchased.
+        /// </summary>
+        [JsonPropertyName("visionWardsBoughtInGame")]
+        public int VisionWardsBoughtInGame { get; set; }
+
+        /// <summary>
+        /// Number of wards killed.
+        /// </summary>
+        [JsonPropertyName("wardsKilled")]
+        public int WardsKilled { get; set; }
+
+        /// <summary>
+        /// Number of wards placed.
+        /// </summary>
+        [JsonPropertyName("wardsPlaced")]
+        public int WardsPlaced { get; set; }
+
+        /// <summary>
+        /// Flag indicating whether the participant won.
+        /// </summary>
+        [JsonPropertyName("win")]
+        public bool Win { get; set; }
+    }
+}

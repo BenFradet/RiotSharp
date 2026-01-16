@@ -1,109 +1,155 @@
-﻿namespace RiotSharp.LeagueOfLegends.Misc
+﻿using System.Text.Json.Serialization;
+using RiotSharp.LeagueOfLegends.Misc.Converters;
+
+namespace RiotSharp.LeagueOfLegends.Misc
 {
     /// <summary>
     /// Mode of the game (Game API).
     /// </summary>
-    public static class GameMode
+    [JsonConverter(typeof(GameModeConverter))]
+    public enum GameMode
     {
         /// <summary>
         /// Classic Summoner's Rift and Twisted Treeline games.
         /// </summary>
-        public const string Classic = "CLASSIC";
+        Classic,
 
         /// <summary>
         /// Dominion/Crystal Scar games.
         /// </summary>
-        public const string Dominion = "ODIN";
+        Odin,
 
         /// <summary>
         /// ARAM games.
         /// </summary>
-        public const string Aram = "ARAM";
+        Aram,
 
         /// <summary>
         /// Tutorial games.
         /// </summary>
-        public const string Tutorial = "TUTORIAL";
+        Tutorial,
 
         /// <summary>
         /// URF games.
         /// </summary>
-        public const string Urf = "URF";
+        Urf,
         
         /// <summary>
         /// Doom Bot games.
         /// </summary>
-        public const string DoomBots = "DOOMBOTSTEEMO";
+        DoomBotsTeemo,
 
         /// <summary>
         /// One for All games.
         /// </summary>
-        public const string OneForAll = "ONEFORALL";
+        OneForAll,
         
         /// <summary>
-        /// Ascension mode games.
+        /// Ascension games.
         /// </summary>
-        public const string Ascension = "ASCENSION";
+        Ascension,
 
         /// <summary>
         /// Snowdown Showdown games.
         /// </summary>
-        public const string FirstBlood = "FIRSTBLOOD";
+        FirstBlood,
         
         /// <summary>
-        /// King Poro game mode.
+        /// Legend of the Poro King games.
         /// </summary>
-        public const string KingPoro = "KINGPORO";
+        KingPoro,
 
         /// <summary>
-        /// Nexus Siege game mode.
+        /// Nexus Siege games.
         /// </summary>
-        public const string Siege = "SIEGE";
+        Siege,
 
         /// <summary>
         /// Blood Hunt Assassin games.
         /// </summary>
-        public const string Assassinate = "ASSASSINATE";
+        Assassinate,
 
         /// <summary>
         /// All Random Summoner's Rift games.
         /// </summary>
-        public const string ARSR = "ARSR";
+        Arsr,
         
         /// <summary>
-        /// Darkstar game mode.
+        /// Dark Star: Singularity games.
         /// </summary>
-        public const string Darkstar = "DARKSTAR";
+        Darkstar,
 
         /// <summary>
         /// Star Guardian Invasion games.
         /// </summary>
-        public const string StarGuardian = "STARGUARDIAN";
+        StarGuardian,
 
         /// <summary>
         /// PROJECT: Hunters games.
         /// </summary>
-        public const string Project = "PROJECT";
-
-        /// <summary>
-        /// GameModeX games/Nexus Blitz games.
-        /// </summary>
-        public const string GameModeX = "GAMEMODEX";
-
-        /// <summary>
-        /// Odyssey: Extraction games.
-        /// </summary>
-        public const string Odyssey = "ODYSSEY";
+        Project,
 
         /// <summary>
         /// Nexus Blitz games.
         /// </summary>
-        public const string NexusBlitz = "NEXUSBLITZ";
+        GameModeX,
+
+        /// <summary>
+        /// Odyssey: Extraction games.
+        /// </summary>
+        Odyssey,
+
+        /// <summary>
+        /// Nexus Blitz games.
+        /// </summary>
+        NexusBlitz,
 
         /// <summary>
         /// Ultimate Spellbook games.
         /// </summary>
-        public const string UltBook = "ULTBOOK";
+        UltBook,
 
+        /// <summary>
+        /// Swiftplay Games.
+        /// </summary>
+        Swiftplay,
+
+        /// <summary>
+        /// Brawl.
+        /// </summary>
+        Brawl
+    }
+
+    static class GameModeExtension
+    {
+        public static string ToCustomString(this GameMode gameMode)
+        {
+            return gameMode switch
+            {
+                GameMode.Classic => "CLASSIC",
+                GameMode.Odin => "ODIN",
+                GameMode.Aram => "ARAM",
+                GameMode.Tutorial => "TUTORIAL",
+                GameMode.Urf => "URF",
+                GameMode.DoomBotsTeemo => "DOOMBOTSTEEMO",
+                GameMode.OneForAll => "ONEFORALL",
+                GameMode.Ascension => "ASCENSION",
+                GameMode.FirstBlood => "FIRSTBLOOD",
+                GameMode.KingPoro => "KINGPORO",
+                GameMode.Siege => "SIEGE",
+                GameMode.Assassinate => "ASSASSINATE",
+                GameMode.Arsr => "ARSR",
+                GameMode.Darkstar => "DARKSTAR",
+                GameMode.StarGuardian => "STARGUARDIAN",
+                GameMode.Project => "PROJECT",
+                GameMode.GameModeX => "GAMEMODEX",
+                GameMode.Odyssey => "ODYSSEY",
+                GameMode.NexusBlitz => "NEXUSBLITZ",
+                GameMode.UltBook => "ULTBOOK",
+                GameMode.Swiftplay => "SWIFTPLAY",
+                GameMode.Brawl => "BRAWL",
+                _ => string.Empty
+            };
+        }
     }
 }
