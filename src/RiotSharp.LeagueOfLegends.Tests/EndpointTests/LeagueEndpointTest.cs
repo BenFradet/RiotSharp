@@ -1,6 +1,6 @@
 ﻿using RiotSharp.Core.Misc;
 using RiotSharp.LeagueOfLegends.Endpoints.Interfaces;
-using RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.LeagueEndpoint.Enums;
+using RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums;
 using RiotSharp.LeagueOfLegends.Tests.Shared;
 using Xunit.Abstractions;
 
