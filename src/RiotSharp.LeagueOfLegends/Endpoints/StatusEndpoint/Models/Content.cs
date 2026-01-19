@@ -11,9 +11,9 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.StatusEndpoint.Models
     public class Content
     {
         [JsonPropertyName("locale")]
-        public Language Locale { get; set; }
+        public required Language Locale { get; set; }
 
         [JsonPropertyName("content")]
-        public string TextContent { get; set; }
+        public required string TextContent { get; set; }
     }
 }

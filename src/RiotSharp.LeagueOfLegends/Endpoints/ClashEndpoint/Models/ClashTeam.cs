@@ -8,31 +8,31 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ClashEndpoint.Models
         /// Clash team id
         /// </summary>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public required string Id { get; set; }
 
         /// <summary>
         /// Clash tournament id
         /// </summary>
         [JsonPropertyName("tournamentId")]
-        public int TournamentId { get; set; }
+        public required int TournamentId { get; set; }
 
         /// <summary>
         /// Clash team name
         /// </summary>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         /// <summary>
         /// clash team icon id
         /// </summary>
         [JsonPropertyName("iconId")]
-        public int IconId { get; set; }
+        public required int IconId { get; set; }
 
         /// <summary>
         /// clash team tier
         /// </summary>
         [JsonPropertyName("tier")]
-        public int Tier { get; set; }
+        public required int Tier { get; set; }
 
         /// <summary>
         /// Summoner Id of the team captain
@@ -40,18 +40,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ClashEndpoint.Models
         /// Or it really is a puuid, but they dont care about the docs.
         /// </summary>
         [JsonPropertyName("captain")]
-        public string CaptainId { get; set; }
+        public required string CaptainId { get; set; }
 
         /// <summary>
         /// The team name 3 character long abbreviation
         /// </summary>
         [JsonPropertyName("abbreviation")]
-        public string Abbreviation { get; set; }
+        public required string Abbreviation { get; set; }
         
         /// <summary>
         /// List containing infos about team players
         /// </summary>
         [JsonPropertyName("players")]
-        public List<ClashPlayer> Players { get; set; }
+        public required List<ClashPlayer> Players { get; set; }
     }
 }

@@ -11,43 +11,43 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Baron objective.
         /// </summary>
         [JsonPropertyName("baron")]
-        public Objective Baron { get; set; }
+        public required Objective Baron { get; set; }
 
         /// <summary>
         /// Champion objective.
         /// </summary>
         [JsonPropertyName("champion")]
-        public Objective Champion { get; set; }
+        public required Objective Champion { get; set; }
 
         /// <summary>
         /// Dragon objective.
         /// </summary>
         [JsonPropertyName("dragon")]
-        public Objective Dragon { get; set; }
+        public required Objective Dragon { get; set; }
 
         /// <summary>
         /// Horde objective.
         /// </summary>
         [JsonPropertyName("horde")]
-        public Objective Horde { get; set; }
+        public required Objective Horde { get; set; }
 
         /// <summary>
         /// Inhibitor objective.
         /// </summary>
         [JsonPropertyName("inhibitor")]
-        public Objective Inhibitor { get; set; }
+        public required Objective Inhibitor { get; set; }
 
         /// <summary>
         /// Rift Herald objective.
         /// </summary>
         [JsonPropertyName("riftHerald")]
-        public Objective RiftHerald { get; set; }
+        public required Objective RiftHerald { get; set; }
 
         /// <summary>
         /// Tower objective.
         /// </summary>
         [JsonPropertyName("tower")]
-        public Objective Tower { get; set; }
+        public required Objective Tower { get; set; }
     }
 
     /// <summary>
@@ -59,12 +59,12 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Flag indicating if the team got the first kill of this objective.
         /// </summary>
         [JsonPropertyName("first")]
-        public bool First { get; set; }
+        public required bool First { get; set; }
 
         /// <summary>
         /// Number of kills of this objective.
         /// </summary>
         [JsonPropertyName("kills")]
-        public int Kills { get; set; }
+        public required int Kills { get; set; }
     }
 }

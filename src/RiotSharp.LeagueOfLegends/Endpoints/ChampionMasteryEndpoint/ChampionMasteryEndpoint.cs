@@ -48,7 +48,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionMasteryEndpoint
         }
 
         /// <inheritdoc />
-        public async Task<int> GetTotalChampionMasteryScoreAsync(Region region, string puuid)
+        public async Task<int?> GetTotalChampionMasteryScoreAsync(Region region, string puuid)
         {
             var requestUrl = string.Format(ChampionMasteryTotalScoreByPuuidUrl, puuid);
 

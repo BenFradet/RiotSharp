@@ -15,7 +15,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Refer to indicate if the game ended in termination.
         /// </summary>
         [JsonPropertyName("endOfGameResult")]
-        public string EndOfGameResult { get; set; }
+        public required string EndOfGameResult { get; set; }
 
         /// <summary>
         /// The date time of the game creation.
@@ -23,7 +23,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// </summary>
         [JsonPropertyName("gameCreation")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime GameCreation { get; set; }
+        public required DateTime GameCreation { get; set; }
 
         /// <summary>
         /// The game duration. This field is only valid if the game is post patch 11.20!
@@ -35,7 +35,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// </summary>
         [JsonPropertyName("gameDuration")]
         [JsonConverter(typeof(TimeSpanConverterFromSeconds))]
-        public TimeSpan GameDuration { get; set; }
+        public required TimeSpan GameDuration { get; set; }
 
         /// <summary>
         /// The game duration.
@@ -45,79 +45,79 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// </summary>
         [JsonPropertyName("gameEndTimestamp")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime GameEndTimestamp { get; set; }
+        public required DateTime GameEndTimestamp { get; set; }
 
         /// <summary>
         /// Game ID.
         /// </summary>
         [JsonPropertyName("gameId")]
-        public long GameId { get; set; }
+        public required long GameId { get; set; }
 
         /// <summary>
         /// The game mode.
         /// </summary>
         [JsonPropertyName("gameMode")]
-        public GameMode GameMode { get; set; }
+        public required GameMode GameMode { get; set; }
 
         /// <summary>
         /// Name of the game.
         /// </summary>
         [JsonPropertyName("gameName")]
-        public string GameName { get; set; }
+        public required string GameName { get; set; }
 
         /// <summary>
         /// The date time of the game start.
         /// </summary>
         [JsonPropertyName("gameStartTimeStemp")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime GameStartTimeStemp { get; set; }
+        public required DateTime GameStartTimeStemp { get; set; }
 
         /// <summary>
         /// The game type.
         /// </summary>
         [JsonPropertyName("gameType")]
-        public GameType GameType { get; set; }
+        public required GameType GameType { get; set; }
 
         /// <summary>
         /// The game version.
         /// </summary>
         [JsonPropertyName("gameVersion")]
-        public string GameVersion { get; set; }
+        public required string GameVersion { get; set; }
 
         /// <summary>
         /// The map ID.
         /// </summary>
         [JsonPropertyName("MapId")]
-        public MapType Map { get; set; }
+        public required MapType Map { get; set; }
 
         /// <summary>
         /// The participants.
         /// </summary>
         [JsonPropertyName("participants")]
-        public List<Participant> Participants { get; set; }
+        public required List<Participant> Participants { get; set; }
 
         /// <summary>
         /// Platform the game was played on.
         /// </summary>
         [JsonPropertyName("platformId")]
-        public Platform Platform { get; set; }
+        public required Platform Platform { get; set; }
 
         /// <summary>
         /// Specifies the Queue.
         /// </summary>
         [JsonPropertyName("queueId")]
-        public Queue Queue { get; set; }
+        public required Queue Queue { get; set; }
 
         /// <summary>
         /// The teams.
         /// </summary>
         [JsonPropertyName("teams")]
-        public List<TeamStats> Teams { get; set; }
+        public required List<TeamStats> Teams { get; set; }
 
         /// <summary>
         /// The tournament code of the game. Only present if applicable.
         /// </summary>
         [JsonPropertyName("tournamentCode")]
-        public string TournamentCode { get; set; }
+        public required string TournamentCode { get; set; }
     }
 }

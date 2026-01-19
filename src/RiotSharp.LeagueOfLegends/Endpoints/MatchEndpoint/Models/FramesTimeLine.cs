@@ -12,19 +12,19 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// List of events that occurred in this frame.
         /// </summary>
         [JsonPropertyName("events")]
-        public List<EventsTimeLine> Events { get; set; }
+        public required List<EventsTimeLine> Events { get; set; }
 
         /// <summary>
         /// Map of participant ID to participant frame data.
         /// </summary>
         [JsonPropertyName("participantFrames")]
-        public Dictionary<string, ParticipantFrame> ParticipantFrames { get; set; }
+        public required Dictionary<string, ParticipantFrame> ParticipantFrames { get; set; }
 
         /// <summary>
         /// Timestamp of this frame (in milliseconds).
         /// </summary>
         [JsonPropertyName("timestamp")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime Timestamp { get; set; }
+        public required DateTime Timestamp { get; set; }
     }
 }

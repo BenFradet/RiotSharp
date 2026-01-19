@@ -11,9 +11,9 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
     public class Replay
     {
         [JsonPropertyName("total")]
-        public int Total { get; set; }
+        public required int Total { get; set; }
 
         [JsonPropertyName("matchFileURLs")]
-        public List<string> MatchFileURLs { get; set; }
+        public required List<string> MatchFileURLs { get; set; }
     }
 }

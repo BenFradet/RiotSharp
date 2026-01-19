@@ -8,18 +8,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Data Version of the data.
         /// </summary>
         [JsonPropertyName("dataVersion")]
-        public string DataVersion { get; set; }
+        public required string DataVersion { get; set; }
 
         /// <summary>
         /// Match ID of the match.
         /// </summary>
         [JsonPropertyName("matchId")]
-        public string MatchId { get; set; }
+        public required string MatchId { get; set; }
 
         /// <summary>
         /// Participant Puuids.
         /// </summary>
         [JsonPropertyName("participants")]
-        public List<string> Participants { get; set; }
+        public required List<string> Participants { get; set; }
     }
 }

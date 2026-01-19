@@ -10,12 +10,12 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
     public class ChallengeDescription
     {
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [JsonPropertyName("shortDescription")]
-        public string ShortDescription { get; set; }
+        public required string ShortDescription { get; set; }
     }
 }

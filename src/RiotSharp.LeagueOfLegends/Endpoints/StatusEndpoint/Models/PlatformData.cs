@@ -11,18 +11,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.StatusEndpoint.Models
     public class PlatformData
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public required string Id { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [JsonPropertyName("locales")]
-        public List<Language> Locales { get; set; }
+        public required List<Language> Locales { get; set; }
 
         [JsonPropertyName("maintenances")]
-        public List<Status> Maintenances { get; set; }
+        public required List<Status> Maintenances { get; set; }
 
         [JsonPropertyName("incidents")]
-        public List<Status> Incidents { get; set; }
+        public required List<Status> Incidents { get; set; }
     }
 }

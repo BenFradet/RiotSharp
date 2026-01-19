@@ -11,24 +11,24 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// List of champion bans.
         /// </summary>
         [JsonPropertyName("bans")]
-        public List<Ban> Bans { get; set; }
+        public required List<Ban> Bans { get; set; }
 
         /// <summary>
         /// Objectives completed by the team.
         /// </summary>
         [JsonPropertyName("objectives")]
-        public Objectives Objectives { get; set; }
+        public required Objectives Objectives { get; set; }
 
         /// <summary>
         /// Team ID (100 = Blue, 200 = Red).
         /// </summary>
         [JsonPropertyName("teamId")]
-        public int TeamId { get; set; }
+        public required int TeamId { get; set; }
 
         /// <summary>
         /// Flag indicating whether the team won.
         /// </summary>
         [JsonPropertyName("win")]
-        public bool Win { get; set; }
+        public required bool Win { get; set; }
     }
 }

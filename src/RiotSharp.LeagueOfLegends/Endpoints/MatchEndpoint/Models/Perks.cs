@@ -8,13 +8,13 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Stat perks selected by participant.
         /// </summary>
         [JsonPropertyName("statPerks")]
-        public PerkStats PerkStats { get; set; }
+        public required PerkStats PerkStats { get; set; }
 
         /// <summary>
         /// Styles and perks selected by participant.
         /// </summary>
         [JsonPropertyName("styles")]
-        public List<PerkStyle> Styles { get; set; }
+        public required List<PerkStyle> Styles { get; set; }
     }
 
     public class PerkSelection
@@ -23,25 +23,25 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Perk Id of the <see cref="PerkSelection"/>
         /// </summary>
         [JsonPropertyName("perk")]
-        public int Perk { get; set; }
+        public required int Perk { get; set; }
 
         /// <summary>
         /// Post game rune stat of perk.
         /// </summary>
         [JsonPropertyName("var1")]
-        public int Var1 { get; set; }
+        public required int Var1 { get; set; }
 
         /// <summary>
         /// Post game rune stat of perk.
         /// </summary>
         [JsonPropertyName("var2")]
-        public int Var2 { get; set; }
+        public required int Var2 { get; set; }
 
         /// <summary>
         /// Post game rune stat of perk.
         /// </summary>
         [JsonPropertyName("var3")]
-        public int Var3 { get; set; }
+        public required int Var3 { get; set; }
     }
 
     public class PerkStats
@@ -50,19 +50,19 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Perk Id of the defense stat perk.
         /// </summary>
         [JsonPropertyName("defense")]
-        public int Defense { get; set; }
+        public required int Defense { get; set; }
 
         /// <summary>
         /// Perk Id of the flex stat perk.
         /// </summary>
         [JsonPropertyName("flex")]
-        public int Flex { get; set; }
+        public required int Flex { get; set; }
 
         /// <summary>
         /// Perk Id of the offense stat perk.
         /// </summary>
         [JsonPropertyName("offense")]
-        public int Offense { get; set; }
+        public required int Offense { get; set; }
     }
 
     public class PerkStyle
@@ -72,18 +72,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Values might be 'primaryStyle' or 'subStyle'
         /// </summary>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         /// <summary>
         /// Selected perks of this style.
         /// </summary>
         [JsonPropertyName("selections")]
-        public List<PerkSelection> Selections { get; set; }
+        public required List<PerkSelection> Selections { get; set; }
 
         /// <summary>
         /// Style Id.
         /// </summary>
         [JsonPropertyName("style")]
-        public int Style { get; set; }
+        public required int Style { get; set; }
     }
 }

@@ -8,19 +8,20 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
     public class PlayerClientPreferences
     {
         [JsonPropertyName("bannerAccent")]
-        public string BannerAccent { get; set; }
+        public required string BannerAccent { get; set; }
 
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
         // The challenge ids are fucking ints/longs but docs say they are strings???
+        // My best guess is that the required field is valid since it might just return an empty list instead of null?
         [JsonPropertyName("challengeIds")]
-        public List<int> ChallengeIds { get; set; }
+        public required List<int> ChallengeIds { get; set; }
 
         [JsonPropertyName("crestBorder")]
-        public string CrestBorder { get; set; }
+        public required string CrestBorder { get; set; }
 
         [JsonPropertyName("prestigeCrestBorderLevel")]
-        public int PrestigeCrestBorderLevel { get; set; }
+        public required int PrestigeCrestBorderLevel { get; set; }
     }
 }

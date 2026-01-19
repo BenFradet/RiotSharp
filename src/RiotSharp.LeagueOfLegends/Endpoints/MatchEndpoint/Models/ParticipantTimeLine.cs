@@ -10,9 +10,9 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
     public class ParticipantTimeLine
     {
         [JsonPropertyName("participantId")]
-        public int ParticipantId { get; set; }
+        public required int ParticipantId { get; set; }
 
         [JsonPropertyName("puuid")]
-        public string Puuid { get; set; }
+        public required string Puuid { get; set; }
     }
 }

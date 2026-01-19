@@ -9,15 +9,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
         /// I hope it is also a level. Doesn't have documentation.
         /// </summary>
         [JsonPropertyName("level")]
-        public Level Level { get; set; }
+        public required Level Level { get; set; }
 
         [JsonPropertyName("current")]
-        public long Current { get; set; }
+        public required long Current { get; set; }
 
         [JsonPropertyName("max")]
-        public long Max { get; set; }
+        public required long Max { get; set; }
 
-        [JsonPropertyName("precentile")]
-        public long Precentile { get; set; }
+        /// <summary>
+        /// Docs say long, its a fuckign float.
+        /// </summary>
+        [JsonPropertyName("percentile")]
+        public required double Percentile { get; set; }
     }
 }

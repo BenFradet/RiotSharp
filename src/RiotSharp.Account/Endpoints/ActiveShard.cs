@@ -17,19 +17,19 @@ namespace RiotSharp.Account.Endpoints
 		/// Encrypted PUUID. Exact length of 78 characters.
 		/// </summary>
 		[JsonPropertyName("puuid")]
-		public string Puuid { get; set; }
+		public required string Puuid { get; set; }
 
 		/// <summary>
 		/// The game.
 		/// </summary>
 		[JsonPropertyName("game")]
-		public Game Game { get; set; }
+		public required Game Game { get; set; }
 
 		/// <summary>
 		/// Active shard for combination Puuid and Game.
 		/// Has to be a string for now because the API is inconsistent.
 		/// </summary>
 		[JsonPropertyName("activeShard")]
-		public string ActiveShard { get; set; }
+		public required string ActiveShard { get; set; }
 	}
 }

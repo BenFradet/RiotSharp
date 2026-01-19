@@ -23,7 +23,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.Interfaces
 		/// <param name="region"></param>
 		/// <param name="puuid"></param>
 		/// <returns>The total champion mastery score for the player.</returns>
-		Task<int> GetTotalChampionMasteryScoreAsync(Region region, string puuid);
+		Task<int?> GetTotalChampionMasteryScoreAsync(Region region, string puuid);
 
 		/// <summary>
 		/// Get all champion mastery entries sorted by number of champion points descending asynchronously.

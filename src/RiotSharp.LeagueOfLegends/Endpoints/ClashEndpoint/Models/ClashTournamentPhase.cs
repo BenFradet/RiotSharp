@@ -12,26 +12,26 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ClashEndpoint.Models
         /// Id of the tournament phase
         /// </summary>
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public required int Id { get; set; }
         
         /// <summary>
         /// registration start time in tournament phase in ms
         /// </summary>
         [JsonPropertyName("registrationTime")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime RegistrationTime { get; set; }
+        public required DateTime RegistrationTime { get; set; }
         
         /// <summary>
         /// Tournament start time in ms
         /// </summary>
         [JsonPropertyName("startTime")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime StartTime { get; set; }
+        public required DateTime StartTime { get; set; }
         
         /// <summary>
         /// boolean indicating if tournament has been cancelled or not
         /// </summary>
         [JsonPropertyName("cancelled")]
-        public bool Cancelled { get; set; }
+        public required bool Cancelled { get; set; }
     }
 }

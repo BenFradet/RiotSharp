@@ -10,6 +10,7 @@ using RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 using RiotSharp.LeagueOfLegends.Endpoints.StatusEndpoint;
+using RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint;
 
 namespace RiotSharp.LeagueOfLegends.Tests.Shared
 {
@@ -60,6 +61,7 @@ namespace RiotSharp.LeagueOfLegends.Tests.Shared
 				.UseLeagueEndpoint(new LeagueEndpoint(Requester))
 				.UseChallengesEndpoint(new ChallengesEndpoint(Requester))
 				.UseStatusEndpoint(new StatusEndpoint(Requester))
+				.UseMatchEndpoint(new MatchEndpoint(Requester))
                 .Build();
 		}
 

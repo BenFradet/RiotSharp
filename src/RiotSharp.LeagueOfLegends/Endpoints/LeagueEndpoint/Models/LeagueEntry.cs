@@ -13,18 +13,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models
         /// The Id of the league of the participant.
         /// </summary>
         [JsonPropertyName("leagueId")]
-        public string LeagueId { get; set; }
+        public required string LeagueId { get; set; }
 
         /// <summary>
         /// The queue type of the league.
         /// </summary>
         [JsonPropertyName("queueType")]
-        public Queue QueueType { get; set; }
+        public required Queue QueueType { get; set; }
 
         ///<summary>
         /// The league tier of the participant.
         /// </summary>
         [JsonPropertyName("tier")]
-        public string Tier { get; set; }
+        public required string Tier { get; set; }
     }
 }

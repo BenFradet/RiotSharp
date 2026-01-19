@@ -15,7 +15,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// </summary>
         [JsonPropertyName("timestamp")]
         [JsonConverter(typeof(TimeSpanConverterFromMilliseconds))]
-        public TimeSpan Timestamp { get; set; }
+        public required TimeSpan Timestamp { get; set; }
 
         /// <summary>
         /// Real timestamp of the event (in milliseconds, epoch time).
@@ -29,7 +29,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// ITEM_PURCHASED, ITEM_DESTROYED and so on. Many different.
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public required string Type { get; set; }
 
         /// <summary>
         /// Creator ID (for WARD_PLACED events).
@@ -42,7 +42,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Ward type (for WARD_PLACED events).
         /// </summary>
         [JsonPropertyName("wardType")]
-        public string WardType { get; set; }
+        public string? WardType { get; set; }
 
         /// <summary>
         /// Killer ID (for CHAMPION_KILL events).
@@ -60,13 +60,13 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Assisting participant IDs (for CHAMPION_KILL events).
         /// </summary>
         [JsonPropertyName("assistingParticipantIds")]
-        public List<int> AssistingParticipantIds { get; set; }
+        public List<int>? AssistingParticipantIds { get; set; }
 
         /// <summary>
         /// Position of the event.
         /// </summary>
         [JsonPropertyName("position")]
-        public Position Position { get; set; }
+        public Position? Position { get; set; }
 
         /// <summary>
         /// Bounty amount (for CHAMPION_KILL events).
@@ -90,19 +90,19 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Damage dealt by victim (for CHAMPION_KILL events).
         /// </summary>
         [JsonPropertyName("victimDamageDealt")]
-        public List<VictimDamage> VictimDamageDealt { get; set; }
+        public List<VictimDamage>? VictimDamageDealt { get; set; }
 
         /// <summary>
         /// Damage received by victim (for CHAMPION_KILL events).
         /// </summary>
         [JsonPropertyName("victimDamageReceived")]
-        public List<VictimDamage> VictimDamageReceived { get; set; }
+        public List<VictimDamage>? VictimDamageReceived { get; set; }
 
         /// <summary>
         /// Kill type (for CHAMPION_SPECIAL_KILL events).
         /// </summary>
         [JsonPropertyName("killType")]
-        public string KillType { get; set; }
+        public string? KillType { get; set; }
 
         /// <summary>
         /// Multi kill length (for CHAMPION_SPECIAL_KILL events).

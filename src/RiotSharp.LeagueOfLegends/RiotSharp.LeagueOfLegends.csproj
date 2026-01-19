@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RiotSharp.Core\RiotSharp.Core.csproj" />
+    <PackageReference Include="AV.RiotSharp.Core" Version="0.1.0" />
   </ItemGroup>
 
 </Project>

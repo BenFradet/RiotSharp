@@ -13,43 +13,43 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
         /// Which percentile the player is in for this challenge.
         /// </summary>
         [JsonPropertyName("percentile")]
-        public double Percentile { get; set; }
+        public required double Percentile { get; set; }
 
         /// <summary>
         /// How many players are in this level for the challenge.
         /// </summary>
         [JsonPropertyName("playersInLevel")]
-        public int PlayersInLevel { get; set; }
+        public int? PlayersInLevel { get; set; }
 
         /// <summary>
         /// When the player achieved this level for the challenge.
         /// </summary>
         [JsonPropertyName("achievedTime")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime AchievedTime { get; set; }
+        public DateTime? AchievedTime { get; set; }
 
         /// <summary>
         /// I don't know what this field is.
         /// </summary>
         [JsonPropertyName("value")]
-        public double Value { get; set; }
+        public required double Value { get; set; }
 
         /// <summary>
         /// Id of the challenge.
         /// </summary>
         [JsonPropertyName("challengeId")]
-        public long ChallengeId { get; set; }
+        public required long ChallengeId { get; set; }
 
         /// <summary>
         /// The achieved level for the challenge.
         /// </summary>
         [JsonPropertyName("level")]
-        public Level Level { get; set; }
+        public required Level Level { get; set; }
 
         /// <summary>
         /// I don't know what this field is.
         /// </summary>
         [JsonPropertyName("position")]
-        public int Position { get; set; }
+        public int? Position { get; set; }
     }
 }

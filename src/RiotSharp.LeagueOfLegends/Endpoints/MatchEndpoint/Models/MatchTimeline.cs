@@ -11,12 +11,12 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Metadata of the match
         /// </summary>
         [JsonPropertyName("metadata")]
-        public MatchMetadata Metadata { get; set; }
+        public required MatchMetadata Metadata { get; set; }
 
         /// <summary>
         /// Info containing the most information about the match timeline.
         /// </summary>
         [JsonPropertyName("info")]
-        public MatchTimelineInfo Info { get; set; }
+        public required MatchTimelineInfo Info { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace RiotSharp.LeagueOfLegends.Tests.EndpointTests
 {

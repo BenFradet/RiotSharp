@@ -11,18 +11,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChampionRotationEndpoint.Models
 	    /// Current max new player level.
 	    /// </summary>
 	    [JsonPropertyName("maxNewPlayerLevel")]
-	    public int MaxNewPlayerLevel { get; set; }
+	    public required int MaxNewPlayerLevel { get; set; }
 
         /// <summary>
         /// List of free champions for new players.
         /// </summary>
         [JsonPropertyName("freeChampionIdsForNewPlayers")]
-        public List<int> FreeChampionIdsForNewPlayers { get; set; }
+        public required List<int> FreeChampionIdsForNewPlayers { get; set; }
         
         /// <summary>
         /// List of free champions.
         /// </summary>s
         [JsonPropertyName("freeChampionIds")]
-        public List<int> FreeChampionIds { get; set; }
+        public required List<int> FreeChampionIds { get; set; }
     }
 }

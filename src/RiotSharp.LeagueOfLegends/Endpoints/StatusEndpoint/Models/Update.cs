@@ -18,44 +18,44 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.StatusEndpoint.Models
         /// Unique identifier for the update
         /// </summary>
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public required int Id { get; set; }
 
         /// <summary>
         /// Author of the update
         /// </summary>
         [JsonPropertyName("author")]
-        public string Author { get; set; }
+        public required string Author { get; set; }
 
         /// <summary>
         /// Whether the update should be published
         /// </summary>
         [JsonPropertyName("publish")]
-        public bool Publish { get; set; }
-
+        public required bool Publish { get; set; }
+        
         /// <summary>
         /// List of locations where the update should be published (riotclient, riotstatus, game)
         /// </summary>
         [JsonPropertyName("publish_locations")]
-        public List<PublishLocation> PublishLocations { get; set; }
+        public required List<PublishLocation> PublishLocations { get; set; }
 
         /// <summary>
         /// List of translations for the update content
         /// </summary>
         [JsonPropertyName("translations")]
-        public List<Content> Translations { get; set; }
+        public required List<Content> Translations { get; set; }
 
         /// <summary>
         /// Timestamp when the update was created
         /// </summary>
         [JsonPropertyName("created_at")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime CreatedAt { get; set; }
+        public required DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Timestamp when the update was last updated
         /// </summary>
         [JsonPropertyName("updated_at")]
         [JsonConverter(typeof(DateTimeConverterFromLong))]
-        public DateTime UpdatedAt { get; set; }
+        public required DateTime UpdatedAt { get; set; }
     }
 }

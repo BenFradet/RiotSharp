@@ -11,12 +11,12 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// Champion ID that was banned.
         /// </summary>
         [JsonPropertyName("championId")]
-        public int ChampionId { get; set; }
+        public required int ChampionId { get; set; }
 
         /// <summary>
         /// Turn during which the champion was banned.
         /// </summary>
         [JsonPropertyName("pickTurn")]
-        public int PickTurn { get; set; }
+        public required int PickTurn { get; set; }
     }
 }

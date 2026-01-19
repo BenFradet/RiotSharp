@@ -12,7 +12,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models
         /// Number of current losses in the mini series.
         /// </summary>
         [JsonPropertyName("losses")]
-        public int Losses { get; set; }
+        public required int Losses { get; set; }
 
         /// <summary>
         /// String showing the current, sequential mini series progress where 'W' represents a win, 'L' represents a
@@ -20,18 +20,18 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Models
         /// </summary>
         [JsonPropertyName("progress")]
         [JsonConverter(typeof(ProgressConverter))]
-        public char[] Progress { get; set; }
+        public required char[] Progress { get; set; }
 
         /// <summary>
         /// Number of wins required for promotion.
         /// </summary>
         [JsonPropertyName("target")]
-        public int Target { get; set; }
+        public required int Target { get; set; }
 
         /// <summary>
         /// Number of current wins in the mini series.
         /// </summary>
         [JsonPropertyName("wins")]
-        public int Wins { get; set; }
+        public required int Wins { get; set; }
     }
 }

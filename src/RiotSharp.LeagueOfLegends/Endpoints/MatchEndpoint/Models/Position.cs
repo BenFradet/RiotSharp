@@ -11,12 +11,12 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
         /// X coordinate.
         /// </summary>
         [JsonPropertyName("x")]
-        public int X { get; set; }
+        public required int X { get; set; }
 
         /// <summary>
         /// Y coordinate.
         /// </summary>
         [JsonPropertyName("y")]
-        public int Y { get; set; }
+        public required int Y { get; set; }
     }
 }

@@ -14,20 +14,15 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.ChallengesEndpoint.Models
 		/// List of challenges associated with the player.
 		/// </summary>
 		[JsonPropertyName("challenges")]
-        public List<ChallengeInfo> Challenges { get; set; }
+        public required List<ChallengeInfo> Challenges { get; set; }
 
         [JsonPropertyName("preferences")]
-        public PlayerClientPreferences Preferences { get; set; }
-
+        public required PlayerClientPreferences Preferences { get; set; }
 
         [JsonPropertyName("totalPoints")]
-
-        public ChallengePoint TotalPoints { get; set; }
-
+        public required ChallengePoint TotalPoints { get; set; }
 
         [JsonPropertyName("categoryPoints")]
-
-        public Dictionary<string, ChallengePoint> CategoryPoints { get; set; }
-
+        public required Dictionary<string, ChallengePoint> CategoryPoints { get; set; }
     }
 }

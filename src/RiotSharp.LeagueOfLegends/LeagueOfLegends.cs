@@ -25,6 +25,8 @@ namespace RiotSharp.LeagueOfLegends
 
 		public IStatusEndpoint? Status { get; }
 
+		public IMatchEndpoint? Match { get; }
+
         /// <summary>
         /// Private constructor to enforce the use of the Builder pattern.
         /// </summary>
@@ -32,7 +34,13 @@ namespace RiotSharp.LeagueOfLegends
         /// <param name="championRotation"></param>
         /// <param name="clash"></param>
         /// <param name="league"></param>
-        private LeagueOfLegends(IChampionMasteryEndpoint? championMastery, IChampionRotationEndpoint? championRotation, IClashEndpoint? clash, ILeagueEndpoint? league, IChallengesEndpoint? challenges, IStatusEndpoint? status)
+        private LeagueOfLegends(IChampionMasteryEndpoint? championMastery,
+			IChampionRotationEndpoint? championRotation,
+			IClashEndpoint? clash,
+			ILeagueEndpoint? league,
+			IChallengesEndpoint? challenges,
+			IStatusEndpoint? status,
+			IMatchEndpoint? match)
 		{
 			ChampionMastery = championMastery;
 			ChampionRotation = championRotation;
@@ -40,6 +48,7 @@ namespace RiotSharp.LeagueOfLegends
 			League = league;
 			Challenges = challenges;
 			Status = status;
+			Match = match;
         }
 
 		public class Builder
@@ -50,6 +59,7 @@ namespace RiotSharp.LeagueOfLegends
 			private ILeagueEndpoint? _league;
 			private IChallengesEndpoint? _challenges;
 			private IStatusEndpoint? _status;
+			private IMatchEndpoint? _match;
             // ... more endpoints
 
             public Builder UseChampionMasteryEndpoint(IChampionMasteryEndpoint endpoint)
@@ -88,12 +98,18 @@ namespace RiotSharp.LeagueOfLegends
 				return this;
             }
 
+			public Builder UseMatchEndpoint(IMatchEndpoint endpoint)
+			{
+				_match = endpoint;
+				return this;
+            }
+
             // ... more UseXEndpoint methods
 
             public LeagueOfLegends Build()
 			{
 				// Optionally validate all required endpoints are set
-				return new LeagueOfLegends(_championMastery, _championRotation, _clash, _league, _challenges, _status);
+				return new LeagueOfLegends(_championMastery, _championRotation, _clash, _league, _challenges, _status, _match);
 			}
 		}
 	}
