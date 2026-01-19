@@ -20,29 +20,11 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Pack RiotSharp.Core
-        run: |
-          dotnet build src/RiotSharp.Core/RiotSharp.Core.csproj --configuration Release
-          dotnet pack src/RiotSharp.Core/RiotSharp.Core.csproj --configuration Release --output ./local-nuget
-
-      - name: Generate local NuGet config
-        run: |
-          cat <<EOF > nuget.config
-          <?xml version="1.0" encoding="utf-8"?>
-          <configuration>
-            <packageSources>
-              <clear />
-              <add key="local" value="./local-nuget" />
-              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-            </packageSources>
-          </configuration>
-          EOF
-
       - name: Restore dependencies
-        run: dotnet restore src/RiotSharp.sln --configfile nuget.config
+        run: dotnet restore src/RiotSharp.sln
 
       - name: Build
         run: dotnet build src/RiotSharp.sln --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test src/RiotSharp.sln --no-build --configuration Release --verbosity normal --filter "Category!=OnlyLocal"
+        run: dotnet test src/RiotSharp.sln --no-build --configuration Release --verbosity normal -e API_KEY=${{secrets.RIOT_API_KEY}} #--filter "Category!=OnlyLocal"

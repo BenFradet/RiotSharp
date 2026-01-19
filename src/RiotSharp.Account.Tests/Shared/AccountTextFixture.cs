@@ -30,12 +30,23 @@ namespace RiotSharp.Account.Tests.Shared
 
 		public AccountTextFixture()
 		{
-			var config = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-				.Build();
+			var apiKey = Environment.GetEnvironmentVariable("API_KEY");
 
-			ApiKey = config["ApiKey"];
+			// This should be the path taken during pipeline
+			if (!string.IsNullOrEmpty(apiKey))
+			{
+				ApiKey = apiKey;
+			}
+			else
+			{
+				var config = new ConfigurationBuilder()
+					.SetBasePath(Directory.GetCurrentDirectory())
+					.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+					.Build();
+
+				ApiKey = config["ApiKey"];
+			}
+
 			if (string.IsNullOrWhiteSpace(ApiKey))
 				throw new InvalidOperationException("API key missing from appsettings.json");
 
