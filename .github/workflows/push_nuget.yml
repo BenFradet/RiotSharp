@@ -1,0 +1,46 @@
+name: push-nuget
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  # same as build-and-test job in build_and_test.yml
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore src/RiotSharp.sln
+
+      - name: Build
+        run: dotnet build src/RiotSharp.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test src/RiotSharp.sln --no-build --configuration Release --verbosity normal -e API_KEY=${{secrets.RIOT_API_KEY}} #--filter "Category!=OnlyLocal"
+
+  # should only run if build-and-test is successful
+  push-nuget:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Pack NuGet packages
+        run: dotnet pack src/RiotSharp.sln --configuration Release -p:PackageVersion=${{ github.ref_name }} --output ./nupkgs
+
+      - name: Push to NuGet
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+

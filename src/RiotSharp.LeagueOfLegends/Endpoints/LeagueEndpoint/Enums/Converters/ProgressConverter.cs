@@ -5,10 +5,11 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.LeagueEndpoint.Enums.Converters
 {
     class ProgressConverter : JsonConverter<char[]>
     {
-        public override char[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        // Nullable is not correct. But not used anyway.
+        public override char[]? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
 	        var value = reader.GetString();
-            return value.ToCharArray();
+            return value?.ToCharArray();
         }
 
         public override void Write(Utf8JsonWriter writer, char[] value, JsonSerializerOptions options)

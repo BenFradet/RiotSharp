@@ -8,19 +8,19 @@ namespace RiotSharp.Account
 	/// </summary>
 	public class RiotAccount
 	{
-		public IAccountEndpoint Account { get; }
+		public IAccountEndpoint? Account { get; }
 
-		public RiotAccount(IAccountEndpoint accont)
+		private RiotAccount(IAccountEndpoint? account)
 		{
-			Account = accont ?? throw new ArgumentNullException(nameof(accont), "Account endpoint cannot be null.");
-
+			Account = account ?? throw new ArgumentNullException(nameof(account), "Account endpoint cannot be null.");
 		}
+
 		public class Builder
 		{
-			private IAccountEndpoint _account;
+			private IAccountEndpoint? _account;
 			// ... more endpoints
 
-			public Builder UseAccountEndpoint(IAccountEndpoint endpoint)
+			public Builder UseAccountEndpoint(IAccountEndpoint? endpoint)
 			{
 				_account = endpoint;
 				return this;

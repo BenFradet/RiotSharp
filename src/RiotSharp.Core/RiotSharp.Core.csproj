@@ -8,7 +8,6 @@
     
     <!-- Package Metadata -->
     <PackageId>AV.RiotSharp.Core</PackageId>
-    <Version>0.1.0</Version>
     <Authors>Benjamin Fradet, Asbjørn Vad</Authors>
     <Company>RiotSharp</Company>
     <Description>Core functionality package for RiotSharp - C# wrapper for the Riot Games API. Provides rate limiting, caching, and base infrastructure for API communication.</Description>

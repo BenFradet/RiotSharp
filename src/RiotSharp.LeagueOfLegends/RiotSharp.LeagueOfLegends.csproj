@@ -4,10 +4,28 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <!-- Package Metadata -->
+    <PackageId>AV.RiotSharp.LeagueOfLegends</PackageId>
+    <Authors>Benjamin Fradet, Asbjørn Vad</Authors>
+    <Company>RiotSharp</Company>
+    <Description>Core functionality package for RiotSharp - C# wrapper for the Riot Games API. Provides rate limiting, caching, and base infrastructure for API communication.</Description>
+    <Copyright>Copyright (c) Benjamin Fradet 2014</Copyright>
+    <PackageProjectUrl>https://github.com/asbjornvad/RiotSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/asbjornvad/RiotSharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>riot;league-of-legends;lol;api;wrapper;rate-limiting;caching</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AV.RiotSharp.Core" Version="0.1.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	    <ProjectReference Include="..\RiotSharp.Core\RiotSharp.Core.csproj" />
+	</ItemGroup>
 
 </Project>

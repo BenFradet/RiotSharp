@@ -34,7 +34,7 @@ namespace RiotSharp.LeagueOfLegends.Endpoints.MatchEndpoint.Models
             if (Queue.HasValue)
                 queryParameters.Add($"queue={Queue.Value}");
             if (Type.HasValue)
-                queryParameters.Add($"type={Type.ToString().ToLower()}");
+                queryParameters.Add($"type={Type?.ToString().ToLower()}");
             if (Start.HasValue)
                 queryParameters.Add($"start={Start.Value}");
             // Should do a check for valid values 0-100
