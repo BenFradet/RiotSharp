@@ -28,6 +28,7 @@ jobs:
 
   # should only run if build-and-test is successful
   push-nuget:
+    needs: build-and-test
     runs-on: ubuntu-latest
 
     steps:
