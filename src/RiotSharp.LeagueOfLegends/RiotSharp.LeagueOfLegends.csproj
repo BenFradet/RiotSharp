@@ -9,7 +9,7 @@
     <PackageId>AV.RiotSharp.LeagueOfLegends</PackageId>
     <Authors>Benjamin Fradet, Asbjørn Vad</Authors>
     <Company>RiotSharp</Company>
-    <Description>Core functionality package for RiotSharp - C# wrapper for the Riot Games API. Provides rate limiting, caching, and base infrastructure for API communication.</Description>
+    <Description>League of Legends API package for RiotSharp - C# wrapper for the Riot Games API. Provides access to League of Legends endpoints including summoner, match, champion mastery, league, and status data.</Description>
     <Copyright>Copyright (c) Benjamin Fradet 2014</Copyright>
     <PackageProjectUrl>https://github.com/asbjornvad/RiotSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/asbjornvad/RiotSharp</RepositoryUrl>

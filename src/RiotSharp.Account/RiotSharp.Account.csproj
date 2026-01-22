@@ -9,7 +9,7 @@
 	  <PackageId>AV.RiotSharp.Account</PackageId>
 	  <Authors>Benjamin Fradet, Asbjørn Vad</Authors>
 	  <Company>RiotSharp</Company>
-	  <Description>Core functionality package for RiotSharp - C# wrapper for the Riot Games API. Provides rate limiting, caching, and base infrastructure for API communication.</Description>
+	  <Description>Account API package for RiotSharp - C# wrapper for the Riot Games API. Provides access to Riot Account endpoints for managing accounts and retrieving account information across Riot Games.</Description>
 	  <Copyright>Copyright (c) Benjamin Fradet 2014</Copyright>
 	  <PackageProjectUrl>https://github.com/asbjornvad/RiotSharp</PackageProjectUrl>
 	  <RepositoryUrl>https://github.com/asbjornvad/RiotSharp</RepositoryUrl>
@@ -24,10 +24,6 @@
 		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	
-  <ItemGroup>
-    <None Include="Endpoints\ActiveRegion.cs" />
-  </ItemGroup>
-
   <ItemGroup>
 	  <ProjectReference Include="..\RiotSharp.Core\RiotSharp.Core.csproj" />
   </ItemGroup>

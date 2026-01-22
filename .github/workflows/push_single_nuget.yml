@@ -1,0 +1,54 @@
+name: Publish Single NuGet Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Project to publish'
+        required: true
+        type: choice
+        options:
+          - Core
+          - Account
+          - LeagueOfLegends
+      version:
+        description: 'Version (x.x.x)'
+        required: true
+        type: string
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Restore dependencies
+        run: dotnet restore src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj
+      
+      - name: Build
+        run: dotnet build src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj --no-restore --configuration Release
+      
+      - name: Test
+        run: dotnet test src/RiotSharp.${{ github.event.inputs.project }}.Tests/RiotSharp.${{ github.event.inputs.project }}.Tests.csproj --no-build --configuration Release --verbosity normal -e API_KEY=${{ secrets.RIOT_API_KEY }}
+
+  publish:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Pack NuGet package
+        run: dotnet pack src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj --configuration Release -p:PackageVersion=${{ github.event.inputs.version }} --output ./nupkgs
+      
+      - name: Push to NuGet
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
