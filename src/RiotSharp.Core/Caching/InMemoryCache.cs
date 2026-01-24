@@ -35,62 +35,25 @@ namespace RiotSharp.Core.Caching
 		#region ICache interface
 		/// <inheritdoc />
 		/// <remarks>Entries are cached in memory for the specified duration.</remarks>
-		public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
+		public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry)
         {
 	        if (key == null) throw new ArgumentNullException(nameof(key));
-	        //Add(key, value, slidingExpiry, true);
-            //_memoryCache.CreateEntry(key).SetValue(value).SetSlidingExpiration(slidingExpiry);
             _memoryCache.Set(key, value, slidingExpiry);
         }
 
         /// <inheritdoc />
         /// <remarks>Entries are cached in memory until the specified datetime is reached.</remarks>
-        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry)
         {
-			/*
-            if (absoluteExpiry > DateTime.Now)
-            {
-                var diff = absoluteExpiry - DateTime.Now;
-                Add(key, value, diff, false);
-            }
-            */
 			if (key == null) throw new ArgumentNullException(nameof(key));
-			//_memoryCache.CreateEntry(key).SetValue(value).SetAbsoluteExpiration(absoluteExpiry);
 			_memoryCache.Set(key, value, absoluteExpiry);
         }
 
         /// <inheritdoc />
-        public TV? Get<TK, TV>(TK key) where TV : class
+        public bool TryGet<TK, TV>(TK key, out TV? value)
         {
 			if (key == null) throw new ArgumentNullException(nameof(key));
-            if(_memoryCache.TryGetValue(key, out var value))
-			{
-				return (TV?)value;
-			}
-            else
-            {
-	            return null;
-			}
-			/*
-	        if (!_cache.TryGetValue(key, out var cacheItem)) return null;
-
-	        if (cacheItem.RelativeExpiry.HasValue)
-            {
-	            if (Monitor.TryEnter(_sync, MonitorWaitToUpdateSliding))
-	            {
-		            try
-		            {
-			            _slidingTimes[key].Viewed();
-		            }
-		            finally
-		            {
-			            Monitor.Exit(_sync);
-		            }
-	            }
-            }
-
-            return (TV)cacheItem.Value;
-            */
+            return _memoryCache.TryGetValue(key, out value);
 		}
 
         /// <inheritdoc />
@@ -99,47 +62,23 @@ namespace RiotSharp.Core.Caching
         {
 			if (key == null) throw new ArgumentNullException(nameof(key));
 			_memoryCache.Remove(key);
-			/*
-            if(key is null) return;
-
-            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
-			{
-				try
-				{
-					_cache.Remove(key);
-					_slidingTimes.Remove(key);
-				}
-				finally
-				{
-					Monitor.Exit(_sync);
-				}
-			}
-            */
 		}
 
         /// <inheritdoc />
         public void Clear()
         {
 			_memoryCache.Clear();
-			/*
-            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
-            {
-                try
-                {
-                    _cache.Clear();
-                    _slidingTimes.Clear();
-                }
-                finally
-                {
-                    Monitor.Exit(_sync);
-                }
-            }
-            */
 		}
-		#endregion
 
-		//Enumerators are not used in the current implementation. Perhaps they will be used in the future.
-		/*
+        /// <inheritdoc />
+        public int Count()
+        {
+            return _memoryCache.Count;
+        }
+        #endregion
+
+        //Enumerators are not used in the current implementation. Perhaps they will be used in the future.
+        /*
 		#region Enumerator methods
 
 		/// <summary>
@@ -232,112 +171,6 @@ namespace RiotSharp.Core.Caching
         }
 
 		#endregion
-        */
-
-
-		/// <inheritdoc />
-		public int Count()
-		{
-			return _memoryCache.Count;
-			/*
-            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
-            {
-                try
-                {
-                    return _cache.Keys.Count;
-                }
-                finally
-                {
-                    Monitor.Exit(_sync);
-                }
-            }
-
-            return -1;
-            */
-		}
-
-        /*
-        private void Add<TK, TV>(TK key, TV value, TimeSpan timeSpan, bool isSliding) where TV : class
-        {
-            if (Monitor.TryEnter(_sync, DefaultMonitorWait))
-            {
-                try
-                {
-                    Remove(key);
-                    _cache.Add(key, new CacheItem(value, isSliding ? timeSpan : (TimeSpan?)null));
-
-                    if (isSliding)
-                    {
-                        _slidingTimes.Add(key, new SlidingDetails(timeSpan));
-                    }
-
-                    StartObserving(key, timeSpan);
-                }
-                finally
-                {
-                    Monitor.Exit(_sync);
-                }
-            }
-        }
-
-        private void StartObserving<TK>(TK key, TimeSpan timeSpan)
-        {
-            Timer timer = null;
-            timer = new Timer(x =>
-            {
-                TryPurgeItem(key);
-                timer?.Dispose();
-            }, key, timeSpan, TimeSpan.FromMilliseconds(-1));
-        }
-
-        private void TryPurgeItem<TK>(TK key)
-        {
-            if (_slidingTimes.ContainsKey(key))
-            {
-                if (!_slidingTimes[key].CanExpire(out var tryAfter))
-                {
-                    StartObserving(key, tryAfter);
-                    return;
-                }
-            }
-
-            Remove(key);
-        }
-
-        private class CacheItem
-        {
-            public CacheItem(object value, TimeSpan? relativeExpiry)
-            {
-                Value = value;
-                RelativeExpiry = relativeExpiry;
-            }
-
-            public object Value { get; }
-            public TimeSpan? RelativeExpiry { get; }
-        }
-
-        private class SlidingDetails
-        {
-            private readonly TimeSpan _relativeExpiry;
-            private DateTime _expireAt;
-
-            public SlidingDetails(TimeSpan relativeExpiry)
-            {
-                _relativeExpiry = relativeExpiry;
-                Viewed();
-            }
-
-            public bool CanExpire(out TimeSpan tryAfter)
-            {
-                tryAfter = _expireAt - DateTime.Now;
-                return (0 > tryAfter.Ticks);
-            }
-
-            public void Viewed()
-            {
-                _expireAt = DateTime.Now.Add(_relativeExpiry);
-            }
-        }
         */
     }
 }

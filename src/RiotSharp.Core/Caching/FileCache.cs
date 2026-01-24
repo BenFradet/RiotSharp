@@ -40,13 +40,13 @@ namespace RiotSharp.Core.Caching
         }
 
         /// <inheritdoc />
-        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry)
         {
             Store(key, value, (long)slidingExpiry.TotalMinutes);
         }
 
         /// <inheritdoc />
-        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry)
         {
             Store(key, value, (long)(absoluteExpiry - DateTime.Now).TotalMinutes);
         }
@@ -72,7 +72,7 @@ namespace RiotSharp.Core.Caching
         }
 
         /// <inheritdoc />
-        public TV? Get<TK, TV>(TK key) where TV : class
+        public bool TryGet<TK, TV>(TK key, out TV? value)
         {
             CacheData<TV>? data;
             try
@@ -84,7 +84,14 @@ namespace RiotSharp.Core.Caching
             {
                 data = null;
             }
-            return IsExpired(data) ? null : data?.Data;
+
+            if (IsExpired(data))
+            {
+                value = default;
+                return false;
+            }
+            value = data!.Data;
+            return true;
         }
 
         /// <inheritdoc />

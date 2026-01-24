@@ -6,12 +6,12 @@
     public class PassThroughCache : ICache
     {
         /// <inheritdoc />
-        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, TimeSpan slidingExpiry)
         {
         }
 
         /// <inheritdoc />
-        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry) where TV : class
+        public void Add<TK, TV>(TK key, TV value, DateTime absoluteExpiry)
         {
         }
 
@@ -26,9 +26,10 @@
         }
 
         /// <inheritdoc />
-        public TV? Get<TK, TV>(TK key) where TV : class
+        public bool TryGet<TK, TV>(TK key, out TV? value)
         {
-            return null;
+            value = default;
+            return false;
         }
 
         /// <inheritdoc />
