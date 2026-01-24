@@ -28,10 +28,14 @@ jobs:
           dotnet-version: '8.0.x'
       
       - name: Restore dependencies
-        run: dotnet restore src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj
+        run: |
+          dotnet restore src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj
+          dotnet restore src/RiotSharp.${{ github.event.inputs.project }}.Tests/RiotSharp.${{ github.event.inputs.project }}.Tests.csproj
       
       - name: Build
-        run: dotnet build src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj --no-restore --configuration Release
+        run: |
+          dotnet build src/RiotSharp.${{ github.event.inputs.project }}/RiotSharp.${{ github.event.inputs.project }}.csproj --no-restore --configuration Release
+          dotnet build src/RiotSharp.${{ github.event.inputs.project }}.Tests/RiotSharp.${{ github.event.inputs.project }}.Tests.csproj --no-restore --configuration Release
       
       - name: Test
         run: dotnet test src/RiotSharp.${{ github.event.inputs.project }}.Tests/RiotSharp.${{ github.event.inputs.project }}.Tests.csproj --no-build --configuration Release --verbosity normal -e API_KEY=${{ secrets.RIOT_API_KEY }}
