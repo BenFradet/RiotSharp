@@ -54,13 +54,5 @@ namespace RiotSharp.Account.Endpoints
 
 			return await GetContentAsync<ActiveRegion>(region, requestUrl).ConfigureAwait(false);
 		}
-
-		/// <inheritdoc/>
-		/// Uses the authorization header to get the account associated with the access token.
-		/// This is not yet supported, so it throws a NotImplementedException.
-		public async Task<Account?> GetAccountByAccessTokenAsync(Region region, string authorization)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

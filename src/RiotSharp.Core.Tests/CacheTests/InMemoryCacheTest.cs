@@ -1,14 +1,22 @@
-﻿using RiotSharp.Core.Caching;
+﻿using Microsoft.Extensions.Internal;
+using RiotSharp.Core.Caching;
 
 namespace RiotSharp.Core.Tests.CacheTests
 {
     public class InMemoryCacheTest
     {
+        private readonly FakeClock _fakeClock;
+        // January 26, 2025 00:00:00 UTC
+        private readonly DateTimeOffset _baseTestTime = new DateTimeOffset(2025, 1, 26, 0, 0, 0, 0, TimeSpan.Zero);
+
         private readonly ICache _cache;
 
         public InMemoryCacheTest()
         {
-            _cache = new InMemoryCache();
+            _fakeClock = new FakeClock(_baseTestTime);
+
+            // Creates the cache with 5 second scan frequency. The fakeclock is used to control time in tests.
+            _cache = new InMemoryCache(TimeSpan.FromSeconds(5), _fakeClock);
         }
 
         // Test class for object-based tests
@@ -38,7 +46,7 @@ namespace RiotSharp.Core.Tests.CacheTests
         {
             var key = "testKey";
             var value = "testValue";
-            var slidingExpiration = TimeSpan.FromMinutes(5);
+            var slidingExpiration = TimeSpan.FromSeconds(9);
 
             _cache.Add(key, value, slidingExpiration);
 
@@ -53,7 +61,7 @@ namespace RiotSharp.Core.Tests.CacheTests
         {
             var key = "testKey";
             var value = "testValue";
-            var absoluteExpiration = DateTime.Now.AddMinutes(5);
+            var absoluteExpiration = _baseTestTime.DateTime.AddMinutes(1);
 
             _cache.Add(key, value, absoluteExpiration);
 
@@ -77,7 +85,7 @@ namespace RiotSharp.Core.Tests.CacheTests
         {
             var key = "testKey";
             var value = "testValue";
-            var slidingExpiration = TimeSpan.FromMinutes(5);
+            var slidingExpiration = TimeSpan.FromMinutes(1);
 
             _cache.Add(key, value, slidingExpiration);
             _cache.Remove(key);
@@ -94,7 +102,7 @@ namespace RiotSharp.Core.Tests.CacheTests
             var value1 = "testValue1";
             var key2 = "testKey2";
             var value2 = "testValue2";
-            var slidingExpiration = TimeSpan.FromMinutes(5);
+            var slidingExpiration = TimeSpan.FromMinutes(1);
 
             _cache.Add(key1, value1, slidingExpiration);
             _cache.Add(key2, value2, slidingExpiration);
@@ -113,10 +121,11 @@ namespace RiotSharp.Core.Tests.CacheTests
         {
             var key = "testKey";
             var value = "testValue";
-            var slidingExpiration = TimeSpan.FromSeconds(1);
+            var slidingExpiration = TimeSpan.FromSeconds(4);
 
             _cache.Add(key, value, slidingExpiration);
-            Thread.Sleep(2000);
+
+            _fakeClock.Advance(TimeSpan.FromSeconds(10));
 
             var valueFound = _cache.TryGet<string, string>(key, out var cachedValue);
             Assert.False(valueFound);
@@ -128,10 +137,11 @@ namespace RiotSharp.Core.Tests.CacheTests
         {
             var key = "testKey";
             var value = "testValue";
-            var absoluteExpiration = DateTime.Now.AddSeconds(1);
+            var absoluteExpiration = _baseTestTime.DateTime.AddSeconds(4);
 
             _cache.Add(key, value, absoluteExpiration);
-            Thread.Sleep(2000);
+
+            _fakeClock.Advance(TimeSpan.FromSeconds(10));
 
             var valueFound = _cache.TryGet<string, string>(key, out var cachedValue);
             Assert.False(valueFound);
@@ -191,10 +201,11 @@ namespace RiotSharp.Core.Tests.CacheTests
         {
             var key = 999;
             var value = 777;
-            var slidingExpiration = TimeSpan.FromSeconds(1);
+            var slidingExpiration = TimeSpan.FromSeconds(9);
 
             _cache.Add(key, value, slidingExpiration);
-            Thread.Sleep(2000);
+
+            _fakeClock.Advance(TimeSpan.FromSeconds(10));
 
             var valueFound = _cache.TryGet<int, int>(key, out var cachedValue);
             Assert.False(valueFound);
@@ -278,7 +289,7 @@ namespace RiotSharp.Core.Tests.CacheTests
                 Name = "Another Test Object",
                 CreatedAt = new DateTime(2024, 6, 15, 10, 30, 0)
             };
-            var absoluteExpiration = DateTime.Now.AddMinutes(5);
+            var absoluteExpiration = _baseTestTime.DateTime.AddMinutes(5);
 
             _cache.Add(key, value, absoluteExpiration);
 
@@ -301,10 +312,11 @@ namespace RiotSharp.Core.Tests.CacheTests
                 Name = "Expiring Object",
                 CreatedAt = DateTime.Now
             };
-            var slidingExpiration = TimeSpan.FromSeconds(1);
+            var slidingExpiration = TimeSpan.FromSeconds(69);
 
             _cache.Add(key, value, slidingExpiration);
-            Thread.Sleep(2000);
+
+            _fakeClock.Advance(TimeSpan.FromSeconds(100));
 
             var valueFound = _cache.TryGet<string, TestObject>(key, out var cachedValue);
             Assert.False(valueFound);

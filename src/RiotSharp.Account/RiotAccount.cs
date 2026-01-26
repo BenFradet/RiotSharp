@@ -10,15 +10,24 @@ namespace RiotSharp.Account
 	{
 		public IAccountEndpoint? Account { get; }
 
-		private RiotAccount(IAccountEndpoint? account)
+        /// <summary>
+        /// Private constructor to enforce the use of the Builder pattern.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        private RiotAccount(IAccountEndpoint? account)
 		{
-			Account = account ?? throw new ArgumentNullException(nameof(account), "Account endpoint cannot be null.");
+            // Since it does not make sense to have an Account API without an Account endpoint, we enforce that it is not null.
+            Account = account ?? throw new ArgumentNullException(nameof(account), "Account endpoint cannot be null.");
 		}
 
+		/// <summary>
+		/// Provides a builder for configuring and creating instances of the RiotAccount class.
+		/// </summary>
+		/// <remarks>Use the Builder class to configure endpoints and construct a RiotAccount instance.
 		public class Builder
 		{
 			private IAccountEndpoint? _account;
-			// ... more endpoints
 
 			public Builder UseAccountEndpoint(IAccountEndpoint? endpoint)
 			{
@@ -26,9 +35,11 @@ namespace RiotSharp.Account
 				return this;
 			}
 
-			// ... more WithXEndpoint methods
-
-			public RiotAccount Build()
+            /// <summary>
+            /// Finalizes the configuration and constructs a RiotAccount instance.
+            /// </summary>
+            /// <returns>The RiotAccount instance to be used.</returns>
+            public RiotAccount Build()
 			{
 				// Optionally validate all required endpoints are set
 				return new RiotAccount(_account);

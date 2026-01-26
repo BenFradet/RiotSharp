@@ -44,12 +44,13 @@ namespace RiotSharp.Account.Endpoints
 		/// <returns>An Active Shard.</returns>
 		Task<ActiveRegion?> GetActiveRegionByPuuidAsync(Region region, string puuid, Game game);
 
-		/// <summary>
-		/// Get account by access token.
-		/// </summary>
-		/// <param name="region">Region in which you wish to look for a account. (Legal values: Americas, Asia, Europe, Esports)</param>
-		/// <param name="authorization">Authorization token.</param>
-		/// <returns>The account that the token is bound to.</returns>
-		Task<Account?> GetAccountByAccessTokenAsync(Region region, string authorization);
-	}
+        /// <summary>
+        /// Get account by access token.
+        /// </summary>
+        /// <param name="region">Region in which you wish to look for a account. (Legal values: Americas, Asia, Europe, Esports)</param>
+        /// <param name="authorization">Authorization token.</param>
+        /// <returns>The account that the token is bound to.</returns>
+        // TODO: Implement RSO in Core and implement this method.
+        //Task<Account?> GetAccountByAccessTokenAsync(Region region, string authorization);
+    }
 }
