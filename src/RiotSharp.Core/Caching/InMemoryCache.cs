@@ -17,6 +17,20 @@ namespace RiotSharp.Core.Caching
         /// Constructor for the in-memory cache.
         /// </summary>
         /// <param name="expirationScanFrequency">The timespan of which the elements in the cache will be checked. Default is 5 minutes.</param>
+        public InMemoryCache(TimeSpan? expirationScanFrequency = null)
+        {
+            TimeSpan scanFrequency = expirationScanFrequency ?? TimeSpan.FromMinutes(1);
+
+            _memoryCache = new MemoryCache(new MemoryCacheOptions
+            {
+                ExpirationScanFrequency = scanFrequency
+            });
+        }
+
+        /// <summary>
+        /// Constructor for the in-memory cache. Only for testing purposes!
+        /// </summary>
+        /// <param name="expirationScanFrequency">The timespan of which the elements in the cache will be checked. Default is 5 minutes.</param>
         /// <param name="clock">The system clock to use for expiration only used for testing purposes!</param>
         public InMemoryCache(TimeSpan? expirationScanFrequency = null, ISystemClock? clock = null)
 		{

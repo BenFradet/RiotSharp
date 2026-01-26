@@ -17,12 +17,14 @@ namespace RiotSharp.Core.Http.RateLimiting
 		/// </summary>
 		private readonly ConcurrentDictionary<Region, List<System.Threading.RateLimiting.RateLimiter>> _regionRateLimits = new();
 
-		/// <summary>
-		/// Constructor for the ApplicationRateLimiter.
-		/// </summary>
-		/// <param name="rateLimits"></param>
-		/// <exception cref="ArgumentException">If dictionary is null or is empty an exception is thrown.</exception>
-		public ApplicationRateLimiter(IDictionary<TimeSpan, int> rateLimits)
+        /// <summary>
+        /// Constructor for the ApplicationRateLimiter.
+        /// </summary>
+        /// <param name="rateLimits"></param>
+		/// <param name="autoReplenish">Defualt value of true, only set to false during testing!</param>
+        /// <exception cref="ArgumentException">If dictionary is null or is empty an exception is thrown.</exception>
+        /// <remarks>When testing set the autoReplenish to false.</remarks>
+        public ApplicationRateLimiter(IDictionary<TimeSpan, int> rateLimits, bool autoReplenish = true)
 		{
 			if(rateLimits == null || rateLimits.Count == 0)
 			{
@@ -44,25 +46,25 @@ namespace RiotSharp.Core.Http.RateLimiting
 							Window = rateLimit.Key,
 							QueueLimit = 0,
 							QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-							AutoReplenishment = true
+							AutoReplenishment = autoReplenish
 						};
 						return (System.Threading.RateLimiting.RateLimiter)new FixedWindowRateLimiter(options);
 					}).ToList();
 
-				// Add sorted limiters to the corresponding region in the dictionary
-				_regionRateLimits.TryAdd(region, sortedRateLimiters);
+                // Add sorted limiters to the corresponding region in the dictionary
+                _regionRateLimits.TryAdd(region, sortedRateLimiters);
 			}
 		}
 
-		/// <summary>
-		/// Function that handles requesting a lease for a specific region.
-		/// Will go through the list of rate limiters for the region and try to acquire a lease.
-		/// </summary>
-		/// <param name="region"></param>
-		/// <param name="numberOfLeases"></param>
-		/// <returns><see cref="RateLimitLease"/> object with the IsAcquired set to either true or false indicating the result of the request.</returns>
-		/// TODO: Consider making the returnvalue nullable.
-		private async ValueTask<RateLimitLease?> AsyncAcquireLeaseForRegion(Region region, int numberOfLeases)
+        /// <summary>
+        /// Function that handles requesting a lease for a specific region.
+        /// Will go through the list of rate limiters for the region and try to acquire a lease.
+        /// </summary>
+        /// <param name="region"></param>
+        /// <param name="numberOfLeases"></param>
+        /// <returns><see cref="RateLimitLease"/> object with the IsAcquired set to either true or false indicating the result of the request.</returns>
+        /// TODO: Consider making the returnvalue nullable.
+        private async ValueTask<RateLimitLease?> AsyncAcquireLeaseForRegion(Region region, int numberOfLeases)
 		{
 			var rateLimitersForRegion = _regionRateLimits[region];
 			RateLimitLease? lease = null;

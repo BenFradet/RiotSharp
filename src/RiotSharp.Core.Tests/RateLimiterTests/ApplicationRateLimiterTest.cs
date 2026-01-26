@@ -1,10 +1,31 @@
 ﻿using RiotSharp.Core.Http.RateLimiting;
 using RiotSharp.Core.Misc;
+using System.Diagnostics;
+using System.Threading.RateLimiting;
+using System.Reflection;
+using Xunit.Sdk;
 
 namespace RiotSharp.Core.Tests.RateLimiterTests
 {
     public class ApplicationRateLimiterTest
     {
+        //https://github.com/dotnet/runtime/blob/main/src/libraries/System.Threading.RateLimiting/tests/FixedWindowRateLimiterTests.cs
+        private static readonly double TickFrequency = (double)TimeSpan.TicksPerSecond / Stopwatch.Frequency;
+
+        static internal void Replenish(ApplicationRateLimiter limiter, long addMilliseconds, Region region)
+        {
+            // Get the first ratelimiter of the given region.
+            var regionLimitersField = typeof(ApplicationRateLimiter).GetField("_regionRateLimits", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            var regionLimiters = (System.Collections.Concurrent.ConcurrentDictionary<Region, List<RateLimiter>>)regionLimitersField.GetValue(limiter)!;
+            var fixedWindowLimiter = (FixedWindowRateLimiter)regionLimiters[region][0];
+
+            // Access the FixedWindowRateLimiter that is not autoreplenishing.
+            var replenishInternalMethod = typeof(FixedWindowRateLimiter).GetMethod("ReplenishInternal", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            var internalTick = typeof(FixedWindowRateLimiter).GetField("_lastReplenishmentTick", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            var currentTick = (long)internalTick.GetValue(fixedWindowLimiter);
+            replenishInternalMethod.Invoke(fixedWindowLimiter, new object[] { currentTick + addMilliseconds * (long)(TimeSpan.TicksPerMillisecond / TickFrequency) });
+        }
+
         [Fact]
         public void Constructor_NullRateLimits_ThrowsArgumentException()
         {
@@ -99,7 +120,7 @@ namespace RiotSharp.Core.Tests.RateLimiterTests
             {
                 {TimeSpan.FromSeconds(1), 20},
                 {TimeSpan.FromMinutes(2), 100}
-            });
+            }, false);
 
             var leases = new List<IRequestLease>();
             for (int i = 0; i < 5; i++)
@@ -108,7 +129,8 @@ namespace RiotSharp.Core.Tests.RateLimiterTests
                 {
                     leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
                 }
-                await Task.Delay(TimeSpan.FromSeconds(1.2));
+                //await Task.Delay(TimeSpan.FromSeconds(1.2));
+                Replenish(uut, (long)(1.2 * 1000), Region.Euw);
             }
 
             Assert.Equal(100, leases.Count(l => l.IsAcquired));
@@ -130,7 +152,7 @@ namespace RiotSharp.Core.Tests.RateLimiterTests
                 {
                     leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
                 }
-                await Task.Delay(TimeSpan.FromSeconds(1.2));
+                Replenish(uut, (long)(1.2 * 1000), Region.Euw);
             }
 
             leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
@@ -156,7 +178,7 @@ namespace RiotSharp.Core.Tests.RateLimiterTests
                     leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
                 }
                 if (i != 4)
-                    await Task.Delay(TimeSpan.FromSeconds(1.2));
+                    Replenish(uut, (long)(1.2 * 1000), Region.Euw);
             }
 
             var lastLease = await uut.GetLeaseForRegion(Region.Euw, 1);
@@ -183,7 +205,7 @@ namespace RiotSharp.Core.Tests.RateLimiterTests
                 {
                     leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
                 }
-                await Task.Delay(TimeSpan.FromSeconds(1.2));
+                Replenish(uut, (long)(1.2 * 1000), Region.Euw);
             }
 
             var lastLease = await uut.GetLeaseForRegion(Region.Euw, 1);
@@ -210,10 +232,10 @@ namespace RiotSharp.Core.Tests.RateLimiterTests
                 {
                     leases.Add(await uut.GetLeaseForRegion(Region.Euw, 1));
                 }
-                await Task.Delay(TimeSpan.FromSeconds(1.2));
+                Replenish(uut, (long)(1.2 * 1000), Region.Euw);
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(5));
+            Replenish(uut, (long)(5 * 1000), Region.Euw);
             var lastLease = await uut.GetLeaseForRegion(Region.Euw, 1);
             leases.Add(lastLease);
 
