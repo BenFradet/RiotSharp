@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <NoWarn>1591</NoWarn>
     <PackageId>RiotSharp.AspNetCore</PackageId>
     <Version>0.1.0</Version>
     <PackageVersion>0.1.0</PackageVersion>
