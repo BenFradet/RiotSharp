@@ -20,8 +20,10 @@ C# Wrapper for the [Riot Games API](https://developer.riotgames.com/)
 
 Install RiotSharp through NuGet:
 ```
-PM> Install-Package RiotSharp
+PM> Install-Package RiotSharp -Version 5.0.0-alpha
 ```
+
+Don't use 4.0.0 as it is very outdated.
 
 or
 
